@@ -5,6 +5,7 @@ import ScrollableUnderlineTabs from '@/shared/ui/animated-tabs/ScrollableUnderli
 import { usePeopleTab } from '@/features/people-tab/model/usePeopleTab'
 import { PeopleTabs as PTabs } from '@/widgets/people/model/types'
 import { PeopleContent } from '@/widgets/people/ui/PeopleContent'
+import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
 import { ProfileHeroBanner } from '@/widgets/people/ui/profile-hero-banner'
 import { ProfileBadgesStrip } from '@/widgets/people/ui/profile-badges-strip'
 import { ProfileCompletenessBar } from '@/widgets/people/ui/profile-completeness'
@@ -32,6 +33,7 @@ const tabs = [PTabs.OVERVIEW, PTabs.CUBES, PTabs.TIMELINE, PTabs.ALGORITHMS] as 
 
 export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsProps) {
   const t = useTranslations('Index.PeoplePage.tabs')
+  const tPeople = useTranslations('Index.PeoplePage')
   const userBadges = useUserBadges({ user, cubes })
   const { data: learned } = useUserLearned(user._id)
 
@@ -39,6 +41,7 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
   const isCurrentUser = session?.user?.id === user._id
   const { data: relationship } = useRelationship(user._id)
   const hasIncomingRequest = relationship?.status === 'pending_in'
+  const statsHidden = !!user.statsHidden
 
   const { value, set } = usePeopleTab()
 
@@ -74,6 +77,7 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
             user={user}
             isCurrentUser={isCurrentUser}
             status={relationship?.status}
+            canRequest={relationship?.canRequest}
             className="max-sm:hidden sm:self-end"
           />
         }
@@ -88,13 +92,14 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
           user={user}
           isCurrentUser={isCurrentUser}
           status={relationship?.status}
+          canRequest={relationship?.canRequest}
           className="mt-1.5 sm:hidden"
         >
-          <CompareUserButton user={user} />
+          {!statsHidden && <CompareUserButton user={user} />}
         </ProfileActions>
       </ProfileHeroBanner>
       {isCurrentUser && <ProfileCompletenessBar user={user} />}
-      {!isLoadingStats && <ProfileBadgesStrip badges={userBadges} />}
+      {!isLoadingStats && !statsHidden && <ProfileBadgesStrip badges={userBadges} />}
 
       <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full mb-5">
         <div className="flex flex-wrap items-center justify-between gap-3 px-4 md:px-6 py-3 mt-3">
@@ -105,7 +110,7 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
                 label: (
                   <span className="inline-flex items-center gap-1.5">
                     {labels[tab]}
-                    {!isLoadingStats && counts[tab] != null && (
+                    {!isLoadingStats && !statsHidden && counts[tab] != null && (
                       <span className="inline-flex items-center justify-center min-w-[1.125rem] h-[1.125rem] px-1 rounded-full bg-muted text-[10px] font-semibold tabular-nums leading-none text-muted-foreground transition-colors group-data-[state=active]:bg-primary/10 group-data-[state=active]:text-primary">
                         {counts[tab]}
                       </span>
@@ -118,12 +123,14 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
             />
           </div>
 
-          <CompareUserButton user={user} className="max-sm:hidden sm:shrink-0" />
+          {!statsHidden && <CompareUserButton user={user} className="max-sm:hidden sm:shrink-0" />}
         </div>
 
         {/* Tab content */}
         <div className="px-4 md:px-6 py-0">
-          {isLoadingStats ? (
+          {statsHidden ? (
+            <EmptyTabContent message={tPeople('stats-hidden', { name: user.name })} />
+          ) : isLoadingStats ? (
             <TabTableSkeleton />
           ) : (
             <PeopleContent cubes={cubes} badges={userBadges} learnedMethods={learned?.methods} />
