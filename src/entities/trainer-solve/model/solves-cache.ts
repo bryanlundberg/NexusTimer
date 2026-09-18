@@ -8,6 +8,7 @@ import { getRedis } from '@/shared/config/redis/redis'
 export const SOLVES_FIRST_PAGE_SIZE = 25
 
 const PREFIX = 'trainer:solves:'
+const TTL_SECONDS = 60 * 60 * 24 * 7 // 7d
 
 // Tail marker meaning "this list holds the user's COMPLETE history".
 // When LTRIM drops it, the list only holds the newest SOLVES_FIRST_PAGE_SIZE+.
@@ -55,6 +56,7 @@ export const solvesCache = {
       const multi = redis.multi()
       multi.del(k)
       multi.rPush(k, items)
+      multi.expire(k, TTL_SECONDS)
       await multi.exec()
     } catch (error) {
       console.error('solvesCache.prime failed:', error)
@@ -74,6 +76,9 @@ export const solvesCache = {
       // Keep the sentinel while the history is short; once the window is
       // full the sentinel falls off and the list becomes a partial window.
       multi.lTrim(k, 0, SOLVES_FIRST_PAGE_SIZE)
+      // Only for a list the LPUSH itself created, when the key expired right after EXISTS.
+      // A live list keeps its own expiry, so it still gets rebuilt from Mongo on schedule.
+      multi.expire(k, TTL_SECONDS, 'NX')
       await multi.exec()
     } catch (error) {
       console.error('solvesCache.push failed:', error)

@@ -7,6 +7,7 @@ const multiMock = {
   rPush: vi.fn().mockReturnThis(),
   lPush: vi.fn().mockReturnThis(),
   lTrim: vi.fn().mockReturnThis(),
+  expire: vi.fn().mockReturnThis(),
   exec: vi.fn().mockResolvedValue([])
 }
 
@@ -90,6 +91,7 @@ describe('solvesCache', () => {
         JSON.stringify(solve('a')),
         SENTINEL
       ])
+      expect(multiMock.expire).toHaveBeenCalledWith(KEY, 60 * 60 * 24 * 7)
       expect(multiMock.exec).toHaveBeenCalled()
     })
 
@@ -122,6 +124,7 @@ describe('solvesCache', () => {
 
       expect(multiMock.lPush).toHaveBeenCalledWith(KEY, JSON.stringify(solve('a')))
       expect(multiMock.lTrim).toHaveBeenCalledWith(KEY, 0, SOLVES_FIRST_PAGE_SIZE)
+      expect(multiMock.expire).toHaveBeenCalledWith(KEY, 60 * 60 * 24 * 7, 'NX')
       expect(multiMock.exec).toHaveBeenCalled()
     })
 
