@@ -14,15 +14,20 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { Textarea } from '@/components/ui/textarea'
 import { CopyIcon, CubeIcon } from '@radix-ui/react-icons'
 import { useTranslations } from 'next-intl'
-import { ArrowRightLeftIcon } from 'lucide-react'
+import { ArrowRightLeftIcon, Send } from 'lucide-react'
 import { QaDeleteIcon, QaBookmarkIcon, QaMoreIcon, QaCommentIcon } from '@/components/ui/quick-action-icons'
 import { useQueryState } from 'nuqs'
+import { useSession } from 'next-auth/react'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import useQuickActions from '@/features/manage-solves/model/useQuickActions'
 import { Solve } from '@/entities/solve/model/types'
 import { STATES } from '@/shared/const/states'
 import { SolveTab } from '@/shared/types/enums'
 import { cn } from '@/shared/lib/utils'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
+import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import { solveCardFromSolve } from '@/entities/chat/lib/solve-card'
+import { SendToFriendDialog } from '@/features/chat/ui/SendToFriendDialog'
 
 const COMMENT_MAX_LENGTH = 200
 
@@ -60,6 +65,13 @@ export default function QuickActions({
   const [confirmDeleteOpen, setConfirmDeleteOpen] = useState(false)
   const [commentOpen, setCommentOpen] = useState(false)
   const [commentDraft, setCommentDraft] = useState('')
+  const [shareOpen, setShareOpen] = useState(false)
+  const { data: session } = useSession()
+  const closeOverlay = useOverlayStore((state) => state.close)
+  const category = useTimerStore(
+    (state) => state.cubes?.find((cube) => cube.id === solve?.cubeId)?.category ?? state.selectedCube?.category
+  )
+  const shareDraft = session?.user?.id && solve && category ? solveCardFromSolve(solve, category) : null
 
   const handleConfirmDelete = () => {
     handleDeleteSolve()
@@ -78,7 +90,7 @@ export default function QuickActions({
   }
 
   const showDropdown =
-    !hideCopyButton || !hideMoveToHistory || (tabMode === SolveTab.SESSION && !hideTransferCollection)
+    !!shareDraft || !hideCopyButton || !hideMoveToHistory || (tabMode === SolveTab.SESSION && !hideTransferCollection)
 
   const isOk = !solve?.plus2 && !solve?.dnf
 
@@ -131,6 +143,13 @@ export default function QuickActions({
     </AlertDialog>
   )
 
+  // After the menu has closed and returned focus, so the dialog keeps it
+  const openShare = () => requestAnimationFrame(() => setShareOpen(true))
+
+  const shareDialog = shareDraft && (
+    <SendToFriendDialog open={shareOpen} onOpenChange={setShareOpen} draft={shareDraft} onOpened={closeOverlay} />
+  )
+
   const commentButton = (
     <Tooltip>
       <TooltipTrigger asChild>
@@ -167,6 +186,11 @@ export default function QuickActions({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
+        {shareDraft && (
+          <DropdownMenuItem data-testid="send-to-friend-button" onSelect={openShare}>
+            <Send className="mr-2 size-3" /> {t('ChatPage.send-to-friend')}
+          </DropdownMenuItem>
+        )}
         {!hideCopyButton && (
           <DropdownMenuItem
             data-testid="copy-solve-button"
@@ -302,6 +326,7 @@ export default function QuickActions({
         </div>
         {deleteDialog}
         {commentDialog}
+        {shareDialog}
       </TooltipProvider>
     )
   }
@@ -406,6 +431,11 @@ export default function QuickActions({
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
+                {shareDraft && (
+                  <DropdownMenuItem data-testid="send-to-friend-button" onSelect={openShare}>
+                    <Send className="mr-2 size-3" /> {t('ChatPage.send-to-friend')}
+                  </DropdownMenuItem>
+                )}
                 {!hideCopyButton && (
                   <DropdownMenuItem
                     data-testid="copy-solve-button"
@@ -460,6 +490,7 @@ export default function QuickActions({
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+      {shareDialog}
     </TooltipProvider>
   )
 }
