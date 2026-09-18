@@ -4,14 +4,13 @@ import { Cube } from '@/entities/cube/model/types'
 import DeleteCollectionForm from '@/features/manage-cubes/ui/DeleteCollectionForm'
 import EditCollectionForm from '@/features/manage-cubes/ui/EditCollectionForm'
 import { editCubeCollection } from '@/features/manage-cubes/api/editCubeCollection'
-import { cubesDB } from '@/entities/cube/api/indexdb'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import CreateCollectionForm from '@/features/manage-cubes/ui/CreateCollectionForm'
 
 export const useCubeActions = (cube?: Cube) => {
   const router = useRouter()
   const { open } = useOverlayStore()
-  const setCubes = useTimerStore((state) => state.setCubes)
+  const patchCube = useTimerStore((state) => state.patchCube)
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
   const setNewScramble = useTimerStore((state) => state.setNewScramble)
 
@@ -48,9 +47,7 @@ export const useCubeActions = (cube?: Cube) => {
   const handleFavorite = async () => {
     const isFavoriting = !cube?.favorite
 
-    await editCubeCollection({ favorite: isFavoriting, id: cube!.id })
-    const cubes = await cubesDB.getAll()
-    setCubes(cubes)
+    patchCube(await editCubeCollection({ favorite: isFavoriting, id: cube!.id }))
   }
 
   return {
