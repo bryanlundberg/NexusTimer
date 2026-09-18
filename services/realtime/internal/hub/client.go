@@ -10,8 +10,6 @@ import (
 	"github.com/gorilla/websocket"
 )
 
-// client costs one goroutine while idle (the reader). Writes run on a short-lived
-// goroutine only while messages are queued, and pings run on a timer.
 type client struct {
 	hub    *Hub
 	userID string
@@ -28,7 +26,6 @@ type client struct {
 	// watched is guarded by hub.mu, since the hub keeps the reverse index.
 	watched map[string]struct{}
 
-	// Only touched by readPump.
 	tokens     float64
 	lastRefill time.Time
 }
@@ -78,7 +75,6 @@ func (c *client) SetIdle(idle bool) bool {
 	return true
 }
 
-// enqueue never blocks: a client that falls behind is disconnected instead of slowing others down.
 func (c *client) enqueue(payload []byte) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
@@ -119,8 +115,6 @@ func (c *client) flush() {
 	}
 }
 
-// ping deliberately does not refresh presence: the gateway's own lease covers the same
-// failure for one write per instance instead of one per connection.
 func (c *client) ping() {
 	deadline := time.Now().Add(c.hub.opts.WriteWait)
 	if err := c.conn.WriteControl(websocket.PingMessage, nil, deadline); err != nil {
@@ -140,7 +134,6 @@ func (c *client) close() {
 	c.mu.Unlock()
 }
 
-// closeLocked closes the socket, which unblocks readPump so it unregisters the client.
 func (c *client) closeLocked() {
 	if c.closed {
 		return
@@ -179,7 +172,6 @@ func (c *client) receive(payload []byte) {
 	c.hub.onInbound(c, payload)
 }
 
-// takeToken spends one token from the bucket, so a socket can burst but cannot flood Redis.
 func (c *client) takeToken() bool {
 	now := time.Now()
 	refill := c.hub.opts.InboundRefill
