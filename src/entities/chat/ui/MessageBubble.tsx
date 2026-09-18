@@ -1,9 +1,11 @@
 'use client'
 
+import { useEffect, useRef, useState } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
 import { Ban } from 'lucide-react'
 import dayjs from '@/shared/lib/dayjs'
 import { cn } from '@/shared/lib/utils'
+import { useLongPress } from '@/shared/model/useLongPress'
 import type { ChatMessage, DeleteScope } from '@/entities/chat/model/types'
 import type { MessageStatus } from '@/entities/chat/lib/message-status'
 import { isBigEmoji, parseMessage, type MessageNode } from '@/entities/chat/lib/message-content'
@@ -32,6 +34,18 @@ export function MessageBubble({ message, isOwn, myId, status, onRetry, onReact, 
   const hasCard = nodes.some((node) => node.type === 'solve')
   const soloCard = nodes.length === 1 && nodes[0].type === 'solve' ? nodes[0].data : null
   const isSettled = !message.pending && !message.failed
+  const [revealed, setRevealed] = useState(false)
+  const rootRef = useRef<HTMLDivElement>(null)
+  const { handlers: pressHandlers } = useLongPress({ onLongPress: () => isSettled && setRevealed(true) })
+
+  useEffect(() => {
+    if (!revealed) return
+    const dismiss = (event: PointerEvent) => {
+      if (!rootRef.current?.contains(event.target as Node)) setRevealed(false)
+    }
+    document.addEventListener('pointerdown', dismiss)
+    return () => document.removeEventListener('pointerdown', dismiss)
+  }, [revealed])
 
   const surface = isOwn
     ? 'border-[color-mix(in_oklab,var(--primary)_35%,var(--border))] bg-[color-mix(in_oklab,var(--primary)_14%,var(--background))]'
@@ -86,6 +100,7 @@ export function MessageBubble({ message, isOwn, myId, status, onRetry, onReact, 
 
   return (
     <div
+      ref={rootRef}
       className={cn(
         'group/message flex min-w-0 max-w-[min(80%,40rem)] flex-col gap-1',
         hasCard && 'w-full max-w-[min(100%,20rem)]',
@@ -95,14 +110,27 @@ export function MessageBubble({ message, isOwn, myId, status, onRetry, onReact, 
       <div
         className={cn('flex min-w-0 items-center gap-1', isOwn ? 'flex-row-reverse' : 'flex-row', hasCard && 'w-full')}
       >
-        <div className={cn('flex min-w-0 flex-col gap-0.5', isOwn ? 'items-end' : 'items-start', hasCard && 'flex-1')}>
+        <div
+          {...pressHandlers}
+          onContextMenu={(event) => {
+            if (event.nativeEvent instanceof PointerEvent && event.nativeEvent.pointerType === 'touch') {
+              event.preventDefault()
+            }
+          }}
+          className={cn(
+            'flex min-w-0 flex-col gap-0.5 pointer-coarse:select-none pointer-coarse:[-webkit-touch-callout:none]',
+            isOwn ? 'items-end' : 'items-start',
+            hasCard && 'flex-1'
+          )}
+        >
           {body}
         </div>
 
         <div
           inert={!isSettled}
           className={cn(
-            'shrink-0 opacity-0 transition-opacity group-hover/message:opacity-100 focus-within:opacity-100 pointer-coarse:opacity-100',
+            'shrink-0 opacity-0 transition-opacity group-hover/message:opacity-100 focus-within:opacity-100',
+            revealed ? 'opacity-100' : 'pointer-coarse:invisible',
             !isSettled && 'invisible'
           )}
         >
