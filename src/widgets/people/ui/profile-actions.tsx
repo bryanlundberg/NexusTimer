@@ -9,16 +9,18 @@ import type { UserProfile } from '@/entities/user/model/user'
 import type { RelationshipStatus } from '@/entities/friendship/model/types'
 import { MessageLink } from '@/features/chat/ui/MessageLink'
 import { FriendButton } from '@/features/friends/ui/FriendButton'
+import { BlockUserMenu } from '@/features/friends/ui/BlockUserMenu'
 
 interface Props {
   user: UserProfile
   isCurrentUser: boolean
   status?: RelationshipStatus
+  canRequest?: boolean
   className?: string
   children?: React.ReactNode
 }
 
-export function ProfileActions({ user, isCurrentUser, status, className, children }: Props) {
+export function ProfileActions({ user, isCurrentUser, status, canRequest, className, children }: Props) {
   const t = useTranslations('Index.PeoplePage')
   const router = useRouter()
 
@@ -31,8 +33,11 @@ export function ProfileActions({ user, isCurrentUser, status, className, childre
         </Button>
       )}
       {status === 'friends' && <MessageLink userId={user._id} showLabel />}
-      {status && status !== 'pending_in' && <FriendButton userId={user._id} name={user.name} status={status} />}
+      {status && status !== 'pending_in' && (
+        <FriendButton userId={user._id} name={user.name} status={status} canRequest={canRequest} />
+      )}
       {children}
+      {status && status !== 'blocked' && <BlockUserMenu userId={user._id} name={user.name} />}
     </div>
   )
 }
