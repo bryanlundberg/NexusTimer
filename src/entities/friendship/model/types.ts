@@ -1,4 +1,4 @@
-export type RelationshipStatus = 'none' | 'pending_out' | 'pending_in' | 'friends'
+export type RelationshipStatus = 'none' | 'pending_out' | 'pending_in' | 'friends' | 'blocked'
 
 export interface FriendUser {
   _id: string
@@ -24,8 +24,13 @@ export interface FriendsResponse {
 
 export interface RelationshipResponse {
   status: RelationshipStatus
+  canRequest: boolean
   mutual: {
     count: number
     users: FriendUser[]
   }
 }
+
+export const FRIEND_REQUEST_ERRORS = ['requests-closed', 'request-cooldown', 'request-limit'] as const
+
+export type FriendRequestError = (typeof FRIEND_REQUEST_ERRORS)[number]
