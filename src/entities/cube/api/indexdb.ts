@@ -2,6 +2,7 @@ import { database } from '@/shared/config/indexdb/indexdb'
 import { Solve } from '@/entities/solve/model/types'
 import { Cube } from '@/entities/cube/model/types'
 import { reconcileCubeWrite } from '@/entities/cube/lib/reconcileCubeWrite'
+import { sortSolvesNewestFirst } from '@/entities/solve/lib/sortSolves'
 
 const STORE_NAME = 'nx-data'
 const Cubes = database.create(STORE_NAME)
@@ -68,12 +69,11 @@ export const cubesDB = {
     const sameCategoryCubes = allCubes.filter((c) => c.category === cube.category)
 
     for (const sameCategoryCube of sameCategoryCubes) {
-      sameCategoryCube.solves.all.push(
-        ...sameCategoryCube.solves.session.map((solve) => {
-          return { ...solve, updatedAt: Date.now(), isDeleted: !!solve.isDeleted }
-        })
-      )
+      const moved = sameCategoryCube.solves.session.map((solve) => {
+        return { ...solve, updatedAt: Date.now(), isDeleted: !!solve.isDeleted }
+      })
 
+      sameCategoryCube.solves.all = sortSolvesNewestFirst([...sameCategoryCube.solves.all, ...moved])
       sameCategoryCube.solves.session = []
       await this.update(sameCategoryCube)
     }
