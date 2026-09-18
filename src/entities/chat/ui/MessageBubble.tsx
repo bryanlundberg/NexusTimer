@@ -6,7 +6,7 @@ import dayjs from '@/shared/lib/dayjs'
 import { cn } from '@/shared/lib/utils'
 import type { ChatMessage, DeleteScope } from '@/entities/chat/model/types'
 import type { MessageStatus } from '@/entities/chat/lib/message-status'
-import { isBigEmoji, splitLinks } from '@/entities/chat/lib/message-content'
+import { isBigEmoji, parseMessage, type MessageNode } from '@/entities/chat/lib/message-content'
 import { MessageStatusIcon } from '@/entities/chat/ui/MessageStatusIcon'
 import { MessageReactions } from '@/entities/chat/ui/MessageReactions'
 import { MessageActions } from '@/features/chat/ui/MessageActions'
@@ -67,21 +67,7 @@ export function MessageBubble({ message, isOwn, myId, status, onRetry, onReact, 
         </span>
       ) : (
         <span className="whitespace-pre-wrap">
-          {splitLinks(message.text).map((part, index) =>
-            part.type === 'link' ? (
-              <a
-                key={index}
-                href={part.href}
-                target="_blank"
-                rel="noopener noreferrer nofollow ugc"
-                className="underline underline-offset-2 hover:opacity-80"
-              >
-                {part.value}
-              </a>
-            ) : (
-              part.value
-            )
-          )}
+          <MessageText nodes={parseMessage(message.text)} />
         </span>
       )}
       {/* Floats into the last line when there is room, like messaging apps */}
@@ -124,4 +110,49 @@ export function MessageBubble({ message, isOwn, myId, status, onRetry, onReact, 
       )}
     </div>
   )
+}
+
+function MessageText({ nodes }: { nodes: MessageNode[] }) {
+  return nodes.map((node, index) => {
+    switch (node.type) {
+      case 'text':
+        return node.value
+      case 'link':
+        return (
+          <a
+            key={index}
+            href={node.href}
+            target="_blank"
+            rel="noopener noreferrer nofollow ugc"
+            className="underline underline-offset-2 hover:opacity-80"
+          >
+            {node.value}
+          </a>
+        )
+      case 'code':
+        return (
+          <code key={index} className="rounded-sm bg-foreground/10 px-1 font-mono text-[0.9em]">
+            {node.value}
+          </code>
+        )
+      case 'bold':
+        return (
+          <strong key={index} className="font-bold">
+            <MessageText nodes={node.children} />
+          </strong>
+        )
+      case 'italic':
+        return (
+          <em key={index}>
+            <MessageText nodes={node.children} />
+          </em>
+        )
+      case 'strike':
+        return (
+          <s key={index}>
+            <MessageText nodes={node.children} />
+          </s>
+        )
+    }
+  })
 }
