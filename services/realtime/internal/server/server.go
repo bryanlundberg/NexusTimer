@@ -1,4 +1,3 @@
-// Package server exposes the WebSocket endpoint and health checks over HTTP or HTTPS.
 package server
 
 import (
@@ -43,7 +42,6 @@ func (s *Server) Handler() http.Handler {
 	return mux
 }
 
-// Run blocks until ctx is done or a listener fails, then closes sockets with 1012 so browsers reconnect.
 func (s *Server) Run(ctx context.Context) error {
 	healthMux := http.NewServeMux()
 	healthMux.HandleFunc("GET /health", s.handleHealth)
@@ -68,7 +66,6 @@ func (s *Server) Run(ctx context.Context) error {
 			HostPolicy: autocert.HostWhitelist(s.cfg.Domain),
 			Cache:      autocert.DirCache(s.cfg.CertDir),
 		}
-		// Port 80 answers ACME challenges and redirects everything else to HTTPS
 		acme := &http.Server{Addr: ":80", Handler: certs.HTTPHandler(nil), ReadHeaderTimeout: readHeaderTimeout}
 		public.Addr = ":443"
 		public.TLSConfig = certs.TLSConfig()
