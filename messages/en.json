@@ -507,7 +507,8 @@
       "find-cubers": "Browse cubers.",
       "showing-members": "Showing <b>{showing}</b> of <b>{total}</b> members",
       "search": "Search",
-      "compare-basket": "<b>{count}</b> in compare basket"
+      "compare-basket": "<b>{count}</b> in compare basket",
+      "stats-hidden": "{name}'s stats and algorithms are private."
     },
     "FriendsPage": {
       "title": "Friends",
@@ -534,8 +535,16 @@
       "action-failed": "Something went wrong. Try again.",
       "cancel": "Cancel",
       "remove-friend-hint": "{name} will be removed from your friends and you will not be able to message each other. You can send a new request later.",
-      "cancel-request-hint": "The request you sent to {name} will be withdrawn. You can send a new one later.",
-      "decline-hint": "The request from {name} will be declined. They can send you a new one later."
+      "cancel-request-hint": "The request you sent to {name} will be withdrawn. You can send a new one after 24 hours.",
+      "decline-hint": "The request from {name} will be declined. They won't be notified and can't send you another one.",
+      "block": "Block",
+      "unblock": "Unblock",
+      "more-actions": "More actions",
+      "block-hint": "{name} will be removed from your friends and won't be able to message you or send you requests. They won't be notified.",
+      "requests-closed-label": "Not accepting requests",
+      "requests-closed": "This user is not accepting friend requests.",
+      "request-cooldown": "You recently cancelled a request to this user. Try again later.",
+      "request-limit": "You have sent too many requests today. Try again tomorrow."
     },
     "ChatPage": {
       "title": "Messages",
@@ -597,7 +606,11 @@
       "solution": "Solution",
       "search-friends": "Search friends",
       "no-friends-match": "No friends match your search",
-      "send-to-friend-hint": "The message opens ready to send."
+      "send-to-friend-hint": "The message opens ready to send.",
+      "mute-chat": "Mute chat",
+      "unmute-chat": "Unmute chat",
+      "muted": "Muted",
+      "block-user": "Block user"
     },
     "LeaderboardsPage": {
       "title": "Fastest Solves",
@@ -898,6 +911,41 @@
       "crop-confirm": "Save image",
       "crop-error": "Could not process the image. Please try again.",
       "crop-invalid-file": "That file is not an image. Choose a different file."
+    },
+    "PrivacyPage": {
+      "tab": "Privacy",
+      "title": "Privacy",
+      "description": "Choose who can reach you and what others see of your activity.",
+      "update-failed": "Could not save the change. Try again.",
+      "requests-section": "Friend requests",
+      "messages-section": "Messages",
+      "profile-section": "Profile",
+      "blocked-section": "Blocked users",
+      "blocked-description": "Blocked users can't send you requests or messages, and you won't see each other in search.",
+      "no-blocked": "You haven't blocked anyone.",
+      "blocked-since": "Blocked on {date}",
+      "friendRequests": {
+        "label": "Who can send me requests",
+        "description": "People outside this group won't be able to add you.",
+        "everyone": "Everyone",
+        "friends_of_friends": "Friends of friends",
+        "nobody": "Nobody"
+      },
+      "statsVisibility": {
+        "label": "Who can see my stats",
+        "description": "Your times, cubes and learned algorithms. You still appear in search and leaderboards.",
+        "everyone": "Everyone",
+        "friends": "Friends only",
+        "nobody": "Only me"
+      },
+      "readReceipts": {
+        "label": "Read receipts",
+        "description": "If you turn them off, you won't see when others read your messages either."
+      },
+      "typingIndicator": {
+        "label": "Typing indicator",
+        "description": "Friends see when you are writing to them."
+      }
     },
     "AccessCard": {
       "title": "Access",

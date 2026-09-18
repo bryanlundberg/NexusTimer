@@ -504,7 +504,8 @@
         "empty": "Nenhuma conquista desbloqueada ainda.",
         "title": "Conquistas",
         "view-all": "Ver todas"
-      }
+      },
+      "stats-hidden": "As estatísticas e algoritmos de {name} são privados."
     },
     "FriendsPage": {
       "title": "Amigos",
@@ -531,8 +532,16 @@
       "action-failed": "Algo deu errado. Tente novamente.",
       "cancel": "Cancelar",
       "remove-friend-hint": "{name} deixará de ser teu amigo e não poderão enviar mensagens um ao outro. Podes enviar um novo pedido mais tarde.",
-      "cancel-request-hint": "O pedido que enviaste a {name} será retirado. Podes enviar outro mais tarde.",
-      "decline-hint": "O pedido de {name} será recusado. Poderá enviar-te outro mais tarde."
+      "cancel-request-hint": "A solicitação que você enviou para {name} será retirada. Você poderá enviar outra após 24 horas.",
+      "decline-hint": "A solicitação de {name} será recusada. Ele não será avisado e não poderá enviar outra.",
+      "block": "Bloquear",
+      "unblock": "Desbloquear",
+      "more-actions": "Mais opções",
+      "block-hint": "{name} deixará de ser seu amigo e não poderá enviar mensagens nem solicitações. Ele não será avisado.",
+      "requests-closed-label": "Não aceita solicitações",
+      "requests-closed": "Este usuário não aceita solicitações de amizade.",
+      "request-cooldown": "Você cancelou uma solicitação para este usuário há pouco. Tente mais tarde.",
+      "request-limit": "Você enviou solicitações demais hoje. Tente amanhã."
     },
     "ChatPage": {
       "title": "Mensagens",
@@ -594,7 +603,11 @@
       "solution": "Solução",
       "search-friends": "Buscar amigos",
       "no-friends-match": "Nenhum amigo corresponde à busca",
-      "send-to-friend-hint": "A mensagem abre pronta para enviar."
+      "send-to-friend-hint": "A mensagem abre pronta para enviar.",
+      "mute-chat": "Silenciar chat",
+      "unmute-chat": "Ativar som",
+      "muted": "Silenciado",
+      "block-user": "Bloquear usuário"
     },
     "LeaderboardsPage": {
       "title": "Solves mais rápidos",
@@ -905,6 +918,41 @@
       "crop-invalid-file": "Esse arquivo não é uma imagem. Escolha outro arquivo.",
       "personal-info": "Informações pessoais",
       "personal-info-description": "Atualize suas informações públicas e como outros usuários veem você."
+    },
+    "PrivacyPage": {
+      "tab": "Privacidade",
+      "title": "Privacidade",
+      "description": "Escolha quem pode falar com você e o que os outros veem da sua atividade.",
+      "update-failed": "Não foi possível salvar a alteração. Tente novamente.",
+      "requests-section": "Solicitações de amizade",
+      "messages-section": "Mensagens",
+      "profile-section": "Perfil",
+      "blocked-section": "Usuários bloqueados",
+      "blocked-description": "Usuários bloqueados não podem enviar solicitações nem mensagens, e vocês não se verão na busca.",
+      "no-blocked": "Você não bloqueou ninguém.",
+      "blocked-since": "Bloqueado em {date}",
+      "friendRequests": {
+        "label": "Quem pode me enviar solicitações",
+        "description": "Pessoas fora deste grupo não poderão adicionar você.",
+        "everyone": "Todos",
+        "friends_of_friends": "Amigos de amigos",
+        "nobody": "Ninguém"
+      },
+      "statsVisibility": {
+        "label": "Quem pode ver minhas estatísticas",
+        "description": "Seus tempos, cubos e algoritmos aprendidos. Você continua aparecendo na busca e nos rankings.",
+        "everyone": "Todos",
+        "friends": "Só amigos",
+        "nobody": "Só eu"
+      },
+      "readReceipts": {
+        "label": "Confirmações de leitura",
+        "description": "Se desativar, você também não verá quando os outros leem suas mensagens."
+      },
+      "typingIndicator": {
+        "label": "Indicador de digitação",
+        "description": "Seus amigos veem quando você está escrevendo."
+      }
     },
     "AccessCard": {
       "title": "Acesso",

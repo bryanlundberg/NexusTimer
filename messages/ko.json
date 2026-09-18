@@ -504,7 +504,8 @@
         "empty": "아직 잠금 해제된 업적이 없습니다.",
         "title": "업적",
         "view-all": "모두 보기"
-      }
+      },
+      "stats-hidden": "{name}님의 통계와 알고리즘은 비공개입니다."
     },
     "FriendsPage": {
       "title": "친구",
@@ -531,8 +532,16 @@
       "action-failed": "문제가 발생했습니다. 다시 시도해 주세요.",
       "cancel": "취소",
       "remove-friend-hint": "{name} 님이 친구에서 삭제되고 서로 메시지를 보낼 수 없게 됩니다. 나중에 새로 요청을 보낼 수 있습니다.",
-      "cancel-request-hint": "{name} 님에게 보낸 요청을 취소합니다. 나중에 다시 보낼 수 있습니다.",
-      "decline-hint": "{name} 님의 요청을 거절합니다. 상대방은 나중에 다시 보낼 수 있습니다."
+      "cancel-request-hint": "{name}님에게 보낸 요청을 취소합니다. 24시간 후에 새 요청을 보낼 수 있습니다.",
+      "decline-hint": "{name}님의 요청을 거절합니다. 상대방에게 알림이 가지 않으며 다시 요청을 보낼 수 없습니다.",
+      "block": "차단",
+      "unblock": "차단 해제",
+      "more-actions": "더보기",
+      "block-hint": "{name}님이 친구에서 삭제되며 메시지나 요청을 보낼 수 없게 됩니다. 상대방에게는 알림이 가지 않습니다.",
+      "requests-closed-label": "요청 받지 않음",
+      "requests-closed": "이 사용자는 친구 요청을 받지 않습니다.",
+      "request-cooldown": "최근에 이 사용자에게 보낸 요청을 취소했습니다. 나중에 다시 시도하세요.",
+      "request-limit": "오늘 너무 많은 요청을 보냈습니다. 내일 다시 시도하세요."
     },
     "ChatPage": {
       "title": "메시지",
@@ -594,7 +603,11 @@
       "solution": "풀이",
       "search-friends": "친구 검색",
       "no-friends-match": "검색과 일치하는 친구가 없습니다",
-      "send-to-friend-hint": "메시지가 보낼 준비가 된 상태로 열립니다."
+      "send-to-friend-hint": "메시지가 보낼 준비가 된 상태로 열립니다.",
+      "mute-chat": "채팅 알림 끄기",
+      "unmute-chat": "채팅 알림 켜기",
+      "muted": "알림 꺼짐",
+      "block-user": "사용자 차단"
     },
     "LeaderboardsPage": {
       "title": "최고 기록",
@@ -905,6 +918,41 @@
       "crop-invalid-file": "해당 파일은 이미지가 아닙니다. 다른 파일을 선택해 주세요.",
       "personal-info": "개인 정보",
       "personal-info-description": "공개 정보와 다른 사용자에게 보이는 모습을 업데이트하세요."
+    },
+    "PrivacyPage": {
+      "tab": "개인정보",
+      "title": "개인정보",
+      "description": "누가 나에게 연락할 수 있는지, 다른 사람이 내 활동을 어디까지 볼 수 있는지 선택하세요.",
+      "update-failed": "변경 사항을 저장하지 못했습니다. 다시 시도하세요.",
+      "requests-section": "친구 요청",
+      "messages-section": "메시지",
+      "profile-section": "프로필",
+      "blocked-section": "차단한 사용자",
+      "blocked-description": "차단한 사용자는 나에게 요청이나 메시지를 보낼 수 없으며, 검색에서도 서로 보이지 않습니다.",
+      "no-blocked": "차단한 사용자가 없습니다.",
+      "blocked-since": "{date}에 차단함",
+      "friendRequests": {
+        "label": "나에게 요청을 보낼 수 있는 사람",
+        "description": "이 그룹에 속하지 않은 사람은 나를 추가할 수 없습니다.",
+        "everyone": "모두",
+        "friends_of_friends": "친구의 친구",
+        "nobody": "아무도 없음"
+      },
+      "statsVisibility": {
+        "label": "내 통계를 볼 수 있는 사람",
+        "description": "기록, 큐브, 익힌 알고리즘. 검색과 리더보드에는 계속 표시됩니다.",
+        "everyone": "모두",
+        "friends": "친구만",
+        "nobody": "나만"
+      },
+      "readReceipts": {
+        "label": "읽음 확인",
+        "description": "끄면 다른 사람이 내 메시지를 읽었는지도 볼 수 없습니다."
+      },
+      "typingIndicator": {
+        "label": "입력 중 표시",
+        "description": "내가 입력 중일 때 친구에게 표시됩니다."
+      }
     },
     "AccessCard": {
       "title": "액세스",

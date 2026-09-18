@@ -507,7 +507,8 @@
       "find-cubers": "Esplora i cuber.",
       "showing-members": "Mostrando <b>{showing}</b> di <b>{total}</b> membri",
       "search": "Cerca",
-      "compare-basket": "<b>{count}</b> nel confronto"
+      "compare-basket": "<b>{count}</b> nel confronto",
+      "stats-hidden": "Le statistiche e gli algoritmi di {name} sono privati."
     },
     "FriendsPage": {
       "title": "Amici",
@@ -534,8 +535,16 @@
       "action-failed": "Qualcosa è andato storto. Riprova.",
       "cancel": "Annulla",
       "remove-friend-hint": "{name} verrà rimosso dai tuoi amici e non potrete più scrivervi. Potrai inviare una nuova richiesta più avanti.",
-      "cancel-request-hint": "La richiesta che hai inviato a {name} verrà ritirata. Potrai inviarne un'altra più avanti.",
-      "decline-hint": "La richiesta di {name} verrà rifiutata. Potrà inviartene un'altra più avanti."
+      "cancel-request-hint": "La richiesta inviata a {name} verrà ritirata. Potrai inviarne una nuova dopo 24 ore.",
+      "decline-hint": "La richiesta di {name} verrà rifiutata. Non riceverà alcun avviso e non potrà inviartene un'altra.",
+      "block": "Blocca",
+      "unblock": "Sblocca",
+      "more-actions": "Altre azioni",
+      "block-hint": "{name} verrà rimosso dai tuoi amici e non potrà inviarti messaggi né richieste. Non riceverà alcun avviso.",
+      "requests-closed-label": "Non accetta richieste",
+      "requests-closed": "Questo utente non accetta richieste di amicizia.",
+      "request-cooldown": "Hai annullato di recente una richiesta a questo utente. Riprova più tardi.",
+      "request-limit": "Hai inviato troppe richieste oggi. Riprova domani."
     },
     "ChatPage": {
       "title": "Messaggi",
@@ -597,7 +606,11 @@
       "solution": "Soluzione",
       "search-friends": "Cerca amici",
       "no-friends-match": "Nessun amico corrisponde alla ricerca",
-      "send-to-friend-hint": "Il messaggio si apre pronto da inviare."
+      "send-to-friend-hint": "Il messaggio si apre pronto da inviare.",
+      "mute-chat": "Silenzia chat",
+      "unmute-chat": "Riattiva audio",
+      "muted": "Silenziata",
+      "block-user": "Blocca utente"
     },
     "LeaderboardsPage": {
       "title": "Solve più veloci",
@@ -908,6 +921,41 @@
       "crop-confirm": "Salva immagine",
       "crop-error": "Impossibile elaborare l'immagine. Riprova.",
       "crop-invalid-file": "Questo file non è un'immagine. Scegli un altro file."
+    },
+    "PrivacyPage": {
+      "tab": "Privacy",
+      "title": "Privacy",
+      "description": "Scegli chi può contattarti e cosa vedono gli altri della tua attività.",
+      "update-failed": "Impossibile salvare la modifica. Riprova.",
+      "requests-section": "Richieste di amicizia",
+      "messages-section": "Messaggi",
+      "profile-section": "Profilo",
+      "blocked-section": "Utenti bloccati",
+      "blocked-description": "Gli utenti bloccati non possono inviarti richieste né messaggi, e non vi vedrete nella ricerca.",
+      "no-blocked": "Non hai bloccato nessuno.",
+      "blocked-since": "Bloccato il {date}",
+      "friendRequests": {
+        "label": "Chi può inviarmi richieste",
+        "description": "Le persone fuori da questo gruppo non potranno aggiungerti.",
+        "everyone": "Tutti",
+        "friends_of_friends": "Amici di amici",
+        "nobody": "Nessuno"
+      },
+      "statsVisibility": {
+        "label": "Chi può vedere le mie statistiche",
+        "description": "I tuoi tempi, cubi e algoritmi imparati. Continui a comparire nella ricerca e nelle classifiche.",
+        "everyone": "Tutti",
+        "friends": "Solo amici",
+        "nobody": "Solo io"
+      },
+      "readReceipts": {
+        "label": "Conferme di lettura",
+        "description": "Se le disattivi, non vedrai nemmeno quando gli altri leggono i tuoi messaggi."
+      },
+      "typingIndicator": {
+        "label": "Indicatore di scrittura",
+        "description": "I tuoi amici vedono quando stai scrivendo loro."
+      }
     },
     "AccessCard": {
       "title": "Accesso",

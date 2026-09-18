@@ -507,7 +507,8 @@
       "find-cubers": "Mag-browse ng mga cuber.",
       "showing-members": "Ipinapakita ang <b>{showing}</b> sa <b>{total}</b> na miyembro",
       "search": "Maghanap",
-      "compare-basket": "<b>{count}</b> sa compare basket"
+      "compare-basket": "<b>{count}</b> sa compare basket",
+      "stats-hidden": "Pribado ang stats at algorithm ni {name}."
     },
     "FriendsPage": {
       "title": "Mga Kaibigan",
@@ -534,8 +535,16 @@
       "action-failed": "Nagkaproblema. Subukang muli.",
       "cancel": "Kanselahin",
       "remove-friend-hint": "Aalisin si {name} sa iyong mga kaibigan at hindi na kayo makakapagpadala ng mensahe sa isa't isa. Maaari kang magpadala ng bagong request mamaya.",
-      "cancel-request-hint": "Babawiin ang request na ipinadala mo kay {name}. Maaari kang magpadala ng bago mamaya.",
-      "decline-hint": "Tatanggihan ang request ni {name}. Maaari siyang magpadala sa iyo ng bago mamaya."
+      "cancel-request-hint": "Babawiin ang request na ipinadala mo kay {name}. Makakapagpadala ka ulit pagkalipas ng 24 oras.",
+      "decline-hint": "Tatanggihan ang request ni {name}. Hindi siya aabisuhan at hindi na siya makakapagpadala ulit.",
+      "block": "I-block",
+      "unblock": "I-unblock",
+      "more-actions": "Iba pang aksyon",
+      "block-hint": "Aalisin si {name} sa iyong mga kaibigan at hindi na siya makakapagpadala ng mensahe o request. Hindi siya aabisuhan.",
+      "requests-closed-label": "Hindi tumatanggap ng request",
+      "requests-closed": "Hindi tumatanggap ng friend request ang user na ito.",
+      "request-cooldown": "Kamakailan mong kinansela ang request sa user na ito. Subukan ulit mamaya.",
+      "request-limit": "Masyado kang maraming naipadalang request ngayong araw. Subukan ulit bukas."
     },
     "ChatPage": {
       "title": "Mga Mensahe",
@@ -597,7 +606,11 @@
       "solution": "Solusyon",
       "search-friends": "Maghanap ng kaibigan",
       "no-friends-match": "Walang kaibigang tumugma sa hinanap mo",
-      "send-to-friend-hint": "Bubukas ang mensahe na handa nang ipadala."
+      "send-to-friend-hint": "Bubukas ang mensahe na handa nang ipadala.",
+      "mute-chat": "I-mute ang chat",
+      "unmute-chat": "I-unmute ang chat",
+      "muted": "Naka-mute",
+      "block-user": "I-block ang user"
     },
     "LeaderboardsPage": {
       "title": "Pinakamabilis na Solve",
@@ -908,6 +921,41 @@
       "crop-confirm": "I-save ang image",
       "crop-error": "Hindi ma-proseso ang image. Subukang muli.",
       "crop-invalid-file": "Hindi image ang file na iyan. Pumili ng ibang file."
+    },
+    "PrivacyPage": {
+      "tab": "Privacy",
+      "title": "Privacy",
+      "description": "Piliin kung sino ang puwedeng kumontak sa iyo at kung ano ang nakikita ng iba sa iyong aktibidad.",
+      "update-failed": "Hindi na-save ang pagbabago. Subukan ulit.",
+      "requests-section": "Mga friend request",
+      "messages-section": "Mga mensahe",
+      "profile-section": "Profile",
+      "blocked-section": "Mga naka-block na user",
+      "blocked-description": "Hindi makakapagpadala ng request o mensahe ang mga naka-block na user, at hindi kayo magkikita sa paghahanap.",
+      "no-blocked": "Wala kang na-block.",
+      "blocked-since": "Na-block noong {date}",
+      "friendRequests": {
+        "label": "Sino ang puwedeng magpadala sa akin ng request",
+        "description": "Hindi ka maidadagdag ng mga taong wala sa grupong ito.",
+        "everyone": "Lahat",
+        "friends_of_friends": "Kaibigan ng mga kaibigan",
+        "nobody": "Walang sinuman"
+      },
+      "statsVisibility": {
+        "label": "Sino ang puwedeng makakita ng aking stats",
+        "description": "Ang iyong mga oras, cube at natutunang algorithm. Lalabas ka pa rin sa paghahanap at sa leaderboards.",
+        "everyone": "Lahat",
+        "friends": "Mga kaibigan lang",
+        "nobody": "Ako lang"
+      },
+      "readReceipts": {
+        "label": "Read receipts",
+        "description": "Kapag in-off mo, hindi mo rin makikita kung kailan binabasa ng iba ang iyong mga mensahe."
+      },
+      "typingIndicator": {
+        "label": "Typing indicator",
+        "description": "Nakikita ng mga kaibigan kapag nagsusulat ka sa kanila."
+      }
     },
     "AccessCard": {
       "title": "Access",

@@ -504,7 +504,8 @@
         "empty": "还没有解锁任何成就。",
         "title": "成就",
         "view-all": "查看全部"
-      }
+      },
+      "stats-hidden": "{name} 的统计和公式不公开。"
     },
     "FriendsPage": {
       "title": "好友",
@@ -531,8 +532,16 @@
       "action-failed": "出错了，请重试。",
       "cancel": "取消",
       "remove-friend-hint": "{name} 将从你的好友中移除，你们将无法互发消息。你之后可以再次发送好友请求。",
-      "cancel-request-hint": "你发送给 {name} 的好友请求将被撤回。你之后可以再次发送。",
-      "decline-hint": "将拒绝 {name} 的好友请求。对方之后可以再次发送。"
+      "cancel-request-hint": "将撤回你发给 {name} 的请求。24 小时后可以重新发送。",
+      "decline-hint": "将拒绝 {name} 的请求。对方不会收到通知，也无法再次向你发送请求。",
+      "block": "屏蔽",
+      "unblock": "取消屏蔽",
+      "more-actions": "更多操作",
+      "block-hint": "{name} 将从你的好友中移除，且无法再向你发送消息或请求。对方不会收到通知。",
+      "requests-closed-label": "不接受请求",
+      "requests-closed": "该用户不接受好友请求。",
+      "request-cooldown": "你最近撤回了发给该用户的请求，请稍后再试。",
+      "request-limit": "你今天发送的请求过多，请明天再试。"
     },
     "ChatPage": {
       "title": "消息",
@@ -594,7 +603,11 @@
       "solution": "解法",
       "search-friends": "搜索好友",
       "no-friends-match": "没有匹配的好友",
-      "send-to-friend-hint": "消息打开后即可发送。"
+      "send-to-friend-hint": "消息打开后即可发送。",
+      "mute-chat": "静音聊天",
+      "unmute-chat": "取消静音",
+      "muted": "已静音",
+      "block-user": "屏蔽用户"
     },
     "LeaderboardsPage": {
       "title": "最快还原",
@@ -905,6 +918,41 @@
       "crop-invalid-file": "该文件不是图片，请选择其他文件。",
       "personal-info": "个人信息",
       "personal-info-description": "更新你的公开信息以及其他用户看到你的方式。"
+    },
+    "PrivacyPage": {
+      "tab": "隐私",
+      "title": "隐私",
+      "description": "选择谁可以联系你，以及其他人能看到你的哪些动态。",
+      "update-failed": "无法保存更改，请重试。",
+      "requests-section": "好友请求",
+      "messages-section": "消息",
+      "profile-section": "个人资料",
+      "blocked-section": "已屏蔽的用户",
+      "blocked-description": "被屏蔽的用户无法向你发送请求或消息，你们在搜索中也不会看到彼此。",
+      "no-blocked": "你还没有屏蔽任何人。",
+      "blocked-since": "屏蔽于 {date}",
+      "friendRequests": {
+        "label": "谁可以向我发送请求",
+        "description": "不在此范围内的人将无法添加你。",
+        "everyone": "所有人",
+        "friends_of_friends": "好友的好友",
+        "nobody": "没有人"
+      },
+      "statsVisibility": {
+        "label": "谁可以查看我的统计",
+        "description": "你的成绩、魔方和已学公式。你仍会出现在搜索和排行榜中。",
+        "everyone": "所有人",
+        "friends": "仅好友",
+        "nobody": "仅自己"
+      },
+      "readReceipts": {
+        "label": "已读回执",
+        "description": "关闭后，你也无法看到别人何时读了你的消息。"
+      },
+      "typingIndicator": {
+        "label": "正在输入提示",
+        "description": "好友可以看到你正在给他们写消息。"
+      }
     },
     "AccessCard": {
       "title": "访问",

@@ -504,7 +504,8 @@
         "empty": "Noch keine Erfolge freigeschaltet.",
         "title": "Erfolge",
         "view-all": "Alle ansehen"
-      }
+      },
+      "stats-hidden": "Die Statistiken und Algorithmen von {name} sind privat."
     },
     "FriendsPage": {
       "title": "Freunde",
@@ -531,8 +532,16 @@
       "action-failed": "Etwas ist schiefgelaufen. Versuche es erneut.",
       "cancel": "Abbrechen",
       "remove-friend-hint": "{name} wird aus deinen Freunden entfernt und ihr könnt einander keine Nachrichten mehr senden. Du kannst später eine neue Anfrage stellen.",
-      "cancel-request-hint": "Die Anfrage, die du an {name} gesendet hast, wird zurückgezogen. Du kannst später eine neue senden.",
-      "decline-hint": "Die Anfrage von {name} wird abgelehnt. Diese Person kann dir später eine neue senden."
+      "cancel-request-hint": "Deine Anfrage an {name} wird zurückgezogen. Du kannst nach 24 Stunden eine neue senden.",
+      "decline-hint": "Die Anfrage von {name} wird abgelehnt. Die Person wird nicht benachrichtigt und kann dir keine weitere senden.",
+      "block": "Blockieren",
+      "unblock": "Entsperren",
+      "more-actions": "Weitere Aktionen",
+      "block-hint": "{name} wird aus deinen Freunden entfernt und kann dir keine Nachrichten oder Anfragen mehr senden. Die Person wird nicht benachrichtigt.",
+      "requests-closed-label": "Nimmt keine Anfragen an",
+      "requests-closed": "Diese Person nimmt keine Freundschaftsanfragen an.",
+      "request-cooldown": "Du hast kürzlich eine Anfrage an diese Person zurückgezogen. Versuche es später erneut.",
+      "request-limit": "Du hast heute zu viele Anfragen gesendet. Versuche es morgen erneut."
     },
     "ChatPage": {
       "title": "Nachrichten",
@@ -594,7 +603,11 @@
       "solution": "Lösung",
       "search-friends": "Freunde suchen",
       "no-friends-match": "Keine Freunde gefunden",
-      "send-to-friend-hint": "Die Nachricht öffnet sich fertig zum Senden."
+      "send-to-friend-hint": "Die Nachricht öffnet sich fertig zum Senden.",
+      "mute-chat": "Chat stummschalten",
+      "unmute-chat": "Stummschaltung aufheben",
+      "muted": "Stummgeschaltet",
+      "block-user": "Person blockieren"
     },
     "LeaderboardsPage": {
       "title": "Schnellste Lösungen",
@@ -905,6 +918,41 @@
       "crop-invalid-file": "Diese Datei ist kein Bild. Wähle eine andere Datei.",
       "personal-info": "Persönliche Daten",
       "personal-info-description": "Aktualisiere deine öffentlichen Informationen und wie andere Nutzer dich sehen."
+    },
+    "PrivacyPage": {
+      "tab": "Privatsphäre",
+      "title": "Privatsphäre",
+      "description": "Lege fest, wer dich erreichen kann und was andere von deiner Aktivität sehen.",
+      "update-failed": "Die Änderung konnte nicht gespeichert werden. Versuche es erneut.",
+      "requests-section": "Freundschaftsanfragen",
+      "messages-section": "Nachrichten",
+      "profile-section": "Profil",
+      "blocked-section": "Blockierte Personen",
+      "blocked-description": "Blockierte Personen können dir keine Anfragen oder Nachrichten senden, und ihr seht euch nicht in der Suche.",
+      "no-blocked": "Du hast niemanden blockiert.",
+      "blocked-since": "Blockiert am {date}",
+      "friendRequests": {
+        "label": "Wer mir Anfragen senden kann",
+        "description": "Personen außerhalb dieser Gruppe können dich nicht hinzufügen.",
+        "everyone": "Alle",
+        "friends_of_friends": "Freunde von Freunden",
+        "nobody": "Niemand"
+      },
+      "statsVisibility": {
+        "label": "Wer meine Statistiken sehen kann",
+        "description": "Deine Zeiten, Cubes und gelernten Algorithmen. Du erscheinst weiterhin in der Suche und in den Bestenlisten.",
+        "everyone": "Alle",
+        "friends": "Nur Freunde",
+        "nobody": "Nur ich"
+      },
+      "readReceipts": {
+        "label": "Lesebestätigungen",
+        "description": "Wenn du sie deaktivierst, siehst du auch nicht, wann andere deine Nachrichten lesen."
+      },
+      "typingIndicator": {
+        "label": "Tippanzeige",
+        "description": "Freunde sehen, wenn du ihnen schreibst."
+      }
     },
     "AccessCard": {
       "title": "Zugriff",

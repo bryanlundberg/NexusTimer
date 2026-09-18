@@ -507,7 +507,8 @@
       "find-cubers": "Jelajahi para cuber.",
       "showing-members": "Menampilkan <b>{showing}</b> dari <b>{total}</b> anggota",
       "search": "Cari",
-      "compare-basket": "<b>{count}</b> di keranjang perbandingan"
+      "compare-basket": "<b>{count}</b> di keranjang perbandingan",
+      "stats-hidden": "Statistik dan algoritma {name} bersifat pribadi."
     },
     "FriendsPage": {
       "title": "Teman",
@@ -534,8 +535,16 @@
       "action-failed": "Terjadi kesalahan. Coba lagi.",
       "cancel": "Batal",
       "remove-friend-hint": "{name} akan dihapus dari daftar temanmu dan kalian tidak bisa saling berkirim pesan. Kamu bisa mengirim permintaan baru nanti.",
-      "cancel-request-hint": "Permintaan yang kamu kirim ke {name} akan ditarik. Kamu bisa mengirim yang baru nanti.",
-      "decline-hint": "Permintaan dari {name} akan ditolak. Dia bisa mengirimimu permintaan baru nanti."
+      "cancel-request-hint": "Permintaan yang kamu kirim ke {name} akan ditarik. Kamu bisa mengirim yang baru setelah 24 jam.",
+      "decline-hint": "Permintaan dari {name} akan ditolak. Dia tidak akan diberi tahu dan tidak bisa mengirim permintaan lagi.",
+      "block": "Blokir",
+      "unblock": "Buka blokir",
+      "more-actions": "Tindakan lain",
+      "block-hint": "{name} akan dihapus dari temanmu dan tidak bisa mengirimimu pesan atau permintaan. Dia tidak akan diberi tahu.",
+      "requests-closed-label": "Tidak menerima permintaan",
+      "requests-closed": "Pengguna ini tidak menerima permintaan pertemanan.",
+      "request-cooldown": "Kamu baru saja membatalkan permintaan ke pengguna ini. Coba lagi nanti.",
+      "request-limit": "Kamu mengirim terlalu banyak permintaan hari ini. Coba lagi besok."
     },
     "ChatPage": {
       "title": "Pesan",
@@ -597,7 +606,11 @@
       "solution": "Solusi",
       "search-friends": "Cari teman",
       "no-friends-match": "Tidak ada teman yang cocok",
-      "send-to-friend-hint": "Pesan terbuka dan siap dikirim."
+      "send-to-friend-hint": "Pesan terbuka dan siap dikirim.",
+      "mute-chat": "Bisukan chat",
+      "unmute-chat": "Aktifkan suara",
+      "muted": "Dibisukan",
+      "block-user": "Blokir pengguna"
     },
     "LeaderboardsPage": {
       "title": "Solve Tercepat",
@@ -908,6 +921,41 @@
       "crop-confirm": "Simpan gambar",
       "crop-error": "Tidak dapat memproses gambar. Silakan coba lagi.",
       "crop-invalid-file": "File itu bukan gambar. Pilih file lain."
+    },
+    "PrivacyPage": {
+      "tab": "Privasi",
+      "title": "Privasi",
+      "description": "Pilih siapa yang bisa menghubungimu dan apa yang dilihat orang lain dari aktivitasmu.",
+      "update-failed": "Perubahan tidak bisa disimpan. Coba lagi.",
+      "requests-section": "Permintaan pertemanan",
+      "messages-section": "Pesan",
+      "profile-section": "Profil",
+      "blocked-section": "Pengguna yang diblokir",
+      "blocked-description": "Pengguna yang diblokir tidak bisa mengirimimu permintaan atau pesan, dan kalian tidak akan saling terlihat di pencarian.",
+      "no-blocked": "Kamu belum memblokir siapa pun.",
+      "blocked-since": "Diblokir pada {date}",
+      "friendRequests": {
+        "label": "Siapa yang bisa mengirimiku permintaan",
+        "description": "Orang di luar grup ini tidak bisa menambahkanmu.",
+        "everyone": "Semua orang",
+        "friends_of_friends": "Teman dari teman",
+        "nobody": "Tidak ada"
+      },
+      "statsVisibility": {
+        "label": "Siapa yang bisa melihat statistikku",
+        "description": "Waktu, kubus, dan algoritma yang kamu pelajari. Kamu tetap muncul di pencarian dan papan peringkat.",
+        "everyone": "Semua orang",
+        "friends": "Hanya teman",
+        "nobody": "Hanya aku"
+      },
+      "readReceipts": {
+        "label": "Tanda dibaca",
+        "description": "Jika dimatikan, kamu juga tidak akan melihat kapan orang lain membaca pesanmu."
+      },
+      "typingIndicator": {
+        "label": "Indikator mengetik",
+        "description": "Temanmu melihat saat kamu sedang menulis untuk mereka."
+      }
     },
     "AccessCard": {
       "title": "Akses",

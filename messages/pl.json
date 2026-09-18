@@ -507,7 +507,8 @@
       "find-cubers": "Przeglądaj cuberów.",
       "showing-members": "Wyświetlanie <b>{showing}</b> z <b>{total}</b> członków",
       "search": "Szukaj",
-      "compare-basket": "<b>{count}</b> w koszyku porównania"
+      "compare-basket": "<b>{count}</b> w koszyku porównania",
+      "stats-hidden": "Statystyki i algorytmy użytkownika {name} są prywatne."
     },
     "FriendsPage": {
       "title": "Znajomi",
@@ -534,8 +535,16 @@
       "action-failed": "Coś poszło nie tak. Spróbuj ponownie.",
       "cancel": "Anuluj",
       "remove-friend-hint": "{name} zostanie usunięty z twoich znajomych i nie będziecie mogli do siebie pisać. Możesz wysłać nowe zaproszenie później.",
-      "cancel-request-hint": "Zaproszenie wysłane do {name} zostanie wycofane. Możesz wysłać nowe później.",
-      "decline-hint": "Zaproszenie od {name} zostanie odrzucone. Ta osoba może wysłać ci nowe później."
+      "cancel-request-hint": "Zaproszenie wysłane do {name} zostanie wycofane. Nowe możesz wysłać po 24 godzinach.",
+      "decline-hint": "Zaproszenie od {name} zostanie odrzucone. Nie zostanie o tym powiadomiony i nie wyśle Ci kolejnego.",
+      "block": "Zablokuj",
+      "unblock": "Odblokuj",
+      "more-actions": "Więcej opcji",
+      "block-hint": "{name} zostanie usunięty ze znajomych i nie będzie mógł wysyłać Ci wiadomości ani zaproszeń. Nie zostanie o tym powiadomiony.",
+      "requests-closed-label": "Nie przyjmuje zaproszeń",
+      "requests-closed": "Ten użytkownik nie przyjmuje zaproszeń do znajomych.",
+      "request-cooldown": "Niedawno anulowałeś zaproszenie do tego użytkownika. Spróbuj później.",
+      "request-limit": "Wysłałeś dziś zbyt wiele zaproszeń. Spróbuj jutro."
     },
     "ChatPage": {
       "title": "Wiadomości",
@@ -597,7 +606,11 @@
       "solution": "Rozwiązanie",
       "search-friends": "Szukaj znajomych",
       "no-friends-match": "Brak pasujących znajomych",
-      "send-to-friend-hint": "Wiadomość otworzy się gotowa do wysłania."
+      "send-to-friend-hint": "Wiadomość otworzy się gotowa do wysłania.",
+      "mute-chat": "Wycisz czat",
+      "unmute-chat": "Wyłącz wyciszenie",
+      "muted": "Wyciszony",
+      "block-user": "Zablokuj użytkownika"
     },
     "LeaderboardsPage": {
       "title": "Najszybsze ułożenia",
@@ -908,6 +921,41 @@
       "crop-confirm": "Zapisz obraz",
       "crop-error": "Nie udało się przetworzyć obrazu. Spróbuj ponownie.",
       "crop-invalid-file": "Ten plik nie jest obrazem. Wybierz inny plik."
+    },
+    "PrivacyPage": {
+      "tab": "Prywatność",
+      "title": "Prywatność",
+      "description": "Wybierz, kto może się z Tobą kontaktować i co inni widzą z Twojej aktywności.",
+      "update-failed": "Nie udało się zapisać zmiany. Spróbuj ponownie.",
+      "requests-section": "Zaproszenia do znajomych",
+      "messages-section": "Wiadomości",
+      "profile-section": "Profil",
+      "blocked-section": "Zablokowani użytkownicy",
+      "blocked-description": "Zablokowani użytkownicy nie mogą wysyłać Ci zaproszeń ani wiadomości i nie zobaczycie się w wyszukiwaniu.",
+      "no-blocked": "Nikogo nie zablokowałeś.",
+      "blocked-since": "Zablokowano {date}",
+      "friendRequests": {
+        "label": "Kto może wysyłać mi zaproszenia",
+        "description": "Osoby spoza tej grupy nie będą mogły Cię dodać.",
+        "everyone": "Wszyscy",
+        "friends_of_friends": "Znajomi znajomych",
+        "nobody": "Nikt"
+      },
+      "statsVisibility": {
+        "label": "Kto może widzieć moje statystyki",
+        "description": "Twoje czasy, kostki i nauczone algorytmy. Nadal będziesz widoczny w wyszukiwaniu i rankingach.",
+        "everyone": "Wszyscy",
+        "friends": "Tylko znajomi",
+        "nobody": "Tylko ja"
+      },
+      "readReceipts": {
+        "label": "Potwierdzenia odczytu",
+        "description": "Jeśli je wyłączysz, nie zobaczysz też, kiedy inni czytają Twoje wiadomości."
+      },
+      "typingIndicator": {
+        "label": "Wskaźnik pisania",
+        "description": "Znajomi widzą, kiedy do nich piszesz."
+      }
     },
     "AccessCard": {
       "title": "Dostęp",

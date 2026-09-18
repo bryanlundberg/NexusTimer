@@ -462,7 +462,8 @@
       "find-cubers": "Busca cuberos.",
       "showing-members": "Mostrando <b>{showing}</b> de <b>{total}</b> miembros",
       "search": "Buscar",
-      "compare-basket": "<b>{count}</b> en la comparación"
+      "compare-basket": "<b>{count}</b> en la comparación",
+      "stats-hidden": "Las estadísticas y algoritmos de {name} son privados."
     },
     "FriendsPage": {
       "title": "Amigos",
@@ -489,8 +490,16 @@
       "action-failed": "Algo salió mal. Inténtalo de nuevo.",
       "cancel": "Cancelar",
       "remove-friend-hint": "{name} dejará de ser tu amigo y no podrán enviarse mensajes. Podrás enviar una nueva solicitud más adelante.",
-      "cancel-request-hint": "Se retirará la solicitud que enviaste a {name}. Podrás enviar otra más adelante.",
-      "decline-hint": "Se rechazará la solicitud de {name}. Podrá enviarte otra más adelante."
+      "cancel-request-hint": "Se retirará la solicitud que enviaste a {name}. Podrás enviar otra pasadas 24 horas.",
+      "decline-hint": "Se rechazará la solicitud de {name}. No se le avisará y no podrá enviarte otra.",
+      "block": "Bloquear",
+      "unblock": "Desbloquear",
+      "more-actions": "Más opciones",
+      "block-hint": "{name} dejará de ser tu amigo y no podrá enviarte mensajes ni solicitudes. No se le avisará.",
+      "requests-closed-label": "No acepta solicitudes",
+      "requests-closed": "Este usuario no acepta solicitudes de amistad.",
+      "request-cooldown": "Cancelaste una solicitud a este usuario hace poco. Inténtalo más tarde.",
+      "request-limit": "Enviaste demasiadas solicitudes hoy. Inténtalo mañana."
     },
     "ChatPage": {
       "title": "Mensajes",
@@ -552,7 +561,11 @@
       "solution": "Solución",
       "search-friends": "Buscar amigos",
       "no-friends-match": "Ningún amigo coincide con tu búsqueda",
-      "send-to-friend-hint": "El mensaje se abre listo para enviar."
+      "send-to-friend-hint": "El mensaje se abre listo para enviar.",
+      "mute-chat": "Silenciar chat",
+      "unmute-chat": "Activar sonido",
+      "muted": "Silenciado",
+      "block-user": "Bloquear usuario"
     },
     "LeaderboardsPage": {
       "title": "Solves más rápidos",
@@ -871,6 +884,41 @@
       "crop-confirm": "Guardar imagen",
       "crop-error": "No se pudo procesar la imagen. Inténtalo de nuevo.",
       "crop-invalid-file": "Ese archivo no es una imagen. Elige otro archivo."
+    },
+    "PrivacyPage": {
+      "tab": "Privacidad",
+      "title": "Privacidad",
+      "description": "Elige quién puede contactarte y qué ven los demás de tu actividad.",
+      "update-failed": "No se pudo guardar el cambio. Inténtalo de nuevo.",
+      "requests-section": "Solicitudes de amistad",
+      "messages-section": "Mensajes",
+      "profile-section": "Perfil",
+      "blocked-section": "Usuarios bloqueados",
+      "blocked-description": "Los usuarios bloqueados no pueden enviarte solicitudes ni mensajes, y no se verán entre ustedes en la búsqueda.",
+      "no-blocked": "No has bloqueado a nadie.",
+      "blocked-since": "Bloqueado el {date}",
+      "friendRequests": {
+        "label": "Quién puede enviarme solicitudes",
+        "description": "Las personas fuera de este grupo no podrán agregarte.",
+        "everyone": "Todos",
+        "friends_of_friends": "Amigos de amigos",
+        "nobody": "Nadie"
+      },
+      "statsVisibility": {
+        "label": "Quién puede ver mis estadísticas",
+        "description": "Tus tiempos, cubos y algoritmos aprendidos. Sigues apareciendo en la búsqueda y en los leaderboards.",
+        "everyone": "Todos",
+        "friends": "Solo amigos",
+        "nobody": "Solo yo"
+      },
+      "readReceipts": {
+        "label": "Confirmaciones de lectura",
+        "description": "Si las desactivas, tampoco verás cuándo otros leen tus mensajes."
+      },
+      "typingIndicator": {
+        "label": "Indicador de escritura",
+        "description": "Tus amigos ven cuando les estás escribiendo."
+      }
     },
     "NavMain": {
       "trainer": "Entrenador",

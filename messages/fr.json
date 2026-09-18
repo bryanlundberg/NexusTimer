@@ -504,7 +504,8 @@
         "empty": "Aucun succès débloqué pour l’instant.",
         "title": "Succès",
         "view-all": "Tout voir"
-      }
+      },
+      "stats-hidden": "Les statistiques et algorithmes de {name} sont privés."
     },
     "FriendsPage": {
       "title": "Amis",
@@ -531,8 +532,16 @@
       "action-failed": "Une erreur s'est produite. Réessayez.",
       "cancel": "Annuler",
       "remove-friend-hint": "{name} sera retiré de vos amis et vous ne pourrez plus vous envoyer de messages. Vous pourrez envoyer une nouvelle demande plus tard.",
-      "cancel-request-hint": "La demande que vous avez envoyée à {name} sera retirée. Vous pourrez en envoyer une nouvelle plus tard.",
-      "decline-hint": "La demande de {name} sera refusée. Cette personne pourra vous en envoyer une nouvelle plus tard."
+      "cancel-request-hint": "La demande envoyée à {name} sera retirée. Vous pourrez en envoyer une nouvelle après 24 heures.",
+      "decline-hint": "La demande de {name} sera refusée. Il ne sera pas prévenu et ne pourra pas vous en envoyer une autre.",
+      "block": "Bloquer",
+      "unblock": "Débloquer",
+      "more-actions": "Plus d'options",
+      "block-hint": "{name} sera retiré de vos amis et ne pourra plus vous envoyer de messages ni de demandes. Il ne sera pas prévenu.",
+      "requests-closed-label": "N'accepte pas de demandes",
+      "requests-closed": "Cet utilisateur n'accepte pas les demandes d'ami.",
+      "request-cooldown": "Vous avez récemment annulé une demande envoyée à cet utilisateur. Réessayez plus tard.",
+      "request-limit": "Vous avez envoyé trop de demandes aujourd'hui. Réessayez demain."
     },
     "ChatPage": {
       "title": "Messages",
@@ -594,7 +603,11 @@
       "solution": "Solution",
       "search-friends": "Rechercher des amis",
       "no-friends-match": "Aucun ami ne correspond à ta recherche",
-      "send-to-friend-hint": "Le message s'ouvre prêt à être envoyé."
+      "send-to-friend-hint": "Le message s'ouvre prêt à être envoyé.",
+      "mute-chat": "Mettre en sourdine",
+      "unmute-chat": "Réactiver le son",
+      "muted": "En sourdine",
+      "block-user": "Bloquer l'utilisateur"
     },
     "LeaderboardsPage": {
       "title": "Solves les plus rapides",
@@ -905,6 +918,41 @@
       "crop-invalid-file": "Ce fichier n'est pas une image. Choisissez un autre fichier.",
       "personal-info": "Infos personnelles",
       "personal-info-description": "Mets à jour tes informations publiques et la façon dont les autres utilisateurs te voient."
+    },
+    "PrivacyPage": {
+      "tab": "Confidentialité",
+      "title": "Confidentialité",
+      "description": "Choisissez qui peut vous contacter et ce que les autres voient de votre activité.",
+      "update-failed": "Impossible d'enregistrer la modification. Réessayez.",
+      "requests-section": "Demandes d'ami",
+      "messages-section": "Messages",
+      "profile-section": "Profil",
+      "blocked-section": "Utilisateurs bloqués",
+      "blocked-description": "Les utilisateurs bloqués ne peuvent pas vous envoyer de demandes ni de messages, et vous ne vous verrez pas dans la recherche.",
+      "no-blocked": "Vous n'avez bloqué personne.",
+      "blocked-since": "Bloqué le {date}",
+      "friendRequests": {
+        "label": "Qui peut m'envoyer des demandes",
+        "description": "Les personnes hors de ce groupe ne pourront pas vous ajouter.",
+        "everyone": "Tout le monde",
+        "friends_of_friends": "Amis d'amis",
+        "nobody": "Personne"
+      },
+      "statsVisibility": {
+        "label": "Qui peut voir mes statistiques",
+        "description": "Vos temps, cubes et algorithmes appris. Vous apparaissez toujours dans la recherche et les classements.",
+        "everyone": "Tout le monde",
+        "friends": "Amis uniquement",
+        "nobody": "Moi uniquement"
+      },
+      "readReceipts": {
+        "label": "Confirmations de lecture",
+        "description": "Si vous les désactivez, vous ne verrez pas non plus quand les autres lisent vos messages."
+      },
+      "typingIndicator": {
+        "label": "Indicateur d'écriture",
+        "description": "Vos amis voient quand vous leur écrivez."
+      }
     },
     "AccessCard": {
       "title": "Accès",
