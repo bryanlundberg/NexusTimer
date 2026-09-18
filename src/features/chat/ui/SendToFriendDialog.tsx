@@ -68,14 +68,14 @@ export function SendToFriendDialog({ open, onOpenChange, draft, onOpened }: Prop
 
   return (
     <AlertDialog open={open} onOpenChange={changeOpen}>
-      <AlertDialogContent className="gap-3 sm:max-w-sm">
-        <AlertDialogHeader>
+      <AlertDialogContent className="flex max-h-[min(36rem,85dvh)] flex-col gap-3 sm:max-w-sm">
+        <AlertDialogHeader className="shrink-0">
           <AlertDialogTitle>{t('send-to-friend')}</AlertDialogTitle>
           <AlertDialogDescription>{t('send-to-friend-hint')}</AlertDialogDescription>
         </AlertDialogHeader>
 
-        <div className="relative">
-          <Search className="pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2 text-muted-foreground" />
+        <div className="relative shrink-0">
+          <Search className="pointer-events-none absolute top-1/2 left-2.5 z-[2] size-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             autoFocus
             value={query}
@@ -87,7 +87,7 @@ export function SendToFriendDialog({ open, onOpenChange, draft, onOpened }: Prop
           />
         </div>
 
-        <div className="-mx-1 flex max-h-72 min-h-24 flex-col overflow-y-auto">
+        <div className="-mx-1 flex min-h-0 flex-col overflow-y-auto overscroll-contain">
           {empty ? (
             <p className="m-auto px-4 py-6 text-center text-sm text-muted-foreground">{empty}</p>
           ) : (
@@ -98,7 +98,7 @@ export function SendToFriendDialog({ open, onOpenChange, draft, onOpened }: Prop
                 disabled={!!busyId}
                 onClick={() => void send(user._id)}
                 className={cn(
-                  'flex items-center gap-2.5 border-l-2 border-l-transparent px-2 py-2 text-left text-sm transition-colors',
+                  'flex shrink-0 items-center gap-2.5 border-l-2 border-l-transparent px-2 py-2 text-left text-sm transition-colors',
                   'hover:border-l-primary hover:bg-muted/40 focus-visible:border-l-primary focus-visible:bg-muted/40 focus-visible:outline-none',
                   'disabled:opacity-60',
                   busyId === user._id && 'border-l-primary bg-muted/40'
@@ -116,7 +116,7 @@ export function SendToFriendDialog({ open, onOpenChange, draft, onOpened }: Prop
           )}
         </div>
 
-        <AlertDialogFooter>
+        <AlertDialogFooter className="shrink-0">
           <AlertDialogCancel>{t('cancel')}</AlertDialogCancel>
         </AlertDialogFooter>
       </AlertDialogContent>
