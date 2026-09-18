@@ -3,7 +3,6 @@
 import { create } from 'zustand'
 
 type ChatDraftStore = {
-  /** Text waiting to be placed in a chat's composer, keyed by chat id */
   drafts: Record<string, string>
   setDraft: (chatId: string, text: string) => void
   clearDraft: (chatId: string) => void

@@ -9,12 +9,10 @@ export interface RealtimeMessage {
   text: string
   createdAt: string
   editedAt?: string
-  /** Deleted for everyone: `text` comes back empty and the UI shows a tombstone. */
   deletedAt?: string
   reactions?: MessageReaction[]
 }
 
-/** What a person declares about themselves. Only `invisible` never leaves the gateway. */
 export type PresenceStatus = 'online' | 'away' | 'busy' | 'invisible'
 
 export const PRESENCE_STATUSES: PresenceStatus[] = ['online', 'away', 'busy', 'invisible']
@@ -22,13 +20,11 @@ export const PRESENCE_STATUSES: PresenceStatus[] = ['online', 'away', 'busy', 'i
 export const isPresenceStatus = (value: unknown): value is PresenceStatus =>
   typeof value === 'string' && PRESENCE_STATUSES.includes(value as PresenceStatus)
 
-/** What everyone else is allowed to see, resolved from the declared status and open sockets. */
 export type PresenceDisplay = 'online' | 'away' | 'busy' | 'offline'
 
 export interface PresenceUser {
   userId: string
   state: PresenceDisplay
-  /** Unix milliseconds. */
   lastSeen?: number
 }
 

@@ -35,7 +35,6 @@ const EMOJI_LOCALES = new Set<string>([
   'zh-hant'
 ])
 
-/** Locales the emoji catalogue does not ship (`fil`, `id`) fall back to English labels. */
 const toEmojiLocale = (locale: string): Locale => (EMOJI_LOCALES.has(locale) ? (locale as Locale) : 'en')
 
 interface Props {
@@ -43,10 +42,6 @@ interface Props {
   className?: string
 }
 
-/**
- * The emoji catalogue is fetched on demand the first time this mounts, so it never
- * weighs on the initial bundle.
- */
 export function EmojiPicker({ onSelect, className }: Props) {
   const t = useTranslations('Index.ChatPage')
   const locale = useLocale()
