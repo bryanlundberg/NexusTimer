@@ -21,6 +21,27 @@ export function appendMessage(pages: Pages, message: ChatMessage): MessagesPage[
   return updateNewestPage(pages, (messages) => [...messages, message])
 }
 
+/**
+ * A realtime `message:new`. The server publishes to the sender too, usually before the POST
+ * answers, so our own message takes over its optimistic copy instead of showing up twice.
+ */
+export function receiveMessage(pages: Pages, message: ChatMessage, myId?: string): MessagesPage[] {
+  if (pages && hasMessage(pages, message._id)) return pages
+
+  const temp =
+    message.senderId === myId
+      ? flattenPages(pages).find((candidate) => candidate.pending && candidate.text === message.text)
+      : undefined
+  if (!temp) return appendMessage(pages, message)
+
+  return (pages ?? []).map((page) => ({
+    ...page,
+    messages: page.messages.map((candidate) =>
+      candidate._id === temp._id ? { ...message, clientKey: temp.clientKey ?? temp._id } : candidate
+    )
+  }))
+}
+
 /** If the realtime event already delivered the saved message, the optimistic copy is dropped. */
 export function confirmMessage(pages: Pages, tempId: string, saved: ChatMessage): MessagesPage[] {
   // A revalidation may have replaced the pages while the request was in flight
@@ -31,7 +52,7 @@ export function confirmMessage(pages: Pages, tempId: string, saved: ChatMessage)
     ...page,
     messages: alreadyDelivered
       ? page.messages.filter((message) => message._id !== tempId)
-      : page.messages.map((message) => (message._id === tempId ? saved : message))
+      : page.messages.map((message) => (message._id === tempId ? { ...saved, clientKey: tempId } : message))
   }))
 }
 
