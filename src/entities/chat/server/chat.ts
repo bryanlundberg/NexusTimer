@@ -92,13 +92,22 @@ export function otherMemberId(conversation: Pick<ConversationDocument, 'members'
   return (other ?? conversation.members[0]).toString()
 }
 
-type SummarizableConversation = Pick<ConversationDocument, '_id' | 'members' | 'unread' | 'deliveredAt' | 'readAt'>
+type SummarizableConversation = Pick<
+  ConversationDocument,
+  '_id' | 'members' | 'unread' | 'deliveredAt' | 'readAt' | 'muted'
+>
 
-export function toChatSummary(conversation: SummarizableConversation, user: FriendUser, userId: string): ChatSummary {
+export function toChatSummary(
+  conversation: SummarizableConversation,
+  user: FriendUser,
+  userId: string,
+  showRead: boolean
+): ChatSummary {
   return {
     _id: conversation._id.toString(),
     user,
     unread: conversation.unread?.[userId] ?? 0,
-    receipts: toReceipts(conversation, user._id)
+    receipts: toReceipts(conversation, user._id, showRead),
+    muted: !!conversation.muted?.[userId]
   }
 }
