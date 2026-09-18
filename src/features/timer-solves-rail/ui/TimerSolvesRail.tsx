@@ -14,6 +14,7 @@ import formatTime from '@/shared/lib/formatTime'
 import calcCurrentAo from '@/shared/lib/statistics/calcCurrentAo'
 import calcBestAo from '@/shared/lib/statistics/calcBestAo'
 import getBestTime from '@/shared/lib/statistics/getBestTime'
+import { rollingAo } from '@/shared/lib/statistics/rollingAo'
 import { Solve } from '@/entities/solve/model/types'
 import { mergeSolvesNewestFirst, sortSolvesNewestFirst } from '@/entities/solve/lib/sortSolves'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
@@ -93,14 +94,15 @@ export default function TimerSolvesRail() {
   }, [solves, t])
 
   const rows = useMemo(() => {
-    const formatAo = (window: Solve[], n: number) => {
-      if (window.length < n) return '-'
-      const ao = calcCurrentAo(window, n)
-      return ao === 0 ? 'DNF' : formatTime(ao)
+    const ao5Values = rollingAo(solves, 5)
+    const ao12Values = rollingAo(solves, 12)
+    const formatAo = (values: Float64Array, index: number) => {
+      if (index >= values.length) return '-'
+      return values[index] === 0 ? 'DNF' : formatTime(values[index])
     }
     return solves.map((solve, index) => {
-      const ao5 = formatAo(solves.slice(index, index + 5), 5)
-      const ao12 = formatAo(solves.slice(index, index + 12), 12)
+      const ao5 = formatAo(ao5Values, index)
+      const ao12 = formatAo(ao12Values, index)
       return {
         id: solve.id,
         dnf: solve.dnf,
