@@ -17,7 +17,6 @@ const (
 	chat  = "64b7f0c2a1b2c3d4e5f6071b"
 )
 
-// fakeConn stands in for the browser connection the hub owns in production.
 type fakeConn struct {
 	userID string
 	connID string
@@ -121,7 +120,6 @@ func TestParseTyping(t *testing.T) {
 	}
 }
 
-// Runs against a real Redis only when REDIS_TEST_URL is set.
 func TestRelayOnlyReachesFriends(t *testing.T) {
 	b := testBroker(t)
 
@@ -202,7 +200,6 @@ func TestIdleFrameOnlyActsOnAChange(t *testing.T) {
 		t.Fatal("the connection should be idle")
 	}
 
-	// A repeat is ignored, so a browser may resend without republishing anything
 	if conn.SetIdle(true) {
 		t.Fatal("setting the same flag reported a change")
 	}

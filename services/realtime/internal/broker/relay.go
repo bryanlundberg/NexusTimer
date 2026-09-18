@@ -31,8 +31,7 @@ type typingEvent struct {
 	ChatID string `json:"chatId"`
 }
 
-// Inbound ignores unknown types, so the app can ship a new frame before every gateway
-// instance is running the code that understands it.
+// Inbound ignores unknown types so the app can ship new frames before every gateway understands them.
 func (b *Broker) Inbound(c hub.Conn, payload []byte) {
 	var frame clientFrame
 	if err := json.Unmarshal(payload, &frame); err != nil {
@@ -51,8 +50,6 @@ func (b *Broker) Inbound(c hub.Conn, payload []byte) {
 	}
 }
 
-// The gateway only knows user channels, so the browser addresses a person and names the chat
-// in the payload.
 func parseTyping(payload []byte) (string, string, bool) {
 	var frame clientFrame
 	if err := json.Unmarshal(payload, &frame); err != nil {
@@ -64,8 +61,6 @@ func parseTyping(payload []byte) (string, string, bool) {
 	return frame.To, frame.ChatID, true
 }
 
-// relayTyping drops the indicator when the friendship is not cached rather than querying
-// Mongo, which is fine because opening a conversation primes the cache.
 func (b *Broker) relayTyping(userID string, payload []byte) {
 	to, chatID, ok := parseTyping(payload)
 	if !ok || to == userID {
@@ -86,13 +81,10 @@ func (b *Broker) relayTyping(userID string, payload []byte) {
 	}
 }
 
-// watch replaces what this connection follows and answers with the current state. Presence is
-// public, so any id may be followed; the hub caps how many.
 func (b *Broker) watch(c hub.Conn, ids []string) {
 	seen := make(map[string]struct{}, len(ids)+1)
 	wanted := make([]string, 0, len(ids)+1)
 
-	// A tab always follows itself, so it shows the same state everyone else sees.
 	seen[c.UserID()] = struct{}{}
 	wanted = append(wanted, c.UserID())
 
