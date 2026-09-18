@@ -1,30 +1,30 @@
 import { Solve } from '@/entities/solve/model/types'
-import { calcAoFromWindow } from './getAoTolerance'
+import { rollingAoFromTimes, SolveTimes, toSolveTimes } from './rollingAo'
 
-// Consecutive window of `ao` solves that produced the best (lowest) trimmed
-// mean, in the same order they appear in `solves`. Null when no window qualifies.
-export function findBestAoWindow<T extends Solve>(solves: T[], ao: number): T[] | null {
-  if (!solves || solves.length < ao || ao < 3) return null
-
-  let bestAo = Infinity
-  let bestWindow: T[] | null = null
-  for (let i = 0; i + ao <= solves.length; i++) {
-    const window = solves.slice(i, i + ao)
-    const windowAo = calcAoFromWindow(window, ao)
-    if (windowAo > 0 && windowAo < bestAo) {
-      bestAo = windowAo
-      bestWindow = window
+function bestWindow(times: SolveTimes, ao: number): { index: number; value: number } {
+  const values = rollingAoFromTimes(times, ao)
+  let value = Infinity
+  let index = -1
+  for (let i = 0; i < values.length; i++) {
+    if (values[i] > 0 && values[i] < value) {
+      value = values[i]
+      index = i
     }
   }
+  return { index, value }
+}
 
-  return bestWindow
+export function findBestAoWindow<T extends Solve>(solves: T[], ao: number): T[] | null {
+  if (!solves || solves.length < ao || ao < 3) return null
+  const { index } = bestWindow(toSolveTimes(solves), ao)
+  return index === -1 ? null : solves.slice(index, index + ao)
+}
+
+export function calcBestAos(solves: Solve[], sizes: number[]): number[] {
+  const times = solves ? toSolveTimes(solves) : null
+  return sizes.map((ao) => (!times || times.values.length < ao || ao < 3 ? 0 : bestWindow(times, ao).value))
 }
 
 export default function calcBestAo(solves: Solve[], ao: number): number {
-  if (!solves || solves.length < ao || ao < 3) {
-    return 0
-  }
-
-  const bestWindow = findBestAoWindow(solves, ao)
-  return bestWindow ? calcAoFromWindow(bestWindow, ao) : Infinity
+  return calcBestAos(solves, [ao])[0]
 }
