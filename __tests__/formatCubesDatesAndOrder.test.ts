@@ -7,7 +7,7 @@ describe('formatCubesDatesAndOrder', () => {
     expect(formatCubesDatesAndOrder([])).toEqual([])
   })
 
-  it('sorts session solves ascending by endTime', () => {
+  it('sorts session solves newest first by endTime', () => {
     const cube = makeCube({
       sessionSolves: [
         makeSolve({ id: 'b', startTime: 200, endTime: 220 }),
@@ -16,10 +16,10 @@ describe('formatCubesDatesAndOrder', () => {
       ]
     })
     const result = formatCubesDatesAndOrder([cube])
-    expect(result[0].solves.session.map((s) => s.id)).toEqual(['a', 'b', 'c'])
+    expect(result[0].solves.session.map((s) => s.id)).toEqual(['c', 'b', 'a'])
   })
 
-  it('sorts all solves ascending by endTime', () => {
+  it('sorts all solves newest first by endTime', () => {
     const cube = makeCube({
       allSolves: [
         makeSolve({ id: 'z', startTime: 999, endTime: 1200 }),
@@ -27,7 +27,7 @@ describe('formatCubesDatesAndOrder', () => {
       ]
     })
     const result = formatCubesDatesAndOrder([cube])
-    expect(result[0].solves.all.map((s) => s.id)).toEqual(['a', 'z'])
+    expect(result[0].solves.all.map((s) => s.id)).toEqual(['z', 'a'])
   })
 
   it('orders by when the timer stopped, not by when it started', () => {
@@ -40,7 +40,7 @@ describe('formatCubesDatesAndOrder', () => {
       ]
     })
     const result = formatCubesDatesAndOrder([cube])
-    expect(result[0].solves.all.map((s) => s.id)).toEqual(['short', 'long'])
+    expect(result[0].solves.all.map((s) => s.id)).toEqual(['long', 'short'])
   })
 
   it('falls back to startTime when two solves share an endTime', () => {
@@ -53,7 +53,7 @@ describe('formatCubesDatesAndOrder', () => {
       ]
     })
     const result = formatCubesDatesAndOrder([cube])
-    expect(result[0].solves.all.map((s) => s.id)).toEqual(['first', 'second'])
+    expect(result[0].solves.all.map((s) => s.id)).toEqual(['second', 'first'])
   })
 
   it('preserves the input cube order', () => {
