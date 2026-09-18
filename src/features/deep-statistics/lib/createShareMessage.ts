@@ -4,6 +4,7 @@ import getBestTime from '@/shared/lib/statistics/getBestTime'
 import getDeviation from '@/shared/lib/statistics/getDeviation'
 import formatTime from '@/shared/lib/formatTime'
 import { Solve } from '@/entities/solve/model/types'
+import { sortSolvesNewestFirst } from '@/entities/solve/lib/sortSolves'
 
 interface createShareMessage {
   type: 'all' | '3' | '5' | '12' | '50' | '100'
@@ -22,8 +23,7 @@ export function createShareMessage({
 }: createShareMessage): string {
   if (!solves || solves.length === 0) return ''
 
-  const dataSet: Solve[] = [...solves]
-  dataSet.sort((a, b) => b.endTime - a.endTime)
+  const dataSet: Solve[] = [...sortSolvesNewestFirst(solves)]
 
   if (type !== 'all') {
     const solveCount = Number(type)
