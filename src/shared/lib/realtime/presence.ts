@@ -7,7 +7,6 @@ const STATUS_PREFIX = 'rt:status:'
 const LAST_SEEN_PREFIX = 'rt:lastseen:'
 const GATEWAY_PREFIX = 'rt:gw:'
 
-/** Backstop for an entry whose delete never landed. Nothing refreshes the timestamp. */
 const CONN_MAX_AGE_SECONDS = 24 * 60 * 60
 
 const LAST_SEEN_TTL_SECONDS = 30 * 24 * 60 * 60
@@ -20,7 +19,6 @@ interface ConnEntry {
   idle: boolean
 }
 
-/** Entries are `{instanceId}:{unixSeconds}:{idle 0|1}`. */
 function parseConnValue(value: string): ConnEntry | null {
   const [instanceId, stamp, flag] = value.split(':')
   if (!instanceId || flag === undefined) return null
@@ -31,7 +29,6 @@ function parseConnValue(value: string): ConnEntry | null {
   return { instanceId, seconds, idle: flag === '1' }
 }
 
-/** A tab is only real while the gateway holding its socket still holds its lease. */
 function isLive(entry: ConnEntry, liveGateways: ReadonlySet<string>): boolean {
   if (!liveGateways.has(entry.instanceId)) return false
   return Math.floor(Date.now() / 1000) - entry.seconds < CONN_MAX_AGE_SECONDS
@@ -62,8 +59,6 @@ export function resolvePresence(
     if (!entry.idle) allIdle = false
   }
 
-  // An invisible person reports their last seen like anyone offline: without it they would be
-  // the only row with no wording under the dot, which is the tell the status exists to avoid.
   if (status === 'invisible' || !reachable) {
     const stamp = Number(lastSeen)
     return Number.isFinite(stamp) && stamp > 0
@@ -87,7 +82,6 @@ export async function readPresence(userIds: string[]): Promise<PresenceUser[]> {
       reads.get(statusKey(id))
       reads.get(LAST_SEEN_PREFIX + id)
     }
-    // Three replies per person, in the order they were queued
     const replies = (await reads.exec()) as unknown[]
 
     const rows = userIds.map((userId, index) => ({
@@ -117,11 +111,7 @@ async function readLiveGateways(instanceIds: string[]): Promise<ReadonlySet<stri
   return new Set(unique.filter((_, index) => Number(replies[index]) === 1))
 }
 
-/**
- * Redis is the only home of the declared status, so it is written without a TTL: an expiry would
- * quietly turn an invisible person visible. A failed write has to reach the caller, since there
- * is nothing else to fall back on.
- */
+/** No TTL: an expiry would turn an invisible person visible. */
 export async function writePresenceStatus(userId: string, status: PresenceStatus): Promise<void> {
   const redis = await getRedis()
   const write = redis.multi()
@@ -129,10 +119,7 @@ export async function writePresenceStatus(userId: string, status: PresenceStatus
   write.set(statusKey(userId), status)
   const [previous] = (await write.exec()) as unknown[]
 
-  // Turning invisible has to read like leaving, so it stamps the same key a disconnect would.
-  // Only on the way in: restamping an already invisible person would walk their last seen
-  // forward and show they were still around. The gateway skips the write on disconnect for the
-  // same reason, which leaves this stamp standing as the last thing anyone sees.
+  // Stamped only on entering invisible; the gateway skips the disconnect stamp for invisible users.
   if (status === 'invisible' && previous !== 'invisible') {
     await redis.set(LAST_SEEN_PREFIX + userId, String(Date.now()), {
       expiration: { type: 'EX', value: LAST_SEEN_TTL_SECONDS }
@@ -147,7 +134,6 @@ export async function writePresenceStatus(userId: string, status: PresenceStatus
   }
 }
 
-/** Nothing expires these, so a deleted account has to take them with it. */
 export async function clearPresence(userId: string): Promise<void> {
   try {
     const redis = await getRedis()

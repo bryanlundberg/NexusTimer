@@ -26,7 +26,6 @@ const (
 	leaseTTL     = 60 * time.Second
 	leaseRefresh = 20 * time.Second
 
-	// offlineGrace keeps a reload from blinking offline for everyone watching.
 	offlineGrace    = 15 * time.Second
 	connMaxAge      = 24 * time.Hour
 	lastSeenTTL     = 30 * 24 * time.Hour
@@ -34,7 +33,6 @@ const (
 	presenceTimeout = time.Second
 )
 
-// State is what other people are allowed to see.
 type State string
 
 const (
@@ -44,17 +42,14 @@ const (
 	StateOffline State = "offline"
 )
 
-// statusInvisible never leaves the gateway, except back to the person it belongs to.
 const statusInvisible = "invisible"
 
 type presenceUser struct {
-	UserID string `json:"userId"`
-	State  State  `json:"state"`
-	// LastSeen is unix milliseconds.
-	LastSeen int64 `json:"lastSeen,omitempty"`
+	UserID   string `json:"userId"`
+	State    State  `json:"state"`
+	LastSeen int64  `json:"lastSeen,omitempty"`
 }
 
-// presenceEvent carries many people so a browser opening a list gets one frame, not one per row.
 type presenceEvent struct {
 	Type  string         `json:"type"`
 	Users []presenceUser `json:"users"`
@@ -90,15 +85,10 @@ func parseConnValue(value string) (connEntry, bool) {
 	return connEntry{instanceID: instanceID, seconds: seconds, idle: flag == "1"}, true
 }
 
-// ClaimLease has to run before this instance takes any connection: its entries only count
-// while this key is alive.
 func (b *Broker) ClaimLease(ctx context.Context) error {
 	return b.client.Set(ctx, gatewayKeyPrefix+b.instanceID, "1", leaseTTL).Err()
 }
 
-// KeepLease renews the lease until ctx is done, then drops it so nobody waits out the TTL.
-// local supplies this instance's open connections: with no per-connection refresh, rewriting
-// them is the only way back from a Redis outage.
 func (b *Broker) KeepLease(ctx context.Context, local func() []hub.Connection) {
 	ticker := time.NewTicker(leaseRefresh)
 	defer ticker.Stop()
@@ -134,8 +124,6 @@ func (b *Broker) KeepLease(ctx context.Context, local func() []hub.Connection) {
 	}
 }
 
-// resync rewrites every open connection after Redis was unreachable. Entries deleted while it
-// was down stay behind until connMaxAge.
 func (b *Broker) resync(ctx context.Context, conns []hub.Connection) {
 	if len(conns) == 0 {
 		return
@@ -153,8 +141,6 @@ func (b *Broker) resync(ctx context.Context, conns []hub.Connection) {
 	}
 }
 
-// Connected records a new tab, tells everyone watching, and hands that tab its own declared
-// status, which is what keeps the status picker off the Next.js API.
 func (b *Broker) Connected(c hub.Conn) {
 	ctx, cancel := context.WithTimeout(context.Background(), presenceTimeout)
 	defer cancel()
@@ -179,8 +165,7 @@ func (b *Broker) selfStatus(ctx context.Context, userID string) []byte {
 	key := statusKeyPrefix + userID
 	pipe := b.client.Pipeline()
 	read := pipe.Get(ctx, key)
-	// The declared status must never expire, so a key an older deploy wrote with a TTL is healed
-	// the next time its owner connects.
+	// The declared status must never expire; heals keys written with a TTL by older deploys.
 	pipe.Persist(ctx, key)
 	if _, err := pipe.Exec(ctx); err != nil && !errors.Is(err, redis.Nil) {
 		b.logger.Warn("self status read failed", "error", err)
@@ -199,8 +184,6 @@ func (b *Broker) selfStatus(ctx context.Context, userID string) []byte {
 	return payload
 }
 
-// Disconnected waits out offlineGrace before announcing the last tab leaving, so a reload does
-// not read as going offline.
 func (b *Broker) Disconnected(userID, connID string) {
 	ctx, cancel := context.WithTimeout(context.Background(), presenceTimeout)
 	defer cancel()
@@ -209,8 +192,6 @@ func (b *Broker) Disconnected(userID, connID string) {
 	pipe := b.client.Pipeline()
 	pipe.HDel(ctx, key, connID)
 	left := pipe.HLen(ctx, key)
-	// Rides along so the write below costs no extra round trip. redis.Nil only means the status
-	// key is missing, which is every person who never picked one.
 	declared := pipe.Get(ctx, statusKeyPrefix+userID)
 	if _, err := pipe.Exec(ctx); err != nil && !errors.Is(err, redis.Nil) {
 		b.logger.Warn("presence disconnect failed", "error", err)
@@ -222,9 +203,7 @@ func (b *Broker) Disconnected(userID, connID string) {
 		return
 	}
 
-	// An invisible person was already stamped when they declared it, and they have read as
-	// offline ever since. Moving the stamp now would jump their last seen forward with no online
-	// spell in between, which is exactly how a watcher spots that they had been there all along.
+	// Invisible users were stamped when they declared it; restamping would reveal they were around.
 	if declared.Val() != statusInvisible {
 		stamp := strconv.FormatInt(time.Now().UnixMilli(), 10)
 		if err := b.client.Set(ctx, lastSeenKeyPrefix+userID, stamp, lastSeenTTL).Err(); err != nil {
@@ -259,12 +238,10 @@ func (b *Broker) SetIdle(userID, connID string, idle bool) {
 	b.PublishPresence(ctx, userID)
 }
 
-// write is only ever called on a real event, never on a timer.
 func (b *Broker) write(ctx context.Context, userID, connID string, idle bool) error {
 	return b.client.HSet(ctx, connsKeyPrefix+userID, connID, b.connValue(idle)).Err()
 }
 
-// PublishPresence reaches every gateway instance, not just this one.
 func (b *Broker) PublishPresence(ctx context.Context, userID string) {
 	payload, err := json.Marshal(presenceEvent{Type: "presence", Users: b.resolve(ctx, []string{userID})})
 	if err != nil {
@@ -286,7 +263,6 @@ func (b *Broker) Snapshot(ctx context.Context, userIDs []string) []byte {
 	return payload
 }
 
-// resolve reads everyone in one round trip; an invisible person reads as offline.
 func (b *Broker) resolve(ctx context.Context, userIDs []string) []presenceUser {
 	type pending struct {
 		conns    *redis.MapStringStringCmd
@@ -304,7 +280,6 @@ func (b *Broker) resolve(ctx context.Context, userIDs []string) []presenceUser {
 		}
 	}
 
-	// redis.Nil only means one of the reads found nothing, which is the common case.
 	if _, err := pipe.Exec(ctx); err != nil && !errors.Is(err, redis.Nil) {
 		b.logger.Warn("presence read failed", "error", err)
 		offline := make([]presenceUser, len(userIDs))
@@ -340,8 +315,6 @@ func (b *Broker) resolve(ctx context.Context, userIDs []string) []presenceUser {
 		declared := reads[i].status.Val()
 
 		switch {
-		// An invisible person reports their last seen like anyone offline: without it they would
-		// be the only row with no wording under the dot, which is the tell the status avoids.
 		case declared == statusInvisible || !reachable:
 			users[i].LastSeen, _ = strconv.ParseInt(reads[i].lastSeen.Val(), 10, 64)
 		case declared == string(StateBusy):
@@ -389,10 +362,7 @@ func expiredFields(conns map[string]string, live map[string]bool) []string {
 	return expired
 }
 
-// liveInstances answers for the referenced gateways only, and the answer it returns belongs to
-// the caller: b.live is shared between concurrent resolves, so it never leaves this function.
-// The Redis read runs without the lock, since two resolves asking the same question is cheaper
-// than every resolve queueing behind one round trip.
+// The returned map belongs to the caller: b.live is shared between concurrent resolves.
 func (b *Broker) liveInstances(ctx context.Context, referenced map[string]struct{}) map[string]bool {
 	if len(referenced) == 0 {
 		return nil
@@ -430,8 +400,6 @@ func (b *Broker) liveInstances(ctx context.Context, referenced map[string]struct
 	}
 	if _, err := pipe.Exec(ctx); err != nil && !errors.Is(err, redis.Nil) {
 		b.logger.Warn("gateway lease read failed", "error", err)
-		// Assume the gateways are up rather than reporting everyone on them offline, and do not
-		// cache a guess: the next resolve should ask again.
 		for _, id := range unknown {
 			live[id] = true
 		}
@@ -449,7 +417,6 @@ func (b *Broker) liveInstances(ctx context.Context, referenced map[string]struct
 	return live
 }
 
-// prune is best effort: a failure only means the next read prunes them instead.
 func (b *Broker) prune(ctx context.Context, stale map[string][]string) {
 	if len(stale) == 0 {
 		return

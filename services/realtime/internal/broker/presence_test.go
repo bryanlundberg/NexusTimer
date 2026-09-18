@@ -74,7 +74,6 @@ func TestSummarizeFollowsTheGatewayThatHoldsTheSocket(t *testing.T) {
 	}
 }
 
-// seed writes one person's presence straight into Redis, the way a gateway would.
 func seed(t *testing.T, b *Broker, userID string, conns map[string]string, status, lastSeen string) {
 	t.Helper()
 	ctx := context.Background()
@@ -93,7 +92,6 @@ func seed(t *testing.T, b *Broker, userID string, conns map[string]string, statu
 	}
 }
 
-// Runs against a real Redis only when REDIS_TEST_URL is set.
 func TestResolve(t *testing.T) {
 	b := testBroker(t)
 	ctx := context.Background()
@@ -249,11 +247,9 @@ func TestDisconnectWaitsBeforeCallingSomeoneOffline(t *testing.T) {
 
 	b.Disconnected(alice, "conn-"+alice)
 
-	// Stamped when they actually left, not when the grace is up
 	if b.client.Exists(ctx, lastSeenKeyPrefix+alice).Val() != 1 {
 		t.Fatal("last seen was not written")
 	}
-	// Nothing is announced yet: a reload must not read as leaving
 	select {
 	case msg := <-messages:
 		t.Fatalf("offline was announced immediately: %s", msg.Payload)
@@ -272,7 +268,6 @@ func TestDisconnectLeavesAnInvisibleLastSeenAlone(t *testing.T) {
 	b.client.Del(ctx, keys...)
 	t.Cleanup(func() { b.client.Del(context.Background(), keys...) })
 
-	// Stamped when they turned invisible, which is what everyone has been reading since
 	b.client.Set(ctx, statusKeyPrefix+alice, statusInvisible, time.Minute)
 	b.client.Set(ctx, lastSeenKeyPrefix+alice, "1700000000000", time.Minute)
 
@@ -354,9 +349,7 @@ func TestConnectedDefaultsToOnlineWhenNothingWasDeclared(t *testing.T) {
 	}
 }
 
-// resolve reads the answer after liveInstances has released the lock, so what it hands back
-// cannot be the shared cache. Needs no Redis: a reference to this gateway never reaches it.
-// Only fails under -race.
+// Only fails under -race: resolve must not return the shared live cache.
 func TestLiveInstancesDoesNotShareItsCache(t *testing.T) {
 	b := &Broker{
 		logger:     slog.New(slog.NewTextHandler(io.Discard, nil)),
