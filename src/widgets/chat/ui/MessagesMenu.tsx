@@ -18,7 +18,6 @@ import { useTypingChats } from '@/features/chat/model/typing-store'
 import { usePresenceList } from '@/features/presence/model/usePresence'
 import { ThreadPreview } from '@/widgets/chat/ui/ThreadPreview'
 
-/** On desktop it opens conversations as floating windows; on mobile it goes to /messages. */
 export function MessagesMenu() {
   const t = useTranslations('Index.ChatPage')
   const { data: session } = useSession()
@@ -30,7 +29,6 @@ export function MessagesMenu() {
   const threads = inbox?.threads ?? []
   const unread = inbox?.totalUnread ?? 0
 
-  // Presence listeners only while the menu is open
   const userIds = useMemo(() => (open ? threads.map((thread) => thread.user._id) : []), [open, threads])
   const presence = usePresenceList(userIds)
   const typingChats = useTypingChats()
@@ -45,7 +43,6 @@ export function MessagesMenu() {
 
   return (
     <DropdownMenu open={open} onOpenChange={handleOpenChange}>
-      {/* The notched button clips its content, so the badge sits beside it in the wrapper */}
       <span className="relative inline-flex shrink-0">
         <DropdownMenuTrigger asChild>
           <Button

@@ -3,13 +3,11 @@ import { getRedis } from '@/shared/config/redis/redis'
 const PREFIX = 'friends:'
 const TTL_SECONDS = 60 * 60 * 24 * 7 // 7d
 
-// Distinguishes "cached and empty" from "not cached".
 const SENTINEL = '__init__'
 
 const key = (userId: string) => `${PREFIX}${userId}`
 
 export const friendsCache = {
-  /** Returns the cached friend ids, or null on miss / Redis failure. */
   async get(userId: string): Promise<string[] | null> {
     try {
       const redis = await getRedis()

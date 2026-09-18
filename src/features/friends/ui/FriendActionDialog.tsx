@@ -14,7 +14,6 @@ import {
 } from '@/components/ui/alert-dialog'
 import { cn } from '@/shared/lib/utils'
 
-/** All three end up in the same DELETE, but they read very differently to the user. */
 export type FriendAction = 'remove-friend' | 'cancel-request' | 'decline'
 
 interface Props {

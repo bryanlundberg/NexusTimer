@@ -6,7 +6,6 @@ import { cn } from '@/shared/lib/utils'
 import { useActiveChatStore } from '@/features/chat/model/active-chat-store'
 import { InboxList } from '@/widgets/chat/ui/InboxList'
 
-/** Inbox and conversation scroll on their own: side by side on desktop, one at a time on mobile. */
 export function MessagesShell({ children }: { children: React.ReactNode }) {
   const t = useTranslations('Index.ChatPage')
   const activeChatId = useActiveChatStore((state) => state.activeChatId)

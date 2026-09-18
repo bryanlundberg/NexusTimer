@@ -23,7 +23,6 @@ export function FriendRow({ user, presence, friendsSince, actions, stackActions 
   const since = friendsSince
     ? t('friends-since', { date: dayjs(friendsSince).locale(locale).format('MMM YYYY') })
     : null
-  // Only friends get the presence wording, the people directory settles for the dot
   const meta = [presenceLabel, since].filter(Boolean).join(' · ')
 
   return <UserListRow user={user} presence={presence} meta={meta} actions={actions} stackActions={stackActions} />
