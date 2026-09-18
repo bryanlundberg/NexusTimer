@@ -35,10 +35,7 @@ export function useApplyBackup() {
       const data = await res.text()
       const cubes = preventDuplicateDeleteStatus(normalizeOldData(importNexusTimerData(data)))
 
-      await cubesDB.replaceAll(cubes)
-
-      const fresh = await cubesDB.getAll()
-      setCubes(fresh)
+      setCubes(await cubesDB.replaceAll(cubes))
       setSelectedCube(null)
 
       toast.success(t('SettingsPage.backup-applied'))
