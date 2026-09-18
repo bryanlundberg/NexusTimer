@@ -3,6 +3,7 @@ import { friendsCache } from '@/entities/friendship/model/friends-cache'
 import User from '@/entities/user/model/user'
 import type { FriendUser, RelationshipStatus } from '@/entities/friendship/model/types'
 import { pairKeyOf } from '@/shared/lib/pair-key'
+import { getPrivacy } from '@/entities/privacy/server/privacy'
 
 export const FRIEND_USER_PROJECTION = 'name image country wcaId'
 
@@ -34,7 +35,16 @@ export async function getMutualFriendIds(userId: string, otherId: string): Promi
 export function relationshipOf(doc: FriendshipDocument | null, userId: string): RelationshipStatus {
   if (!doc) return 'none'
   if (doc.status === 'accepted') return 'friends'
-  return doc.requesterId.toString() === userId ? 'pending_out' : 'pending_in'
+  const isRequester = doc.requesterId.toString() === userId
+  if (doc.status === 'declined') return isRequester && !doc.withdrawnAt ? 'pending_out' : 'none'
+  return isRequester ? 'pending_out' : 'pending_in'
+}
+
+export async function acceptsRequestsFrom(targetId: string, userId: string, mutualCount?: number): Promise<boolean> {
+  const { friendRequests } = await getPrivacy(targetId)
+  if (friendRequests === 'everyone') return true
+  if (friendRequests === 'nobody') return false
+  return (mutualCount ?? (await getMutualFriendIds(userId, targetId)).length) > 0
 }
 
 export function findFriendship(userId: string, otherId: string) {
