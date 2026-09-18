@@ -6,6 +6,7 @@ import { playSound } from '@/shared/lib/play-sound'
 import { DELIVERED_KEY, INBOX_KEY, useInbox } from '@/entities/chat/model/useInbox'
 import { useRealtimeEvent } from '@/features/realtime/model/useRealtimeEvent'
 import { clearTyping, markTyping } from '@/features/chat/model/typing-store'
+import { selfStatusStore } from '@/features/presence/model/presence-store'
 
 const DELIVERY_ACK_DELAY_MS = 500
 
@@ -35,7 +36,7 @@ export function useChatRealtime() {
         void mutate(INBOX_KEY)
         if (event.message.senderId === session?.user?.id) return
 
-        playSound('messageReceived')
+        if (selfStatusStore.get() !== 'busy') playSound('messageReceived')
         acknowledgeDelivery()
         clearTyping(event.chatId)
         break
