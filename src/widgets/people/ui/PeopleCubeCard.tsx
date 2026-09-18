@@ -8,7 +8,7 @@ import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import { minBy } from 'es-toolkit'
 import { motion } from 'motion/react'
 import calcBestAo from '@/shared/lib/statistics/calcBestAo'
-import { sortSolvesNewestFirst } from '@/entities/solve/lib/sortSolves'
+import { mergeSolvesNewestFirst } from '@/entities/solve/lib/sortSolves'
 import { GRID } from '@/widgets/people/ui/cubes-tab-content'
 
 interface PeopleCubeCardProps {
@@ -19,7 +19,9 @@ interface PeopleCubeCardProps {
 export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
   const locale = useLocale()
   const t = useTranslations('Index.CubesPage')
-  const allSolves = [...(cube.solves.all || []), ...(cube.solves.session || [])].filter((s) => !s.isDeleted)
+  const allSolves = mergeSolvesNewestFirst([cube.solves.all || [], cube.solves.session || []]).filter(
+    (s) => !s.isDeleted
+  )
 
   const counts = allSolves.reduce(
     (acc, s) => ({
@@ -37,7 +39,7 @@ export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
   const pb = validSolves.length > 0 ? minBy(validSolves, (s) => s.time) : null
   const pbTime = pb ? pb.time : null
 
-  const ao5Ms = calcBestAo(sortSolvesNewestFirst(allSolves), 5)
+  const ao5Ms = calcBestAo(allSolves, 5)
   const ao5Str = !isFinite(ao5Ms) || ao5Ms <= 0 ? '--' : formatTime(ao5Ms)
 
   const totalTime = allSolves.reduce((acc, s) => acc + (s.time || 0), 0)
