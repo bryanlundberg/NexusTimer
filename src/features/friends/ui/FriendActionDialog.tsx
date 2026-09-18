@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/alert-dialog'
 import { cn } from '@/shared/lib/utils'
 
-export type FriendAction = 'remove-friend' | 'cancel-request' | 'decline'
+export type FriendAction = 'remove-friend' | 'cancel-request' | 'decline' | 'block'
 
 interface Props {
   friend: { _id: string; name: string } | null
