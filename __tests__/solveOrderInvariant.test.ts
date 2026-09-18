@@ -20,7 +20,9 @@ vi.mock('@/shared/config/indexdb/indexdb', () => ({
       delete: async (key: string) => void store.delete(key),
       clear: async () => void store.clear(),
       replaceAll,
-      find: () => ({ get: async () => clone([...store.values()]) })
+      find: () => ({
+        get: async () => clone([...store.values()].sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0)))
+      })
     })
   }
 }))
@@ -147,6 +149,39 @@ describe('cubesDB keeps stored solves ordered', () => {
     expect([...store.keys()]).toEqual(['c1'])
     expect(ends(store.get('c1')!.solves.session)).toEqual([2, 1])
     expect(ends(store.get('c1')!.solves.all)).toEqual([4, 3])
+  })
+
+  it('returns from update the cube a fresh read would give', async () => {
+    store.set('c1', makeCube({ id: 'c1', allSolves: [at(5, { isDeleted: true }), at(1)] }))
+    const cube = await cubesDB.getById('c1')
+    const live = await cubesDB.update({ ...cube, solves: { ...cube.solves, all: [at(9), ...cube.solves.all] } })
+    expect(live).toEqual({ ...(await cubesDB.getById('c1')), updatedAt: live.updatedAt })
+    expect(ends(live.solves.all)).toEqual([9, 1])
+  })
+
+  it('returns from replaceAll the same list getAll would read back', async () => {
+    const live = await cubesDB.replaceAll([
+      makeCube({ id: 'z', sessionSolves: [at(1), at(2, { isDeleted: true }), at(3)] }),
+      makeCube({ id: 'gone', isDeleted: true }),
+      makeCube({ id: 'a', allSolves: [at(4), at(6)] })
+    ])
+    expect(live).toEqual(await cubesDB.getAll())
+    expect(live.map((cube) => cube.id)).toEqual(['a', 'z'])
+  })
+
+  it('ends a session only on the cubes that have one, returning them', async () => {
+    store.set('a', makeCube({ id: 'a', category: '3x3', sessionSolves: [at(3)], allSolves: [at(1)] }))
+    store.set('b', makeCube({ id: 'b', category: '3x3' }))
+    store.set('c', makeCube({ id: 'c', category: '4x4', sessionSolves: [at(2)] }))
+    const before = JSON.stringify(store.get('b'))
+
+    const updated = await cubesDB.endSessionForCube(await cubesDB.getById('a'))
+
+    expect(updated.map((cube) => cube.id)).toEqual(['a'])
+    expect(ends(updated[0].solves.all)).toEqual([3, 1])
+    expect(updated[0].solves.session).toEqual([])
+    expect(JSON.stringify(store.get('b'))).toBe(before)
+    expect(ends(store.get('c')!.solves.session)).toEqual([2])
   })
 
   it('serves ordered reads even from a record written out of order', async () => {
