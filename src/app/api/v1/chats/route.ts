@@ -6,6 +6,7 @@ import Message, { type MessageDocument } from '@/entities/chat/model/message'
 import { ensureConversationId, otherMemberId, toChatSummary } from '@/entities/chat/server/chat'
 import { INBOX_LIMIT, type ChatThread, type InboxResponse } from '@/entities/chat/model/types'
 import { areFriends, findFriendUsers } from '@/entities/friendship/server/friends'
+import { getPrivacyMap, readReceiptsShared, sharesReadReceipts } from '@/entities/privacy/server/privacy'
 import { requireUser } from '@/shared/api/require-user'
 import { parseJsonBody } from '@/shared/api/parse-json'
 import { objectIdSchema } from '@/shared/api/zod-helpers'
@@ -42,9 +43,11 @@ export async function GET() {
       .limit(INBOX_LIMIT)
       .lean<ConversationDocument[]>()
 
-    const [users, hiddenPreviews] = await Promise.all([
-      findFriendUsers(conversations.map((conversation) => otherMemberId(conversation, userId))),
-      findHiddenPreviews(conversations, userId)
+    const peerIds = conversations.map((conversation) => otherMemberId(conversation, userId))
+    const [users, hiddenPreviews, privacy] = await Promise.all([
+      findFriendUsers(peerIds),
+      findHiddenPreviews(conversations, userId),
+      getPrivacyMap([userId, ...peerIds])
     ])
 
     const threads: ChatThread[] = []
@@ -60,7 +63,7 @@ export async function GET() {
         !(lastMessage.messageId && hiddenPreviews.has(lastMessage.messageId.toString()))
 
       threads.push({
-        ...toChatSummary(conversation, user, userId),
+        ...toChatSummary(conversation, user, userId, sharesReadReceipts(privacy, userId, user._id)),
         lastMessage:
           visible && lastMessage
             ? {
@@ -104,11 +107,11 @@ export async function POST(request: NextRequest) {
     const chatId = await ensureConversationId(userId, otherId)
     const conversation = await Conversation.findOne(
       { _id: chatId },
-      { members: 1, unread: 1, deliveredAt: 1, readAt: 1 }
+      { members: 1, unread: 1, deliveredAt: 1, readAt: 1, muted: 1 }
     ).lean<ConversationDocument>()
     if (!conversation) return notFound('Chat not found')
 
-    return ok(toChatSummary(conversation, user, userId))
+    return ok(toChatSummary(conversation, user, userId, await readReceiptsShared(userId, otherId)))
   } catch (error) {
     return serverError('chats:POST', error)
   }
