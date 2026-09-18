@@ -25,6 +25,7 @@ import {
   removeMessage
 } from '@/entities/chat/lib/message-pages'
 import { mergeReceipts } from '@/entities/chat/lib/message-status'
+import { usePrivacy } from '@/entities/privacy/model/usePrivacy'
 import { useRealtimeEvent } from '@/features/realtime/model/useRealtimeEvent'
 import { sendRealtime } from '@/features/realtime/model/realtime-bus'
 import { TYPING_TTL_MS, useTypingChats } from '@/features/chat/model/typing-store'
@@ -36,6 +37,7 @@ export function useConversation(chatId: string, peerId?: string) {
   const myId = session?.user?.id
   const enabled = !!myId && !!chatId
   const { mutate: mutateGlobal } = useSWRConfig()
+  const { data: privacy } = usePrivacy()
 
   const getKey = (index: number, previous: MessagesPage | null) => {
     if (!enabled) return null
@@ -135,7 +137,8 @@ export function useConversation(chatId: string, peerId?: string) {
 
   const notifyTyping = () => {
     const now = Date.now()
-    if (!enabled || !peerId || now - lastTypingSentAt.current < TYPING_SEND_INTERVAL_MS) return
+    if (!enabled || !peerId || privacy?.typingIndicator === false) return
+    if (now - lastTypingSentAt.current < TYPING_SEND_INTERVAL_MS) return
     if (sendRealtime({ type: 'typing', to: peerId, chatId })) lastTypingSentAt.current = now
   }
 
