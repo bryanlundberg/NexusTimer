@@ -23,10 +23,11 @@ export function mergeReceipts(a: Receipts, b: Partial<Receipts>): Receipts {
 
 export function toReceipts(
   conversation: { deliveredAt?: Record<string, Date>; readAt?: Record<string, Date> },
-  memberId: string
+  memberId: string,
+  showRead = true
 ): Receipts {
   return {
     deliveredAt: conversation.deliveredAt?.[memberId]?.toISOString() ?? null,
-    readAt: conversation.readAt?.[memberId]?.toISOString() ?? null
+    readAt: (showRead && conversation.readAt?.[memberId]?.toISOString()) || null
   }
 }
