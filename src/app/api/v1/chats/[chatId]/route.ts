@@ -7,7 +7,6 @@ import { findFriendUsers } from '@/entities/friendship/server/friends'
 import { noContent, notFound, ok, serverError } from '@/shared/api/responses'
 import { publishToUser } from '@/shared/lib/realtime/publish'
 
-/** Who this conversation is with, for a window restored from storage or opened by id. */
 export async function GET(_request: NextRequest, context: ChatIdParams) {
   try {
     const target = await requireChat(context)
@@ -24,10 +23,6 @@ export async function GET(_request: NextRequest, context: ChatIdParams) {
   }
 }
 
-/**
- * Removes the conversation from this side only: the history stops being visible here and
- * the thread leaves the inbox. It comes back on its own as soon as a new message arrives.
- */
 export async function DELETE(_request: NextRequest, context: ChatIdParams) {
   try {
     const target = await requireChat(context)

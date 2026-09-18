@@ -14,7 +14,6 @@ const reactSchema = z
   .object({ emoji: z.string().max(MAX_REACTION_LENGTH).refine(isSingleEmoji, 'Not a single emoji') })
   .strict()
 
-/** Toggles one emoji for the signed-in user. The same person may hold several at once. */
 export async function POST(request: NextRequest, context: MessageIdParams) {
   try {
     const target = await requireChatMessage(context)
@@ -39,7 +38,6 @@ export async function POST(request: NextRequest, context: MessageIdParams) {
       )
     }
 
-    // Read back so every member gets the same list even when they react at the same time
     const fresh = await Message.findOne({ _id: message._id }, { reactions: 1 }).lean<
       Pick<MessageDocument, 'reactions'>
     >()

@@ -14,14 +14,12 @@ export async function POST(_request: NextRequest, context: ChatIdParams) {
     const readAt = new Date()
     const result = await Conversation.updateOne(
       { _id: chat._id, [`unread.${userId}`]: { $gt: 0 } },
-      // Reading implies the messages were delivered
       { $set: { [`unread.${userId}`]: 0, [`readAt.${userId}`]: readAt, [`deliveredAt.${userId}`]: readAt } }
     )
 
     if (result.modifiedCount > 0) {
       const chatId = chat._id.toString()
       await Promise.all([
-        // Clears the unread badge on the reader's other tabs and devices
         publishToUser(userId, { type: 'chat:read', chatId }),
         publishToChat(
           memberIds(chat).filter((memberId) => memberId !== userId),

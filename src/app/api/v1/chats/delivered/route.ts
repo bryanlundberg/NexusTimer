@@ -6,10 +6,6 @@ import { requireUser } from '@/shared/api/require-user'
 import { ok, serverError } from '@/shared/api/responses'
 import { publishToChat } from '@/shared/lib/realtime/publish'
 
-/**
- * Acknowledges every message received so far, turning the sender's single check into a double one.
- * Also called when the inbox loads, so it covers messages sent while the user was offline.
- */
 export async function POST() {
   try {
     const userId = await requireUser()

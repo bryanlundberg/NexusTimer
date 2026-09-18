@@ -40,7 +40,6 @@ export async function GET(_request: NextRequest, context: UserIdParams) {
   }
 }
 
-/** Removes a friend, cancels a sent request or declines a received one. */
 export async function DELETE(_request: NextRequest, context: UserIdParams) {
   try {
     const ids = await requireUserPair(context)

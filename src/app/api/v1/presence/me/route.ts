@@ -10,7 +10,6 @@ const statusSchema = z.object({ status: z.enum(PRESENCE_STATUSES as [PresenceSta
 
 export type PresenceStatusResponse = { status: PresenceStatus }
 
-/** Reading the status does not come through here: the gateway hands it to the tab on connect. */
 export async function PATCH(request: NextRequest) {
   const userId = await requireUser()
   if (userId instanceof Response) return userId

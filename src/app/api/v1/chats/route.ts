@@ -13,7 +13,6 @@ import { badRequest, forbidden, notFound, ok, serverError } from '@/shared/api/r
 
 const openSchema = z.object({ userId: objectIdSchema }).strict()
 
-/** Ids of the previewed messages this member deleted just for themselves. */
 async function findHiddenPreviews(conversations: ConversationDocument[], userId: string): Promise<Set<string>> {
   const ids = conversations.map((conversation) => conversation.lastMessage?.messageId).filter(Boolean)
   if (ids.length === 0) return new Set()
@@ -34,7 +33,6 @@ export async function GET() {
     const conversations = await Conversation.find({
       members: userId,
       lastMessageAt: { $exists: true },
-      // A chat deleted on this side stays out until something newer arrives
       $or: [
         { [`hiddenAt.${userId}`]: { $exists: false } },
         { $expr: { $gt: ['$lastMessageAt', `$hiddenAt.${userId}`] } }
@@ -52,7 +50,7 @@ export async function GET() {
     const threads: ChatThread[] = []
     for (const conversation of conversations) {
       const user = users.get(otherMemberId(conversation, userId))
-      if (!user) continue // account deleted
+      if (!user) continue
 
       const { lastMessage } = conversation
       const clearedAt = conversation.clearedAt?.[userId]
@@ -84,10 +82,6 @@ export async function GET() {
   }
 }
 
-/**
- * Opens the direct conversation with someone and returns its id, creating the document the
- * first time. Everything else in the chat API is addressed by that id.
- */
 export async function POST(request: NextRequest) {
   try {
     const userId = await requireUser()

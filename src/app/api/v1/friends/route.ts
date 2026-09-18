@@ -39,7 +39,7 @@ export async function GET() {
 
     for (const doc of docs) {
       const user = users.get(otherUserId(doc, userId))
-      if (!user) continue // account deleted
+      if (!user) continue
 
       const status = relationshipOf(doc, userId)
       if (status === 'friends') {
@@ -56,7 +56,6 @@ export async function GET() {
   }
 }
 
-/** Sends a friend request, or accepts it if the other user already sent one. */
 export async function POST(request: NextRequest) {
   try {
     const userId = await requireUser()
@@ -97,7 +96,6 @@ export async function POST(request: NextRequest) {
       await publishToPair(userId, otherId, 'friend:request')
       return ok({ status: 'pending_out' })
     } catch (error) {
-      // Both users sent a request at the same moment: report whatever won
       if (!isDuplicateKeyError(error)) throw error
       return ok({ status: relationshipOf(await findFriendship(userId, otherId), userId) })
     }

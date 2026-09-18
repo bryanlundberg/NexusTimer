@@ -17,7 +17,6 @@ const pageQuerySchema = z.object({ before: objectIdSchema.optional() })
 
 const sendSchema = z.object({ text: z.string().trim().min(1).max(MAX_MESSAGE_LENGTH) }).strict()
 
-/** Newest page first; pass `before` (a message id) to load older ones. */
 export async function GET(request: NextRequest, context: ChatIdParams) {
   try {
     const target = await requireChat(context)
@@ -54,7 +53,6 @@ export async function POST(request: NextRequest, context: ChatIdParams) {
     const body = await parseJsonBody(request, sendSchema)
     if (body instanceof Response) return body
 
-    // Direct chats are friends only; a group will answer this with its own membership
     if (!(await areFriends(userId, otherMemberId(chat, userId)))) return forbidden('You can only message friends')
 
     const doc = await Message.create({ conversationId: chat._id, senderId: userId, text: body.text })
@@ -80,7 +78,6 @@ export async function POST(request: NextRequest, context: ChatIdParams) {
   }
 }
 
-/** Empties the conversation on this side only. The other members keep their history. */
 export async function DELETE(_request: NextRequest, context: ChatIdParams) {
   try {
     const target = await requireChat(context)

@@ -13,7 +13,6 @@ const editSchema = z.object({ text: z.string().trim().min(1).max(MAX_MESSAGE_LEN
 
 const deleteQuerySchema = z.object({ scope: z.enum(['me', 'all']).default('me') })
 
-/** Edits one of your own messages. Every member sees the new text and an "edited" mark. */
 export async function PATCH(request: NextRequest, context: MessageIdParams) {
   try {
     const target = await requireChatMessage(context)
@@ -40,10 +39,6 @@ export async function PATCH(request: NextRequest, context: MessageIdParams) {
   }
 }
 
-/**
- * `scope=me` hides the message on this side only. `scope=all`, limited to your own
- * messages, clears the text and leaves a tombstone every member sees.
- */
 export async function DELETE(request: NextRequest, context: MessageIdParams) {
   try {
     const target = await requireChatMessage(context)
@@ -58,7 +53,6 @@ export async function DELETE(request: NextRequest, context: MessageIdParams) {
 
     if (query.scope === 'me') {
       await Message.updateOne({ _id: message._id }, { $addToSet: { deletedFor: userId } })
-      // Our own tabs only: everyone else's copy is untouched
       await publishToUser(userId, { type: 'message:deleted', chatId, messageId, scope: 'me' })
       return noContent()
     }
