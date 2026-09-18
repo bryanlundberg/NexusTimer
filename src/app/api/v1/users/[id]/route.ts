@@ -7,6 +7,8 @@ import { userProfileCache } from '@/entities/user/model/user-cache'
 import { buildUserUpdate } from '@/entities/user/lib/build-user-update'
 import UserAchievement from '@/entities/achievement/model/user-achievement'
 import { auth } from '@/shared/config/auth/auth'
+import { statsVisibleTo } from '@/entities/privacy/server/stats-visibility'
+import { withoutStats } from '@/entities/privacy/lib/without-stats'
 import { parseJsonBody } from '@/shared/api/parse-json'
 import { badRequest, notFound, ok, serverError, unauthorized } from '@/shared/api/responses'
 import {
@@ -18,7 +20,7 @@ import {
   profileLinksSchema
 } from '@/features/account-form/model/types'
 
-const PUBLIC_PROJECTION = '-email -providers -__v'
+const PUBLIC_PROJECTION = '-email -providers -privacy -__v'
 
 const clearable = <T extends z.ZodTypeAny>(schema: T) =>
   z.preprocess((value) => (value === '' ? null : value), schema.nullable()).optional()
@@ -71,21 +73,30 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<{
 
     if (!userId) return badRequest('ID is required')
 
-    const cached = await userProfileCache.get(userId)
-    if (cached) return ok(cached)
+    const profile = await loadProfile(userId)
+    if (!profile) return notFound('User not found')
 
-    await connectDB()
-    const user = await User.findById(userId).select(PUBLIC_PROJECTION).lean()
+    const session = await auth()
+    if (await statsVisibleTo(userId, session?.user?.id)) return ok(profile)
 
-    if (!user) return notFound('User not found')
-
-    const granted = await UserAchievement.find({ userId: user._id }, { key: 1, _id: 0 }).lean<{ key: string }[]>()
-
-    const profile = { ...user, grantedAchievements: granted.map((a) => a.key) } as unknown as UserProfile
-    await userProfileCache.set(userId, profile)
-
-    return ok(profile)
+    return ok(withoutStats(profile))
   } catch (error) {
     return serverError('users/[id]:GET', error)
   }
+}
+
+async function loadProfile(userId: string): Promise<UserProfile | null> {
+  const cached = await userProfileCache.get(userId)
+
+  await connectDB()
+  if (cached) return cached
+
+  const user = await User.findById(userId).select(PUBLIC_PROJECTION).lean()
+  if (!user) return null
+
+  const granted = await UserAchievement.find({ userId: user._id }, { key: 1, _id: 0 }).lean<{ key: string }[]>()
+
+  const profile = { ...user, grantedAchievements: granted.map((a) => a.key) } as unknown as UserProfile
+  await userProfileCache.set(userId, profile)
+  return profile
 }
