@@ -8,7 +8,6 @@ export interface ReactionGroup {
   mine: boolean
 }
 
-/** Collapses the flat list into one chip per emoji, keeping the order they first appeared in. */
 export function groupReactions(reactions: MessageReaction[] | undefined, myId?: string): ReactionGroup[] {
   const groups = new Map<string, ReactionGroup>()
 

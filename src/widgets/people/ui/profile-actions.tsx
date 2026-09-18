@@ -31,7 +31,6 @@ export function ProfileActions({ user, isCurrentUser, status, className, childre
         </Button>
       )}
       {status === 'friends' && <MessageLink userId={user._id} showLabel />}
-      {/* An incoming request keeps its own block up in the hero, at every width */}
       {status && status !== 'pending_in' && <FriendButton userId={user._id} name={user.name} status={status} />}
       {children}
     </div>

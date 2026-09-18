@@ -31,7 +31,6 @@ export function ProfileHeroBanner({ user, level, actions, children }: Props) {
   return (
     <div className="w-full px-4 md:px-6 py-6 flex flex-col gap-6 border-b border-border/40">
       <div className="flex flex-col sm:flex-row items-start justify-between gap-6">
-        {/* Left: avatar + user info */}
         <div className="flex flex-col items-start gap-4 min-w-0 w-full sm:w-auto sm:flex-row sm:items-center">
           <div className="relative shrink-0 self-center sm:self-auto">
             <Avatar className="size-28 md:size-32 rounded-full shadow-xl ring-2 ring-border/40">

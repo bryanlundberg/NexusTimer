@@ -22,7 +22,6 @@ export function setRealtimeSender(send: ((data: string) => void) | null) {
   sender = send
 }
 
-/** Returns false when there is no open connection; frames are never queued. */
 export function sendRealtime(frame: RealtimeClientFrame): boolean {
   if (!sender) return false
   sender(JSON.stringify(frame))

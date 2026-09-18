@@ -1,6 +1,5 @@
 import { createClient, type RedisClientType } from 'redis'
 
-// an unreachable Redis must fail fast instead of stalling the request.
 const CONNECT_TIMEOUT_MS = 2000
 const COMMAND_TIMEOUT_MS = 1500
 const MAX_RECONNECT_DELAY_MS = 5000
@@ -51,11 +50,9 @@ export async function getRedis(): Promise<RedisClientType> {
         store.connectPromise = undefined
         throw err
       })
-    // Callers may have already given up waiting; keep a late failure from surfacing as unhandled
     store.connectPromise.catch(() => {})
   }
 
-  // Callers only wait out what is left of the connect window, then fail immediately
   const elapsed = Date.now() - (store.connectStartedAt ?? 0)
   return withTimeout(store.connectPromise, CONNECT_TIMEOUT_MS - elapsed)
 }

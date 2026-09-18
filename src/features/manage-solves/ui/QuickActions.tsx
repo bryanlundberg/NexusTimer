@@ -143,7 +143,6 @@ export default function QuickActions({
     </AlertDialog>
   )
 
-  // After the menu has closed and returned focus, so the dialog keeps it
   const openShare = () => requestAnimationFrame(() => setShareOpen(true))
 
   const shareDialog = shareDraft && (
