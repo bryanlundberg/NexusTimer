@@ -3,7 +3,7 @@ import { useSession } from 'next-auth/react'
 import { useSWRConfig } from 'swr'
 import { apiPost } from '@/shared/api/client'
 import { playSound } from '@/shared/lib/play-sound'
-import { DELIVERED_KEY, INBOX_KEY, useInbox } from '@/entities/chat/model/useInbox'
+import { DELIVERED_KEY, INBOX_KEY, chatKey, useInbox } from '@/entities/chat/model/useInbox'
 import { useRealtimeEvent } from '@/features/realtime/model/useRealtimeEvent'
 import { clearTyping, markTyping } from '@/features/chat/model/typing-store'
 import { selfStatusStore } from '@/features/presence/model/presence-store'
@@ -36,7 +36,8 @@ export function useChatRealtime() {
         void mutate(INBOX_KEY)
         if (event.message.senderId === session?.user?.id) return
 
-        if (selfStatusStore.get() !== 'busy') playSound('messageReceived')
+        const muted = inbox?.threads.some((thread) => thread._id === event.chatId && thread.muted)
+        if (!muted && selfStatusStore.get() !== 'busy') playSound('messageReceived')
         acknowledgeDelivery()
         clearTyping(event.chatId)
         break
@@ -56,6 +57,10 @@ export function useChatRealtime() {
       case 'chat:cleared':
       case 'chat:removed':
         void mutate(INBOX_KEY)
+        break
+      case 'chat:muted':
+        void mutate(INBOX_KEY)
+        void mutate(chatKey(event.chatId))
         break
     }
   })
