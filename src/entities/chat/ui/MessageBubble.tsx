@@ -9,6 +9,7 @@ import type { MessageStatus } from '@/entities/chat/lib/message-status'
 import { isBigEmoji, parseMessage, type MessageNode } from '@/entities/chat/lib/message-content'
 import { MessageStatusIcon } from '@/entities/chat/ui/MessageStatusIcon'
 import { MessageReactions } from '@/entities/chat/ui/MessageReactions'
+import { SolveCard } from '@/entities/chat/ui/SolveCard'
 import { MessageActions } from '@/features/chat/ui/MessageActions'
 
 interface Props {
@@ -27,7 +28,9 @@ export function MessageBubble({ message, isOwn, myId, status, onRetry, onReact, 
   const locale = useLocale()
   const isDeleted = !!message.deletedAt
   const bigEmoji = !isDeleted && isBigEmoji(message.text)
-  // A message still on its way has no server id to act on
+  const nodes = isDeleted || bigEmoji ? [] : parseMessage(message.text)
+  const hasCard = nodes.some((node) => node.type === 'solve')
+  const soloCard = nodes.length === 1 && nodes[0].type === 'solve' ? nodes[0].data : null
   const isSettled = !message.pending && !message.failed
 
   const surface = isOwn
@@ -54,6 +57,8 @@ export function MessageBubble({ message, isOwn, myId, status, onRetry, onReact, 
     <div
       className={cn(
         'flow-root max-w-full border px-2.5 pt-1.5 pb-1 text-sm wrap-anywhere transition-opacity',
+        hasCard && 'w-full',
+        soloCard && 'p-0',
         surface,
         message.failed && 'border-destructive',
         message.pending && 'opacity-80',
@@ -65,13 +70,18 @@ export function MessageBubble({ message, isOwn, myId, status, onRetry, onReact, 
           <Ban className="size-3.5 shrink-0" />
           {t('deleted-message')}
         </span>
+      ) : soloCard ? (
+        <SolveCard data={soloCard} className="my-0 border-0 bg-transparent" />
       ) : (
         <span className="whitespace-pre-wrap">
-          <MessageText nodes={parseMessage(message.text)} />
+          <MessageText nodes={nodes} />
         </span>
       )}
-      {/* Floats into the last line when there is room, like messaging apps */}
-      <span className="relative top-1 float-right ml-3 pt-1">{meta}</span>
+      {soloCard ? (
+        <span className="-mt-1 flex justify-end px-2.5 pb-1.5">{meta}</span>
+      ) : (
+        <span className="relative top-1 float-right ml-3 pt-1">{meta}</span>
+      )}
     </div>
   )
 
@@ -79,26 +89,34 @@ export function MessageBubble({ message, isOwn, myId, status, onRetry, onReact, 
     <div
       className={cn(
         'group/message flex min-w-0 max-w-[min(80%,40rem)] flex-col gap-1',
+        hasCard && 'w-full max-w-[min(100%,20rem)]',
         isOwn ? 'items-end' : 'items-start'
       )}
     >
-      <div className={cn('flex min-w-0 items-center gap-1', isOwn ? 'flex-row-reverse' : 'flex-row')}>
-        <div className={cn('flex min-w-0 flex-col gap-0.5', isOwn ? 'items-end' : 'items-start')}>{body}</div>
+      <div
+        className={cn('flex min-w-0 items-center gap-1', isOwn ? 'flex-row-reverse' : 'flex-row', hasCard && 'w-full')}
+      >
+        <div className={cn('flex min-w-0 flex-col gap-0.5', isOwn ? 'items-end' : 'items-start', hasCard && 'flex-1')}>
+          {body}
+        </div>
 
-        {isSettled && (
-          // Hover is the desktop affordance; on touch there is none, so they stay visible
-          <div className="shrink-0 opacity-0 transition-opacity group-hover/message:opacity-100 focus-within:opacity-100 pointer-coarse:opacity-100">
-            <MessageActions
-              isOwn={isOwn}
-              canEdit={isOwn && !isDeleted}
-              canReact={!isDeleted}
-              canDeleteForEveryone={isOwn && !isDeleted}
-              onReact={onReact}
-              onEdit={onEdit}
-              onDelete={onDelete}
-            />
-          </div>
-        )}
+        <div
+          inert={!isSettled}
+          className={cn(
+            'shrink-0 opacity-0 transition-opacity group-hover/message:opacity-100 focus-within:opacity-100 pointer-coarse:opacity-100',
+            !isSettled && 'invisible'
+          )}
+        >
+          <MessageActions
+            isOwn={isOwn}
+            canEdit={isOwn && !isDeleted}
+            canReact={!isDeleted}
+            canDeleteForEveryone={isOwn && !isDeleted}
+            onReact={onReact}
+            onEdit={onEdit}
+            onDelete={onDelete}
+          />
+        </div>
       </div>
 
       {!isDeleted && <MessageReactions reactions={message.reactions} myId={myId} isOwn={isOwn} onToggle={onReact} />}
@@ -129,6 +147,8 @@ function MessageText({ nodes }: { nodes: MessageNode[] }) {
             {node.value}
           </a>
         )
+      case 'solve':
+        return <SolveCard key={index} data={node.data} />
       case 'code':
         return (
           <code key={index} className="rounded-sm bg-foreground/10 px-1 font-mono text-[0.9em]">
