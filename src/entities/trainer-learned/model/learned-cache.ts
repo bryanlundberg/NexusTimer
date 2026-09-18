@@ -1,6 +1,7 @@
 import { getRedis } from '@/shared/config/redis/redis'
 
 const PREFIX = 'trainer:learned:'
+const TTL_SECONDS = 60 * 60 * 24 * 7 // 7d
 
 // Distinguishes "cached and empty" from "not cached".
 const SENTINEL = '__init__'
@@ -41,6 +42,7 @@ export const learnedCache = {
       const multi = redis.multi()
       multi.del(k)
       multi.sAdd(k, [SENTINEL, ...caseIds])
+      multi.expire(k, TTL_SECONDS)
       await multi.exec()
     } catch (error) {
       console.error('learnedCache.prime failed:', error)
@@ -56,6 +58,8 @@ export const learnedCache = {
       if (!cached) return
       if (learned) {
         await redis.sAdd(k, caseId)
+        // Only for a set the SADD itself created, when the key expired right after the check.
+        await redis.expire(k, TTL_SECONDS, 'NX')
       } else {
         await redis.sRem(k, caseId)
       }
@@ -90,7 +94,7 @@ export const learnedCache = {
   async primeSummary(userId: string, summary: LearnedSummary): Promise<void> {
     try {
       const redis = await getRedis()
-      await redis.set(summaryKey(userId), JSON.stringify(summary))
+      await redis.set(summaryKey(userId), JSON.stringify(summary), { EX: TTL_SECONDS })
     } catch (error) {
       console.error('learnedCache.primeSummary failed:', error)
     }
