@@ -23,7 +23,6 @@ export function ThreadPreview({ thread: { user, lastMessage, unread, receipts },
   const t = useTranslations('Index.ChatPage')
   const locale = useLocale()
   const isMine = lastMessage?.senderId === myId
-  // Only a message deleted for everyone can reach the inbox with no text
   const isDeleted = !!lastMessage && lastMessage.text === ''
 
   return (

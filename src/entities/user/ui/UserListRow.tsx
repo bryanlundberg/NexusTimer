@@ -56,7 +56,6 @@ export function UserListRow({ user, presence, meta, actions, stackActions = fals
   const method = isCubingMethod(user.method) ? user.method : null
   const links = (user.links ?? []).map(parseProfileLink).filter((link) => link !== null)
 
-  // Country, WCA, method and cube colors share a line and are separated by dots, so they are collected first
   const traits: { id: string; node: ReactNode }[] = []
   if (user.country) {
     traits.push({

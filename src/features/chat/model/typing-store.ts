@@ -1,6 +1,5 @@
 import { useSyncExternalStore } from 'react'
 
-/** The sender repeats the signal while typing, so the indicator hides a bit after the last one. */
 export const TYPING_TTL_MS = 4000
 
 const timers = new Map<string, ReturnType<typeof setTimeout>>()
@@ -37,7 +36,6 @@ function subscribe(listener: () => void) {
   }
 }
 
-/** Chats where someone is typing right now. */
 export function useTypingChats(): ReadonlySet<string> {
   return useSyncExternalStore(
     subscribe,
