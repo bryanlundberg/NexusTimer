@@ -1,9 +1,10 @@
 import { NextRequest } from 'next/server'
 import Conversation from '@/entities/chat/model/conversation'
-import { memberIds } from '@/entities/chat/server/chat'
+import { otherMemberId } from '@/entities/chat/server/chat'
+import { readReceiptsShared } from '@/entities/privacy/server/privacy'
 import { requireChat, type ChatIdParams } from '@/entities/chat/server/require-chat'
 import { ok, serverError } from '@/shared/api/responses'
-import { publishToChat, publishToUser } from '@/shared/lib/realtime/publish'
+import { publishToUser } from '@/shared/lib/realtime/publish'
 
 export async function POST(_request: NextRequest, context: ChatIdParams) {
   try {
@@ -19,12 +20,12 @@ export async function POST(_request: NextRequest, context: ChatIdParams) {
 
     if (result.modifiedCount > 0) {
       const chatId = chat._id.toString()
+      const otherId = otherMemberId(chat, userId)
       await Promise.all([
         publishToUser(userId, { type: 'chat:read', chatId }),
-        publishToChat(
-          memberIds(chat).filter((memberId) => memberId !== userId),
-          { type: 'chat:seen', chatId, readAt: readAt.toISOString() }
-        )
+        (await readReceiptsShared(userId, otherId))
+          ? publishToUser(otherId, { type: 'chat:seen', chatId, readAt: readAt.toISOString() })
+          : publishToUser(otherId, { type: 'chat:delivered', chatId, deliveredAt: readAt.toISOString() })
       ])
     }
 
