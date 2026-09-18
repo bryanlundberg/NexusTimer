@@ -4,10 +4,6 @@ import { useSWRConfig } from 'swr'
 import { apiDelete } from '@/shared/api/client'
 import { INBOX_KEY, chatKey, messagesKey } from '@/entities/chat/model/useInbox'
 
-/**
- * Conversation-wide actions, both one-sided: the other member keeps their history.
- * Kept out of `useConversation` so the header can use them without a second subscription.
- */
 export function useChatActions(chatId: string) {
   const { mutate } = useSWRConfig()
 
@@ -18,12 +14,10 @@ export function useChatActions(chatId: string) {
   }
 
   return {
-    /** Empties the history here and leaves the thread in the inbox. */
     clearChat: async () => {
       await apiDelete(messagesKey(chatId))
       await revalidate()
     },
-    /** Empties it and drops the thread until a new message arrives. */
     deleteChat: async () => {
       await apiDelete(chatKey(chatId))
       await revalidate()

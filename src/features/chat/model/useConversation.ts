@@ -29,7 +29,6 @@ import { useRealtimeEvent } from '@/features/realtime/model/useRealtimeEvent'
 import { sendRealtime } from '@/features/realtime/model/realtime-bus'
 import { TYPING_TTL_MS, useTypingChats } from '@/features/chat/model/typing-store'
 
-// Resent well before the receiver's indicator expires, so it stays on while typing
 const TYPING_SEND_INTERVAL_MS = TYPING_TTL_MS - 1500
 
 export function useConversation(chatId: string, peerId?: string) {
@@ -97,7 +96,6 @@ export function useConversation(chatId: string, peerId?: string) {
       const saved = await apiPatch<ChatMessage>(messageKey(chatId, messageId), { text: trimmed })
       await update((pages) => patchMessage(pages, messageId, saved))
     } catch {
-      // The server refused it, so go back to whatever it really holds
       void mutate()
     }
   }

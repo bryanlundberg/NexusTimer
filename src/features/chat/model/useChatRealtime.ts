@@ -7,7 +7,6 @@ import { DELIVERED_KEY, INBOX_KEY, useInbox } from '@/entities/chat/model/useInb
 import { useRealtimeEvent } from '@/features/realtime/model/useRealtimeEvent'
 import { clearTyping, markTyping } from '@/features/chat/model/typing-store'
 
-// Groups a burst of incoming messages into a single delivery acknowledgement
 const DELIVERY_ACK_DELAY_MS = 500
 
 export function useChatRealtime() {
@@ -23,7 +22,6 @@ export function useChatRealtime() {
     }, DELIVERY_ACK_DELAY_MS)
   }
 
-  // Messages that arrived while this user was offline get acknowledged once the inbox loads
   const hasUnread = (inbox?.totalUnread ?? 0) > 0
   useEffect(() => {
     if (hasUnread) acknowledgeDelivery()
@@ -37,7 +35,6 @@ export function useChatRealtime() {
         void mutate(INBOX_KEY)
         if (event.message.senderId === session?.user?.id) return
 
-        // The unread badges are the only notice: no message text leaves the conversation
         playSound('messageReceived')
         acknowledgeDelivery()
         clearTyping(event.chatId)
@@ -53,7 +50,6 @@ export function useChatRealtime() {
       case 'chat:read':
       case 'chat:delivered':
       case 'chat:seen':
-      // Editing, deleting or emptying rewrites the inbox preview
       case 'message:edited':
       case 'message:deleted':
       case 'chat:cleared':
