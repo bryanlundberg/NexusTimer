@@ -8,6 +8,7 @@ import AccountInfoForm from '@/features/account-form/ui/AccountInfoForm'
 import type { ProfilePreview } from '@/features/account-form/model/types'
 import ProfileHero from '@/features/account-profile/ui/ProfileHero'
 import BackupsNav from '@/features/manage-backups/ui/BackupsNav'
+import { PrivacySettings } from '@/features/privacy-settings/ui/PrivacySettings'
 import { useUser } from '@/entities/user/model/useUser'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
@@ -23,6 +24,7 @@ export default function AccountPage() {
 
   const tabs = [
     { value: 'account', label: t('SettingsPage.account') },
+    { value: 'privacy', label: t('PrivacyPage.tab') },
     { value: 'backups', label: t('SettingsPage.backups-tab') }
   ]
 
@@ -61,6 +63,15 @@ export default function AccountPage() {
             </div>
 
             {!userLoading && <AccountInfoForm user={user} mutate={mutate} onPreviewChange={setPreview} />}
+          </TabsContent>
+
+          <TabsContent value="privacy" className="space-y-6">
+            <div>
+              <h2 className="font-display text-lg font-semibold tracking-tight">{t('PrivacyPage.title')}</h2>
+              <p className="text-sm text-muted-foreground mt-1">{t('PrivacyPage.description')}</p>
+            </div>
+
+            <PrivacySettings />
           </TabsContent>
 
           <TabsContent value="backups">
