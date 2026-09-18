@@ -7,6 +7,7 @@ import { requireChat, type ChatIdParams } from '@/entities/chat/server/require-c
 import { MAX_MESSAGE_LENGTH, MESSAGES_PAGE_SIZE, type MessagesPage } from '@/entities/chat/model/types'
 import { toReceipts } from '@/entities/chat/lib/message-status'
 import { areFriends } from '@/entities/friendship/server/friends'
+import { readReceiptsShared } from '@/entities/privacy/server/privacy'
 import { parseJsonBody } from '@/shared/api/parse-json'
 import { parseSearchParams } from '@/shared/api/parse-query'
 import { objectIdSchema } from '@/shared/api/zod-helpers'
@@ -34,10 +35,11 @@ export async function GET(request: NextRequest, context: ChatIdParams) {
       .limit(MESSAGES_PAGE_SIZE + 1)
       .lean<MessageDocument[]>()
 
+    const otherId = otherMemberId(chat, userId)
     return ok<MessagesPage>({
       messages: docs.slice(0, MESSAGES_PAGE_SIZE).reverse().map(serializeMessage),
       hasMore: docs.length > MESSAGES_PAGE_SIZE,
-      receipts: toReceipts(chat, otherMemberId(chat, userId))
+      receipts: toReceipts(chat, otherId, await readReceiptsShared(userId, otherId))
     })
   } catch (error) {
     return serverError('chats/[chatId]/messages:GET', error)
