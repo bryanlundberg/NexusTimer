@@ -1,4 +1,11 @@
-import { clearMessages, flattenPages, patchMessage, removeMessage } from '@/entities/chat/lib/message-pages'
+import {
+  clearMessages,
+  confirmMessage,
+  flattenPages,
+  patchMessage,
+  receiveMessage,
+  removeMessage
+} from '@/entities/chat/lib/message-pages'
 import { NO_RECEIPTS, type ChatMessage, type MessagesPage } from '@/entities/chat/model/types'
 
 const message = (id: string, extra: Partial<ChatMessage> = {}): ChatMessage => ({
@@ -78,5 +85,51 @@ describe('clearMessages', () => {
 
   it('survives an empty cache', () => {
     expect(clearMessages(undefined)).toEqual([{ messages: [], hasMore: false, receipts: NO_RECEIPTS }])
+  })
+})
+
+describe('confirmMessage', () => {
+  it('swaps the temporary message for the saved one and keeps its render key', () => {
+    const withTemp: MessagesPage[] = [
+      { messages: [message('a'), message('temp-1', { pending: true })], hasMore: false, receipts: NO_RECEIPTS }
+    ]
+    const result = confirmMessage(withTemp, 'temp-1', message('saved'))
+
+    expect(result[0].messages[1]).toEqual({ ...message('saved'), clientKey: 'temp-1' })
+    expect(result[0].messages[0]).toEqual(message('a'))
+  })
+})
+
+describe('receiveMessage', () => {
+  const sending = (): MessagesPage[] => [
+    {
+      messages: [message('a'), message('temp-1', { pending: true, text: 'hola' })],
+      hasMore: false,
+      receipts: NO_RECEIPTS
+    }
+  ]
+
+  it('lets our own echo take over the optimistic copy instead of adding a second bubble', () => {
+    const result = receiveMessage(sending(), message('saved', { text: 'hola' }), 'me')
+
+    expect(flattenPages(result).map((item) => item._id)).toEqual(['a', 'saved'])
+    expect(result[0].messages[1]).toEqual({ ...message('saved', { text: 'hola' }), clientKey: 'temp-1' })
+  })
+
+  it('leaves nothing for the HTTP confirmation to add afterwards', () => {
+    const echoed = receiveMessage(sending(), message('saved', { text: 'hola' }), 'me')
+    const confirmed = confirmMessage(echoed, 'temp-1', message('saved', { text: 'hola' }))
+
+    expect(flattenPages(confirmed).map((item) => item._id)).toEqual(['a', 'saved'])
+  })
+
+  it('appends messages from the other member', () => {
+    const result = receiveMessage(sending(), message('theirs', { senderId: 'them', text: 'hola' }), 'me')
+    expect(flattenPages(result).map((item) => item._id)).toEqual(['a', 'temp-1', 'theirs'])
+  })
+
+  it('ignores a message that is already there', () => {
+    const pagesWithSaved = sending()
+    expect(receiveMessage(pagesWithSaved, message('a'), 'me')).toBe(pagesWithSaved)
   })
 })
