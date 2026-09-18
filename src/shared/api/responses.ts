@@ -41,3 +41,7 @@ export function serverError(scope: string, error: unknown) {
   console.error(`[${scope}]`, error)
   return NextResponse.json({ message: 'Internal server error' }, { status: 500 })
 }
+
+export function tooManyRequests(message = 'Too many requests') {
+  return NextResponse.json({ message }, { status: 429 })
+}
