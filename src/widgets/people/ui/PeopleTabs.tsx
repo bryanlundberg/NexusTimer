@@ -97,7 +97,6 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
       {!isLoadingStats && <ProfileBadgesStrip badges={userBadges} />}
 
       <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full mb-5">
-        {/* Tabs nav + compare */}
         <div className="flex flex-wrap items-center justify-between gap-3 px-4 md:px-6 py-3 mt-3">
           <div className="min-w-0 flex-1">
             <ScrollableUnderlineTabs

@@ -104,7 +104,6 @@ describe('presence store', () => {
     expect(store.presenceStore.get(ALICE)).toEqual({ state: 'offline', lastSeen: null })
   })
 
-  // A route change unmounts and remounts inside one debounce, and the gateway is told nothing
   it('keeps the state of someone released and taken straight back', () => {
     const release = store.watchPresence([ALICE])
     flush()

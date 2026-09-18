@@ -8,7 +8,6 @@ export interface PresenceState {
 
 export const OFFLINE: PresenceState = { state: 'offline', lastSeen: null }
 
-/** Components come and go while a page renders, so the watch frame waits for them to settle. */
 const FLUSH_DELAY_MS = 50
 
 const counts = new Map<string, number>()
@@ -17,7 +16,6 @@ const listeners = new Set<() => void>()
 
 let version = 0
 let flushTimer: ReturnType<typeof setTimeout> | undefined
-// What the gateway was last told, so a set that did not change costs nothing.
 let sentKey = ''
 
 function publish() {
@@ -41,22 +39,15 @@ function flush() {
   flushTimer = undefined
   const ids = [...counts.keys()].sort()
 
-  // Forgetting happens here rather than on release: a route change releases and takes the same
-  // person back within the debounce, and dropping their state there left the dot offline with
-  // no new watch to refill it.
+  // Forgotten here, not on release: a route change releases and re-watches within the debounce.
   for (const id of states.keys()) if (!counts.has(id)) states.delete(id)
 
   const key = ids.join(',')
   if (key === sentKey) return
 
-  // A closed socket leaves sentKey empty, so the set goes out again on connect
   sentKey = sendRealtime({ type: 'presence:watch', ids }) ? key : ''
 }
 
-/**
- * Follows these people until the returned function is called. Reference counted, so the same
- * person showing up in a list and in an open conversation is still watched once.
- */
 export function watchPresence(userIds: string[]): () => void {
   for (const id of userIds) counts.set(id, (counts.get(id) ?? 0) + 1)
   scheduleFlush()
@@ -82,7 +73,6 @@ export function applyPresence(users: PresenceUser[]) {
   if (changed) publish()
 }
 
-/** After a socket opens the gateway knows nothing about this tab, so the set goes out again. */
 export function resendWatch() {
   sentKey = ''
   scheduleFlush()
@@ -94,7 +84,6 @@ export const presenceStore = {
   get: (userId?: string | null) => (userId ? (states.get(userId) ?? OFFLINE) : OFFLINE)
 }
 
-/** Declared by this account and handed over by the gateway when the socket opens. */
 let selfStatus: PresenceStatus = 'online'
 const statusListeners = new Set<() => void>()
 
