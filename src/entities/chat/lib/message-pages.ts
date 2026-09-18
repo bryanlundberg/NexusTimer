@@ -15,16 +15,11 @@ export function flattenPages(pages: Pages): ChatMessage[] {
   return (pages ?? []).toReversed().flatMap((page) => page.messages)
 }
 
-/** Appends a message unless it is already there (realtime echoes of our own sends). */
 export function appendMessage(pages: Pages, message: ChatMessage): MessagesPage[] {
   if (pages && hasMessage(pages, message._id)) return pages
   return updateNewestPage(pages, (messages) => [...messages, message])
 }
 
-/**
- * A realtime `message:new`. The server publishes to the sender too, usually before the POST
- * answers, so our own message takes over its optimistic copy instead of showing up twice.
- */
 export function receiveMessage(pages: Pages, message: ChatMessage, myId?: string): MessagesPage[] {
   if (pages && hasMessage(pages, message._id)) return pages
 
@@ -42,9 +37,7 @@ export function receiveMessage(pages: Pages, message: ChatMessage, myId?: string
   }))
 }
 
-/** If the realtime event already delivered the saved message, the optimistic copy is dropped. */
 export function confirmMessage(pages: Pages, tempId: string, saved: ChatMessage): MessagesPage[] {
-  // A revalidation may have replaced the pages while the request was in flight
   if (!pages || !hasMessage(pages, tempId)) return appendMessage(pages, saved)
 
   const alreadyDelivered = hasMessage(pages, saved._id)
@@ -65,7 +58,6 @@ export function failMessage(pages: Pages, tempId: string): MessagesPage[] {
   }))
 }
 
-/** Merges fields into one message wherever its page is: edits, reactions and tombstones. */
 export function patchMessage(pages: Pages, id: string, patch: Partial<ChatMessage>): MessagesPage[] {
   return (pages ?? []).map((page) => ({
     ...page,

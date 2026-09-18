@@ -65,7 +65,6 @@ export function MessageList({
 
     const prependedOlder = previousFirstId.current !== undefined && firstId !== previousFirstId.current
     if (prependedOlder) {
-      // Keep the same message under the viewport after older ones load above it
       el.scrollTop += el.scrollHeight - previousHeight.current
     } else if (nearBottom.current || last?.senderId === myId) {
       el.scrollTop = el.scrollHeight
@@ -91,7 +90,6 @@ export function MessageList({
       onScroll={handleScroll}
       className={cn('flex min-h-0 flex-1 flex-col overflow-y-auto', compact ? 'p-3' : 'p-4')}
     >
-      {/* Pushes a short conversation to the bottom, next to the composer */}
       {messages.length > 0 && <div aria-hidden className="grow" />}
 
       {hasMore && (

@@ -20,7 +20,6 @@ export function MessageLink({ userId, variant = 'outline', showLabel = false, cl
   const { openChatWith } = useOpenChat()
   const [busy, setBusy] = useState(false)
 
-  // Resolving the conversation is a round trip, so the button waits for it
   const open = async () => {
     if (busy) return
     setBusy(true)

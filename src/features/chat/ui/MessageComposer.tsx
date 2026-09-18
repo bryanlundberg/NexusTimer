@@ -59,7 +59,6 @@ export function MessageComposer({
     setText(editing.text)
     caret.current = editing.text.length
     inputRef.current?.focus()
-    // Only when the target changes: retyping should not be overwritten
   }, [editingId])
 
   useEffect(() => {
@@ -162,7 +161,6 @@ export function MessageComposer({
           }}
           onSelect={rememberCaret}
           onKeyDown={(event) => {
-            // Enter sends, Shift+Enter adds a line; ignore Enter while an IME is composing
             if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) {
               event.preventDefault()
               submit()

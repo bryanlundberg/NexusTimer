@@ -48,7 +48,6 @@ export function MessageBubble({ message, isOwn, myId, status, onRetry, onReact, 
   const body = bigEmoji ? (
     <>
       <span className={cn('text-4xl leading-tight', message.pending && 'opacity-60')}>{message.text}</span>
-      {/* There is no bubble behind the emoji, so the meta gets its own instead of floating */}
       <span className={cn('inline-flex border px-2 py-1 transition-opacity', surface, message.pending && 'opacity-80')}>
         {meta}
       </span>

@@ -14,9 +14,7 @@ export interface MessageDocument {
   text: string
   createdAt: Date
   editedAt?: Date
-  /** Deleted for everyone: the text is cleared and both members see a tombstone. */
   deletedAt?: Date
-  /** Deleted for these members only; the other one still sees it untouched. */
   deletedFor?: Types.ObjectId[]
   reactions?: MessageReactionDocument[]
 }
@@ -34,8 +32,7 @@ const MessageSchema = new Schema(
   {
     conversationId: { type: Schema.Types.ObjectId, ref: 'Conversation', required: true },
     senderId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-    // Not `required`: deleting for everyone clears it, so the text stops existing in the
-    // database. The non-empty guarantee for a real message lives in the route's zod schema.
+    // Not required: deleting for everyone clears it. Non-empty is enforced by the route schema.
     text: { type: String, default: '', maxlength: MAX_MESSAGE_LENGTH },
     editedAt: { type: Date },
     deletedAt: { type: Date },

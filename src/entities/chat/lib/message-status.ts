@@ -16,7 +16,6 @@ export function messageStatus(
   return 'sent'
 }
 
-/** Keeps the most recent value of each receipt, so late or duplicated events never go backwards. */
 export function mergeReceipts(a: Receipts, b: Partial<Receipts>): Receipts {
   const latest = (x: string | null, y: string | null | undefined) => (!y || (x && x >= y) ? x : y)
   return { deliveredAt: latest(a.deliveredAt, b.deliveredAt), readAt: latest(a.readAt, b.readAt) }

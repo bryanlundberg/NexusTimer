@@ -34,10 +34,8 @@ export type MessageNode =
 type StyleType = 'bold' | 'italic' | 'strike'
 type Atom = { start: number; end: number; node: MessageNode }
 
-// A trailing marker is formatting wrapped around the link, not part of it
 const URL_PATTERN = /\bhttps?:\/\/[^\s<>"']+[^\s<>"'.,;:!?)\]}*~`_]/gi
 
-// Doubles come first so ** is never read as two italic markers
 const MARKERS: [string, StyleType][] = [
   ['**', 'bold'],
   ['~~', 'strike'],
@@ -53,7 +51,6 @@ const SPACE = /\s/
 const isWordChar = (char: string | undefined) => !!char && WORD_CHAR.test(char)
 const isSpace = (char: string | undefined) => !char || SPACE.test(char)
 
-// Cards and links are never split by a style marker
 export function parseMessage(text: string): MessageNode[] {
   const atoms: Atom[] = []
 
@@ -125,7 +122,6 @@ function canOpen(text: string, i: number, marker: string, end: number): boolean 
   if (!text.startsWith(marker, i)) return false
   const next = text[i + marker.length]
   if (i + marker.length >= end || isSpace(next)) return false
-  // Single markers need a word boundary, so snake_case and 2*3*4 stay as typed
   if (marker.length === 1) return next !== marker && text[i - 1] !== marker && !isWordChar(text[i - 1])
   return true
 }

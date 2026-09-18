@@ -71,7 +71,6 @@ export function MessageActions({ isOwn, canEdit, canReact, canDeleteForEveryone,
           open={reactOpen}
           onOpenChange={(next) => {
             setReactOpen(next)
-            // Always reopen on the quick row rather than wherever the picker was left
             if (!next) setShowPicker(false)
           }}
         >

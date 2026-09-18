@@ -4,7 +4,6 @@ export async function apiRequest<T = unknown>(url: string, init?: RequestInit): 
     const data = (await res.json().catch(() => null)) as { message?: string } | null
     throw new Error(data?.message ?? `${init?.method ?? 'GET'} ${url} failed (${res.status})`)
   }
-  // Routes that answer 204 have nothing to parse
   if (res.status === 204) return undefined as T
   return res.json() as Promise<T>
 }
