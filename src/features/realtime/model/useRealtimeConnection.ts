@@ -5,7 +5,6 @@ import { emitRealtime, setRealtimeSender, type RealtimeClientEvent } from '@/fea
 
 const MAX_BACKOFF_MS = 30_000
 
-/** Mount once. A reconnect emits `realtime:reconnected` so listeners refetch what they missed. */
 export function useRealtimeConnection() {
   const { data: session } = useSession()
   const userId = session?.user?.id
@@ -22,7 +21,6 @@ export function useRealtimeConnection() {
 
     const scheduleReconnect = () => {
       if (stopped || retryTimer) return
-      // Full jitter so clients don't all reconnect in the same second after a gateway restart
       const delay = Math.random() * Math.min(MAX_BACKOFF_MS, 1000 * 2 ** attempt)
       attempt++
       retryTimer = setTimeout(() => {
@@ -37,7 +35,7 @@ export function useRealtimeConnection() {
 
       try {
         const res = await fetch('/api/v1/realtime/ticket', { method: 'POST' })
-        if (res.status === 503) return // not configured
+        if (res.status === 503) return
         if (!res.ok) return scheduleReconnect()
 
         const { url, ticket } = (await res.json()) as RealtimeTicketResponse
@@ -56,9 +54,7 @@ export function useRealtimeConnection() {
         ws.onmessage = (message) => {
           try {
             emitRealtime(JSON.parse(message.data) as RealtimeClientEvent)
-          } catch {
-            // ignore malformed frames
-          }
+          } catch {}
         }
         ws.onclose = () => {
           if (socket === ws) {

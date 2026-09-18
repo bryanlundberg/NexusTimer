@@ -9,14 +9,12 @@ const IDLE_AFTER_MS = 5 * 60 * 1000
 
 const ACTIVITY_EVENTS = ['pointerdown', 'keydown', 'wheel', 'touchstart'] as const
 
-/** Mount once. */
 export function usePresenceRealtime() {
   const isIdle = useRef(false)
 
   useRealtimeEvent((event) => {
     if (event.type === 'presence') applyPresence(event.users)
     if (event.type === 'presence:self' && isPresenceStatus(event.status)) selfStatusStore.set(event.status)
-    // A fresh socket knows nothing about this tab: the watch set and the idle flag both reset
     if (event.type === 'realtime:connected') {
       resendWatch()
       if (isIdle.current) sendRealtime({ type: 'presence:idle', idle: true })
@@ -38,7 +36,6 @@ export function usePresenceRealtime() {
       timer = setTimeout(() => report(true), IDLE_AFTER_MS)
     }
 
-    // A hidden tab is not idle by itself, since people leave a conversation open behind others
     const handleVisibility = () => {
       if (document.visibilityState === 'visible') goActive()
     }

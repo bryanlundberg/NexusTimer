@@ -13,7 +13,6 @@ export function usePresenceStatus() {
     (next: PresenceStatus) => {
       if (next === status) return
 
-      // The picker answers immediately; the dot follows once the gateway publishes the result
       selfStatusStore.set(next)
       apiPatch(PRESENCE_STATUS_KEY, { status: next }).catch(() => selfStatusStore.set(status))
     },
