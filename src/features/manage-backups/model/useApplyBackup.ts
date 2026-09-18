@@ -35,8 +35,7 @@ export function useApplyBackup() {
       const data = await res.text()
       const cubes = preventDuplicateDeleteStatus(normalizeOldData(importNexusTimerData(data)))
 
-      await cubesDB.clear()
-      await cubesDB.saveBatch(cubes)
+      await cubesDB.replaceAll(cubes)
 
       const fresh = await cubesDB.getAll()
       setCubes(fresh)
