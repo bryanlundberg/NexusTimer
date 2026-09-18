@@ -2,7 +2,7 @@ import { database } from '@/shared/config/indexdb/indexdb'
 import { Solve } from '@/entities/solve/model/types'
 import { Cube } from '@/entities/cube/model/types'
 import { reconcileCubeWrite } from '@/entities/cube/lib/reconcileCubeWrite'
-import { sortSolvesNewestFirst } from '@/entities/solve/lib/sortSolves'
+import { normalizeCubeSolves } from '@/entities/cube/lib/normalizeCubeSolves'
 
 const STORE_NAME = 'nx-data'
 const Cubes = database.create(STORE_NAME)
@@ -12,20 +12,23 @@ export const cubesDB = {
     const all = (await Cubes.find().get()) as Cube[]
 
     return all
-      .map((cube) => ({
-        ...cube,
-        solves: cube.solves
-          ? {
-              session: cube.solves.session.filter((solve) => !solve?.isDeleted),
-              all: cube.solves.all.filter((solve) => !solve?.isDeleted)
-            }
-          : cube.solves
-      }))
       .filter((cube) => !cube.isDeleted)
+      .map((cube) =>
+        normalizeCubeSolves({
+          ...cube,
+          solves: cube.solves
+            ? {
+                session: cube.solves.session.filter((solve) => !solve?.isDeleted),
+                all: cube.solves.all.filter((solve) => !solve?.isDeleted)
+              }
+            : cube.solves
+        })
+      )
   },
 
   async getAllDatabase(): Promise<Cube[]> {
-    return await Cubes.find().get()
+    const all = (await Cubes.find().get()) as Cube[]
+    return all.map(normalizeCubeSolves)
   },
 
   async getById(id: string): Promise<Cube> {
@@ -33,28 +36,26 @@ export const cubesDB = {
     if (!cube) throw new Error('Cube not found')
     if (cube.isDeleted) throw new Error('Cube deleted')
 
-    return {
+    return normalizeCubeSolves({
       ...cube,
       solves: {
         session: cube.solves.session.filter((solve: Solve) => !solve?.isDeleted),
         all: cube.solves.all.filter((solve: Solve) => !solve?.isDeleted)
       }
-    }
+    })
   },
 
   async add(cube: Cube): Promise<Cube> {
-    return await Cubes.add(cube)
+    return await Cubes.add(normalizeCubeSolves(cube))
   },
 
   async update(cube: Cube) {
     const stored = (await Cubes.get(cube.id)) as Cube | undefined
-    return await Cubes.put({ ...reconcileCubeWrite(stored, cube), updatedAt: Date.now() })
+    return await Cubes.put({ ...normalizeCubeSolves(reconcileCubeWrite(stored, cube)), updatedAt: Date.now() })
   },
 
-  async saveBatch(cubesBatch: Cube[]) {
-    for (const cube of cubesBatch) {
-      await Cubes.put(cube)
-    }
+  async replaceAll(cubes: Cube[]) {
+    await Cubes.replaceAll(cubes.map(normalizeCubeSolves))
   },
 
   async clear(): Promise<void> {
@@ -73,7 +74,7 @@ export const cubesDB = {
         return { ...solve, updatedAt: Date.now(), isDeleted: !!solve.isDeleted }
       })
 
-      sameCategoryCube.solves.all = sortSolvesNewestFirst([...sameCategoryCube.solves.all, ...moved])
+      sameCategoryCube.solves.all = [...sameCategoryCube.solves.all, ...moved]
       sameCategoryCube.solves.session = []
       await this.update(sameCategoryCube)
     }
