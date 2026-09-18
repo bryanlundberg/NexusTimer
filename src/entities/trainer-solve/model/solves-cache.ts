@@ -77,7 +77,6 @@ export const solvesCache = {
       // full the sentinel falls off and the list becomes a partial window.
       multi.lTrim(k, 0, SOLVES_FIRST_PAGE_SIZE)
       // Only for a list the LPUSH itself created, when the key expired right after EXISTS.
-      // A live list keeps its own expiry, so it still gets rebuilt from Mongo on schedule.
       multi.expire(k, TTL_SECONDS, 'NX')
       await multi.exec()
     } catch (error) {

@@ -36,7 +36,6 @@ describe('resolvePresence', () => {
     const invisible = resolvePresence(ALICE, { a: tab(UP) }, 'invisible', '1700000000000', LIVE)
 
     expect(invisible).toEqual({ userId: ALICE, state: 'offline', lastSeen: 1700000000000 })
-    // Telling the two apart is the whole tell the status exists to avoid
     expect(invisible).toEqual(resolvePresence(ALICE, {}, null, '1700000000000', LIVE))
   })
 

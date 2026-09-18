@@ -14,7 +14,6 @@ interface Props {
   className?: string
 }
 
-// Spans only: the card sits inside the inline flow of a message bubble
 export function SolveCard({ data, className }: Props) {
   const t = useTranslations('Index.ChatPage')
   const locale = useLocale()
@@ -57,7 +56,6 @@ export function SolveCard({ data, className }: Props) {
             </span>
           )}
         </span>
-        {/* The player paints at its default size before fitting, so the box clips it and isolates the layout */}
         <span className="block h-12 w-16 shrink-0 overflow-hidden [contain:strict] @[15rem]:h-16 @[15rem]:w-24">
           <ScrambleDisplay
             show

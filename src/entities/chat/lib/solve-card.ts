@@ -20,7 +20,6 @@ const MAX_TIME_MS = 24 * 60 * 60 * 1000
 const MAX_SCRAMBLE_LENGTH = 1000
 const DIGITS = /^\d+$/
 
-// Separators cannot appear inside a value, and no scramble or move notation uses them
 const clean = (value: string) =>
   value
     .replace(/[;:[\]\n\r]/g, ' ')
@@ -39,7 +38,6 @@ export function encodeSolveCard(data: SolveCardData): string {
   }
 
   const card = build(true)
-  // The moves are the only optional bulk, so they go first when a long solve would not fit
   return card.length <= MAX_MESSAGE_LENGTH ? card : build(false)
 }
 
