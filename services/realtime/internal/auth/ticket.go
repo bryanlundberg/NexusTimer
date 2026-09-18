@@ -1,7 +1,4 @@
-// Package auth verifies the short-lived tickets the Next.js app issues for WebSocket connections.
-//
-// Format: base64url({"sub","exp"}) + "." + base64url(hmac-sha256(payload)), exp in unix milliseconds.
-// It mirrors src/shared/lib/realtime/ticket.ts; keep both in sync.
+// Ticket format mirrors src/shared/lib/realtime/ticket.ts; keep both in sync.
 package auth
 
 import (
@@ -53,7 +50,6 @@ func VerifyTicket(ticket string, secret []byte, now time.Time) (string, error) {
 	return c.Sub, nil
 }
 
-// NewTicket is used by tests.
 func NewTicket(userID string, secret []byte, expiresAt time.Time) string {
 	raw, _ := json.Marshal(claims{Sub: userID, Exp: expiresAt.UnixMilli()})
 	payload := base64.RawURLEncoding.EncodeToString(raw)
