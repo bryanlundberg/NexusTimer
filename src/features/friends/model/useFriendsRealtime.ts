@@ -16,7 +16,6 @@ export function useFriendsRealtime() {
         void mutate(relationshipKey(event.userId))
         break
       case 'realtime:reconnected':
-        // Events sent while disconnected are lost, so refetch everything friends-related
         void mutate(FRIENDS_KEY)
         void mutate(isRelationshipKey)
         break

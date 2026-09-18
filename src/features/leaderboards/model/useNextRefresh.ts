@@ -9,8 +9,6 @@ const RETRY_MS = 15_000
 
 export function useNextRefresh(nextRefreshAt: string | undefined, refresh: () => void) {
   const [remainingMs, setRemainingMs] = useState<number | null>(null)
-  // Every variant rebuilds on the same boundary, so switching tabs must not blank the countdown
-  // while the new request is still in flight.
   const [deadlineIso, setDeadlineIso] = useState<string>()
   const refreshRef = useRef(refresh)
 
@@ -34,7 +32,6 @@ export function useNextRefresh(nextRefreshAt: string | undefined, refresh: () =>
 
     const tick = () => {
       const now = Date.now()
-      // A clock that disagrees with the server must never show more than a whole window.
       setRemainingMs(Math.min(HOUR_MS, Math.max(0, deadline - now)))
 
       if (now < deadline) return

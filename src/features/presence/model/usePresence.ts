@@ -5,10 +5,6 @@ import type { PresenceDisplay } from '@/shared/lib/realtime/events'
 export type { PresenceState }
 export type { PresenceDisplay, PresenceStatus } from '@/shared/lib/realtime/events'
 
-/**
- * The gateway resolves what each person is allowed to show before publishing it, so there is
- * nothing left to decide here.
- */
 export function resolvePresenceDisplay(presence?: PresenceState | null): PresenceDisplay {
   return presence?.state ?? 'offline'
 }
@@ -19,7 +15,6 @@ export function usePresence(userId?: string | null): PresenceState {
     return watchPresence([userId])
   }, [userId])
 
-  // The store hands back the same object until that person's state actually changes
   return useSyncExternalStore(
     presenceStore.subscribe,
     () => presenceStore.get(userId),
@@ -27,7 +22,6 @@ export function usePresence(userId?: string | null): PresenceState {
   )
 }
 
-/** One frame to the gateway however many rows are on screen. */
 export function usePresenceList(userIds: string[]): Record<string, PresenceState> {
   const idsKey = useMemo(() => [...new Set(userIds)].sort().join(','), [userIds])
   const version = useSyncExternalStore(presenceStore.subscribe, presenceStore.getVersion, () => 0)
@@ -38,7 +32,6 @@ export function usePresenceList(userIds: string[]): Record<string, PresenceState
     return watchPresence(ids)
   }, [idsKey])
 
-  // version is the extra dependency: it is what says the store moved under us
   return useMemo(() => {
     const map: Record<string, PresenceState> = {}
     for (const id of idsKey ? idsKey.split(',') : []) map[id] = presenceStore.get(id)

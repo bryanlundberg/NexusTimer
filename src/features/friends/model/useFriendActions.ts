@@ -26,11 +26,9 @@ export function useFriendActions() {
 
   return {
     pendingId,
-    /** Sends a request, or accepts one the other user already sent. */
     add: (userId: string) =>
       run(userId, async () => {
         const { status } = await apiPost<{ status: RelationshipStatus }>(FRIENDS_KEY, { userId })
-        // Only accepting settles the relationship in one call: a fresh request stays pending
         if (status === 'friends') playSound('newFriend')
       }),
     remove: (userId: string) => run(userId, () => apiDelete(relationshipKey(userId)))

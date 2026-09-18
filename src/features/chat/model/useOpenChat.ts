@@ -30,11 +30,9 @@ export function useOpenChat() {
     if (!isMessagesRoute(pathname)) router.push('/messages')
   }
 
-  /** From a profile or a friend row, where only the person is known. A draft prefills the composer. */
   const openChatWith = async (userId: string, draft?: string) => {
     const chat = await apiPost<ChatSummary>(INBOX_KEY, { userId })
     if (draft) setDraft(chat._id, draft)
-    // The window renders right away instead of waiting for its own request
     void mutate(chatKey(chat._id), chat, { revalidate: false })
     openChat(chat._id)
   }
