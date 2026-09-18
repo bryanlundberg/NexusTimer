@@ -24,8 +24,7 @@ export function useFreePlaySolveSubmit({ roomId, scramble, currentRound }: UseFr
   const { data: session } = useSession()
   const solvingTime = useTimerStore((store) => store.solvingTime)
   const selectedCube = useTimerStore((store) => store.selectedCube)
-  const setSelectedCube = useTimerStore((store) => store.setSelectedCube)
-  const setCubes = useTimerStore((store) => store.setCubes)
+  const patchCube = useTimerStore((store) => store.patchCube)
   const setSolvingTime = useTimerStore((store) => store.setSolvingTime)
   const setLastSolve = useTimerStore((store) => store.setLastSolve)
 
@@ -85,13 +84,7 @@ export function useFreePlaySolveSubmit({ roomId, scramble, currentRound }: UseFr
           ...cube,
           solves: { ...cube.solves, session: [newSolve, ...cube.solves.session] }
         }
-        await cubesDB.update(updatedCube)
-
-        if (selectedCube?.id === updatedCube.id) {
-          setSelectedCube(updatedCube)
-        }
-        const all = await cubesDB.getAll()
-        setCubes(all)
+        patchCube(await cubesDB.update(updatedCube))
       } catch (e) {
         console.error('Failed to save free-play solve to cube', e)
       }
@@ -104,8 +97,7 @@ export function useFreePlaySolveSubmit({ roomId, scramble, currentRound }: UseFr
       currentRound,
       addUserSolve,
       selectedCube,
-      setSelectedCube,
-      setCubes,
+      patchCube,
       setLastSolve
     ]
   )
