@@ -126,7 +126,7 @@ export function MessageList({
           !dayjs(next.createdAt).isSame(time, 'day')
 
         return (
-          <Fragment key={message._id}>
+          <Fragment key={message.clientKey ?? message._id}>
             {newDay && (
               <div className="my-3 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
                 <span className="h-px flex-1 bg-border/60" />
