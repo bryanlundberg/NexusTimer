@@ -6,10 +6,6 @@ import { objectIdSchema } from '@/shared/api/zod-helpers'
 
 export type MessageIdParams = { params: Promise<{ chatId: string; messageId: string }> }
 
-/**
- * Resolves the signed-in user, their conversation and the target message, making sure the
- * message really belongs to that conversation. Returns a 400/401/404 response otherwise.
- */
 export async function requireChatMessage(context: MessageIdParams) {
   const target = await requireChat(context)
   if (target instanceof Response) return target

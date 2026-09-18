@@ -42,7 +42,6 @@ export function NavUser({
   const t = useTranslations('Index')
   const tp = useTranslations('Index.Presence')
   const { status, setStatus } = usePresenceStatus()
-  // The dot shows what everyone else sees, not what was declared
   const statusDisplay = resolvePresenceDisplay(usePresence(user.id))
 
   const navItems = [

@@ -4,10 +4,6 @@ import { objectIdSchema } from './zod-helpers'
 
 export type UserIdParams = { params: Promise<{ userId: string }> }
 
-/**
- * Resolves the signed-in user and the `[userId]` route param, or a 400/401 response.
- * Use: `const ids = await requireUserPair(context); if (ids instanceof Response) return ids`
- */
 export async function requireUserPair({ params }: UserIdParams) {
   const userId = await requireUser()
   if (userId instanceof Response) return userId

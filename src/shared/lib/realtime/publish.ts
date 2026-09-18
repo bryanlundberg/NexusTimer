@@ -1,7 +1,6 @@
 import { getRedis } from '@/shared/config/redis/redis'
 import { userChannel, type RealtimeEvent } from '@/shared/lib/realtime/events'
 
-/** Best-effort: data is already saved, so a failure only delays the update until the client refetches. */
 export async function publishToUser(userId: string, event: RealtimeEvent): Promise<void> {
   try {
     const redis = await getRedis()
@@ -11,7 +10,6 @@ export async function publishToUser(userId: string, event: RealtimeEvent): Promi
   }
 }
 
-/** Same event to every member. Filter the list to leave someone out, such as the actor. */
 export async function publishToChat(members: string[], event: RealtimeEvent): Promise<void> {
   await Promise.all(members.map((memberId) => publishToUser(memberId, event)))
 }

@@ -119,7 +119,6 @@ export function PeopleNavIcon(props: IconProps) {
   )
 }
 
-/* Friends: solid person with a heart */
 export function FriendsNavIcon(props: IconProps) {
   return (
     <Svg {...props}>
@@ -130,7 +129,6 @@ export function FriendsNavIcon(props: IconProps) {
   )
 }
 
-/* Messages: two overlapping speech bubbles */
 export function MessagesNavIcon(props: IconProps) {
   return (
     <Svg {...props}>
