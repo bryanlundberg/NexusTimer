@@ -1,7 +1,7 @@
 'use client'
 
 import { useSWRConfig } from 'swr'
-import { apiDelete } from '@/shared/api/client'
+import { apiDelete, apiPatch } from '@/shared/api/client'
 import { INBOX_KEY, chatKey, messagesKey } from '@/entities/chat/model/useInbox'
 
 export function useChatActions(chatId: string) {
@@ -21,6 +21,10 @@ export function useChatActions(chatId: string) {
     deleteChat: async () => {
       await apiDelete(chatKey(chatId))
       await revalidate()
+    },
+    setMuted: async (muted: boolean) => {
+      await apiPatch(chatKey(chatId), { muted })
+      await Promise.all([mutate(chatKey(chatId)), mutate(INBOX_KEY)])
     }
   }
 }
