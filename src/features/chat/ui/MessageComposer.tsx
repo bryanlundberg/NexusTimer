@@ -25,6 +25,8 @@ interface Props {
   editing?: ComposerEdit | null
   onSaveEdit?: (messageId: string, text: string) => void
   onCancelEdit?: () => void
+  draft?: string
+  onDraftApplied?: () => void
 }
 
 export function MessageComposer({
@@ -36,7 +38,9 @@ export function MessageComposer({
   onFocused,
   editing,
   onSaveEdit,
-  onCancelEdit
+  onCancelEdit,
+  draft,
+  onDraftApplied
 }: Props) {
   const t = useTranslations('Index.ChatPage')
   const [text, setText] = useState('')
@@ -57,6 +61,14 @@ export function MessageComposer({
     inputRef.current?.focus()
     // Only when the target changes: retyping should not be overwritten
   }, [editingId])
+
+  useEffect(() => {
+    if (!draft || editing) return
+    setText(draft)
+    caret.current = draft.length
+    inputRef.current?.focus()
+    onDraftApplied?.()
+  }, [draft, editing, onDraftApplied])
 
   const canSend = !disabled && text.trim().length > 0
 
@@ -164,7 +176,7 @@ export function MessageComposer({
           placeholder={t('placeholder')}
           aria-label={t('placeholder')}
           disabled={disabled}
-          className={cn('min-h-10 overflow-y-auto', compact ? 'max-h-28' : 'max-h-40')}
+          className={cn('min-h-10 min-w-0 overflow-y-auto wrap-anywhere', compact ? 'max-h-28' : 'max-h-40')}
         />
 
         <Button
