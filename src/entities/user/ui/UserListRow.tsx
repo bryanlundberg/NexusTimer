@@ -2,7 +2,6 @@
 
 import { Fragment, type ReactNode, type Ref } from 'react'
 import Link from 'next/link'
-import { Target } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import dayjs from '@/shared/lib/dayjs'
@@ -33,7 +32,6 @@ export interface UserListRowUser {
   pronoun?: string
   method?: string
   bio?: string
-  goal?: string
   mainColors?: Layers[]
   links?: string[]
   createdAt?: string | Date
@@ -50,7 +48,6 @@ interface Props {
 
 export function UserListRow({ user, presence, meta, actions, stackActions = false, avatarRef }: Props) {
   const tHero = useTranslations('Index.PeoplePage.hero')
-  const tAccount = useTranslations('Index.AccountPage')
   const locale = useLocale()
   const methodLabel = useMethodLabel()
   const colors = sortFaceColors(user.mainColors)
@@ -148,15 +145,6 @@ export function UserListRow({ user, presence, meta, actions, stackActions = fals
           )}
 
           {user.bio && <span className="truncate text-xs text-muted-foreground/70">{user.bio}</span>}
-
-          {user.goal && (
-            <span className="flex min-w-0 items-center gap-1 text-xs text-muted-foreground/70">
-              <Target aria-hidden className="size-3 shrink-0 text-primary/70" />
-              <span className="truncate" title={`${tAccount('goal')}: ${user.goal}`}>
-                {user.goal}
-              </span>
-            </span>
-          )}
 
           {(footer || links.length > 0) && (
             <span className="flex min-w-0 items-center gap-1.5 text-[11px] text-muted-foreground/80">
