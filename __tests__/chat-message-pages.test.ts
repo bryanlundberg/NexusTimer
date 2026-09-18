@@ -16,7 +16,6 @@ const message = (id: string, extra: Partial<ChatMessage> = {}): ChatMessage => (
   ...extra
 })
 
-/** Index 0 is the newest page, so an older page sits after it. */
 const pages = (): MessagesPage[] => [
   { messages: [message('c'), message('d')], hasMore: true, receipts: NO_RECEIPTS },
   { messages: [message('a'), message('b')], hasMore: false, receipts: NO_RECEIPTS }

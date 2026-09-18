@@ -12,12 +12,8 @@ export interface DockWindow {
 
 type ChatDockStore = {
   windows: DockWindow[]
-  /**
-   * Window the user just opened. Its input focuses once and clears this, so windows remounted
-   * later (after a solve, leaving /messages) never steal the keyboard from the timer.
-   */
+  /** Focused once then cleared, so remounted windows do not take focus from the timer. */
   focusedChatId: string | null
-  /** Opens (or restores) a window; the oldest one is dropped when the dock is full. */
   openWindow: (chatId: string) => void
   closeWindow: (chatId: string) => void
   toggleMinimized: (chatId: string) => void

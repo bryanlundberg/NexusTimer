@@ -23,7 +23,6 @@ export function serializeMessage(doc: SerializableMessage): RealtimeMessage {
 
   if (doc.editedAt) message.editedAt = doc.editedAt.toISOString()
   if (doc.deletedAt) message.deletedAt = doc.deletedAt.toISOString()
-  // Reactions disappear with the message they were attached to
   if (!doc.deletedAt && doc.reactions?.length) {
     message.reactions = doc.reactions.map((reaction) => ({
       userId: reaction.userId.toString(),
@@ -34,10 +33,6 @@ export function serializeMessage(doc: SerializableMessage): RealtimeMessage {
   return message
 }
 
-/**
- * What one member is allowed to see: everything after they last emptied the chat,
- * minus the messages they deleted only for themselves.
- */
 export function visibleMessagesFilter(
   conversationId: Types.ObjectId,
   userId: string,
@@ -51,10 +46,6 @@ export function visibleMessagesFilter(
   }
 }
 
-/**
- * Rewrites the denormalized inbox preview from the newest message. Editing or deleting
- * is rare, so recomputing beats tracking whether the touched message was the last one.
- */
 export async function refreshLastMessage(conversationId: Types.ObjectId): Promise<void> {
   const newest = await Message.findOne({ conversationId }).sort({ _id: -1 }).lean<MessageDocument>()
   if (!newest) return
@@ -86,7 +77,6 @@ export async function ensureConversationId(userId: string, otherId: string): Pro
     const created = await Conversation.create({ pairKey: pairKeyOf(userId, otherId), members: [userId, otherId] })
     return created._id
   } catch (error) {
-    // Both users opened the chat at the same moment
     if (!isDuplicateKeyError(error)) throw error
     const winner = await findDirectId(userId, otherId)
     if (!winner) throw error
