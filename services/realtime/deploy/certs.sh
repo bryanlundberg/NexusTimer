@@ -29,7 +29,7 @@ trap 'rm -f "$staged"' EXIT
 sed "s|__APP__|/home/${HOST%%@*}/$REMOTE|" deploy/sync-cert.sh > "$staged"
 
 echo "==> install"
-scp -q -i "$KEY" "$staged" "$HOST:/tmp/sync-redis-cert.sh"
+scp -i "$KEY" "$staged" "$HOST:/tmp/sync-redis-cert.sh"
 run "sudo install -m 755 -o root -g root /tmp/sync-redis-cert.sh /usr/local/bin/sync-redis-cert.sh && rm /tmp/sync-redis-cert.sh"
 run "printf '0 4 * * * root /usr/local/bin/sync-redis-cert.sh >> /var/log/redis-cert.log 2>&1\n' | sudo tee /etc/cron.d/redis-cert >/dev/null && sudo chmod 644 /etc/cron.d/redis-cert"
 

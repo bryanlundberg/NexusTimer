@@ -34,7 +34,7 @@ echo "==> source"
 tar --exclude='.env' --exclude='.env.production' -cz . | ssh -i "$KEY" "$HOST" "mkdir -p $REMOTE && tar -xz -C $REMOTE"
 
 echo "==> settings"
-scp -q -i "$KEY" .env.production "$HOST:$REMOTE/.env"
+scp -i "$KEY" .env.production "$HOST:$REMOTE/.env"
 
 echo "==> up"
 ssh -i "$KEY" "$HOST" "cd $REMOTE && docker compose up -d"
