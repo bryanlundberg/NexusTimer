@@ -16,6 +16,7 @@ export interface ConversationDocument {
   readAt?: Record<string, Date>
   clearedAt?: Record<string, Date>
   hiddenAt?: Record<string, Date>
+  muted?: Record<string, boolean>
   createdAt: Date
 }
 
@@ -37,7 +38,8 @@ const ConversationSchema = new Schema(
     deliveredAt: { type: Map, of: Date, default: {} },
     readAt: { type: Map, of: Date, default: {} },
     clearedAt: { type: Map, of: Date, default: {} },
-    hiddenAt: { type: Map, of: Date, default: {} }
+    hiddenAt: { type: Map, of: Date, default: {} },
+    muted: { type: Map, of: Boolean, default: {} }
   },
   { timestamps: { createdAt: true, updatedAt: false } }
 )
