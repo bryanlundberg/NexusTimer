@@ -589,7 +589,15 @@
       "clear-chat-hint": "Xóa mọi tin nhắn chỉ ở phía bạn. Người kia vẫn giữ cuộc trò chuyện.",
       "delete-chat": "Xóa cuộc trò chuyện",
       "delete-chat-hint": "Bỏ cuộc trò chuyện khỏi hộp thư và dọn sạch chỉ ở phía bạn. Nó quay lại khi có tin nhắn mới.",
-      "action-failed": "Đã xảy ra lỗi. Hãy thử lại."
+      "action-failed": "Đã xảy ra lỗi. Hãy thử lại.",
+      "send-to-friend": "Gửi cho bạn bè",
+      "no-friends": "Chưa có bạn bè",
+      "copy-scramble": "Sao chép scramble",
+      "copied": "Đã sao chép",
+      "solution": "Lời giải",
+      "search-friends": "Tìm bạn bè",
+      "no-friends-match": "Không có bạn bè nào khớp",
+      "send-to-friend-hint": "Tin nhắn sẽ mở sẵn sàng để gửi."
     },
     "LeaderboardsPage": {
       "title": "Lượt giải nhanh nhất",

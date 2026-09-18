@@ -586,7 +586,15 @@
       "clear-chat-hint": "自分の側のメッセージだけを削除します。相手には会話が残ります。",
       "delete-chat": "チャットを削除",
       "delete-chat-hint": "受信箱から会話を外し、自分の側だけ空にします。新しいメッセージが届くと戻ります。",
-      "action-failed": "問題が発生しました。もう一度お試しください。"
+      "action-failed": "問題が発生しました。もう一度お試しください。",
+      "send-to-friend": "友達に送る",
+      "no-friends": "まだ友達がいません",
+      "copy-scramble": "スクランブルをコピー",
+      "copied": "コピーしました",
+      "solution": "解法",
+      "search-friends": "友達を検索",
+      "no-friends-match": "一致する友達がいません",
+      "send-to-friend-hint": "メッセージは送信できる状態で開きます。"
     },
     "LeaderboardsPage": {
       "title": "最速の記録",

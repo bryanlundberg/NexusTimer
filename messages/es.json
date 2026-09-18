@@ -544,7 +544,15 @@
       "clear-chat-hint": "Borra todos los mensajes solo de tu lado. La otra persona conserva la conversación.",
       "delete-chat": "Eliminar chat",
       "delete-chat-hint": "Quita la conversación de tu bandeja y la vacía solo de tu lado. Volverá si llega un mensaje nuevo.",
-      "action-failed": "Algo salió mal. Inténtalo de nuevo."
+      "action-failed": "Algo salió mal. Inténtalo de nuevo.",
+      "send-to-friend": "Enviar a un amigo",
+      "no-friends": "Aún no tienes amigos",
+      "copy-scramble": "Copiar scramble",
+      "copied": "Copiado",
+      "solution": "Solución",
+      "search-friends": "Buscar amigos",
+      "no-friends-match": "Ningún amigo coincide con tu búsqueda",
+      "send-to-friend-hint": "El mensaje se abre listo para enviar."
     },
     "LeaderboardsPage": {
       "title": "Solves más rápidos",

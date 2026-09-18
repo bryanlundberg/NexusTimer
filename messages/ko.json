@@ -586,7 +586,15 @@
       "clear-chat-hint": "내 쪽의 모든 메시지만 삭제합니다. 상대방에게는 대화가 남습니다.",
       "delete-chat": "채팅 삭제",
       "delete-chat-hint": "받은 목록에서 대화를 없애고 내 쪽에서만 비웁니다. 새 메시지가 오면 다시 나타납니다.",
-      "action-failed": "문제가 발생했습니다. 다시 시도해 주세요."
+      "action-failed": "문제가 발생했습니다. 다시 시도해 주세요.",
+      "send-to-friend": "친구에게 보내기",
+      "no-friends": "아직 친구가 없습니다",
+      "copy-scramble": "스크램블 복사",
+      "copied": "복사됨",
+      "solution": "풀이",
+      "search-friends": "친구 검색",
+      "no-friends-match": "검색과 일치하는 친구가 없습니다",
+      "send-to-friend-hint": "메시지가 보낼 준비가 된 상태로 열립니다."
     },
     "LeaderboardsPage": {
       "title": "최고 기록",

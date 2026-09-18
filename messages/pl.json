@@ -589,7 +589,15 @@
       "clear-chat-hint": "Usuwa wszystkie wiadomości tylko po twojej stronie. Druga osoba zachowuje rozmowę.",
       "delete-chat": "Usuń czat",
       "delete-chat-hint": "Usuwa rozmowę ze skrzynki i czyści ją tylko po twojej stronie. Wróci, gdy nadejdzie nowa wiadomość.",
-      "action-failed": "Coś poszło nie tak. Spróbuj ponownie."
+      "action-failed": "Coś poszło nie tak. Spróbuj ponownie.",
+      "send-to-friend": "Wyślij znajomemu",
+      "no-friends": "Nie masz jeszcze znajomych",
+      "copy-scramble": "Kopiuj scramble",
+      "copied": "Skopiowano",
+      "solution": "Rozwiązanie",
+      "search-friends": "Szukaj znajomych",
+      "no-friends-match": "Brak pasujących znajomych",
+      "send-to-friend-hint": "Wiadomość otworzy się gotowa do wysłania."
     },
     "LeaderboardsPage": {
       "title": "Najszybsze ułożenia",

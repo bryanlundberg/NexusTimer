@@ -586,7 +586,15 @@
       "clear-chat-hint": "Remove todas as mensagens apenas do teu lado. A outra pessoa mantém a conversa.",
       "delete-chat": "Eliminar conversa",
       "delete-chat-hint": "Retira a conversa da tua caixa e limpa-a apenas do teu lado. Volta se chegar uma nova mensagem.",
-      "action-failed": "Algo correu mal. Tenta novamente."
+      "action-failed": "Algo correu mal. Tenta novamente.",
+      "send-to-friend": "Enviar para um amigo",
+      "no-friends": "Ainda sem amigos",
+      "copy-scramble": "Copiar embaralhamento",
+      "copied": "Copiado",
+      "solution": "Solução",
+      "search-friends": "Buscar amigos",
+      "no-friends-match": "Nenhum amigo corresponde à busca",
+      "send-to-friend-hint": "A mensagem abre pronta para enviar."
     },
     "LeaderboardsPage": {
       "title": "Solves mais rápidos",

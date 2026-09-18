@@ -586,7 +586,15 @@
       "clear-chat-hint": "Entfernt alle Nachrichten nur auf deiner Seite. Die andere Person behält die Unterhaltung.",
       "delete-chat": "Chat löschen",
       "delete-chat-hint": "Entfernt die Unterhaltung aus deinem Postfach und leert sie nur auf deiner Seite. Sie kehrt zurück, wenn eine neue Nachricht eintrifft.",
-      "action-failed": "Etwas ist schiefgelaufen. Versuche es erneut."
+      "action-failed": "Etwas ist schiefgelaufen. Versuche es erneut.",
+      "send-to-friend": "An einen Freund senden",
+      "no-friends": "Noch keine Freunde",
+      "copy-scramble": "Scramble kopieren",
+      "copied": "Kopiert",
+      "solution": "Lösung",
+      "search-friends": "Freunde suchen",
+      "no-friends-match": "Keine Freunde gefunden",
+      "send-to-friend-hint": "Die Nachricht öffnet sich fertig zum Senden."
     },
     "LeaderboardsPage": {
       "title": "Schnellste Lösungen",

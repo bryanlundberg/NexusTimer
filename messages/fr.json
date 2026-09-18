@@ -586,7 +586,15 @@
       "clear-chat-hint": "Supprime tous les messages de votre côté uniquement. L’autre personne conserve la conversation.",
       "delete-chat": "Supprimer la discussion",
       "delete-chat-hint": "Retire la conversation de votre boîte et la vide de votre côté uniquement. Elle revient si un nouveau message arrive.",
-      "action-failed": "Une erreur est survenue. Réessayez."
+      "action-failed": "Une erreur est survenue. Réessayez.",
+      "send-to-friend": "Envoyer à un ami",
+      "no-friends": "Pas encore d'amis",
+      "copy-scramble": "Copier le mélange",
+      "copied": "Copié",
+      "solution": "Solution",
+      "search-friends": "Rechercher des amis",
+      "no-friends-match": "Aucun ami ne correspond à ta recherche",
+      "send-to-friend-hint": "Le message s'ouvre prêt à être envoyé."
     },
     "LeaderboardsPage": {
       "title": "Solves les plus rapides",

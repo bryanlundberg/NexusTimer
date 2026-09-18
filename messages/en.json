@@ -589,7 +589,15 @@
       "clear-chat-hint": "Removes every message on your side only. The other person keeps the conversation.",
       "delete-chat": "Delete chat",
       "delete-chat-hint": "Removes the conversation from your inbox and empties it on your side only. It comes back if a new message arrives.",
-      "action-failed": "Something went wrong. Try again."
+      "action-failed": "Something went wrong. Try again.",
+      "send-to-friend": "Send to a friend",
+      "no-friends": "No friends yet",
+      "copy-scramble": "Copy scramble",
+      "copied": "Copied",
+      "solution": "Solution",
+      "search-friends": "Search friends",
+      "no-friends-match": "No friends match your search",
+      "send-to-friend-hint": "The message opens ready to send."
     },
     "LeaderboardsPage": {
       "title": "Fastest Solves",

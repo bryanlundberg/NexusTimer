@@ -589,7 +589,15 @@
       "clear-chat-hint": "Menghapus semua pesan hanya di sisimu. Orang lain tetap menyimpan percakapannya.",
       "delete-chat": "Hapus obrolan",
       "delete-chat-hint": "Menghapus percakapan dari kotak masukmu dan mengosongkannya hanya di sisimu. Akan kembali jika ada pesan baru.",
-      "action-failed": "Terjadi kesalahan. Coba lagi."
+      "action-failed": "Terjadi kesalahan. Coba lagi.",
+      "send-to-friend": "Kirim ke teman",
+      "no-friends": "Belum ada teman",
+      "copy-scramble": "Salin scramble",
+      "copied": "Disalin",
+      "solution": "Solusi",
+      "search-friends": "Cari teman",
+      "no-friends-match": "Tidak ada teman yang cocok",
+      "send-to-friend-hint": "Pesan terbuka dan siap dikirim."
     },
     "LeaderboardsPage": {
       "title": "Solve Tercepat",

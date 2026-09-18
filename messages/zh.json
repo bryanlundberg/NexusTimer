@@ -586,7 +586,15 @@
       "clear-chat-hint": "仅删除你这一侧的所有消息。对方仍保留会话。",
       "delete-chat": "删除聊天",
       "delete-chat-hint": "将会话移出收件箱并仅清空你这一侧。收到新消息时会重新出现。",
-      "action-failed": "出了点问题，请重试。"
+      "action-failed": "出了点问题，请重试。",
+      "send-to-friend": "发送给好友",
+      "no-friends": "还没有好友",
+      "copy-scramble": "复制打乱",
+      "copied": "已复制",
+      "solution": "解法",
+      "search-friends": "搜索好友",
+      "no-friends-match": "没有匹配的好友",
+      "send-to-friend-hint": "消息打开后即可发送。"
     },
     "LeaderboardsPage": {
       "title": "最快还原",

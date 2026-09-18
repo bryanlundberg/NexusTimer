@@ -589,7 +589,15 @@
       "clear-chat-hint": "Inaalis ang lahat ng mensahe sa iyong panig lang. Nananatili ang usapan sa kabilang panig.",
       "delete-chat": "Burahin ang chat",
       "delete-chat-hint": "Inaalis ang usapan sa iyong inbox at nililinis ito sa iyong panig lang. Babalik ito kapag may bagong mensahe.",
-      "action-failed": "May nangyaring mali. Subukan ulit."
+      "action-failed": "May nangyaring mali. Subukan ulit.",
+      "send-to-friend": "Ipadala sa kaibigan",
+      "no-friends": "Wala ka pang kaibigan",
+      "copy-scramble": "Kopyahin ang scramble",
+      "copied": "Nakopya",
+      "solution": "Solusyon",
+      "search-friends": "Maghanap ng kaibigan",
+      "no-friends-match": "Walang kaibigang tumugma sa hinanap mo",
+      "send-to-friend-hint": "Bubukas ang mensahe na handa nang ipadala."
     },
     "LeaderboardsPage": {
       "title": "Pinakamabilis na Solve",
