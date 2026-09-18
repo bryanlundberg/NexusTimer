@@ -39,6 +39,7 @@ export type RealtimeEvent =
   | { type: 'chat:read'; chatId: string }
   | { type: 'chat:cleared'; chatId: string }
   | { type: 'chat:removed'; chatId: string }
+  | { type: 'chat:muted'; chatId: string; muted: boolean }
   | { type: 'chat:delivered'; chatId: string; deliveredAt: string }
   | { type: 'chat:seen'; chatId: string; readAt: string }
   | { type: 'typing'; chatId: string; userId: string }
