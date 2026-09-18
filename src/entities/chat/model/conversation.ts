@@ -5,7 +5,6 @@ export interface ConversationDocument {
   pairKey: string
   members: Types.ObjectId[]
   lastMessage?: {
-    /** Absent on conversations last written before per-side deletion existed. */
     messageId?: Types.ObjectId
     text: string
     senderId: Types.ObjectId
@@ -13,12 +12,9 @@ export interface ConversationDocument {
   }
   lastMessageAt?: Date
   unread?: Record<string, number>
-  /** When each member's app received the messages, which turns one check into two. */
   deliveredAt?: Record<string, Date>
   readAt?: Record<string, Date>
-  /** Emptying the chat on one side: that member only sees messages newer than this. */
   clearedAt?: Record<string, Date>
-  /** Deleting the chat on one side: hidden from that member's inbox until a newer message arrives. */
   hiddenAt?: Record<string, Date>
   createdAt: Date
 }
@@ -30,7 +26,6 @@ const ConversationSchema = new Schema(
     lastMessage: {
       type: {
         messageId: { type: Schema.Types.ObjectId, ref: 'Message' },
-        // Empty when the last message was deleted for everyone
         text: { type: String, default: '' },
         senderId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
         createdAt: { type: Date, required: true }

@@ -55,7 +55,6 @@ export function ChatWindow({ chatId, minimized }: DockWindow) {
                 <span className="absolute -right-0.5 -bottom-0.5 rounded-full bg-background p-px">
                   <PresenceDot state={resolvePresenceDisplay(presence)} className="size-2.5" />
                 </span>
-                {/* On the avatar so a long name keeps the full width */}
                 {minimized && <CountBadge count={unread} className="absolute -top-1.5 -right-2" />}
               </span>
               <span className="flex min-w-0 flex-1 flex-col gap-0.5">

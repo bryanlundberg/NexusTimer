@@ -28,7 +28,6 @@ export function ConversationBody({ chatId, peer, compact = false, focusRequested
   const canMessage = relationship?.status === 'friends'
   const { messages } = conversation
 
-  // The other member may delete the very message being edited, here or from another tab
   useEffect(() => {
     if (editing && !messages.some((message) => message._id === editing.id && !message.deletedAt)) setEditing(null)
   }, [messages, editing])

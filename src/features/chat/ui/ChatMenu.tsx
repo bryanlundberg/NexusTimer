@@ -27,7 +27,6 @@ interface Props {
   className?: string
 }
 
-/** Both entries only affect this side of the conversation. */
 export function ChatMenu({ chatId, onDeleted, className }: Props) {
   const t = useTranslations('Index.ChatPage')
   const { clearChat, deleteChat } = useChatActions(chatId)
@@ -90,7 +89,6 @@ export function ChatMenu({ chatId, onDeleted, className }: Props) {
               disabled={busy}
               className={cn(buttonVariants({ variant: 'destructive' }), 'btn-notch')}
               onClick={(event) => {
-                // Stay open until the request settles, so a failure can be shown
                 event.preventDefault()
                 void confirm()
               }}

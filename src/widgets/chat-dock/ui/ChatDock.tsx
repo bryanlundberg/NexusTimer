@@ -10,7 +10,6 @@ import { isMessagesRoute } from '@/features/chat/model/useOpenChat'
 import { useDockCapacity } from '@/features/chat/model/dock-capacity'
 import { ChatWindow } from '@/widgets/chat-dock/ui/ChatWindow'
 
-/** Windows opened from the header messages menu, desktop only. */
 export function ChatDock() {
   const capacity = useDockCapacity()
   const { data: session } = useSession()
