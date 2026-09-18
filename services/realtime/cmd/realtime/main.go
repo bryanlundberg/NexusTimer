@@ -1,9 +1,3 @@
-// Command realtime runs the WebSocket gateway.
-//
-// Usage:
-//
-//	realtime              run the gateway
-//	realtime healthcheck  exit 0 if the running gateway is healthy
 package main
 
 import (
@@ -55,8 +49,7 @@ func run(logger *slog.Logger) error {
 
 	connections := hub.New(hub.DefaultOptions(), logger, events, events.Inbound)
 
-	// The lease has to exist before the first connection, since an entry only counts while the
-	// gateway that wrote it does. A Redis that is down at boot is not fatal: KeepLease retries.
+	// The lease must exist before the first connection; KeepLease retries if Redis is down.
 	claim, cancelClaim := context.WithTimeout(ctx, 5*time.Second)
 	if err := events.ClaimLease(claim); err != nil {
 		logger.Warn("claiming lease failed, presence is blind until Redis answers", "error", err)
@@ -70,7 +63,6 @@ func run(logger *slog.Logger) error {
 
 	err = server.New(cfg, connections, events, logger).Run(ctx)
 
-	// A listener failure also has to stop the subscriber
 	stop()
 	wg.Wait()
 	return err

@@ -1,4 +1,3 @@
-// Package hub keeps track of open WebSocket connections per user and delivers messages to them.
 package hub
 
 import (
@@ -14,24 +13,20 @@ type Options struct {
 	WriteWait time.Duration
 	PongWait  time.Duration
 	// PingPeriod must be shorter than PongWait.
-	PingPeriod time.Duration
-	// MaxQueue undelivered messages before a client gets disconnected.
+	PingPeriod     time.Duration
 	MaxQueue       int
 	MaxMessageSize int64
-	// InboundBurst frames a client may send back to back, refilled one every InboundRefill.
-	InboundBurst  int
-	InboundRefill time.Duration
-	// MaxWatched people a single connection may follow the presence of.
-	MaxWatched int
+	InboundBurst   int
+	InboundRefill  time.Duration
+	MaxWatched     int
 }
 
 func DefaultOptions() Options {
 	return Options{
-		WriteWait:  10 * time.Second,
-		PongWait:   60 * time.Second,
-		PingPeriod: 30 * time.Second,
-		MaxQueue:   16,
-		// A presence watch carries up to MaxWatched ids of 24 characters each.
+		WriteWait:      10 * time.Second,
+		PongWait:       60 * time.Second,
+		PingPeriod:     30 * time.Second,
+		MaxQueue:       16,
 		MaxMessageSize: 8192,
 		InboundBurst:   10,
 		InboundRefill:  time.Second,
@@ -39,26 +34,18 @@ func DefaultOptions() Options {
 	}
 }
 
-// Conn is what an inbound handler may do with the connection a frame arrived on.
 type Conn interface {
 	UserID() string
 	ConnID() string
 	Send(payload []byte)
-	// Watch replaces the followed set and returns the ids that were kept, since the hub caps
-	// how many a single connection may follow.
 	Watch(userIDs []string) []string
-	// SetIdle reports whether the flag actually changed.
 	SetIdle(idle bool) bool
 	Idle() bool
 }
 
-// InboundFunc handles a frame sent by a browser.
 type InboundFunc func(c Conn, payload []byte)
 
-// Presence records connection state where every instance can read it. Implementations are
-// called from connection goroutines, so they should return quickly.
 type Presence interface {
-	// Connected may also write back to the connection, which is how a tab learns its own status.
 	Connected(c Conn)
 	Disconnected(userID, connID string)
 }
@@ -80,14 +67,12 @@ type Hub struct {
 	onInbound InboundFunc
 	presence  Presence
 
-	mu    sync.RWMutex
-	users map[string]map[*client]struct{}
-	// watchers is the reverse of every connection's watch set: who to notify about whom.
+	mu       sync.RWMutex
+	users    map[string]map[*client]struct{}
 	watchers map[string]map[*client]struct{}
 	conns    atomic.Int64
 }
 
-// New accepts a nil presence and a nil onInbound.
 func New(opts Options, logger *slog.Logger, presence Presence, onInbound InboundFunc) *Hub {
 	return &Hub{
 		opts:      opts,
@@ -99,11 +84,9 @@ func New(opts Options, logger *slog.Logger, presence Presence, onInbound Inbound
 	}
 }
 
-// Register takes ownership of an upgraded connection until it closes.
 func (h *Hub) Register(userID string, conn *websocket.Conn) {
 	c := newClient(h, userID, conn)
 	h.add(c)
-	// A tab always follows itself, so it shows the same state everyone else sees
 	h.watch(c, []string{userID})
 
 	if h.presence != nil {
@@ -128,8 +111,6 @@ func (h *Hub) Broadcast(userID string, payload []byte) {
 	}
 }
 
-// Connections lets the presence store rewrite every open tab after Redis was unreachable.
-// Nothing else refreshes them.
 func (h *Hub) Connections() []Connection {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
@@ -200,7 +181,6 @@ func (h *Hub) remove(c *client) {
 	}
 }
 
-// watch replaces the connection's watch set. c.watched is guarded by h.mu, not by c.mu.
 func (h *Hub) watch(c *client, userIDs []string) []string {
 	if h.opts.MaxWatched > 0 && len(userIDs) > h.opts.MaxWatched {
 		userIDs = userIDs[:h.opts.MaxWatched]

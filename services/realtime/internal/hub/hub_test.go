@@ -17,7 +17,6 @@ import (
 
 var discardLogger = slog.New(slog.NewTextHandler(io.Discard, nil))
 
-// watchOnInbound treats every frame as a comma separated list of people to follow.
 func watchOnInbound(c Conn, payload []byte) { c.Watch(strings.Split(string(payload), ",")) }
 
 type presenceCall struct {
@@ -25,8 +24,6 @@ type presenceCall struct {
 	userID string
 }
 
-// recordingPresence greets every new connection, which is what the real one does to hand a
-// tab its own declared status.
 type recordingPresence struct {
 	mu    sync.Mutex
 	calls []presenceCall
@@ -103,7 +100,6 @@ func read(t *testing.T, conn *websocket.Conn) string {
 	return string(data)
 }
 
-// readNothing leaves the connection unusable, so it has to be the last read of a test.
 func readNothing(t *testing.T, conn *websocket.Conn) {
 	t.Helper()
 	_ = conn.SetReadDeadline(time.Now().Add(100 * time.Millisecond))
@@ -112,8 +108,6 @@ func readNothing(t *testing.T, conn *websocket.Conn) {
 	}
 }
 
-// watchAndWait waits until the hub has applied the frame, which it handles on the
-// connection's own goroutine.
 func watchAndWait(t *testing.T, h *Hub, conn *websocket.Conn, ids ...string) {
 	t.Helper()
 	if err := conn.WriteMessage(websocket.TextMessage, []byte(strings.Join(ids, ","))); err != nil {
@@ -172,7 +166,6 @@ func TestSlowClientIsDisconnected(t *testing.T) {
 	}
 	h.mu.RUnlock()
 
-	// Pretend a write is stuck so the queue fills up
 	c.mu.Lock()
 	c.flushing = true
 	c.mu.Unlock()
@@ -189,7 +182,6 @@ func TestSilentConnectionIsDropped(t *testing.T) {
 	opts.PongWait = 150 * time.Millisecond
 	h := New(opts, discardLogger, nil, nil)
 
-	// Never reading means the browser side never answers pings
 	connect(t, h, "u1")
 	waitForConnections(t, h, 1)
 
@@ -237,7 +229,6 @@ func TestInboundFramesReachTheHandlerThrottled(t *testing.T) {
 	}
 }
 
-// A burst is what a page navigation looks like: a watch frame right after a typing frame.
 func TestInboundBurstIsNotDropped(t *testing.T) {
 	received := make(chan string, 8)
 
@@ -292,7 +283,6 @@ func TestBroadcastOnlyReachesFollowers(t *testing.T) {
 
 	watchAndWait(t, h, follower, "u3")
 
-	// The watch is answered by the inbound handler in production; here it only registers.
 	h.Broadcast("u3", []byte("u3-online"))
 
 	if got := read(t, follower); got != "u3-online" {
@@ -309,7 +299,6 @@ func TestWatchReplacesThePreviousSet(t *testing.T) {
 	watchAndWait(t, h, conn, "u2")
 	watchAndWait(t, h, conn, "u3")
 
-	// Both go out in order, so the first frame that arrives says which set is in effect
 	h.Broadcast("u2", []byte("stale"))
 	h.Broadcast("u3", []byte("current"))
 

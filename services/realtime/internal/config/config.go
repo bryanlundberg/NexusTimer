@@ -1,4 +1,3 @@
-// Package config loads the gateway settings from environment variables.
 package config
 
 import (
@@ -16,13 +15,11 @@ const (
 type Config struct {
 	RedisURL string
 	// Secret must match REALTIME_SECRET in the Next.js app.
-	Secret []byte
-	Addr   string
-	// Domain enables HTTPS on :443 with Let's Encrypt; Addr is used when empty.
-	Domain     string
-	CertDir    string
-	HealthAddr string
-	// AllowedOrigins empty allows any origin.
+	Secret         []byte
+	Addr           string
+	Domain         string
+	CertDir        string
+	HealthAddr     string
 	AllowedOrigins []string
 }
 
@@ -47,7 +44,6 @@ func Load() (Config, error) {
 	return cfg, errors.Join(errs...)
 }
 
-// HealthAddr is exposed on its own so the healthcheck command works without secrets.
 func HealthAddr() string {
 	return envOr("HEALTH_ADDR", defaultHealthAddr)
 }
