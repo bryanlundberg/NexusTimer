@@ -15,10 +15,8 @@ import (
 var upgrader = websocket.Upgrader{
 	ReadBufferSize:  512,
 	WriteBufferSize: 512,
-	// Write buffers are only held while writing, which keeps idle connections cheap
 	WriteBufferPool: &sync.Pool{},
-	// Origin is checked before upgrading so the rejection gets a proper status code
-	CheckOrigin: func(*http.Request) bool { return true },
+	CheckOrigin:     func(*http.Request) bool { return true },
 }
 
 func (s *Server) handleWebSocket(w http.ResponseWriter, r *http.Request) {
@@ -38,7 +36,7 @@ func (s *Server) handleWebSocket(w http.ResponseWriter, r *http.Request) {
 
 	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
-		return // Upgrade already wrote the error response
+		return
 	}
 	s.hub.Register(userID, conn)
 }
