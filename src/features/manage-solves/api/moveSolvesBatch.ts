@@ -1,6 +1,7 @@
 import { SolveTab } from '@/shared/types/enums'
 import { Cube } from '@/entities/cube/model/types'
 import { cubesDB } from '@/entities/cube/api/indexdb'
+import { sortSolvesNewestFirst } from '@/entities/solve/lib/sortSolves'
 import { findIndex } from 'es-toolkit/compat'
 
 interface MoveSolvesBatchDTO {
@@ -32,6 +33,9 @@ export async function moveSolvesBatch(dto: MoveSolvesBatchDTO): Promise<Cube> {
       toList.push({ ...solve, isDeleted: false, updatedAt: now + 1 })
     }
   }
+
+  if (fromTab.toLowerCase() === SolveTab.SESSION) cube.solves.all = sortSolvesNewestFirst(cube.solves.all)
+  else cube.solves.session = sortSolvesNewestFirst(cube.solves.session)
 
   return await cubesDB.update(cube)
 }
