@@ -21,6 +21,7 @@ import {
   failMessage,
   flattenPages,
   patchMessage,
+  receiveMessage,
   removeMessage
 } from '@/entities/chat/lib/message-pages'
 import { mergeReceipts } from '@/entities/chat/lib/message-status'
@@ -143,7 +144,7 @@ export function useConversation(chatId: string, peerId?: string) {
   useRealtimeEvent((event) => {
     if (!enabled) return
     if (event.type === 'message:new' && event.chatId === chatId) {
-      void update((pages) => appendMessage(pages, event.message))
+      void update((pages) => receiveMessage(pages, event.message, myId))
     } else if (event.type === 'message:edited' && event.chatId === chatId) {
       void update((pages) => patchMessage(pages, event.message._id, event.message))
     } else if (event.type === 'message:deleted' && event.chatId === chatId) {
