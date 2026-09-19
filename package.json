@@ -98,7 +98,6 @@
     "tw-animate-css": "^1.3.4",
     "ua-parser-js": "^2.0.10",
     "use-debounce": "^10.0.4",
-    "uuid": "14.0.2",
     "vaul": "^1.1.2",
     "zod": "^3.25.71",
     "zustand": "5.0.15"
