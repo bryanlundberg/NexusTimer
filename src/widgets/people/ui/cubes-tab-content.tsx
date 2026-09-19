@@ -1,13 +1,13 @@
 import * as React from 'react'
 import { orderBy } from 'es-toolkit'
 import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
-import { Cube } from '@/entities/cube/model/types'
+import type { CubeStats } from '@/entities/user-stats/model/types'
 import PeopleCubeCard from '@/widgets/people/ui/PeopleCubeCard'
 import { useTranslations } from 'next-intl'
 import { motion } from 'motion/react'
 
 interface CubesTabContentProps {
-  cubes: Cube[]
+  cubes: CubeStats[]
 }
 
 const GRID = 'grid-cols-[3rem_minmax(16rem,1.6fr)_5.5rem_5.5rem_4rem_7rem_9rem]'
@@ -22,7 +22,7 @@ export default function CubesTabContent({ cubes }: CubesTabContentProps) {
     return <EmptyTabContent />
   }
 
-  const sortedCubes = orderBy(cubes, [(cube) => cube.solves.session.length + cube.solves.all.length], ['desc'])
+  const sortedCubes = orderBy(cubes, [({ counts }) => counts.ok + counts.plus2 + counts.dnf], ['desc'])
 
   return (
     <div className="overflow-x-auto border border-border/60 bg-card/40">
