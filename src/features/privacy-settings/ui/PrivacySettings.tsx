@@ -53,6 +53,7 @@ export function PrivacySettings() {
           ) : (
             <Skeleton className="h-16 w-full" />
           )}
+          {toggle('friendRequestEmails')}
         </Rows>
       </FormSection>
 
