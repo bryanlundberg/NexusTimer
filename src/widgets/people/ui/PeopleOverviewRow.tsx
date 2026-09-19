@@ -1,46 +1,30 @@
 import * as React from 'react'
-import { minBy, orderBy } from 'es-toolkit'
 import { AnimatePresence, motion } from 'motion/react'
 import { useLocale, useTranslations } from 'next-intl'
 import { ChevronDown } from 'lucide-react'
 import dayjs from '@/shared/lib/dayjs'
 import formatTime from '@/shared/lib/formatTime'
-import calcBestAo, { findBestAoWindow } from '@/shared/lib/statistics/calcBestAo'
 import { CubeCategoryTile } from '@/shared/ui/cube-category-icon/CubeCategoryIcon'
 import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
-import { Solve } from '@/entities/solve/model/types'
+import type { AoWindowSolve, CategoryStats } from '@/entities/user-stats/model/types'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { GRID } from '@/widgets/people/ui/overview-tab-content'
 
-export type CategorySolve = Solve & { category: CubeCategory; cubeName: string }
-
 interface PeopleOverviewRowProps {
-  category: string
-  solves: CategorySolve[]
+  stats: CategoryStats
 }
 
-export default function PeopleOverviewRow({ category, solves }: PeopleOverviewRowProps) {
+export default function PeopleOverviewRow({ stats }: PeopleOverviewRowProps) {
+  const { category, count, best, bestAo5 } = stats
   const locale = useLocale()
   const tSolveCard = useTranslations('Index.PeoplePage.solve-card')
   const tCubes = useTranslations('Index.PeoplePage.cubes-tab')
   const tTimeline = useTranslations('Index.PeoplePage.timeline-tab')
   const [isOpen, setIsOpen] = React.useState(false)
 
-  const ordered = React.useMemo(() => orderBy(solves, [(s) => s.endTime], ['asc']), [solves])
-
-  const validSolves = React.useMemo(() => solves.filter((s) => !s.dnf), [solves])
-  const best = React.useMemo(() => (validSolves.length > 0 ? minBy(validSolves, (s) => s.time) : null), [validSolves])
   const bestTime = best ? best.time : null
-
-  const ao5Ms = React.useMemo(() => calcBestAo(ordered, 5), [ordered])
-  const ao5Str = !isFinite(ao5Ms) || ao5Ms <= 0 ? '--' : formatTime(ao5Ms)
-
-  const ao5Window = React.useMemo(
-    () => (isFinite(ao5Ms) && ao5Ms > 0 ? findBestAoWindow(ordered, 5) : null),
-    [ordered, ao5Ms]
-  )
-  // The cube/date the average belongs to is the cube/date of its most recent solve.
-  const ao5Last = ao5Window ? ao5Window[ao5Window.length - 1] : null
+  const ao5Str = bestAo5 ? formatTime(bestAo5.time) : '--'
+  const ao5Window = bestAo5?.window ?? null
 
   const ao5Edges = React.useMemo(() => {
     if (!ao5Window) return null
@@ -70,7 +54,7 @@ export default function PeopleOverviewRow({ category, solves }: PeopleOverviewRo
         <StatCell value={ao5Str} />
 
         {/* Total solves */}
-        <span className="text-sm font-bold tabular-nums">{solves.length.toLocaleString(locale)}</span>
+        <span className="text-sm font-bold tabular-nums">{count.toLocaleString(locale)}</span>
 
         {/* Expand indicator */}
         <div className="flex items-center justify-center size-6 rounded-md text-muted-foreground">
@@ -111,10 +95,10 @@ export default function PeopleOverviewRow({ category, solves }: PeopleOverviewRo
                   ) : null
                 }
               >
-                <DetailRow label={tTimeline('col-cube-record')} value={ao5Last?.cubeName ?? '--'} />
+                <DetailRow label={tTimeline('col-cube-record')} value={bestAo5?.cubeName ?? '--'} />
                 <DetailRow
                   label={tTimeline('col-date')}
-                  value={ao5Last ? dayjs(ao5Last.endTime).locale(locale).format('LL') : '--'}
+                  value={bestAo5 ? dayjs(bestAo5.endTime).locale(locale).format('LL') : '--'}
                 />
               </DetailGroup>
             </div>
@@ -156,7 +140,7 @@ function DetailRow({ label, value }: { label: string; value: string }) {
   )
 }
 
-function formatSolveLabel(solve: CategorySolve): string {
+function formatSolveLabel(solve: AoWindowSolve): string {
   return solve.dnf ? 'DNF' : `${formatTime(solve.time)}${solve.plus2 ? '+' : ''}`
 }
 
