@@ -11,7 +11,7 @@ import { calcTimeSpentFromMetrics } from '@/shared/lib/statistics/calcTimeSpentS
 import { calcAoFromWindow } from '@/shared/lib/statistics/getAoTolerance'
 import { SolveTab } from '@/shared/types/enums'
 
-vi.mock('pretty-ms', () => ({ __esModule: true, default: (ms: number) => `${ms}ms` }))
+vi.mock('@/shared/lib/formatDuration', () => ({ formatDuration: (ms: number) => `${ms}ms` }))
 
 // cubesDB is IndexedDB-backed; mock it so the penalty logic can be tested in isolation.
 const { getById, update } = vi.hoisted(() => ({ getById: vi.fn(), update: vi.fn() }))
