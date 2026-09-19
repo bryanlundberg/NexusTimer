@@ -1,16 +1,19 @@
-const { userFind, userFindById, statsFind, refreshUserStats } = vi.hoisted(() => ({
+const { userFind, userFindById, userCount, statsFind, refreshUserStats } = vi.hoisted(() => ({
   userFind: vi.fn(),
   userFindById: vi.fn(),
+  userCount: vi.fn(),
   statsFind: vi.fn(),
   refreshUserStats: vi.fn()
 }))
 
-vi.mock('@/entities/user/model/user', () => ({ default: { find: userFind, findById: userFindById } }))
+vi.mock('@/entities/user/model/user', () => ({
+  default: { find: userFind, findById: userFindById, countDocuments: userCount }
+}))
 vi.mock('@/entities/user-stats/model/user-stats', () => ({ default: { find: statsFind } }))
 vi.mock('@/entities/user-stats/server/refresh-user-stats', () => ({ refreshUserStats }))
 
 import { Types } from 'mongoose'
-import { recomputeBatch, recomputeUser } from '@/entities/user-stats/server/recompute-user-stats'
+import { countUsersWithBackup, recomputeBatch, recomputeUser } from '@/entities/user-stats/server/recompute-user-stats'
 import { USER_STATS_VERSION } from '@/entities/user-stats/model/types'
 
 const ids = Array.from({ length: 4 }, () => new Types.ObjectId())
@@ -96,6 +99,40 @@ describe('recomputeBatch', () => {
 
     expect(result.rebuilt).toBe(1)
     expect(result.failed).toEqual([{ userId: String(ids[0]), error: 'Backup download failed: HTTP 404' }])
+  })
+
+  it('reports every user as it finishes', async () => {
+    userFind.mockReturnValue(chain([row(ids[0], 200), row(ids[1]), row(ids[2])]))
+    statsFind.mockReturnValue(chain([existing(ids[1])]))
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async (url: string) =>
+        url.endsWith(String(ids[2])) ? new Response('gone', { status: 404 }) : new Response('[]', { status: 200 })
+      )
+    )
+    const onUser = vi.fn()
+
+    await recomputeBatch({ limit: 20, force: false, onUser })
+
+    const reported = onUser.mock.calls.map(([result]) => result)
+    expect(reported).toHaveLength(3)
+    expect(reported).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ userId: String(ids[0]), outcome: 'rebuilt' }),
+        expect.objectContaining({ userId: String(ids[1]), outcome: 'fresh' }),
+        expect.objectContaining({ userId: String(ids[2]), error: 'Backup download failed: HTTP 404' })
+      ])
+    )
+    for (const result of reported) expect(result.ms).toBeGreaterThanOrEqual(0)
+  })
+})
+
+describe('countUsersWithBackup', () => {
+  it('counts only users that have a backup url', async () => {
+    userCount.mockResolvedValue(87)
+
+    expect(await countUsersWithBackup()).toBe(87)
+    expect(userCount).toHaveBeenCalledWith({ 'backup.url': { $exists: true, $ne: null } })
   })
 })
 

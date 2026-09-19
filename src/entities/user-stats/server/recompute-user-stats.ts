@@ -17,6 +17,10 @@ type ExistingStats = Pick<UserStatsDocument, 'user' | 'version' | 'backupUpdated
 
 export type RecomputeOutcome = 'rebuilt' | 'fresh' | 'no-backup'
 
+export type RecomputeUserResult = { userId: string; ms: number } & ({ outcome: RecomputeOutcome } | { error: string })
+
+const WITH_BACKUP = { 'backup.url': { $exists: true, $ne: null } }
+
 export interface RecomputeBatchResult {
   processed: number
   rebuilt: number
@@ -61,17 +65,23 @@ export async function recomputeUser(userId: string): Promise<RecomputeOutcome | 
   return recomputeRow(row, existing.get(userId), true)
 }
 
+export function countUsersWithBackup(): Promise<number> {
+  return User.countDocuments(WITH_BACKUP)
+}
+
 export async function recomputeBatch({
   cursor,
   limit,
-  force
+  force,
+  onUser
 }: {
   cursor?: string
   limit: number
   force: boolean
+  onUser?: (result: RecomputeUserResult) => void
 }): Promise<RecomputeBatchResult> {
   const rows = await User.find(
-    { 'backup.url': { $exists: true, $ne: null }, ...(cursor && { _id: { $gt: new Types.ObjectId(cursor) } }) },
+    { ...WITH_BACKUP, ...(cursor && { _id: { $gt: new Types.ObjectId(cursor) } }) },
     { _id: 1, backup: 1 }
   )
     .sort({ _id: 1 })
@@ -85,12 +95,16 @@ export async function recomputeBatch({
     await Promise.all(
       rows.slice(start, start + CONCURRENCY).map(async (row) => {
         const userId = String(row._id)
+        const startedAt = Date.now()
         try {
           const outcome = await recomputeRow(row, existing.get(userId), force)
           if (outcome === 'rebuilt') result.rebuilt++
           else if (outcome === 'fresh') result.fresh++
+          onUser?.({ userId, outcome, ms: Date.now() - startedAt })
         } catch (error) {
-          result.failed.push({ userId, error: error instanceof Error ? error.message : String(error) })
+          const message = error instanceof Error ? error.message : String(error)
+          result.failed.push({ userId, error: message })
+          onUser?.({ userId, error: message, ms: Date.now() - startedAt })
         }
       })
     )
