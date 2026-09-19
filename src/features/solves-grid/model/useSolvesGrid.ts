@@ -1,7 +1,7 @@
 import { useQueryState } from 'nuqs'
 import { useMemo } from 'react'
 import formatTime from '@/shared/lib/formatTime'
-import { sort } from 'fast-sort'
+import { orderBy } from 'es-toolkit'
 import { Solve } from '@/entities/solve/model/types'
 import { STATES } from '@/shared/const/states'
 import { Order, Sort } from '@/shared/types/enums'
@@ -25,8 +25,8 @@ export default function useSolvesGrid(solves: Array<Solve>) {
   const filteredByPenalty = useMemo(() => filteredByQuery.filter((u) => isVisible(u)), [filteredByQuery, isVisible])
 
   const orderedSolves = useMemo(() => {
-    const key = sortType === Sort.TIME ? (u: Solve) => u.time : (u: Solve) => u.endTime
-    return orderType === Order.ASC ? sort(filteredByPenalty).asc(key) : sort(filteredByPenalty).desc(key)
+    const key = sortType === Sort.TIME ? 'time' : 'endTime'
+    return orderBy(filteredByPenalty, [key], [orderType === Order.ASC ? 'asc' : 'desc'])
   }, [filteredByPenalty, sortType, orderType])
 
   return {
