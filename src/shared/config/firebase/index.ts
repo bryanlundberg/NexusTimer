@@ -1,5 +1,4 @@
 import { initializeApp } from 'firebase/app'
-import { getFirestore } from '@firebase/firestore'
 import { getDatabase, connectDatabaseEmulator } from '@firebase/database'
 
 const app = initializeApp({
@@ -12,7 +11,6 @@ const app = initializeApp({
   databaseURL: process.env.NEXT_PUBLIC_REALTIME
 })
 
-export const db = getFirestore(app)
 export const rtdb = getDatabase(app)
 
 if (process.env.NEXT_PUBLIC_FIREBASE_EMULATOR === 'true') {
