@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl'
 import { useQueryState } from 'nuqs'
 import { STATES } from '@/shared/const/states'
 import { useState } from 'react'
-import { useDebouncedCallback } from 'use-debounce'
+import { useDebouncedCallback } from '@/shared/model/useDebouncedCallback'
 import { SearchIcon, XIcon } from 'lucide-react'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 
@@ -23,6 +23,7 @@ export default function SearchSolvesDialog() {
   }
 
   const handleClear = () => {
+    debouncedSetQuery.cancel()
     setValue('')
     setQuery('')
   }
