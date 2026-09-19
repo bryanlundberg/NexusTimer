@@ -116,9 +116,6 @@ importers:
       es-toolkit:
         specifier: ^1.42.0
         version: 1.47.1
-      fast-sort:
-        specifier: ^3.4.1
-        version: 3.4.1
       firebase:
         specifier: ^12.1.0
         version: 12.14.0
@@ -3695,9 +3692,6 @@ packages:
 
   fast-levenshtein@2.0.6:
     resolution: {integrity: sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==}
-
-  fast-sort@3.4.1:
-    resolution: {integrity: sha512-76uvGPsF6So53sZAqenP9UVT3p5l7cyTHkLWVCMinh41Y8NDrK1IYXJgaBMfc1gk7nJiSRZp676kddFG2Aa5+A==}
 
   fast-uri@3.1.2:
     resolution: {integrity: sha512-rVjf7ArG3LTk+FS6Yw81V1DLuZl1bRbNrev6Tmd/9RaroeeRRJhAt7jg/6YFxbvAQXUCavSoZhPPj6oOx+5KjQ==}
@@ -9413,8 +9407,6 @@ snapshots:
   fast-json-stable-stringify@2.1.0: {}
 
   fast-levenshtein@2.0.6: {}
-
-  fast-sort@3.4.1: {}
 
   fast-uri@3.1.2: {}
 
