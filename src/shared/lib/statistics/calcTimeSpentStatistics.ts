@@ -1,5 +1,5 @@
 import getSolvesMetrics from './getSolvesMetrics'
-import prettyMilliseconds from 'pretty-ms'
+import { formatDuration } from '@/shared/lib/formatDuration'
 import { Cube } from '@/entities/cube/model/types'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { StatisticValue } from '@/shared/types/statistics'
@@ -12,10 +12,10 @@ export function calcTimeSpentFromMetrics(solveMetrics: CubeSolves): StatisticVal
   const cubeAll = solveMetrics.cubeAll.reduce((total, acc) => total + acc.time, 0)
 
   return {
-    global: prettyMilliseconds(global),
-    session: prettyMilliseconds(session),
-    cubeAll: prettyMilliseconds(cubeAll),
-    cubeSession: prettyMilliseconds(cubeSession)
+    global: formatDuration(global),
+    session: formatDuration(session),
+    cubeAll: formatDuration(cubeAll),
+    cubeSession: formatDuration(cubeSession)
   }
 }
 

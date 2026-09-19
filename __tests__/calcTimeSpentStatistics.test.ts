@@ -1,6 +1,5 @@
-vi.mock('pretty-ms', () => ({
-  __esModule: true,
-  default: (ms: number) => `${ms}ms`
+vi.mock('@/shared/lib/formatDuration', () => ({
+  formatDuration: (ms: number) => `${ms}ms`
 }))
 
 import calcTimeSpentStatistics from '@/shared/lib/statistics/calcTimeSpentStatistics'
@@ -17,7 +16,7 @@ describe('calcTimeSpentStatistics', () => {
     })
   })
 
-  it('sums solve times per scope and forwards the total to pretty-ms', () => {
+  it('sums solve times per scope and forwards the total to formatDuration', () => {
     const cube = makeCube({
       name: 'A',
       category: '3x3',
