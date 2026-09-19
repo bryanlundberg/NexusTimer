@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
 
     await files.upload(key, file, { contentType: file.type })
 
-    const baseUrl = await files.url(key)
+    const baseUrl = files.url(key)
     const url = `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}v=${Date.now()}`
 
     await connectDB()
