@@ -99,10 +99,6 @@ function recentSolves(solves: TaggedSolve[]): RecentSolve[] {
     }))
 }
 
-/**
- * Builds the public profile summary from cubes that already went through `filterCubes`.
- * Mirrors what the profile tabs and the compare view derive on the client, so both stay in agreement.
- */
 export function computeUserStats(cubes: Cube[], timezone: string): UserStatsSummary {
   const solves = tagSolves(cubes)
   const byCategory = groupBy(solves, (solve) => solve.category)
