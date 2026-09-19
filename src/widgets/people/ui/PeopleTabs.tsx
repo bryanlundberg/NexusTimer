@@ -13,11 +13,10 @@ import { ProfileActions } from '@/widgets/people/ui/profile-actions'
 import { CompareUserButton } from '@/widgets/people/ui/compare-user-button'
 import { TabTableSkeleton } from '@/shared/ui/skeletons/people-skeleton'
 import { UserProfile } from '@/entities/user/model/user'
-import { Cube } from '@/entities/cube/model/types'
+import type { UserStatsSummary } from '@/entities/user-stats/model/types'
 import useUserBadges from '@/entities/achievement/model/useUserBadges'
 import { useUserLearned } from '@/entities/trainer-learned/model/useUserLearned'
 import { useTranslations } from 'next-intl'
-import { useMemo } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRelationship } from '@/entities/friendship/model/useFriends'
 import { FriendButton } from '@/features/friends/ui/FriendButton'
@@ -25,16 +24,16 @@ import { MutualFriends } from '@/features/friends/ui/MutualFriends'
 
 interface PeopleTabsProps {
   user: UserProfile
-  cubes: Array<Cube>
+  stats: UserStatsSummary | null
   isLoadingStats?: boolean
 }
 
 const tabs = [PTabs.OVERVIEW, PTabs.CUBES, PTabs.TIMELINE, PTabs.ALGORITHMS] as const
 
-export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsProps) {
+export function PeopleTabs({ user, stats, isLoadingStats = false }: PeopleTabsProps) {
   const t = useTranslations('Index.PeoplePage.tabs')
   const tPeople = useTranslations('Index.PeoplePage')
-  const userBadges = useUserBadges({ user, cubes })
+  const userBadges = useUserBadges({ user, stats })
   const { data: learned } = useUserLearned(user._id)
 
   const { data: session } = useSession()
@@ -53,19 +52,12 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
     [PTabs.ACHIEVEMENTS]: t('achievements')
   }
 
-  const counts = useMemo<Partial<Record<PTabs, number>>>(() => {
-    const solves = [
-      ...cubes.flatMap((cube) => cube.solves.session.map((s) => ({ ...s, category: cube.category }))),
-      ...cubes.flatMap((cube) => cube.solves.all.map((s) => ({ ...s, category: cube.category })))
-    ].filter((s) => !s.isDeleted)
-
-    return {
-      [PTabs.OVERVIEW]: new Set(solves.map((s) => s.category)).size,
-      [PTabs.CUBES]: cubes.length,
-      [PTabs.TIMELINE]: solves.length,
-      [PTabs.ALGORITHMS]: learned?.total ?? 0
-    }
-  }, [cubes, learned?.total])
+  const counts: Partial<Record<PTabs, number>> = {
+    [PTabs.OVERVIEW]: stats?.categories.length ?? 0,
+    [PTabs.CUBES]: stats?.cubes.length ?? 0,
+    [PTabs.TIMELINE]: stats?.totalSolves ?? 0,
+    [PTabs.ALGORITHMS]: learned?.total ?? 0
+  }
 
   return (
     <div className="flex flex-col w-full">
@@ -133,7 +125,7 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
           ) : isLoadingStats ? (
             <TabTableSkeleton />
           ) : (
-            <PeopleContent cubes={cubes} badges={userBadges} learnedMethods={learned?.methods} />
+            <PeopleContent stats={stats} badges={userBadges} learnedMethods={learned?.methods} />
           )}
         </div>
       </Tabs>
