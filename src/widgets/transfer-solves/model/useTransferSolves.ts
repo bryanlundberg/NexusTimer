@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useQueryState } from 'nuqs'
 import { useEffect, useMemo, useState } from 'react'
-import { sort } from 'fast-sort'
+import { orderBy } from 'es-toolkit'
 import { toast } from 'sonner'
 import { useTransferSolvesStore } from '@/widgets/transfer-solves/model/useTransferSolvesStore'
 import { STATES } from '@/shared/const/states'
@@ -28,7 +28,11 @@ export default function useTransferSolves() {
 
   const displaySolves = useMemo(() => {
     const session = cubes?.find((cube) => cube.id === sourceCollection)?.solves.session || []
-    return sort(session.filter((solve) => !solve?.isDeleted)).desc((solve) => solve.endTime)
+    return orderBy(
+      session.filter((solve) => !solve?.isDeleted),
+      ['endTime'],
+      ['desc']
+    )
   }, [sourceCollection, cubes])
 
   useEffect(() => {
