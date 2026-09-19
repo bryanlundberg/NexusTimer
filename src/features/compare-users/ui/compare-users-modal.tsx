@@ -3,12 +3,11 @@ import { XIcon, PlusIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { useUserBackups } from '@/features/compare-users/model/useUserBackups'
+import { useManyUserStats } from '@/entities/user-stats/model/useUserStats'
 import CompareTableRow from '@/features/compare-users/ui/CompareTableRow'
 import CompareCategoryBlock from '@/features/compare-users/ui/CompareCategoryBlock'
 import { useCompareUsersStats } from '@/features/compare-users/model/useCompareUsersStats'
 import { CompareUser } from '@/features/compare-users/model/compare'
-import { Cube } from '@/entities/cube/model/types'
 import { CUBE_CATEGORIES } from '@/shared/const/cube-categories'
 import { useLocale, useTranslations } from 'next-intl'
 import dayjs from '@/shared/lib/dayjs'
@@ -28,9 +27,9 @@ export default function CompareUsersModal() {
     closeOverlay()
     router.push('/people')
   }
-  const userCubes = useUserBackups(users)
+  const { statsByUser } = useManyUserStats(users.map((user) => user._id))
 
-  const usersStats: CompareUser[] = useCompareUsersStats(users, userCubes)
+  const usersStats: CompareUser[] = useCompareUsersStats(users, statsByUser)
 
   return (
     <div
@@ -139,12 +138,7 @@ export default function CompareUsersModal() {
 
         <CompareTableRow title={t('total-solves')}>
           {users.map((user) => {
-            const cubesDB = userCubes[user._id] || {}
-            const allCubes = Object.values(cubesDB).flat() as Cube[]
-            const totalSolves = allCubes.reduce(
-              (sum, cube) => sum + (cube?.solves?.all?.length || 0) + (cube?.solves?.session?.length || 0),
-              0
-            )
+            const totalSolves = statsByUser[user._id]?.totalSolves ?? 0
             const hasValue = totalSolves && !isNaN(totalSolves) && totalSolves !== 0
             const value = hasValue ? totalSolves.toLocaleString() : '—'
             return (
@@ -161,8 +155,7 @@ export default function CompareUsersModal() {
 
         <CompareTableRow title={t('total-cubes')}>
           {users.map((user) => {
-            const cubesDB = userCubes[user._id] || {}
-            const totalCubes = (Object.values(cubesDB).flat() as Cube[]).length
+            const totalCubes = statsByUser[user._id]?.cubes.length ?? 0
             const hasValue = totalCubes && !isNaN(totalCubes) && totalCubes !== 0
             const value = hasValue ? totalCubes.toLocaleString() : '—'
             return (
