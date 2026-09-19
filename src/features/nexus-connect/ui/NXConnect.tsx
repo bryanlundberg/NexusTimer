@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
-import { useScreenWakeLock } from '@/shared/model/useScreenWakeLock'
 import { TimerStatus } from '@/features/timer/model/enums'
 import { Solve } from '@/entities/solve/model/types'
 import genId from '@/shared/lib/genId'
 import { cubesDB } from '@/entities/cube/api/indexdb'
-import { child, onDisconnect, onValue, ref, update } from '@firebase/database'
+import { onDisconnect, onValue, ref, update } from '@firebase/database'
 import { rtdb } from '@/shared/config/firebase'
 import { useNexusConnectStore } from '@/features/nexus-connect/model/useNexusConnectStore'
 import { UAParser } from 'ua-parser-js'
@@ -18,7 +17,6 @@ export default function NXConnect() {
   const setLastSolve = useTimerStore((state) => state.setLastSolve)
   const setSolvingTime = useTimerStore((state) => state.setSolvingTime)
   const setIsSolving = useTimerStore((state) => state.setIsSolving)
-  const timerStatus = useTimerStore((state) => state.timerStatus)
   const setTimerStatus = useTimerStore((state) => state.setTimerStatus)
   const scramble = useTimerStore((state) => state.scramble)
   const updateSetting = useSettingsStore((state) => state.updateSetting)
@@ -55,8 +53,6 @@ export default function NXConnect() {
 
     solveTimeId.current = requestAnimationFrame(updateTimer)
   }
-
-  useScreenWakeLock(isSolving || timerStatus === TimerStatus.INSPECTING)
 
   useEffect(() => {
     const offsetRef = ref(rtdb, '.info/serverTimeOffset')
