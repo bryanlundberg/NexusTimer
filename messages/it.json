@@ -941,6 +941,10 @@
         "friends_of_friends": "Amici di amici",
         "nobody": "Nessuno"
       },
+      "friendRequestEmails": {
+        "label": "Avvisami via email delle nuove richieste",
+        "description": "Ricevi una email quando qualcuno ti invia una richiesta di amicizia."
+      },
       "statsVisibility": {
         "label": "Chi può vedere le mie statistiche",
         "description": "I tuoi tempi, cubi e algoritmi imparati. Continui a comparire nella ricerca e nelle classifiche.",

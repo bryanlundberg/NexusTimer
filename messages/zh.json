@@ -938,6 +938,10 @@
         "friends_of_friends": "好友的好友",
         "nobody": "没有人"
       },
+      "friendRequestEmails": {
+        "label": "通过邮件通知新请求",
+        "description": "有人向你发送好友请求时收到邮件。"
+      },
       "statsVisibility": {
         "label": "谁可以查看我的统计",
         "description": "你的成绩、魔方和已学公式。你仍会出现在搜索和排行榜中。",

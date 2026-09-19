@@ -941,6 +941,10 @@
         "friends_of_friends": "Teman dari teman",
         "nobody": "Tidak ada"
       },
+      "friendRequestEmails": {
+        "label": "Beri tahu aku lewat email tentang permintaan baru",
+        "description": "Terima email saat seseorang mengirimimu permintaan pertemanan."
+      },
       "statsVisibility": {
         "label": "Siapa yang bisa melihat statistikku",
         "description": "Waktu, kubus, dan algoritma yang kamu pelajari. Kamu tetap muncul di pencarian dan papan peringkat.",

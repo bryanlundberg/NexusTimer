@@ -938,6 +938,10 @@
         "friends_of_friends": "フレンドのフレンド",
         "nobody": "誰もいない"
       },
+      "friendRequestEmails": {
+        "label": "新しいリクエストをメールで通知",
+        "description": "誰かからフレンドリクエストが届いたときにメールを受け取ります。"
+      },
       "statsVisibility": {
         "label": "統計を見られる人",
         "description": "タイム、キューブ、習得した手順。検索とランキングには引き続き表示されます。",

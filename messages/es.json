@@ -904,6 +904,10 @@
         "friends_of_friends": "Amigos de amigos",
         "nobody": "Nadie"
       },
+      "friendRequestEmails": {
+        "label": "Avisarme por email de nuevas solicitudes",
+        "description": "Recibe un email cuando alguien te envíe una solicitud de amistad."
+      },
       "statsVisibility": {
         "label": "Quién puede ver mis estadísticas",
         "description": "Tus tiempos, cubos y algoritmos aprendidos. Sigues apareciendo en la búsqueda y en los leaderboards.",

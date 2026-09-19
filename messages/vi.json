@@ -941,6 +941,10 @@
         "friends_of_friends": "Bạn của bạn bè",
         "nobody": "Không ai"
       },
+      "friendRequestEmails": {
+        "label": "Gửi email cho tôi khi có lời mời mới",
+        "description": "Nhận email khi có người gửi lời mời kết bạn cho bạn."
+      },
       "statsVisibility": {
         "label": "Ai có thể xem thống kê của tôi",
         "description": "Thời gian, khối rubik và thuật toán bạn đã học. Bạn vẫn xuất hiện trong tìm kiếm và bảng xếp hạng.",

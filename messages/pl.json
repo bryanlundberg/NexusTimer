@@ -941,6 +941,10 @@
         "friends_of_friends": "Znajomi znajomych",
         "nobody": "Nikt"
       },
+      "friendRequestEmails": {
+        "label": "Powiadamiaj mnie e-mailem o nowych zaproszeniach",
+        "description": "Otrzymuj e-mail, gdy ktoś wyśle Ci zaproszenie do znajomych."
+      },
       "statsVisibility": {
         "label": "Kto może widzieć moje statystyki",
         "description": "Twoje czasy, kostki i nauczone algorytmy. Nadal będziesz widoczny w wyszukiwaniu i rankingach.",

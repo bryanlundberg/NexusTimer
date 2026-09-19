@@ -938,6 +938,10 @@
         "friends_of_friends": "Freunde von Freunden",
         "nobody": "Niemand"
       },
+      "friendRequestEmails": {
+        "label": "Per E-Mail über neue Anfragen informieren",
+        "description": "Erhalte eine E-Mail, wenn dir jemand eine Freundschaftsanfrage sendet."
+      },
       "statsVisibility": {
         "label": "Wer meine Statistiken sehen kann",
         "description": "Deine Zeiten, Cubes und gelernten Algorithmen. Du erscheinst weiterhin in der Suche und in den Bestenlisten.",

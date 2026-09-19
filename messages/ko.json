@@ -938,6 +938,10 @@
         "friends_of_friends": "친구의 친구",
         "nobody": "아무도 없음"
       },
+      "friendRequestEmails": {
+        "label": "새 요청을 이메일로 알림",
+        "description": "누군가 친구 요청을 보내면 이메일을 받습니다."
+      },
       "statsVisibility": {
         "label": "내 통계를 볼 수 있는 사람",
         "description": "기록, 큐브, 익힌 알고리즘. 검색과 리더보드에는 계속 표시됩니다.",

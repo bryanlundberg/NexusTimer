@@ -931,6 +931,10 @@
         "friends_of_friends": "Friends of friends",
         "nobody": "Nobody"
       },
+      "friendRequestEmails": {
+        "label": "Email me about new requests",
+        "description": "Get an email when someone sends you a friend request."
+      },
       "statsVisibility": {
         "label": "Who can see my stats",
         "description": "Your times, cubes and learned algorithms. You still appear in search and leaderboards.",

@@ -941,6 +941,10 @@
         "friends_of_friends": "Kaibigan ng mga kaibigan",
         "nobody": "Walang sinuman"
       },
+      "friendRequestEmails": {
+        "label": "I-email ako tungkol sa mga bagong request",
+        "description": "Makatanggap ng email kapag may nagpadala sa iyo ng friend request."
+      },
       "statsVisibility": {
         "label": "Sino ang puwedeng makakita ng aking stats",
         "description": "Ang iyong mga oras, cube at natutunang algorithm. Lalabas ka pa rin sa paghahanap at sa leaderboards.",
