@@ -1,0 +1,62 @@
+---
+import Layout from '@/shared/ui/Layout.astro'
+import SignInForm from '@/features/auth/ui/SignInForm.astro'
+
+export const prerender = false
+---
+
+<Layout title="Sign in · Atrion">
+  <main>
+    <div class="stack">
+      <div class="head">
+        <img class="mark" src="/logo.png" alt="Nexus Timer" width="48" height="48" />
+        <h1>Atrion</h1>
+        <p class="hint">Sign in with your Nexus Timer account.</p>
+      </div>
+
+      <SignInForm />
+    </div>
+  </main>
+</Layout>
+
+<style>
+  main {
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    padding: 1.5rem;
+  }
+
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 22rem;
+  }
+
+  .head {
+    text-align: center;
+  }
+
+  .mark {
+    display: block;
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 1rem;
+  }
+
+  h1 {
+    margin: 0;
+    font-family: var(--font-brand);
+    font-size: 1.9rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .hint {
+    margin: 0.3rem 0 0;
+    color: var(--muted-foreground);
+    font-size: 0.85rem;
+  }
+</style>

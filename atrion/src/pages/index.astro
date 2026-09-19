@@ -1,0 +1,14 @@
+---
+import Layout from '@/shared/ui/Layout.astro'
+import AppHeader from '@/widgets/app-header/ui/AppHeader.astro'
+import ReviewList from '@/widgets/review-list/ui/ReviewList.astro'
+
+export const prerender = false
+
+const user = Astro.locals.user!
+---
+
+<Layout>
+  <AppHeader user={user} />
+  <ReviewList />
+</Layout>
