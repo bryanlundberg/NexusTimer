@@ -5,12 +5,21 @@ services:
     volumes: ["nexus_mongo:/data/db"]
 
   redis:
-    image: redis:alpine
+    image: redis:8-alpine
     ports: [ "6379:6379" ]
 
   redisinsight:
     image: redis/redisinsight:latest
     ports: [ "5540:5540" ]
+
+  realtime:
+    build: ./services/realtime
+    environment:
+      REDIS_URL: redis://redis:6379
+      REALTIME_SECRET: dev-realtime-secret
+    ports: [ "8080:8080" ]
+    depends_on:
+      - redis
 
   firebase:
     image: andreysenov/firebase-tools

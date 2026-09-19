@@ -5,6 +5,7 @@ import { getRedis } from '@/shared/config/redis/redis'
 const multiMock = {
   del: vi.fn().mockReturnThis(),
   sAdd: vi.fn().mockReturnThis(),
+  expire: vi.fn().mockReturnThis(),
   exec: vi.fn().mockResolvedValue([])
 }
 
@@ -13,6 +14,7 @@ const redisMock = {
   sIsMember: vi.fn(),
   sAdd: vi.fn(),
   sRem: vi.fn(),
+  expire: vi.fn(),
   del: vi.fn(),
   get: vi.fn(),
   set: vi.fn(),
@@ -71,6 +73,7 @@ describe('learnedCache', () => {
 
       expect(multiMock.del).toHaveBeenCalledWith(KEY)
       expect(multiMock.sAdd).toHaveBeenCalledWith(KEY, [SENTINEL, 'case-a', 'case-b'])
+      expect(multiMock.expire).toHaveBeenCalledWith(KEY, 60 * 60 * 24 * 7)
       expect(multiMock.exec).toHaveBeenCalled()
     })
 
@@ -95,6 +98,7 @@ describe('learnedCache', () => {
 
       expect(redisMock.sIsMember).toHaveBeenCalledWith(KEY, SENTINEL)
       expect(redisMock.sAdd).toHaveBeenCalledWith(KEY, 'case-a')
+      expect(redisMock.expire).toHaveBeenCalledWith(KEY, 60 * 60 * 24 * 7, 'NX')
     })
 
     it('removes the caseId when learned=false and cached', async () => {
@@ -102,6 +106,7 @@ describe('learnedCache', () => {
       await learnedCache.setLearned(USER, METHOD, 'case-a', false)
 
       expect(redisMock.sRem).toHaveBeenCalledWith(KEY, 'case-a')
+      expect(redisMock.expire).not.toHaveBeenCalled()
     })
 
     it('invalidates the key if the write-through fails', async () => {
@@ -134,7 +139,7 @@ describe('learnedCache', () => {
 
     it('primeSummary stores the JSON and swallows failures', async () => {
       await learnedCache.primeSummary(USER, summary)
-      expect(redisMock.set).toHaveBeenCalledWith(SUMMARY_KEY, JSON.stringify(summary))
+      expect(redisMock.set).toHaveBeenCalledWith(SUMMARY_KEY, JSON.stringify(summary), { EX: 60 * 60 * 24 * 7 })
 
       getRedisMock.mockRejectedValue(new Error('down'))
       await expect(learnedCache.primeSummary(USER, summary)).resolves.toBeUndefined()

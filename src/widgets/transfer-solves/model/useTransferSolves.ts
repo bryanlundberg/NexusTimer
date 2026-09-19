@@ -12,7 +12,7 @@ import { cubesDB } from '@/entities/cube/api/indexdb'
 export default function useTransferSolves() {
   const t = useTranslations('Index.TransferSolvesPage')
   const cubes = useTimerStore((state) => state.cubes)
-  const setCubes = useTimerStore((state) => state.setCubes)
+  const patchCubes = useTimerStore((state) => state.patchCubes)
   const [sourceCollection, setSourceCollection] = useQueryState(STATES.TRANSFER_SOLVES_PAGE.SOURCE_COLLECTION.KEY, {
     defaultValue: STATES.TRANSFER_SOLVES_PAGE.SOURCE_COLLECTION.DEFAULT_VALUE
   })
@@ -95,12 +95,11 @@ export default function useTransferSolves() {
           solves: { ...destinationCube.solves, session: mergedDestinationSession }
         }
 
-        await cubesDB.update(updatedSourceCube)
-        await cubesDB.update(updatedDestinationCube)
-        const updatedCubes = await cubesDB.getAll()
+        const liveSource = await cubesDB.update(updatedSourceCube)
+        const liveDestination = await cubesDB.update(updatedDestinationCube)
 
-        setCubes(updatedCubes)
-        setSelectedCube(updatedCubes.find((cube) => cube.id === sourceCollection) || null)
+        patchCubes([liveSource, liveDestination])
+        setSelectedCube(liveSource)
 
         toast.success('Transfer successful')
         clearSelectedSolves()

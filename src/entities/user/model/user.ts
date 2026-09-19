@@ -2,6 +2,7 @@ import { Schema, models, model } from 'mongoose'
 import { FACE_COLORS } from '@/shared/const/face-colors'
 import { CUBING_METHODS, type CubingMethod } from '@/shared/const/cubing-methods'
 import { Layers } from '@/shared/types/enums'
+import { FRIEND_REQUEST_POLICIES, STATS_VISIBILITIES, type PrivacySettings } from '@/entities/privacy/model/types'
 
 export interface UserDocument {
   _id: string
@@ -25,6 +26,7 @@ export interface UserDocument {
     provider: string
     providerId: string
   }>
+  privacy?: Partial<PrivacySettings>
   createdAt: Date
   updatedAt: Date
   __v: number
@@ -32,11 +34,12 @@ export interface UserDocument {
 
 /**
  * Shape of the user as returned by `GET /api/v1/users/[id]`. Extends the
- * persisted document with fields the endpoint joins on the fly — currently
- * just the keys of manually-granted achievements.
+ * persisted document with fields the endpoint joins on the fly: the keys of
+ * manually-granted achievements and whether the viewer may see the stats.
  */
 export interface UserProfile extends UserDocument {
   grantedAchievements?: string[]
+  statsHidden?: boolean
 }
 
 const UserSchema = new Schema(
@@ -95,7 +98,17 @@ const UserSchema = new Schema(
         providerId: { type: String },
         _id: false
       }
-    ]
+    ],
+    privacy: {
+      type: {
+        friendRequests: { type: String, enum: FRIEND_REQUEST_POLICIES },
+        statsVisibility: { type: String, enum: STATS_VISIBILITIES },
+        friendRequestEmails: { type: Boolean },
+        readReceipts: { type: Boolean },
+        typingIndicator: { type: Boolean }
+      },
+      _id: false
+    }
   },
   { timestamps: true }
 )

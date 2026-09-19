@@ -2,25 +2,26 @@
 
 import { Tabs } from '@/components/ui/tabs'
 import ScrollableUnderlineTabs from '@/shared/ui/animated-tabs/ScrollableUnderlineTabs'
-import { Button } from '@/components/ui/button'
 import { usePeopleTab } from '@/features/people-tab/model/usePeopleTab'
 import { PeopleTabs as PTabs } from '@/widgets/people/model/types'
 import { PeopleContent } from '@/widgets/people/ui/PeopleContent'
+import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
 import { ProfileHeroBanner } from '@/widgets/people/ui/profile-hero-banner'
 import { ProfileBadgesStrip } from '@/widgets/people/ui/profile-badges-strip'
 import { ProfileCompletenessBar } from '@/widgets/people/ui/profile-completeness'
+import { ProfileActions } from '@/widgets/people/ui/profile-actions'
+import { CompareUserButton } from '@/widgets/people/ui/compare-user-button'
 import { TabTableSkeleton } from '@/shared/ui/skeletons/people-skeleton'
 import { UserProfile } from '@/entities/user/model/user'
 import { Cube } from '@/entities/cube/model/types'
 import useUserBadges from '@/entities/achievement/model/useUserBadges'
 import { useUserLearned } from '@/entities/trainer-learned/model/useUserLearned'
 import { useTranslations } from 'next-intl'
-import { useMemo, useRef, useState } from 'react'
+import { useMemo } from 'react'
 import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
-import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
-import { FlyingAvatar } from '@/features/compare-users/ui/FlyingAvatar'
-import { CheckCircle2, GitCompareIcon, Pencil } from 'lucide-react'
+import { useRelationship } from '@/entities/friendship/model/useFriends'
+import { FriendButton } from '@/features/friends/ui/FriendButton'
+import { MutualFriends } from '@/features/friends/ui/MutualFriends'
 
 interface PeopleTabsProps {
   user: UserProfile
@@ -32,36 +33,15 @@ const tabs = [PTabs.OVERVIEW, PTabs.CUBES, PTabs.TIMELINE, PTabs.ALGORITHMS] as 
 
 export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsProps) {
   const t = useTranslations('Index.PeoplePage.tabs')
+  const tPeople = useTranslations('Index.PeoplePage')
   const userBadges = useUserBadges({ user, cubes })
   const { data: learned } = useUserLearned(user._id)
-  const tProfile = useTranslations('Index.PeoplePage')
-  const tCard = useTranslations('Index.PeoplePage.user-card')
 
   const { data: session } = useSession()
   const isCurrentUser = session?.user?.id === user._id
-  const router = useRouter()
-
-  const addUser = useCompareUsersStore((state) => state.addUser)
-  const removeUser = useCompareUsersStore((state) => state.removeUser)
-  const users = useCompareUsersStore((state) => state.users)
-  const isAdded = !!users.find((u) => u._id === user._id)
-
-  const [isFlying, setIsFlying] = useState(false)
-  const [startPos, setStartPos] = useState({ x: 0, y: 0 })
-  const compareRef = useRef<HTMLButtonElement>(null)
-
-  const handleCompareClick = () => {
-    if (!isAdded) {
-      if (compareRef.current) {
-        const rect = compareRef.current.getBoundingClientRect()
-        setStartPos({ x: rect.left, y: rect.top })
-        setIsFlying(true)
-      }
-      addUser(user)
-    } else {
-      removeUser(user._id)
-    }
-  }
+  const { data: relationship } = useRelationship(user._id)
+  const hasIncomingRequest = relationship?.status === 'pending_in'
+  const statsHidden = !!user.statsHidden
 
   const { value, set } = usePeopleTab()
 
@@ -89,15 +69,40 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
 
   return (
     <div className="flex flex-col w-full">
-      {isFlying && <FlyingAvatar src={user.image} startPos={startPos} onComplete={() => setIsFlying(false)} />}
-
-      <ProfileHeroBanner user={user} level={userBadges.earnedTiers} />
+      <ProfileHeroBanner
+        user={user}
+        level={userBadges.earnedTiers}
+        actions={
+          <ProfileActions
+            user={user}
+            isCurrentUser={isCurrentUser}
+            status={relationship?.status}
+            canRequest={relationship?.canRequest}
+            className="max-sm:hidden sm:self-end"
+          />
+        }
+      >
+        {relationship?.mutual && <MutualFriends mutual={relationship.mutual} />}
+        {hasIncomingRequest && (
+          <div className="mt-1.5">
+            <FriendButton userId={user._id} name={user.name} status="pending_in" />
+          </div>
+        )}
+        <ProfileActions
+          user={user}
+          isCurrentUser={isCurrentUser}
+          status={relationship?.status}
+          canRequest={relationship?.canRequest}
+          className="mt-1.5 sm:hidden"
+        >
+          {!statsHidden && <CompareUserButton user={user} />}
+        </ProfileActions>
+      </ProfileHeroBanner>
       {isCurrentUser && <ProfileCompletenessBar user={user} />}
-      {!isLoadingStats && <ProfileBadgesStrip badges={userBadges} />}
+      {!isLoadingStats && !statsHidden && <ProfileBadgesStrip badges={userBadges} />}
 
       <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full mb-5">
-        {/* Tabs nav + actions row */}
-        <div className="flex flex-row items-center justify-between gap-3 px-4 md:px-6 py-3 mt-3">
+        <div className="flex flex-wrap items-center justify-between gap-3 px-4 md:px-6 py-3 mt-3">
           <div className="min-w-0 flex-1">
             <ScrollableUnderlineTabs
               items={tabs.map((tab) => ({
@@ -105,7 +110,7 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
                 label: (
                   <span className="inline-flex items-center gap-1.5">
                     {labels[tab]}
-                    {!isLoadingStats && counts[tab] != null && (
+                    {!isLoadingStats && !statsHidden && counts[tab] != null && (
                       <span className="inline-flex items-center justify-center min-w-[1.125rem] h-[1.125rem] px-1 rounded-full bg-muted text-[10px] font-semibold tabular-nums leading-none text-muted-foreground transition-colors group-data-[state=active]:bg-primary/10 group-data-[state=active]:text-primary">
                         {counts[tab]}
                       </span>
@@ -118,33 +123,14 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
             />
           </div>
 
-          <div className="flex items-center gap-2 shrink-0">
-            {isCurrentUser && (
-              <Button variant="secondary" size="sm" className="gap-1.5" onClick={() => router.push('/account')}>
-                <Pencil className="size-4" />
-                <span className="hidden sm:inline">{tProfile('edit-profile')}</span>
-              </Button>
-            )}
-            <Button
-              ref={compareRef}
-              variant={isAdded ? 'secondary' : 'outline'}
-              size="sm"
-              className="gap-1.5"
-              onClick={handleCompareClick}
-            >
-              {isAdded ? (
-                <CheckCircle2 className="size-4 text-primary animate-in zoom-in duration-300" />
-              ) : (
-                <GitCompareIcon className="size-4" />
-              )}
-              <span className="hidden sm:inline">{tCard('compare')}</span>
-            </Button>
-          </div>
+          {!statsHidden && <CompareUserButton user={user} className="max-sm:hidden sm:shrink-0" />}
         </div>
 
         {/* Tab content */}
         <div className="px-4 md:px-6 py-0">
-          {isLoadingStats ? (
+          {statsHidden ? (
+            <EmptyTabContent message={tPeople('stats-hidden', { name: user.name })} />
+          ) : isLoadingStats ? (
             <TabTableSkeleton />
           ) : (
             <PeopleContent cubes={cubes} badges={userBadges} learnedMethods={learned?.methods} />

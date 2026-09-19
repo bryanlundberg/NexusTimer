@@ -10,16 +10,11 @@ export default function DialogMoveHistorial() {
   const overlayStore = useOverlayStore()
   const t = useTranslations('Index')
   const selectedCube = useTimerStore((state) => state.selectedCube)
-  const setCubes = useTimerStore((state) => state.setCubes)
-  const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
+  const patchCubes = useTimerStore((state) => state.patchCubes)
 
   const handleMoveSessionToHistorial = async () => {
     if (selectedCube) {
-      await cubesDB.endSessionForCube(selectedCube)
-      const cubes = await cubesDB.getAll()
-      setCubes(cubes)
-      const currentCube = await cubesDB.getById(selectedCube.id)
-      setSelectedCube(currentCube)
+      patchCubes(await cubesDB.endSessionForCube(selectedCube))
       overlayStore.close()
       return
     }

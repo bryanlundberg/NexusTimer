@@ -4,6 +4,8 @@ import connectDB from '@/shared/config/mongodb/mongodb'
 import TrainerLearned from '@/entities/trainer-learned/model/trainer-learned'
 import { learnedCache } from '@/entities/trainer-learned/model/learned-cache'
 import { badRequest, ok, serverError } from '@/shared/api/responses'
+import { auth } from '@/shared/config/auth/auth'
+import { statsVisibleTo } from '@/entities/privacy/server/stats-visibility'
 
 interface LearnedMethodAggregate {
   _id: string
@@ -17,10 +19,13 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<{
     if (!userId) return badRequest('ID is required')
     if (!Types.ObjectId.isValid(userId)) return ok({ total: 0, methods: [] })
 
+    await connectDB()
+
+    const session = await auth()
+    if (!(await statsVisibleTo(userId, session?.user?.id))) return ok({ total: 0, methods: [], hidden: true })
+
     const cached = await learnedCache.getSummary(userId)
     if (cached) return ok(cached)
-
-    await connectDB()
 
     const grouped = await TrainerLearned.aggregate<LearnedMethodAggregate>([
       { $match: { user: new Types.ObjectId(userId) } },

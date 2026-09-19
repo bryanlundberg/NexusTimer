@@ -10,11 +10,8 @@ export async function isRateLimited(ip: string) {
   try {
     const redis = await getRedis()
     const key = `rate-limit:algorithm-suggestions:${ip}`
-    const count = await redis.incr(key)
-    if (count === 1) {
-      await redis.expire(key, RATE_WINDOW_SECONDS)
-    }
-    return count > RATE_LIMIT
+    const [count] = (await redis.multi().incr(key).expire(key, RATE_WINDOW_SECONDS, 'NX').exec()) as unknown[]
+    return Number(count) > RATE_LIMIT
   } catch (error) {
     console.error('[algorithms/suggestions:rate-limit]', error)
     return false

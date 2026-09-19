@@ -16,7 +16,7 @@ import formatTime from '@/shared/lib/formatTime'
 import getWorstTime from '@/shared/lib/statistics/getWorstTime'
 import getMean from '@/shared/lib/statistics/getMean'
 import getDeviation from '@/shared/lib/statistics/getDeviation'
-import { calcAoFromWindow } from '@/shared/lib/statistics/getAoTolerance'
+import { rollingAo } from '@/shared/lib/statistics/rollingAo'
 import { Solve } from '@/entities/solve/model/types'
 import dayjs from '@/shared/lib/dayjs'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
@@ -89,6 +89,9 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
       for (const c of cubes) cubeNameById.set(c.id, c.name)
     }
 
+    const lastIndex = reversedDataSet.length - 1
+    const ao5Values = rollingAo(dataSet, AO5_SIZE)
+    const ao12Values = rollingAo(dataSet, AO12_SIZE)
     let runningBest = Infinity
     reversedDataSet.forEach((i: Solve, index: number) => {
       const timeIndex = index + 1
@@ -105,13 +108,13 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
       }
       if (runningBest !== Infinity) pbAtStepMap.set(timeIndex, runningBest)
 
-      const setRollingAo = (size: number, map: Map<number, number>) => {
+      const setRollingAo = (size: number, values: Float64Array, map: Map<number, number>) => {
         if (index < size - 1) return
-        const ao = calcAoFromWindow(reversedDataSet.slice(index - size + 1, index + 1), size)
+        const ao = values[lastIndex - index]
         if (ao > 0) map.set(timeIndex, ao)
       }
-      setRollingAo(AO5_SIZE, ao5Map)
-      setRollingAo(AO12_SIZE, ao12Map)
+      setRollingAo(AO5_SIZE, ao5Values, ao5Map)
+      setRollingAo(AO12_SIZE, ao12Values, ao12Map)
     })
 
     const mean = getMean(dataSet)

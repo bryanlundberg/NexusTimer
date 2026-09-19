@@ -35,24 +35,7 @@ export default function PeoplePage() {
       <PageBody variant="hero" className="px-2 pb-8 flex flex-col w-full max-w-2xl mx-auto">
         <PeoplePageHeader total={data?.docs} showing={data?.events?.length} />
 
-        <div className="overflow-hidden border border-border/60 bg-card/40">
-          {/* Table header */}
-          <div className="grid grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[3rem_minmax(0,1fr)_7rem_7rem_7rem] items-center gap-x-4 px-3 py-2 border-b border-border/60 bg-muted/30">
-            <span className="hidden sm:block" />
-            <span className="font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-              {t('title')}
-            </span>
-            <span className="hidden sm:block text-center font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-              {t('col-country')}
-            </span>
-            <span className="hidden sm:block text-center font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-              WCA
-            </span>
-            <span className="text-right font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground pr-1">
-              {t('col-actions')}
-            </span>
-          </div>
-
+        <section className="overflow-hidden border border-border/60 bg-card/40">
           {/* Skeleton rows */}
           {isLoading &&
             Array(5)
@@ -60,15 +43,16 @@ export default function PeoplePage() {
               .map((_, i) => (
                 <div
                   key={i}
-                  className="grid grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[3rem_minmax(0,1fr)_7rem_7rem_7rem] items-center gap-x-4 px-3 py-3 border-b border-border/40 last:border-b-0"
+                  className="flex items-center gap-3 px-3 py-3 border-b border-border/40 last:border-b-0 border-l-2 border-l-transparent"
                 >
-                  <Skeleton className="hidden sm:block size-9 rounded-lg" />
-                  <Skeleton className="h-3.5 w-40" />
-                  <Skeleton className="hidden sm:block h-3.5 w-16" />
-                  <Skeleton className="hidden sm:block h-3.5 w-12" />
-                  <div className="flex items-center justify-end gap-2">
-                    <Skeleton className="h-8 w-8 sm:w-24 rounded-md" />
+                  <Skeleton className="size-9 rounded-lg shrink-0" />
+                  <div className="flex flex-col gap-1.5 min-w-0 flex-1">
+                    <Skeleton className="h-3.5 w-32" />
+                    <Skeleton className="h-3 w-48" />
+                    <Skeleton className="h-3 w-40" />
+                    <Skeleton className="h-2.5 w-28" />
                   </div>
+                  <Skeleton className="h-8 w-8 sm:w-24 rounded-md shrink-0" />
                 </div>
               ))}
 
@@ -82,7 +66,7 @@ export default function PeoplePage() {
             data.events.map((user: UserDocument) => (
               <UserCard key={user._id} user={user} presence={presence[user._id]} />
             ))}
-        </div>
+        </section>
 
         {!isLoading && data?.pages !== undefined && data.pages > 1 && (
           <div className="mt-4">

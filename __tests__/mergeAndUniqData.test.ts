@@ -127,7 +127,7 @@ describe('mergeAndUniqData', () => {
       expect(result.solves.all[0].time).toBe(9999)
     })
 
-    it('sorts the merged solves by startTime ascending', async () => {
+    it('sorts the merged solves newest first', async () => {
       const backup = [makeCube({ id: 'a', updatedAt: 200, allSolves: [makeSolve({ id: 's-late', startTime: 300 })] })]
       const local = [
         makeCube({
@@ -137,7 +137,7 @@ describe('mergeAndUniqData', () => {
         })
       ]
       const [result] = await mergeAndUniqData(backup, local)
-      expect(result.solves.all.map((s) => s.startTime)).toEqual([100, 200, 300])
+      expect(result.solves.all.map((s) => s.startTime)).toEqual([300, 200, 100])
     })
 
     it('merges the session and all buckets independently', async () => {

@@ -3,6 +3,8 @@ import { Achievement, SolveStats } from './types'
 import { CATEGORY_ACHIEVEMENTS } from './category-achievements'
 import dayjs from '@/shared/lib/dayjs'
 import { Cube } from '@/entities/cube/model/types'
+import { Solve } from '@/entities/solve/model/types'
+import { mergeSolvesNewestFirst } from '@/entities/solve/lib/sortSolves'
 
 export function computeSolveStats(cubes: Cube[]): SolveStats {
   const solvesByDate = new Map<string, number>()
@@ -13,8 +15,7 @@ export function computeSolveStats(cubes: Cube[]): SolveStats {
   let totalTimeSpent = 0
   let newYearSolveCount = 0
   let max3x3SolvesPerCube = 0
-  let currentCleanStreak = 0
-  let longestCleanStreak = 0
+  const streakLists: Solve[][] = []
   let bookmarkCount = 0
   let commentCount = 0
   let replayCount = 0
@@ -22,15 +23,15 @@ export function computeSolveStats(cubes: Cube[]): SolveStats {
   for (const cube of cubes) {
     let cube3x3Count = 0
 
-    // Order matters for the clean streak — match a [...all, ...session] traversal.
     const combined = cube.solves.all.concat(cube.solves.session)
+    streakLists.push(
+      cube.solves.all.filter((solve) => !solve.isDeleted),
+      cube.solves.session.filter((solve) => !solve.isDeleted)
+    )
 
     for (let i = 0; i < combined.length; i++) {
       const solve = combined[i]
-      if (solve.isDeleted) {
-        currentCleanStreak = 0
-        continue
-      }
+      if (solve.isDeleted) continue
 
       if (solve.bookmark) bookmarkCount++
       if (solve.comment && solve.comment.trim().length > 0) commentCount++
@@ -53,16 +54,20 @@ export function computeSolveStats(cubes: Cube[]): SolveStats {
         if (date.endsWith('-01-01')) newYearSolveCount++
         solvesByDate.set(date, (solvesByDate.get(date) ?? 0) + 1)
       }
-
-      if (!solve.dnf && !solve.plus2) {
-        currentCleanStreak++
-        if (currentCleanStreak > longestCleanStreak) longestCleanStreak = currentCleanStreak
-      } else {
-        currentCleanStreak = 0
-      }
     }
 
     if (cube3x3Count > max3x3SolvesPerCube) max3x3SolvesPerCube = cube3x3Count
+  }
+
+  let currentCleanStreak = 0
+  let longestCleanStreak = 0
+  for (const solve of mergeSolvesNewestFirst(streakLists)) {
+    if (!solve.dnf && !solve.plus2) {
+      currentCleanStreak++
+      if (currentCleanStreak > longestCleanStreak) longestCleanStreak = currentCleanStreak
+    } else {
+      currentCleanStreak = 0
+    }
   }
 
   let longestDateStreak = solvesByDate.size > 0 ? 1 : 0

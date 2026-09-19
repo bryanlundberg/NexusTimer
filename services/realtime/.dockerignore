@@ -1,0 +1,7 @@
+.env
+.env.*
+!.env.example
+*.md
+**/*_test.go
+docker-compose.yml
+deploy

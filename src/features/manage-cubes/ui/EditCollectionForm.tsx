@@ -13,14 +13,13 @@ import { toast } from 'sonner'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { UpdateCollectionFormData, updateCollectionSchema } from '@/features/manage-cubes/model/schemas'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
-import { cubesDB } from '@/entities/cube/api/indexdb'
 import { editCubeCollection } from '@/features/manage-cubes/api/editCubeCollection'
 import { useEffect } from 'react'
 import RatedIcon from '@/shared/ui/rate-icon/RateIcon'
 
 export default function EditCollectionForm() {
   const t = useTranslations('Index')
-  const setCubes = useTimerStore((state) => state.setCubes)
+  const patchCube = useTimerStore((state) => state.patchCube)
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
 
@@ -45,15 +44,13 @@ export default function EditCollectionForm() {
 
   const handleSubmitEditCubeCollection = async (form: UpdateCollectionFormData) => {
     try {
-      await editCubeCollection({
-        id: metadata!.id,
-        name: form.name,
-        category: form.category
-      })
-
-      const updatedCubes = await cubesDB.getAll()
-
-      setCubes(updatedCubes)
+      patchCube(
+        await editCubeCollection({
+          id: metadata!.id,
+          name: form.name,
+          category: form.category
+        })
+      )
 
       if (metadata?.id === selectedCube?.id) {
         setSelectedCube(null)

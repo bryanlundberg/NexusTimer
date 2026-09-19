@@ -28,6 +28,24 @@ export default function MenuSoundsSection({ control }: { control: any }) {
         control={control}
         description={t('Settings-descriptions.new-round-sound')}
       />
+      <MenuOption
+        name={'sounds.messageReceived'}
+        label={t('Settings-menu.message-received-sound')}
+        control={control}
+        description={t('Settings-descriptions.message-received-sound')}
+      />
+      <MenuOption
+        name={'sounds.messageSent'}
+        label={t('Settings-menu.message-sent-sound')}
+        control={control}
+        description={t('Settings-descriptions.message-sent-sound')}
+      />
+      <MenuOption
+        name={'sounds.newFriend'}
+        label={t('Settings-menu.new-friend-sound')}
+        control={control}
+        description={t('Settings-descriptions.new-friend-sound')}
+      />
       <MenuSelectVoiceGender />
     </MenuSection>
   )

@@ -69,7 +69,7 @@ describe('csTimer backup', () => {
 
   it('keeps the session in the exact order csTimer lists it', () => {
     const session10 = cubes.find((cube) => cube.solves.all.length === 12)!
-    expect(session10.solves.all.map((solve) => solve.time)).toEqual([
+    expect(session10.solves.all.map((solve) => solve.time).reverse()).toEqual([
       14250, 58740, 45690, 36980, 78540, 43430, 36590, 36740, 48970, 58740, 69540, 61250
     ])
   })
@@ -77,7 +77,7 @@ describe('csTimer backup', () => {
   it('stores every cube ordered by endTime, the key the stats read', () => {
     for (const cube of cubes) {
       const ends = cube.solves.all.map((solve) => solve.endTime)
-      expect(ends).toEqual([...ends].sort((a, b) => a - b))
+      expect(ends).toEqual([...ends].sort((a, b) => b - a))
     }
   })
 })

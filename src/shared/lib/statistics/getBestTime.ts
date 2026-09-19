@@ -1,4 +1,3 @@
-import { sort } from 'fast-sort'
 import { Solve } from '@/entities/solve/model/types'
 
 /**
@@ -18,12 +17,9 @@ export default function getBestTime({ solves }: { solves: Solve[] }): number {
   }
 
   // A DNF is never a personal best, no matter how fast the clock stopped.
-  const validSolves = solves.filter((solve) => !solve.dnf)
-  if (validSolves.length === 0) return 0
-
-  // Sort solves in ascending order based on the 'time' property
-  const sortedSolves = sort(validSolves).asc((solve) => solve.time)
-
-  // Return the best time (first element after sorting)
-  return sortedSolves[0].time
+  let best = Infinity
+  for (const solve of solves) {
+    if (!solve.dnf && solve.time < best) best = solve.time
+  }
+  return best === Infinity ? 0 : best
 }

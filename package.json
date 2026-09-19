@@ -60,6 +60,7 @@
     "fast-sort": "^3.4.1",
     "files-sdk": "^1.6.0",
     "firebase": "^12.1.0",
+    "frimousse": "^0.3.0",
     "idb": "^8.0.3",
     "input-otp": "^1.4.2",
     "lenis": "^1.3.23",

@@ -4,6 +4,7 @@ import { AppSidebar } from '@/widgets/sidebar/ui/AppSidebar'
 import StatisticsProvider from '@/components/statistics-provider'
 import { MobileBottomNav } from '@/widgets/mobile-bottom-nav/ui/MobileBottomNav'
 import AppShellProviders from '@/components/app-shell-providers'
+import { ChatDock } from '@/widgets/chat-dock/ui/ChatDock'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -13,6 +14,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <StatisticsProvider>{children}</StatisticsProvider>
         <MobileBottomNav />
       </SidebarInset>
+      <ChatDock />
     </AppShellProviders>
   )
 }

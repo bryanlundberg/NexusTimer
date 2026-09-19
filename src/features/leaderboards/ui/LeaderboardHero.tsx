@@ -6,6 +6,7 @@ import { LEADERBOARD_PUZZLE_OPTIONS } from '@/features/leaderboards/model/puzzle
 import type { LeaderboardView } from '@/features/leaderboards/model/leaderboard-view'
 import { CubeCategoryIcon } from '@/shared/ui/cube-category-icon/CubeCategoryIcon'
 import Segmented from '@/shared/ui/segmented/Segmented'
+import LeaderboardRefreshBadge from '@/features/leaderboards/ui/LeaderboardRefreshBadge'
 import { useTranslations } from 'next-intl'
 
 interface LeaderboardHeroProps {
@@ -13,9 +14,10 @@ interface LeaderboardHeroProps {
   onChange: (value: string) => void
   view: LeaderboardView
   onViewChange: (view: LeaderboardView) => void
+  remainingMs: number | null
 }
 
-export default function LeaderboardHero({ value, onChange, view, onViewChange }: LeaderboardHeroProps) {
+export default function LeaderboardHero({ value, onChange, view, onViewChange, remainingMs }: LeaderboardHeroProps) {
   const t = useTranslations('Index.LeaderboardsPage')
   const tNav = useTranslations('Index.NavMain')
 
@@ -40,10 +42,13 @@ export default function LeaderboardHero({ value, onChange, view, onViewChange }:
   return (
     <div className="mx-auto w-full max-w-4xl px-3 pt-4">
       <div className="mb-5 flex flex-col gap-1.5">
-        <span className="flex items-center gap-2 font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-          <span className="size-2 shrink-0 rounded-[2px] bg-cube-orange" aria-hidden />
-          {tNav('leaderboards')}
-        </span>
+        <div className="flex items-center justify-between gap-3">
+          <span className="flex items-center gap-2 font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+            <span className="size-2 shrink-0 rounded-[2px] bg-cube-orange" aria-hidden />
+            {tNav('leaderboards')}
+          </span>
+          <LeaderboardRefreshBadge remainingMs={remainingMs} />
+        </div>
         <h1 className="font-display text-2xl font-bold leading-none tracking-tight sm:text-3xl md:text-4xl">
           {t('title')}
         </h1>

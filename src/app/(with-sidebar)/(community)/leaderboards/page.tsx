@@ -1,6 +1,7 @@
 'use client'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useLeaderboards } from '@/features/leaderboards/model/useLeaderboards'
+import { useNextRefresh } from '@/features/leaderboards/model/useNextRefresh'
 import LeaderboardTable from '@/features/leaderboards-table/ui/LeaderboardTable'
 import LeaderboardTableSkeleton from '@/features/leaderboards-table/ui/LeaderboardTableSkeleton'
 import LeaderboardPodium from '@/features/leaderboards-table/ui/LeaderboardPodium'
@@ -23,7 +24,8 @@ export default function LeaderboardPage() {
     [selected]
   )
 
-  const { data: solves, isLoading } = useLeaderboards(option.puzzle, option.smart, view === 'persons')
+  const { solves, nextRefreshAt, isLoading, mutate } = useLeaderboards(option.puzzle, option.smart, view === 'persons')
+  const remainingMs = useNextRefresh(nextRefreshAt, () => void mutate())
 
   const deferredSolves = useDeferredValue(solves)
   const isRenderingRows = deferredSolves !== solves
@@ -32,7 +34,13 @@ export default function LeaderboardPage() {
     <ScrollArea className={'max-h-dvh overflow-auto'}>
       <CoreHeader breadcrumbs={[{ label: tNavMain('leaderboards'), href: '/leaderboards' }]} />
 
-      <LeaderboardHero value={selected} onChange={setSelected} view={view} onViewChange={setView} />
+      <LeaderboardHero
+        value={selected}
+        onChange={setSelected}
+        view={view}
+        onViewChange={setView}
+        remainingMs={remainingMs}
+      />
 
       <PageBody variant="data" className="space-y-6">
         {isLoading || isRenderingRows ? (
@@ -40,7 +48,7 @@ export default function LeaderboardPage() {
         ) : (
           <>
             <LeaderboardPodium key={`${selected}-${view}`} solves={deferredSolves ?? []} />
-            <LeaderboardTable solves={deferredSolves} />
+            <LeaderboardTable solves={deferredSolves ?? []} />
           </>
         )}
       </PageBody>

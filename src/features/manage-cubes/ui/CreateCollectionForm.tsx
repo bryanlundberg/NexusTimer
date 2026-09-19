@@ -9,7 +9,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { CreateCubeFormData, createCubeFormSchema } from '@/entities/cube/model/schema'
 import { CUBE_CATEGORIES, isValidCategory } from '@/shared/const/cube-categories'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
-import { cubesDB } from '@/entities/cube/api/indexdb'
 import {
   DialogClose,
   DialogContent,
@@ -26,7 +25,7 @@ import { CubeCategoryIcon } from '@/shared/ui/cube-category-icon/CubeCategoryIco
 
 export default function CreateCollectionForm() {
   const t = useTranslations('Index')
-  const setCubes = useTimerStore((state) => state.setCubes)
+  const patchCubes = useTimerStore((state) => state.patchCubes)
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
   const setNewScramble = useTimerStore((state) => state.setNewScramble)
   const close = useOverlayStore((state) => state.close)
@@ -51,8 +50,7 @@ export default function CreateCollectionForm() {
   const handleSubmitNewCollection = async (form: CreateCubeFormData) => {
     try {
       const newCube = await createCubeCollection(form)
-      const newCubes = await cubesDB.getAll()
-      setCubes(newCubes)
+      patchCubes([newCube])
       setSelectedCube(newCube)
       setNewScramble(newCube)
       close()

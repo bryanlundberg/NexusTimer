@@ -16,6 +16,8 @@ import {
   TrainerNavIcon,
   AlgorithmsNavIcon,
   PeopleNavIcon,
+  FriendsNavIcon,
+  MessagesNavIcon,
   LeaderboardsNavIcon,
   FreePlayNavIcon
 } from '@/components/ui/nav-icons'
@@ -45,6 +47,9 @@ import { SmartCubeIndicator } from '@/features/smart-cube/ui/SmartCubeIndicator'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
 import { INDICATOR_SPRING } from '@/shared/lib/motion'
+import { formatBadgeCount } from '@/shared/lib/badge-count'
+import { useFriends } from '@/entities/friendship/model/useFriends'
+import { useInbox } from '@/entities/chat/model/useInbox'
 
 const SECTION_ACCENT = {
   platform: 'var(--cube-blue)',
@@ -72,6 +77,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const isFocusMode = useFocusModeStore((store) => store.isFocusMode)
   const [hash, setHash] = useState<string>('')
   const { menuRef, indicator } = useActiveIndicator<HTMLDivElement>([pathname, hash, state])
+  const { data: friends } = useFriends()
+  const incomingRequests = friends?.incoming?.length ?? 0
+  const { data: inbox } = useInbox()
+  const unreadMessages = inbox?.totalUnread ?? 0
 
   const scrollRef = useRef<HTMLDivElement>(null)
   const [showScrollHint, setShowScrollHint] = useState(false)
@@ -163,6 +172,18 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           icon: PeopleNavIcon
         },
         {
+          title: t('NavMain.friends'),
+          url: '/friends',
+          icon: FriendsNavIcon,
+          badge: incomingRequests > 0 ? formatBadgeCount(incomingRequests) : undefined
+        },
+        {
+          title: t('NavMain.messages'),
+          url: '/messages',
+          icon: MessagesNavIcon,
+          badge: unreadMessages > 0 ? formatBadgeCount(unreadMessages) : undefined
+        },
+        {
           title: t('NavMain.leaderboards'),
           url: '/leaderboards',
           icon: LeaderboardsNavIcon
@@ -176,7 +197,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         }
       ]
     }),
-    [t, handleCreate]
+    [t, handleCreate, incomingRequests, unreadMessages]
   )
 
   const activeSection = useMemo<SectionKey | null>(() => {

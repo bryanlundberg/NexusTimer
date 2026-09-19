@@ -16,6 +16,7 @@ import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { usePresenceStatus } from '@/features/presence/model/usePresenceStatus'
 import { PresenceDot } from '@/features/presence/ui/PresenceDot'
+import { resolvePresenceDisplay, usePresence } from '@/features/presence/model/usePresence'
 import type { PresenceDisplay, PresenceStatus } from '@/features/presence/model/usePresence'
 import { cn } from '@/shared/lib/utils'
 
@@ -41,7 +42,7 @@ export function NavUser({
   const t = useTranslations('Index')
   const tp = useTranslations('Index.Presence')
   const { status, setStatus } = usePresenceStatus()
-  const statusDisplay: PresenceDisplay = status === 'invisible' ? 'offline' : status
+  const statusDisplay = resolvePresenceDisplay(usePresence(user.id))
 
   const navItems = [
     { icon: Globe, label: t('NavMain.public-profile'), href: '/people/' + user.id },

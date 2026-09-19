@@ -8,6 +8,7 @@ import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import { minBy } from 'es-toolkit'
 import { motion } from 'motion/react'
 import calcBestAo from '@/shared/lib/statistics/calcBestAo'
+import { mergeSolvesNewestFirst } from '@/entities/solve/lib/sortSolves'
 import { GRID } from '@/widgets/people/ui/cubes-tab-content'
 
 interface PeopleCubeCardProps {
@@ -18,7 +19,9 @@ interface PeopleCubeCardProps {
 export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
   const locale = useLocale()
   const t = useTranslations('Index.CubesPage')
-  const allSolves = [...(cube.solves.all || []), ...(cube.solves.session || [])].filter((s) => !s.isDeleted)
+  const allSolves = mergeSolvesNewestFirst([cube.solves.all || [], cube.solves.session || []]).filter(
+    (s) => !s.isDeleted
+  )
 
   const counts = allSolves.reduce(
     (acc, s) => ({

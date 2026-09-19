@@ -1,4 +1,5 @@
 import { Solve } from '@/entities/solve/model/types'
+import { Cube } from '@/entities/cube/model/types'
 import formatTime from '@/shared/lib/formatTime'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
@@ -16,19 +17,21 @@ import { updateComment } from '@/features/manage-solves/api/updateComment'
 export default function useQuickActions(solve: Solve) {
   const router = useRouter()
   const selectedCube = useTimerStore((store) => store.selectedCube)
-  const setSelectedCube = useTimerStore((store) => store.setSelectedCube)
-  const setCubes = useTimerStore((store) => store.setCubes)
-  const cubes = useTimerStore((store) => store.cubes)
+  const patchCube = useTimerStore((store) => store.patchCube)
   const { open, close, activeOverlay } = useOverlayStore()
   const setLastSolve = useTimerStore((store) => store.setLastSolve)
   const lastSolve = useTimerStore((store) => store.lastSolve)
 
-  const inferSolveTab = async (): Promise<SolveTab | null> => {
-    const cube = await cubesDB.getById(solve.cubeId)
+  const tabIn = (cube: Cube | undefined): SolveTab | null => {
     if (!cube) return null
     if (cube.solves.session.some((s) => s.id === solve.id && !s?.isDeleted)) return SolveTab.SESSION
     if (cube.solves.all.some((s) => s.id === solve.id && !s?.isDeleted)) return SolveTab.ALL
     return null
+  }
+
+  const inferSolveTab = async (): Promise<SolveTab | null> => {
+    const cached = useTimerStore.getState().cubes?.find((cube) => cube.id === solve.cubeId)
+    return tabIn(cached) ?? tabIn(await cubesDB.getById(solve.cubeId).catch(() => undefined))
   }
 
   const handleToggleBookmark = async () => {
@@ -39,24 +42,21 @@ export default function useQuickActions(solve: Solve) {
 
     const newBookmarkStatus = !solve.bookmark
 
-    await toggleBookmark({ cubeId, solveId, bookmark: newBookmarkStatus, solveTab: tab })
-    syncUI()
+    syncUI(await toggleBookmark({ cubeId, solveId, bookmark: newBookmarkStatus, solveTab: tab }))
   }
 
   const handleToggleDNF = async () => {
     const { cubeId, id: solveId } = solve
     const tab = await inferSolveTab()
     if (!tab) return
-    await toggleDNF({ cubeId, solveId, dnf: !solve.dnf, solveTab: tab })
-    syncUI()
+    syncUI(await toggleDNF({ cubeId, solveId, dnf: !solve.dnf, solveTab: tab }))
   }
 
   const handleTogglePlus2 = async () => {
     const { cubeId, id: solveId } = solve
     const tab = await inferSolveTab()
     if (!tab) return
-    await togglePlus2({ cubeId, solveId, plus2: !solve.plus2, solveTab: tab })
-    syncUI()
+    syncUI(await togglePlus2({ cubeId, solveId, plus2: !solve.plus2, solveTab: tab }))
   }
 
   const handleDeleteSolve = async () => {
@@ -64,8 +64,7 @@ export default function useQuickActions(solve: Solve) {
     const tab = await inferSolveTab()
     if (!tab) return
 
-    await deleteSolve({ cubeId, solveId, solveTab: tab })
-    syncUI()
+    syncUI(await deleteSolve({ cubeId, solveId, solveTab: tab }))
   }
 
   const handleClipboard = (customMessage?: { title?: string; description?: string }) => {
@@ -94,8 +93,7 @@ export default function useQuickActions(solve: Solve) {
     const { cubeId, id: solveId } = solve
     const tab = await inferSolveTab()
     if (!tab) return
-    await updateComment({ cubeId, solveId, comment, solveTab: tab })
-    syncUI()
+    syncUI(await updateComment({ cubeId, solveId, comment, solveTab: tab }))
   }
 
   const handleTransferCollection = () => {
@@ -109,33 +107,14 @@ export default function useQuickActions(solve: Solve) {
     const currentTab = await inferSolveTab()
     if (!currentTab) return
 
-    await moveSolveSession({ cubeId, solveId, fromTab: currentTab })
-
-    const selectedCubeUpdated = await cubesDB.getById(cubeId)
-    if (!selectedCubeUpdated) return
-
-    if (cubes) {
-      setCubes(cubes.map((cube) => (cube.id === selectedCubeUpdated.id ? selectedCubeUpdated : cube)))
-    }
-
-    if (selectedCube?.id === selectedCubeUpdated.id) {
-      setSelectedCube(selectedCubeUpdated)
-    }
+    patchCube(await moveSolveSession({ cubeId, solveId, fromTab: currentTab }))
 
     toast.success(`Solve ${formatTime(solve.time)} moved`, { duration: 1500 })
     close()
   }
 
-  const syncUI = async () => {
-    const updatedCube = await cubesDB.getById(solve.cubeId)
-
-    if (cubes && updatedCube) {
-      setCubes(cubes.map((cube) => (cube.id === updatedCube.id ? updatedCube : cube)))
-    }
-
-    if (updatedCube && selectedCube?.id === updatedCube.id) {
-      setSelectedCube(updatedCube)
-    }
+  const syncUI = (updatedCube: Cube) => {
+    patchCube(updatedCube)
 
     let updatedSolve = updatedCube?.solves.session.find((s) => s.id === solve.id && !s.isDeleted)
     if (!updatedSolve) {

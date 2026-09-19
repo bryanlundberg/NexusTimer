@@ -13,6 +13,7 @@ import PendingRegistration from '@/entities/pending-registration/model/pending-r
 import PasswordResetToken from '@/entities/password-reset-token/model/password-reset-token'
 import Session from '@/entities/session/model/session'
 import { sessionCache } from '@/shared/lib/session-cache'
+import { clearPresence } from '@/shared/lib/realtime/presence'
 import { requireAdmin } from '@/shared/api/require-admin'
 import { parseEmailParam } from '@/shared/api/admin-helpers'
 import { badRequest, notFound, ok, serverError } from '@/shared/api/responses'
@@ -106,6 +107,7 @@ export async function DELETE(request: NextRequest) {
 
     const userSessions = await Session.find({ userId: user._id }, { sessionId: 1 }).lean<{ sessionId: string }[]>()
     await Promise.all(userSessions.map((s) => sessionCache.invalidate(s.sessionId)))
+    await clearPresence(String(user._id))
 
     const ctx = { userId: user._id, email }
     const deleted = Object.fromEntries(

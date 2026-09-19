@@ -19,14 +19,13 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { DeleteCollectionFormData, deleteCollectionSchema } from '@/features/manage-cubes/model/schemas'
 import { deleteCubeCollection } from '@/features/manage-cubes/api/deleteCubeCollection'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
-import { cubesDB } from '@/entities/cube/api/indexdb'
 import { useEffect } from 'react'
 import RatedIcon from '@/shared/ui/rate-icon/RateIcon'
 import { AlertCircleIcon } from 'lucide-react'
 
 export default function DeleteCollectionForm() {
   const t = useTranslations('Index')
-  const setCubes = useTimerStore((state) => state.setCubes)
+  const removeCube = useTimerStore((state) => state.removeCube)
   const close = useOverlayStore((state) => state.close)
   const activeOverlay = useOverlayStore((state) => state.activeOverlay)
 
@@ -43,8 +42,7 @@ export default function DeleteCollectionForm() {
     if (!activeOverlay?.metadata?.id) return
     try {
       await deleteCubeCollection({ id: activeOverlay?.metadata.id })
-      const cubes = await cubesDB.getAll()
-      setCubes(cubes)
+      removeCube(activeOverlay.metadata.id)
       close()
       toast.success(t('Errors.collection-deleted'))
     } catch (err) {

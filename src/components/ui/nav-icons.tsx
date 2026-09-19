@@ -119,6 +119,25 @@ export function PeopleNavIcon(props: IconProps) {
   )
 }
 
+export function FriendsNavIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <circle cx="9" cy="8" r="3.6" />
+      <path d="M2.5 20.5a6.5 6.5 0 0 1 11.2-4.5 3.6 3.6 0 0 0 .6 5.5H3.5a1 1 0 0 1-1-1z" />
+      <path d="M18 21.5l-3.4-3.3a2.2 2.2 0 0 1 3.4-2.8 2.2 2.2 0 0 1 3.4 2.8z" />
+    </Svg>
+  )
+}
+
+export function MessagesNavIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M3 4.5A2.5 2.5 0 0 1 5.5 2h9A2.5 2.5 0 0 1 17 4.5v6a2.5 2.5 0 0 1-2.5 2.5H8.2l-3.6 2.9A1 1 0 0 1 3 15.1z" />
+      <path d="M19 7.2a2.5 2.5 0 0 1 2 2.45v10.5a1 1 0 0 1-1.6.8L16 18.5h-5.5A2.5 2.5 0 0 1 8 16v-1h6.5A4.5 4.5 0 0 0 19 10.5z" />
+    </Svg>
+  )
+}
+
 /* Leaderboards — solid podium */
 export function LeaderboardsNavIcon(props: IconProps) {
   return (

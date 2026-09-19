@@ -26,6 +26,9 @@ type UseTimerStore = {
   setNewScramble: (cube: Cube | null) => void
   setCubes: (cubesDB: Cube[]) => void
   setSelectedCube: (cube: Cube | null) => void
+  patchCube: (cube: Cube) => void
+  patchCubes: (cubes: Cube[]) => void
+  removeCube: (id: string) => void
   setLastSolve: (solve: Solve | null) => void
   setSolvingTime: (newTime: number) => void
   setIsSolving: (isSolving: boolean) => void
@@ -89,6 +92,36 @@ export const useTimerStore = create<UseTimerStore>((set, get) => ({
         lastSolve: state.selectedCube?.id === cube.id ? state.lastSolve : null
       }
     })
+  },
+  patchCube: (cube: Cube) => {
+    get().patchCubes([cube])
+  },
+  patchCubes: (updates: Cube[]) => {
+    set((state) => {
+      const byId = new Map(
+        updates.map((cube) => [
+          cube.id,
+          {
+            ...cube,
+            solves: {
+              session: cube.solves.session.filter((solve) => !solve.isDeleted),
+              all: cube.solves.all.filter((solve) => !solve.isDeleted)
+            }
+          }
+        ])
+      )
+      const selected = state.selectedCube ? byId.get(state.selectedCube.id) : undefined
+      if (!state.cubes) return selected ? { selectedCube: selected } : {}
+      const cubes = state.cubes.map((item) => byId.get(item.id) ?? item)
+      const known = new Set(cubes.map((cube) => cube.id))
+      const added = [...byId.values()].filter((cube) => !known.has(cube.id))
+      const next =
+        added.length > 0 ? [...cubes, ...added].sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0)) : cubes
+      return selected ? { cubes: next, selectedCube: selected } : { cubes: next }
+    })
+  },
+  removeCube: (id: string) => {
+    set((state) => ({ cubes: state.cubes?.filter((cube) => cube.id !== id) ?? state.cubes }))
   },
   setLastSolve: (solve: Solve | null) => {
     set({ lastSolve: solve })

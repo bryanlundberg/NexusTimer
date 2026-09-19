@@ -91,9 +91,7 @@ export const useSyncBackup = () => {
 
       const newCubes: Cube[] = await mergeAndUniqData(normalizeOldData(backupData), normalizeOldData(existingCubes))
 
-      await cubesDB.clear()
-      await cubesDB.saveBatch(newCubes)
-      const newCubesDB = await cubesDB.getAll()
+      const newCubesDB = await cubesDB.replaceAll(newCubes)
       setCubes(newCubesDB)
 
       if (selectedCube) {
