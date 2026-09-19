@@ -1,4 +1,4 @@
-import { NextRequest } from 'next/server'
+import { NextRequest, after } from 'next/server'
 import { z } from 'zod'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
@@ -14,6 +14,7 @@ import {
 } from '@/entities/friendship/server/friends'
 import type { FriendEntry, FriendRequestError, FriendsResponse } from '@/entities/friendship/model/types'
 import { requestLimits } from '@/entities/friendship/server/request-limits'
+import { sendFriendRequestEmail } from '@/features/friends/server/friend-request-email'
 import { blockStateOf } from '@/entities/block/server/blocks'
 import { requireUser } from '@/shared/api/require-user'
 import { parseJsonBody } from '@/shared/api/parse-json'
@@ -124,6 +125,9 @@ export async function POST(request: NextRequest) {
         status: 'pending'
       })
       await publishToPair(userId, otherId, 'friend:request')
+      after(() =>
+        sendFriendRequestEmail(userId, otherId).catch((error) => console.error('[friends:POST:email]', error))
+      )
       return ok({ status: 'pending_out' })
     } catch (error) {
       if (!isDuplicateKeyError(error)) throw error
