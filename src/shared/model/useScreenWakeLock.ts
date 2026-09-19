@@ -1,29 +1,30 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useWakeLock } from 'react-screen-wake-lock'
 
-/**
- * Hook to manage the Screen Wake Lock API.
- * @param enabled - If true, requests the wake lock. If false, releases it.
- */
-export const useScreenWakeLock = (enabled: boolean) => {
-  const { isSupported, released, request, release } = useWakeLock({
-    reacquireOnPageVisible: true
-  })
-
+export const useScreenWakeLock = (enabled = true) => {
   useEffect(() => {
-    if (!isSupported || !enabled) return
+    if (!enabled || !('wakeLock' in navigator)) return
 
-    request()
+    let sentinel: WakeLockSentinel | null = null
+    let active = true
+
+    const acquire = async () => {
+      if (document.visibilityState !== 'visible' || (sentinel && !sentinel.released)) return
+      try {
+        const lock = await navigator.wakeLock.request('screen')
+        if (active) sentinel = lock
+        else await lock.release()
+      } catch {}
+    }
+
+    acquire()
+    document.addEventListener('visibilitychange', acquire)
 
     return () => {
-      release().catch(() => {})
+      active = false
+      document.removeEventListener('visibilitychange', acquire)
+      sentinel?.release().catch(() => {})
     }
-  }, [enabled, isSupported, request, release])
-
-  return {
-    isSupported,
-    released
-  }
+  }, [enabled])
 }
