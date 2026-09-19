@@ -9,7 +9,6 @@ import DisplayTime from '@/features/timer/ui/display-time'
 import { useAudioTrigger } from '@/shared/model/useAudioTrigger'
 import { useIsMobile } from '@/shared/model/use-mobile'
 import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
-import { useScreenWakeLock } from '@/shared/model/useScreenWakeLock'
 import { useNexusConnectStore } from '@/features/nexus-connect/model/useNexusConnectStore'
 import ConnectQRInline from '@/features/nexus-connect/ui/ConnectQRInline'
 export default function Timer({ children }: { children?: ReactNode }) {
@@ -27,8 +26,6 @@ export default function Timer({ children }: { children?: ReactNode }) {
   const nexusConnected = useNexusConnectStore((store) => store.isConnected)
 
   const showNexusQR = timerMode === TimerMode.NEXUS_CONNECT && !nexusConnected
-
-  useScreenWakeLock(isSolving || timerStatus === TimerStatus.INSPECTING)
 
   const { saveSolveMainTimer } = useSolveData()
 

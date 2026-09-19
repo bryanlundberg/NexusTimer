@@ -2,18 +2,13 @@
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useEffect, useMemo, useRef } from 'react'
 import { TimerStatus } from '@/features/timer/model/enums'
-import { useScreenWakeLock } from '@/shared/model/useScreenWakeLock'
 import { useHardwareTimer } from '@/features/hardware/react/useHardwareTimer'
 import { StackmatAdapter } from '@/features/hardware/adapters/StackmatAdapter'
 import useSolveData from '@/features/timer/model/useSolveData'
 import { useStackmatReset } from '@/features/timer/model/useStackmatReset'
 
 export default function Stackmat() {
-  const timerStatus = useTimerStore((state) => state.timerStatus)
-  const isSolving = useTimerStore((state) => state.isSolving)
   const { setTimerStatus, setIsSolving, setSolvingTime } = useTimerStore.getState()
-
-  useScreenWakeLock(isSolving || timerStatus === TimerStatus.INSPECTING)
 
   const stackmatAdapter = useMemo(() => new StackmatAdapter(), [])
   const { state } = useHardwareTimer({
