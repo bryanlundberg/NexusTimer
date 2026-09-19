@@ -9,10 +9,6 @@ export function isValidTimezone(timezone: string): boolean {
   }
 }
 
-/**
- * Returns a `YYYY-MM-DD` formatter for timestamps. Without a timezone it uses the runtime's local zone.
- * One `Intl.DateTimeFormat` is reused for every call, which matters when bucketing large solve histories.
- */
 export function createDateKey(timezone?: string): (timestamp: number) => string {
   if (!timezone) return (timestamp) => dayjs(timestamp).format('YYYY-MM-DD')
 
