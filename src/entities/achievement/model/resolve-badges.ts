@@ -1,6 +1,13 @@
 import { Cube } from '@/entities/cube/model/types'
 import { UserProfile } from '@/entities/user/model/user'
-import { Achievement, AchievementData, AchievementType, TieredAchievement, satisfiesThreshold } from './types'
+import {
+  Achievement,
+  AchievementData,
+  AchievementType,
+  SolveStats,
+  TieredAchievement,
+  satisfiesThreshold
+} from './types'
 import { ACHIEVEMENTS_CONFIG, computeSolveStats } from './achievements'
 
 /** A single earnable thing: one tier of a family, or a standalone badge. */
@@ -134,10 +141,29 @@ function resolveFamily(achievement: Achievement, data: AchievementData, grantedK
   }
 }
 
-export function resolveBadges({ user, cubes }: { user: UserProfile; cubes: Cube[] }): UserBadgesResult {
-  const stats = computeSolveStats(cubes)
+export function resolveBadges({
+  user,
+  cubes,
+  timezone
+}: {
+  user: UserProfile
+  cubes: Cube[]
+  timezone?: string
+}): UserBadgesResult {
+  return resolveBadgesFromStats({ user, stats: computeSolveStats(cubes, timezone), cubeCount: cubes.length })
+}
+
+export function resolveBadgesFromStats({
+  user,
+  stats,
+  cubeCount
+}: {
+  user: UserProfile
+  stats: SolveStats
+  cubeCount: number
+}): UserBadgesResult {
   const grantedKeys = new Set(user.grantedAchievements ?? [])
-  const data: AchievementData = { cubes, user, stats }
+  const data: AchievementData = { cubeCount, user, stats }
 
   const families = ACHIEVEMENTS_CONFIG.map((achievement) => resolveFamily(achievement, data, grantedKeys))
 
