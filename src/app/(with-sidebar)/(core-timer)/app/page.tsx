@@ -14,6 +14,7 @@ import OnboardingTour from '@/features/onboarding-tour/ui/OnboardingTour'
 import TimerSolvesRail from '@/features/timer-solves-rail/ui/TimerSolvesRail'
 import FocusModeExitButton from '@/features/focus-mode/ui/FocusModeExitButton'
 import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
+import { useScreenWakeLock } from '@/shared/model/useScreenWakeLock'
 
 export default function TimerPage() {
   const resetTimerStore = useTimerStore((state) => state.reset)
@@ -27,6 +28,8 @@ export default function TimerPage() {
   }, [])
 
   useEffect(() => exitFocusMode, [exitFocusMode])
+
+  useScreenWakeLock()
 
   return (
     <div className="flex flex-col grow min-h-0 relative">
