@@ -12,6 +12,7 @@ const updateSchema = z
   .object({
     friendRequests: z.enum(FRIEND_REQUEST_POLICIES),
     statsVisibility: z.enum(STATS_VISIBILITIES),
+    friendRequestEmails: z.boolean(),
     readReceipts: z.boolean(),
     typingIndicator: z.boolean()
   })
