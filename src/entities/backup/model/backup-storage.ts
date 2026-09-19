@@ -45,7 +45,7 @@ export async function listUserBackups(userId: string): Promise<StoredBackup[]> {
     const id = file.key.slice(prefix.length)
     if (!id) continue
     const createdAt = parseCompactIso(id) ?? file.lastModified ?? 0
-    const url = await files.url(file.key)
+    const url = files.url(file.key)
     backups.push({ key: file.key, id, createdAt, size: file.size, url })
   }
 
