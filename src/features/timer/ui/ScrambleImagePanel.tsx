@@ -2,7 +2,7 @@ import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { motion, AnimatePresence } from 'motion/react'
 import { cn } from '@/shared/lib/utils'
-import { useWindowSize } from 'react-use-size'
+import { useWindowHeight } from '@/shared/model/useWindowHeight'
 import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'
 import { SCRAMBLE_HEIGHT } from '@/shared/const/scramble-height'
 
@@ -13,7 +13,7 @@ export default function ScrambleImagePanel() {
   const setZoomInScramble = useTimerStore((store) => store.setZoomInScramble)
   const zoomInScramble = useTimerStore((store) => store.zoomInScramble)
   const isSolving = useTimerStore((store) => store.isSolving)
-  const { height } = useWindowSize()
+  const height = useWindowHeight()
   return (
     <AnimatePresence>
       {(!zoomInScramble || !isSolving) && (

@@ -1,7 +1,7 @@
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { ScrambleZone } from './ScrambleZone'
-import { useWindowSize } from 'react-use-size'
+import { useWindowHeight } from '@/shared/model/useWindowHeight'
 import { cn } from '@/shared/lib/utils'
 import { SCRAMBLE_HEIGHT } from '@/shared/const/scramble-height'
 import { TimerStatus } from '@/features/timer/model/enums'
@@ -21,7 +21,7 @@ export default function HeaderTimer() {
   const timerStatistics = useTimerStore((store) => store.timerStatistics)
   const settings = useSettingsStore((store) => store.settings)
   const isFocusMode = useFocusModeStore((store) => store.isFocusMode)
-  const { height } = useWindowSize()
+  const height = useWindowHeight()
 
   const isHidden = isSolving || timerStatus !== TimerStatus.IDLE
   const showScramble = !isFocusMode || settings.features.focusModeScramble

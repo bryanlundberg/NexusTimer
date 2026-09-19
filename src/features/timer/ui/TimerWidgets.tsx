@@ -6,7 +6,7 @@ import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTranslations } from 'next-intl'
 import { Trophy } from 'lucide-react'
-import { useWindowSize } from 'react-use-size'
+import { useWindowHeight } from '@/shared/model/useWindowHeight'
 import { cn } from '@/shared/lib/utils'
 import { SCRAMBLE_HEIGHT } from '@/shared/const/scramble-height'
 import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
@@ -21,7 +21,7 @@ export default function TimerWidgets() {
   const t = useTranslations('Index.HomePage')
   const timerMode = useTimerStore((store) => store.timerMode)
   const isFocusMode = useFocusModeStore((store) => store.isFocusMode)
-  const { height } = useWindowSize()
+  const height = useWindowHeight()
 
   const { ao5, ao12, ao50, ao100 } = timerStatistics.global
   const { ao5: sessionAo5, ao12: sessionAo12, ao50: sessionAo50, ao100: sessionAo100 } = timerStatistics.session

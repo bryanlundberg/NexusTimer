@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl'
 import React from 'react'
 import { AnimatePresence, HTMLMotionProps, motion } from 'motion/react'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
-import { useWindowSize } from 'react-use-size'
+import { useWindowHeight } from '@/shared/model/useWindowHeight'
 import { cn } from '@/shared/lib/utils'
 import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { Solve } from '@/entities/solve/model/types'
@@ -43,7 +43,7 @@ export default function DisplayTime({
   const t = useTranslations('Index.HomePage')
   const timerMode = useTimerStore((store) => store.timerMode)
   const settings = useSettingsStore((store) => store.settings)
-  const { height } = useWindowSize()
+  const height = useWindowHeight()
 
   return (
     <>
