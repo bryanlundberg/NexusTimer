@@ -20,8 +20,6 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1053.0",
-    "@aws-sdk/s3-presigned-post": "^3.1053.0",
-    "@aws-sdk/s3-request-presigner": "^3.1053.0",
     "@firebase/database": "^1.1.0",
     "@firebase/firestore": "^4.9.0",
     "@getbrevo/brevo": "^5.0.4",
@@ -58,7 +56,6 @@
     "dayjs": "^1.11.21",
     "es-toolkit": "^1.42.0",
     "fast-sort": "^3.4.1",
-    "files-sdk": "^1.6.0",
     "firebase": "^12.1.0",
     "frimousse": "^0.3.0",
     "idb": "^8.0.3",
