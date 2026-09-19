@@ -13,6 +13,9 @@ import {
   pruneUserBackups
 } from '@/entities/backup/model/backup-storage'
 import { badRequest, notFound, ok, serverError, unauthorized } from '@/shared/api/responses'
+import { refreshUserStats } from '@/entities/user-stats/server/refresh-user-stats'
+import { userStatsCache } from '@/entities/user-stats/model/user-stats-cache'
+import { isValidTimezone } from '@/shared/lib/dateKey'
 
 const MAX_BACKUP_BYTES = 32 * 1024 * 1024
 
@@ -39,8 +42,9 @@ export async function POST(request: NextRequest) {
     if (json.length === 0) return serverError('backups:POST', new Error('Empty backup'))
     if (json.length > MAX_BACKUP_BYTES) return serverError('backups:POST', new Error('Backup too large'))
 
+    let backup: unknown
     try {
-      JSON.parse(json.toString('utf8'))
+      backup = JSON.parse(json.toString('utf8'))
     } catch {
       return badRequest('Backup is not valid JSON')
     }
@@ -64,6 +68,16 @@ export async function POST(request: NextRequest) {
 
     // Prune older backups after the response flushes so the upload stays fast.
     after(() => pruneUserBackups(userId, MAX_BACKUPS_RETAINED).catch((e) => console.error('[backups:POST:prune]', e)))
+
+    const timezone = request.headers.get('x-timezone')
+    after(() =>
+      refreshUserStats({
+        userId,
+        backup,
+        backupUpdatedAt: updatedAt,
+        timezone: timezone && isValidTimezone(timezone) ? timezone : undefined
+      }).catch((e) => console.error('[backups:POST:stats]', e))
+    )
 
     return ok({ url, updatedAt })
   } catch (error) {
@@ -130,7 +144,7 @@ export async function DELETE(request: NextRequest) {
         current = null
         await User.findByIdAndUpdate(userId, { $unset: { backup: 1 } })
       }
-      await userProfileCache.invalidate(userId)
+      await Promise.all([userProfileCache.invalidate(userId), userStatsCache.invalidate(userId)])
     }
 
     return ok({ deleted: file, current })
