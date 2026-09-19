@@ -1,4 +1,3 @@
-import { Cube } from '@/entities/cube/model/types'
 import { UserProfile } from '@/entities/user/model/user'
 
 export type AchievementType = 'computed' | 'granted' | 'tiered'
@@ -81,7 +80,7 @@ export interface SolveStats {
 }
 
 export interface AchievementData {
-  cubes: Cube[]
+  cubeCount: number
   user: UserProfile
   stats: SolveStats
 }
