@@ -5,8 +5,10 @@ import dayjs from '@/shared/lib/dayjs'
 import { Cube } from '@/entities/cube/model/types'
 import { Solve } from '@/entities/solve/model/types'
 import { mergeSolvesNewestFirst } from '@/entities/solve/lib/sortSolves'
+import { createDateKey } from '@/shared/lib/dateKey'
 
-export function computeSolveStats(cubes: Cube[]): SolveStats {
+export function computeSolveStats(cubes: Cube[], timezone?: string): SolveStats {
+  const dateKey = createDateKey(timezone)
   const solvesByDate = new Map<string, number>()
   const bestByCategory = new Map<string, number>()
   const countByCategory = new Map<string, number>()
@@ -50,7 +52,7 @@ export function computeSolveStats(cubes: Cube[]): SolveStats {
           bestByCategory.set(cube.category, solve.time)
         }
 
-        const date = dayjs(solve.startTime).format('YYYY-MM-DD')
+        const date = dateKey(solve.startTime)
         if (date.endsWith('-01-01')) newYearSolveCount++
         solvesByDate.set(date, (solvesByDate.get(date) ?? 0) + 1)
       }
@@ -476,7 +478,7 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     id: 'cube-collection',
     icon: 'badge-shelf.svg',
     type: 'tiered',
-    metric: ({ cubes }) => cubes.length,
+    metric: ({ cubeCount }) => cubeCount,
     compare: 'gte',
     unit: 'cubes',
     tiers: [
