@@ -233,9 +233,6 @@ importers:
       three:
         specifier: ^0.185.1
         version: 0.185.1
-      ts-deepmerge:
-        specifier: ^8.0.0
-        version: 8.0.0
       tw-animate-css:
         specifier: ^1.3.4
         version: 1.4.0
@@ -5553,10 +5550,6 @@ packages:
     engines: {node: '>=18.12'}
     peerDependencies:
       typescript: '>=4.8.4'
-
-  ts-deepmerge@8.0.0:
-    resolution: {integrity: sha512-133O+10nJmVI8w5xeVZPEv5PIrv7iaUae07wv1aH8XJH95Ur6YIhWAPhPyP1YPlbPS9fCVcNIZTu7m8urRVF0A==}
-    engines: {node: '>=14.13.1'}
 
   tsconfig-paths@3.15.0:
     resolution: {integrity: sha512-2Ac2RgzDe/cn48GvOe3M+o82pEFewD3UPbyoUHHdKasHwJKjds4fLXWf/Ux5kATBKN20oaFGu+jbElp1pos0mg==}
@@ -11281,8 +11274,6 @@ snapshots:
   ts-api-utils@2.5.0(typescript@7.0.2):
     dependencies:
       typescript: 7.0.2
-
-  ts-deepmerge@8.0.0: {}
 
   tsconfig-paths@3.15.0:
     dependencies:
