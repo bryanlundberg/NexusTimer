@@ -4,7 +4,7 @@ import { useMemo } from 'react'
 import { Cube } from '@/entities/cube/model/types'
 import { Solve } from '@/entities/solve/model/types'
 import { cn } from '@/shared/lib/utils'
-import prettyMilliseconds from 'pretty-ms'
+import { formatDurationClock } from '@/shared/lib/formatDuration'
 import { useLocale, useTranslations } from 'next-intl'
 
 interface StatItemProps {
@@ -65,7 +65,7 @@ export function ProfileStatsBar({ cubes, algorithmsLearned = 0 }: Props) {
 
   const formatTotalTime = (ms: number) => {
     if (ms === 0) return '—'
-    return prettyMilliseconds(ms, { colonNotation: true, secondsDecimalDigits: 0 })
+    return formatDurationClock(ms)
   }
 
   return (
