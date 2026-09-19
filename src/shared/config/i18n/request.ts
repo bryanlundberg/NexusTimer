@@ -1,6 +1,6 @@
 import { getRequestConfig } from 'next-intl/server'
 import { cookies } from 'next/headers'
-import { merge } from 'ts-deepmerge'
+import { toMerged } from 'es-toolkit'
 import { defaultLocale } from '@/shared/config/i18n/locales'
 
 export default getRequestConfig(async () => {
@@ -11,7 +11,7 @@ export default getRequestConfig(async () => {
 
   const userMessages = (await import(`../../../../messages/${locale}.json`)).default
   const defaultMessages = (await import(`../../../../messages/en.json`)).default
-  const messages = merge(defaultMessages, userMessages)
+  const messages = toMerged(defaultMessages, userMessages)
 
   return {
     locale,
