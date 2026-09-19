@@ -17,7 +17,7 @@ import { parseAsStringLiteral, useQueryState } from 'nuqs'
 export default function LeaderboardPage() {
   const tNavMain = useTranslations('Index.NavMain')
   const [selected, setSelected] = useState<string>(LEADERBOARD_PUZZLE_OPTIONS[0].value)
-  const [view, setView] = useQueryState('view', parseAsStringLiteral(LEADERBOARD_VIEWS).withDefault('all'))
+  const [view, setView] = useQueryState('view', parseAsStringLiteral(LEADERBOARD_VIEWS).withDefault('persons'))
 
   const option = useMemo(
     () => LEADERBOARD_PUZZLE_OPTIONS.find((o) => o.value === selected) ?? LEADERBOARD_PUZZLE_OPTIONS[0],
