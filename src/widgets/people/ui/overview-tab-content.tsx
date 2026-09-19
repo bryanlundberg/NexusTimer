@@ -1,9 +1,6 @@
-import { useMemo } from 'react'
-import { groupBy, orderBy } from 'es-toolkit'
 import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
-import PeopleOverviewRow, { type CategorySolve } from '@/widgets/people/ui/PeopleOverviewRow'
-import { Cube } from '@/entities/cube/model/types'
-import { getCategoryOrder } from '@/shared/const/cube-categories'
+import PeopleOverviewRow from '@/widgets/people/ui/PeopleOverviewRow'
+import type { CategoryStats } from '@/entities/user-stats/model/types'
 import { useTranslations } from 'next-intl'
 import { motion } from 'motion/react'
 
@@ -11,30 +8,12 @@ const GRID = 'grid-cols-[minmax(9rem,1.2fr)_6rem_6rem_5rem_2rem]'
 
 export { GRID }
 
-export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
+export default function OverviewTabContent({ categories }: { categories: CategoryStats[] }) {
   const tSolveCard = useTranslations('Index.PeoplePage.solve-card')
   const tCubes = useTranslations('Index.PeoplePage.cubes-tab')
   const tTimeline = useTranslations('Index.PeoplePage.timeline-tab')
 
-  const solvesByCategory = useMemo(() => {
-    const flat: CategorySolve[] = [
-      ...cubes.flatMap((cube) =>
-        cube.solves.session.map((solve) => ({ ...solve, category: cube.category, cubeName: cube.name }))
-      ),
-      ...cubes.flatMap((cube) =>
-        cube.solves.all.map((solve) => ({ ...solve, category: cube.category, cubeName: cube.name }))
-      )
-    ].filter((s) => !s.isDeleted)
-
-    return groupBy(flat, (solve) => solve.category)
-  }, [cubes])
-
-  const rows = useMemo(
-    () => orderBy(Object.entries(solvesByCategory), [([category]) => getCategoryOrder(category)], ['asc']),
-    [solvesByCategory]
-  )
-
-  if (Object.keys(solvesByCategory).length === 0) {
+  if (categories.length === 0) {
     return <EmptyTabContent />
   }
 
@@ -62,8 +41,8 @@ export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
           animate="show"
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.05 } } }}
         >
-          {rows.map(([category, solves]) => (
-            <PeopleOverviewRow key={category} category={category} solves={solves} />
+          {categories.map((stats) => (
+            <PeopleOverviewRow key={stats.category} stats={stats} />
           ))}
         </motion.div>
       </div>

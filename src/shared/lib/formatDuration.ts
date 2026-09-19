@@ -18,9 +18,6 @@ function floorSeconds(ms: number, decimals: number): string {
   return (Math.floor(seconds * factor + 1e-7) / factor).toFixed(decimals)
 }
 
-/**
- * Human readable duration with unit suffixes, e.g. `1d 2h 3m 4.5s` or `850ms`. Zero units are omitted.
- */
 export function formatDuration(ms: number): string {
   const { years, days, hours, minutes } = splitLargeUnits(ms)
   const parts: string[] = []
@@ -45,9 +42,6 @@ export function formatDuration(ms: number): string {
   return parts.length > 0 ? parts.join(' ') : '0ms'
 }
 
-/**
- * Clock style duration in whole seconds, e.g. `1:02:03` or `0:05`. Leading zero units are omitted, minutes always shown.
- */
 export function formatDurationClock(ms: number): string {
   const { years, days, hours, minutes } = splitLargeUnits(ms)
   const parts: string[] = []

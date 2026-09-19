@@ -1,16 +1,20 @@
 import { useMemo } from 'react'
-import { Cube } from '@/entities/cube/model/types'
 import { UserProfile } from '@/entities/user/model/user'
-import { resolveBadges } from './resolve-badges'
+import type { UserStatsSummary } from '@/entities/user-stats/model/types'
+import { deserializeSolveStats } from '@/entities/user-stats/lib/solve-stats-serialization'
+import { computeSolveStats } from './achievements'
+import { resolveBadgesFromStats } from './resolve-badges'
 
 export type { UserBadge, UserBadgesResult, BadgeFamily, BadgeProgress } from './resolve-badges'
 
-/**
- * Resolves the unlock state of every badge for a user.
- *
- * Call this **once per profile** (in `PeopleTabs`) and pass the result down
- * via props — otherwise each consumer re-runs the full O(N) sweep.
- */
-export default function useUserBadges({ user, cubes }: { user: UserProfile; cubes: Cube[] }) {
-  return useMemo(() => resolveBadges({ user, cubes }), [cubes, user])
+export default function useUserBadges({ user, stats }: { user: UserProfile; stats: UserStatsSummary | null }) {
+  return useMemo(
+    () =>
+      resolveBadgesFromStats({
+        user,
+        stats: stats ? deserializeSolveStats(stats.achievements.solveStats) : computeSolveStats([]),
+        cubeCount: stats?.achievements.cubeCount ?? 0
+      }),
+    [stats, user]
+  )
 }

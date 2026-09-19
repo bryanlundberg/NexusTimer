@@ -6,6 +6,9 @@ import Solve from '@/entities/solve/model/solve'
 import TrainerSolve from '@/entities/trainer-solve/model/trainer-solve'
 import TrainerLearned from '@/entities/trainer-learned/model/trainer-learned'
 import TrainerStats from '@/entities/trainer-stats/model/trainer-stats'
+import UserStats from '@/entities/user-stats/model/user-stats'
+import { userStatsCache } from '@/entities/user-stats/model/user-stats-cache'
+import { userProfileCache } from '@/entities/user/model/user-cache'
 import Feedback from '@/entities/feedback/model/feedback'
 import UserCredential from '@/entities/user-credential/model/user-credential'
 import EmailVerification from '@/entities/email-verification/model/email-verification'
@@ -30,6 +33,7 @@ const RELATED_COLLECTIONS: RelatedCollection[] = [
   { key: 'trainerSolves', model: TrainerSolve, filter: ({ userId }) => ({ user: userId }) },
   { key: 'trainerLearned', model: TrainerLearned, filter: ({ userId }) => ({ user: userId }) },
   { key: 'trainerStats', model: TrainerStats, filter: ({ userId }) => ({ user: userId }) },
+  { key: 'userStats', model: UserStats, filter: ({ userId }) => ({ user: userId }) },
   { key: 'feedback', model: Feedback, filter: ({ userId }) => ({ userId }) },
   { key: 'credentials', model: UserCredential, filter: ({ userId }) => ({ userId }) },
   { key: 'emailVerifications', model: EmailVerification, filter: ({ userId }) => ({ userId }) },
@@ -120,6 +124,7 @@ export async function DELETE(request: NextRequest) {
     )
 
     await User.deleteOne({ _id: user._id })
+    await Promise.all([userProfileCache.invalidate(String(user._id)), userStatsCache.invalidate(String(user._id))])
 
     return ok({
       deleted: { user: { _id: user._id, email }, ...deleted }

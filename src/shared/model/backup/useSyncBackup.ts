@@ -42,10 +42,15 @@ export const useSyncBackup = () => {
     const blob = await gzipJson(text)
 
     try {
-      const res = await uploadWithProgress('/api/v1/backups', blob, (percent) => {
-        setUploadProgress(percent)
-        showUploadToast(percent)
-      })
+      const res = await uploadWithProgress(
+        '/api/v1/backups',
+        blob,
+        (percent) => {
+          setUploadProgress(percent)
+          showUploadToast(percent)
+        },
+        { 'X-Timezone': Intl.DateTimeFormat().resolvedOptions().timeZone }
+      )
 
       if (!res.ok) throw new Error(`Upload failed with status ${res.status}`)
 

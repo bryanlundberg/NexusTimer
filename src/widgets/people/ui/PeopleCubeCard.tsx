@@ -1,48 +1,27 @@
 import * as React from 'react'
 import { CubeCategoryTile } from '@/shared/ui/cube-category-icon/CubeCategoryIcon'
 import dayjs from '@/shared/lib/dayjs'
-import { Cube } from '@/entities/cube/model/types'
+import type { CubeStats } from '@/entities/user-stats/model/types'
 import { useLocale, useTranslations } from 'next-intl'
 import formatTime from '@/shared/lib/formatTime'
 import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
-import { minBy } from 'es-toolkit'
 import { motion } from 'motion/react'
-import calcBestAo from '@/shared/lib/statistics/calcBestAo'
-import { mergeSolvesNewestFirst } from '@/entities/solve/lib/sortSolves'
 import { GRID } from '@/widgets/people/ui/cubes-tab-content'
 
 interface PeopleCubeCardProps {
-  cube: Cube
+  cube: CubeStats
   index: number
 }
 
 export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
   const locale = useLocale()
   const t = useTranslations('Index.CubesPage')
-  const allSolves = mergeSolvesNewestFirst([cube.solves.all || [], cube.solves.session || []]).filter(
-    (s) => !s.isDeleted
-  )
-
-  const counts = allSolves.reduce(
-    (acc, s) => ({
-      successCount: acc.successCount + (!s.dnf && !s.plus2 && !s.isDeleted ? 1 : 0),
-      plus2Count: acc.plus2Count + (!s.dnf && s.plus2 && !s.isDeleted ? 1 : 0),
-      dnfCount: acc.dnfCount + (s.dnf && !s.isDeleted ? 1 : 0)
-    }),
-    { successCount: 0, plus2Count: 0, dnfCount: 0 }
-  )
-
-  const { successCount, plus2Count, dnfCount } = counts
+  const { ok: successCount, plus2: plus2Count, dnf: dnfCount } = cube.counts
   const totalSolves = successCount + plus2Count + dnfCount
 
-  const validSolves = allSolves.filter((s) => !s.dnf)
-  const pb = validSolves.length > 0 ? minBy(validSolves, (s) => s.time) : null
-  const pbTime = pb ? pb.time : null
-
-  const ao5Ms = calcBestAo(allSolves, 5)
-  const ao5Str = !isFinite(ao5Ms) || ao5Ms <= 0 ? '--' : formatTime(ao5Ms)
-
-  const totalTime = allSolves.reduce((acc, s) => acc + (s.time || 0), 0)
+  const pbTime = cube.best
+  const ao5Str = cube.bestAo5 !== null ? formatTime(cube.bestAo5) : '--'
+  const totalTime = cube.totalTime
 
   return (
     <motion.div

@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react'
 
-/**
- * Tracks `navigator.onLine`. Reads it on the first client render, not after hydration,
- * so effects never act on an assumed online state while the device is offline.
- */
 export function useIsOnline(): boolean {
+  // Read on the first client render rather than after hydration, so effects never see an assumed online state.
   const [isOnline, setIsOnline] = useState(() => typeof navigator === 'undefined' || navigator.onLine)
 
   useEffect(() => {

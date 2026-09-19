@@ -1,35 +1,28 @@
 import { useMemo } from 'react'
-import calcBestTime from '@/shared/lib/statistics/calcBestTime'
-import calcTotalSolvesStatistics from '@/shared/lib/statistics/calcTotalSolvesStatistics'
-import calcBestAo from '@/shared/lib/statistics/calcBestAo'
-import { mergeSolvesNewestFirst } from '@/entities/solve/lib/sortSolves'
 import { CompareUser } from '@/features/compare-users/model/compare'
-import { Cube } from '@/entities/cube/model/types'
 import { CUBE_CATEGORIES } from '@/shared/const/cube-categories'
+import type { UserStatsSummary } from '@/entities/user-stats/model/types'
 
 interface User {
   _id: string
 }
 
-export function useCompareUsersStats(users: User[], userCubes: Record<string, any>): CompareUser[] {
-  return useMemo(() => {
-    return users.map((user) => {
-      const cubesDB = userCubes[user._id] || {}
-      const byCategory = Object.create(null) as CompareUser
-      CUBE_CATEGORIES.forEach((category) => {
-        const cubeData = cubesDB[category] ?? []
-        const cubeName = ''
-
-        const single = calcBestTime({ cubesDB: cubeData, category, cubeName }).global
-        const average = calcBestAo(
-          mergeSolvesNewestFirst(cubeData.flatMap((cube: Cube) => [cube.solves.all || [], cube.solves.session || []])),
-          5
+export function useCompareUsersStats(users: User[], statsByUser: Record<string, UserStatsSummary | null>) {
+  return useMemo<CompareUser[]>(
+    () =>
+      users.map((user) => {
+        const categories = statsByUser[user._id]?.categories ?? []
+        const byCategory = Object.fromEntries(
+          CUBE_CATEGORIES.map((category) => {
+            const stats = categories.find((entry) => entry.category === category)
+            return [
+              category,
+              { single: stats?.best?.time ?? 0, average: stats?.bestAo5?.time ?? 0, count: stats?.count ?? 0 }
+            ]
+          })
         )
-        const count = calcTotalSolvesStatistics({ cubesDB: cubeData, category, cubeName }).global
-
-        ;(byCategory as any)[category] = { single, average, count }
-      })
-      return { _id: user._id, ...(byCategory as any) } as CompareUser
-    })
-  }, [users, userCubes])
+        return { _id: user._id, ...byCategory } as CompareUser
+      }),
+    [users, statsByUser]
+  )
 }
