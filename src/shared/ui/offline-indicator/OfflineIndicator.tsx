@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
-import { useIsOnline } from 'react-use-is-online'
+import { useIsOnline } from '@/shared/model/useIsOnline'
 
 /**
  * Thin red bar pinned to the top of the viewport, shown only while the device
@@ -9,7 +9,7 @@ import { useIsOnline } from 'react-use-is-online'
  * the way (non-interactive) when connectivity returns.
  */
 export function OfflineIndicator() {
-  const { isOnline } = useIsOnline()
+  const isOnline = useIsOnline()
   const t = useTranslations('Index')
   const [mounted, setMounted] = useState(false)
 

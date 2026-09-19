@@ -1,7 +1,7 @@
 'use client'
 import { useEffect } from 'react'
 import { useSession } from 'next-auth/react'
-import { useIsOnline } from 'react-use-is-online'
+import { useIsOnline } from '@/shared/model/useIsOnline'
 import { useUser } from '@/entities/user/model/useUser'
 import { useSyncBackup } from '@/shared/model/backup/useSyncBackup'
 import { useInitialSyncBackup } from '@/shared/model/backup/useInitialSyncBackup'
@@ -12,7 +12,7 @@ export const useAutoRestoreOnLogin = () => {
   const setFirstLoaded = useInitialSyncBackup((store) => store.setFirstLoaded)
   const { data: session } = useSession()
   const { data: user } = useUser(session?.user?.id!)
-  const { isOffline } = useIsOnline()
+  const isOffline = !useIsOnline()
 
   useEffect(() => {
     if (isOffline) return
