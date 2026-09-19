@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
       cacheControl: 'public, max-age=31536000, immutable'
     })
 
-    const url = await files.url(key)
+    const url = files.url(key)
 
     await connectDB()
     const user = await User.findByIdAndUpdate(userId, { backup: { url, updatedAt } }, { returnDocument: 'after' })
@@ -111,7 +111,7 @@ export async function DELETE(request: NextRequest) {
     const key = backupKey(userId, file)
     if (!(await files.exists(key))) return notFound('Backup not found')
 
-    const deletedUrl = await files.url(key)
+    const deletedUrl = files.url(key)
     await files.delete(key)
 
     await connectDB()
