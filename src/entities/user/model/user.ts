@@ -103,6 +103,7 @@ const UserSchema = new Schema(
       type: {
         friendRequests: { type: String, enum: FRIEND_REQUEST_POLICIES },
         statsVisibility: { type: String, enum: STATS_VISIBILITIES },
+        friendRequestEmails: { type: Boolean },
         readReceipts: { type: Boolean },
         typingIndicator: { type: Boolean }
       },
