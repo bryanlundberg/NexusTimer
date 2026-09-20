@@ -28,8 +28,8 @@ func DefaultOptions() Options {
 		PingPeriod:     30 * time.Second,
 		MaxQueue:       16,
 		MaxMessageSize: 8192,
-		InboundBurst:   10,
-		InboundRefill:  time.Second,
+		InboundBurst:   30,
+		InboundRefill:  500 * time.Millisecond,
 		MaxWatched:     100,
 	}
 }
