@@ -9,8 +9,10 @@ describe('presence store', () => {
   let bus: Bus
   let sent: string[]
 
-  const flush = () => vi.advanceTimersByTime(100)
-  const frames = () => sent.map((raw) => JSON.parse(raw) as { type: string; ids: string[] })
+  const flush = () => vi.advanceTimersByTime(200)
+  const parse = (raw: string) => JSON.parse(raw) as { type: string; ids: string[]; seq: number }
+  const frames = () => sent.map((raw) => ({ type: parse(raw).type, ids: parse(raw).ids }))
+  const sequences = () => sent.map((raw) => parse(raw).seq)
 
   beforeEach(async () => {
     vi.resetModules()
@@ -64,9 +66,9 @@ describe('presence store', () => {
     expect(frames()).toEqual([{ type: 'presence:watch', ids: [] }])
   })
 
-  it('reports offline for anyone it has not heard about', () => {
-    expect(store.presenceStore.get(ALICE)).toEqual({ state: 'offline', lastSeen: null })
-    expect(store.presenceStore.get(null)).toEqual({ state: 'offline', lastSeen: null })
+  it('says unknown, not offline, for anyone it has not heard about', () => {
+    expect(store.presenceStore.get(ALICE)).toEqual({ state: 'unknown', lastSeen: null })
+    expect(store.presenceStore.get(null)).toEqual({ state: 'unknown', lastSeen: null })
   })
 
   it('keeps what the gateway published', () => {
@@ -93,15 +95,85 @@ describe('presence store', () => {
     expect(listener).toHaveBeenCalledTimes(2)
   })
 
-  it('forgets someone it no longer follows, so a stale dot cannot come back', () => {
+  it('holds a released dot for a while, then lets it go stale', () => {
     const release = store.watchPresence([ALICE])
-    store.applyPresence([{ userId: ALICE, state: 'online' }])
     flush()
+    store.applyPresence([{ userId: ALICE, state: 'online' }])
 
     release()
     flush()
+    expect(store.presenceStore.get(ALICE)).toEqual({ state: 'online', lastSeen: null })
 
-    expect(store.presenceStore.get(ALICE)).toEqual({ state: 'offline', lastSeen: null })
+    vi.advanceTimersByTime(60_000)
+    expect(store.presenceStore.get(ALICE)).toEqual({ state: 'unknown', lastSeen: null })
+  })
+
+  it('asks again when the gateway never answers the watch', () => {
+    store.watchPresence([ALICE])
+    flush()
+    expect(sent).toHaveLength(1)
+
+    vi.advanceTimersByTime(2_200)
+
+    expect(frames()).toEqual([
+      { type: 'presence:watch', ids: [ALICE] },
+      { type: 'presence:watch', ids: [ALICE] }
+    ])
+  })
+
+  it('tags every watch with a rising sequence', () => {
+    store.watchPresence([ALICE])
+    flush()
+    store.watchPresence([BOB])
+    flush()
+
+    expect(sequences()).toEqual([1, 2])
+  })
+
+  it('takes the snapshot carrying its own sequence as the answer', () => {
+    store.watchPresence([ALICE])
+    flush()
+    store.applyPresence([{ userId: ALICE, state: 'online' }], 1)
+
+    vi.advanceTimersByTime(10_000)
+
+    expect(sent).toHaveLength(1)
+  })
+
+  it('does not take a snapshot meant for another watch as the answer', () => {
+    store.watchPresence([ALICE])
+    flush()
+    store.applyPresence([{ userId: ALICE, state: 'online' }], 99)
+
+    vi.advanceTimersByTime(2_200)
+
+    expect(sent).toHaveLength(2)
+  })
+
+  it('stops asking once a snapshot covers the set', () => {
+    store.watchPresence([ALICE])
+    flush()
+    store.applyPresence([{ userId: ALICE, state: 'online' }])
+
+    vi.advanceTimersByTime(10_000)
+
+    expect(sent).toHaveLength(1)
+  })
+
+  it('calls the socket stalled after two watches go unanswered', () => {
+    const stalled = vi.fn()
+    bus.subscribeRealtime((event) => {
+      if (event.type === 'realtime:stalled') stalled()
+    })
+
+    store.watchPresence([ALICE])
+    flush()
+
+    vi.advanceTimersByTime(2_200)
+    expect(stalled).not.toHaveBeenCalled()
+
+    vi.advanceTimersByTime(2_200)
+    expect(stalled).toHaveBeenCalledTimes(1)
   })
 
   it('keeps the state of someone released and taken straight back', () => {
