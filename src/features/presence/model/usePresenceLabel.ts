@@ -35,6 +35,7 @@ export function usePresenceLabel(presence?: PresenceState | null): string | null
   )
 
   const display = resolvePresenceDisplay(presence)
+  if (display === 'unknown') return null
   if (display !== 'offline') return t(display)
   if (!presence?.lastSeen) return null
 
