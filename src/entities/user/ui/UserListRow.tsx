@@ -44,9 +44,10 @@ interface Props {
   actions?: ReactNode
   stackActions?: boolean
   avatarRef?: Ref<HTMLDivElement>
+  rootRef?: Ref<HTMLDivElement>
 }
 
-export function UserListRow({ user, presence, meta, actions, stackActions = false, avatarRef }: Props) {
+export function UserListRow({ user, presence, meta, actions, stackActions = false, avatarRef, rootRef }: Props) {
   const tHero = useTranslations('Index.PeoplePage.hero')
   const locale = useLocale()
   const methodLabel = useMethodLabel()
@@ -107,6 +108,7 @@ export function UserListRow({ user, presence, meta, actions, stackActions = fals
 
   return (
     <div
+      ref={rootRef}
       className={cn(
         'flex gap-3 px-3 py-3 border-b border-border/40 last:border-b-0 border-l-2 border-l-transparent',
         'hover:bg-muted/20 hover:border-l-primary transition-colors duration-150',
