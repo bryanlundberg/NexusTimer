@@ -3,21 +3,21 @@
 import { useLocale, useTranslations } from 'next-intl'
 import dayjs from '@/shared/lib/dayjs'
 import { UserListRow } from '@/entities/user/ui/UserListRow'
-import type { PresenceState } from '@/features/presence/model/usePresence'
+import { usePresenceInView } from '@/features/presence/model/usePresenceInView'
 import { usePresenceLabel } from '@/features/presence/model/usePresenceLabel'
 import type { FriendUser } from '@/entities/friendship/model/types'
 
 interface Props {
   user: FriendUser
-  presence?: PresenceState
   friendsSince?: string
   actions: React.ReactNode
   stackActions?: boolean
 }
 
-export function FriendRow({ user, presence, friendsSince, actions, stackActions = false }: Props) {
+export function FriendRow({ user, friendsSince, actions, stackActions = false }: Props) {
   const t = useTranslations('Index.FriendsPage')
   const locale = useLocale()
+  const { ref, presence } = usePresenceInView(user._id)
   const presenceLabel = usePresenceLabel(presence)
 
   const since = friendsSince
@@ -25,5 +25,14 @@ export function FriendRow({ user, presence, friendsSince, actions, stackActions 
     : null
   const meta = [presenceLabel, since].filter(Boolean).join(' · ')
 
-  return <UserListRow user={user} presence={presence} meta={meta} actions={actions} stackActions={stackActions} />
+  return (
+    <UserListRow
+      user={user}
+      presence={presence}
+      rootRef={ref}
+      meta={meta}
+      actions={actions}
+      stackActions={stackActions}
+    />
+  )
 }
