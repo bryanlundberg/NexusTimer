@@ -49,14 +49,30 @@ export function SmartCubeTimer({ connection, secondaryActions }: SmartCubeTimerP
       )}
 
       {solveStats && (
-        <div className="flex items-center gap-2 text-xs sm:text-sm tabular-nums text-muted-foreground">
-          <span>
-            <span className="font-semibold text-foreground">{solveStats.moveCount}</span> moves
-          </span>
-          <span className="text-muted-foreground/50">·</span>
-          <span>
-            <span className="font-semibold text-foreground">{solveStats.tps.toFixed(2)}</span> TPS
-          </span>
+        <div className="flex flex-col items-center gap-1 w-full max-w-56">
+          <div className="flex items-center gap-2 text-xs sm:text-sm tabular-nums text-muted-foreground">
+            <span>
+              <span className="font-semibold text-foreground">{solveStats.moveCount}</span> moves
+            </span>
+            <span className="text-muted-foreground/50">·</span>
+            <span>
+              <span className="font-semibold text-foreground">{solveStats.tps.toFixed(2)}</span> TPS
+            </span>
+            {solveStats.method && (
+              <>
+                <span className="text-muted-foreground/50">·</span>
+                <span className="font-semibold text-foreground">{solveStats.method}</span>
+              </>
+            )}
+          </div>
+
+          {solveStats.segments && (
+            <div className="flex h-1.5 w-full overflow-hidden rounded-full">
+              {solveStats.segments.map((segment) => (
+                <div key={segment.key} className={segment.bgClass} style={{ width: `${segment.pct}%` }} />
+              ))}
+            </div>
+          )}
         </div>
       )}
 
