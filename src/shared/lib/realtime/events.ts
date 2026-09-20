@@ -43,12 +43,12 @@ export type RealtimeEvent =
   | { type: 'chat:delivered'; chatId: string; deliveredAt: string }
   | { type: 'chat:seen'; chatId: string; readAt: string }
   | { type: 'typing'; chatId: string; userId: string }
-  | { type: 'presence'; users: PresenceUser[] }
+  | { type: 'presence'; users: PresenceUser[]; seq?: number }
   | { type: 'presence:self'; status: PresenceStatus }
 
 export type RealtimeClientFrame =
   | { type: 'typing'; to: string; chatId: string }
-  | { type: 'presence:watch'; ids: string[] }
+  | { type: 'presence:watch'; ids: string[]; seq: number }
   | { type: 'presence:idle'; idle: boolean }
 
 export type RealtimeTicketResponse = { url: string; ticket: string }
