@@ -5,6 +5,9 @@ import { useSmartSessionStore } from '@/features/smart-cube/model/useSmartSessio
 
 const SIZE_PX = 'min(180px, 38vw)'
 
+const COLLAPSE_IDLE_MS = 200
+const COLLAPSE_MAX_MOVES = 96
+
 // 3D mirror of the physical smart cube. The session store is the source of
 // truth, so the player is seeded from its tracked move log: coming back from
 // another route shows the cube as it really is, not solved.
@@ -17,9 +20,21 @@ export function useSmartCubePlayer() {
     if (!container) return
     let current: TwistyPlayer | null = null
 
+    let animatedMoves = 0
+    let collapseTimeout: number | null = null
+
+    const cancelCollapse = () => {
+      if (collapseTimeout == null) return
+      window.clearTimeout(collapseTimeout)
+      collapseTimeout = null
+    }
+
     // Runs whenever a tracking epoch starts (a finished solve, a manual
-    // resync), so it must never rebuild the WebGL context.
+    // resync) and whenever the animated alg is folded back into the setup,
+    // so it must never rebuild the WebGL context.
     const reseed = () => {
+      cancelCollapse()
+      animatedMoves = 0
       if (!current) return
       try {
         current.alg = ''
@@ -50,11 +65,19 @@ export function useSmartCubePlayer() {
         try {
           current?.experimentalAddMove(move)
         } catch {}
+        animatedMoves += 1
+        if (animatedMoves >= COLLAPSE_MAX_MOVES) {
+          reseed()
+          return
+        }
+        cancelCollapse()
+        collapseTimeout = window.setTimeout(reseed, COLLAPSE_IDLE_MS)
       },
       onResync: reseed
     })
 
     return () => {
+      cancelCollapse()
       unsubscribe()
       disposeTwistyPlayer(next)
     }
