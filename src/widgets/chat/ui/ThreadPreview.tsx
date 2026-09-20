@@ -11,29 +11,25 @@ import { MessageStatusIcon } from '@/entities/chat/ui/MessageStatusIcon'
 import { messageStatus } from '@/entities/chat/lib/message-status'
 import { parseMessage, toPlainText } from '@/entities/chat/lib/message-content'
 import { PresenceDot } from '@/features/presence/ui/PresenceDot'
-import { resolvePresenceDisplay, type PresenceState } from '@/features/presence/model/usePresence'
+import { resolvePresenceDisplay } from '@/features/presence/model/usePresence'
+import { usePresenceInView } from '@/features/presence/model/usePresenceInView'
 
 interface Props {
   thread: ChatThread
   myId?: string
-  presence?: PresenceState
   isTyping: boolean
 }
 
-export function ThreadPreview({
-  thread: { user, lastMessage, unread, receipts, muted },
-  myId,
-  presence,
-  isTyping
-}: Props) {
+export function ThreadPreview({ thread: { user, lastMessage, unread, receipts, muted }, myId, isTyping }: Props) {
   const t = useTranslations('Index.ChatPage')
   const locale = useLocale()
+  const { ref, presence } = usePresenceInView(user._id)
   const isMine = lastMessage?.senderId === myId
   const isDeleted = !!lastMessage && lastMessage.text === ''
 
   return (
     <>
-      <div className="relative shrink-0">
+      <div ref={ref} className="relative shrink-0">
         <ChatAvatar peer={user} className="size-10" />
         <span className="absolute -right-0.5 -bottom-0.5 rounded-full bg-background p-px">
           <PresenceDot state={resolvePresenceDisplay(presence)} className="size-2" />
