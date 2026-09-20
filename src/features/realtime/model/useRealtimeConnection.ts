@@ -1,9 +1,16 @@
 import { useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import type { RealtimeTicketResponse } from '@/shared/lib/realtime/events'
-import { emitRealtime, setRealtimeSender, type RealtimeClientEvent } from '@/features/realtime/model/realtime-bus'
+import {
+  emitRealtime,
+  setRealtimeSender,
+  subscribeRealtime,
+  type RealtimeClientEvent
+} from '@/features/realtime/model/realtime-bus'
 
 const MAX_BACKOFF_MS = 30_000
+
+const STALL_GRACE_MS = 10_000
 
 export function useRealtimeConnection() {
   const { data: session } = useSession()
@@ -18,6 +25,7 @@ export function useRealtimeConnection() {
     let attempt = 0
     let hasConnected = false
     let stopped = false
+    let openedAt = 0
 
     const scheduleReconnect = () => {
       if (stopped || retryTimer) return
@@ -46,6 +54,7 @@ export function useRealtimeConnection() {
 
         ws.onopen = () => {
           attempt = 0
+          openedAt = Date.now()
           setRealtimeSender((data) => ws.send(data))
           emitRealtime({ type: 'realtime:connected' })
           if (hasConnected) emitRealtime({ type: 'realtime:reconnected' })
@@ -70,17 +79,37 @@ export function useRealtimeConnection() {
       }
     }
 
-    const handleOnline = () => {
+    const revive = () => {
       attempt = 0
+      if (socket) {
+        if (socket.readyState !== WebSocket.CLOSING && socket.readyState !== WebSocket.CLOSED) return
+        socket.close()
+        return
+      }
+      clearTimeout(retryTimer)
+      retryTimer = undefined
       void connect()
     }
 
-    window.addEventListener('online', handleOnline)
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible') revive()
+    }
+
+    const unsubscribe = subscribeRealtime((event) => {
+      if (event.type !== 'realtime:stalled' || !socket) return
+      if (socket.readyState !== WebSocket.OPEN || Date.now() - openedAt < STALL_GRACE_MS) return
+      socket.close()
+    })
+
+    window.addEventListener('online', revive)
+    document.addEventListener('visibilitychange', handleVisibility)
     void connect()
 
     return () => {
       stopped = true
-      window.removeEventListener('online', handleOnline)
+      unsubscribe()
+      window.removeEventListener('online', revive)
+      document.removeEventListener('visibilitychange', handleVisibility)
       clearTimeout(retryTimer)
       setRealtimeSender(null)
       socket?.close(1000)
