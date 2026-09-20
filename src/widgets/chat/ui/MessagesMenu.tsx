@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
@@ -15,7 +15,6 @@ import { useInbox } from '@/entities/chat/model/useInbox'
 import { useOpenChat } from '@/features/chat/model/useOpenChat'
 import { getDockCapacity } from '@/features/chat/model/dock-capacity'
 import { useTypingChats } from '@/features/chat/model/typing-store'
-import { usePresenceList } from '@/features/presence/model/usePresence'
 import { ThreadPreview } from '@/widgets/chat/ui/ThreadPreview'
 
 export function MessagesMenu() {
@@ -29,8 +28,6 @@ export function MessagesMenu() {
   const threads = inbox?.threads ?? []
   const unread = inbox?.totalUnread ?? 0
 
-  const userIds = useMemo(() => (open ? threads.map((thread) => thread.user._id) : []), [open, threads])
-  const presence = usePresenceList(userIds)
   const typingChats = useTypingChats()
 
   const handleOpenChange = (next: boolean) => {
@@ -101,12 +98,7 @@ export function MessagesMenu() {
               onSelect={() => openChat(thread._id)}
               className="gap-3 border-b border-border/40 px-3 py-2.5 last:border-b-0"
             >
-              <ThreadPreview
-                thread={thread}
-                myId={session?.user?.id}
-                presence={presence[thread.user._id]}
-                isTyping={typingChats.has(thread._id)}
-              />
+              <ThreadPreview thread={thread} myId={session?.user?.id} isTyping={typingChats.has(thread._id)} />
             </DropdownMenuItem>
           ))}
         </div>
