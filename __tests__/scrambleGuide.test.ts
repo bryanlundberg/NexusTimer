@@ -124,6 +124,23 @@ describe('corrections', () => {
     expect(pending('U2 F', ['U', 'D'])).toEqual(['U', 'F'])
     expect(pending('U2 F', ['U', 'D', "D'"])).toEqual(['U', 'F'])
   })
+
+  // A cube turned far off the scramble path stacks one correction per move, so
+  // only the newest ones are built. What ends up on screen must not change.
+  it('lists only the newest corrections and counts the rest', () => {
+    const applied = Array.from({ length: 100 }, (_, i) => (i % 2 === 0 ? 'D' : 'L'))
+    const { guide } = run('R U F', applied)
+
+    expect(guide.corrections).toHaveLength(32)
+    expect(guide.corrections[0]).toEqual({ key: 'e99', move: "L'" })
+    expect(guide.corrections[1]).toEqual({ key: 'e98', move: "D'" })
+    expect(guide.hiddenCorrections).toBe(68)
+
+    // Same 19 moves and the same total as building all 100 corrections would give.
+    const out = truncateGuide(guide, 20)
+    expect(moves(out.corrections)).toEqual(Array.from({ length: 19 }, (_, i) => (i % 2 === 0 ? "L'" : "D'")))
+    expect(out.hiddenCount).toBe(100 + 3 - 19)
+  })
 })
 
 describe('truncateGuide', () => {
