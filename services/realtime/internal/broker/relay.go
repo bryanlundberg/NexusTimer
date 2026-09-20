@@ -23,6 +23,7 @@ type clientFrame struct {
 	ChatID string   `json:"chatId"`
 	IDs    []string `json:"ids"`
 	Idle   bool     `json:"idle"`
+	Seq    int64    `json:"seq"`
 }
 
 type typingEvent struct {
@@ -42,7 +43,7 @@ func (b *Broker) Inbound(c hub.Conn, payload []byte) {
 	case "typing":
 		b.relayTyping(c.UserID(), payload)
 	case "presence:watch":
-		b.watch(c, frame.IDs)
+		b.watch(c, frame.IDs, frame.Seq)
 	case "presence:idle":
 		if c.SetIdle(frame.Idle) {
 			b.SetIdle(c.UserID(), c.ConnID(), frame.Idle)
@@ -81,7 +82,7 @@ func (b *Broker) relayTyping(userID string, payload []byte) {
 	}
 }
 
-func (b *Broker) watch(c hub.Conn, ids []string) {
+func (b *Broker) watch(c hub.Conn, ids []string, seq int64) {
 	seen := make(map[string]struct{}, len(ids)+1)
 	wanted := make([]string, 0, len(ids)+1)
 
@@ -100,7 +101,7 @@ func (b *Broker) watch(c hub.Conn, ids []string) {
 
 	ctx, cancel := context.WithTimeout(context.Background(), presenceTimeout)
 	defer cancel()
-	if snapshot := b.Snapshot(ctx, accepted); snapshot != nil {
+	if snapshot := b.Snapshot(ctx, accepted, seq); snapshot != nil {
 		c.Send(snapshot)
 	}
 }

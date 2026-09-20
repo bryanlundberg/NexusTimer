@@ -2,6 +2,7 @@ package broker
 
 import (
 	"context"
+	"encoding/json"
 	"io"
 	"log/slog"
 	"os"
@@ -187,6 +188,21 @@ func TestWatchIsAnsweredWithASingleSnapshotFrame(t *testing.T) {
 	conn.mu.Unlock()
 	if sent != 1 {
 		t.Fatalf("got %d frames, want a single snapshot", sent)
+	}
+}
+
+func TestWatchSnapshotEchoesTheSequence(t *testing.T) {
+	b := testBroker(t)
+
+	conn := newFakeConn(alice)
+	b.Inbound(conn, []byte(`{"type":"presence:watch","ids":["`+bob+`"],"seq":7}`))
+
+	var frame presenceEvent
+	if err := json.Unmarshal([]byte(conn.lastSent()), &frame); err != nil {
+		t.Fatal(err)
+	}
+	if frame.Seq != 7 {
+		t.Fatalf("got seq %d, want 7", frame.Seq)
 	}
 }
 
