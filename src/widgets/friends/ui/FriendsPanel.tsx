@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { Check, Send, UserMinus, UserPlus, Users, X } from 'lucide-react'
@@ -14,7 +14,6 @@ import type { FriendEntry, FriendUser } from '@/entities/friendship/model/types'
 import { useFriendActions } from '@/features/friends/model/useFriendActions'
 import { useFriendsTab } from '@/features/friends/model/useFriendsTab'
 import { FriendActionDialog, type FriendAction } from '@/features/friends/ui/FriendActionDialog'
-import { usePresenceList } from '@/features/presence/model/usePresence'
 import { FriendsTabs } from '@/widgets/friends/model/types'
 import { FriendRow } from '@/widgets/friends/ui/FriendRow'
 import { MessageLink } from '@/features/chat/ui/MessageLink'
@@ -47,9 +46,6 @@ export function FriendsPanel() {
   const { value: tab, set: setTab } = useFriendsTab()
   const [confirming, setConfirming] = useState<{ user: FriendUser; action: FriendAction } | null>(null)
 
-  const friendIds = useMemo(() => (data?.friends ?? []).map((entry) => entry.user._id), [data?.friends])
-  const presence = usePresenceList(friendIds)
-
   if (isLoading || !data) {
     return (
       <div className="flex flex-col gap-2">
@@ -69,7 +65,6 @@ export function FriendsPanel() {
       <FriendRow
         key={user._id}
         user={user}
-        presence={presence[user._id]}
         friendsSince={options.showSince ? since : undefined}
         actions={actions(user)}
         stackActions={options.stackActions}
