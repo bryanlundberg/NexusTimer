@@ -13,7 +13,7 @@ export function usePresenceRealtime() {
   const isIdle = useRef(false)
 
   useRealtimeEvent((event) => {
-    if (event.type === 'presence') applyPresence(event.users)
+    if (event.type === 'presence') applyPresence(event.users, event.seq)
     if (event.type === 'presence:self' && isPresenceStatus(event.status)) selfStatusStore.set(event.status)
     if (event.type === 'realtime:connected') {
       resendWatch()
@@ -37,7 +37,9 @@ export function usePresenceRealtime() {
     }
 
     const handleVisibility = () => {
-      if (document.visibilityState === 'visible') goActive()
+      if (document.visibilityState !== 'visible') return
+      goActive()
+      resendWatch()
     }
 
     for (const name of ACTIVITY_EVENTS) window.addEventListener(name, goActive, { passive: true })
