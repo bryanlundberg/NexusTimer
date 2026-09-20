@@ -16,8 +16,10 @@ export interface ScrambleGuideItem {
 
 export interface ScrambleGuide {
   // Red moves to undo mistakes. Never merged with each other or with `pending`.
+  // Only the newest ones are listed: see `MAX_LISTED_CORRECTIONS`.
   corrections: ScrambleGuideItem[]
   pending: ScrambleGuideItem[]
+  hiddenCorrections?: number
 }
 
 export interface GuideState {
@@ -25,6 +27,12 @@ export interface GuideState {
   acc: number // partial amount on scramble[index]
   errors: ScrambleMove[] // divergent moves to undo, last-first
 }
+
+// Corrections are listed newest first and every consumer truncates the list far
+// below this, so building the whole stack would only ever be thrown away. Turning
+// a cube that is way off the scramble path pushes one correction per move, so
+// that stack is unbounded and building it has to stay constant.
+const MAX_LISTED_CORRECTIONS = 32
 
 const MOVE_RE = /^(\d*[A-Za-z]+)(2|')?$/
 const ROTATION_RE = /^[xyz]$/
@@ -105,7 +113,11 @@ export function stepGuide(scramble: ScrambleMove[], state: GuideState, move: Scr
 export function guideFromState(scramble: ScrambleMove[], state: GuideState): ScrambleGuide {
   // Key by stack position (not display order) so keys stay stable as the front
   // of the list clears.
-  const corrections = state.errors.map((move, i) => ({ key: `e${i}`, move: formatMove(invertMove(move)) })).reverse()
+  const hiddenCorrections = Math.max(0, state.errors.length - MAX_LISTED_CORRECTIONS)
+  const corrections: ScrambleGuideItem[] = []
+  for (let i = state.errors.length - 1; i >= hiddenCorrections; i--) {
+    corrections.push({ key: `e${i}`, move: formatMove(invertMove(state.errors[i])) })
+  }
 
   const pending: ScrambleGuideItem[] = []
   if (state.index < scramble.length) {
@@ -123,7 +135,7 @@ export function guideFromState(scramble: ScrambleMove[], state: GuideState): Scr
     }
   }
 
-  return { corrections, pending }
+  return { corrections, pending, hiddenCorrections }
 }
 
 export function isComplete(scramble: ScrambleMove[], state: GuideState): boolean {
@@ -137,9 +149,10 @@ export interface TruncatedGuide {
 }
 
 export function truncateGuide(guide: ScrambleGuide, max: number): TruncatedGuide {
-  const total = guide.corrections.length + guide.pending.length
+  const unlisted = guide.hiddenCorrections ?? 0
+  const total = guide.corrections.length + guide.pending.length + unlisted
   if (max <= 0 || total <= max) {
-    return { corrections: guide.corrections, pending: guide.pending, hiddenCount: 0 }
+    return { corrections: guide.corrections, pending: guide.pending, hiddenCount: unlisted }
   }
 
   // Reserve one slot for the `…` indicator that replaces the hidden moves.
