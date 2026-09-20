@@ -53,6 +53,7 @@ type presenceUser struct {
 type presenceEvent struct {
 	Type  string         `json:"type"`
 	Users []presenceUser `json:"users"`
+	Seq   int64          `json:"seq,omitempty"`
 }
 
 func (b *Broker) connValue(idle bool) string {
@@ -252,11 +253,12 @@ func (b *Broker) PublishPresence(ctx context.Context, userID string) {
 	}
 }
 
-func (b *Broker) Snapshot(ctx context.Context, userIDs []string) []byte {
+// Seq echoes the watch frame this answers; broadcasts carry none.
+func (b *Broker) Snapshot(ctx context.Context, userIDs []string, seq int64) []byte {
 	if len(userIDs) == 0 {
 		return nil
 	}
-	payload, err := json.Marshal(presenceEvent{Type: "presence", Users: b.resolve(ctx, userIDs)})
+	payload, err := json.Marshal(presenceEvent{Type: "presence", Users: b.resolve(ctx, userIDs), Seq: seq})
 	if err != nil {
 		return nil
 	}
