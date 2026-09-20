@@ -9,10 +9,11 @@ import { useCompareUsersStore } from '@/features/compare-users/model/useCompareU
 import { useTranslations } from 'next-intl'
 import { FlyingAvatar } from '@/features/compare-users/ui/FlyingAvatar'
 import { UserListRow } from '@/entities/user/ui/UserListRow'
-import type { PresenceState } from '@/features/presence/model/usePresence'
+import { usePresenceInView } from '@/features/presence/model/usePresenceInView'
 
-export default function UserCard({ user, presence }: { user: UserDocument; presence?: PresenceState }) {
+export default function UserCard({ user }: { user: UserDocument }) {
   const t = useTranslations('Index.PeoplePage.user-card')
+  const { ref, presence } = usePresenceInView(user._id)
   const addUser = useCompareUsersStore((state) => state.addUser)
   const removeUser = useCompareUsersStore((state) => state.removeUser)
   const users = useCompareUsersStore((state) => state.users)
@@ -43,6 +44,7 @@ export default function UserCard({ user, presence }: { user: UserDocument; prese
         user={user}
         presence={presence}
         avatarRef={avatarRef}
+        rootRef={ref}
         actions={
           <Button
             onClick={handleCompareClick}
