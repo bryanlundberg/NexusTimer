@@ -5,6 +5,8 @@ import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useScrambleGuideStore } from '@/shared/model/timer/useScrambleGuideStore'
 import { saveVirtualSolve } from '@/features/timer/lib/saveVirtualSolve'
+import { tryAnalyzeSolution } from '@/shared/lib/tryAnalyzeSolution'
+import { buildBarSegments, buildPhases, type BarSegment } from '@/shared/lib/timer/solveAnalysis'
 import {
   formatMove,
   guideFromState,
@@ -22,6 +24,8 @@ export type SmartPhase = 'scrambling' | 'armed' | 'inspecting' | 'solving'
 export interface SmartSolveStats {
   moveCount: number
   tps: number
+  method: string | null
+  segments: BarSegment[] | null
 }
 
 export interface SmartSessionListeners {
@@ -35,6 +39,7 @@ const DEFAULT_INSPECTION_MS = 15000
 // Past this the log is collapsed to an equivalent shorter sequence, so a cube
 // played with outside the timer never makes seeding a player expensive.
 const MAX_TRACKED_MOVES = 512
+const TRACKED_MOVES_STEP = 64
 
 // The engine mirrors the physical cube from connect to disconnect. It lives
 // outside React so a turn is tracked whatever page is mounted.
@@ -43,6 +48,12 @@ const engine = new CubeEngine('', { size: CUBE_SIZE })
 // Every move since the cube was last known solved. Replayed to rebuild the
 // guide on a scramble change, and to seed a freshly mounted 3D player.
 let trackedMoves: string[] = []
+let collapseTrackedAt = MAX_TRACKED_MOVES
+
+const resetTrackedMoves = () => {
+  trackedMoves = []
+  collapseTrackedAt = MAX_TRACKED_MOVES
+}
 
 let scrambleTokens: ScrambleMove[] = []
 // Absolute cube state after each scramble prefix, used to reconcile the guide
@@ -272,13 +283,20 @@ const finalize = (dnf = false) => {
   resetSolveMoves()
   const scramble = primedScramble
 
+  let stats: SmartSolveStats | null = null
+
   if (dnf) {
     publish({ lastSolveTime: null, solveStats: null })
   } else {
-    let stats: SmartSolveStats | null = null
     try {
       const moveCount = simplifyMoves(moves.map((move) => move.m)).length
-      if (moveCount > 0) stats = { moveCount, tps: finalTime > 0 ? moveCount / (finalTime / 1000) : 0 }
+      if (moveCount > 0)
+        stats = {
+          moveCount,
+          tps: finalTime > 0 ? moveCount / (finalTime / 1000) : 0,
+          method: null,
+          segments: null
+        }
     } catch {
       stats = null
     }
@@ -297,7 +315,7 @@ const finalize = (dnf = false) => {
     // DNF leaves the log alone: the cube is still scrambled, and replaying that
     // log against the next scramble is what produces the corrections to undo it.
     engine.reset()
-    trackedMoves = []
+    resetTrackedMoves()
     notifyResync()
   }
 
@@ -307,6 +325,16 @@ const finalize = (dnf = false) => {
   publish({ phase: 'scrambling', guide: null })
   advanceScramble()
   primeScramble(useTimerStore.getState().scramble)
+
+  // Method detection walks the whole solution, so it runs once the next
+  // scramble is primed and only refines the stats already on screen.
+  if (stats && useSmartSessionStore.getState().solveStats === stats) {
+    const analysis = tryAnalyzeSolution(moves)
+    const method = analysis?.method && analysis.method !== 'unknown' ? analysis.method : null
+    const phases = buildPhases(analysis)
+    const segments = phases ? buildBarSegments(phases, finalTime) : null
+    if (method || segments) publish({ solveStats: { ...stats, method, segments } })
+  }
 }
 
 const trackMove = (raw: string) => {
@@ -321,12 +349,11 @@ const trackMove = (raw: string) => {
     return
   }
   trackedMoves.push(move)
-  if (trackedMoves.length > MAX_TRACKED_MOVES) {
+  if (trackedMoves.length > collapseTrackedAt) {
     try {
       trackedMoves = simplifyMoves(trackedMoves)
-    } catch {
-      trackedMoves = trackedMoves.slice(-MAX_TRACKED_MOVES)
-    }
+    } catch {}
+    collapseTrackedAt = Math.max(MAX_TRACKED_MOVES, trackedMoves.length + TRACKED_MOVES_STEP)
   }
   notifyMove(move)
 
@@ -408,7 +435,7 @@ export const useSmartSessionStore = create<SmartSessionState>(() => ({
     if (running) return
     running = true
     engine.reset()
-    trackedMoves = []
+    resetTrackedMoves()
     resetSolveMoves()
     stopClock()
     stopInspection()
@@ -427,7 +454,7 @@ export const useSmartSessionStore = create<SmartSessionState>(() => ({
     stopInspection()
     resetSolveMoves()
     engine.reset()
-    trackedMoves = []
+    resetTrackedMoves()
     guideState = initGuideState()
     scrambleTokens = []
     prefixStates = []
@@ -444,7 +471,7 @@ export const useSmartSessionStore = create<SmartSessionState>(() => ({
     stopInspection()
     resetSolveMoves()
     engine.reset()
-    trackedMoves = []
+    resetTrackedMoves()
     useSmartSessionStore.setState({ solveStats: null, solvingTime: 0 })
     primeScramble(useTimerStore.getState().scramble)
     notifyResync()
