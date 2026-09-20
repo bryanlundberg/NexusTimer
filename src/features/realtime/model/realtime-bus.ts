@@ -1,6 +1,7 @@
 import type { RealtimeClientFrame, RealtimeEvent } from '@/shared/lib/realtime/events'
 
-export type RealtimeClientEvent = RealtimeEvent | { type: 'realtime:connected' } | { type: 'realtime:reconnected' }
+export type RealtimeClientEvent =
+  RealtimeEvent | { type: 'realtime:connected' } | { type: 'realtime:reconnected' } | { type: 'realtime:stalled' }
 
 type Listener = (event: RealtimeClientEvent) => void
 
@@ -24,6 +25,10 @@ export function setRealtimeSender(send: ((data: string) => void) | null) {
 
 export function sendRealtime(frame: RealtimeClientFrame): boolean {
   if (!sender) return false
-  sender(JSON.stringify(frame))
-  return true
+  try {
+    sender(JSON.stringify(frame))
+    return true
+  } catch {
+    return false
+  }
 }
