@@ -20,6 +20,8 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { cn } from '@/shared/lib/utils'
+import { LinkPendingHint } from '@/shared/ui/link-pending-hint/LinkPendingHint'
+import { SIDEBAR_HINT_CLASS } from '@/widgets/sidebar/model/link-hint'
 
 export function NavMain({
   items,
@@ -132,6 +134,7 @@ export function NavMain({
                   )}
                 >
                   <Link href={item.url} onClick={handleNavClick}>
+                    <LinkPendingHint className={SIDEBAR_HINT_CLASS} />
                     {accent && itemActive && (
                       <span
                         aria-hidden
@@ -191,6 +194,7 @@ export function NavMain({
                                 className="nav-notch text-sidebar-foreground/70 hover:text-sidebar-foreground data-[active=true]:text-sidebar-foreground"
                               >
                                 <Link href={subItem.url} onClick={handleNavClick}>
+                                  <LinkPendingHint className={SIDEBAR_HINT_CLASS} />
                                   <span>{subItem.title}</span>
                                 </Link>
                               </SidebarMenuSubButton>
