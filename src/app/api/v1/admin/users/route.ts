@@ -3,6 +3,7 @@ import { Model, Types } from 'mongoose'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
 import Solve from '@/entities/solve/model/solve'
+import SharedSolve from '@/entities/shared-solve/model/shared-solve'
 import TrainerSolve from '@/entities/trainer-solve/model/trainer-solve'
 import TrainerLearned from '@/entities/trainer-learned/model/trainer-learned'
 import TrainerStats from '@/entities/trainer-stats/model/trainer-stats'
@@ -30,6 +31,7 @@ type RelatedCollection = {
 
 const RELATED_COLLECTIONS: RelatedCollection[] = [
   { key: 'solves', model: Solve, filter: ({ userId }) => ({ user: userId }) },
+  { key: 'sharedSolves', model: SharedSolve, filter: ({ userId }) => ({ user: userId }) },
   { key: 'trainerSolves', model: TrainerSolve, filter: ({ userId }) => ({ user: userId }) },
   { key: 'trainerLearned', model: TrainerLearned, filter: ({ userId }) => ({ user: userId }) },
   { key: 'trainerStats', model: TrainerStats, filter: ({ userId }) => ({ user: userId }) },
