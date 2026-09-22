@@ -3,21 +3,18 @@ import { notFound } from 'next/navigation'
 import { cache } from 'react'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import formatTime from '@/shared/lib/formatTime'
-import User from '@/entities/user/model/user'
-import SharedSolve, { type SharedSolveDocument } from '@/entities/shared-solve/model/shared-solve'
 import { isValidSlug } from '@/entities/shared-solve/lib/slug'
+import { getSharedSolveAuthor, getSharedSolveBySlug } from '@/entities/shared-solve/server/shared-solves'
 
 type Props = { params: Promise<{ slug: string }> }
-
-type SharedSolveMeta = Pick<SharedSolveDocument, 'user' | 'puzzle' | 'time' | 'dnf' | 'plus2' | 'scramble'>
 
 const findSharedSolve = cache(async (slug: string) => {
   if (!isValidSlug(slug)) return null
   await connectDB()
-  const doc = await SharedSolve.findOne({ slug }).select('user puzzle time dnf plus2 scramble').lean<SharedSolveMeta>()
-  if (!doc) return null
-  const author = await User.findById(doc.user).select('name').lean<{ name: string }>()
-  return author ? { ...doc, authorName: author.name } : null
+  const solve = await getSharedSolveBySlug(slug)
+  if (!solve) return null
+  const author = await getSharedSolveAuthor(solve.ownerId)
+  return author ? { ...solve.item, authorName: author.name } : null
 })
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
