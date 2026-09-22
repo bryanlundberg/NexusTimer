@@ -6,7 +6,6 @@ import { created, ok, serverError, tooManyRequests } from '@/shared/api/response
 import { shareSolveSchema } from '@/entities/shared-solve/model/types'
 import { createSharedSolve, listMySharedIds } from '@/entities/shared-solve/server/shared-solves'
 import { consumeShareQuota } from '@/entities/shared-solve/server/limits'
-import SharedSolve from '@/entities/shared-solve/model/shared-solve'
 
 export async function GET() {
   try {
@@ -30,8 +29,9 @@ export async function POST(request: NextRequest) {
 
     await connectDB()
 
-    const alreadyShared = await SharedSolve.exists({ user: userId, localSolveId: body.localSolveId })
-    if (!alreadyShared && !(await consumeShareQuota(userId))) return tooManyRequests()
+    const existing = (await listMySharedIds(userId))[body.localSolveId]
+    if (existing) return ok({ slug: existing })
+    if (!(await consumeShareQuota(userId))) return tooManyRequests()
 
     const { slug, created: isNew } = await createSharedSolve(userId, body)
     return isNew ? created({ slug }) : ok({ slug })
