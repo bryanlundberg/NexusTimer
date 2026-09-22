@@ -21,6 +21,8 @@ import { useSession } from 'next-auth/react'
 import { useRelationship } from '@/entities/friendship/model/useFriends'
 import { FriendButton } from '@/features/friends/ui/FriendButton'
 import { MutualFriends } from '@/features/friends/ui/MutualFriends'
+import { useUserSharedSolves } from '@/entities/shared-solve/model/useUserSharedSolves'
+import SharedTabContent from '@/widgets/people/ui/shared-tab-content'
 
 interface PeopleTabsProps {
   user: UserProfile
@@ -28,13 +30,14 @@ interface PeopleTabsProps {
   isLoadingStats?: boolean
 }
 
-const tabs = [PTabs.OVERVIEW, PTabs.CUBES, PTabs.TIMELINE, PTabs.ALGORITHMS] as const
+const tabs = [PTabs.OVERVIEW, PTabs.CUBES, PTabs.TIMELINE, PTabs.ALGORITHMS, PTabs.SHARED] as const
 
 export function PeopleTabs({ user, stats, isLoadingStats = false }: PeopleTabsProps) {
   const t = useTranslations('Index.PeoplePage.tabs')
   const tPeople = useTranslations('Index.PeoplePage')
   const userBadges = useUserBadges({ user, stats })
   const { data: learned } = useUserLearned(user._id)
+  const shared = useUserSharedSolves(user._id)
 
   const { data: session } = useSession()
   const isCurrentUser = session?.user?.id === user._id
@@ -49,7 +52,8 @@ export function PeopleTabs({ user, stats, isLoadingStats = false }: PeopleTabsPr
     [PTabs.CUBES]: t('cubes'),
     [PTabs.TIMELINE]: t('timeline'),
     [PTabs.ALGORITHMS]: t('algorithms'),
-    [PTabs.ACHIEVEMENTS]: t('achievements')
+    [PTabs.ACHIEVEMENTS]: t('achievements'),
+    [PTabs.SHARED]: t('shared')
   }
 
   const counts: Partial<Record<PTabs, number>> = {
@@ -58,6 +62,11 @@ export function PeopleTabs({ user, stats, isLoadingStats = false }: PeopleTabsPr
     [PTabs.TIMELINE]: stats?.totalSolves ?? 0,
     [PTabs.ALGORITHMS]: learned?.total ?? 0
   }
+
+  const showCount = (tab: PTabs) =>
+    tab === PTabs.SHARED ? !shared.isLoading : !isLoadingStats && !statsHidden && counts[tab] != null
+
+  const countOf = (tab: PTabs) => (tab === PTabs.SHARED ? shared.total : counts[tab])
 
   return (
     <div className="flex flex-col w-full">
@@ -102,9 +111,9 @@ export function PeopleTabs({ user, stats, isLoadingStats = false }: PeopleTabsPr
                 label: (
                   <span className="inline-flex items-center gap-1.5">
                     {labels[tab]}
-                    {!isLoadingStats && !statsHidden && counts[tab] != null && (
+                    {showCount(tab) && (
                       <span className="inline-flex items-center justify-center min-w-[1.125rem] h-[1.125rem] px-1 rounded-full bg-muted text-[10px] font-semibold tabular-nums leading-none text-muted-foreground transition-colors group-data-[state=active]:bg-primary/10 group-data-[state=active]:text-primary">
-                        {counts[tab]}
+                        {countOf(tab)}
                       </span>
                     )}
                   </span>
@@ -120,7 +129,9 @@ export function PeopleTabs({ user, stats, isLoadingStats = false }: PeopleTabsPr
 
         {/* Tab content */}
         <div className="px-4 md:px-6 py-0">
-          {statsHidden ? (
+          {value === PTabs.SHARED ? (
+            <SharedTabContent user={user} isCurrentUser={isCurrentUser} shared={shared} />
+          ) : statsHidden ? (
             <EmptyTabContent message={tPeople('stats-hidden', { name: user.name })} />
           ) : isLoadingStats ? (
             <TabTableSkeleton />

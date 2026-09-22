@@ -447,7 +447,8 @@
         "cubes": "Cubes",
         "timeline": "Timeline",
         "algorithms": "Algorithmes",
-        "achievements": "Succès"
+        "achievements": "Succès",
+        "shared": "Partagés"
       },
       "algorithms": {
         "total-learned": "algorithmes appris",
@@ -1166,6 +1167,34 @@
     },
     "Offline": {
       "offline": "Hors ligne"
+    },
+    "SharedSolves": {
+      "create-link": "Créer un lien",
+      "link-created": "Lien créé",
+      "link-created-copied": "Lien créé et copié",
+      "unshare": "Arrêter le partage",
+      "copy-link": "Copier le lien",
+      "link-copied": "Lien copié",
+      "unshared": "Le solve n'est plus partagé",
+      "has-replay": "Contient un replay",
+      "replay": "Replay",
+      "empty-own": "Tu n'as encore partagé aucun solve. Ouvre un solve et choisis Créer un lien dans son menu.",
+      "empty-other": "{name} n'a encore partagé aucun solve.",
+      "go-to-solves": "Aller aux solves",
+      "load-more": "Charger plus",
+      "not-found": "Ce solve n'est pas disponible.",
+      "breadcrumb": "Solve partagé",
+      "shared-ago": "Partagé {ago}",
+      "send-to-friend": "Envoyer à un ami",
+      "moves": "Mouvements",
+      "tps": "TPS",
+      "method": "Méthode",
+      "copy-scramble": "Copier le mélange",
+      "scramble-copied": "Mélange copié",
+      "errors": {
+        "generic": "Une erreur est survenue. Réessaie.",
+        "rate-limited": "Tu partages trop vite. Réessaie plus tard."
+      }
     }
   },
   "Multiplayer": {

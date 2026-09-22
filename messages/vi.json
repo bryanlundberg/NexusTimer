@@ -450,7 +450,8 @@
         "cubes": "Khối",
         "timeline": "Dòng thời gian",
         "algorithms": "Thuật toán",
-        "achievements": "Thành tích"
+        "achievements": "Thành tích",
+        "shared": "Đã chia sẻ"
       },
       "algorithms": {
         "total-learned": "thuật toán đã học",
@@ -1141,6 +1142,34 @@
         "empty": "Luyện vài trường hợp để xem tổng quan phương pháp.",
         "executions": "Lượt thực hiện",
         "focusCases": "Cần luyện thêm"
+      }
+    },
+    "SharedSolves": {
+      "create-link": "Tạo liên kết",
+      "link-created": "Đã tạo liên kết",
+      "link-created-copied": "Đã tạo và sao chép liên kết",
+      "unshare": "Ngừng chia sẻ",
+      "copy-link": "Sao chép liên kết",
+      "link-copied": "Đã sao chép liên kết",
+      "unshared": "Lần giải không còn được chia sẻ",
+      "has-replay": "Có replay",
+      "replay": "Replay",
+      "empty-own": "Bạn chưa chia sẻ lần giải nào. Mở một lần giải và chọn Tạo liên kết trong menu.",
+      "empty-other": "{name} chưa chia sẻ lần giải nào.",
+      "go-to-solves": "Đến danh sách lần giải",
+      "load-more": "Tải thêm",
+      "not-found": "Lần giải này không khả dụng.",
+      "breadcrumb": "Lần giải được chia sẻ",
+      "shared-ago": "Đã chia sẻ {ago}",
+      "send-to-friend": "Gửi cho bạn bè",
+      "moves": "Số bước",
+      "tps": "TPS",
+      "method": "Phương pháp",
+      "copy-scramble": "Sao chép scramble",
+      "scramble-copied": "Đã sao chép scramble",
+      "errors": {
+        "generic": "Đã xảy ra lỗi. Hãy thử lại.",
+        "rate-limited": "Bạn chia sẻ quá nhanh. Hãy thử lại sau."
       }
     }
   },

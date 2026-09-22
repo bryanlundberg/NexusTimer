@@ -447,7 +447,8 @@
         "cubes": "Würfel",
         "timeline": "Timeline",
         "algorithms": "Algorithmen",
-        "achievements": "Erfolge"
+        "achievements": "Erfolge",
+        "shared": "Geteilt"
       },
       "algorithms": {
         "total-learned": "Algorithmen gelernt",
@@ -1166,6 +1167,34 @@
     },
     "Offline": {
       "offline": "Offline"
+    },
+    "SharedSolves": {
+      "create-link": "Link erstellen",
+      "link-created": "Link erstellt",
+      "link-created-copied": "Link erstellt und kopiert",
+      "unshare": "Nicht mehr teilen",
+      "copy-link": "Link kopieren",
+      "link-copied": "Link kopiert",
+      "unshared": "Der Solve wird nicht mehr geteilt",
+      "has-replay": "Enthält ein Replay",
+      "replay": "Replay",
+      "empty-own": "Du hast noch keine Solves geteilt. Öffne einen Solve und wähle im Menü Link erstellen.",
+      "empty-other": "{name} hat noch keine Solves geteilt.",
+      "go-to-solves": "Zu den Solves",
+      "load-more": "Mehr laden",
+      "not-found": "Dieser Solve ist nicht verfügbar.",
+      "breadcrumb": "Geteilter Solve",
+      "shared-ago": "Geteilt {ago}",
+      "send-to-friend": "An einen Freund senden",
+      "moves": "Züge",
+      "tps": "TPS",
+      "method": "Methode",
+      "copy-scramble": "Scramble kopieren",
+      "scramble-copied": "Scramble kopiert",
+      "errors": {
+        "generic": "Etwas ist schiefgelaufen. Versuche es erneut.",
+        "rate-limited": "Du teilst zu schnell. Versuche es später erneut."
+      }
     }
   },
   "Multiplayer": {

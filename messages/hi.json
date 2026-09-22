@@ -447,7 +447,8 @@
         "cubes": "क्यूब्स",
         "timeline": "Timeline",
         "algorithms": "एल्गोरिदम",
-        "achievements": "उपलब्धियाँ"
+        "achievements": "उपलब्धियाँ",
+        "shared": "साझा किए गए"
       },
       "algorithms": {
         "total-learned": "एल्गोरिदम सीखे",
@@ -1166,6 +1167,34 @@
     },
     "Offline": {
       "offline": "ऑफ़लाइन"
+    },
+    "SharedSolves": {
+      "create-link": "लिंक बनाएं",
+      "link-created": "लिंक बन गया",
+      "link-created-copied": "लिंक बन गया और कॉपी हो गया",
+      "unshare": "साझा करना बंद करें",
+      "copy-link": "लिंक कॉपी करें",
+      "link-copied": "लिंक कॉपी हो गया",
+      "unshared": "सॉल्व अब साझा नहीं है",
+      "has-replay": "रीप्ले शामिल है",
+      "replay": "रीप्ले",
+      "empty-own": "आपने अभी तक कोई सॉल्व साझा नहीं किया है। कोई सॉल्व खोलें और उसके मेनू से लिंक बनाएं चुनें।",
+      "empty-other": "{name} ने अभी तक कोई सॉल्व साझा नहीं किया है।",
+      "go-to-solves": "सॉल्व पर जाएं",
+      "load-more": "और लोड करें",
+      "not-found": "यह सॉल्व उपलब्ध नहीं है।",
+      "breadcrumb": "साझा किया गया सॉल्व",
+      "shared-ago": "{ago} साझा किया गया",
+      "send-to-friend": "दोस्त को भेजें",
+      "moves": "मूव्स",
+      "tps": "TPS",
+      "method": "मेथड",
+      "copy-scramble": "स्क्रैम्बल कॉपी करें",
+      "scramble-copied": "स्क्रैम्बल कॉपी हो गया",
+      "errors": {
+        "generic": "कुछ गलत हो गया। फिर से कोशिश करें।",
+        "rate-limited": "आप बहुत तेज़ी से साझा कर रहे हैं। बाद में कोशिश करें।"
+      }
     }
   },
   "Multiplayer": {

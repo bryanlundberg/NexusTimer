@@ -447,7 +447,8 @@
         "cubes": "魔方",
         "timeline": "Timeline",
         "algorithms": "算法",
-        "achievements": "成就"
+        "achievements": "成就",
+        "shared": "已分享"
       },
       "algorithms": {
         "total-learned": "个已学算法",
@@ -1166,6 +1167,34 @@
     },
     "Offline": {
       "offline": "离线"
+    },
+    "SharedSolves": {
+      "create-link": "创建链接",
+      "link-created": "链接已创建",
+      "link-created-copied": "链接已创建并复制",
+      "unshare": "停止分享",
+      "copy-link": "复制链接",
+      "link-copied": "链接已复制",
+      "unshared": "该复原已停止分享",
+      "has-replay": "包含回放",
+      "replay": "回放",
+      "empty-own": "你还没有分享任何复原。打开一次复原，在菜单中选择“创建链接”。",
+      "empty-other": "{name} 还没有分享任何复原。",
+      "go-to-solves": "前往复原记录",
+      "load-more": "加载更多",
+      "not-found": "该复原不可用。",
+      "breadcrumb": "分享的复原",
+      "shared-ago": "分享于{ago}",
+      "send-to-friend": "发送给好友",
+      "moves": "步数",
+      "tps": "TPS",
+      "method": "方法",
+      "copy-scramble": "复制打乱",
+      "scramble-copied": "打乱已复制",
+      "errors": {
+        "generic": "出了点问题，请重试。",
+        "rate-limited": "分享过于频繁，请稍后再试。"
+      }
     }
   },
   "Multiplayer": {

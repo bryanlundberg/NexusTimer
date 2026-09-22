@@ -450,7 +450,8 @@
         "cubes": "Mga Cube",
         "timeline": "Timeline",
         "algorithms": "Mga Algorithm",
-        "achievements": "Mga Achievement"
+        "achievements": "Mga Achievement",
+        "shared": "Ibinahagi"
       },
       "algorithms": {
         "total-learned": "natutunang algorithm",
@@ -1141,6 +1142,34 @@
         "empty": "Mag-practice ng ilang case para makita ang overview ng method.",
         "executions": "Mga pagsasagawa",
         "focusCases": "Kailangang sanayin"
+      }
+    },
+    "SharedSolves": {
+      "create-link": "Gumawa ng link",
+      "link-created": "Nagawa ang link",
+      "link-created-copied": "Nagawa at nakopya ang link",
+      "unshare": "Itigil ang pagbabahagi",
+      "copy-link": "Kopyahin ang link",
+      "link-copied": "Nakopya ang link",
+      "unshared": "Hindi na ibinabahagi ang solve",
+      "has-replay": "May replay",
+      "replay": "Replay",
+      "empty-own": "Wala ka pang naibabahaging solve. Magbukas ng solve at piliin ang Gumawa ng link mula sa menu nito.",
+      "empty-other": "Wala pang naibabahaging solve si {name}.",
+      "go-to-solves": "Pumunta sa solves",
+      "load-more": "Mag-load pa",
+      "not-found": "Hindi available ang solve na ito.",
+      "breadcrumb": "Ibinahaging solve",
+      "shared-ago": "Ibinahagi {ago}",
+      "send-to-friend": "Ipadala sa kaibigan",
+      "moves": "Galaw",
+      "tps": "TPS",
+      "method": "Paraan",
+      "copy-scramble": "Kopyahin ang scramble",
+      "scramble-copied": "Nakopya ang scramble",
+      "errors": {
+        "generic": "May nangyaring mali. Subukan ulit.",
+        "rate-limited": "Masyado kang mabilis magbahagi. Subukan ulit mamaya."
       }
     }
   },

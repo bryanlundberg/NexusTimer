@@ -14,7 +14,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { Textarea } from '@/components/ui/textarea'
 import { CopyIcon, CubeIcon } from '@radix-ui/react-icons'
 import { useTranslations } from 'next-intl'
-import { ArrowRightLeftIcon, Send } from 'lucide-react'
+import { ArrowRightLeftIcon, Link2, Link2Off, Send } from 'lucide-react'
 import { QaDeleteIcon, QaBookmarkIcon, QaMoreIcon, QaCommentIcon } from '@/components/ui/quick-action-icons'
 import { useQueryState } from 'nuqs'
 import { useSession } from 'next-auth/react'
@@ -28,6 +28,8 @@ import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { solveCardFromSolve } from '@/entities/chat/lib/solve-card'
 import { SendToFriendDialog } from '@/features/chat/ui/SendToFriendDialog'
+import { useSharedSolveActions } from '@/features/share-solve/model/useSharedSolveActions'
+import { useMySharedIds } from '@/entities/shared-solve/model/useMySharedIds'
 
 const COMMENT_MAX_LENGTH = 200
 
@@ -72,6 +74,10 @@ export default function QuickActions({
     (state) => state.cubes?.find((cube) => cube.id === solve?.cubeId)?.category ?? state.selectedCube?.category
   )
   const shareDraft = session?.user?.id && solve && category ? solveCardFromSolve(solve, category) : null
+  const { ids: sharedIds } = useMySharedIds()
+  const { share, unshare, copyLink } = useSharedSolveActions()
+  const canSharePublicly = !!session?.user?.id && !!solve && !!category
+  const sharedSlug = solve ? sharedIds[solve.id] : undefined
 
   const handleConfirmDelete = () => {
     handleDeleteSolve()
@@ -90,7 +96,11 @@ export default function QuickActions({
   }
 
   const showDropdown =
-    !!shareDraft || !hideCopyButton || !hideMoveToHistory || (tabMode === SolveTab.SESSION && !hideTransferCollection)
+    !!shareDraft ||
+    canSharePublicly ||
+    !hideCopyButton ||
+    !hideMoveToHistory ||
+    (tabMode === SolveTab.SESSION && !hideTransferCollection)
 
   const isOk = !solve?.plus2 && !solve?.dnf
 
@@ -189,6 +199,24 @@ export default function QuickActions({
           <DropdownMenuItem data-testid="send-to-friend-button" onSelect={openShare}>
             <Send className="mr-2 size-3" /> {t('ChatPage.send-to-friend')}
           </DropdownMenuItem>
+        )}
+        {canSharePublicly && !sharedSlug && (
+          <DropdownMenuItem
+            data-testid="create-link-button"
+            onSelect={() => solve && category && share(solve, category)}
+          >
+            <Link2 className="mr-2 size-3" /> {t('SharedSolves.create-link')}
+          </DropdownMenuItem>
+        )}
+        {sharedSlug && (
+          <>
+            <DropdownMenuItem data-testid="copy-link-button" onSelect={() => copyLink(sharedSlug)}>
+              <Link2 className="mr-2 size-3" /> {t('SharedSolves.copy-link')}
+            </DropdownMenuItem>
+            <DropdownMenuItem data-testid="unshare-button" onSelect={() => unshare(sharedSlug)}>
+              <Link2Off className="mr-2 size-3" /> {t('SharedSolves.unshare')}
+            </DropdownMenuItem>
+          </>
         )}
         {!hideCopyButton && (
           <DropdownMenuItem

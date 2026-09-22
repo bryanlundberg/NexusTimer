@@ -7,7 +7,7 @@ import type { SolveAnalysis } from 'cube-state-engine'
 import type { SolveReplay } from '@/entities/replay/model/types'
 import type { ReplayMarker } from '@/features/solve-replay/ui/RealtimeReplayPlayer'
 
-function phaseMarkers(analysis: SolveAnalysis | null): ReplayMarker[] {
+export function phaseMarkers(analysis: SolveAnalysis | null): ReplayMarker[] {
   const phases = buildPhases(analysis)
   if (!phases) return []
 
