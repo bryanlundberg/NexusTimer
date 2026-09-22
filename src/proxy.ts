@@ -1,17 +1,17 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { locales, defaultLocale } from '@/shared/config/i18n/locales'
+import { defaultLocale, isLocale, LOCALE_COOKIE, localeCookieOptions } from '@/shared/config/i18n/locales'
 
 export function proxy(request: NextRequest) {
   // Cookie already set — locale preference is known, nothing to do
-  if (request.cookies.has('NEXT_LOCALE')) return NextResponse.next()
+  if (request.cookies.has(LOCALE_COOKIE)) return NextResponse.next()
 
   // Detect preferred locale from Accept-Language header
   const acceptLanguage = request.headers.get('accept-language') ?? ''
   const detected = acceptLanguage
     .split(',')
-    .map((entry) => entry.split(';')[0].trim().toLowerCase().slice(0, 2))
-    .find((lang) => (locales as readonly string[]).includes(lang))
+    .map((entry) => entry.split(';')[0].trim().toLowerCase().split('-')[0])
+    .find(isLocale)
 
   const locale = detected ?? defaultLocale
 
@@ -21,11 +21,7 @@ export function proxy(request: NextRequest) {
   // Non-English first visit: redirect to same URL with locale cookie set.
   // The redirect forces a new request so getRequestConfig picks up the cookie.
   const response = NextResponse.redirect(request.url)
-  response.cookies.set('NEXT_LOCALE', locale, {
-    path: '/',
-    maxAge: 60 * 60 * 24 * 365,
-    sameSite: 'lax'
-  })
+  response.cookies.set(LOCALE_COOKIE, locale, localeCookieOptions)
   return response
 }
 
