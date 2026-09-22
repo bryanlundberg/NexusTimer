@@ -158,6 +158,35 @@
   transition: background-color 300ms var(--ease-solve);
 }
 
+@keyframes link-pending-in {
+  to {
+    opacity: 0.9;
+  }
+}
+@keyframes link-pending-pulse {
+  50% {
+    opacity: 0.3;
+  }
+}
+.link-pending-hint {
+  pointer-events: none;
+  opacity: 0;
+}
+.link-pending-hint[data-pending] {
+  animation-name: link-pending-in, link-pending-pulse;
+  animation-duration: 150ms, 900ms;
+  animation-delay: 100ms, 250ms;
+  animation-timing-function: ease-out, ease-in-out;
+  animation-iteration-count: 1, infinite;
+  animation-fill-mode: forwards, none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .link-pending-hint[data-pending] {
+    animation-name: link-pending-in;
+    animation-iteration-count: 1;
+  }
+}
+
 .sidebar-ambient {
   background-color: var(--sidebar-ambient);
   -webkit-mask-image: radial-gradient(130% 100% at 0% 0%, #000, transparent 70%);
