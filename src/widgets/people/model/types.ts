@@ -3,7 +3,8 @@ export enum PeopleTabs {
   CUBES = 'cubes',
   TIMELINE = 'timeline',
   ALGORITHMS = 'algorithms',
-  ACHIEVEMENTS = 'achievements'
+  ACHIEVEMENTS = 'achievements',
+  SHARED = 'shared'
 }
 
 export const PEOPLE_TAB_QS_KEY = 'tab'
