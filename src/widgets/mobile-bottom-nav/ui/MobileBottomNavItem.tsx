@@ -5,6 +5,7 @@ import { motion } from 'motion/react'
 import { type ElementType } from 'react'
 import { cn } from '@/shared/lib/utils'
 import { triggerHaptic } from '@/shared/model/useHaptics'
+import { LinkPendingHint } from '@/shared/ui/link-pending-hint/LinkPendingHint'
 
 type Props = {
   url: string
@@ -21,6 +22,7 @@ export function MobileBottomNavItem({ url, icon: Icon, label, active }: Props) {
       aria-current={active ? 'page' : undefined}
       className="relative flex h-full w-full items-center justify-center outline-none focus-visible:ring-2 focus-visible:ring-ring/60 rounded-md"
     >
+      <LinkPendingHint className="-top-px left-1/2 h-0.5 w-8 -translate-x-1/2 rounded-full bg-foreground" />
       <motion.div
         whileTap={{ scale: 0.92 }}
         transition={{ type: 'spring', stiffness: 500, damping: 22 }}
