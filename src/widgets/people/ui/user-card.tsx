@@ -10,10 +10,13 @@ import { useTranslations } from 'next-intl'
 import { FlyingAvatar } from '@/features/compare-users/ui/FlyingAvatar'
 import { UserListRow } from '@/entities/user/ui/UserListRow'
 import { usePresenceInView } from '@/features/presence/model/usePresenceInView'
+import { useSession } from 'next-auth/react'
 
 export default function UserCard({ user }: { user: UserDocument }) {
   const t = useTranslations('Index.PeoplePage.user-card')
-  const { ref, presence } = usePresenceInView(user._id)
+  const { status } = useSession()
+  const isSignedIn = status === 'authenticated'
+  const { ref, presence } = usePresenceInView(isSignedIn ? user._id : null)
   const addUser = useCompareUsersStore((state) => state.addUser)
   const removeUser = useCompareUsersStore((state) => state.removeUser)
   const users = useCompareUsersStore((state) => state.users)
@@ -42,7 +45,7 @@ export default function UserCard({ user }: { user: UserDocument }) {
 
       <UserListRow
         user={user}
-        presence={presence}
+        presence={isSignedIn ? presence : undefined}
         avatarRef={avatarRef}
         rootRef={ref}
         actions={
