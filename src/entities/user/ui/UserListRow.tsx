@@ -123,9 +123,11 @@ export function UserListRow({ user, presence, meta, actions, stackActions = fals
               {user.name.substring(0, 2).toUpperCase()}
             </AvatarFallback>
           </Avatar>
-          <span className="absolute -bottom-0.5 -right-0.5 rounded-full bg-background p-px">
-            <PresenceDot state={resolvePresenceDisplay(presence)} className="size-2" />
-          </span>
+          {presence && (
+            <span className="absolute -bottom-0.5 -right-0.5 rounded-full bg-background p-px">
+              <PresenceDot state={resolvePresenceDisplay(presence)} className="size-2" />
+            </span>
+          )}
         </div>
 
         <div className="flex flex-col min-w-0 gap-0.5 leading-tight">
