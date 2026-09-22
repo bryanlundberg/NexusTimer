@@ -450,7 +450,8 @@
         "cubes": "Cubi",
         "timeline": "Cronologia",
         "algorithms": "Algoritmi",
-        "achievements": "Obiettivi"
+        "achievements": "Obiettivi",
+        "shared": "Condivisi"
       },
       "algorithms": {
         "total-learned": "algoritmi appresi",
@@ -1141,6 +1142,34 @@
         "empty": "Esercitati con qualche caso per vedere il riepilogo del metodo.",
         "executions": "Esecuzioni",
         "focusCases": "Da migliorare"
+      }
+    },
+    "SharedSolves": {
+      "create-link": "Crea link",
+      "link-created": "Link creato",
+      "link-created-copied": "Link creato e copiato",
+      "unshare": "Smetti di condividere",
+      "copy-link": "Copia link",
+      "link-copied": "Link copiato",
+      "unshared": "Il solve non è più condiviso",
+      "has-replay": "Include un replay",
+      "replay": "Replay",
+      "empty-own": "Non hai ancora condiviso nessun solve. Apri un solve e scegli Crea link dal suo menu.",
+      "empty-other": "{name} non ha ancora condiviso nessun solve.",
+      "go-to-solves": "Vai ai solve",
+      "load-more": "Carica altri",
+      "not-found": "Questo solve non è disponibile.",
+      "breadcrumb": "Solve condiviso",
+      "shared-ago": "Condiviso {ago}",
+      "send-to-friend": "Invia a un amico",
+      "moves": "Mosse",
+      "tps": "TPS",
+      "method": "Metodo",
+      "copy-scramble": "Copia scramble",
+      "scramble-copied": "Scramble copiato",
+      "errors": {
+        "generic": "Qualcosa è andato storto. Riprova.",
+        "rate-limited": "Stai condividendo troppo in fretta. Riprova più tardi."
       }
     }
   },

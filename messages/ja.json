@@ -447,7 +447,8 @@
         "cubes": "キューブ",
         "timeline": "Timeline",
         "algorithms": "アルゴリズム",
-        "achievements": "実績"
+        "achievements": "実績",
+        "shared": "共有"
       },
       "algorithms": {
         "total-learned": "個のアルゴリズムを習得",
@@ -1166,6 +1167,34 @@
     },
     "Offline": {
       "offline": "オフライン"
+    },
+    "SharedSolves": {
+      "create-link": "リンクを作成",
+      "link-created": "リンクを作成しました",
+      "link-created-copied": "リンクを作成してコピーしました",
+      "unshare": "共有をやめる",
+      "copy-link": "リンクをコピー",
+      "link-copied": "リンクをコピーしました",
+      "unshared": "ソルブの共有を解除しました",
+      "has-replay": "リプレイあり",
+      "replay": "リプレイ",
+      "empty-own": "まだソルブを共有していません。ソルブを開き、メニューから「リンクを作成」を選んでください。",
+      "empty-other": "{name}さんはまだソルブを共有していません。",
+      "go-to-solves": "ソルブへ移動",
+      "load-more": "さらに読み込む",
+      "not-found": "このソルブは利用できません。",
+      "breadcrumb": "共有されたソルブ",
+      "shared-ago": "{ago}に共有",
+      "send-to-friend": "友達に送る",
+      "moves": "手数",
+      "tps": "TPS",
+      "method": "メソッド",
+      "copy-scramble": "スクランブルをコピー",
+      "scramble-copied": "スクランブルをコピーしました",
+      "errors": {
+        "generic": "問題が発生しました。もう一度お試しください。",
+        "rate-limited": "共有のペースが速すぎます。しばらくしてからお試しください。"
+      }
     }
   },
   "Multiplayer": {

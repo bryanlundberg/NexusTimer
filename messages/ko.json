@@ -447,7 +447,8 @@
         "cubes": "큐브",
         "timeline": "Timeline",
         "algorithms": "알고리즘",
-        "achievements": "업적"
+        "achievements": "업적",
+        "shared": "공유됨"
       },
       "algorithms": {
         "total-learned": "개의 알고리즘 학습됨",
@@ -1166,6 +1167,34 @@
     },
     "Offline": {
       "offline": "오프라인"
+    },
+    "SharedSolves": {
+      "create-link": "링크 만들기",
+      "link-created": "링크가 생성되었습니다",
+      "link-created-copied": "링크가 생성되어 복사되었습니다",
+      "unshare": "공유 중지",
+      "copy-link": "링크 복사",
+      "link-copied": "링크가 복사되었습니다",
+      "unshared": "솔브 공유가 중지되었습니다",
+      "has-replay": "리플레이 포함",
+      "replay": "리플레이",
+      "empty-own": "아직 공유한 솔브가 없습니다. 솔브를 열고 메뉴에서 링크 만들기를 선택하세요.",
+      "empty-other": "{name}님은 아직 공유한 솔브가 없습니다.",
+      "go-to-solves": "솔브로 이동",
+      "load-more": "더 불러오기",
+      "not-found": "이 솔브는 볼 수 없습니다.",
+      "breadcrumb": "공유된 솔브",
+      "shared-ago": "{ago} 공유",
+      "send-to-friend": "친구에게 보내기",
+      "moves": "무브",
+      "tps": "TPS",
+      "method": "메서드",
+      "copy-scramble": "스크램블 복사",
+      "scramble-copied": "스크램블이 복사되었습니다",
+      "errors": {
+        "generic": "문제가 발생했습니다. 다시 시도하세요.",
+        "rate-limited": "너무 빠르게 공유하고 있습니다. 나중에 다시 시도하세요."
+      }
     }
   },
   "Multiplayer": {

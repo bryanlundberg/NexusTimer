@@ -450,7 +450,8 @@
         "cubes": "Kubus",
         "timeline": "Linimasa",
         "algorithms": "Algoritma",
-        "achievements": "Pencapaian"
+        "achievements": "Pencapaian",
+        "shared": "Dibagikan"
       },
       "algorithms": {
         "total-learned": "algoritma dipelajari",
@@ -1141,6 +1142,34 @@
         "empty": "Latih beberapa kasus untuk melihat ringkasan metode.",
         "executions": "Eksekusi",
         "focusCases": "Perlu latihan"
+      }
+    },
+    "SharedSolves": {
+      "create-link": "Buat tautan",
+      "link-created": "Tautan dibuat",
+      "link-created-copied": "Tautan dibuat dan disalin",
+      "unshare": "Berhenti membagikan",
+      "copy-link": "Salin tautan",
+      "link-copied": "Tautan disalin",
+      "unshared": "Solve tidak lagi dibagikan",
+      "has-replay": "Termasuk replay",
+      "replay": "Replay",
+      "empty-own": "Kamu belum membagikan solve apa pun. Buka sebuah solve dan pilih Buat tautan dari menunya.",
+      "empty-other": "{name} belum membagikan solve apa pun.",
+      "go-to-solves": "Ke solve",
+      "load-more": "Muat lebih banyak",
+      "not-found": "Solve ini tidak tersedia.",
+      "breadcrumb": "Solve yang dibagikan",
+      "shared-ago": "Dibagikan {ago}",
+      "send-to-friend": "Kirim ke teman",
+      "moves": "Gerakan",
+      "tps": "TPS",
+      "method": "Metode",
+      "copy-scramble": "Salin scramble",
+      "scramble-copied": "Scramble disalin",
+      "errors": {
+        "generic": "Terjadi kesalahan. Coba lagi.",
+        "rate-limited": "Kamu membagikan terlalu cepat. Coba lagi nanti."
       }
     }
   },
