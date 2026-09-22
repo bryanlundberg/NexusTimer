@@ -2,14 +2,12 @@
 
 import { useEffect, useRef, useState, useTransition } from 'react'
 import { useLocale } from 'next-intl'
-import { useRouter } from 'next/navigation'
 import { Check, ChevronDown, Globe } from 'lucide-react'
 import { languages } from '@/shared/const/languages'
 import { syncTranslations } from '@/shared/lib/language'
 
 export default function LandingLanguageSelect({ label }: { label: string }) {
   const locale = useLocale()
-  const router = useRouter()
   const [open, setOpen] = useState(false)
   const [isPending, startTransition] = useTransition()
   const containerRef = useRef<HTMLDivElement>(null)
@@ -37,7 +35,6 @@ export default function LandingLanguageSelect({ label }: { label: string }) {
     if (code === locale) return
     startTransition(async () => {
       await syncTranslations(code)
-      router.refresh()
     })
   }
 
