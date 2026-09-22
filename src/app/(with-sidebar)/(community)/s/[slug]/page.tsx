@@ -4,9 +4,8 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useParams, useRouter } from 'next/navigation'
-import { useSession } from 'next-auth/react'
 import { useLocale, useTranslations } from 'next-intl'
-import { CalendarIcon, CopyIcon, Layers, Link2Off, RotateCw, Send, Zap } from 'lucide-react'
+import { CalendarIcon, CopyIcon, Layers, Link2Off, RotateCw, Zap } from 'lucide-react'
 import { toast } from 'sonner'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
@@ -27,8 +26,6 @@ import { useSharedSolve } from '@/entities/shared-solve/model/useSharedSolve'
 import { SolveBreakdown } from '@/features/manage-solves/ui/SolveBreakdown'
 import { phaseMarkers } from '@/features/replay-solve-details/model/useReplaySolveDetails'
 import { Stat } from '@/features/replay-solve-details/ui/Stat'
-import { SendToFriendDialog } from '@/features/chat/ui/SendToFriendDialog'
-import { sharedSolveUrl } from '@/features/share-solve/api/sharedSolvesApi'
 import { useSharedSolveActions } from '@/features/share-solve/model/useSharedSolveActions'
 import { PeopleTabs } from '@/widgets/people/model/types'
 import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
@@ -44,13 +41,11 @@ export default function SharedSolvePage() {
   const tNav = useTranslations('Index.NavMain')
   const tTooltips = useTranslations('Index.tooltips')
   const locale = useLocale()
-  const { data: session } = useSession()
   const { data: solve, isLoading } = useSharedSolve(slug)
   const { unshare, pending } = useSharedSolveActions()
   const router = useRouter()
 
   const [visualization, setVisualization] = useState<'2D' | '3D'>('2D')
-  const [sendOpen, setSendOpen] = useState(false)
 
   if (isLoading) return <PeopleSkeleton />
 
@@ -148,12 +143,6 @@ export default function SharedSolvePage() {
           </span>
         </section>
 
-        {session?.user?.id && !solve.isOwner && (
-          <Button variant="outline" size="sm" className="self-center" onClick={() => setSendOpen(true)}>
-            <Send className="size-3.5" /> {t('send-to-friend')}
-          </Button>
-        )}
-
         {analysis && (
           <section className="flex flex-col gap-3">
             <div className="grid grid-cols-3 gap-2">
@@ -219,10 +208,6 @@ export default function SharedSolvePage() {
           )}
         </section>
       </PageBody>
-
-      {session?.user?.id && !solve.isOwner && (
-        <SendToFriendDialog open={sendOpen} onOpenChange={setSendOpen} draft={sharedSolveUrl(solve.slug)} />
-      )}
     </ScrollArea>
   )
 }
