@@ -4,6 +4,7 @@ import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
 import Solve from '@/entities/solve/model/solve'
 import SharedSolve from '@/entities/shared-solve/model/shared-solve'
+import { dropUserSharedSolvesCache } from '@/entities/shared-solve/server/shared-solves'
 import TrainerSolve from '@/entities/trainer-solve/model/trainer-solve'
 import TrainerLearned from '@/entities/trainer-learned/model/trainer-learned'
 import TrainerStats from '@/entities/trainer-stats/model/trainer-stats'
@@ -114,6 +115,7 @@ export async function DELETE(request: NextRequest) {
     const userSessions = await Session.find({ userId: user._id }, { sessionId: 1 }).lean<{ sessionId: string }[]>()
     await Promise.all(userSessions.map((s) => sessionCache.invalidate(s.sessionId)))
     await clearPresence(String(user._id))
+    await dropUserSharedSolvesCache(user._id)
 
     const ctx = { userId: user._id, email }
     const deleted = Object.fromEntries(
