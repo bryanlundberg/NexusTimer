@@ -1175,6 +1175,7 @@
       "unshare": "Arrêter le partage",
       "copy-link": "Copier le lien",
       "link-copied": "Lien copié",
+      "open": "Ouvrir",
       "unshared": "Le solve n'est plus partagé",
       "has-replay": "Contient un replay",
       "replay": "Replay",

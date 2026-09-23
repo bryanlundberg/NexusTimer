@@ -1151,6 +1151,7 @@
       "unshare": "Dejar de compartir",
       "copy-link": "Copiar enlace",
       "link-copied": "Enlace copiado",
+      "open": "Abrir",
       "unshared": "El solve ya no está compartido",
       "has-replay": "Incluye replay",
       "replay": "Replay",

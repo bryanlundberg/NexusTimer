@@ -1175,6 +1175,7 @@
       "unshare": "停止分享",
       "copy-link": "复制链接",
       "link-copied": "链接已复制",
+      "open": "打开",
       "unshared": "该复原已停止分享",
       "has-replay": "包含回放",
       "replay": "回放",

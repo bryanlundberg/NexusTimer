@@ -1175,6 +1175,7 @@
       "unshare": "共有をやめる",
       "copy-link": "リンクをコピー",
       "link-copied": "リンクをコピーしました",
+      "open": "開く",
       "unshared": "ソルブの共有を解除しました",
       "has-replay": "リプレイあり",
       "replay": "リプレイ",
