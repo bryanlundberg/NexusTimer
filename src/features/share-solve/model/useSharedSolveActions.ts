@@ -3,6 +3,7 @@ import { useSWRConfig } from 'swr'
 import { toast } from 'sonner'
 import { useTranslations } from 'next-intl'
 import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 import type { CubeCategory } from '@/shared/const/cube-categories'
 import type { Solve } from '@/entities/solve/model/types'
 import { MY_SHARED_IDS_KEY } from '@/entities/shared-solve/model/useMySharedIds'
@@ -15,6 +16,7 @@ import {
   toShareInput,
   unshareSolve
 } from '@/features/share-solve/api/sharedSolvesApi'
+import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 
 const writeClipboard = async (text: string) => {
   try {
@@ -29,6 +31,8 @@ export function useSharedSolveActions() {
   const t = useTranslations('Index.SharedSolves')
   const { mutate } = useSWRConfig()
   const { data: session } = useSession()
+  const router = useRouter()
+  const closeOverlay = useOverlayStore((state) => state.close)
   const [pending, setPending] = useState(false)
 
   const revalidate = async (slug?: string) => {
@@ -54,9 +58,24 @@ export function useSharedSolveActions() {
     }
   }
 
-  const copyLink = async (slug: string) => {
+  const showLinkToast = (slug: string, title: string, copied: boolean) => {
     const url = sharedSolveUrl(slug)
-    if (await writeClipboard(url)) toast.success(t('link-copied'), { description: url })
+    toast.success(title, {
+      description: url,
+      duration: 6000,
+      action: {
+        label: t('open'),
+        onClick: () => {
+          closeOverlay()
+          router.push(`/s/${slug}`)
+        }
+      },
+      cancel: copied ? undefined : { label: t('copy-link'), onClick: () => writeClipboard(url) }
+    })
+  }
+
+  const copyLink = async (slug: string) => {
+    if (await writeClipboard(sharedSolveUrl(slug))) showLinkToast(slug, t('link-copied'), true)
     else toast.error(t('errors.generic'))
   }
 
@@ -64,12 +83,8 @@ export function useSharedSolveActions() {
     run(async () => {
       const slug = await shareSolve(toShareInput(solve, puzzle))
       await revalidate(slug)
-      const url = sharedSolveUrl(slug)
-      const copied = await writeClipboard(url)
-      toast.success(t(copied ? 'link-created-copied' : 'link-created'), {
-        description: url,
-        action: copied ? undefined : { label: t('copy-link'), onClick: () => writeClipboard(url) }
-      })
+      const copied = await writeClipboard(sharedSolveUrl(slug))
+      showLinkToast(slug, t(copied ? 'link-created-copied' : 'link-created'), copied)
       return slug
     })
 
