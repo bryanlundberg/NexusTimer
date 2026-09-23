@@ -1,20 +1,18 @@
+import { useTranslations } from 'next-intl'
 import { Progress } from '@/components/ui/progress'
+import { useBackupUploadStore } from '@/shared/model/backup/useBackupUploadStore'
 
-type BackupUploadToastProps = {
-  progress: number
-}
+export default function BackupUploadToast() {
+  const t = useTranslations('Index.SettingsPage')
+  const progress = useBackupUploadStore((state) => state.progress)
 
-export default function BackupUploadToast({ progress }: BackupUploadToastProps) {
   return (
-    <div className="w-full rounded-xl bg-card border border-border shadow-lg overflow-hidden">
-      <div className="flex flex-col gap-2 p-4">
-        <div className="flex items-center justify-between gap-3">
-          <span className="text-sm font-medium">Saving new backup...</span>
-          <span className="text-xs text-muted-foreground tabular-nums">{progress}%</span>
-        </div>
-        <Progress value={progress} className="h-1.5" />
-        <p className="text-xs text-muted-foreground leading-relaxed">Please do not close this page.</p>
+    <div className="mt-1 flex flex-col gap-1.5">
+      <div className="flex items-center gap-2">
+        <Progress value={progress} className="h-1.5 rounded-none" />
+        <span className="w-8 shrink-0 text-right font-mono text-[11px] tabular-nums">{progress}%</span>
       </div>
+      <p>{t('backup-uploading-hint')}</p>
     </div>
   )
 }
