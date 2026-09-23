@@ -816,6 +816,9 @@
       "save-data-action": "Fazer backup agora",
       "load-data-action": "Restaurar dados",
       "save-data-toast": "Backup salvo",
+      "backup-uploading": "Salvando seu backup",
+      "backup-uploading-hint": "Você pode continuar navegando. Só não feche o app até terminar.",
+      "backup-upload-error": "Não foi possível salvar o backup. Tente novamente.",
       "load-data-toast": "Dados carregados"
     },
     "TransferSolvesPage": {

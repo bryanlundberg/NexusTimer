@@ -819,6 +819,9 @@
       "save-data-action": "Cadangkan sekarang",
       "load-data-action": "Pulihkan data",
       "save-data-toast": "Cadangan disimpan",
+      "backup-uploading": "Menyimpan cadanganmu",
+      "backup-uploading-hint": "Kamu bisa tetap menjelajah. Jangan tutup aplikasi sampai selesai.",
+      "backup-upload-error": "Tidak dapat menyimpan cadangan. Coba lagi.",
       "load-data-toast": "Data dimuat"
     },
     "TransferSolvesPage": {

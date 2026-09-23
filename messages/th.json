@@ -819,6 +819,9 @@
       "save-data-action": "สำรองข้อมูลตอนนี้",
       "load-data-action": "กู้คืนข้อมูล",
       "save-data-toast": "บันทึกข้อมูลสำรองแล้ว",
+      "backup-uploading": "กำลังบันทึกข้อมูลสำรอง",
+      "backup-uploading-hint": "คุณใช้งานต่อได้ตามปกติ แค่อย่าปิดแอปจนกว่าจะเสร็จ",
+      "backup-upload-error": "บันทึกข้อมูลสำรองไม่สำเร็จ ลองอีกครั้ง",
       "load-data-toast": "โหลดข้อมูลแล้ว"
     },
     "TransferSolvesPage": {

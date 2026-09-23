@@ -816,6 +816,9 @@
       "save-data-action": "Jetzt sichern",
       "load-data-action": "Daten wiederherstellen",
       "save-data-toast": "Backup gespeichert",
+      "backup-uploading": "Backup wird gespeichert",
+      "backup-uploading-hint": "Du kannst weiter navigieren. Schließ die App nur nicht, bevor es fertig ist.",
+      "backup-upload-error": "Backup konnte nicht gespeichert werden. Versuch es erneut.",
       "load-data-toast": "Daten geladen"
     },
     "TransferSolvesPage": {

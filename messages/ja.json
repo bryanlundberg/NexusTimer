@@ -816,6 +816,9 @@
       "save-data-action": "今すぐバックアップ",
       "load-data-action": "データを復元",
       "save-data-toast": "バックアップを保存しました",
+      "backup-uploading": "バックアップを保存しています",
+      "backup-uploading-hint": "このまま操作を続けられます。完了するまでアプリを閉じないでください。",
+      "backup-upload-error": "バックアップを保存できませんでした。もう一度お試しください。",
       "load-data-toast": "データを読み込みました"
     },
     "TransferSolvesPage": {

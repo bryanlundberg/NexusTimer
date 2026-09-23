@@ -816,6 +816,9 @@
       "save-data-action": "Создать копию сейчас",
       "load-data-action": "Восстановить данные",
       "save-data-toast": "Копия сохранена",
+      "backup-uploading": "Сохраняем копию",
+      "backup-uploading-hint": "Можно продолжать пользоваться приложением. Только не закрывайте его до завершения.",
+      "backup-upload-error": "Не удалось сохранить копию. Попробуйте ещё раз.",
       "load-data-toast": "Данные загружены"
     },
     "TransferSolvesPage": {

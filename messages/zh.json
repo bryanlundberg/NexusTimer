@@ -816,6 +816,9 @@
       "save-data-action": "立即备份",
       "load-data-action": "恢复数据",
       "save-data-toast": "备份已保存",
+      "backup-uploading": "正在保存备份",
+      "backup-uploading-hint": "你可以继续浏览，只是在完成前请不要关闭应用。",
+      "backup-upload-error": "无法保存备份，请重试。",
       "load-data-toast": "数据已加载"
     },
     "TransferSolvesPage": {

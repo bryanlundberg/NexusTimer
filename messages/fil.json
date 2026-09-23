@@ -819,6 +819,9 @@
       "save-data-action": "I-back up ngayon",
       "load-data-action": "Ibalik ang data",
       "save-data-toast": "Na-save ang backup",
+      "backup-uploading": "Sine-save ang backup mo",
+      "backup-uploading-hint": "Puwede kang magpatuloy sa pag-browse. Huwag lang isara ang app hangga't hindi pa tapos.",
+      "backup-upload-error": "Hindi ma-save ang backup. Subukan ulit.",
       "load-data-toast": "Na-load ang data"
     },
     "TransferSolvesPage": {

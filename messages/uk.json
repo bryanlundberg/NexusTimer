@@ -819,6 +819,9 @@
       "save-data-action": "Створити копію зараз",
       "load-data-action": "Відновити дані",
       "save-data-toast": "Копію збережено",
+      "backup-uploading": "Зберігаємо копію",
+      "backup-uploading-hint": "Можна далі користуватися застосунком. Лише не закривайте його до завершення.",
+      "backup-upload-error": "Не вдалося зберегти копію. Спробуйте ще раз.",
       "load-data-toast": "Дані завантажено"
     },
     "TransferSolvesPage": {

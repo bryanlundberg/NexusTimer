@@ -819,6 +819,9 @@
       "save-data-action": "Sao lưu ngay",
       "load-data-action": "Khôi phục dữ liệu",
       "save-data-toast": "Đã lưu bản sao lưu",
+      "backup-uploading": "Đang lưu bản sao lưu",
+      "backup-uploading-hint": "Bạn vẫn có thể tiếp tục sử dụng. Chỉ cần đừng đóng ứng dụng cho đến khi hoàn tất.",
+      "backup-upload-error": "Không thể lưu bản sao lưu. Hãy thử lại.",
       "load-data-toast": "Đã tải dữ liệu"
     },
     "TransferSolvesPage": {

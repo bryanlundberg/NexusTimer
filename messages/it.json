@@ -819,6 +819,9 @@
       "save-data-action": "Esegui backup ora",
       "load-data-action": "Ripristina dati",
       "save-data-toast": "Backup salvato",
+      "backup-uploading": "Salvataggio del backup in corso",
+      "backup-uploading-hint": "Puoi continuare a navigare. Basta non chiudere l’app finché non ha finito.",
+      "backup-upload-error": "Impossibile salvare il backup. Riprova.",
       "load-data-toast": "Dati caricati"
     },
     "TransferSolvesPage": {

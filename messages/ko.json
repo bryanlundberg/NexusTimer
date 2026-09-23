@@ -816,6 +816,9 @@
       "save-data-action": "지금 백업",
       "load-data-action": "데이터 복원",
       "save-data-toast": "백업이 저장되었습니다",
+      "backup-uploading": "백업을 저장하는 중",
+      "backup-uploading-hint": "계속 이용하셔도 됩니다. 완료될 때까지 앱만 닫지 마세요.",
+      "backup-upload-error": "백업을 저장할 수 없습니다. 다시 시도해 주세요.",
       "load-data-toast": "데이터를 불러왔습니다"
     },
     "TransferSolvesPage": {

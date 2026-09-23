@@ -819,6 +819,9 @@
       "save-data-action": "Utwórz kopię teraz",
       "load-data-action": "Przywróć dane",
       "save-data-toast": "Kopia zapisana",
+      "backup-uploading": "Zapisywanie kopii zapasowej",
+      "backup-uploading-hint": "Możesz dalej korzystać z aplikacji. Tylko jej nie zamykaj, dopóki się nie skończy.",
+      "backup-upload-error": "Nie udało się zapisać kopii zapasowej. Spróbuj ponownie.",
       "load-data-toast": "Dane wczytane"
     },
     "TransferSolvesPage": {

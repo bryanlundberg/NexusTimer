@@ -745,6 +745,9 @@
       "save-data-action": "Respaldar ahora",
       "load-data-action": "Restaurar datos",
       "save-data-toast": "Copia guardada",
+      "backup-uploading": "Guardando tu copia de seguridad",
+      "backup-uploading-hint": "Puedes seguir navegando, solo no cierres la app hasta que termine.",
+      "backup-upload-error": "No se pudo guardar la copia de seguridad. Inténtalo de nuevo.",
       "load-data-toast": "Datos cargados"
     },
     "others": {

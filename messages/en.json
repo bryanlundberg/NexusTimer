@@ -809,6 +809,9 @@
       "save-data-action": "Back up now",
       "load-data-action": "Restore data",
       "save-data-toast": "Backup saved",
+      "backup-uploading": "Saving your backup",
+      "backup-uploading-hint": "You can keep browsing. Just don't close the app until it finishes.",
+      "backup-upload-error": "Couldn't save your backup. Try again.",
       "load-data-toast": "Data loaded"
     },
     "TransferSolvesPage": {
