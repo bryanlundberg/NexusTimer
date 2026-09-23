@@ -602,6 +602,54 @@
   pointer-events: none;
 }
 
+/* Sonner toasts. Drawn with a background gradient instead of clip-path because
+   sonner hangs its hover-gap and swipe hit areas off ::before/::after outside
+   the toast box, and clipping would cut them off. One 45deg gradient cuts both
+   corners; the 1px ramp keeps the diagonal antialiased like clip-path. */
+[data-sonner-toast].toast-notch[data-styled='true'] {
+  --t-cut: 12px;
+  --t-border-w: 1px;
+  --t-fill-cut: calc((var(--t-cut) - 0.586 * var(--t-border-w)) * 0.7071);
+  --t-border-cut: calc(var(--t-cut) * 0.7071);
+  --t-border: color-mix(in oklab, var(--primary) 35%, var(--border));
+  --t-fill: var(--popover);
+  border: var(--t-border-w) solid transparent;
+  border-radius: 0;
+  box-shadow: none;
+  background:
+    linear-gradient(
+        45deg,
+        transparent calc(var(--t-fill-cut) - 0.5px),
+        var(--t-fill) calc(var(--t-fill-cut) + 0.5px) calc(100% - var(--t-fill-cut) - 0.5px),
+        transparent calc(100% - var(--t-fill-cut) + 0.5px)
+      )
+      padding-box,
+    linear-gradient(
+        45deg,
+        transparent calc(var(--t-border-cut) - 0.5px),
+        var(--t-border) calc(var(--t-border-cut) + 0.5px) calc(100% - var(--t-border-cut) - 0.5px),
+        transparent calc(100% - var(--t-border-cut) + 0.5px)
+      )
+      border-box;
+  filter: drop-shadow(0 8px 20px color-mix(in oklab, var(--foreground) 14%, transparent));
+}
+[data-sonner-toast].toast-notch[data-styled='true'][data-type='error'] {
+  --t-border: color-mix(in oklab, var(--destructive) 60%, var(--border));
+}
+[data-sonner-toast].toast-notch[data-styled='true'] [data-button] {
+  height: 26px;
+  border-radius: 0;
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+}
+[data-sonner-toast].toast-notch[data-styled='true'] [data-button][data-action] {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+[data-sonner-toast].toast-notch[data-styled='true'] [data-button][data-cancel] {
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+}
+
 .field-notch {
   --f-cut: 9px;
   --f-border-w: 1px;
