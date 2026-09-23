@@ -1,8 +1,7 @@
 'use client'
 import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
-import { toast } from 'sonner'
+import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
@@ -13,15 +12,20 @@ import { PageBody } from '@/shared/ui/page-body/PageBody'
 
 export default function AccountSavePage() {
   const t = useTranslations('Index')
-  const { handleUploadBackup, isUploading, uploadProgress, uploadCompleted } = useSyncBackup()
+  const { handleUploadBackup, isUploading, uploadProgress } = useSyncBackup()
   const router = useRouter()
+  const isMountedRef = useRef(false)
 
   useEffect(() => {
-    if (uploadCompleted) {
-      router.push('/account')
-      toast.success(t('SettingsPage.save-data-toast'))
+    isMountedRef.current = true
+    return () => {
+      isMountedRef.current = false
     }
-  }, [router, uploadCompleted, t])
+  }, [])
+
+  const handleSave = async () => {
+    if ((await handleUploadBackup()) && isMountedRef.current) router.push('/account')
+  }
 
   return (
     <>
@@ -54,7 +58,7 @@ export default function AccountSavePage() {
         )}
 
         <div className="mt-8 flex flex-col gap-2">
-          <Button onClick={handleUploadBackup} disabled={isUploading}>
+          <Button onClick={handleSave} disabled={isUploading}>
             {isUploading ? (
               <span className="inline-flex items-center gap-2">
                 <Loader2 className="size-4 animate-spin" />
@@ -65,14 +69,8 @@ export default function AccountSavePage() {
             )}
           </Button>
 
-          <Link
-            href="/account"
-            aria-disabled={isUploading}
-            onClick={(e) => {
-              if (isUploading) e.preventDefault()
-            }}
-          >
-            <Button variant="ghost" className="w-full" disabled={isUploading}>
+          <Link href="/account">
+            <Button variant="ghost" className="w-full">
               {t('Inputs.back')}
             </Button>
           </Link>
