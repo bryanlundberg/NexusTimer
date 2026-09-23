@@ -633,6 +633,9 @@
       border-box;
   filter: drop-shadow(0 8px 20px color-mix(in oklab, var(--foreground) 14%, transparent));
 }
+[data-sonner-toast].toast-notch[data-styled='true'] [data-description] {
+  color: var(--muted-foreground);
+}
 [data-sonner-toast].toast-notch[data-styled='true'][data-type='error'] {
   --t-border: color-mix(in oklab, var(--destructive) 60%, var(--border));
 }
