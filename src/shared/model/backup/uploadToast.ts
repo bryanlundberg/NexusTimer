@@ -4,9 +4,8 @@ import BackupUploadToast from '@/components/backup-upload-toast'
 
 export const UPLOAD_BACKUP_TOAST_ID = 'upload-backup'
 
-export const showUploadToast = (progress: number) =>
-  toast.custom(() => React.createElement(BackupUploadToast, { progress }), {
+export const showUploadToast = (title: string) =>
+  toast.loading(title, {
     id: UPLOAD_BACKUP_TOAST_ID,
-    duration: Infinity,
-    style: { width: '100%' }
+    description: React.createElement(BackupUploadToast)
   })
