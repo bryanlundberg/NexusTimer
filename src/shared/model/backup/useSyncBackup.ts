@@ -1,8 +1,8 @@
 import { importNexusTimerData, normalizeOldData } from '@/features/manage-backup/lib/importDataFromFile'
 import { toast } from 'sonner'
 import { useSession } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
-import { useState } from 'react'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { UserDocument } from '@/entities/user/model/user'
 import { BackupLoadMode } from '@/entities/backup/model/enums'
@@ -12,60 +12,45 @@ import { mergeAndUniqData } from '@/shared/model/backup/mergeAndUniqData'
 import { uploadWithProgress } from '@/shared/lib/backup/uploadWithProgress'
 import { gzipJson } from '@/shared/lib/backup/gzip'
 import { showUploadToast, UPLOAD_BACKUP_TOAST_ID } from '@/shared/model/backup/uploadToast'
+import { useBackupUploadStore } from '@/shared/model/backup/useBackupUploadStore'
 
 export const useSyncBackup = () => {
   const { data: session } = useSession()
+  const t = useTranslations('Index.SettingsPage')
   const setCubes = useTimerStore((state) => state.setCubes)
-  const [isUploading, setIsUploading] = useState(false)
-  const [uploadProgress, setUploadProgress] = useState(0)
+  const isUploading = useBackupUploadStore((state) => state.isUploading)
+  const uploadProgress = useBackupUploadStore((state) => state.progress)
   const updateSetting = useSettingsStore((state) => state.updateSetting)
-  const [uploadCompleted, setUploadCompleted] = useState(false)
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
 
   const handleUploadBackup = async () => {
-    if (isUploading) return
-    setIsUploading(true)
-    setUploadProgress(0)
-    showUploadToast(0)
-
-    const cubes = await cubesDB.getAllDatabase()
-
-    if (!cubes || !session || !session.user || !session.user.id) {
-      setIsUploading(false)
-      toast.dismiss(UPLOAD_BACKUP_TOAST_ID)
-      return toast.error('Failed to retrieve cubes or session data.')
-    }
-
-    const text = JSON.stringify(cubes)
-
-    const blob = await gzipJson(text)
+    const upload = useBackupUploadStore.getState()
+    if (upload.isUploading) return false
+    upload.start()
+    showUploadToast(t('backup-uploading'))
 
     try {
-      const res = await uploadWithProgress(
-        '/api/v1/backups',
-        blob,
-        (percent) => {
-          setUploadProgress(percent)
-          showUploadToast(percent)
-        },
-        { 'X-Timezone': Intl.DateTimeFormat().resolvedOptions().timeZone }
-      )
+      const cubes = await cubesDB.getAllDatabase()
+      if (!cubes || !session?.user?.id) throw new Error('Missing cubes or session')
 
+      const blob = await gzipJson(JSON.stringify(cubes))
+      const res = await uploadWithProgress('/api/v1/backups', blob, upload.setProgress, {
+        'X-Timezone': Intl.DateTimeFormat().resolvedOptions().timeZone
+      })
       if (!res.ok) throw new Error(`Upload failed with status ${res.status}`)
 
       updateSetting('sync.totalSolves', 0)
-
-      setIsUploading(false)
-      setUploadProgress(0)
       toast.dismiss(UPLOAD_BACKUP_TOAST_ID)
-      setUploadCompleted(true)
+      toast.success(t('save-data-toast'))
+      return true
     } catch (err) {
       console.error(err)
-      setIsUploading(false)
-      setUploadProgress(0)
       toast.dismiss(UPLOAD_BACKUP_TOAST_ID)
-      toast.error('Error occurred while uploading')
+      toast.error(t('backup-upload-error'))
+      return false
+    } finally {
+      upload.finish()
     }
   }
 
@@ -116,7 +101,6 @@ export const useSyncBackup = () => {
     handleDownloadData,
     handleUploadBackup,
     isUploading,
-    uploadProgress,
-    uploadCompleted
+    uploadProgress
   }
 }
