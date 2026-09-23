@@ -75,8 +75,8 @@ importers:
         specifier: ^1.1.2
         version: 1.2.6(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@rednaxela101/cubing':
-        specifier: ^0.63.10
-        version: 0.63.10
+        specifier: ^0.63.11
+        version: 0.63.11
       '@serwist/next':
         specifier: ^9.2.3
         version: 9.5.12(next@16.3.4(@babel/core@7.29.7)(@playwright/test@1.61.0)(@types/node@24.13.2)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(typescript@7.0.2)
@@ -2013,8 +2013,8 @@ packages:
     peerDependencies:
       '@redis/client': ^5.12.1
 
-  '@rednaxela101/cubing@0.63.10':
-    resolution: {integrity: sha512-4MAVuICDC42gTfBRul3ySEGE3GIbMVd+DCcuDlUmY+HWVKm5+jLyrYBsk9LBcrz9ciceMsYd3JlHz4zH/e2Rcw==}
+  '@rednaxela101/cubing@0.63.11':
+    resolution: {integrity: sha512-tK6L+8T3f+o483+VtOrytuKbUs5yxvJkm0Z69IZdpSxYdt7DaBCFGelSTzMT4f8vU3Khc9ZR4HEMQ9SR5oRK9g==}
     engines: {bun: '>=1.3.0', node: '>=22.3.0'}
     hasBin: true
 
@@ -7484,7 +7484,7 @@ snapshots:
     dependencies:
       '@redis/client': 5.12.1
 
-  '@rednaxela101/cubing@0.63.10':
+  '@rednaxela101/cubing@0.63.11':
     dependencies:
       '@cubing/lazy-promise': 0.1.1
       '@optique/core': 1.2.4
