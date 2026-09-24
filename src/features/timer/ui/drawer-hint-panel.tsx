@@ -3,37 +3,35 @@ import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { Cross1Icon } from '@radix-ui/react-icons'
 import Image from 'next/image'
 import { useTheme } from 'next-themes'
-import { DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle } from '@/components/ui/drawer'
+import { DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 
 export default function DrawerHintPanel() {
   const hint = useTimerStore((state) => state.hint)
 
   return (
-    <>
-      <DrawerContent className="w-full max-w-[550px] mx-auto">
-        <DrawerHeader>
-          <DrawerTitle className="flex gap-2 items-center">
-            <Cross1Icon className="rotate-45" />
-            Hints: Yellow layer
-          </DrawerTitle>
-          <DrawerDescription className="text-start">White on top - Green facing forward.</DrawerDescription>
-        </DrawerHeader>
+    <DialogContent className="sm:max-w-[550px]">
+      <DialogHeader>
+        <DialogTitle className="flex gap-2 items-center">
+          <Cross1Icon className="rotate-45" />
+          Hints: Yellow layer
+        </DialogTitle>
+        <DialogDescription className="text-start">White on top - Green facing forward.</DialogDescription>
+      </DialogHeader>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 pb-5">
-          <div className="px-3">
-            {hint?.cross.map((i) => (
-              <OptimalCrossLayer key={genId()} solution={i} type="cross" />
-            ))}
-          </div>
-
-          <div className="px-3 mt-1">
-            {hint?.xcross.map((i, index) => (
-              <OptimalCrossLayer key={genId()} solution={i} type="xcross" index={index} />
-            ))}
-          </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+        <div>
+          {hint?.cross.map((i) => (
+            <OptimalCrossLayer key={genId()} solution={i} type="cross" />
+          ))}
         </div>
-      </DrawerContent>
-    </>
+
+        <div className="mt-1 md:mt-0">
+          {hint?.xcross.map((i, index) => (
+            <OptimalCrossLayer key={genId()} solution={i} type="xcross" index={index} />
+          ))}
+        </div>
+      </div>
+    </DialogContent>
   )
 }
 
