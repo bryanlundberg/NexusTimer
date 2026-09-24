@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
+import { isLocalizedPath, locales, localizedPath } from '@/shared/config/i18n/locales'
 
 const host = 'https://nexustimer.com'
 
@@ -33,6 +34,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const buildDate = new Date()
 
   pages.forEach(({ path, priority, changeFrequency }) => {
+    if (isLocalizedPath(path)) {
+      const alternates = {
+        languages: {
+          ...Object.fromEntries(locales.map((code) => [code, `${host}${localizedPath(code, path)}`])),
+          'x-default': `${host}${path}`
+        }
+      }
+
+      locales.forEach((locale) => {
+        sitemapEntries.push({
+          url: `${host}${localizedPath(locale, path)}`,
+          lastModified: buildDate,
+          changeFrequency,
+          priority,
+          alternates
+        })
+      })
+      return
+    }
+
     sitemapEntries.push({
       url: `${host}${path}`,
       lastModified: buildDate,
