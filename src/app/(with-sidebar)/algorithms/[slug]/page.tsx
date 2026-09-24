@@ -12,6 +12,8 @@ import { ALGORITHMS_GITHUB_URL } from '@/shared/const/algorithms-github-url'
 import { getLocale, getTranslations } from 'next-intl/server'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
+import { localizedAlternates } from '@/shared/config/i18n/alternates'
+import { localizedPath } from '@/shared/config/i18n/locales'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -35,9 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         'nexus timer',
         'algorithm trainer'
       ],
-      alternates: {
-        canonical: `/algorithms/${slug}`
-      },
+      alternates: localizedAlternates(locale, `/algorithms/${slug}`),
       openGraph: {
         title,
         description,
@@ -87,7 +87,7 @@ export default async function AlgorithmsMethodPage({ params }: Props) {
 
   const pageTitle = `${collection.title} - ${t('title')}`
   const pageDescription = t(`descriptions.${collection.slug}`)
-  const pageUrl = `https://nexustimer.com/algorithms/${slug}`
+  const pageUrl = `https://nexustimer.com${localizedPath(locale, `/algorithms/${slug}`)}`
 
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
@@ -103,7 +103,7 @@ export default async function AlgorithmsMethodPage({ params }: Props) {
         '@type': 'ListItem',
         position: 2,
         name: t('title'),
-        item: 'https://nexustimer.com/algorithms'
+        item: `https://nexustimer.com${localizedPath(locale, '/algorithms')}`
       },
       {
         '@type': 'ListItem',
