@@ -1,12 +1,15 @@
 import type { Metadata } from 'next'
-import { getTranslations } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
 import TrainerExperience from '@/features/trainer/ui/TrainerExperience'
+import { localizedAlternates } from '@/shared/config/i18n/alternates'
 
-export const metadata: Metadata = {
-  alternates: {
-    canonical: '/algorithms/trainer'
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale()
+
+  return {
+    alternates: localizedAlternates(locale, '/algorithms/trainer')
   }
 }
 
