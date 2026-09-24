@@ -1453,6 +1453,7 @@
   },
   "LandingPage": {
     "header": {
+      "multiplayer": "Multiplayer",
       "people": "People",
       "algorithms": "Algorithms",
       "leaderboards": "Leaderboards",
@@ -1460,9 +1461,10 @@
       "start-timing": "Start Timing"
     },
     "hero": {
-      "title-before": "The timer that shows how you're",
-      "title-highlight": "really improving",
-      "subtitle": "Performance profiles per cube. Deep analytics. Real-time competition.",
+      "eyebrow": "Way more than a timer",
+      "title-before": "Where speedcubers train, compete and",
+      "title-highlight": "connect",
+      "subtitle": "Timer, trainer, multiplayer, chat and profiles with your entire history. All in one place.",
       "cta-primary": "Start Timing",
       "cta-secondary": "Explore algorithms",
       "social-proof": "Join a growing community of cubers",
@@ -1470,11 +1472,11 @@
     },
     "bento": {
       "title": "Built like a cuber thinks",
-      "subtitle": "Timer first, but everything around your solves lives here too: your cubes, your friends, your progress.",
+      "subtitle": "Not a timer with extras. Everything around your solves lives here: your cubes, your people, your progress and your whole history.",
       "smart-title": "Smart cube ready",
       "smart-desc": "Pair GAN, MoYu or QiYi smart cubes over Bluetooth. Every turn is tracked live, move by move.",
-      "profile-title": "Public profiles",
-      "profile-desc": "Your PBs, main cubes and trajectory on one shareable page.",
+      "profile-title": "Profiles with your whole story",
+      "profile-desc": "Every solve, every cube, every session. Not just your PBs: your full history on one shareable page.",
       "stats-title": "Deep statistics",
       "stats-desc": "Trend lines and per-cube analytics that show your times dropping.",
       "compare-title": "Compare profiles",
@@ -1502,12 +1504,12 @@
     },
     "cta": {
       "title": "Start your first solve.",
-      "subtitle": "All the tools you need to track, analyze, and improve.",
+      "subtitle": "Time, train, compete and connect. It all starts with one solve.",
       "primary": "Start Timing",
       "secondary": "Import your solves"
     },
     "footer": {
-      "tagline": "The performance profile for cubers. Track, analyze, and improve your solves with per-cube statistics.",
+      "tagline": "The home for speedcubers. Time, train, compete and connect, with a profile that keeps your whole journey.",
       "product": "Product",
       "timer-app": "Timer App",
       "statistics": "Statistics",

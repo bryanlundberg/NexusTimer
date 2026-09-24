@@ -1453,6 +1453,7 @@
   },
   "LandingPage": {
     "header": {
+      "multiplayer": "Multiplayer",
       "people": "Mọi người",
       "algorithms": "Thuật toán",
       "leaderboards": "Bảng xếp hạng",
@@ -1460,9 +1461,10 @@
       "start-timing": "Bắt đầu bấm giờ"
     },
     "hero": {
-      "title-before": "Đồng hồ cho bạn thấy bạn đang thực sự",
-      "title-highlight": "tiến bộ ra sao",
-      "subtitle": "Hồ sơ thành tích theo từng khối. Phân tích chuyên sâu. Thi đấu thời gian thực.",
+      "eyebrow": "Không chỉ là một đồng hồ",
+      "title-before": "Nơi các speedcuber luyện tập, thi đấu và",
+      "title-highlight": "kết nối",
+      "subtitle": "Đồng hồ, trainer, nhiều người chơi, chat và hồ sơ lưu toàn bộ lịch sử của bạn. Tất cả ở một nơi.",
       "cta-primary": "Bắt đầu bấm giờ",
       "cta-secondary": "Khám phá thuật toán",
       "social-proof": "Tham gia cộng đồng cuber đang phát triển",
@@ -1470,11 +1472,11 @@
     },
     "bento": {
       "title": "Xây dựng theo cách cuber suy nghĩ",
-      "subtitle": "Timer là chính, nhưng mọi thứ quanh các lần giải của bạn cũng ở đây: cube của bạn, bạn bè của bạn, tiến bộ của bạn.",
+      "subtitle": "Không phải một đồng hồ kèm vài tính năng phụ. Mọi thứ xoay quanh các lượt giải của bạn đều ở đây: khối của bạn, bạn bè, tiến bộ và toàn bộ lịch sử của bạn.",
       "smart-title": "Sẵn sàng cho smart cube",
       "smart-desc": "Kết nối smart cube GAN, MoYu hoặc QiYi qua Bluetooth. Mọi bước xoay được ghi lại trực tiếp.",
-      "profile-title": "Hồ sơ công khai",
-      "profile-desc": "PB, cube chính và hành trình của bạn trên một trang có thể chia sẻ.",
+      "profile-title": "Hồ sơ lưu trọn hành trình của bạn",
+      "profile-desc": "Mọi lượt giải, mọi khối, mọi phiên. Không chỉ PB: toàn bộ lịch sử của bạn trên một trang để chia sẻ.",
       "stats-title": "Thống kê chuyên sâu",
       "stats-desc": "Đường xu hướng và phân tích theo từng cube cho thấy thời gian của bạn đang giảm.",
       "compare-title": "So sánh hồ sơ",
@@ -1502,12 +1504,12 @@
     },
     "cta": {
       "title": "Bắt đầu lượt giải đầu tiên của bạn.",
-      "subtitle": "Tất cả công cụ bạn cần để theo dõi, phân tích, và tiến bộ.",
+      "subtitle": "Bấm giờ, luyện tập, thi đấu và kết nối. Mọi thứ bắt đầu từ một lượt giải.",
       "primary": "Bắt đầu bấm giờ",
       "secondary": "Nhập các lượt giải của bạn"
     },
     "footer": {
-      "tagline": "Hồ sơ thành tích cho các cuber. Theo dõi, phân tích, và cải thiện các lượt giải của bạn với thống kê theo từng khối.",
+      "tagline": "Ngôi nhà của các speedcuber. Bấm giờ, luyện tập, thi đấu và kết nối, với một hồ sơ lưu trọn hành trình của bạn.",
       "product": "Sản phẩm",
       "timer-app": "Ứng dụng đồng hồ",
       "statistics": "Thống kê",

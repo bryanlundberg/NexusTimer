@@ -1453,6 +1453,7 @@
   },
   "LandingPage": {
     "header": {
+      "multiplayer": "Mehrspieler",
       "people": "Personen",
       "algorithms": "Algorithmen",
       "leaderboards": "Bestenlisten",
@@ -1460,9 +1461,10 @@
       "start-timing": "Timing starten"
     },
     "hero": {
-      "title-before": "Der Timer, der zeigt, wie du dich wirklich",
-      "title-highlight": "verbesserst",
-      "subtitle": "Leistungsprofile pro Würfel. Tiefgehende Analysen. Echtzeit-Wettkämpfe.",
+      "eyebrow": "Viel mehr als ein Timer",
+      "title-before": "Wo Speedcuber trainieren, antreten und sich",
+      "title-highlight": "vernetzen",
+      "subtitle": "Timer, Trainer, Multiplayer, Chat und Profile mit deiner ganzen Historie. Alles an einem Ort.",
       "cta-primary": "Timing starten",
       "cta-secondary": "Algorithmen entdecken",
       "social-proof": "Tritt einer wachsenden Cubing-Community bei",
@@ -1470,11 +1472,11 @@
     },
     "bento": {
       "title": "Gebaut, wie ein Cuber denkt",
-      "subtitle": "Timer zuerst, aber alles rund um deine Solves lebt auch hier: deine Cubes, deine Leute, dein Fortschritt.",
+      "subtitle": "Kein Timer mit Extras. Alles rund um deine Solves lebt hier: deine Würfel, deine Leute, dein Fortschritt und deine ganze Geschichte.",
       "smart-title": "Bereit für Smart Cubes",
       "smart-desc": "Verbinde GAN, MoYu oder QiYi Smart Cubes per Bluetooth. Jeder Zug wird live erfasst, Move für Move.",
-      "profile-title": "Öffentliche Profile",
-      "profile-desc": "Deine PBs, Main Cubes und Entwicklung auf einer teilbaren Seite.",
+      "profile-title": "Profile mit deiner ganzen Geschichte",
+      "profile-desc": "Jeder Solve, jeder Würfel, jede Session. Nicht nur deine PBs: deine komplette Historie auf einer teilbaren Seite.",
       "stats-title": "Tiefe Statistiken",
       "stats-desc": "Trendlinien und Analysen pro Cube zeigen, wie deine Zeiten sinken.",
       "compare-title": "Profile vergleichen",
@@ -1502,12 +1504,12 @@
     },
     "cta": {
       "title": "Starte deine erste Lösung.",
-      "subtitle": "Alle Werkzeuge, die du zum Verfolgen, Analysieren und Verbessern brauchst.",
+      "subtitle": "Stoppen, trainieren, antreten, vernetzen. Alles beginnt mit einem Solve.",
       "primary": "Timing starten",
       "secondary": "Lösungen importieren"
     },
     "footer": {
-      "tagline": "Das Leistungsprofil für Cuber. Verfolge, analysiere und verbessere deine Lösungen mit Statistiken pro Würfel.",
+      "tagline": "Das Zuhause für Speedcuber. Stoppen, trainieren, antreten und vernetzen, mit einem Profil, das deinen ganzen Weg festhält.",
       "product": "Produkt",
       "timer-app": "Timer-App",
       "statistics": "Statistiken",

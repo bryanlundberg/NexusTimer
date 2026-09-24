@@ -1453,6 +1453,7 @@
   },
   "LandingPage": {
     "header": {
+      "multiplayer": "Multiplayer",
       "people": "Orang",
       "algorithms": "Algoritma",
       "leaderboards": "Papan Peringkat",
@@ -1460,9 +1461,10 @@
       "start-timing": "Mulai Menghitung Waktu"
     },
     "hero": {
-      "title-before": "Timer yang menunjukkan seberapa kamu",
-      "title-highlight": "benar-benar berkembang",
-      "subtitle": "Profil performa per kubus. Analitik mendalam. Kompetisi waktu nyata.",
+      "eyebrow": "Jauh lebih dari sekadar timer",
+      "title-before": "Tempat para speedcuber berlatih, bertanding, dan",
+      "title-highlight": "terhubung",
+      "subtitle": "Timer, trainer, multiplayer, chat, dan profil dengan seluruh riwayatmu. Semua di satu tempat.",
       "cta-primary": "Mulai Menghitung Waktu",
       "cta-secondary": "Jelajahi algoritma",
       "social-proof": "Bergabunglah dengan komunitas cuber yang terus berkembang",
@@ -1470,11 +1472,11 @@
     },
     "bento": {
       "title": "Dibuat seperti cara cuber berpikir",
-      "subtitle": "Timer yang utama, tapi semua hal di sekitar solve-mu juga ada di sini: cube-mu, temanmu, progresmu.",
+      "subtitle": "Bukan timer dengan fitur tambahan. Semua hal seputar solve-mu ada di sini: kubusmu, temanmu, progresmu, dan seluruh riwayatmu.",
       "smart-title": "Siap smart cube",
       "smart-desc": "Sambungkan smart cube GAN, MoYu, atau QiYi lewat Bluetooth. Setiap putaran terekam langsung.",
-      "profile-title": "Profil publik",
-      "profile-desc": "PB, cube utama, dan perjalananmu dalam satu halaman yang bisa dibagikan.",
+      "profile-title": "Profil dengan seluruh perjalananmu",
+      "profile-desc": "Setiap solve, setiap kubus, setiap sesi. Bukan cuma PB-mu: seluruh riwayatmu dalam satu halaman yang bisa dibagikan.",
       "stats-title": "Statistik mendalam",
       "stats-desc": "Garis tren dan analisis per cube yang menunjukkan waktumu terus turun.",
       "compare-title": "Bandingkan profil",
@@ -1502,12 +1504,12 @@
     },
     "cta": {
       "title": "Mulai solve pertamamu.",
-      "subtitle": "Semua alat yang kamu butuhkan untuk melacak, menganalisis, dan berkembang.",
+      "subtitle": "Catat waktu, berlatih, bertanding, dan terhubung. Semuanya dimulai dari satu solve.",
       "primary": "Mulai Menghitung Waktu",
       "secondary": "Impor solve-mu"
     },
     "footer": {
-      "tagline": "Profil performa untuk para cuber. Lacak, analisis, dan tingkatkan solve-mu dengan statistik per kubus.",
+      "tagline": "Rumah bagi para speedcuber. Catat waktu, berlatih, bertanding, dan terhubung, dengan profil yang menyimpan seluruh perjalananmu.",
       "product": "Produk",
       "timer-app": "Aplikasi Timer",
       "statistics": "Statistik",

@@ -1453,6 +1453,7 @@
   },
   "LandingPage": {
     "header": {
+      "multiplayer": "Multiplayer",
       "people": "Persone",
       "algorithms": "Algoritmi",
       "leaderboards": "Classifiche",
@@ -1460,9 +1461,10 @@
       "start-timing": "Inizia a cronometrare"
     },
     "hero": {
-      "title-before": "Il timer che ti mostra quanto stai",
-      "title-highlight": "davvero migliorando",
-      "subtitle": "Profili di performance per ogni cubo. Analisi approfondite. Competizione in tempo reale.",
+      "eyebrow": "Molto più di un timer",
+      "title-before": "Dove gli speedcuber si allenano, si sfidano e si",
+      "title-highlight": "incontrano",
+      "subtitle": "Timer, trainer, multigiocatore, chat e profili con tutto il tuo storico. Tutto in un unico posto.",
       "cta-primary": "Inizia a cronometrare",
       "cta-secondary": "Esplora gli algoritmi",
       "social-proof": "Unisciti a una community di cuber in crescita",
@@ -1470,11 +1472,11 @@
     },
     "bento": {
       "title": "Fatto come ragiona un cuber",
-      "subtitle": "Prima il timer, ma qui vive anche tutto ciò che circonda le tue solve: i tuoi cubi, i tuoi amici, i tuoi progressi.",
+      "subtitle": "Non è un timer con qualche extra. Tutto ciò che ruota attorno ai tuoi solve vive qui: i tuoi cubi, la tua gente, i tuoi progressi e tutta la tua storia.",
       "smart-title": "Pronto per gli smart cube",
       "smart-desc": "Collega smart cube GAN, MoYu o QiYi via Bluetooth. Ogni rotazione viene tracciata dal vivo, mossa per mossa.",
-      "profile-title": "Profili pubblici",
-      "profile-desc": "I tuoi PB, i tuoi cubi principali e il tuo percorso in una pagina condivisibile.",
+      "profile-title": "Profili con tutto il tuo percorso",
+      "profile-desc": "Ogni solve, ogni cubo, ogni sessione. Non solo i tuoi PB: tutto il tuo storico in una pagina da condividere.",
       "stats-title": "Statistiche approfondite",
       "stats-desc": "Linee di tendenza e analisi per cubo che mostrano i tuoi tempi scendere.",
       "compare-title": "Confronta i profili",
@@ -1502,12 +1504,12 @@
     },
     "cta": {
       "title": "Inizia il tuo primo solve.",
-      "subtitle": "Tutti gli strumenti che ti servono per tracciare, analizzare e migliorare.",
+      "subtitle": "Cronometra, allenati, sfida e connettiti. Tutto inizia con un solve.",
       "primary": "Inizia a cronometrare",
       "secondary": "Importa i tuoi solve"
     },
     "footer": {
-      "tagline": "Il profilo di performance per i cuber. Traccia, analizza e migliora i tuoi solve con le statistiche per cubo.",
+      "tagline": "La casa degli speedcuber. Cronometra, allenati, sfida e connettiti, con un profilo che conserva tutto il tuo percorso.",
       "product": "Prodotto",
       "timer-app": "App Timer",
       "statistics": "Statistiche",

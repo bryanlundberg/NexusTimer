@@ -1453,6 +1453,7 @@
   },
   "LandingPage": {
     "header": {
+      "multiplayer": "多人对战",
       "people": "用户",
       "algorithms": "算法",
       "leaderboards": "排行榜",
@@ -1460,9 +1461,10 @@
       "start-timing": "开始计时"
     },
     "hero": {
-      "title-before": "展示你如何",
-      "title-highlight": "真正进步的计时器",
-      "subtitle": "每个魔方的成绩档案。深度分析。实时竞技。",
+      "eyebrow": "远不止一个计时器",
+      "title-before": "魔方玩家训练、对战、",
+      "title-highlight": "相聚的地方",
+      "subtitle": "计时器、训练器、多人对战、聊天，以及保存你全部历史的主页。一站搞定。",
       "cta-primary": "开始计时",
       "cta-secondary": "浏览算法",
       "social-proof": "加入不断壮大的魔方社区",
@@ -1470,11 +1472,11 @@
     },
     "bento": {
       "title": "按魔友的思维打造",
-      "subtitle": "计时器优先,但围绕复原的一切也都在这里:你的魔方、你的朋友、你的进步。",
+      "subtitle": "这不是附带几个功能的计时器。与你的还原有关的一切都在这里：你的魔方、你的伙伴、你的进步，以及你的全部历史。",
       "smart-title": "智能魔方支持",
       "smart-desc": "通过蓝牙连接 GAN、MoYu 或 QiYi 智能魔方,每一次转动都实时记录。",
-      "profile-title": "公开主页",
-      "profile-desc": "你的 PB、主力魔方和成长轨迹,都在一个可分享的页面上。",
+      "profile-title": "记录你完整历程的主页",
+      "profile-desc": "每一次还原、每一个魔方、每一个分组。不只是 PB：你的全部历史，集中在一个可分享的页面。",
       "stats-title": "深度统计",
       "stats-desc": "趋势线和按魔方划分的分析,让你看到成绩不断进步。",
       "compare-title": "对比主页",
@@ -1502,12 +1504,12 @@
     },
     "cta": {
       "title": "开始你的第一次还原。",
-      "subtitle": "追踪、分析、提升所需的一切工具。",
+      "subtitle": "计时、训练、对战、交流。一切从一次还原开始。",
       "primary": "开始计时",
       "secondary": "导入还原记录"
     },
     "footer": {
-      "tagline": "魔方爱好者的成绩档案。用各魔方统计追踪、分析并提升你的还原水平。",
+      "tagline": "魔方玩家的家。计时、训练、对战、交流，还有一个记录你完整历程的主页。",
       "product": "产品",
       "timer-app": "计时器应用",
       "statistics": "统计",

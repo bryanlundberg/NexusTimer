@@ -1453,6 +1453,7 @@
   },
   "LandingPage": {
     "header": {
+      "multiplayer": "Multiplayer",
       "people": "Mga Tao",
       "algorithms": "Mga Algorithm",
       "leaderboards": "Mga Leaderboard",
@@ -1460,9 +1461,10 @@
       "start-timing": "Simulan ang Pag-time"
     },
     "hero": {
-      "title-before": "Ang timer na nagpapakita kung paano ka talagang",
-      "title-highlight": "umuunlad",
-      "subtitle": "Performance profiles bawat cube. Malalim na analytics. Real-time na kompetisyon.",
+      "eyebrow": "Higit pa sa isang timer",
+      "title-before": "Kung saan nagsasanay, naglalaban at nagkakakonekta ang mga",
+      "title-highlight": "speedcuber",
+      "subtitle": "Timer, trainer, multiplayer, chat at mga profile na may buong history mo. Lahat sa iisang lugar.",
       "cta-primary": "Simulan ang Pag-time",
       "cta-secondary": "Tuklasin ang mga algorithm",
       "social-proof": "Sumali sa lumalaking komunidad ng mga cuber",
@@ -1470,11 +1472,11 @@
     },
     "bento": {
       "title": "Ginawa ayon sa isip ng cuber",
-      "subtitle": "Timer muna, pero nandito rin ang lahat ng nakapaligid sa mga solve mo: ang mga cube mo, mga kaibigan mo, ang progreso mo.",
+      "subtitle": "Hindi ito timer na may extras. Nandito ang lahat ng tungkol sa mga solve mo: ang mga cube mo, ang mga kasama mo, ang progreso mo at ang buong kasaysayan mo.",
       "smart-title": "Handa sa smart cube",
       "smart-desc": "Ikonekta ang GAN, MoYu, o QiYi smart cubes gamit ang Bluetooth. Bawat ikot ay live na naitatala.",
-      "profile-title": "Mga pampublikong profile",
-      "profile-desc": "Ang mga PB mo, main cubes, at progreso sa isang page na maaaring i-share.",
+      "profile-title": "Mga profile na may buong kuwento mo",
+      "profile-desc": "Bawat solve, bawat cube, bawat session. Hindi lang ang mga PB mo: ang buong history mo sa isang page na puwedeng i-share.",
       "stats-title": "Malalim na estadistika",
       "stats-desc": "Mga trend line at pagsusuri kada cube na nagpapakitang bumababa ang mga oras mo.",
       "compare-title": "Ikumpara ang mga profile",
@@ -1502,12 +1504,12 @@
     },
     "cta": {
       "title": "Simulan ang unang solve mo.",
-      "subtitle": "Lahat ng tools na kailangan mo para mag-track, mag-analyze, at umunlad.",
+      "subtitle": "Mag-time, mag-ensayo, makipaglaban at makipag-connect. Nagsisimula ang lahat sa isang solve.",
       "primary": "Simulan ang Pag-time",
       "secondary": "I-import ang mga solve mo"
     },
     "footer": {
-      "tagline": "Ang performance profile para sa mga cuber. I-track, i-analyze, at pagbutihin ang mga solve mo gamit ang per-cube statistics.",
+      "tagline": "Ang tahanan ng mga speedcuber. Mag-time, mag-ensayo, makipaglaban at makipag-connect, kasama ang profile na nagtatago ng buong journey mo.",
       "product": "Produkto",
       "timer-app": "Timer App",
       "statistics": "Statistics",

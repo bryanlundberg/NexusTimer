@@ -1453,6 +1453,7 @@
   },
   "LandingPage": {
     "header": {
+      "multiplayer": "Multiplayer",
       "people": "Ludzie",
       "algorithms": "Algorytmy",
       "leaderboards": "Rankingi",
@@ -1460,9 +1461,10 @@
       "start-timing": "Zacznij mierzyć czas"
     },
     "hero": {
-      "title-before": "Stoper, który pokazuje, jak naprawdę się",
-      "title-highlight": "rozwijasz",
-      "subtitle": "Profile wyników dla każdej kostki. Dogłębna analiza. Rywalizacja w czasie rzeczywistym.",
+      "eyebrow": "Dużo więcej niż stoper",
+      "title-before": "Miejsce, gdzie speedcuberzy trenują, rywalizują i",
+      "title-highlight": "poznają się",
+      "subtitle": "Stoper, trener, multiplayer, czat i profile z całą twoją historią. Wszystko w jednym miejscu.",
       "cta-primary": "Zacznij mierzyć czas",
       "cta-secondary": "Poznaj algorytmy",
       "social-proof": "Dołącz do rosnącej społeczności cuberów",
@@ -1470,11 +1472,11 @@
     },
     "bento": {
       "title": "Zbudowany tak, jak myśli kostkarz",
-      "subtitle": "Najpierw timer, ale wszystko wokół twoich ułożeń też żyje tutaj: twoje kostki, twoi znajomi, twój postęp.",
+      "subtitle": "To nie stoper z dodatkami. Wszystko wokół twoich ułożeń jest tutaj: twoje kostki, twoi ludzie, twoje postępy i cała twoja historia.",
       "smart-title": "Gotowy na smart kostki",
       "smart-desc": "Połącz smart kostki GAN, MoYu lub QiYi przez Bluetooth. Każdy ruch jest śledzony na żywo.",
-      "profile-title": "Profile publiczne",
-      "profile-desc": "Twoje rekordy, główne kostki i rozwój na jednej stronie do udostępnienia.",
+      "profile-title": "Profile z całą twoją historią",
+      "profile-desc": "Każde ułożenie, każda kostka, każda sesja. Nie tylko PB: cała twoja historia na jednej stronie do udostępnienia.",
       "stats-title": "Dogłębne statystyki",
       "stats-desc": "Linie trendu i analizy dla każdej kostki pokazują, jak spadają twoje czasy.",
       "compare-title": "Porównuj profile",
@@ -1502,12 +1504,12 @@
     },
     "cta": {
       "title": "Zacznij swoje pierwsze ułożenie.",
-      "subtitle": "Wszystkie narzędzia potrzebne do śledzenia, analizowania i poprawy.",
+      "subtitle": "Mierz czas, trenuj, rywalizuj i poznawaj innych. Wszystko zaczyna się od jednego ułożenia.",
       "primary": "Zacznij mierzyć czas",
       "secondary": "Zaimportuj swoje ułożenia"
     },
     "footer": {
-      "tagline": "Profil wyników dla cuberów. Śledź, analizuj i poprawiaj swoje ułożenia dzięki statystykom dla każdej kostki.",
+      "tagline": "Dom speedcuberów. Mierz czas, trenuj, rywalizuj i poznawaj innych, z profilem, który zapisuje całą twoją drogę.",
       "product": "Produkt",
       "timer-app": "Aplikacja stopera",
       "statistics": "Statystyki",

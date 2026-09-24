@@ -1453,6 +1453,7 @@
   },
   "LandingPage": {
     "header": {
+      "multiplayer": "Multiplayer",
       "people": "Pessoas",
       "algorithms": "Algoritmos",
       "leaderboards": "Classificações",
@@ -1460,9 +1461,10 @@
       "start-timing": "Começar a cronometrar"
     },
     "hero": {
-      "title-before": "O cronômetro que mostra como você está",
-      "title-highlight": "realmente melhorando",
-      "subtitle": "Perfis de desempenho por cubo. Análises profundas. Competição em tempo real.",
+      "eyebrow": "Muito mais que um cronômetro",
+      "title-before": "Onde speedcubers treinam, competem e se",
+      "title-highlight": "conectam",
+      "subtitle": "Cronômetro, trainer, multijogador, chat e perfis com todo o seu histórico. Tudo em um só lugar.",
       "cta-primary": "Começar a cronometrar",
       "cta-secondary": "Explorar os algoritmos",
       "social-proof": "Junte-se a uma comunidade crescente de cubers",
@@ -1470,11 +1472,11 @@
     },
     "bento": {
       "title": "Feito como um cuber pensa",
-      "subtitle": "Primeiro o timer, mas tudo ao redor dos seus solves também vive aqui: seus cubos, seus amigos, seu progresso.",
+      "subtitle": "Não é um cronômetro com extras. Tudo o que envolve seus solves vive aqui: seus cubos, sua galera, seu progresso e toda a sua história.",
       "smart-title": "Pronto para smart cubes",
       "smart-desc": "Conecte smart cubes GAN, MoYu ou QiYi por Bluetooth. Cada giro é registrado ao vivo, movimento a movimento.",
-      "profile-title": "Perfis públicos",
-      "profile-desc": "Seus PBs, cubos principais e trajetória em uma página compartilhável.",
+      "profile-title": "Perfis com toda a sua trajetória",
+      "profile-desc": "Cada solve, cada cubo, cada sessão. Não só seus PBs: todo o seu histórico em uma página para compartilhar.",
       "stats-title": "Estatísticas profundas",
       "stats-desc": "Linhas de tendência e análises por cubo que mostram seus tempos caindo.",
       "compare-title": "Compare perfis",
@@ -1502,12 +1504,12 @@
     },
     "cta": {
       "title": "Faça sua primeira resolução.",
-      "subtitle": "Todas as ferramentas que você precisa para acompanhar, analisar e melhorar.",
+      "subtitle": "Cronometre, treine, dispute e se conecte. Tudo começa com um solve.",
       "primary": "Começar a cronometrar",
       "secondary": "Importar seus tempos"
     },
     "footer": {
-      "tagline": "O perfil de desempenho para cubers. Acompanhe, analise e melhore seus tempos com estatísticas por cubo.",
+      "tagline": "A casa dos speedcubers. Cronometre, treine, dispute e se conecte, com um perfil que guarda toda a sua trajetória.",
       "product": "Produto",
       "timer-app": "App de cronômetro",
       "statistics": "Estatísticas",
