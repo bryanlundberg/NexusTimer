@@ -12,6 +12,14 @@ import LandingOutro from './LandingOutro'
 import LandingBelowFold from './LandingBelowFold'
 import { Nexi } from '@/shared/ui/nexi'
 import * as React from 'react'
+import { cn } from '@/shared/lib/utils'
+
+const NAV = [
+  { href: '/free-play', key: 'multiplayer', wide: false },
+  { href: '/people', key: 'people', wide: false },
+  { href: '/algorithms', key: 'algorithms', wide: true },
+  { href: '/leaderboards', key: 'leaderboards', wide: true }
+] as const
 
 export default function LandingShell({ footer }: { footer: ReactNode }) {
   const t = useTranslations('LandingPage')
@@ -62,7 +70,7 @@ export default function LandingShell({ footer }: { footer: ReactNode }) {
                   backdropFilter: 'blur(0px)'
                 },
                 pill: {
-                  maxWidth: '52rem',
+                  maxWidth: '60rem',
                   marginTop: '0.75rem',
                   borderRadius: '9999px',
                   paddingTop: '0.5rem',
@@ -81,16 +89,30 @@ export default function LandingShell({ footer }: { footer: ReactNode }) {
                 <Nexi state="pb" size={38} />
                 <span className="font-display text-base font-bold tracking-wide text-gray-900">NexusTimer</span>
               </div>
+              <nav className="hidden md:flex items-center gap-1">
+                {NAV.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={cn(
+                      'whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium text-gray-600 transition-colors duration-300 hover:text-gray-900',
+                      item.wide && 'hidden lg:inline-flex'
+                    )}
+                  >
+                    {t(`header.${item.key}`)}
+                  </Link>
+                ))}
+              </nav>
               <div className="flex items-center gap-1.5 sm:gap-3">
                 <Link
                   href="/sign-in"
-                  className="hidden sm:inline-flex items-center rounded-full px-3 py-2 text-sm font-medium text-gray-600 transition-colors duration-300 hover:text-gray-900"
+                  className="hidden sm:inline-flex md:hidden lg:inline-flex whitespace-nowrap items-center rounded-full px-3 py-2 text-sm font-medium text-gray-600 transition-colors duration-300 hover:text-gray-900"
                 >
                   {tAuth('sign-in')}
                 </Link>
                 <Link
                   href="/app"
-                  className="group inline-flex items-center gap-2 rounded-full bg-gray-900 text-white px-4 sm:px-5 py-2 text-sm font-semibold hover:bg-gray-700 transition-all duration-300"
+                  className="group inline-flex whitespace-nowrap items-center gap-2 rounded-full bg-gray-900 text-white px-4 sm:px-5 py-2 text-sm font-semibold hover:bg-gray-700 transition-all duration-300"
                 >
                   {t('header.start-timing')}
                   <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />

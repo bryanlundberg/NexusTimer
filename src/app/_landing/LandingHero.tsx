@@ -57,6 +57,13 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
         />
 
         <motion.div style={{ y, opacity }} className="relative mx-auto w-full max-w-3xl py-24 text-center">
+          <p
+            className="lp-rise notch-br mb-6 inline-flex items-center gap-2 bg-white/[0.07] py-1.5 pl-3 pr-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-300"
+            style={{ animationDelay: '0.05s', '--nbr': '8px' } as React.CSSProperties}
+          >
+            <span aria-hidden className="size-2 rounded-[2px] bg-primary" />
+            {t('hero.eyebrow')}
+          </p>
           <h1
             className="lp-rise font-display text-balance text-4xl font-bold leading-[1.08] tracking-[-0.02em] text-white md:text-6xl"
             style={{ animationDelay: '0.12s' }}
