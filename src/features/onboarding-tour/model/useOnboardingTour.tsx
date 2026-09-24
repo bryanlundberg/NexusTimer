@@ -16,6 +16,26 @@ const STEP = {
   CREATE_COLLECTION: 2
 } as const
 
+const STABLE_FRAMES = 3
+const SETTLE_TIMEOUT_MS = 3000
+
+function waitForSettledTarget(selector: string) {
+  return new Promise<void>((resolve) => {
+    const deadline = performance.now() + SETTLE_TIMEOUT_MS
+    let previous = ''
+    let stableFrames = 0
+    const check = () => {
+      const rect = document.querySelector(selector)?.getBoundingClientRect()
+      const key = rect ? `${Math.round(rect.top)}:${Math.round(rect.left)}:${Math.round(rect.width)}` : ''
+      stableFrames = key && key === previous ? stableFrames + 1 : 0
+      previous = key
+      if (stableFrames >= STABLE_FRAMES || performance.now() > deadline) resolve()
+      else requestAnimationFrame(check)
+    }
+    requestAnimationFrame(check)
+  })
+}
+
 export function useOnboardingTour() {
   const t = useTranslations('Index.OnboardingTour')
   const { status } = useSession()
@@ -115,7 +135,8 @@ export function useOnboardingTour() {
       data: { nexi: 'wink' },
       locale: { skip: t('skip') },
       isFixed: true,
-      spotlightPadding: 10
+      spotlightPadding: 10,
+      before: () => waitForSettledTarget('[data-tour="onboarding-create-collection"]')
     }
   ]
 
