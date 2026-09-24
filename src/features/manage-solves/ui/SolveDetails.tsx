@@ -136,7 +136,7 @@ export default function SolveDetails() {
             </p>
           )}
           <div className="flex flex-col items-center gap-2.5">
-            <div className="notch-bl-tr [--nblt:12px] bg-muted/40 p-2">
+            <div data-vaul-no-drag className="notch-bl-tr [--nblt:12px] bg-muted/40 p-2">
               <ScrambleDisplay
                 show={true}
                 scramble={solve?.scramble || ''}
