@@ -5,10 +5,11 @@ vi.mock('next-intl/server', () => ({
 }))
 
 vi.mock('next/headers', () => ({
-  cookies: vi.fn()
+  cookies: vi.fn(),
+  headers: vi.fn()
 }))
 
-import { cookies } from 'next/headers'
+import { cookies, headers } from 'next/headers'
 import requestConfig from '@/shared/config/i18n/request'
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
@@ -18,10 +19,14 @@ type Messages = Record<string, unknown>
 const en: Messages = JSON.parse(readFileSync(path.resolve(__dirname, '../messages/en.json'), 'utf8'))
 const loadConfig = requestConfig as unknown as () => Promise<{ locale: string; messages: Messages }>
 
-const setLocale = (locale?: string) =>
-  (cookies as unknown as Mock).mockResolvedValue({
+const setLocale = (locale?: string, pathLocale?: string) => {
+  ;(cookies as unknown as Mock).mockResolvedValue({
     get: () => (locale ? { value: locale } : undefined)
   })
+  ;(headers as unknown as Mock).mockResolvedValue({
+    get: () => pathLocale ?? null
+  })
+}
 
 const leafPaths = (value: unknown, prefix = ''): string[] =>
   value && typeof value === 'object'
@@ -45,5 +50,19 @@ describe('i18n request config', () => {
 
     expect(locale).toBe('en')
     expect(messages).toEqual(en)
+  })
+
+  it('prefers the locale from a localized landing url over the cookie', async () => {
+    setLocale('fr', 'ja')
+    const { locale } = await loadConfig()
+
+    expect(locale).toBe('ja')
+  })
+
+  it('ignores an unknown locale header', async () => {
+    setLocale('fr', 'xx')
+    const { locale } = await loadConfig()
+
+    expect(locale).toBe('fr')
   })
 })
