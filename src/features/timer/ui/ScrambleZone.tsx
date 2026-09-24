@@ -5,7 +5,6 @@ import { Keyboard, Lightbulb } from 'lucide-react'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 
 import { Button } from '@/components/ui/button'
-import { Drawer, DrawerTrigger } from '@/components/ui/drawer'
 import {
   Dialog,
   DialogContent,
@@ -171,10 +170,10 @@ export function ScrambleZone() {
           {showFocusModeButton && <FocusModeToggle />}
 
           {showHintButton && (
-            <Drawer>
+            <Dialog>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <DrawerTrigger asChild>
+                  <DialogTrigger asChild>
                     <Button
                       variant="ghost"
                       size="icon"
@@ -183,7 +182,7 @@ export function ScrambleZone() {
                     >
                       <Lightbulb />
                     </Button>
-                  </DrawerTrigger>
+                  </DialogTrigger>
                 </TooltipTrigger>
 
                 <DrawerHintPanel />
@@ -191,7 +190,7 @@ export function ScrambleZone() {
                   <p>{t('HomePage.hints')}</p>
                 </TooltipContent>
               </Tooltip>
-            </Drawer>
+            </Dialog>
           )}
 
           {showVirtualKeyboard && (
