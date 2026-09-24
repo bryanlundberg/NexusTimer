@@ -29,3 +29,13 @@ export const localeCookieOptions = {
 }
 
 export const isLocale = (value) => locales.includes(value)
+
+export const LOCALE_HEADER = 'x-nexus-locale'
+
+export const LOCALIZED_SECTIONS = ['/algorithms']
+
+export const isLocalizedPath = (path) =>
+  path === '/' || LOCALIZED_SECTIONS.some((section) => path === section || path.startsWith(`${section}/`))
+
+export const localizedPath = (locale, path) =>
+  locale === defaultLocale ? path : `/${locale}${path === '/' ? '' : path}`
