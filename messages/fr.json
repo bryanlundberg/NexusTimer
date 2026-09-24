@@ -1005,16 +1005,16 @@
       },
       "descriptions": {
         "pbl": "Algorithmes pour permuter les couches haut et bas d'un 2x2 simultanément.",
-        "ocll": "COLL (Orient Corners of the Last Layer) - Orienter tous les coins de la dernière couche.",
-        "cll": "CLL résout la dernière couche d'un 2x2 en un algorithme après l'orientation de la première couche.",
+        "ocll": "L'OCLL (orientation des coins de la dernière couche) oriente les quatre coins de la dernière couche d'un 2x2 pour que la face du dessus soit d'une seule couleur. Il y a sept cas : Sune, Antisune, H, Pi, U, T et L.",
+        "cll": "Le CLL (coins de la dernière couche) résout toute la dernière couche d'un 2x2 en un seul algorithme une fois la première couche entièrement résolue, en orientant et en permutant les coins en même temps.",
         "eg-1": "EG-1 résout la dernière couche d'un 2x2 avec un échange adjacent sur la couche du bas.",
         "eg-2": "EG-2 résout la dernière couche d'un 2x2 avec un échange diagonal sur la couche du bas.",
-        "f2l": "Les algorithmes F2L (First Two Layers) pour résoudre le Rubik's Cube avec la méthode CFOP. Ces algorithmes résolvent les deux premières couches en associant les pièces de coin et d'arête en même temps, une fois la croix terminée.",
+        "f2l": "Algorithmes F2L (deux premières couches) pour résoudre le Rubik's cube avec la méthode CFOP. Une fois la croix terminée, chaque coin est associé à son arête puis inséré dans son emplacement, ce qui résout les deux premières couches paire par paire.",
         "advanced-f2l": "Les algorithmes F2L avancés pour les cas d'association coin-arête les plus difficiles de la méthode CFOP : pièces coincées dans le dernier emplacement, pièces bloquées dans la mauvaise couche, ou les deux pièces coincées à la fois. Ils vont au-delà du F2L intuitif pour couvrir les cas qui coûtent généralement le plus de mouvements.",
         "oll": "OLL (Orientation of Last Layer) - Orienter toutes les pièces de la dernière couche (CFOP).",
         "pll": "PLL (Permutation of Last Layer) - Permuter les arêtes et les coins de la dernière couche (CFOP).",
         "coll": "COLL oriente et permute les coins de la dernière couche si les arêtes sont déjà orientées.",
-        "ble": "Brooks' Last Edge (BLE) résout la dernière arête de manière efficace.",
+        "ble": "Le BLE (Brooks' Last Edge) insère la dernière arête du F2L tout en orientant les coins de la dernière couche. Il s'utilise quand le coin du dernier emplacement est déjà résolu et que les arêtes de la dernière couche sont orientées, il ne reste alors que la PLL.",
         "vls": "VLS (Valk Last Slot) résout le dernier slot F2L et l'OLL simultanément.",
         "cls": "CLS (Corner Last Slot) résout le dernier coin F2L et l'OLL simultanément.",
         "wv": "WV (Winter Variation) oriente les coins de la dernière couche lors de l'insertion du dernier slot F2L.",
@@ -1029,7 +1029,7 @@
         "parity-5x5": "Algorithmes pour les parités du 5x5.",
         "l2c-5x5": "Les algorithmes L2C (Last Two Centers) résolvent les deux derniers centres d'un 5x5 pendant la réduction, sans casser les centres déjà construits.",
         "l2e-5x5": "Les algorithmes L2E (Last Two Edges) résolvent les deux dernières paires d'arêtes d'un 5x5 pendant la réduction, lorsqu'elles ne peuvent plus être appariées par de simples mouvements de tranche.",
-        "l4e": "Dernières 4 arêtes du Pyraminx.",
+        "l4e": "Le L4E (Last 4 Edges, les quatre dernières arêtes) est une méthode pour le Pyraminx. Après avoir résolu les pointes, trois centres et deux arêtes, ces algorithmes résolvent les quatre dernières arêtes en une seule étape pour terminer le puzzle.",
         "sq1-cs": "CS (Cube Shape) - Ces algorithmes ramènent un Square-1 mélangé à la forme de cube, la première étape de la résolution. Les cas sont regroupés selon le nombre de slices nécessaires à la solution.",
         "sq1-co": "CO (Corner Orientation) - Une fois le Square-1 revenu à la forme de cube, ces algorithmes orientent tous les coins pour que le dessus et le dessous affichent la bonne couleur, sans casser la forme de cube.",
         "sq1-eo": "EO (Edge Orientation) - Ces algorithmes retournent les arêtes du Square-1 dans la bonne orientation une fois les coins orientés.",
@@ -1041,6 +1041,164 @@
         "megaminx-ep": "EP (Edge Permutation) - Ces algorithmes placent les arêtes déjà orientées de la dernière couche du Megaminx à leur position correcte.",
         "megaminx-co": "CO (Corner Orientation) - Une fois les arêtes résolues, ces algorithmes tournent les coins de la dernière couche du Megaminx pour orienter la couleur du dessus vers le haut.",
         "megaminx-cp": "CP (Corner Permutation) - Ces algorithmes placent les coins de la dernière couche du Megaminx à leur position correcte pour terminer le puzzle."
+      },
+      "guide": {
+        "heading": "À propos de {title}",
+        "what": "Qu'est-ce que {title} ?",
+        "when": "Quand utilise-t-on {title} ?",
+        "count": "Combien y a-t-il d'algorithmes {title} ?",
+        "count-answer": "Nexus Timer propose {count, plural, one {# algorithme {title}} other {# algorithmes {title}}} pour le {puzzle}, chacun avec un aperçu 3D interactif pour voir comment il résout le cas.",
+        "learn": "Comment apprendre {title} ?"
+      },
+      "guides": {
+        "pbl": {
+          "when": "Le PBL est la dernière étape de la méthode Ortega pour le 2x2. Après avoir résolu une face et orienté la couche opposée, les couleurs du dessus et du dessous sont correctes, mais les pièces peuvent encore être échangées. Un algorithme PBL permute alors les deux couches en même temps et termine le cube.",
+          "learn": "Commencez par les cas sur une seule couche : l'échange adjacent, résolu avec une J perm ou une T perm, et l'échange en diagonale, résolu avec une Y perm. Ajoutez ensuite les cas où les deux couches sont à corriger. Cherchez les phares sur chaque couche pour distinguer les échanges adjacents des échanges en diagonale avant de tourner."
+        },
+        "ocll": {
+          "when": "L'OCLL est la deuxième étape de la méthode Ortega et de la plupart des méthodes débutant pour le 2x2. On l'utilise une fois la première face résolue, pour rendre la face du dessus d'une seule couleur avant de permuter les coins avec le PBL ou un algorithme de permutation.",
+          "learn": "Apprenez d'abord Sune et Antisune, car les cinq autres cas peuvent se résoudre en les répétant. Remplacez ensuite ces répétitions par l'algorithme dédié à chaque cas. Avec seulement sept cas, l'OCLL est le set le plus facile à apprendre en entier et une bonne étape avant le CLL."
+        },
+        "cll": {
+          "when": "Le CLL s'utilise dans la méthode CLL pour le 2x2 : on construit une première couche complète, puis on termine le cube avec un seul algorithme. Il remplace les étapes séparées d'orientation et de permutation par une seule, c'est donc le choix standard des cubeurs intermédiaires et la base de l'EG-1 et de l'EG-2.",
+          "learn": "Apprenez le CLL groupe d'orientation par groupe d'orientation : Sune, Antisune, Pi, U, T et L ont six cas chacun, et H en a quatre. Reconnaissez d'abord l'orientation, puis lisez les stickers latéraux pour repérer les phares ou les couleurs opposées. Connaître l'OCLL aide, car beaucoup de cas partagent les mêmes mouvements."
+        },
+        "eg-1": {
+          "when": "L'EG-1 s'utilise dans la méthode EG quand la première face du 2x2 est faite mais que ses pièces présentent un échange adjacent. Au lieu de corriger d'abord la couche du bas, un algorithme résout la dernière couche et l'échange du bas en même temps, ce qui économise une étape entière. L'échange adjacent est le cas le plus fréquent pour la couche du bas.",
+          "learn": "Apprenez l'EG-1 après le CLL, car il utilise les mêmes groupes d'orientation et la même reconnaissance. Il suffit d'ajouter l'échange adjacent du bas à ce que vous savez déjà. Beaucoup de cubeurs apprennent un groupe à la fois et s'entraînent à vérifier pendant l'inspection si la couche du bas est résolue, avec un échange adjacent ou en diagonale."
+        },
+        "eg-2": {
+          "when": "L'EG-2 couvre les cas EG où la première face est faite mais où ses pièces présentent un échange en diagonale. Avec le CLL et l'EG-1, il permet de finir n'importe quel 2x2 dont la première face est faite avec un dernier algorithme, quelle que soit la permutation de la couche du bas.",
+          "learn": "L'échange en diagonale en bas apparaît aussi souvent qu'une couche du bas résolue et moins souvent que l'échange adjacent, c'est pourquoi beaucoup de cubeurs apprennent l'EG-2 en dernier. La reconnaissance fonctionne comme pour le CLL et l'EG-1, concentrez-vous donc sur la mémorisation de chaque algorithme et sur un démarrage rapide après l'inspection."
+        },
+        "f2l": {
+          "when": "Le F2L est la deuxième étape de CFOP et la plus longue. Après la croix, on résout quatre paires coin-arête, une par emplacement, jusqu'à compléter les deux premières couches. Il occupe souvent plus de la moitié d'une résolution, donc un F2L efficace est la plus grande amélioration pour la plupart des cubeurs.",
+          "learn": "La plupart des cubeurs apprennent d'abord le F2L de façon intuitive, en comprenant comment associer un coin à son arête et les insérer sans casser la croix. Utilisez ces algorithmes comme référence pour les cas que vous résolvez de façon peu efficace, entraînez-vous lentement en cherchant la paire suivante et apprenez à résoudre les paires sous différents angles pour moins tourner le cube."
+        },
+        "advanced-f2l": {
+          "when": "Les cas de F2L avancé apparaissent quand une paire est dans une position difficile : pièces coincées dans un autre emplacement, dans la mauvaise couche ou mal orientées. Connaître une solution efficace évite de sortir les pièces avec des mouvements en plus et garde votre F2L fluide.",
+          "learn": "Apprenez le F2L avancé une fois les cas de base bien maîtrisés. Commencez par les cas que vous voyez le plus dans vos propres résolutions, comme un coin ou une arête coincé dans un emplacement, et apprenez la solution efficace de chacun. Utilisez-les ensuite en vraie résolution jusqu'à ce que la reconnaissance devienne automatique."
+        },
+        "oll": {
+          "when": "L'OLL est la troisième étape de CFOP. Une fois les deux premières couches résolues, un algorithme OLL oriente toutes les pièces de la dernière couche pour que la face du dessus soit d'une seule couleur, et il ne reste que la PLL pour finir le cube.",
+          "learn": "Commencez par l'OLL en 2 temps : trois algorithmes pour orienter les arêtes en croix, puis les sept cas de coins. Apprenez ensuite les 57 cas complets, un groupe de formes à la fois. La reconnaissance repose sur le motif de la face du dessus et sur les stickers des côtés."
+        },
+        "pll": {
+          "when": "La PLL est la dernière étape de CFOP. Avec la face du dessus déjà d'une seule couleur, un algorithme PLL place les pièces de la dernière couche dans leur position correcte et résout le cube. Il y a 21 cas, désignés par des lettres comme T, J, U et Y.",
+          "learn": "Commencez par la PLL en 2 temps : permutez les coins avec une T perm ou une Y perm, puis les arêtes avec les permutations U, H et Z. Apprenez ensuite les autres cas un par un. La reconnaissance se fait avec les phares et les blocs sur deux faces, alors entraînez-vous à identifier chaque cas sans tourner le cube."
+        },
+        "coll": {
+          "when": "Le COLL s'utilise après le F2L quand toutes les arêtes de la dernière couche sont déjà orientées, ce qui se voit à la croix sur le dessus. Au lieu d'orienter seulement les coins, un algorithme les oriente et les permute, et il reste une permutation d'arêtes (U, H ou Z perm) rapide et facile à reconnaître.",
+          "learn": "Le COLL est organisé selon les mêmes formes de coins que l'OCLL, alors apprenez une forme à la fois, en commençant par Sune et Antisune. Reconnaissez d'abord la forme, puis les stickers latéraux des coins. C'est une étape classique vers le ZBLL complet, et il s'accorde bien avec les méthodes qui orientent les arêtes tôt, comme ZZ."
+        },
+        "ble": {
+          "when": "Le BLE est une technique de dernier emplacement. Utilisez-le quand le coin de votre dernier emplacement F2L est déjà résolu, que son arête est dans la couche du dessus et que les arêtes de la dernière couche sont orientées. Un algorithme insère l'arête et oriente les coins de la dernière couche, vous passez donc directement à la PLL.",
+          "learn": "Les cas sont regroupés selon la forme des coins de la dernière couche, comme pour l'OCLL. Apprenez le BLE une fois à l'aise avec l'OLL et la PLL, en commençant par les groupes que vous rencontrez le plus. Beaucoup d'algorithmes sont de courtes combinaisons de mouvements R et U, alors travaillez une exécution fluide de la main droite."
+        },
+        "vls": {
+          "when": "Le VLS est un set de dernier emplacement pour quand la dernière paire du F2L est déjà formée dans la couche du dessus et que les arêtes de la dernière couche sont orientées. Un algorithme insère la paire et oriente toute la dernière couche, ce qui permet de sauter l'OLL et de finir avec la PLL.",
+          "learn": "Le set VLS complet compte des centaines d'algorithmes, cette sélection se concentre donc sur les cas les plus utiles. Apprenez-le après le COLL ou la Winter Variation, et vérifiez d'abord dans vos résolutions à quelle fréquence vous finissez le F2L avec une paire formée et les arêtes orientées. Regroupez les cas selon l'orientation des coins du dessus."
+        },
+        "cls": {
+          "when": "Le CLS est un set de dernier emplacement pour quand l'arête de la dernière paire du F2L est déjà résolue, que le coin n'est pas encore à sa place et que les arêtes de la dernière couche sont orientées. Un algorithme insère le coin et oriente la dernière couche, et il ne reste que la PLL.",
+          "learn": "Apprenez le CLS quand vous arrivez souvent au dernier emplacement avec son arête déjà résolue, ce qui arrive naturellement si vous résolvez les arêtes d'abord ou utilisez des techniques comme le keyhole. Commencez par les cas où le coin est dans la couche du dessus, puis ajoutez ceux où il est tourné dans son emplacement."
+        },
+        "sv": {
+          "when": "La Summer Variation s'utilise quand la dernière paire du F2L peut être insérée avec R U' R' et que les arêtes de la dernière couche sont orientées. Au lieu d'insérer la paire normalement, un algorithme l'insère et oriente les coins de la dernière couche, ce qui permet de sauter l'OLL et de passer directement à la PLL.",
+          "learn": "Apprenez la SV après la Winter Variation, car elle suit la même idée avec une insertion différente. Regroupez les cas selon l'apparence des coins du dessus avant l'insertion, et entraînez-vous à les reconnaître pendant que vous préparez la dernière paire pour ne pas marquer de pause avant l'algorithme."
+        },
+        "wv": {
+          "when": "La Winter Variation s'utilise quand la dernière paire du F2L est formée et peut être insérée avec R U R', et que les arêtes de la dernière couche sont déjà orientées. Un algorithme insère la paire et oriente en même temps les coins de la dernière couche, ce qui permet de sauter l'OLL et de passer directement à la PLL.",
+          "learn": "La WV compte 27 cas et beaucoup sont de courts algorithmes en R et U, ce qui en fait l'un des sets de dernier emplacement les plus abordables. Apprenez à reconnaître l'orientation des coins du dessus pendant que la paire attend d'être insérée, et regroupez les cas selon le nombre de coins orientés."
+        },
+        "zbll-s": {
+          "when": "Le ZBLL-S couvre les cas ZBLL où les coins de la dernière couche forment un Sune, avec un coin orienté. Quand les arêtes sont orientées après le F2L, un de ces algorithmes résout toute la dernière couche d'un coup, sans passer par l'OCLL ni la PLL.",
+          "learn": "Le ZBLL-S est souvent le premier sous-ensemble appris, car le Sune est une forme familière et beaucoup de ses algorithmes sont courts. Séparez les cas par permutation des coins, cherchez les phares et les blocs sur les côtés, puis lisez les arêtes pour trouver le cas exact."
+        },
+        "zbll-as": {
+          "when": "Le ZBLL-AS couvre les cas ZBLL où les coins de la dernière couche forment un Antisune, le miroir du Sune, avec un coin orienté. Avec les arêtes déjà orientées, un algorithme résout toute la dernière couche.",
+          "learn": "Beaucoup de cubeurs apprennent le ZBLL-AS juste après le ZBLL-S car ils sont le miroir l'un de l'autre, ce qui rend la reconnaissance et de nombreux algorithmes familiers. Organisez les cas d'abord par permutation des coins, puis par position des arêtes."
+        },
+        "zbll-u": {
+          "when": "Le ZBLL-U couvre les cas ZBLL où deux coins adjacents de la dernière couche sont orientés et où les deux autres regardent du même côté, formant un U. Avec les arêtes déjà orientées, un algorithme résout toute la dernière couche.",
+          "learn": "Commencez la reconnaissance par le côté où se trouvent les deux coins tournés, vérifiez ensuite la permutation des coins et enfin les arêtes. Apprendre d'abord les cas COLL correspondants aide, car chaque cas COLL est entouré d'une famille de cas ZBLL."
+        },
+        "zbll-t": {
+          "when": "Le ZBLL-T couvre les cas ZBLL où deux coins adjacents de la dernière couche sont orientés et où les deux autres regardent des côtés opposés, formant un T. Avec les arêtes déjà orientées, un algorithme résout toute la dernière couche.",
+          "learn": "Reconnaissez la forme en T grâce aux deux stickers de la couleur du dessus sur des côtés opposés, puis lisez la permutation des coins et les arêtes. Regrouper les cas selon leur cas COLL rend les 72 algorithmes bien plus faciles à organiser et à réviser."
+        },
+        "zbll-pi": {
+          "when": "Le ZBLL-Pi couvre les cas ZBLL où aucun coin de la dernière couche n'est orienté : un côté montre deux stickers de la couleur du dessus et les côtés voisins en montrent un chacun, formant un Pi. Avec les arêtes déjà orientées, un algorithme résout toute la dernière couche.",
+          "learn": "Les cas Pi demandent plus d'entraînement pour être reconnus, c'est pourquoi beaucoup de cubeurs les apprennent après Sune, Antisune, U et T. Placez la paire de stickers de la couleur du dessus à gauche, vérifiez la permutation des coins, puis lisez les arêtes."
+        },
+        "zbll-l": {
+          "when": "Le ZBLL-L couvre les cas ZBLL où deux coins opposés en diagonale de la dernière couche sont orientés, formant un L. Avec les arêtes déjà orientées, un algorithme résout toute la dernière couche.",
+          "learn": "Reconnaissez la forme en L grâce aux deux coins orientés en diagonale, puis regardez les stickers latéraux pour trouver la permutation des coins et lisez les arêtes. Apprendre d'abord les cas L du COLL vous donne un bon repère pour chaque groupe."
+        },
+        "zbll-h": {
+          "when": "Le ZBLL-H couvre les cas ZBLL où aucun coin de la dernière couche n'est orienté et où les stickers de la couleur du dessus regardent deux côtés opposés par paires, formant un H. Avec les arêtes déjà orientées, un algorithme résout toute la dernière couche.",
+          "learn": "La forme H est symétrique, ce sous-ensemble a donc moins de cas que les autres, 40 au lieu de 72. C'est un bon sous-ensemble à terminer tôt. Reconnaissez-le grâce aux paires de stickers de la couleur du dessus sur des côtés opposés, puis lisez la permutation des coins et les arêtes."
+        },
+        "parity-4x4": {
+          "when": "La parité du 4x4 apparaît pendant la phase 3x3 d'une résolution par réduction, car le 4x4 n'a pas de centres fixes et peut atteindre des états impossibles sur un 3x3. La parité d'OLL se voit avec une seule arête retournée, et la parité de PLL avec deux arêtes échangées ou d'autres états qu'aucun algorithme 3x3 ne peut résoudre.",
+          "learn": "Apprenez d'abord les algorithmes standard de parité d'OLL et de PLL, car ils couvrent tous les cas. Une fois qu'ils sont fluides, ajoutez les cas combinés pour corriger la parité et la dernière couche en moins de mouvements. Entraînez les mouvements larges jusqu'à ce qu'ils s'enchaînent sans replacer les mains."
+        },
+        "parity-5x5": {
+          "when": "Contrairement au 4x4, le 5x5 a des centres fixes, il n'a donc pas de parité de PLL. La parité apparaît à la fin de l'appariement des arêtes, quand la dernière arête a ses deux pièces extérieures retournées et qu'un algorithme spécial est nécessaire pour l'apparier.",
+          "learn": "Il n'y a qu'un seul cas à apprendre, alors mémorisez-le et entraînez-vous jusqu'à pouvoir l'exécuter sans regarder. Apprenez à le repérer pendant l'appariement des deux dernières arêtes pour appliquer l'algorithme tout de suite et passer à la phase 3x3."
+        },
+        "l2c-5x5": {
+          "when": "Le L2C s'utilise pendant la réduction d'un 5x5 une fois quatre centres résolus. Les deux derniers centres doivent être construits sans casser les autres, et c'est là que ces algorithmes et les commutateurs aident.",
+          "learn": "Comprenez comment un commutateur déplace des pièces de centre entre deux faces sans toucher au reste, et vous pourrez résoudre la plupart des cas de façon intuitive. Utilisez ces algorithmes pour les cas qui vous prennent trop de mouvements et entraînez-vous jusqu'à ce que vos deux derniers centres soient réguliers."
+        },
+        "l2e-5x5": {
+          "when": "Le L2E s'utilise à la fin de l'appariement des arêtes sur un 5x5, quand les deux derniers groupes d'arêtes ne peuvent pas être appariés avec les mouvements de tranche habituels. Ces algorithmes apparient les pièces restantes pour que le cube soit prêt pour la phase 3x3.",
+          "learn": "Assurez-vous d'abord d'apparier efficacement les huit premières arêtes. Apprenez ensuite à reconnaître la position des pièces restantes dans les deux dernières arêtes et entraînez l'algorithme de chaque cas. Si la dernière arête se retrouve retournée, utilisez l'algorithme de parité du 5x5."
+        },
+        "l4e": {
+          "when": "Le L4E est une méthode populaire pour le Pyraminx. Après avoir résolu les pointes et un bloc de trois centres et deux arêtes, un algorithme résout les quatre dernières arêtes. Le bloc demande peu de mouvements, ce qui rend la méthode rapide et efficace.",
+          "learn": "Commencez par résoudre le premier bloc de façon intuitive. Apprenez ensuite les algorithmes L4E, en commençant par les cas les plus fréquents comme Sune, Antisune et les cas de barres. Planifier le bloc pendant l'inspection rend toute la résolution fluide."
+        },
+        "sq1-cs": {
+          "when": "La forme cube est la première étape de toute résolution de Square-1. Le mélange change la forme des couches, et ces algorithmes ramènent le puzzle à la forme cube, où les étapes d'orientation et de permutation peuvent commencer.",
+          "learn": "Les débutants retrouvent la forme cube en quelques étapes intuitives, en passant toujours par les mêmes formes intermédiaires. Les cubeurs plus rapides apprennent des solutions directes depuis chaque forme, regroupées par nombre de slices. Commencez par les formes que vous voyez le plus et concentrez-vous sur le bon comptage des slices."
+        },
+        "sq1-co": {
+          "when": "Le CO s'utilise une fois le Square-1 revenu en forme cube. Ces algorithmes orientent les coins pour que chacun montre la couleur du dessus ou du dessous sur la bonne couche, sans casser la forme cube.",
+          "learn": "Avec si peu de cas, le CO s'apprend vite. Reconnaissez combien de coins de chaque couleur se trouvent sur chaque couche et appliquez l'algorithme correspondant. Travailler le slice aide, car tous les algorithmes reposent sur des slices propres."
+        },
+        "sq1-eo": {
+          "when": "L'EO vient après l'orientation des coins sur le Square-1. Ces algorithmes déplacent les arêtes pour que chaque couche contienne les arêtes de sa couleur, ce qui prépare le puzzle pour les étapes de permutation.",
+          "learn": "Comptez les arêtes qui sont sur la mauvaise couche, puis choisissez le cas correspondant. Il est courant d'apprendre le CO et l'EO ensemble, car ces deux étapes utilisent des mouvements similaires et des algorithmes courts."
+        },
+        "sq1-cp": {
+          "when": "Le CP s'utilise une fois toutes les pièces du Square-1 orientées. Ces algorithmes placent les coins dans leur position correcte sur les deux couches, et il ne reste que les arêtes à permuter.",
+          "learn": "Reconnaissez si chaque couche a un échange de coins adjacent, en diagonale ou aucun. Apprenez les algorithmes des combinaisons que vous voyez le plus et faites attention à l'alignement avant chaque slice pour que l'algorithme fonctionne à chaque fois."
+        },
+        "sq1-ep": {
+          "when": "L'EP est la dernière étape normale du Square-1. Avec les coins déjà permutés, ces algorithmes placent les arêtes dans leur position correcte et résolvent le puzzle, sauf si un cas de parité apparaît.",
+          "learn": "Après la forme cube, l'EP est l'étape du Square-1 qui a le plus de cas, alors apprenez-la progressivement, en commençant par les cas où une seule couche est à corriger. Reconnaissez les arêtes de chaque couche séparément et cherchez des motifs que vous connaissez déjà sur le 3x3."
+        },
+        "sq1-parity": {
+          "when": "La parité du Square-1 apparaît quand les arêtes ou les coins du puzzle ne peuvent pas être résolus avec les algorithmes de permutation habituels. Elle survient dans environ la moitié des résolutions, tout cubeur de Square-1 a donc besoin d'un moyen de la corriger.",
+          "learn": "Commencez par apprendre un algorithme qui corrige la parité dans tous les cas, puis ajoutez les algorithmes de parité spécifiques aux situations courantes pour résoudre la parité et la permutation en même temps. Repérer la parité tôt pendant l'EP est ce qui fait gagner le plus de temps."
+        },
+        "megaminx-eo": {
+          "when": "L'EO est la première étape de la dernière couche en quatre temps sur le Megaminx. Une fois les premières couches résolues, ces algorithmes retournent les arêtes de la dernière couche pour que la couleur du dessus forme une étoile sur la face du dessus.",
+          "learn": "Il n'y a que quelques cas, et ils fonctionnent comme l'étape d'orientation des arêtes du 3x3. Apprenez-les en premier et faites attention à l'angle de chaque cas, car le Megaminx a cinq côtés au lieu de quatre."
+        },
+        "megaminx-ep": {
+          "when": "L'EP est la deuxième étape de la dernière couche en quatre temps sur le Megaminx. Avec les arêtes orientées, ces algorithmes les placent dans leur position correcte avant de s'occuper des coins.",
+          "learn": "Repérez les arêtes déjà en place et la façon dont les autres tournent, puis appliquez l'algorithme correspondant. Avec si peu de cas, l'EP s'apprend vite et se combine bien avec l'EO."
+        },
+        "megaminx-co": {
+          "when": "Le CO est la troisième étape de la dernière couche en quatre temps sur le Megaminx. Une fois les arêtes résolues, ces algorithmes tournent les coins pour que toute la face du dessus montre la couleur du dessus.",
+          "learn": "Apprenez les cas par groupes selon le nombre de coins déjà orientés. Beaucoup reposent sur des mouvements de type Sune, ce qui les rend plus faciles à retenir et à exécuter."
+        },
+        "megaminx-cp": {
+          "when": "Le CP est la dernière étape de la dernière couche en quatre temps sur le Megaminx. Tout le reste étant résolu, ces algorithmes placent les coins dans leur position correcte et terminent le puzzle.",
+          "learn": "Repérez comment les coins tournent en comparant leurs couleurs latérales avec les centres. Commencez par les cas qui ne déplacent que trois coins, puis ajoutez les autres."
+        }
       }
     },
     "Metadata": {

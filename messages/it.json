@@ -1008,16 +1008,16 @@
       },
       "descriptions": {
         "pbl": "Questi algoritmi vengono usati per permutare contemporaneamente sia lo strato superiore che quello inferiore di un cubo 2x2, consentendo una risoluzione efficiente del puzzle.",
-        "ocll": "COLL (Orientamento degli angoli dell'ultimo strato) - Questo passaggio si concentra sull'orientamento di tutti gli angoli dell'ultimo strato per prepararsi ai passaggi finali della risoluzione.",
-        "cll": "CLL è un sottoinsieme di OLL per i cubi 2x2x2 che risolve l'ultimo strato con un solo algoritmo dopo aver orientato il primo strato.",
+        "ocll": "L'OCLL (orientamento degli angoli dell'ultimo strato) orienta i quattro angoli dell'ultimo strato di un 2x2 in modo che la faccia superiore diventi di un solo colore. Ci sono sette casi: Sune, Antisune, H, Pi, U, T e L.",
+        "cll": "Il CLL (angoli dell'ultimo strato) risolve l'intero ultimo strato di un 2x2 con un solo algoritmo una volta che il primo strato è completamente risolto, orientando e permutando gli angoli contemporaneamente.",
         "eg-1": "EG-1 è un set di algoritmi usati per risolvere l'ultimo strato di un cubo 2x2 dopo aver completato il primo strato, specificamente quando c'è uno scambio adiacente sullo strato inferiore.",
         "eg-2": "EG-2 è un set di algoritmi usati per risolvere l'ultimo strato di un cubo 2x2 dopo aver completato il primo strato, specificamente quando c'è uno scambio diagonale sullo strato inferiore.",
-        "f2l": "Gli algoritmi F2L (First Two Layers) per risolvere il cubo di Rubik con il metodo CFOP. Questi algoritmi risolvono i primi due strati accoppiando contemporaneamente i pezzi d’angolo e di spigolo, una volta completata la croce.",
+        "f2l": "Algoritmi F2L (primi due strati) per risolvere il cubo di Rubik con il metodo CFOP. Completata la croce, ogni angolo viene accoppiato al suo spigolo e inserito nel suo slot, risolvendo i primi due strati una coppia alla volta.",
         "advanced-f2l": "Gli algoritmi F2L avanzati per i casi più difficili di abbinamento angolo-spigolo del metodo CFOP: pezzi bloccati nell'ultimo slot, pezzi incastrati nello strato sbagliato, o entrambi i pezzi bloccati insieme. Vanno oltre l'F2L intuitivo per coprire i casi che di solito costano più mosse.",
         "oll": "Gli algoritmi OLL (Orientamento dell'ultimo strato) per risolvere il cubo di Rubik con il metodo CFOP. Vengono usati per orientare tutti i pezzi dell'ultimo strato, una volta completato l'F2L.",
         "pll": "Gli algoritmi PLL (Permutazione dell'ultimo strato) per risolvere il cubo di Rubik con il metodo CFOP. Vengono usati per il passaggio finale del metodo CFOP, per permutare gli spigoli e gli angoli dell'ultimo strato, una volta orientati tutti i pezzi.",
         "coll": "Gli algoritmi COLL (Angoli e orientamento dell'ultimo strato) vengono usati per orientare e permutare contemporaneamente gli angoli dell'ultimo strato, presumendo che tutti gli spigoli dell'ultimo strato siano già orientati.",
-        "ble": "Brooks' Last Edge (BLE) è un metodo usato per risolvere efficientemente l'ultimo spigolo del cubo di Rubik, spesso come parte di tecniche di risoluzione avanzate.",
+        "ble": "Il BLE (Brooks' Last Edge) inserisce l'ultimo spigolo dell'F2L mentre orienta gli angoli dell'ultimo strato. Si usa quando l'angolo dell'ultimo slot è già risolto e gli spigoli dell'ultimo strato sono orientati, così resta solo la PLL.",
         "vls": "Gli algoritmi VLS (Valk Last Slot) risolvono contemporaneamente l'ultimo slot F2L e l'OLL, nei casi in cui si ha una coppia F2L collegata. Questa selezione di algoritmi è un'introduzione al set completo VLS e mira a evidenziare i casi più utili da conoscere.",
         "cls": "Gli algoritmi CLS (Corner Last Slot) risolvono contemporaneamente l'ultimo angolo F2L e orientano l'ultimo strato. Si usano quando lo spigolo della coppia F2L finale è già risolto e gli spigoli dell'ultimo strato sono orientati. Questa selezione è un'introduzione al set completo CLS e mira a evidenziare i casi più utili da conoscere.",
         "wv": "Gli algoritmi WV (Winter Variation) vengono usati per orientare gli angoli dell'ultimo strato mentre inserisci la coppia F2L finale, nel caso in cui la coppia sia collegata e tutti gli spigoli dell'ultimo strato siano già orientati.",
@@ -1032,7 +1032,7 @@
         "parity-5x5": "Questi algoritmi risolvono gli errori di parità unici che possono verificarsi risolvendo un cubo di Rubik 5x5, che non si presentano su un normale cubo 3x3. Sono essenziali per completare la risoluzione dopo aver ridotto il 5x5 a uno stato 3x3.",
         "l2c-5x5": "Gli algoritmi L2C (Last Two Centers) risolvono gli ultimi due centri di un cubo 5x5 durante la riduzione, senza rompere i centri già costruiti.",
         "l2e-5x5": "Gli algoritmi L2E (Last Two Edges) risolvono le ultime due coppie di spigoli di un cubo 5x5 durante la riduzione, quando non possono più essere abbinate con semplici mosse di slice.",
-        "l4e": "Ultimi 4 spigoli (Pyraminx) - Questi algoritmi vengono usati per risolvere gli ultimi quattro spigoli di un Pyraminx. L'obiettivo è posizionare e orientare correttamente questi pezzi per completare il puzzle.",
+        "l4e": "L4E (Last 4 Edges, gli ultimi quattro spigoli) è un metodo per il Pyraminx. Dopo aver risolto le punte, tre centri e due spigoli, questi algoritmi risolvono gli ultimi quattro spigoli in un solo passaggio per completare il puzzle.",
         "sq1-cs": "CS (Cube Shape) - Questi algoritmi riportano uno Square-1 mescolato alla forma di cubo, il primo passo della risoluzione. I casi sono raggruppati in base al numero di slice richiesti dalla soluzione.",
         "sq1-co": "CO (Corner Orientation) - Una volta tornato alla forma di cubo, questi algoritmi orientano tutti gli angoli dello Square-1 in modo che sopra e sotto mostrino il colore corretto, senza rompere la forma di cubo.",
         "sq1-eo": "EO (Edge Orientation) - Questi algoritmi ruotano gli spigoli dello Square-1 nell'orientamento corretto una volta orientati gli angoli.",
@@ -1044,6 +1044,164 @@
         "megaminx-ep": "EP (Edge Permutation) - Questi algoritmi portano gli spigoli già orientati dell'ultimo strato del Megaminx nella posizione corretta.",
         "megaminx-co": "CO (Corner Orientation) - Una volta risolti gli spigoli, questi algoritmi ruotano gli angoli dell'ultimo strato del Megaminx in modo che il colore superiore sia rivolto verso l'alto.",
         "megaminx-cp": "CP (Corner Permutation) - Questi algoritmi portano gli angoli dell'ultimo strato del Megaminx nella posizione corretta per completare il puzzle."
+      },
+      "guide": {
+        "heading": "Informazioni su {title}",
+        "what": "Che cos'è {title}?",
+        "when": "Quando si usa {title}?",
+        "count": "Quanti algoritmi {title} ci sono?",
+        "count-answer": "Nexus Timer raccoglie {count, plural, one {# algoritmo {title}} other {# algoritmi {title}}} per il {puzzle}, ognuno con un'anteprima 3D interattiva per vedere come risolve il caso.",
+        "learn": "Come si impara {title}?"
+      },
+      "guides": {
+        "pbl": {
+          "when": "Il PBL è l'ultimo passaggio del metodo Ortega per il 2x2. Dopo aver risolto una faccia e orientato lo strato opposto, i colori sopra e sotto sono corretti, ma i pezzi possono ancora essere scambiati. Un algoritmo PBL permuta allora entrambi gli strati insieme e completa il cubo.",
+          "learn": "Inizia dai casi su un solo strato: lo scambio adiacente, risolto con una J perm o una T perm, e lo scambio diagonale, risolto con una Y perm. Poi aggiungi i casi in cui vanno sistemati entrambi gli strati. Cerca i fari su ogni strato per distinguere gli scambi adiacenti da quelli diagonali prima di iniziare a girare."
+        },
+        "ocll": {
+          "when": "L'OCLL è il secondo passaggio del metodo Ortega e della maggior parte dei metodi per principianti sul 2x2. Si usa una volta risolta la prima faccia, per rendere la faccia superiore di un solo colore prima di permutare gli angoli con il PBL o con un algoritmo di permutazione.",
+          "learn": "Impara prima Sune e Antisune, perché gli altri cinque casi si possono risolvere ripetendoli. Poi sostituisci queste ripetizioni con l'algoritmo specifico di ogni caso. Con soli sette casi, l'OCLL è il set più facile da imparare completamente e un buon passo prima del CLL."
+        },
+        "cll": {
+          "when": "Il CLL si usa nel metodo CLL per il 2x2: costruisci un primo strato completo e finisci il cubo con un solo algoritmo. Sostituisce i passaggi separati di orientamento e permutazione con uno solo, quindi è la scelta standard per i cubisti intermedi e la base di EG-1 ed EG-2.",
+          "learn": "Impara il CLL un gruppo di orientamento alla volta: Sune, Antisune, Pi, U, T e L hanno sei casi ciascuno, H ne ha quattro. Riconosci prima l'orientamento, poi leggi gli adesivi laterali per individuare fari o colori opposti. Conoscere l'OCLL aiuta, perché molti casi condividono le stesse mosse."
+        },
+        "eg-1": {
+          "when": "L'EG-1 si usa nel metodo EG quando la prima faccia del 2x2 è fatta ma i suoi pezzi hanno uno scambio adiacente. Invece di sistemare prima lo strato inferiore, un algoritmo risolve l'ultimo strato e lo scambio sotto nello stesso momento, risparmiando un intero passaggio. Lo scambio adiacente è il caso più comune dello strato inferiore.",
+          "learn": "Impara l'EG-1 dopo il CLL, perché usa gli stessi gruppi di orientamento e lo stesso riconoscimento. Devi solo aggiungere lo scambio adiacente sotto a ciò che già conosci. Molti cubisti imparano un gruppo alla volta e si allenano a controllare durante l'ispezione se lo strato inferiore è risolto, con scambio adiacente o diagonale."
+        },
+        "eg-2": {
+          "when": "L'EG-2 copre i casi EG in cui la prima faccia è fatta ma i suoi pezzi hanno uno scambio diagonale. Insieme a CLL ed EG-1, permette di finire qualsiasi 2x2 con la prima faccia completata usando un ultimo algoritmo, qualunque sia la permutazione dello strato inferiore.",
+          "learn": "Lo scambio diagonale sotto capita tanto spesso quanto uno strato inferiore risolto e meno spesso dello scambio adiacente, per questo molti cubisti imparano l'EG-2 per ultimo. Il riconoscimento funziona come nel CLL e nell'EG-1, quindi concentrati sul memorizzare ogni algoritmo e sull'iniziarlo rapidamente dopo l'ispezione."
+        },
+        "f2l": {
+          "when": "L'F2L è il secondo e più lungo passaggio del CFOP. Dopo la croce, risolvi quattro coppie di angolo e spigolo, una per slot, fino a completare i primi due strati. Di solito occupa più di metà della risoluzione, quindi un F2L efficiente è il miglioramento più grande per la maggior parte dei cubisti.",
+          "learn": "La maggior parte dei cubisti impara prima l'F2L in modo intuitivo, capendo come accoppiare un angolo con il suo spigolo e inserirli senza rompere la croce. Usa questi algoritmi come riferimento per i casi che risolvi in modo poco efficiente, allenati lentamente cercando la coppia successiva e impara a risolvere le coppie da angolazioni diverse per ruotare meno il cubo."
+        },
+        "advanced-f2l": {
+          "when": "I casi di F2L avanzato compaiono quando una coppia è in una posizione scomoda: pezzi bloccati in un altro slot, nello strato sbagliato o orientati male. Conoscere una soluzione efficiente evita di estrarre i pezzi con mosse in più e mantiene il tuo F2L fluido.",
+          "learn": "Impara l'F2L avanzato quando i casi base ti riescono con sicurezza. Inizia dai casi che vedi più spesso nelle tue risoluzioni, come un angolo o uno spigolo bloccato in uno slot, e impara la soluzione efficiente di ciascuno. Poi usali nelle risoluzioni reali finché riconoscere il caso diventa automatico."
+        },
+        "oll": {
+          "when": "L'OLL è il terzo passaggio del CFOP. Una volta risolti i primi due strati, un algoritmo OLL orienta tutti i pezzi dell'ultimo strato in modo che la faccia superiore diventi di un solo colore, e resta solo la PLL per finire il cubo.",
+          "learn": "Inizia con l'OLL in 2 fasi: tre algoritmi per orientare gli spigoli formando una croce, poi i sette casi degli angoli. Dopo impara tutti i 57 casi, un gruppo di forme alla volta. Il riconoscimento si basa sul disegno della faccia superiore e sugli adesivi laterali."
+        },
+        "pll": {
+          "when": "La PLL è l'ultimo passaggio del CFOP. Con la faccia superiore già di un solo colore, un algoritmo PLL porta i pezzi dell'ultimo strato nelle posizioni corrette e risolve il cubo. Ci sono 21 casi, indicati con lettere come T, J, U e Y.",
+          "learn": "Inizia con la PLL in 2 fasi: permuta gli angoli con una T perm o una Y perm, poi gli spigoli con le permutazioni U, H e Z. Poi impara gli altri casi uno alla volta. Il riconoscimento usa fari e blocchi su due lati, quindi allenati a identificare ogni caso senza ruotare il cubo."
+        },
+        "coll": {
+          "when": "Il COLL si usa dopo l'F2L quando tutti gli spigoli dell'ultimo strato sono già orientati, cosa che si riconosce da una croce sopra. Invece di orientare solo gli angoli, un algoritmo li orienta e li permuta, lasciando una permutazione degli spigoli (U, H o Z perm) veloce e facile da riconoscere.",
+          "learn": "Il COLL è organizzato secondo le stesse forme degli angoli dell'OCLL, quindi impara una forma alla volta, iniziando da Sune e Antisune. Riconosci prima la forma, poi gli adesivi laterali degli angoli. È un passo comune verso lo ZBLL completo e si abbina bene ai metodi che orientano presto gli spigoli, come lo ZZ."
+        },
+        "ble": {
+          "when": "Il BLE è una tecnica per l'ultimo slot. Usalo quando l'angolo dell'ultimo slot dell'F2L è già risolto, il suo spigolo è nello strato superiore e gli spigoli dell'ultimo strato sono orientati. Un algoritmo inserisce lo spigolo e orienta gli angoli dell'ultimo strato, così passi direttamente alla PLL.",
+          "learn": "I casi sono raggruppati in base alla forma degli angoli dell'ultimo strato, come nell'OCLL. Impara il BLE quando sei a tuo agio con OLL e PLL, iniziando dai gruppi che incontri più spesso. Molti algoritmi sono brevi combinazioni di mosse R e U, quindi concentrati su un'esecuzione fluida con la mano destra."
+        },
+        "vls": {
+          "when": "Il VLS è un set per l'ultimo slot da usare quando l'ultima coppia dell'F2L è già unita nello strato superiore e gli spigoli dell'ultimo strato sono orientati. Un algoritmo inserisce la coppia e orienta l'intero ultimo strato, così salti l'OLL e finisci con la PLL.",
+          "learn": "Il set VLS completo conta centinaia di algoritmi, quindi questa selezione si concentra sui casi più utili. Imparalo dopo il COLL o la Winter Variation, e verifica prima nelle tue risoluzioni quanto spesso finisci l'F2L con una coppia unita e gli spigoli orientati. Raggruppa i casi in base all'orientamento degli angoli superiori."
+        },
+        "cls": {
+          "when": "Il CLS è un set per l'ultimo slot da usare quando lo spigolo dell'ultima coppia dell'F2L è già risolto, l'angolo non è ancora al suo posto e gli spigoli dell'ultimo strato sono orientati. Un algoritmo inserisce l'angolo e orienta l'ultimo strato, e resta solo la PLL.",
+          "learn": "Impara il CLS quando arrivi spesso all'ultimo slot con lo spigolo già risolto, cosa che succede in modo naturale se risolvi prima gli spigoli o usi tecniche come il keyhole. Inizia dai casi con l'angolo nello strato superiore, poi aggiungi quelli in cui è ruotato nel suo slot."
+        },
+        "sv": {
+          "when": "La Summer Variation si usa quando l'ultima coppia dell'F2L può essere inserita con R U' R' e gli spigoli dell'ultimo strato sono orientati. Invece di inserire la coppia normalmente, un algoritmo la inserisce e orienta gli angoli dell'ultimo strato, così salti l'OLL e passi direttamente alla PLL.",
+          "learn": "Impara la SV dopo la Winter Variation, perché segue la stessa idea con un inserimento diverso. Raggruppa i casi in base a come appaiono gli angoli superiori prima dell'inserimento e allenati a riconoscerli mentre prepari l'ultima coppia, così non ci sono pause prima dell'algoritmo."
+        },
+        "wv": {
+          "when": "La Winter Variation si usa quando l'ultima coppia dell'F2L è unita e può essere inserita con R U R', e gli spigoli dell'ultimo strato sono già orientati. Un algoritmo inserisce la coppia e orienta allo stesso tempo gli angoli dell'ultimo strato, così salti l'OLL e passi direttamente alla PLL.",
+          "learn": "La WV ha 27 casi e molti sono brevi algoritmi di R e U, il che la rende uno dei set per l'ultimo slot più accessibili. Impara a riconoscere l'orientamento degli angoli superiori mentre la coppia aspetta di essere inserita e raggruppa i casi in base al numero di angoli orientati."
+        },
+        "zbll-s": {
+          "when": "Lo ZBLL-S copre i casi ZBLL in cui gli angoli dell'ultimo strato formano un Sune, con un angolo orientato. Quando gli spigoli sono orientati dopo l'F2L, uno di questi algoritmi risolve tutto l'ultimo strato in una volta, saltando OCLL e PLL.",
+          "learn": "Lo ZBLL-S è spesso il primo sottoinsieme che si impara, perché il Sune è una forma familiare e molti dei suoi algoritmi sono brevi. Dividi i casi per permutazione degli angoli, cerca fari e blocchi sui lati e poi leggi gli spigoli per individuare il caso esatto."
+        },
+        "zbll-as": {
+          "when": "Lo ZBLL-AS copre i casi ZBLL in cui gli angoli dell'ultimo strato formano un Antisune, lo specchio del Sune, con un angolo orientato. Con gli spigoli già orientati, un algoritmo risolve tutto l'ultimo strato.",
+          "learn": "Molti cubisti imparano lo ZBLL-AS subito dopo lo ZBLL-S perché sono uno lo specchio dell'altro, così il riconoscimento e molti algoritmi risultano familiari. Organizza i casi prima per permutazione degli angoli e poi per posizione degli spigoli."
+        },
+        "zbll-u": {
+          "when": "Lo ZBLL-U copre i casi ZBLL in cui due angoli adiacenti dell'ultimo strato sono orientati e gli altri due guardano verso lo stesso lato, formando una U. Con gli spigoli già orientati, un algoritmo risolve tutto l'ultimo strato.",
+          "learn": "Inizia il riconoscimento dal lato con i due angoli ruotati, poi controlla la permutazione degli angoli e infine gli spigoli. Imparare prima i casi COLL corrispondenti aiuta, perché ogni caso COLL ha attorno una famiglia di casi ZBLL."
+        },
+        "zbll-t": {
+          "when": "Lo ZBLL-T copre i casi ZBLL in cui due angoli adiacenti dell'ultimo strato sono orientati e gli altri due guardano verso lati opposti, formando una T. Con gli spigoli già orientati, un algoritmo risolve tutto l'ultimo strato.",
+          "learn": "Riconosci la forma a T dai due adesivi del colore superiore su lati opposti, poi leggi la permutazione degli angoli e gli spigoli. Raggruppare i casi in base al loro caso COLL rende i 72 algoritmi molto più facili da organizzare e ripassare."
+        },
+        "zbll-pi": {
+          "when": "Lo ZBLL-Pi copre i casi ZBLL in cui nessun angolo dell'ultimo strato è orientato: un lato mostra due adesivi del colore superiore e i lati accanto ne mostrano uno ciascuno, formando una Pi. Con gli spigoli già orientati, un algoritmo risolve tutto l'ultimo strato.",
+          "learn": "I casi Pi richiedono più pratica per essere riconosciuti, per questo molti cubisti li imparano dopo Sune, Antisune, U e T. Tieni la coppia di adesivi del colore superiore a sinistra, controlla la permutazione degli angoli e poi leggi gli spigoli."
+        },
+        "zbll-l": {
+          "when": "Lo ZBLL-L copre i casi ZBLL in cui due angoli in diagonale dell'ultimo strato sono orientati, formando una L. Con gli spigoli già orientati, un algoritmo risolve tutto l'ultimo strato.",
+          "learn": "Riconosci la forma a L dai due angoli orientati in diagonale, poi guarda gli adesivi laterali per trovare la permutazione degli angoli e leggi gli spigoli. Imparare prima i casi L del COLL ti dà un solido punto di riferimento per ogni gruppo."
+        },
+        "zbll-h": {
+          "when": "Lo ZBLL-H copre i casi ZBLL in cui nessun angolo dell'ultimo strato è orientato e gli adesivi del colore superiore guardano a coppie verso due lati opposti, formando una H. Con gli spigoli già orientati, un algoritmo risolve tutto l'ultimo strato.",
+          "learn": "La forma H è simmetrica, quindi questo sottoinsieme ha meno casi degli altri, 40 invece di 72. Per questo è un buon sottoinsieme da completare presto. Riconoscilo dalle coppie di adesivi del colore superiore su lati opposti, poi leggi la permutazione degli angoli e gli spigoli."
+        },
+        "parity-4x4": {
+          "when": "La parità del 4x4 compare nella fase 3x3 di una risoluzione per riduzione, perché il 4x4 non ha centri fissi e può raggiungere stati impossibili su un 3x3. La parità dell'OLL si vede come un singolo spigolo girato, la parità della PLL come due spigoli scambiati o altri stati che nessun algoritmo del 3x3 può risolvere.",
+          "learn": "Impara prima gli algoritmi standard di parità dell'OLL e della PLL, perché coprono ogni caso. Quando ti vengono fluidi, aggiungi i casi combinati per sistemare parità e ultimo strato con meno mosse. Allenati sulle mosse larghe finché scorrono senza riposizionare le mani."
+        },
+        "parity-5x5": {
+          "when": "A differenza del 4x4, il 5x5 ha centri fissi, quindi non ha la parità della PLL. La parità compare alla fine dell'accoppiamento degli spigoli, quando l'ultimo spigolo ha i due pezzi esterni girati e serve un algoritmo speciale per accoppiarlo.",
+          "learn": "C'è un solo caso da imparare, quindi memorizzalo e allenati finché riesci a eseguirlo senza guardare. Impara a riconoscerlo mentre accoppi gli ultimi due spigoli, così puoi applicare subito l'algoritmo e passare alla fase 3x3."
+        },
+        "l2c-5x5": {
+          "when": "L'L2C si usa durante la riduzione di un 5x5 dopo aver risolto quattro centri. Gli ultimi due centri vanno costruiti senza rompere gli altri, ed è qui che aiutano questi algoritmi e i commutatori.",
+          "learn": "Capisci come un commutatore sposta i pezzi di centro tra due facce senza toccare il resto, e potrai risolvere la maggior parte dei casi in modo intuitivo. Usa questi algoritmi per i casi che ti costano troppe mosse e allenati finché i tuoi ultimi due centri diventano costanti."
+        },
+        "l2e-5x5": {
+          "when": "L'L2E si usa alla fine dell'accoppiamento degli spigoli su un 5x5, quando gli ultimi due gruppi di spigoli non si possono accoppiare con le solite mosse di slice. Questi algoritmi accoppiano i pezzi rimanenti così il cubo è pronto per la fase 3x3.",
+          "learn": "Prima assicurati di accoppiare in modo efficiente i primi otto spigoli. Poi impara a riconoscere la posizione dei pezzi rimanenti negli ultimi due spigoli e allenati sull'algoritmo di ogni caso. Se l'ultimo spigolo risulta girato, usa l'algoritmo di parità del 5x5."
+        },
+        "l4e": {
+          "when": "L4E è un metodo molto diffuso per il Pyraminx. Dopo aver risolto le punte e un blocco di tre centri e due spigoli, un algoritmo risolve gli ultimi quattro spigoli. Il blocco richiede poche mosse, quindi il metodo è veloce ed efficiente.",
+          "learn": "Inizia risolvendo il primo blocco in modo intuitivo. Poi impara gli algoritmi L4E, partendo dai casi più comuni come Sune, Antisune e i casi a barre. Pianificare il blocco durante l'ispezione rende fluida tutta la risoluzione."
+        },
+        "sq1-cs": {
+          "when": "La forma a cubo è il primo passaggio di ogni risoluzione del Square-1. Lo scramble cambia la forma degli strati, e questi algoritmi riportano il puzzle alla forma a cubo, dove possono iniziare i passaggi di orientamento e permutazione.",
+          "learn": "I principianti arrivano alla forma a cubo con pochi passaggi intuitivi, passando sempre per le stesse forme intermedie. I cubisti più veloci imparano soluzioni dirette da ogni forma, raggruppate per numero di slice. Inizia dalle forme che vedi più spesso e concentrati sul contare bene gli slice."
+        },
+        "sq1-co": {
+          "when": "Il CO si usa quando il Square-1 è tornato alla forma a cubo. Questi algoritmi orientano gli angoli in modo che ognuno mostri il colore superiore o inferiore sullo strato giusto, senza rompere la forma a cubo.",
+          "learn": "Con pochi casi, il CO si impara in fretta. Riconosci quanti angoli di ogni colore ci sono su ogni strato e applica l'algoritmo corrispondente. Allenare lo slice aiuta, perché ogni algoritmo si basa su slice puliti."
+        },
+        "sq1-eo": {
+          "when": "L'EO viene dopo l'orientamento degli angoli sul Square-1. Questi algoritmi spostano gli spigoli in modo che ogni strato contenga gli spigoli del suo colore, preparando il puzzle per i passaggi di permutazione.",
+          "learn": "Conta gli spigoli che si trovano sullo strato sbagliato e scegli il caso corrispondente. È comune imparare CO ed EO insieme, perché entrambi i passaggi usano mosse simili e algoritmi brevi."
+        },
+        "sq1-cp": {
+          "when": "Il CP si usa quando tutti i pezzi del Square-1 sono orientati. Questi algoritmi portano gli angoli nelle posizioni corrette su entrambi gli strati, e restano da permutare solo gli spigoli.",
+          "learn": "Riconosci se ogni strato ha uno scambio di angoli adiacente, diagonale o nessuno. Impara gli algoritmi delle combinazioni che vedi più spesso e fai attenzione all'allineamento prima di ogni slice, così l'algoritmo funziona sempre."
+        },
+        "sq1-ep": {
+          "when": "L'EP è l'ultimo passaggio normale del Square-1. Con gli angoli già permutati, questi algoritmi portano gli spigoli nelle posizioni corrette e risolvono il puzzle, a meno che non compaia un caso di parità.",
+          "learn": "Dopo la forma a cubo, l'EP è il passaggio del Square-1 con più casi, quindi imparalo gradualmente, iniziando dai casi in cui va sistemato un solo strato. Riconosci gli spigoli di ogni strato separatamente e cerca schemi che conosci già dal 3x3."
+        },
+        "sq1-parity": {
+          "when": "La parità del Square-1 compare quando gli spigoli o gli angoli del puzzle non si possono risolvere con i normali algoritmi di permutazione. Capita in circa metà delle risoluzioni, quindi ogni cubista di Square-1 ha bisogno di un modo per correggerla.",
+          "learn": "Inizia imparando un algoritmo che corregga la parità in ogni caso, poi aggiungi gli algoritmi di parità specifici per le situazioni più comuni, così risolvi parità e permutazione insieme. Individuare la parità presto durante l'EP è ciò che fa risparmiare più tempo."
+        },
+        "megaminx-eo": {
+          "when": "L'EO è il primo passaggio dell'ultimo strato in quattro fasi sul Megaminx. Una volta risolti i primi strati, questi algoritmi girano gli spigoli dell'ultimo strato in modo che il colore superiore formi una stella sulla faccia superiore.",
+          "learn": "I casi sono pochi e funzionano come il passaggio di orientamento degli spigoli del 3x3. Imparali per primi e fai attenzione all'angolazione di ogni caso, perché il Megaminx ha cinque lati invece di quattro."
+        },
+        "megaminx-ep": {
+          "when": "L'EP è il secondo passaggio dell'ultimo strato in quattro fasi sul Megaminx. Con gli spigoli orientati, questi algoritmi li portano nelle posizioni corrette prima di occuparti degli angoli.",
+          "learn": "Riconosci quali spigoli sono già al loro posto e come ruotano gli altri, poi applica l'algoritmo corrispondente. Con pochi casi, l'EP si impara in fretta e si abbina bene all'EO."
+        },
+        "megaminx-co": {
+          "when": "Il CO è il terzo passaggio dell'ultimo strato in quattro fasi sul Megaminx. Dopo aver risolto gli spigoli, questi algoritmi ruotano gli angoli in modo che tutta la faccia superiore mostri il colore superiore.",
+          "learn": "Impara i casi a gruppi, in base a quanti angoli sono già orientati. Molti si basano su mosse simili al Sune, il che li rende più facili da ricordare ed eseguire."
+        },
+        "megaminx-cp": {
+          "when": "Il CP è l'ultimo passaggio dell'ultimo strato in quattro fasi sul Megaminx. Con tutto il resto risolto, questi algoritmi portano gli angoli nelle posizioni corrette e completano il puzzle.",
+          "learn": "Riconosci come ruotano gli angoli confrontando i loro colori laterali con i centri. Inizia dai casi che spostano solo tre angoli, poi aggiungi gli altri."
+        }
       }
     },
     "TrainerPage": {

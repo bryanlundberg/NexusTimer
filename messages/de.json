@@ -1005,16 +1005,16 @@
       },
       "descriptions": {
         "pbl": "Algorithmen zum gleichzeitigen Vertauschen der oberen und unteren Ebene (2x2).",
-        "ocll": "COLL (Orient Corners of the Last Layer) - Ecken der letzten Ebene orientieren.",
-        "cll": "CLL löst die letzte Ebene beim 2x2 in einem Schritt nach der ersten Ebene.",
+        "ocll": "OCLL (Orientierung der Ecken der letzten Ebene) orientiert die vier Ecken der letzten Ebene eines 2x2, sodass die obere Seite einfarbig wird. Es gibt sieben Fälle: Sune, Antisune, H, Pi, U, T und L.",
+        "cll": "CLL (Ecken der letzten Ebene) löst die gesamte letzte Ebene eines 2x2 mit einem einzigen Algorithmus, sobald die erste Ebene vollständig gelöst ist, und orientiert und permutiert die Ecken dabei gleichzeitig.",
         "eg-1": "EG-1 löst die letzte Ebene (2x2) bei einem benachbarten Tausch unten.",
         "eg-2": "EG-2 löst die letzte Ebene (2x2) bei einem diagonalen Tausch unten.",
-        "f2l": "Die F2L-Algorithmen (First Two Layers) zum Lösen des Rubik's Cube mit der CFOP-Methode. Diese Algorithmen lösen die ersten beiden Schichten, indem Eck- und Kantensteine gleichzeitig gepaart werden, sobald das Kreuz fertig ist.",
+        "f2l": "F2L-Algorithmen (erste zwei Ebenen) zum Lösen des Zauberwürfels mit der CFOP-Methode. Sobald das Kreuz fertig ist, wird jede Ecke mit ihrer passenden Kante zu einem Paar verbunden und in ihren Slot eingesetzt, sodass die ersten zwei Ebenen Paar für Paar gelöst werden.",
         "advanced-f2l": "Advanced-F2L-Algorithmen für die schwierigeren Eck-Kanten-Paar-Fälle der CFOP-Methode: Teile, die im letzten Slot gefangen sind, Teile in der falschen Schicht oder beide Teile gleichzeitig gefangen. Sie gehen über das intuitive F2L hinaus und decken die Fälle ab, die meist die meisten Züge kosten.",
         "oll": "OLL (Orientation of Last Layer) - Orientierung der letzten Ebene (CFOP).",
         "pll": "PLL (Permutation of Last Layer) - Permutation der letzten Ebene (CFOP).",
         "coll": "COLL orientiert und vertauscht die Ecken, wenn die Kanten bereits orientiert sind.",
-        "ble": "Brooks' Last Edge (BLE) löst die letzte Kante effizient.",
+        "ble": "BLE (Brooks' Last Edge) setzt die letzte F2L-Kante ein und orientiert dabei die Ecken der letzten Ebene. Es wird verwendet, wenn die Ecke des letzten Slots bereits gelöst ist und die Kanten der letzten Ebene orientiert sind, sodass nur noch PLL übrig bleibt.",
         "vls": "VLS löst den letzten Slot und OLL gleichzeitig.",
         "cls": "CLS löst die letzte Ecke und OLL gleichzeitig.",
         "wv": "Winter Variation (WV) orientiert die Ecken beim Einsetzen des letzten Paares.",
@@ -1029,7 +1029,7 @@
         "parity-5x5": "Spezielle Parity-Fälle beim 5x5.",
         "l2c-5x5": "L2C (Last Two Centers) sind Algorithmen, die beim 5x5 während der Reduktion die letzten beiden Zentren lösen, ohne die bereits gebauten Zentren zu zerstören.",
         "l2e-5x5": "L2E (Last Two Edges) sind Algorithmen, die beim 5x5 während der Reduktion die letzten beiden Kantenpaare lösen, wenn sie sich nicht mehr mit einfachen Slice-Zügen verbinden lassen.",
-        "l4e": "Letzte 4 Kanten beim Pyraminx.",
+        "l4e": "L4E (Last 4 Edges, die letzten vier Kanten) ist eine Methode für den Pyraminx. Nachdem die Spitzen, drei Zentren und zwei Kanten gelöst sind, lösen diese Algorithmen die letzten vier Kanten in einem Schritt und beenden das Puzzle.",
         "sq1-cs": "CS (Cube Shape) - Diese Algorithmen bringen einen verdrehten Square-1 zurück in die Würfelform, den ersten Schritt beim Lösen des Puzzles. Die Fälle sind danach gruppiert, wie viele Slices die Lösung benötigt.",
         "sq1-co": "CO (Corner Orientation) - Sobald der Square-1 wieder Würfelform hat, orientieren diese Algorithmen alle Ecken, sodass oben und unten die richtigen Farben zeigen, ohne die Würfelform zu zerstören.",
         "sq1-eo": "EO (Edge Orientation) - Diese Algorithmen drehen die Kanten des Square-1 in die richtige Orientierung, sobald die Ecken orientiert sind.",
@@ -1041,6 +1041,164 @@
         "megaminx-ep": "EP (Edge Permutation) - Diese Algorithmen bringen die bereits orientierten Kanten der letzten Schicht des Megaminx an ihre richtige Position.",
         "megaminx-co": "CO (Corner Orientation) - Sobald die Kanten gelöst sind, drehen diese Algorithmen die Ecken der letzten Schicht des Megaminx so, dass die obere Farbe nach oben zeigt.",
         "megaminx-cp": "CP (Corner Permutation) - Diese Algorithmen bringen die Ecken der letzten Schicht des Megaminx an ihre richtige Position und lösen damit das Puzzle."
+      },
+      "guide": {
+        "heading": "Über {title}",
+        "what": "Was ist {title}?",
+        "when": "Wann verwendet man {title}?",
+        "count": "Wie viele {title}-Algorithmen gibt es?",
+        "count-answer": "Nexus Timer bietet {count, plural, one {# {title}-Algorithmus} other {# {title}-Algorithmen}} für den {puzzle}, jeweils mit einer interaktiven 3D-Vorschau, damit du siehst, wie der Fall gelöst wird.",
+        "learn": "Wie lernt man {title}?"
+      },
+      "guides": {
+        "pbl": {
+          "when": "PBL ist der letzte Schritt der Ortega-Methode für den 2x2. Nachdem du eine Seite gelöst und die gegenüberliegende Ebene orientiert hast, stimmen die Farben oben und unten, aber die Teile können noch vertauscht sein. Ein PBL-Algorithmus permutiert dann beide Ebenen gleichzeitig und beendet den Würfel.",
+          "learn": "Beginne mit den Fällen auf nur einer Ebene: dem benachbarten Tausch, der mit einer J-Perm oder T-Perm gelöst wird, und dem diagonalen Tausch, der mit einer Y-Perm gelöst wird. Füge dann die Fälle hinzu, in denen beide Ebenen korrigiert werden müssen. Achte auf Headlights auf jeder Ebene, um benachbarte und diagonale Vertauschungen zu unterscheiden, bevor du losdrehst."
+        },
+        "ocll": {
+          "when": "OCLL ist der zweite Schritt der Ortega-Methode und der meisten Anfängermethoden für den 2x2. Du verwendest es, sobald die erste Seite gelöst ist, um die obere Seite einfarbig zu machen, bevor du die Ecken mit PBL oder einem Permutationsalgorithmus permutierst.",
+          "learn": "Lerne zuerst Sune und Antisune, denn die anderen fünf Fälle lassen sich durch Wiederholen dieser beiden lösen. Ersetze diese Wiederholungen danach durch den eigenen Algorithmus für jeden Fall. Mit nur sieben Fällen ist OCLL das am leichtesten vollständig zu lernende Set und ein guter Schritt vor CLL."
+        },
+        "cll": {
+          "when": "CLL wird in der CLL-Methode für den 2x2 verwendet: Du baust eine vollständige erste Ebene und beendest den Würfel mit einem einzigen Algorithmus. Es ersetzt die getrennten Schritte Orientierung und Permutation durch einen, deshalb ist es die übliche Wahl für fortgeschrittene Cuber und die Grundlage für EG-1 und EG-2.",
+          "learn": "Lerne CLL Orientierungsgruppe für Orientierungsgruppe: Sune, Antisune, Pi, U, T und L haben je sechs Fälle, H hat vier. Erkenne zuerst die Orientierung und lies dann die seitlichen Sticker auf Headlights oder gegenüberliegende Farben. OCLL zu kennen hilft, weil viele Fälle dieselben Züge teilen."
+        },
+        "eg-1": {
+          "when": "EG-1 wird in der EG-Methode verwendet, wenn die erste Seite des 2x2 gebaut ist, ihre Teile aber benachbart vertauscht sind. Statt zuerst die untere Ebene zu korrigieren, löst ein Algorithmus die letzte Ebene und den unteren Tausch gleichzeitig und spart so einen ganzen Schritt. Der benachbarte Tausch ist der häufigste Fall der unteren Ebene.",
+          "learn": "Lerne EG-1 nach CLL, denn es nutzt dieselben Orientierungsgruppen und dieselbe Erkennung. Du fügst deinem Wissen nur den benachbarten Tausch unten hinzu. Viele Cuber lernen eine Gruppe nach der anderen und üben, während der Inspektion zu prüfen, ob die untere Ebene gelöst, benachbart oder diagonal vertauscht ist."
+        },
+        "eg-2": {
+          "when": "EG-2 deckt die EG-Fälle ab, in denen die erste Seite gebaut ist, ihre Teile aber diagonal vertauscht sind. Zusammen mit CLL und EG-1 kannst du jeden 2x2 mit fertiger erster Seite mit einem letzten Algorithmus beenden, egal wie die untere Ebene permutiert ist.",
+          "learn": "Ein diagonaler Tausch unten kommt genauso oft vor wie eine gelöste untere Ebene und seltener als ein benachbarter Tausch, deshalb lernen viele Cuber EG-2 zuletzt. Die Erkennung funktioniert wie bei CLL und EG-1, konzentriere dich also darauf, jeden Algorithmus auswendig zu lernen und ihn nach der Inspektion schnell zu starten."
+        },
+        "f2l": {
+          "when": "F2L ist der zweite und längste Schritt von CFOP. Nach dem Kreuz löst du vier Paare aus Ecke und Kante, eines pro Slot, bis die ersten zwei Ebenen fertig sind. Es macht meist mehr als die Hälfte eines Solves aus, daher ist ein effizientes F2L für die meisten Cuber die größte Verbesserung.",
+          "learn": "Die meisten Cuber lernen F2L zuerst intuitiv und verstehen, wie man eine Ecke mit ihrer Kante verbindet und beide einsetzt, ohne das Kreuz zu zerstören. Nutze diese Algorithmen als Referenz für Fälle, die du ineffizient löst, übe langsam und suche dabei schon das nächste Paar, und lerne, Paare aus verschiedenen Winkeln zu lösen, damit du weniger rotierst."
+        },
+        "advanced-f2l": {
+          "when": "Fortgeschrittene F2L-Fälle treten auf, wenn ein Paar in einer ungünstigen Lage ist: Teile stecken in einem anderen Slot, in der falschen Ebene oder sind falsch ausgerichtet. Eine effiziente Lösung zu kennen erspart das Herausholen von Teilen mit zusätzlichen Zügen und hält dein F2L flüssig.",
+          "learn": "Lerne fortgeschrittenes F2L, sobald dir die Grundfälle leichtfallen. Beginne mit den Fällen, die in deinen eigenen Solves am häufigsten vorkommen, etwa eine Ecke oder Kante, die in einem Slot feststeckt, und lerne jeweils die effiziente Lösung. Setze sie dann in echten Solves ein, bis das Erkennen des Falls automatisch geht."
+        },
+        "oll": {
+          "when": "OLL ist der dritte Schritt von CFOP. Sobald die ersten zwei Ebenen gelöst sind, orientiert ein OLL-Algorithmus alle Teile der letzten Ebene, sodass die obere Seite einfarbig wird. Danach bleibt nur noch PLL, um den Würfel zu beenden.",
+          "learn": "Beginne mit 2-Look-OLL: drei Algorithmen, um die Kanten zu einem Kreuz zu orientieren, dann die sieben Eckfälle. Lerne danach alle 57 Fälle, eine Formgruppe nach der anderen. Die Erkennung basiert auf dem Muster der oberen Seite und den seitlichen Stickern."
+        },
+        "pll": {
+          "when": "PLL ist der letzte Schritt von CFOP. Wenn die obere Seite bereits einfarbig ist, bringt ein PLL-Algorithmus die Teile der letzten Ebene an ihre richtige Position und löst den Würfel. Es gibt 21 Fälle, die mit Buchstaben wie T, J, U und Y benannt sind.",
+          "learn": "Beginne mit 2-Look-PLL: Permutiere die Ecken mit einer T-Perm oder Y-Perm und dann die Kanten mit den U-, H- und Z-Perms. Lerne danach die übrigen Fälle einzeln. Die Erkennung nutzt Headlights und Blöcke auf zwei Seiten, übe also, jeden Fall zu erkennen, ohne den Würfel zu drehen."
+        },
+        "coll": {
+          "when": "COLL wird nach dem F2L verwendet, wenn alle Kanten der letzten Ebene bereits orientiert sind, was du an einem Kreuz oben erkennst. Statt die Ecken nur zu orientieren, orientiert und permutiert ein Algorithmus sie zugleich. Übrig bleibt eine Kantenpermutation (U-, H- oder Z-Perm), die schnell und leicht zu erkennen ist.",
+          "learn": "COLL ist nach denselben Eckformen wie OCLL geordnet, lerne also eine Form nach der anderen, beginnend mit Sune und Antisune. Erkenne zuerst die Form und dann die seitlichen Sticker der Ecken. Es ist ein üblicher Schritt hin zum vollständigen ZBLL und passt gut zu Methoden, die Kanten früh orientieren, wie ZZ."
+        },
+        "ble": {
+          "when": "BLE ist eine Last-Slot-Technik. Verwende sie, wenn die Ecke deines letzten F2L-Slots bereits gelöst ist, ihre Kante in der oberen Ebene liegt und die Kanten der letzten Ebene orientiert sind. Ein Algorithmus setzt die Kante ein und orientiert die Ecken der letzten Ebene, sodass du direkt zu PLL übergehst.",
+          "learn": "Die Fälle sind wie bei OCLL nach der Form der Ecken der letzten Ebene gruppiert. Lerne BLE, wenn du OLL und PLL sicher beherrschst, und beginne mit den Gruppen, die dir am häufigsten begegnen. Viele Algorithmen sind kurze Kombinationen aus R- und U-Zügen, achte also auf eine flüssige Ausführung mit der rechten Hand."
+        },
+        "vls": {
+          "when": "VLS ist ein Last-Slot-Set für den Fall, dass das letzte F2L-Paar bereits in der oberen Ebene verbunden ist und die Kanten der letzten Ebene orientiert sind. Ein Algorithmus setzt das Paar ein und orientiert die gesamte letzte Ebene, sodass du OLL überspringst und mit PLL abschließt.",
+          "learn": "Das vollständige VLS-Set umfasst Hunderte Algorithmen, diese Auswahl konzentriert sich daher auf die nützlichsten Fälle. Lerne es nach COLL oder der Winter Variation und prüfe zuerst in deinen Solves, wie oft du das F2L mit einem verbundenen Paar und orientierten Kanten beendest. Gruppiere die Fälle nach der Orientierung der oberen Ecken."
+        },
+        "cls": {
+          "when": "CLS ist ein Last-Slot-Set für den Fall, dass die Kante deines letzten F2L-Paares bereits gelöst ist, die Ecke aber noch nicht an ihrem Platz ist und die Kanten der letzten Ebene orientiert sind. Ein Algorithmus setzt die Ecke ein und orientiert die letzte Ebene, sodass nur noch PLL übrig bleibt.",
+          "learn": "Lerne CLS, wenn du oft mit bereits gelöster Kante am letzten Slot ankommst. Das passiert von selbst, wenn du zuerst Kanten löst oder Techniken wie Keyhole nutzt. Beginne mit den Fällen, in denen die Ecke in der oberen Ebene liegt, und füge dann jene hinzu, in denen sie in ihrem Slot verdreht ist."
+        },
+        "sv": {
+          "when": "Die Summer Variation wird verwendet, wenn das letzte F2L-Paar mit R U' R' eingesetzt werden kann und die Kanten der letzten Ebene orientiert sind. Statt das Paar normal einzusetzen, setzt ein Algorithmus es ein und orientiert die Ecken der letzten Ebene, sodass du OLL überspringst und direkt zu PLL gehst.",
+          "learn": "Lerne SV nach der Winter Variation, denn sie folgt derselben Idee mit einem anderen Einsetzen. Gruppiere die Fälle danach, wie die oberen Ecken vor dem Einsetzen aussehen, und übe, sie schon beim Vorbereiten des letzten Paares zu erkennen, damit vor dem Algorithmus keine Pause entsteht."
+        },
+        "wv": {
+          "when": "Die Winter Variation wird verwendet, wenn das letzte F2L-Paar verbunden ist und mit R U R' eingesetzt werden kann und die Kanten der letzten Ebene bereits orientiert sind. Ein Algorithmus setzt das Paar ein und orientiert gleichzeitig die Ecken der letzten Ebene, sodass du OLL überspringst und direkt zu PLL gehst.",
+          "learn": "WV hat 27 Fälle, und viele davon sind kurze R- und U-Algorithmen. Das macht es zu einem der zugänglichsten Last-Slot-Sets. Lerne, die Orientierung der oberen Ecken zu erkennen, während das Paar auf das Einsetzen wartet, und gruppiere die Fälle nach der Anzahl orientierter Ecken."
+        },
+        "zbll-s": {
+          "when": "ZBLL-S umfasst die ZBLL-Fälle, in denen die Ecken der letzten Ebene eine Sune-Form bilden, mit einer orientierten Ecke. Wenn die Kanten nach dem F2L orientiert sind, löst einer dieser Algorithmen die gesamte letzte Ebene auf einmal und überspringt OCLL und PLL.",
+          "learn": "ZBLL-S ist oft das erste Subset, das man lernt, weil Sune eine vertraute Form ist und viele Algorithmen kurz sind. Teile die Fälle nach Eckenpermutation ein, achte auf Headlights und Blöcke an den Seiten und lies dann die Kanten, um den genauen Fall zu bestimmen."
+        },
+        "zbll-as": {
+          "when": "ZBLL-AS umfasst die ZBLL-Fälle, in denen die Ecken der letzten Ebene eine Antisune-Form bilden, das Spiegelbild von Sune, mit einer orientierten Ecke. Mit bereits orientierten Kanten löst ein Algorithmus die gesamte letzte Ebene.",
+          "learn": "Viele Cuber lernen ZBLL-AS direkt nach ZBLL-S, weil beide Spiegelbilder voneinander sind. Dadurch wirken die Erkennung und viele Algorithmen vertraut. Ordne die Fälle zuerst nach Eckenpermutation und dann nach der Lage der Kanten."
+        },
+        "zbll-u": {
+          "when": "ZBLL-U umfasst die ZBLL-Fälle, in denen zwei benachbarte Ecken der letzten Ebene orientiert sind und die anderen beiden zur selben Seite zeigen und so ein U bilden. Mit bereits orientierten Kanten löst ein Algorithmus die gesamte letzte Ebene.",
+          "learn": "Beginne die Erkennung auf der Seite mit den zwei verdrehten Ecken, prüfe dann die Eckenpermutation und zuletzt die Kanten. Es hilft, zuerst die passenden COLL-Fälle zu lernen, denn jeder COLL-Fall hat eine Familie von ZBLL-Fällen um sich herum."
+        },
+        "zbll-t": {
+          "when": "ZBLL-T umfasst die ZBLL-Fälle, in denen zwei benachbarte Ecken der letzten Ebene orientiert sind und die anderen beiden zu gegenüberliegenden Seiten zeigen und so ein T bilden. Mit bereits orientierten Kanten löst ein Algorithmus die gesamte letzte Ebene.",
+          "learn": "Erkenne die T-Form an den zwei Stickern der oberen Farbe auf gegenüberliegenden Seiten und lies dann die Eckenpermutation und die Kanten. Wenn du die Fälle nach ihrem COLL-Fall gruppierst, lassen sich die 72 Algorithmen viel leichter ordnen und wiederholen."
+        },
+        "zbll-pi": {
+          "when": "ZBLL-Pi umfasst die ZBLL-Fälle, in denen keine Ecke der letzten Ebene orientiert ist: Eine Seite zeigt zwei Sticker der oberen Farbe und die angrenzenden Seiten je einen, wodurch ein Pi-Muster entsteht. Mit bereits orientierten Kanten löst ein Algorithmus die gesamte letzte Ebene.",
+          "learn": "Pi-Fälle brauchen mehr Übung beim Erkennen, deshalb lernen viele Cuber sie nach Sune, Antisune, U und T. Halte das Stickerpaar der oberen Farbe links, prüfe die Eckenpermutation und lies dann die Kanten."
+        },
+        "zbll-l": {
+          "when": "ZBLL-L umfasst die ZBLL-Fälle, in denen zwei diagonal gegenüberliegende Ecken der letzten Ebene orientiert sind und so ein L bilden. Mit bereits orientierten Kanten löst ein Algorithmus die gesamte letzte Ebene.",
+          "learn": "Erkenne die L-Form an den zwei diagonal orientierten Ecken, schau dann auf die seitlichen Sticker, um die Eckenpermutation zu bestimmen, und lies die Kanten. Wenn du zuerst die L-Fälle von COLL lernst, hast du für jede Gruppe einen soliden Anker."
+        },
+        "zbll-h": {
+          "when": "ZBLL-H umfasst die ZBLL-Fälle, in denen keine Ecke der letzten Ebene orientiert ist und die Sticker der oberen Farbe paarweise zu zwei gegenüberliegenden Seiten zeigen und so ein H bilden. Mit bereits orientierten Kanten löst ein Algorithmus die gesamte letzte Ebene.",
+          "learn": "Die H-Form ist symmetrisch, daher hat dieses Subset weniger Fälle als die anderen, 40 statt 72. Das macht es zu einem guten Subset, das man früh abschließen kann. Erkenne es an den Stickerpaaren der oberen Farbe auf gegenüberliegenden Seiten und lies dann die Eckenpermutation und die Kanten."
+        },
+        "parity-4x4": {
+          "when": "Die 4x4-Parität tritt in der 3x3-Phase eines Reduktions-Solves auf, weil der 4x4 keine festen Zentren hat und Zustände erreichen kann, die auf einem 3x3 unmöglich sind. Die OLL-Parität zeigt eine einzelne gekippte Kante, die PLL-Parität zwei vertauschte Kanten oder andere Zustände, die kein 3x3-Algorithmus lösen kann.",
+          "learn": "Lerne zuerst die Standardalgorithmen für OLL- und PLL-Parität, denn sie decken jeden Fall ab. Sobald sie flüssig laufen, füge die kombinierten Fälle hinzu, um Parität und letzte Ebene mit weniger Zügen zu lösen. Übe die Wide-Moves, bis sie ohne Umgreifen fließen."
+        },
+        "parity-5x5": {
+          "when": "Anders als der 4x4 hat der 5x5 feste Zentren und daher keine PLL-Parität. Die Parität tritt am Ende des Kantenpaarens auf, wenn bei der letzten Kante die beiden äußeren Teile gekippt sind und ein spezieller Algorithmus nötig ist, um sie zu paaren.",
+          "learn": "Es gibt nur einen Fall zu lernen, also präge ihn dir ein und übe, bis du ihn ohne Hinsehen ausführen kannst. Lerne, ihn schon beim Paaren der letzten zwei Kanten zu erkennen, damit du den Algorithmus sofort anwenden und zur 3x3-Phase übergehen kannst."
+        },
+        "l2c-5x5": {
+          "when": "L2C wird bei der Reduktion eines 5x5 verwendet, wenn vier Zentren gelöst sind. Die letzten zwei Zentren müssen gebaut werden, ohne die anderen zu zerstören, und genau dabei helfen diese Algorithmen und Kommutatoren.",
+          "learn": "Wenn du verstehst, wie ein Kommutator Zentrumsteile zwischen zwei Seiten bewegt, ohne den Rest zu verändern, kannst du die meisten Fälle intuitiv lösen. Nutze diese Algorithmen für die Fälle, die dich zu viele Züge kosten, und übe sie, bis deine letzten zwei Zentren konstant gelingen."
+        },
+        "l2e-5x5": {
+          "when": "L2E wird am Ende des Kantenpaarens auf einem 5x5 verwendet, wenn sich die letzten zwei Kantengruppen nicht mit den üblichen Slice-Zügen paaren lassen. Diese Algorithmen paaren die verbleibenden Kantenteile, damit der Würfel bereit für die 3x3-Phase ist.",
+          "learn": "Stelle zuerst sicher, dass du die ersten acht Kanten effizient paaren kannst. Lerne dann, die Lage der restlichen Teile in den letzten zwei Kanten zu erkennen, und übe den passenden Algorithmus für jeden Fall. Wenn die letzte Kante gekippt ist, verwende den 5x5-Paritätsalgorithmus."
+        },
+        "l4e": {
+          "when": "L4E ist eine beliebte Methode für den Pyraminx. Nachdem die Spitzen und ein Block aus drei Zentren und zwei Kanten gelöst sind, löst ein Algorithmus die letzten vier Kanten. Der Block braucht nur wenige Züge, daher ist die Methode schnell und effizient.",
+          "learn": "Beginne damit, den ersten Block intuitiv zu lösen. Lerne dann die L4E-Algorithmen und fang mit den häufigsten Fällen wie Sune, Antisune und den Bars-Fällen an. Den Block schon in der Inspektion zu planen, lässt den ganzen Solve flüssiger laufen."
+        },
+        "sq1-cs": {
+          "when": "Die Würfelform ist der erste Schritt jedes Square-1-Solves. Das Verdrehen verändert die Form der Ebenen, und diese Algorithmen bringen das Puzzle zurück in die Würfelform, in der die Schritte für Orientierung und Permutation beginnen können.",
+          "learn": "Anfänger erreichen die Würfelform in wenigen intuitiven Schritten und durchlaufen dabei immer dieselben Zwischenformen. Schnellere Cuber lernen direkte Lösungen von jeder Form aus, gruppiert nach der Anzahl der Slices. Beginne mit den Formen, die du am häufigsten siehst, und achte darauf, die Slices richtig zu zählen."
+        },
+        "sq1-co": {
+          "when": "CO wird verwendet, sobald der Square-1 wieder in Würfelform ist. Diese Algorithmen orientieren die Ecken so, dass jede die obere oder untere Farbe auf der richtigen Ebene zeigt, ohne die Würfelform zu zerstören.",
+          "learn": "Mit nur wenigen Fällen ist CO schnell gelernt. Erkenne, wie viele Ecken jeder Farbe auf jeder Ebene liegen, und wende den passenden Algorithmus an. Den Slice zu üben hilft, weil jeder Algorithmus auf sauberen Slices beruht."
+        },
+        "sq1-eo": {
+          "when": "EO folgt auf die Orientierung der Ecken am Square-1. Diese Algorithmen bewegen die Kanten so, dass jede Ebene die Kanten ihrer Farbe enthält, und bereiten das Puzzle auf die Permutationsschritte vor.",
+          "learn": "Zähle die Kanten, die auf der falschen Ebene liegen, und wähle dann den passenden Fall. Es ist üblich, CO und EO zusammen zu lernen, weil beide Schritte ähnliche Züge und kurze Algorithmen verwenden."
+        },
+        "sq1-cp": {
+          "when": "CP wird verwendet, sobald alle Teile des Square-1 orientiert sind. Diese Algorithmen bringen die Ecken auf beiden Ebenen an ihre richtige Position, sodass nur noch die Kanten permutiert werden müssen.",
+          "learn": "Erkenne, ob jede Ebene einen benachbarten, einen diagonalen oder gar keinen Eckentausch hat. Lerne die Algorithmen für die Kombinationen, die du am häufigsten siehst, und achte vor jedem Slice auf die Ausrichtung, damit der Algorithmus jedes Mal funktioniert."
+        },
+        "sq1-ep": {
+          "when": "EP ist der letzte reguläre Schritt am Square-1. Mit bereits permutierten Ecken bringen diese Algorithmen die Kanten an ihre richtige Position und lösen das Puzzle, sofern kein Paritätsfall auftritt.",
+          "learn": "Nach der Würfelform hat EP die meisten Fälle aller Square-1-Schritte, lerne es also schrittweise und beginne mit den Fällen, in denen nur eine Ebene bearbeitet werden muss. Erkenne die Kanten jeder Ebene getrennt und suche nach Mustern, die du schon vom 3x3 kennst."
+        },
+        "sq1-parity": {
+          "when": "Die Square-1-Parität tritt auf, wenn sich die Kanten oder Ecken des Puzzles nicht mit den normalen Permutationsalgorithmen lösen lassen. Sie kommt in etwa der Hälfte der Solves vor, daher braucht jeder Square-1-Cuber eine Möglichkeit, sie zu beheben.",
+          "learn": "Lerne zuerst einen Algorithmus, der die Parität in jedem Fall behebt, und füge dann die speziellen Paritätsalgorithmen für häufige Situationen hinzu, um Parität und Permutation gemeinsam zu lösen. Die Parität früh während des EP zu erkennen, spart am meisten Zeit."
+        },
+        "megaminx-eo": {
+          "when": "EO ist der erste Schritt der vierstufigen letzten Ebene am Megaminx. Sobald die ersten Ebenen gelöst sind, kippen diese Algorithmen die Kanten der letzten Ebene, sodass die obere Farbe einen Stern auf der oberen Seite bildet.",
+          "learn": "Es gibt nur wenige Fälle, und sie funktionieren wie der Schritt der Kantenorientierung am 3x3. Lerne sie zuerst und achte auf den Winkel jedes Falls, denn der Megaminx hat fünf Seiten statt vier."
+        },
+        "megaminx-ep": {
+          "when": "EP ist der zweite Schritt der vierstufigen letzten Ebene am Megaminx. Mit orientierten Kanten bringen diese Algorithmen sie an ihre richtige Position, bevor du dich um die Ecken kümmerst.",
+          "learn": "Erkenne, welche Kanten schon richtig sitzen und wie die anderen zyklisch vertauscht sind, und wende dann den passenden Algorithmus an. Mit nur wenigen Fällen ist EP schnell gelernt und passt gut zu EO."
+        },
+        "megaminx-co": {
+          "when": "CO ist der dritte Schritt der vierstufigen letzten Ebene am Megaminx. Nachdem die Kanten gelöst sind, drehen diese Algorithmen die Ecken, sodass die gesamte obere Seite die obere Farbe zeigt.",
+          "learn": "Lerne die Fälle in Gruppen, je nachdem, wie viele Ecken bereits orientiert sind. Viele basieren auf Sune-ähnlichen Zügen, was sie leichter zu merken und auszuführen macht."
+        },
+        "megaminx-cp": {
+          "when": "CP ist der letzte Schritt der vierstufigen letzten Ebene am Megaminx. Wenn alles andere gelöst ist, bringen diese Algorithmen die Ecken an ihre richtige Position und beenden das Puzzle.",
+          "learn": "Erkenne, wie die Ecken zyklisch vertauscht sind, indem du ihre Seitenfarben mit den Zentren vergleichst. Beginne mit den Fällen, die nur drei Ecken bewegen, und füge dann die übrigen hinzu."
+        }
       }
     },
     "Metadata": {

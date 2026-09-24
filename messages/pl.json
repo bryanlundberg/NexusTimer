@@ -1008,16 +1008,16 @@
       },
       "descriptions": {
         "pbl": "Te algorytmy służą do jednoczesnej permutacji górnej i dolnej warstwy kostki 2x2, co pozwala na efektywne ułożenie układanki.",
-        "ocll": "COLL (Orientacja narożników ostatniej warstwy) - Ten krok skupia się na zorientowaniu wszystkich narożników ostatniej warstwy, aby przygotować się do końcowych kroków układania.",
-        "cll": "CLL to podzbiór OLL dla kostek 2x2x2, który układa ostatnią warstwę jednym algorytmem po zorientowaniu pierwszej warstwy.",
+        "ocll": "OCLL (orientacja rogów ostatniej warstwy) orientuje cztery rogi ostatniej warstwy kostki 2x2 tak, aby górna ściana była w jednym kolorze. Jest siedem przypadków: Sune, Antisune, H, Pi, U, T i L.",
+        "cll": "CLL (rogi ostatniej warstwy) układa całą ostatnią warstwę kostki 2x2 jednym algorytmem, gdy pierwsza warstwa jest w pełni ułożona, jednocześnie orientując i permutując rogi.",
         "eg-1": "EG-1 to zestaw algorytmów służących do ułożenia ostatniej warstwy kostki 2x2 po ukończeniu pierwszej warstwy, w szczególności gdy na dolnej warstwie występuje zamiana sąsiednia.",
         "eg-2": "EG-2 to zestaw algorytmów służących do ułożenia ostatniej warstwy kostki 2x2 po ukończeniu pierwszej warstwy, w szczególności gdy na dolnej warstwie występuje zamiana po przekątnej.",
-        "f2l": "Algorytmy F2L (First Two Layers) do układania kostki Rubika metodą CFOP. Te algorytmy rozwiązują pierwsze dwie warstwy, łącząc jednocześnie elementy narożne i krawędziowe, po ułożeniu krzyża.",
+        "f2l": "Algorytmy F2L (pierwsze dwie warstwy) do układania kostki Rubika metodą CFOP. Po ułożeniu krzyża każdy róg łączy się w parę z jego krawędzią i wkłada do jego slotu, dzięki czemu pierwsze dwie warstwy układa się para po parze.",
         "advanced-f2l": "Zaawansowane algorytmy F2L dla trudniejszych przypadków parowania narożnik-krawędź w metodzie CFOP: elementy uwięzione w ostatnim slocie, elementy uwięzione w niewłaściwej warstwie lub obie części uwięzione jednocześnie. Wykraczają poza intuicyjne F2L, obejmując przypadki, które zwykle kosztują najwięcej ruchów.",
         "oll": "Algorytmy OLL (Orientacja ostatniej warstwy) do układania kostki Rubika metodą CFOP. Służą do zorientowania wszystkich elementów ostatniej warstwy po ukończeniu F2L.",
         "pll": "Algorytmy PLL (Permutacja ostatniej warstwy) do układania kostki Rubika metodą CFOP. Służą do ostatniego kroku metody CFOP, aby spermutować krawędzie i narożniki ostatniej warstwy po zorientowaniu wszystkich elementów.",
         "coll": "Algorytmy COLL (Narożniki i orientacja ostatniej warstwy) służą do jednoczesnego zorientowania i spermutowania narożników ostatniej warstwy, zakładając, że wszystkie krawędzie ostatniej warstwy są już zorientowane.",
-        "ble": "Brooks' Last Edge (BLE) to metoda służąca do efektywnego ułożenia ostatniej krawędzi kostki Rubika, często jako część zaawansowanych technik układania.",
+        "ble": "BLE (Brooks' Last Edge) wkłada ostatnią krawędź F2L i jednocześnie orientuje rogi ostatniej warstwy. Stosuje się go, gdy róg ostatniego slotu jest już ułożony, a krawędzie ostatniej warstwy są zorientowane, więc zostaje tylko PLL.",
         "vls": "Algorytmy VLS (Valk Last Slot) jednocześnie układają ostatni slot F2L i OLL w przypadkach, gdy masz połączoną parę F2L. Ten wybór algorytmów stanowi wprowadzenie do pełnego zestawu VLS i ma na celu wyróżnienie najbardziej przydatnych przypadków.",
         "cls": "Algorytmy CLS (Corner Last Slot) jednocześnie układają ostatni narożnik F2L i orientują ostatnią warstwę. Stosuje się je, gdy krawędź ostatniej pary F2L jest już ułożona, a krawędzie ostatniej warstwy są zorientowane. Ten wybór stanowi wprowadzenie do pełnego zestawu CLS i ma na celu wyróżnienie najbardziej przydatnych przypadków.",
         "wv": "Algorytmy WV (Winter Variation) służą do zorientowania narożników ostatniej warstwy podczas wkładania ostatniej pary F2L, w przypadku gdy para jest połączona, a wszystkie krawędzie ostatniej warstwy są już zorientowane.",
@@ -1032,7 +1032,7 @@
         "parity-5x5": "Te algorytmy rozwiązują unikalne błędy parzystości, które mogą wystąpić podczas układania kostki Rubika 5x5, a których nie ma na standardowej kostce 3x3. Są niezbędne do ukończenia układania po zredukowaniu 5x5 do stanu 3x3.",
         "l2c-5x5": "Algorytmy L2C (Last Two Centers) układają dwa ostatnie centra kostki 5x5 na etapie redukcji, bez psucia już ułożonych centrów.",
         "l2e-5x5": "Algorytmy L2E (Last Two Edges) układają dwie ostatnie grupy krawędzi kostki 5x5 na etapie redukcji, gdy nie da się ich już połączyć prostymi ruchami slice.",
-        "l4e": "Ostatnie 4 krawędzie (Pyraminx) - Te algorytmy służą do ułożenia ostatnich czterech elementów krawędziowych Pyraminxa. Celem jest prawidłowe rozmieszczenie i zorientowanie tych elementów, aby ukończyć układankę.",
+        "l4e": "L4E (Last 4 Edges, ostatnie cztery krawędzie) to metoda dla Pyraminxa. Po ułożeniu czubków, trzech środków i dwóch krawędzi te algorytmy układają ostatnie cztery krawędzie w jednym kroku i kończą łamigłówkę.",
         "sq1-cs": "CS (Cube Shape) - Te algorytmy przywracają pomieszaną kostkę Square-1 do kształtu sześcianu, co jest pierwszym krokiem układania. Przypadki są pogrupowane według liczby cięć potrzebnych do rozwiązania.",
         "sq1-co": "CO (Corner Orientation) - Gdy Square-1 wróci do kształtu sześcianu, te algorytmy ustawiają orientację wszystkich narożników, tak aby góra i dół miały właściwy kolor, bez psucia kształtu.",
         "sq1-eo": "EO (Edge Orientation) - Te algorytmy obracają krawędzie Square-1 do właściwej orientacji, gdy narożniki są już zorientowane.",
@@ -1044,6 +1044,164 @@
         "megaminx-ep": "EP (Edge Permutation) - Te algorytmy ustawiają zorientowane krawędzie ostatniej warstwy Megaminxa na właściwych pozycjach.",
         "megaminx-co": "CO (Corner Orientation) - Gdy krawędzie są już ułożone, te algorytmy obracają narożniki ostatniej warstwy Megaminxa tak, aby górny kolor był skierowany do góry.",
         "megaminx-cp": "CP (Corner Permutation) - Te algorytmy ustawiają narożniki ostatniej warstwy Megaminxa na właściwych pozycjach, kończąc układankę."
+      },
+      "guide": {
+        "heading": "O {title}",
+        "what": "Czym jest {title}?",
+        "when": "Kiedy używa się {title}?",
+        "count": "Ile jest algorytmów {title}?",
+        "count-answer": "Nexus Timer zawiera {count, plural, one {# algorytm {title}} few {# algorytmy {title}} many {# algorytmów {title}} other {# algorytmu {title}}} dla {puzzle}, a każdy ma interaktywny podgląd 3D, dzięki któremu widać, jak rozwiązuje przypadek.",
+        "learn": "Jak nauczyć się {title}?"
+      },
+      "guides": {
+        "pbl": {
+          "when": "PBL to ostatni krok metody Ortega dla kostki 2x2. Po ułożeniu jednej ściany i zorientowaniu przeciwnej warstwy kolory na górze i na dole są poprawne, ale elementy mogą być jeszcze zamienione. Jeden algorytm PBL permutuje wtedy obie warstwy naraz i kończy kostkę.",
+          "learn": "Zacznij od przypadków na jednej warstwie: zamiany sąsiedniej, rozwiązywanej J permem lub T permem, i zamiany po przekątnej, rozwiązywanej Y permem. Następnie dodaj przypadki, w których trzeba poprawić obie warstwy. Szukaj reflektorów na każdej warstwie, aby odróżnić zamiany sąsiednie od przekątnych, zanim zaczniesz kręcić."
+        },
+        "ocll": {
+          "when": "OCLL to drugi krok metody Ortega i większości metod dla początkujących na kostce 2x2. Używasz go, gdy pierwsza ściana jest ułożona, aby górna ściana była w jednym kolorze, zanim spermutujesz rogi za pomocą PBL lub algorytmu permutacji.",
+          "learn": "Najpierw naucz się Sune i Antisune, bo pozostałe pięć przypadków można rozwiązać, powtarzając je. Potem zastąp te powtórzenia osobnym algorytmem dla każdego przypadku. Przy zaledwie siedmiu przypadkach OCLL to najłatwiejszy zestaw do opanowania w całości i dobry krok przed CLL."
+        },
+        "cll": {
+          "when": "CLL stosuje się w metodzie CLL dla kostki 2x2: układasz pełną pierwszą warstwę, a potem kończysz kostkę jednym algorytmem. Zastępuje osobne kroki orientacji i permutacji jednym, dlatego jest standardowym wyborem średnio zaawansowanych układaczy i podstawą EG-1 oraz EG-2.",
+          "learn": "Ucz się CLL grupa po grupie według orientacji: Sune, Antisune, Pi, U, T i L mają po sześć przypadków, a H ma cztery. Najpierw rozpoznaj orientację, potem spójrz na boczne naklejki, szukając reflektorów lub przeciwnych kolorów. Znajomość OCLL pomaga, bo wiele przypadków ma te same ruchy."
+        },
+        "eg-1": {
+          "when": "EG-1 stosuje się w metodzie EG, gdy pierwsza ściana kostki 2x2 jest ułożona, ale jej elementy mają zamianę sąsiednią. Zamiast najpierw poprawiać dolną warstwę, jeden algorytm układa ostatnią warstwę i dolną zamianę jednocześnie, oszczędzając cały krok. Zamiana sąsiednia to najczęstszy przypadek dolnej warstwy.",
+          "learn": "Ucz się EG-1 po CLL, bo używa tych samych grup orientacji i tego samego rozpoznawania. Do tego, co już znasz, dodajesz tylko sąsiednią zamianę na dole. Wielu układaczy uczy się jednej grupy naraz i ćwiczy sprawdzanie podczas inspekcji, czy dolna warstwa jest ułożona, ma zamianę sąsiednią czy po przekątnej."
+        },
+        "eg-2": {
+          "when": "EG-2 obejmuje przypadki EG, w których pierwsza ściana jest ułożona, ale jej elementy mają zamianę po przekątnej. Razem z CLL i EG-1 pozwala dokończyć każdą kostkę 2x2 z ułożoną pierwszą ścianą jednym ostatnim algorytmem, niezależnie od permutacji dolnej warstwy.",
+          "learn": "Zamiana po przekątnej na dole pojawia się tak samo często jak ułożona dolna warstwa i rzadziej niż zamiana sąsiednia, dlatego wielu układaczy uczy się EG-2 na końcu. Rozpoznawanie działa tak samo jak w CLL i EG-1, więc skup się na zapamiętaniu każdego algorytmu i szybkim rozpoczęciu go po inspekcji."
+        },
+        "f2l": {
+          "when": "F2L to drugi i najdłuższy krok CFOP. Po krzyżu układasz cztery pary róg i krawędź, po jednej na slot, aż pierwsze dwie warstwy będą gotowe. Zwykle zajmuje ponad połowę ułożenia, więc wydajne F2L to największa poprawa dla większości układaczy.",
+          "learn": "Większość układaczy najpierw uczy się F2L intuicyjnie, rozumiejąc, jak połączyć róg z jego krawędzią i włożyć je bez psucia krzyża. Traktuj te algorytmy jako ściągę dla przypadków, które rozwiązujesz mało wydajnie, ćwicz powoli, szukając już następnej pary, i ucz się układać pary z różnych stron, aby rzadziej obracać kostkę."
+        },
+        "advanced-f2l": {
+          "when": "Zaawansowane przypadki F2L pojawiają się, gdy para jest w niewygodnym położeniu: elementy utknęły w innym slocie, są w złej warstwie albo są źle zorientowane. Znajomość wydajnego rozwiązania pozwala uniknąć wyciągania elementów dodatkowymi ruchami i utrzymuje płynność F2L.",
+          "learn": "Ucz się zaawansowanego F2L, gdy podstawowe przypadki idą ci już pewnie. Zacznij od przypadków, które najczęściej widzisz we własnych ułożeniach, na przykład róg lub krawędź uwięzione w slocie, i naucz się wydajnego rozwiązania każdego z nich. Potem stosuj je w prawdziwych ułożeniach, aż rozpoznawanie stanie się automatyczne."
+        },
+        "oll": {
+          "when": "OLL to trzeci krok CFOP. Gdy pierwsze dwie warstwy są ułożone, jeden algorytm OLL orientuje wszystkie elementy ostatniej warstwy, aby górna ściana była w jednym kolorze, i do końca zostaje tylko PLL.",
+          "learn": "Zacznij od dwuetapowego OLL: trzy algorytmy, aby zorientować krawędzie w krzyż, a potem siedem przypadków rogów. Następnie naucz się wszystkich 57 przypadków, jedną grupę kształtów naraz. Rozpoznawanie opiera się na wzorze górnej ściany i bocznych naklejkach."
+        },
+        "pll": {
+          "when": "PLL to ostatni krok CFOP. Gdy górna ściana jest już w jednym kolorze, algorytm PLL przestawia elementy ostatniej warstwy na właściwe miejsca i układa kostkę. Jest 21 przypadków, oznaczanych literami takimi jak T, J, U i Y.",
+          "learn": "Zacznij od dwuetapowego PLL: spermutuj rogi T permem lub Y permem, a potem krawędzie permami U, H i Z. Następnie ucz się pozostałych przypadków po kolei. Rozpoznawanie wykorzystuje reflektory i bloki na dwóch ścianach, więc ćwicz rozpoznawanie każdego przypadku bez obracania kostki."
+        },
+        "coll": {
+          "when": "COLL stosuje się po F2L, gdy wszystkie krawędzie ostatniej warstwy są już zorientowane, co widać jako krzyż na górze. Zamiast tylko orientować rogi, jeden algorytm je orientuje i permutuje, zostawiając permutację krawędzi (U, H lub Z perm), która jest szybka i łatwa do rozpoznania.",
+          "learn": "COLL jest uporządkowany według tych samych kształtów rogów co OCLL, więc ucz się jednego kształtu naraz, zaczynając od Sune i Antisune. Najpierw rozpoznaj kształt, potem boczne naklejki rogów. To częsty krok w stronę pełnego ZBLL i dobrze pasuje do metod, które wcześnie orientują krawędzie, takich jak ZZ."
+        },
+        "ble": {
+          "when": "BLE to technika ostatniego slotu. Stosuj ją, gdy róg ostatniego slotu F2L jest już ułożony, jego krawędź jest w górnej warstwie, a krawędzie ostatniej warstwy są zorientowane. Jeden algorytm wkłada krawędź i orientuje rogi ostatniej warstwy, więc przechodzisz prosto do PLL.",
+          "learn": "Przypadki są pogrupowane według kształtu rogów ostatniej warstwy, jak w OCLL. Ucz się BLE, gdy pewnie opanujesz OLL i PLL, zaczynając od grup, które spotykasz najczęściej. Wiele algorytmów to krótkie kombinacje ruchów R i U, więc skup się na płynnym wykonaniu prawą ręką."
+        },
+        "vls": {
+          "when": "VLS to zestaw na ostatni slot, gdy ostatnia para F2L jest już połączona w górnej warstwie, a krawędzie ostatniej warstwy są zorientowane. Jeden algorytm wkłada parę i orientuje całą ostatnią warstwę, więc pomijasz OLL i kończysz PLL.",
+          "learn": "Pełny zestaw VLS liczy setki algorytmów, dlatego ten wybór skupia się na najbardziej przydatnych przypadkach. Ucz się go po COLL lub Winter Variation i najpierw sprawdź w swoich ułożeniach, jak często kończysz F2L z połączoną parą i zorientowanymi krawędziami. Grupuj przypadki według orientacji górnych rogów."
+        },
+        "cls": {
+          "when": "CLS to zestaw na ostatni slot, gdy krawędź ostatniej pary F2L jest już ułożona, róg nie jest jeszcze na miejscu, a krawędzie ostatniej warstwy są zorientowane. Jeden algorytm wkłada róg i orientuje ostatnią warstwę, i zostaje tylko PLL.",
+          "learn": "Ucz się CLS, gdy często dochodzisz do ostatniego slotu z już ułożoną krawędzią. Dzieje się to naturalnie, jeśli najpierw układasz krawędzie albo używasz technik takich jak keyhole. Zacznij od przypadków z rogiem w górnej warstwie, a potem dodaj te, w których jest skręcony w swoim slocie."
+        },
+        "sv": {
+          "when": "Summer Variation stosuje się, gdy ostatnią parę F2L można włożyć ruchami R U' R', a krawędzie ostatniej warstwy są zorientowane. Zamiast wkładać parę normalnie, jeden algorytm ją wkłada i orientuje rogi ostatniej warstwy, więc pomijasz OLL i przechodzisz prosto do PLL.",
+          "learn": "Ucz się SV po Winter Variation, bo opiera się na tym samym pomyśle z innym wkładaniem. Grupuj przypadki według wyglądu górnych rogów przed wkładaniem i ćwicz ich rozpoznawanie już podczas przygotowywania ostatniej pary, żeby nie było przerwy przed algorytmem."
+        },
+        "wv": {
+          "when": "Winter Variation stosuje się, gdy ostatnia para F2L jest połączona i można ją włożyć ruchami R U R', a krawędzie ostatniej warstwy są już zorientowane. Jeden algorytm wkłada parę i jednocześnie orientuje rogi ostatniej warstwy, więc pomijasz OLL i przechodzisz prosto do PLL.",
+          "learn": "WV ma 27 przypadków, a wiele z nich to krótkie algorytmy z ruchów R i U, co czyni go jednym z najprzystępniejszych zestawów na ostatni slot. Naucz się rozpoznawać orientację górnych rogów, gdy para czeka na włożenie, i grupuj przypadki według liczby zorientowanych rogów."
+        },
+        "zbll-s": {
+          "when": "ZBLL-S obejmuje przypadki ZBLL, w których rogi ostatniej warstwy tworzą kształt Sune z jednym zorientowanym rogiem. Gdy po F2L krawędzie są zorientowane, jeden z tych algorytmów układa całą ostatnią warstwę naraz, z pominięciem OCLL i PLL.",
+          "learn": "ZBLL-S to często pierwszy podzbiór, którego się uczy, bo Sune to znajomy kształt, a wiele jego algorytmów jest krótkich. Podziel przypadki według permutacji rogów, szukaj reflektorów i bloków po bokach, a potem odczytaj krawędzie, aby wskazać dokładny przypadek."
+        },
+        "zbll-as": {
+          "when": "ZBLL-AS obejmuje przypadki ZBLL, w których rogi ostatniej warstwy tworzą kształt Antisune, lustrzane odbicie Sune, z jednym zorientowanym rogiem. Gdy krawędzie są już zorientowane, jeden algorytm układa całą ostatnią warstwę.",
+          "learn": "Wielu układaczy uczy się ZBLL-AS zaraz po ZBLL-S, bo są swoimi lustrzanymi odbiciami, więc rozpoznawanie i wiele algorytmów wydaje się znajomych. Uporządkuj przypadki najpierw według permutacji rogów, a potem według położenia krawędzi."
+        },
+        "zbll-u": {
+          "when": "ZBLL-U obejmuje przypadki ZBLL, w których dwa sąsiednie rogi ostatniej warstwy są zorientowane, a dwa pozostałe patrzą w tę samą stronę, tworząc U. Gdy krawędzie są już zorientowane, jeden algorytm układa całą ostatnią warstwę.",
+          "learn": "Zaczynaj rozpoznawanie od strony z dwoma skręconymi rogami, potem sprawdź permutację rogów, a na końcu krawędzie. Pomaga wcześniejsza nauka odpowiednich przypadków COLL, bo wokół każdego przypadku COLL jest rodzina przypadków ZBLL."
+        },
+        "zbll-t": {
+          "when": "ZBLL-T obejmuje przypadki ZBLL, w których dwa sąsiednie rogi ostatniej warstwy są zorientowane, a dwa pozostałe patrzą w przeciwne strony, tworząc T. Gdy krawędzie są już zorientowane, jeden algorytm układa całą ostatnią warstwę.",
+          "learn": "Rozpoznaj kształt T po dwóch naklejkach górnego koloru na przeciwnych stronach, a potem odczytaj permutację rogów i krawędzie. Pogrupowanie przypadków według ich przypadku COLL sprawia, że 72 algorytmy dużo łatwiej uporządkować i powtarzać."
+        },
+        "zbll-pi": {
+          "when": "ZBLL-Pi obejmuje przypadki ZBLL, w których żaden róg ostatniej warstwy nie jest zorientowany: jedna strona pokazuje dwie naklejki górnego koloru, a sąsiednie strony po jednej, co tworzy wzór Pi. Gdy krawędzie są już zorientowane, jeden algorytm układa całą ostatnią warstwę.",
+          "learn": "Przypadki Pi wymagają więcej praktyki w rozpoznawaniu, dlatego wielu układaczy uczy się ich po Sune, Antisune, U i T. Trzymaj parę naklejek górnego koloru po lewej, sprawdź permutację rogów, a potem odczytaj krawędzie."
+        },
+        "zbll-l": {
+          "when": "ZBLL-L obejmuje przypadki ZBLL, w których dwa rogi ostatniej warstwy leżące po przekątnej są zorientowane, tworząc L. Gdy krawędzie są już zorientowane, jeden algorytm układa całą ostatnią warstwę.",
+          "learn": "Rozpoznaj kształt L po dwóch zorientowanych rogach na przekątnej, potem spójrz na boczne naklejki, aby ustalić permutację rogów, i odczytaj krawędzie. Wcześniejsza nauka przypadków L z COLL daje solidny punkt odniesienia dla każdej grupy."
+        },
+        "zbll-h": {
+          "when": "ZBLL-H obejmuje przypadki ZBLL, w których żaden róg ostatniej warstwy nie jest zorientowany, a naklejki górnego koloru parami patrzą na dwie przeciwne strony, tworząc H. Gdy krawędzie są już zorientowane, jeden algorytm układa całą ostatnią warstwę.",
+          "learn": "Kształt H jest symetryczny, więc ten podzbiór ma mniej przypadków niż pozostałe: 40 zamiast 72. Dlatego dobrze nadaje się do wcześniejszego ukończenia. Rozpoznasz go po parach naklejek górnego koloru na przeciwnych stronach, a potem odczytaj permutację rogów i krawędzie."
+        },
+        "parity-4x4": {
+          "when": "Parzystość na kostce 4x4 pojawia się w etapie 3x3 układania metodą redukcji, bo 4x4 nie ma stałych środków i może dojść do stanów niemożliwych na 3x3. Parzystość OLL widać jako jedną odwróconą krawędź, a parzystość PLL jako dwie zamienione krawędzie lub inne stany, których nie rozwiąże żaden algorytm 3x3.",
+          "learn": "Najpierw naucz się standardowych algorytmów parzystości OLL i PLL, bo obejmują każdy przypadek. Gdy będą płynne, dodaj przypadki łączone, aby poprawiać parzystość i ostatnią warstwę mniejszą liczbą ruchów. Ćwicz szerokie ruchy, aż będą płynne bez przekładania dłoni."
+        },
+        "parity-5x5": {
+          "when": "W przeciwieństwie do 4x4 kostka 5x5 ma stałe środki, więc nie ma parzystości PLL. Parzystość pojawia się na końcu łączenia krawędzi, gdy ostatnia krawędź ma odwrócone oba zewnętrzne elementy i do jej połączenia potrzebny jest specjalny algorytm.",
+          "learn": "Jest tylko jeden przypadek do nauki, więc zapamiętaj go i ćwicz, aż wykonasz go bez patrzenia. Naucz się go zauważać podczas łączenia dwóch ostatnich krawędzi, aby od razu zastosować algorytm i przejść do etapu 3x3."
+        },
+        "l2c-5x5": {
+          "when": "L2C stosuje się podczas redukcji kostki 5x5, gdy cztery środki są już ułożone. Ostatnie dwa środki trzeba zbudować bez psucia pozostałych i właśnie w tym pomagają te algorytmy oraz komutatory.",
+          "learn": "Zrozum, jak komutator przenosi elementy środka między dwiema ścianami, nie ruszając reszty, a większość przypadków rozwiążesz intuicyjnie. Używaj tych algorytmów w przypadkach, które zabierają za dużo ruchów, i ćwicz je, aż ostatnie dwa środki będą ci wychodzić stabilnie."
+        },
+        "l2e-5x5": {
+          "when": "L2E stosuje się na końcu łączenia krawędzi na kostce 5x5, gdy dwóch ostatnich grup krawędzi nie da się połączyć zwykłymi ruchami warstw środkowych. Te algorytmy łączą pozostałe elementy krawędzi, aby kostka była gotowa do etapu 3x3.",
+          "learn": "Najpierw upewnij się, że wydajnie łączysz pierwsze osiem krawędzi. Potem naucz się rozpoznawać położenie pozostałych elementów w dwóch ostatnich krawędziach i przećwicz algorytm dla każdego przypadku. Jeśli ostatnia krawędź okaże się odwrócona, użyj algorytmu parzystości 5x5."
+        },
+        "l4e": {
+          "when": "L4E to popularna metoda dla Pyraminxa. Po ułożeniu czubków oraz bloku z trzech środków i dwóch krawędzi jeden algorytm układa ostatnie cztery krawędzie. Blok zajmuje niewiele ruchów, więc metoda jest szybka i wydajna.",
+          "learn": "Zacznij od intuicyjnego układania pierwszego bloku. Następnie ucz się algorytmów L4E, zaczynając od najczęstszych przypadków, takich jak Sune, Antisune i przypadki z paskami. Planowanie bloku podczas inspekcji sprawia, że całe ułożenie jest płynne."
+        },
+        "sq1-cs": {
+          "when": "Kształt kostki to pierwszy krok każdego ułożenia Square-1. Pomieszanie zmienia kształt warstw, a te algorytmy przywracają łamigłówkę do kształtu kostki, w którym mogą zacząć się kroki orientacji i permutacji.",
+          "learn": "Początkujący dochodzą do kształtu kostki w kilku intuicyjnych krokach, za każdym razem przechodząc przez te same kształty pośrednie. Szybsi układacze uczą się bezpośrednich rozwiązań z każdego kształtu, pogrupowanych według liczby slice'ów. Zacznij od kształtów, które widzisz najczęściej, i skup się na poprawnym liczeniu slice'ów."
+        },
+        "sq1-co": {
+          "when": "CO stosuje się, gdy Square-1 wróci do kształtu kostki. Te algorytmy orientują rogi tak, aby każdy pokazywał górny lub dolny kolor na właściwej warstwie, bez psucia kształtu kostki.",
+          "learn": "Przy tak małej liczbie przypadków CO opanujesz szybko. Rozpoznaj, ile rogów każdego koloru jest na każdej warstwie, i zastosuj pasujący algorytm. Pomaga ćwiczenie slice'a, bo każdy algorytm opiera się na czystych slice'ach."
+        },
+        "sq1-eo": {
+          "when": "EO następuje po zorientowaniu rogów na Square-1. Te algorytmy przenoszą krawędzie tak, aby każda warstwa miała krawędzie swojego koloru, co przygotowuje łamigłówkę do kroków permutacji.",
+          "learn": "Policz krawędzie, które są na złej warstwie, a potem wybierz pasujący przypadek. Często uczy się CO i EO razem, bo oba kroki używają podobnych ruchów i krótkich algorytmów."
+        },
+        "sq1-cp": {
+          "when": "CP stosuje się, gdy wszystkie elementy Square-1 są zorientowane. Te algorytmy przestawiają rogi na właściwe miejsca na obu warstwach i zostaje tylko permutacja krawędzi.",
+          "learn": "Rozpoznaj, czy każda warstwa ma zamianę rogów sąsiednią, po przekątnej, czy nie ma żadnej. Naucz się algorytmów dla kombinacji, które widzisz najczęściej, i zwracaj uwagę na wyrównanie przed każdym slice'em, aby algorytm zawsze działał."
+        },
+        "sq1-ep": {
+          "when": "EP to ostatni zwykły krok na Square-1. Gdy rogi są już spermutowane, te algorytmy przestawiają krawędzie na właściwe miejsca i układają łamigłówkę, chyba że pojawi się przypadek parzystości.",
+          "learn": "Po kształcie kostki EP to krok Square-1 z największą liczbą przypadków, więc ucz się go stopniowo, zaczynając od przypadków, w których trzeba poprawić tylko jedną warstwę. Rozpoznawaj krawędzie każdej warstwy osobno i szukaj wzorów, które znasz już z 3x3."
+        },
+        "sq1-parity": {
+          "when": "Parzystość na Square-1 pojawia się, gdy krawędzi lub rogów łamigłówki nie da się ułożyć zwykłymi algorytmami permutacji. Zdarza się w mniej więcej połowie ułożeń, więc każdy, kto układa Square-1, potrzebuje sposobu na jej poprawienie.",
+          "learn": "Zacznij od nauki jednego algorytmu, który poprawia parzystość w każdym przypadku, a potem dodaj specjalne algorytmy parzystości dla częstych sytuacji, aby układać parzystość i permutację jednocześnie. Najwięcej czasu oszczędza wczesne wykrycie parzystości podczas EP."
+        },
+        "megaminx-eo": {
+          "when": "EO to pierwszy krok czteroetapowej ostatniej warstwy na Megaminxie. Gdy pierwsze warstwy są ułożone, te algorytmy odwracają krawędzie ostatniej warstwy tak, aby górny kolor tworzył gwiazdę na górnej ścianie.",
+          "learn": "Przypadków jest tylko kilka i działają jak krok orientacji krawędzi na 3x3. Naucz się ich najpierw i zwracaj uwagę na ustawienie każdego przypadku, bo Megaminx ma pięć boków zamiast czterech."
+        },
+        "megaminx-ep": {
+          "when": "EP to drugi krok czteroetapowej ostatniej warstwy na Megaminxie. Gdy krawędzie są zorientowane, te algorytmy przestawiają je na właściwe miejsca, zanim zajmiesz się rogami.",
+          "learn": "Rozpoznaj, które krawędzie są już na miejscu i jak cyklicznie zamieniają się pozostałe, a potem zastosuj pasujący algorytm. Przy tak małej liczbie przypadków EP opanujesz szybko i dobrze łączy się z EO."
+        },
+        "megaminx-co": {
+          "when": "CO to trzeci krok czteroetapowej ostatniej warstwy na Megaminxie. Po ułożeniu krawędzi te algorytmy skręcają rogi tak, aby cała górna ściana pokazywała górny kolor.",
+          "learn": "Ucz się przypadków w grupach według liczby już zorientowanych rogów. Wiele z nich opiera się na ruchach podobnych do Sune, dzięki czemu łatwiej je zapamiętać i wykonać."
+        },
+        "megaminx-cp": {
+          "when": "CP to ostatni krok czteroetapowej ostatniej warstwy na Megaminxie. Gdy cała reszta jest ułożona, te algorytmy przestawiają rogi na właściwe miejsca i kończą łamigłówkę.",
+          "learn": "Rozpoznaj, jak cyklicznie zamieniają się rogi, porównując ich boczne kolory ze środkami. Zacznij od przypadków, w których przemieszczają się tylko trzy rogi, a potem dodaj pozostałe."
+        }
       }
     },
     "TrainerPage": {

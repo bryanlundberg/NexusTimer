@@ -998,16 +998,16 @@
       },
       "descriptions": {
         "pbl": "These algorithms are used to permute both the top and bottom layers of a 2x2 cube simultaneously, allowing for efficient solving of the puzzle.",
-        "ocll": "COLL (Orient Corners of the Last Layer) - This step focuses on orienting all the corners of the last layer to prepare for the final steps of solving the puzzle.",
-        "cll": "CLL is a subset of OLL for 2x2x2 cubes that solves the last layer in one algorithm after orienting the first layer.",
+        "ocll": "OCLL (Orientation of the Corners of the Last Layer) orients the four last layer corners of a 2x2 so the top face becomes a single color. There are seven cases: Sune, Antisune, H, Pi, U, T and L.",
+        "cll": "CLL (Corners of the Last Layer) solves the whole last layer of a 2x2 in one algorithm once the first layer is completely solved, orienting and permuting the corners at the same time.",
         "eg-1": "EG-1 is a set of algorithms used to solve the last layer of a 2x2 cube after the first layer is completed, specifically when there is an adjacent swap on the bottom layer.",
         "eg-2": "EG-2 is a set of algorithms used to solve the last layer of a 2x2 cube after the first layer is completed, specifically when there is a diagonal swap on the bottom layer.",
-        "f2l": "F2L (First Two Layers) algorithms for solving the Rubik's cube with the CFOP method. These algorithms solve the cross and the first two layers simultaneously by pairing up corner and edge pieces, once the cross is complete.",
+        "f2l": "F2L (First Two Layers) algorithms for solving the Rubik's cube with the CFOP method. Once the cross is complete, each corner is paired with its matching edge and inserted into its slot, solving the first two layers one pair at a time.",
         "advanced-f2l": "Advanced F2L algorithms for the trickier CFOP corner-edge pair cases: pieces trapped in the last slot, pieces stuck in the wrong layer, or both pieces trapped at once. These go beyond intuitive F2L to cover the cases that usually cost the most moves.",
         "oll": "The OLL (Orientation of Last Layer) algorithms for solving the Rubik's cube with the CFOP method. These algorithms are used to orient all of the pieces on the last layer, once the F2L is complete.",
         "pll": "The PLL (Permutation of Last Layer) algorithms for solving the Rubik's cube with the CFOP method. These algorithms are used for the final step of the CFOP method, to permute the edges and corners of the last layer, once all pieces are oriented.",
         "coll": "COLL (Corners and Orientation of Last Layer) algorithms are used to orient and permute the corners of your last layer at the same time, presuming that all of your last layer edges are already oriented.",
-        "ble": "Brooks' Last Edge (BLE) is a method used to solve the last edge of the Rubik's Cube efficiently, often as part of advanced solving techniques.",
+        "ble": "BLE (Brooks' Last Edge) inserts the last F2L edge while orienting the last layer corners. It is used when the last slot corner is already solved and the last layer edges are oriented, so only PLL remains.",
         "vls": "VLS (Valk Last Slot) algorithms solve the final F2L slot and OLL at the same time, in the cases where you have a connected F2L pair. This selection of algorithms serves as an introduction to the full VLS algorithm set, and aims to highlight the most useful cases to know.",
         "cls": "CLS (Corner Last Slot) algorithms solve the last F2L corner and orient your last layer at the same time. They are used when the edge of your final F2L pair is already solved, and the last layer edges are oriented. This selection of algorithms serves as an introduction to the full CLS algorithm set, and aims to highlight the most useful cases to know.",
         "wv": "WV (Winter Variation) algorithms are used to orient the corners of your last layer whilst you insert your final F2L pair, in the case where the pair is connected and where all of the last layer edges are already oriented.",
@@ -1022,7 +1022,7 @@
         "parity-5x5": "These algorithms address the unique parity errors that can occur when solving a 5x5 Rubik's Cube, which do not happen on a standard 3x3 cube. They are essential for completing the solve after reducing the 5x5 to a 3x3 state.",
         "l2c-5x5": "L2C (Last Two Centers) algorithms solve the final two centers of a 5x5 cube during the reduction step. They let you finish the centers without breaking the ones you have already built.",
         "l2e-5x5": "L2E (Last Two Edges) algorithms fix the final two edge groups of a 5x5 cube during the reduction step, when the last two edges cannot be paired by simple slice moves.",
-        "l4e": "Last 4 slots (Pyraminx) - These algorithms are used to solve the last four edge pieces of a Pyraminx puzzle. The goal is to position and orient these pieces correctly to complete the puzzle.",
+        "l4e": "L4E (Last 4 Edges) is a Pyraminx method. After the tips, three centers and two edges are solved, these algorithms solve the last four edges in one step to finish the puzzle.",
         "sq1-cs": "CS (Cube Shape) - These algorithms bring a scrambled Square-1 back to a cube shape, the first step of solving the puzzle. Cases are grouped by how many slices the solution takes.",
         "sq1-co": "CO (Corner Orientation) - Once the Square-1 is back to a cube shape, these algorithms orient every corner so the top and bottom layers show the correct colors, without breaking the cube shape.",
         "sq1-eo": "EO (Edge Orientation) - These algorithms flip the edges of a Square-1 into their correct orientation after the corners are oriented, leaving the puzzle ready to be permuted.",
@@ -1034,6 +1034,164 @@
         "megaminx-ep": "EP (Edge Permutation) - These algorithms move the already oriented last layer edges of the Megaminx into their correct positions.",
         "megaminx-co": "CO (Corner Orientation) - Once the edges are solved, these algorithms twist the last layer corners of the Megaminx so the top color faces up.",
         "megaminx-cp": "CP (Corner Permutation) - These algorithms move the last layer corners of the Megaminx into their correct positions to finish the puzzle."
+      },
+      "guide": {
+        "heading": "About {title}",
+        "what": "What is {title}?",
+        "when": "When do you use {title}?",
+        "count": "How many {title} algorithms are there?",
+        "count-answer": "Nexus Timer lists {count, plural, one {# {title} algorithm} other {# {title} algorithms}} for the {puzzle}, each with an interactive 3D preview so you can see how it solves the case.",
+        "learn": "How do you learn {title}?"
+      },
+      "guides": {
+        "pbl": {
+          "when": "PBL is the last step of the Ortega method for the 2x2. After you solve one face and orient the opposite layer, the top and bottom colors are correct but the pieces can still be swapped. One PBL algorithm then permutes both layers at once and finishes the cube.",
+          "learn": "Start with the single-layer cases: an adjacent swap, solved with a J or T perm, and a diagonal swap, solved with a Y perm. Then add the cases where both layers need fixing. Look for headlights on each layer to tell adjacent swaps from diagonal ones before you start turning."
+        },
+        "ocll": {
+          "when": "OCLL is the second step of the Ortega method and of most beginner 2x2 methods. You use it once the first face is solved, to make the top face a single color before permuting the corners with PBL or a permutation algorithm.",
+          "learn": "Learn Sune and Antisune first, since the other five cases can be solved by repeating them. Then replace those repeats with the dedicated algorithm for each case. With only seven cases, OCLL is the easiest set to learn completely and a good step before CLL."
+        },
+        "cll": {
+          "when": "CLL is used in the CLL method for the 2x2: build a complete first layer, then finish the cube with a single algorithm. It replaces the separate orientation and permutation steps with one look, so it is the standard choice for intermediate solvers and the base for EG-1 and EG-2.",
+          "learn": "Learn CLL one orientation group at a time: Sune, Antisune, Pi, U, T and L have six cases each, and H has four. Recognize the orientation first, then read the side stickers for headlights or opposite colors. Knowing OCLL helps, because many cases share the same moves."
+        },
+        "eg-1": {
+          "when": "EG-1 is used in the EG method when the first face of the 2x2 is built but its pieces have an adjacent swap. Instead of fixing the bottom layer first, one algorithm solves the last layer and the bottom swap together, saving a full step. Adjacent swaps are the most common bottom layer case.",
+          "learn": "Learn EG-1 after CLL, since it uses the same orientation groups and recognition. You only add the adjacent bottom swap to what you already know. Many solvers learn one group at a time and practice checking during inspection whether the bottom layer is solved, adjacent or diagonal."
+        },
+        "eg-2": {
+          "when": "EG-2 covers the EG cases where the first face is built but its pieces have a diagonal swap. Together with CLL and EG-1, it lets you finish any 2x2 whose first face is done with one last algorithm, no matter how the bottom layer is permuted.",
+          "learn": "Diagonal bottom swaps come up as often as a solved bottom layer and less often than adjacent swaps, so many solvers learn EG-2 last. Recognition works the same way as in CLL and EG-1, so focus on memorizing each algorithm and on starting it quickly after inspection."
+        },
+        "f2l": {
+          "when": "F2L is the second and longest step of CFOP. After the cross, you solve four corner and edge pairs, one per slot, until the first two layers are complete. It usually takes more than half of a solve, so efficient F2L is the biggest improvement for most cubers.",
+          "learn": "Most cubers learn F2L intuitively first, understanding how to pair a corner with its edge and insert them without breaking the cross. Use these algorithms as a reference for the cases you solve inefficiently, practice slowly while looking for the next pair, and learn to solve pairs from different angles so you rotate less."
+        },
+        "advanced-f2l": {
+          "when": "Advanced F2L cases come up when a pair is in an awkward state: pieces stuck in another slot, in the wrong layer or facing the wrong way. Knowing an efficient solution avoids extracting pieces with extra moves and keeps your F2L smooth.",
+          "learn": "Learn advanced F2L once the basic cases feel comfortable. Start with the cases you see most often in your own solves, such as a corner or edge trapped in a slot, and learn the efficient solution for each one. Then use them in real solves until recognizing the case becomes automatic."
+        },
+        "oll": {
+          "when": "OLL is the third step of CFOP. Once the first two layers are solved, one OLL algorithm orients every last layer piece so the top face becomes a single color, leaving only PLL to finish the cube.",
+          "learn": "Start with 2-look OLL: three algorithms to orient the edges into a cross, then the seven corner cases. After that, learn the full 57 cases one shape group at a time. Recognition is based on the pattern of the top face and the stickers on the sides."
+        },
+        "pll": {
+          "when": "PLL is the last step of CFOP. With the top face already a single color, a PLL algorithm moves the last layer pieces into their correct positions and solves the cube. There are 21 cases, named with letters such as T, J, U and Y.",
+          "learn": "Begin with 2-look PLL: permute the corners with a T perm or a Y perm, then the edges with the U, H and Z perms. Then learn the remaining cases one at a time. Recognition uses headlights and blocks on two sides, so practice identifying each case without rotating the cube."
+        },
+        "coll": {
+          "when": "COLL is used after F2L when all last layer edges are already oriented, which you can spot as a cross on top. Instead of only orienting the corners, one algorithm orients and permutes them, leaving an edge permutation (U, H or Z perm) that is fast and easy to recognize.",
+          "learn": "COLL is organized by the same corner shapes as OCLL, so learn one shape at a time, starting with Sune and Antisune. Recognize the shape first, then the corner stickers on the sides. It is a common step toward full ZBLL and fits well with methods that orient edges early, such as ZZ."
+        },
+        "ble": {
+          "when": "BLE is a last slot technique. Use it when the corner of your last F2L slot is already solved, its edge is in the top layer and the last layer edges are oriented. One algorithm inserts the edge and orients the last layer corners, so you go straight to PLL.",
+          "learn": "Cases are grouped by the shape of the last layer corners, like OCLL. Learn BLE after you are comfortable with OLL and PLL, starting with the groups you meet most often. Many algorithms are short combinations of R and U moves, so focus on smooth execution with the right hand."
+        },
+        "vls": {
+          "when": "VLS is a last slot set for when the last F2L pair is already connected in the top layer and the last layer edges are oriented. One algorithm inserts the pair and orients the whole last layer, so you skip OLL and finish with PLL.",
+          "learn": "The full VLS set has hundreds of algorithms, so this selection focuses on the most useful cases. Learn it after COLL or Winter Variation, and first check in your own solves how often you end F2L with a connected pair and oriented edges. Group the cases by the corner orientation on top."
+        },
+        "cls": {
+          "when": "CLS is a last slot set for when the edge of your last F2L pair is already solved, the corner is still out of place and the last layer edges are oriented. One algorithm inserts the corner and orients the last layer, leaving only PLL.",
+          "learn": "Learn CLS once you often reach the last slot with its edge already solved, which happens naturally when you solve edges first or use techniques like keyhole. Start with the cases where the corner is in the top layer, then add the ones where it is twisted in its slot."
+        },
+        "sv": {
+          "when": "Summer Variation is used when the last F2L pair can be inserted with R U' R' and the last layer edges are oriented. Instead of inserting the pair normally, one algorithm inserts it and orients the last layer corners, so you skip OLL and go straight to PLL.",
+          "learn": "Learn SV after Winter Variation, since it follows the same idea with a different insertion. Group the cases by how the top corners look before the insert, and practice recognizing them while you set up the last pair so there is no pause before the algorithm."
+        },
+        "wv": {
+          "when": "Winter Variation is used when the last F2L pair is connected and can be inserted with R U R', and the last layer edges are already oriented. One algorithm inserts the pair and orients the last layer corners at the same time, so you skip OLL and go straight to PLL.",
+          "learn": "WV has 27 cases and many of them are short R and U algorithms, which makes it one of the most approachable last slot sets. Learn to recognize the corner orientation on top while the pair is waiting to be inserted, and group the cases by the number of oriented corners."
+        },
+        "zbll-s": {
+          "when": "ZBLL-S covers the ZBLL cases where the last layer corners form a Sune shape, with one corner oriented. When the edges are oriented after F2L, one of these algorithms solves the whole last layer at once, skipping both OCLL and PLL.",
+          "learn": "ZBLL-S is a common first subset, because Sune is a familiar shape and many of its algorithms are short. Split the cases by corner permutation, look for headlights and blocks on the sides, and then read the edges to pick the exact case."
+        },
+        "zbll-as": {
+          "when": "ZBLL-AS covers the ZBLL cases where the last layer corners form an Antisune shape, the mirror of Sune, with one corner oriented. With the edges already oriented, one algorithm solves the entire last layer.",
+          "learn": "Many solvers learn ZBLL-AS right after ZBLL-S because they mirror each other, which makes recognition and many algorithms feel familiar. Organize the cases by corner permutation first, then by the position of the edges."
+        },
+        "zbll-u": {
+          "when": "ZBLL-U covers the ZBLL cases where two adjacent last layer corners are oriented and the other two face the same side, forming a U shape. With the edges already oriented, one algorithm solves the whole last layer.",
+          "learn": "Look at the side with the two twisted corners to start recognition, then check the corner permutation and finally the edges. Learning the matching COLL cases first helps, because each COLL case has a family of ZBLL cases around it."
+        },
+        "zbll-t": {
+          "when": "ZBLL-T covers the ZBLL cases where two adjacent last layer corners are oriented and the other two face opposite sides, forming a T shape. With the edges already oriented, one algorithm solves the entire last layer.",
+          "learn": "Recognize the T shape by the two stickers of the top color on opposite sides, then read the corner permutation and the edges. Grouping the cases by their COLL case makes the 72 algorithms far easier to organize and review."
+        },
+        "zbll-pi": {
+          "when": "ZBLL-Pi covers the ZBLL cases where no last layer corner is oriented: one side shows two top color stickers and the sides next to it show one each, forming a Pi pattern. With the edges already oriented, one algorithm solves the whole last layer.",
+          "learn": "Pi cases take more practice to recognize, so many solvers learn them after Sune, Antisune, U and T. Hold the pair of top color stickers on the left, check the corner permutation, and then read the edges."
+        },
+        "zbll-l": {
+          "when": "ZBLL-L covers the ZBLL cases where two diagonal last layer corners are oriented, forming an L shape. With the edges already oriented, one algorithm solves the entire last layer.",
+          "learn": "Recognize the L shape by the two diagonal oriented corners, then look at the side stickers to find the corner permutation and read the edges. Learning the COLL L cases first gives you a solid anchor for each group."
+        },
+        "zbll-h": {
+          "when": "ZBLL-H covers the ZBLL cases where no last layer corner is oriented and the top color stickers face two opposite sides in pairs, forming an H shape. With the edges already oriented, one algorithm solves the whole last layer.",
+          "learn": "The H shape is symmetric, so this subset has fewer cases than the others, 40 instead of 72. That makes it a good subset to finish early. Recognize it by the matching pairs of top color stickers on opposite sides, then read the corner permutation and the edges."
+        },
+        "parity-4x4": {
+          "when": "4x4 parity appears during the 3x3 stage of a reduction solve, because the 4x4 has no fixed centers and can reach states that are impossible on a 3x3. OLL parity shows a single flipped edge, and PLL parity shows two swapped edges or other states no 3x3 algorithm can solve.",
+          "learn": "Learn the standard OLL parity and PLL parity algorithms first, since they cover every case. Once they feel smooth, add the combined cases so you can fix parity and the last layer in fewer moves. Practice the wide moves until they flow without regrips."
+        },
+        "parity-5x5": {
+          "when": "Unlike the 4x4, the 5x5 has fixed centers, so it has no PLL parity. Parity shows up at the end of edge pairing, when the last edge has its two outer pieces flipped and a special algorithm is needed to pair it.",
+          "learn": "There is only one case to learn, so memorize it and practice until you can execute it without looking. Learn to spot it while pairing the last two edges so you can apply the algorithm right away and move on to the 3x3 stage."
+        },
+        "l2c-5x5": {
+          "when": "L2C is used during the reduction of a 5x5 after four centers are solved. The last two centers have to be built without breaking the others, which is where these algorithms and commutators help.",
+          "learn": "Understand how a commutator moves center pieces between two faces while keeping the rest intact, and you can solve most cases intuitively. Use these algorithms for the cases that take too many moves and practice them until your last two centers are consistent."
+        },
+        "l2e-5x5": {
+          "when": "L2E is used at the end of edge pairing on a 5x5, when the last two edge groups cannot be paired with the usual slice moves. These algorithms pair the remaining edge pieces so the cube is ready for the 3x3 stage.",
+          "learn": "First make sure you can pair the first eight edges efficiently. Then learn to recognize the positions of the remaining pieces in the last two edges and practice the matching algorithm for each case. When the last edge ends up flipped, use the 5x5 parity algorithm."
+        },
+        "l4e": {
+          "when": "L4E is a popular Pyraminx method. After solving the tips and a block of three centers and two edges, one algorithm solves the last four edges. The block takes a few moves, so the method is fast and efficient.",
+          "learn": "Start by solving the first block intuitively. Then learn the L4E algorithms, beginning with the most common cases such as Sune, Antisune and the bars cases. Planning the block during inspection makes the whole solve flow."
+        },
+        "sq1-cs": {
+          "when": "Cube shape is the first step of every Square-1 solve. The scramble changes the shape of the layers, and these algorithms bring the puzzle back to a cube, where the orientation and permutation steps can begin.",
+          "learn": "Beginners reach cube shape in a few intuitive steps, passing through the same intermediate shapes every time. Faster solvers learn direct solutions from each shape, grouped by the number of slices they take. Start with the shapes you see most and focus on counting slices correctly."
+        },
+        "sq1-co": {
+          "when": "CO is used once the Square-1 is back in cube shape. These algorithms orient the corners so each shows the top or bottom color on the correct layer, without breaking the cube shape.",
+          "learn": "With only a few cases, CO is quick to learn. Recognize how many corners of each color sit on each layer and apply the matching algorithm. Practicing the slice move helps, since every algorithm relies on clean slices."
+        },
+        "sq1-eo": {
+          "when": "EO comes after the corners are oriented on the Square-1. These algorithms move the edges so each layer holds the edges of its color, which prepares the puzzle for the permutation steps.",
+          "learn": "Count the edges that are on the wrong layer, then pick the matching case. Learning CO and EO together is common, because both steps use similar moves and short algorithms."
+        },
+        "sq1-cp": {
+          "when": "CP is used once every piece of the Square-1 is oriented. These algorithms swap the corners into their correct positions on both layers, leaving only the edges to permute.",
+          "learn": "Recognize whether each layer has an adjacent or diagonal corner swap, or none. Learn the algorithms for the combinations you see most, and pay attention to alignment before each slice so the algorithm works every time."
+        },
+        "sq1-ep": {
+          "when": "EP is the last regular step of the Square-1. With the corners already permuted, these algorithms move the edges into their correct positions and solve the puzzle, unless a parity case appears.",
+          "learn": "EP has the most cases of the Square-1 steps after cube shape, so learn it gradually, starting with the cases where only one layer needs work. Recognize the edges on each layer separately and look for patterns you already know from the 3x3."
+        },
+        "sq1-parity": {
+          "when": "Square-1 parity appears when the edges or corners of the puzzle cannot be solved with regular permutation algorithms. It comes up in roughly half of the solves, so every Square-1 solver needs a way to fix it.",
+          "learn": "Start by learning one algorithm that fixes parity in any case, then add the specific parity algorithms for the common situations so you can solve parity and permutation together. Recognizing parity early during EP saves the most time."
+        },
+        "megaminx-eo": {
+          "when": "EO is the first step of the four-look last layer on the Megaminx. Once the first layers are solved, these algorithms flip the last layer edges so the top color forms a star on the top face.",
+          "learn": "There are only a few cases, and they work like the edge orientation step on the 3x3. Learn them first and pay attention to the angle of each case, since the Megaminx has five sides instead of four."
+        },
+        "megaminx-ep": {
+          "when": "EP is the second step of the four-look last layer on the Megaminx. With the edges oriented, these algorithms move them into their correct positions before you work on the corners.",
+          "learn": "Recognize which edges are already in place and how the others cycle, then apply the matching algorithm. With only a few cases, EP is fast to learn, and it pairs well with EO."
+        },
+        "megaminx-co": {
+          "when": "CO is the third step of the four-look last layer on the Megaminx. After the edges are solved, these algorithms twist the corners so the whole top face shows the top color.",
+          "learn": "Learn the cases in groups by how many corners are already oriented. Many of them are built from Sune-like moves, which makes them easier to remember and execute."
+        },
+        "megaminx-cp": {
+          "when": "CP is the last step of the four-look last layer on the Megaminx. With everything else solved, these algorithms move the corners into their correct positions and finish the puzzle.",
+          "learn": "Recognize how the corners cycle by comparing their side colors with the centers. Start with the cases that only move three corners, then add the remaining ones."
+        }
       }
     },
     "TrainerPage": {

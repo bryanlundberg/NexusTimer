@@ -1008,16 +1008,16 @@
       },
       "descriptions": {
         "pbl": "Estos algoritmos se utilizan para permutar simultáneamente las capas superior e inferior de un cubo 2x2, lo que permite una resolución eficiente del rompecabezas.",
-        "ocll": "COLL (Orientación de las esquinas de la última capa): este paso se centra en orientar todas las esquinas de la última capa para prepararse para los pasos finales de la resolución del rompecabezas.",
-        "cll": "CLL es un subconjunto de OLL para cubos de 2x2x2 que resuelve la última capa en un algoritmo después de orientar la primera capa.",
+        "ocll": "OCLL (Orientación de las Esquinas de la Última Capa) orienta las cuatro esquinas de la última capa de un 2x2 para que la cara superior quede de un solo color. Hay siete casos: Sune, Antisune, H, Pi, U, T y L.",
+        "cll": "CLL (Esquinas de la Última Capa) resuelve toda la última capa de un 2x2 con un solo algoritmo una vez que la primera capa está completamente resuelta, orientando y permutando las esquinas al mismo tiempo.",
         "eg-1": "EG-1 es un conjunto de algoritmos utilizados para resolver la última capa de un cubo de 2x2 después de completar la primera capa, específicamente cuando hay un intercambio adyacente en la capa inferior.",
         "eg-2": "EG-2 es un conjunto de algoritmos utilizados para resolver la última capa de un cubo de 2x2 después de completar la primera capa, específicamente cuando hay un intercambio diagonal en la capa inferior.",
-        "f2l": "Los algoritmos F2L (Primeras Dos Capas) para resolver el cubo de Rubik con el método CFOP. Estos algoritmos resuelven las dos primeras capas emparejando las piezas de esquina y arista al mismo tiempo, una vez completada la cruz.",
+        "f2l": "Algoritmos F2L (Primeras Dos Capas) para resolver el cubo de Rubik con el método CFOP. Con la cruz completa, cada esquina se empareja con su arista y se inserta en su hueco, resolviendo las dos primeras capas par por par.",
         "advanced-f2l": "Algoritmos de F2L avanzado para los casos más difíciles de emparejar esquina-arista en el método CFOP: piezas atrapadas en el último hueco, piezas atascadas en la capa incorrecta, o ambas piezas atrapadas a la vez. Van más allá del F2L intuitivo para cubrir los casos que suelen costar más movimientos.",
         "oll": "Los algoritmos OLL (Orientación de la última capa) para resolver el cubo de Rubik con el método CFOP. Estos algoritmos se utilizan para orientar todas las piezas de la última capa, una vez que se completa el F2L.",
         "pll": "Los algoritmos PLL (Permutación de la última capa) para resolver el cubo de Rubik con el método CFOP. Estos algoritmos se utilizan para el paso final del método CFOP, para permutar las aristas y esquinas de la última capa, una vez que todas las piezas están orientadas.",
         "coll": "Los algoritmos COLL (Orientación y permutación de las esquinas de la última capa) se utilizan para orientar y permutar las esquinas de la última capa al mismo tiempo, suponiendo que todas las aristas de la última capa ya estén orientadas.",
-        "ble": "Brooks' Last Edge (BLE) es un método utilizado para resolver la última arista del Cubo de Rubik de manera eficiente, a menudo como parte de técnicas de resolución avanzadas.",
+        "ble": "BLE (Brooks' Last Edge) inserta la última arista del F2L mientras orienta las esquinas de la última capa. Se usa cuando la esquina del último hueco ya está resuelta y las aristas de la última capa están orientadas, así que solo queda el PLL.",
         "vls": "Los algoritmos VLS (Valk Last Slot) resuelven el último par del F2L y el OLL al mismo tiempo, en los casos en los que tienes un par de F2L conectado. Esta selección de algoritmos sirve como introducción al conjunto completo de algoritmos VLS y tiene como objetivo resaltar los casos más útiles de conocer.",
         "cls": "Los algoritmos CLS (Corner Last Slot) resuelven la última esquina del F2L y orientan la última capa al mismo tiempo. Se utilizan cuando la arista del último par de F2L ya está resuelta y las aristas de la última capa están orientadas. Esta selección de algoritmos sirve como introducción al conjunto completo de algoritmos CLS y tiene como objetivo resaltar los casos más útiles de conocer.",
         "wv": "Los algoritmos WV (Winter Variation) se utilizan para orientar las esquinas de la última capa mientras insertas el último par de F2L, en el caso de que el par esté conectado y donde todas las aristas de la última capa ya estén orientadas.",
@@ -1032,7 +1032,7 @@
         "parity-5x5": "Estos algoritmos abordan los errores de paridad únicos que pueden ocurrir al resolver un cubo de Rubik de 5x5, que no ocurren en un cubo de 3x3 estándar. Son esenciales para completar la resolución después de reducir el 5x5 a un estado de 3x3.",
         "l2c-5x5": "Los algoritmos L2C (Last Two Centers) resuelven los dos últimos centros de un cubo 5x5 durante la reducción. Permiten terminar los centros sin romper los que ya construiste.",
         "l2e-5x5": "Los algoritmos L2E (Last Two Edges) resuelven los dos últimos grupos de aristas de un cubo 5x5 durante la reducción, cuando ya no se pueden emparejar con movimientos de slice simples.",
-        "l4e": "Últimas 4 aristas (Pyraminx): estos algoritmos se utilizan para resolver las últimas cuatro piezas de arista de un rompecabezas Pyraminx. El objetivo es posicionar y orientar estas piezas correctamente para completar el rompecabezas.",
+        "l4e": "L4E (Last 4 Edges, últimas 4 aristas) es un método para el Pyraminx. Después de resolver las puntas, tres centros y dos aristas, estos algoritmos resuelven las últimas cuatro aristas en un solo paso para terminar el puzzle.",
         "sq1-cs": "CS (Forma de cubo) - Estos algoritmos devuelven un Square-1 mezclado a la forma de cubo, el primer paso para resolver el rompecabezas. Los casos están agrupados según cuántos slices necesita la solución.",
         "sq1-co": "CO (Orientación de esquinas) - Una vez que el Square-1 vuelve a la forma de cubo, estos algoritmos orientan todas las esquinas para que las caras superior e inferior muestren el color correcto, sin romper la forma de cubo.",
         "sq1-eo": "EO (Orientación de aristas) - Estos algoritmos giran las aristas del Square-1 a su orientación correcta una vez que las esquinas están orientadas.",
@@ -1044,6 +1044,164 @@
         "megaminx-ep": "EP (Permutación de aristas) - Estos algoritmos llevan las aristas ya orientadas de la última capa del Megaminx a su posición correcta.",
         "megaminx-co": "CO (Orientación de esquinas) - Una vez resueltas las aristas, estos algoritmos giran las esquinas de la última capa del Megaminx para que el color superior quede hacia arriba.",
         "megaminx-cp": "CP (Permutación de esquinas) - Estos algoritmos colocan las esquinas de la última capa del Megaminx en su posición correcta para terminar el puzzle."
+      },
+      "guide": {
+        "heading": "Sobre {title}",
+        "what": "¿Qué es {title}?",
+        "when": "¿Cuándo se usa {title}?",
+        "count": "¿Cuántos algoritmos de {title} hay?",
+        "count-answer": "Nexus Timer incluye {count, plural, one {# algoritmo de {title}} other {# algoritmos de {title}}} para el {puzzle}, cada uno con una vista previa 3D interactiva para que veas cómo resuelve el caso.",
+        "learn": "¿Cómo se aprende {title}?"
+      },
+      "guides": {
+        "pbl": {
+          "when": "PBL es el último paso del método Ortega para el 2x2. Después de resolver una cara y orientar la capa opuesta, los colores de arriba y abajo son correctos, pero las piezas todavía pueden estar intercambiadas. Un algoritmo de PBL permuta entonces ambas capas a la vez y termina el cubo.",
+          "learn": "Empieza por los casos de una sola capa: el intercambio adyacente, que se resuelve con una J perm o una T perm, y el intercambio diagonal, que se resuelve con una Y perm. Después añade los casos en los que hay que corregir las dos capas. Busca faros en cada capa para distinguir los intercambios adyacentes de los diagonales antes de empezar a girar."
+        },
+        "ocll": {
+          "when": "OCLL es el segundo paso del método Ortega y de la mayoría de métodos para principiantes en el 2x2. Se usa cuando la primera cara está resuelta, para dejar la cara superior de un solo color antes de permutar las esquinas con PBL o con un algoritmo de permutación.",
+          "learn": "Aprende primero Sune y Antisune, porque los otros cinco casos se pueden resolver repitiéndolos. Después sustituye esas repeticiones por el algoritmo específico de cada caso. Con solo siete casos, OCLL es el set más fácil de aprender por completo y un buen paso antes de CLL."
+        },
+        "cll": {
+          "when": "CLL se usa en el método CLL para el 2x2: construyes una primera capa completa y terminas el cubo con un solo algoritmo. Sustituye los pasos separados de orientación y permutación por uno solo, por eso es la opción habitual para solvers intermedios y la base de EG-1 y EG-2.",
+          "learn": "Aprende CLL grupo por grupo de orientación: Sune, Antisune, Pi, U, T y L tienen seis casos cada uno, y H tiene cuatro. Reconoce primero la orientación y luego mira las pegatinas laterales para ver faros o colores opuestos. Saber OCLL ayuda, porque muchos casos comparten los mismos movimientos."
+        },
+        "eg-1": {
+          "when": "EG-1 se usa en el método EG cuando la primera cara del 2x2 está hecha pero sus piezas tienen un intercambio adyacente. En lugar de arreglar primero la capa inferior, un algoritmo resuelve la última capa y el intercambio de abajo a la vez, ahorrando un paso completo. El intercambio adyacente es el caso más frecuente en la capa inferior.",
+          "learn": "Aprende EG-1 después de CLL, porque usa los mismos grupos de orientación y el mismo reconocimiento. Solo tienes que añadir el intercambio adyacente de abajo a lo que ya sabes. Muchos solvers aprenden un grupo cada vez y practican comprobar durante la inspección si la capa inferior está resuelta, con intercambio adyacente o diagonal."
+        },
+        "eg-2": {
+          "when": "EG-2 cubre los casos de EG en los que la primera cara está hecha pero sus piezas tienen un intercambio diagonal. Junto con CLL y EG-1, te permite terminar cualquier 2x2 con la primera cara hecha usando un último algoritmo, sin importar cómo esté permutada la capa inferior.",
+          "learn": "El intercambio diagonal abajo aparece tan a menudo como una capa inferior resuelta y menos que el adyacente, así que muchos solvers aprenden EG-2 al final. El reconocimiento funciona igual que en CLL y EG-1, así que céntrate en memorizar cada algoritmo y en empezarlo rápido después de la inspección."
+        },
+        "f2l": {
+          "when": "F2L es el segundo paso de CFOP y el más largo. Después de la cruz, resuelves cuatro pares de esquina y arista, uno por hueco, hasta completar las dos primeras capas. Suele ocupar más de la mitad de la resolución, así que un F2L eficiente es la mayor mejora para la mayoría de cuberos.",
+          "learn": "La mayoría aprende F2L de forma intuitiva primero, entendiendo cómo emparejar una esquina con su arista e insertarlas sin romper la cruz. Usa estos algoritmos como referencia para los casos que resuelves de forma poco eficiente, practica despacio mientras buscas el siguiente par y aprende a resolver pares desde distintos ángulos para rotar menos."
+        },
+        "advanced-f2l": {
+          "when": "Los casos de F2L avanzado aparecen cuando un par está en una situación incómoda: piezas atrapadas en otro hueco, en la capa equivocada o mal orientadas. Conocer una solución eficiente evita sacar piezas con movimientos extra y mantiene tu F2L fluido.",
+          "learn": "Aprende F2L avanzado cuando los casos básicos ya te resulten cómodos. Empieza por los casos que más ves en tus propias resoluciones, como una esquina o una arista atrapada en un hueco, y aprende la solución eficiente de cada uno. Luego úsalos en resoluciones reales hasta que reconocer el caso sea automático."
+        },
+        "oll": {
+          "when": "OLL es el tercer paso de CFOP. Con las dos primeras capas resueltas, un algoritmo de OLL orienta todas las piezas de la última capa para que la cara superior quede de un solo color, y solo queda el PLL para terminar el cubo.",
+          "learn": "Empieza con el OLL en 2 pasos: tres algoritmos para orientar las aristas formando una cruz y después los siete casos de esquinas. Luego aprende los 57 casos completos, un grupo de formas cada vez. El reconocimiento se basa en el patrón de la cara superior y en las pegatinas laterales."
+        },
+        "pll": {
+          "when": "PLL es el último paso de CFOP. Con la cara superior ya de un solo color, un algoritmo de PLL coloca las piezas de la última capa en su posición correcta y resuelve el cubo. Hay 21 casos, con nombres de letras como T, J, U e Y.",
+          "learn": "Empieza con el PLL en 2 pasos: permuta las esquinas con una T perm o una Y perm y después las aristas con las permutaciones U, H y Z. Luego aprende el resto de casos uno a uno. El reconocimiento usa faros y bloques en dos caras, así que practica identificar cada caso sin girar el cubo."
+        },
+        "coll": {
+          "when": "COLL se usa después del F2L cuando todas las aristas de la última capa ya están orientadas, algo que se ve como una cruz arriba. En lugar de solo orientar las esquinas, un algoritmo las orienta y las permuta, y deja una permutación de aristas (U, H o Z perm) rápida y fácil de reconocer.",
+          "learn": "COLL se organiza con las mismas formas de esquinas que OCLL, así que aprende una forma cada vez, empezando por Sune y Antisune. Reconoce primero la forma y luego las pegatinas laterales de las esquinas. Es un paso habitual hacia el ZBLL completo y encaja bien con métodos que orientan las aristas pronto, como ZZ."
+        },
+        "ble": {
+          "when": "BLE es una técnica de último hueco. Úsala cuando la esquina del último hueco del F2L ya está resuelta, su arista está en la capa superior y las aristas de la última capa están orientadas. Un algoritmo inserta la arista y orienta las esquinas de la última capa, así que pasas directamente al PLL.",
+          "learn": "Los casos se agrupan por la forma de las esquinas de la última capa, como en OCLL. Aprende BLE cuando domines OLL y PLL, empezando por los grupos que más te salen. Muchos algoritmos son combinaciones cortas de movimientos R y U, así que céntrate en ejecutarlos con fluidez con la mano derecha."
+        },
+        "vls": {
+          "when": "VLS es un set de último hueco para cuando el último par del F2L ya está conectado en la capa superior y las aristas de la última capa están orientadas. Un algoritmo inserta el par y orienta toda la última capa, así que te saltas el OLL y terminas con el PLL.",
+          "learn": "El set completo de VLS tiene cientos de algoritmos, así que esta selección se centra en los casos más útiles. Apréndelo después de COLL o de Winter Variation, y comprueba antes en tus resoluciones con qué frecuencia terminas el F2L con un par conectado y las aristas orientadas. Agrupa los casos según la orientación de las esquinas de arriba."
+        },
+        "cls": {
+          "when": "CLS es un set de último hueco para cuando la arista del último par del F2L ya está resuelta, la esquina sigue fuera de su sitio y las aristas de la última capa están orientadas. Un algoritmo inserta la esquina y orienta la última capa, y solo queda el PLL.",
+          "learn": "Aprende CLS cuando llegues a menudo al último hueco con su arista ya resuelta, algo que pasa de forma natural si resuelves primero las aristas o usas técnicas como keyhole. Empieza por los casos con la esquina en la capa superior y después añade los casos en los que está girada dentro de su hueco."
+        },
+        "sv": {
+          "when": "Summer Variation se usa cuando el último par del F2L se puede insertar con R U' R' y las aristas de la última capa están orientadas. En lugar de insertar el par de forma normal, un algoritmo lo inserta y orienta las esquinas de la última capa, así que te saltas el OLL y pasas directamente al PLL.",
+          "learn": "Aprende SV después de Winter Variation, porque sigue la misma idea con una inserción distinta. Agrupa los casos según cómo se ven las esquinas de arriba antes de la inserción, y practica reconocerlos mientras preparas el último par para no hacer una pausa antes del algoritmo."
+        },
+        "wv": {
+          "when": "Winter Variation se usa cuando el último par del F2L está conectado y se puede insertar con R U R', y las aristas de la última capa ya están orientadas. Un algoritmo inserta el par y orienta las esquinas de la última capa a la vez, así que te saltas el OLL y pasas directamente al PLL.",
+          "learn": "WV tiene 27 casos y muchos son algoritmos cortos de R y U, lo que lo convierte en uno de los sets de último hueco más accesibles. Aprende a reconocer la orientación de las esquinas de arriba mientras el par espera a ser insertado, y agrupa los casos por el número de esquinas orientadas."
+        },
+        "zbll-s": {
+          "when": "ZBLL-S cubre los casos de ZBLL en los que las esquinas de la última capa forman un Sune, con una esquina orientada. Cuando las aristas quedan orientadas después del F2L, uno de estos algoritmos resuelve toda la última capa de una vez, sin pasar por OCLL ni PLL.",
+          "learn": "ZBLL-S suele ser el primer subset que se aprende, porque el Sune es una forma conocida y muchos de sus algoritmos son cortos. Divide los casos por permutación de esquinas, busca faros y bloques en los laterales y luego mira las aristas para elegir el caso exacto."
+        },
+        "zbll-as": {
+          "when": "ZBLL-AS cubre los casos de ZBLL en los que las esquinas de la última capa forman un Antisune, el espejo del Sune, con una esquina orientada. Con las aristas ya orientadas, un algoritmo resuelve toda la última capa.",
+          "learn": "Muchos solvers aprenden ZBLL-AS justo después de ZBLL-S porque son espejo uno del otro, así que el reconocimiento y muchos algoritmos resultan familiares. Organiza los casos primero por permutación de esquinas y después por la posición de las aristas."
+        },
+        "zbll-u": {
+          "when": "ZBLL-U cubre los casos de ZBLL en los que dos esquinas adyacentes de la última capa están orientadas y las otras dos miran hacia el mismo lado, formando una U. Con las aristas ya orientadas, un algoritmo resuelve toda la última capa.",
+          "learn": "Empieza el reconocimiento mirando el lado con las dos esquinas giradas, luego comprueba la permutación de esquinas y por último las aristas. Aprender antes los casos de COLL correspondientes ayuda, porque cada caso de COLL tiene una familia de casos de ZBLL a su alrededor."
+        },
+        "zbll-t": {
+          "when": "ZBLL-T cubre los casos de ZBLL en los que dos esquinas adyacentes de la última capa están orientadas y las otras dos miran hacia lados opuestos, formando una T. Con las aristas ya orientadas, un algoritmo resuelve toda la última capa.",
+          "learn": "Reconoce la forma de T por las dos pegatinas del color de arriba en lados opuestos, y después mira la permutación de esquinas y las aristas. Agrupar los casos según su caso de COLL hace que los 72 algoritmos sean mucho más fáciles de organizar y repasar."
+        },
+        "zbll-pi": {
+          "when": "ZBLL-Pi cubre los casos de ZBLL en los que ninguna esquina de la última capa está orientada: un lado muestra dos pegatinas del color de arriba y los lados contiguos una cada uno, formando una Pi. Con las aristas ya orientadas, un algoritmo resuelve toda la última capa.",
+          "learn": "Los casos Pi cuestan más de reconocer, así que muchos solvers los aprenden después de Sune, Antisune, U y T. Coloca el par de pegatinas del color de arriba a la izquierda, comprueba la permutación de esquinas y luego mira las aristas."
+        },
+        "zbll-l": {
+          "when": "ZBLL-L cubre los casos de ZBLL en los que dos esquinas diagonales de la última capa están orientadas, formando una L. Con las aristas ya orientadas, un algoritmo resuelve toda la última capa.",
+          "learn": "Reconoce la forma de L por las dos esquinas orientadas en diagonal, luego mira las pegatinas laterales para ver la permutación de esquinas y después las aristas. Aprender antes los casos L de COLL te da una buena referencia para cada grupo."
+        },
+        "zbll-h": {
+          "when": "ZBLL-H cubre los casos de ZBLL en los que ninguna esquina de la última capa está orientada y las pegatinas del color de arriba miran por parejas hacia dos lados opuestos, formando una H. Con las aristas ya orientadas, un algoritmo resuelve toda la última capa.",
+          "learn": "La forma H es simétrica, así que este subset tiene menos casos que los demás, 40 en lugar de 72. Eso lo convierte en un buen subset para completar pronto. Reconócelo por las parejas de pegatinas del color de arriba en lados opuestos y luego mira la permutación de esquinas y las aristas."
+        },
+        "parity-4x4": {
+          "when": "La paridad del 4x4 aparece en la fase de 3x3 de una resolución por reducción, porque el 4x4 no tiene centros fijos y puede llegar a estados imposibles en un 3x3. La paridad de OLL muestra una sola arista volteada, y la paridad de PLL muestra dos aristas intercambiadas u otros estados que ningún algoritmo de 3x3 puede resolver.",
+          "learn": "Aprende primero los algoritmos estándar de paridad de OLL y de PLL, porque cubren todos los casos. Cuando te salgan con fluidez, añade los casos combinados para corregir la paridad y la última capa en menos movimientos. Practica los movimientos dobles hasta que salgan sin recolocar las manos."
+        },
+        "parity-5x5": {
+          "when": "A diferencia del 4x4, el 5x5 tiene centros fijos, así que no tiene paridad de PLL. La paridad aparece al final del emparejamiento de aristas, cuando la última arista tiene sus dos piezas exteriores volteadas y hace falta un algoritmo especial para emparejarla.",
+          "learn": "Solo hay un caso que aprender, así que memorízalo y practícalo hasta poder ejecutarlo sin mirar. Aprende a detectarlo mientras emparejas las dos últimas aristas para aplicar el algoritmo enseguida y pasar a la fase de 3x3."
+        },
+        "l2c-5x5": {
+          "when": "L2C se usa durante la reducción de un 5x5 cuando ya hay cuatro centros resueltos. Los dos últimos centros se tienen que construir sin romper los demás, y ahí es donde ayudan estos algoritmos y los conmutadores.",
+          "learn": "Entiende cómo un conmutador mueve piezas de centro entre dos caras sin tocar el resto, y podrás resolver la mayoría de casos de forma intuitiva. Usa estos algoritmos para los casos que te llevan demasiados movimientos y practícalos hasta que tus dos últimos centros sean consistentes."
+        },
+        "l2e-5x5": {
+          "when": "L2E se usa al final del emparejamiento de aristas en un 5x5, cuando los dos últimos grupos de aristas no se pueden emparejar con los movimientos de capa habituales. Estos algoritmos emparejan las piezas restantes para que el cubo quede listo para la fase de 3x3.",
+          "learn": "Primero asegúrate de emparejar las primeras ocho aristas de forma eficiente. Después aprende a reconocer la posición de las piezas que quedan en las dos últimas aristas y practica el algoritmo de cada caso. Si la última arista queda volteada, usa el algoritmo de paridad del 5x5."
+        },
+        "l4e": {
+          "when": "L4E es un método popular para el Pyraminx. Después de resolver las puntas y un bloque de tres centros y dos aristas, un algoritmo resuelve las últimas cuatro aristas. El bloque lleva pocos movimientos, así que el método es rápido y eficiente.",
+          "learn": "Empieza resolviendo el primer bloque de forma intuitiva. Después aprende los algoritmos de L4E, empezando por los casos más comunes como Sune, Antisune y los casos de barras. Planificar el bloque durante la inspección hace que toda la resolución fluya."
+        },
+        "sq1-cs": {
+          "when": "La forma de cubo es el primer paso de cualquier resolución de Square-1. La mezcla cambia la forma de las capas, y estos algoritmos devuelven el puzzle a la forma de cubo, donde pueden empezar los pasos de orientación y permutación.",
+          "learn": "Los principiantes llegan a la forma de cubo en unos pocos pasos intuitivos, pasando siempre por las mismas formas intermedias. Los solvers más rápidos aprenden soluciones directas desde cada forma, agrupadas por el número de slices que necesitan. Empieza por las formas que más ves y céntrate en contar bien los slices."
+        },
+        "sq1-co": {
+          "when": "CO se usa cuando el Square-1 ya está en forma de cubo. Estos algoritmos orientan las esquinas para que cada una muestre el color de arriba o de abajo en su capa correcta, sin romper la forma de cubo.",
+          "learn": "Con tan pocos casos, CO se aprende rápido. Reconoce cuántas esquinas de cada color hay en cada capa y aplica el algoritmo correspondiente. Practicar el slice ayuda, porque todos los algoritmos dependen de slices limpios."
+        },
+        "sq1-eo": {
+          "when": "EO viene después de orientar las esquinas en el Square-1. Estos algoritmos mueven las aristas para que cada capa tenga las aristas de su color, lo que prepara el puzzle para los pasos de permutación.",
+          "learn": "Cuenta las aristas que están en la capa equivocada y elige el caso correspondiente. Es habitual aprender CO y EO juntos, porque los dos pasos usan movimientos parecidos y algoritmos cortos."
+        },
+        "sq1-cp": {
+          "when": "CP se usa cuando todas las piezas del Square-1 están orientadas. Estos algoritmos colocan las esquinas en su posición correcta en las dos capas, y solo quedan por permutar las aristas.",
+          "learn": "Reconoce si cada capa tiene un intercambio de esquinas adyacente, diagonal o ninguno. Aprende los algoritmos de las combinaciones que más ves y fíjate en la alineación antes de cada slice para que el algoritmo funcione siempre."
+        },
+        "sq1-ep": {
+          "when": "EP es el último paso normal del Square-1. Con las esquinas ya permutadas, estos algoritmos colocan las aristas en su posición correcta y resuelven el puzzle, salvo que aparezca un caso de paridad.",
+          "learn": "Después de la forma de cubo, EP es el paso del Square-1 con más casos, así que apréndelo poco a poco, empezando por los casos en los que solo hay que arreglar una capa. Reconoce las aristas de cada capa por separado y busca patrones que ya conoces del 3x3."
+        },
+        "sq1-parity": {
+          "when": "La paridad del Square-1 aparece cuando las aristas o las esquinas del puzzle no se pueden resolver con los algoritmos de permutación normales. Sale en aproximadamente la mitad de las resoluciones, así que todo solver de Square-1 necesita una forma de arreglarla.",
+          "learn": "Empieza aprendiendo un algoritmo que arregle la paridad en cualquier caso y después añade los algoritmos de paridad específicos de las situaciones más comunes, para resolver la paridad y la permutación a la vez. Detectar la paridad pronto durante el EP es lo que más tiempo ahorra."
+        },
+        "megaminx-eo": {
+          "when": "EO es el primer paso de la última capa en cuatro pasos del Megaminx. Con las primeras capas resueltas, estos algoritmos voltean las aristas de la última capa para que el color de arriba forme una estrella en la cara superior.",
+          "learn": "Hay muy pocos casos y funcionan como el paso de orientación de aristas del 3x3. Apréndelos primero y fíjate en el ángulo de cada caso, porque el Megaminx tiene cinco lados en lugar de cuatro."
+        },
+        "megaminx-ep": {
+          "when": "EP es el segundo paso de la última capa en cuatro pasos del Megaminx. Con las aristas orientadas, estos algoritmos las colocan en su posición correcta antes de trabajar con las esquinas.",
+          "learn": "Reconoce qué aristas ya están en su sitio y cómo rotan las demás, y aplica el algoritmo correspondiente. Con tan pocos casos, EP se aprende rápido y combina bien con EO."
+        },
+        "megaminx-co": {
+          "when": "CO es el tercer paso de la última capa en cuatro pasos del Megaminx. Con las aristas resueltas, estos algoritmos giran las esquinas para que toda la cara superior muestre el color de arriba.",
+          "learn": "Aprende los casos en grupos según cuántas esquinas ya están orientadas. Muchos se basan en movimientos tipo Sune, lo que los hace más fáciles de recordar y ejecutar."
+        },
+        "megaminx-cp": {
+          "when": "CP es el último paso de la última capa en cuatro pasos del Megaminx. Con todo lo demás resuelto, estos algoritmos colocan las esquinas en su posición correcta y terminan el puzzle.",
+          "learn": "Reconoce cómo rotan las esquinas comparando sus colores laterales con los centros. Empieza por los casos que solo mueven tres esquinas y después añade el resto."
+        }
       }
     },
     "TrainerPage": {

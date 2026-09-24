@@ -1008,16 +1008,16 @@
       },
       "descriptions": {
         "pbl": "Các thuật toán này được dùng để hoán vị đồng thời cả tầng trên và tầng dưới của khối 2x2, giúp giải puzzle một cách hiệu quả.",
-        "ocll": "COLL (Định hướng góc tầng cuối) - Bước này tập trung vào việc định hướng tất cả các góc của tầng cuối để chuẩn bị cho các bước giải cuối cùng.",
-        "cll": "CLL là một tập con của OLL cho khối 2x2x2, giải tầng cuối bằng một thuật toán sau khi định hướng tầng đầu tiên.",
+        "ocll": "OCLL (định hướng góc tầng cuối) định hướng bốn góc của tầng cuối trên khối 2x2 để mặt trên chỉ còn một màu. Có bảy trường hợp: Sune, Antisune, H, Pi, U, T và L.",
+        "cll": "CLL (góc tầng cuối) giải toàn bộ tầng cuối của khối 2x2 bằng một công thức sau khi tầng đầu tiên đã hoàn chỉnh, đồng thời định hướng và hoán vị các góc.",
         "eg-1": "EG-1 là một bộ thuật toán dùng để giải tầng cuối của khối 2x2 sau khi hoàn thành tầng đầu, cụ thể khi có hoán đổi kề nhau ở tầng dưới.",
         "eg-2": "EG-2 là một bộ thuật toán dùng để giải tầng cuối của khối 2x2 sau khi hoàn thành tầng đầu, cụ thể khi có hoán đổi chéo ở tầng dưới.",
-        "f2l": "Các thuật toán F2L (First Two Layers) để giải Rubik theo phương pháp CFOP. Các thuật toán này giải hai tầng đầu tiên bằng cách ghép cặp các viên góc và viên cạnh cùng lúc, sau khi đã hoàn thành tầng chữ thập (cross).",
+        "f2l": "Các công thức F2L (hai tầng đầu) để giải Rubik bằng phương pháp CFOP. Sau khi hoàn thành dấu cộng, mỗi góc được ghép với cạnh tương ứng rồi đưa vào khe của nó, giải hai tầng đầu theo từng cặp.",
         "advanced-f2l": "Các thuật toán F2L nâng cao cho những trường hợp ghép cặp góc-cạnh khó hơn trong phương pháp CFOP: các viên bị kẹt ở ô cuối, các viên bị kẹt sai tầng, hoặc cả hai viên bị kẹt cùng lúc. Chúng vượt ra ngoài F2L trực quan để xử lý những trường hợp thường tốn nhiều bước di chuyển nhất.",
         "oll": "Các thuật toán OLL (Định hướng tầng cuối) để giải khối Rubik bằng phương pháp CFOP. Chúng được dùng để định hướng tất cả các mảnh ở tầng cuối, sau khi hoàn thành F2L.",
         "pll": "Các thuật toán PLL (Hoán vị tầng cuối) để giải khối Rubik bằng phương pháp CFOP. Chúng được dùng cho bước cuối của phương pháp CFOP, để hoán vị các cạnh và góc của tầng cuối, sau khi tất cả các mảnh đã được định hướng.",
         "coll": "Các thuật toán COLL (Góc và định hướng tầng cuối) được dùng để định hướng và hoán vị các góc của tầng cuối cùng lúc, với giả định rằng tất cả các cạnh tầng cuối đã được định hướng.",
-        "ble": "Brooks' Last Edge (BLE) là phương pháp dùng để giải cạnh cuối của khối Rubik một cách hiệu quả, thường là một phần của các kỹ thuật giải nâng cao.",
+        "ble": "BLE (Brooks' Last Edge) đưa cạnh F2L cuối cùng vào đồng thời định hướng các góc tầng cuối. Dùng khi góc của khe cuối đã được giải và các cạnh tầng cuối đã đúng hướng, nên chỉ còn lại PLL.",
         "vls": "Các thuật toán VLS (Valk Last Slot) giải slot F2L cuối và OLL cùng lúc, trong các trường hợp bạn có cặp F2L đã ghép. Lựa chọn thuật toán này là phần giới thiệu cho bộ thuật toán VLS đầy đủ, nhằm làm nổi bật những trường hợp hữu ích nhất nên biết.",
         "cls": "Các thuật toán CLS (Corner Last Slot) giải góc F2L cuối và định hướng tầng cuối của bạn cùng lúc. Chúng được dùng khi cạnh của cặp F2L cuối đã được giải, và các cạnh tầng cuối đã được định hướng. Lựa chọn này là phần giới thiệu cho bộ thuật toán CLS đầy đủ, nhằm làm nổi bật những trường hợp hữu ích nhất nên biết.",
         "wv": "Các thuật toán WV (Winter Variation) được dùng để định hướng các góc của tầng cuối trong khi bạn chèn cặp F2L cuối, trong trường hợp cặp đã được ghép và tất cả các cạnh tầng cuối đã được định hướng.",
@@ -1032,7 +1032,7 @@
         "parity-5x5": "Các thuật toán này xử lý các lỗi parity đặc thù có thể xảy ra khi giải khối Rubik 5x5, vốn không xuất hiện trên khối 3x3 thông thường. Chúng rất cần thiết để hoàn tất việc giải sau khi đưa khối 5x5 về trạng thái 3x3.",
         "l2c-5x5": "Các thuật toán L2C (Last Two Centers) giải hai tâm cuối cùng của khối 5x5 trong bước reduction mà không phá các tâm đã ghép.",
         "l2e-5x5": "Các thuật toán L2E (Last Two Edges) xử lý hai nhóm cạnh cuối cùng của khối 5x5 trong bước reduction, khi chúng không thể ghép bằng các nước slice đơn giản.",
-        "l4e": "4 cạnh cuối (Pyraminx) - Các thuật toán này được dùng để giải bốn mảnh cạnh cuối của puzzle Pyraminx. Mục tiêu là đặt vị trí và định hướng các mảnh này chính xác để hoàn thành puzzle.",
+        "l4e": "L4E (Last 4 Edges, bốn cạnh cuối) là một phương pháp cho Pyraminx. Sau khi giải các đỉnh, ba tâm và hai cạnh, các công thức này giải bốn cạnh cuối trong một bước để hoàn thành khối.",
         "sq1-cs": "CS (Cube Shape) - Các thuật toán này đưa một Square-1 đã xáo trộn trở về hình khối lập phương, bước đầu tiên khi giải. Các trường hợp được nhóm theo số lát cắt mà lời giải cần.",
         "sq1-co": "CO (Corner Orientation) - Sau khi Square-1 trở lại hình khối lập phương, các thuật toán này định hướng toàn bộ góc để mặt trên và mặt dưới đúng màu mà không phá hình khối.",
         "sq1-eo": "EO (Edge Orientation) - Các thuật toán này lật các cạnh của Square-1 về đúng hướng sau khi các góc đã được định hướng.",
@@ -1044,6 +1044,164 @@
         "megaminx-ep": "EP (Edge Permutation) - Các công thức này đưa các viên cạnh đã định hướng của tầng cuối trên Megaminx về đúng vị trí.",
         "megaminx-co": "CO (Corner Orientation) - Sau khi các viên cạnh đã xong, các công thức này xoay các viên góc của tầng cuối trên Megaminx để màu mặt trên hướng lên.",
         "megaminx-cp": "CP (Corner Permutation) - Các công thức này đưa các viên góc của tầng cuối trên Megaminx về đúng vị trí để hoàn thành khối."
+      },
+      "guide": {
+        "heading": "Giới thiệu về {title}",
+        "what": "{title} là gì?",
+        "when": "Khi nào dùng {title}?",
+        "count": "{title} có bao nhiêu công thức?",
+        "count-answer": "Nexus Timer có {count} công thức {title} cho khối {puzzle}, mỗi công thức đều có bản xem trước 3D tương tác để bạn thấy cách nó giải trường hợp đó.",
+        "learn": "Học {title} như thế nào?"
+      },
+      "guides": {
+        "pbl": {
+          "when": "PBL là bước cuối cùng của phương pháp Ortega cho khối 2x2. Sau khi giải một mặt và định hướng tầng đối diện, màu trên và dưới đã đúng nhưng các mảnh vẫn có thể bị đổi chỗ. Khi đó một công thức PBL hoán vị cả hai tầng cùng lúc và hoàn thành khối.",
+          "learn": "Hãy bắt đầu với các trường hợp chỉ ở một tầng: đổi chỗ kề nhau, giải bằng J perm hoặc T perm, và đổi chỗ chéo, giải bằng Y perm. Sau đó thêm các trường hợp cần sửa cả hai tầng. Tìm đèn pha ở mỗi tầng để phân biệt đổi chỗ kề nhau với đổi chỗ chéo trước khi bắt đầu xoay."
+        },
+        "ocll": {
+          "when": "OCLL là bước thứ hai của phương pháp Ortega và của hầu hết các cách giải 2x2 cho người mới. Bạn dùng nó sau khi đã giải xong mặt đầu tiên, để mặt trên chỉ còn một màu trước khi hoán vị các góc bằng PBL hoặc một công thức hoán vị.",
+          "learn": "Hãy học Sune và Antisune trước, vì năm trường hợp còn lại có thể giải bằng cách lặp lại chúng. Sau đó thay các lần lặp đó bằng công thức riêng cho từng trường hợp. Chỉ có bảy trường hợp, nên OCLL là bộ dễ học trọn vẹn nhất và là bước đệm tốt trước CLL."
+        },
+        "cll": {
+          "when": "CLL được dùng trong phương pháp CLL cho khối 2x2: xây một tầng đầu hoàn chỉnh rồi hoàn thành khối bằng một công thức duy nhất. Nó gộp hai bước định hướng và hoán vị thành một, nên là lựa chọn tiêu chuẩn cho người chơi trung cấp và là nền tảng cho EG-1 và EG-2.",
+          "learn": "Học CLL theo từng nhóm định hướng: Sune, Antisune, Pi, U, T và L mỗi nhóm có sáu trường hợp, còn H có bốn. Nhận diện định hướng trước, sau đó đọc các nhãn bên hông để tìm đèn pha hoặc màu đối nhau. Biết OCLL sẽ giúp ích, vì nhiều trường hợp dùng chung các bước xoay."
+        },
+        "eg-1": {
+          "when": "EG-1 được dùng trong phương pháp EG khi mặt đầu tiên của khối 2x2 đã xong nhưng các mảnh bị đổi chỗ kề nhau. Thay vì sửa tầng dưới trước, một công thức giải tầng cuối và sửa chỗ đổi ở dưới cùng lúc, tiết kiệm trọn một bước. Đổi chỗ kề nhau là trường hợp tầng dưới xuất hiện nhiều nhất.",
+          "learn": "Hãy học EG-1 sau CLL, vì nó dùng cùng các nhóm định hướng và cách nhận diện. Bạn chỉ cần thêm phần đổi chỗ kề nhau ở dưới vào những gì đã biết. Nhiều người học từng nhóm một và luyện kiểm tra trong lúc quan sát xem tầng dưới đã xong, bị đổi chỗ kề nhau hay đổi chỗ chéo."
+        },
+        "eg-2": {
+          "when": "EG-2 bao gồm các trường hợp EG khi mặt đầu tiên đã xong nhưng các mảnh bị đổi chỗ chéo. Cùng với CLL và EG-1, nó cho phép bạn hoàn thành bất kỳ khối 2x2 nào đã xong mặt đầu tiên bằng một công thức cuối, bất kể tầng dưới được hoán vị thế nào.",
+          "learn": "Đổi chỗ chéo ở dưới xuất hiện thường xuyên ngang với tầng dưới đã đúng và ít hơn đổi chỗ kề nhau, nên nhiều người học EG-2 sau cùng. Cách nhận diện giống CLL và EG-1, vì vậy hãy tập trung ghi nhớ từng công thức và bắt đầu thật nhanh sau khi quan sát."
+        },
+        "f2l": {
+          "when": "F2L là bước thứ hai và dài nhất của CFOP. Sau dấu cộng, bạn giải bốn cặp góc và cạnh, mỗi khe một cặp, cho đến khi hoàn thành hai tầng đầu. Bước này thường chiếm hơn một nửa thời gian giải, nên F2L hiệu quả là cải thiện lớn nhất với hầu hết người chơi.",
+          "learn": "Hầu hết người chơi học F2L bằng trực giác trước, hiểu cách ghép một góc với cạnh của nó và đưa chúng vào mà không phá dấu cộng. Hãy dùng các công thức này làm tài liệu tham khảo cho những trường hợp bạn giải chưa hiệu quả, luyện chậm trong khi tìm cặp tiếp theo, và học cách giải các cặp từ nhiều góc độ để ít phải xoay khối hơn."
+        },
+        "advanced-f2l": {
+          "when": "Các trường hợp F2L nâng cao xuất hiện khi một cặp ở vị trí khó: mảnh bị kẹt trong khe khác, nằm ở tầng sai hoặc quay sai hướng. Biết một cách giải hiệu quả giúp bạn không phải lấy mảnh ra bằng các bước thừa và giữ cho F2L trôi chảy.",
+          "learn": "Hãy học F2L nâng cao khi các trường hợp cơ bản đã quen tay. Bắt đầu với những trường hợp bạn gặp nhiều nhất trong các lần giải của mình, như góc hoặc cạnh bị kẹt trong khe, và học cách giải hiệu quả cho từng trường hợp. Sau đó dùng chúng trong các lần giải thật cho đến khi việc nhận diện trở thành phản xạ."
+        },
+        "oll": {
+          "when": "OLL là bước thứ ba của CFOP. Khi hai tầng đầu đã xong, một công thức OLL định hướng mọi mảnh của tầng cuối để mặt trên chỉ còn một màu, và chỉ còn PLL để hoàn thành khối.",
+          "learn": "Hãy bắt đầu với OLL 2 bước: ba công thức để định hướng các cạnh thành dấu cộng, sau đó là bảy trường hợp góc. Tiếp theo, học đủ 57 trường hợp theo từng nhóm hình dạng. Việc nhận diện dựa trên họa tiết của mặt trên và các nhãn bên hông."
+        },
+        "pll": {
+          "when": "PLL là bước cuối cùng của CFOP. Khi mặt trên đã một màu, một công thức PLL đưa các mảnh tầng cuối về đúng vị trí và giải xong khối. Có 21 trường hợp, được đặt tên bằng các chữ cái như T, J, U và Y.",
+          "learn": "Hãy bắt đầu với PLL 2 bước: hoán vị các góc bằng T perm hoặc Y perm, rồi đến các cạnh bằng U, H và Z perm. Sau đó học các trường hợp còn lại từng cái một. Việc nhận diện dựa vào đèn pha và các khối màu ở hai mặt bên, vì vậy hãy luyện nhận ra từng trường hợp mà không cần xoay khối."
+        },
+        "coll": {
+          "when": "COLL được dùng sau F2L khi mọi cạnh tầng cuối đã đúng hướng, có thể nhận ra qua dấu cộng ở mặt trên. Thay vì chỉ định hướng các góc, một công thức vừa định hướng vừa hoán vị chúng, chỉ để lại một bước hoán vị cạnh (U, H hoặc Z perm) nhanh và dễ nhận diện.",
+          "learn": "COLL được sắp xếp theo cùng các hình dạng góc như OCLL, vì vậy hãy học từng hình một, bắt đầu từ Sune và Antisune. Nhận diện hình dạng trước, rồi đến các nhãn bên hông của góc. Đây là bước phổ biến để tiến tới ZBLL đầy đủ và rất hợp với các phương pháp định hướng cạnh sớm như ZZ."
+        },
+        "ble": {
+          "when": "BLE là một kỹ thuật khe cuối. Hãy dùng nó khi góc của khe F2L cuối đã được giải, cạnh của nó nằm ở tầng trên và các cạnh tầng cuối đã đúng hướng. Một công thức đưa cạnh vào và định hướng các góc tầng cuối, nên bạn chuyển thẳng sang PLL.",
+          "learn": "Các trường hợp được nhóm theo hình dạng của các góc tầng cuối, giống như OCLL. Hãy học BLE khi đã thành thạo OLL và PLL, bắt đầu từ những nhóm bạn gặp thường xuyên nhất. Nhiều công thức là các tổ hợp ngắn của R và U, vì vậy hãy tập trung thực hiện mượt mà bằng tay phải."
+        },
+        "vls": {
+          "when": "VLS là bộ công thức khe cuối dùng khi cặp F2L cuối đã được ghép sẵn ở tầng trên và các cạnh tầng cuối đã đúng hướng. Một công thức đưa cặp vào và định hướng toàn bộ tầng cuối, nên bạn bỏ qua OLL và kết thúc bằng PLL.",
+          "learn": "Bộ VLS đầy đủ có hàng trăm công thức, vì vậy phần tuyển chọn này tập trung vào các trường hợp hữu ích nhất. Hãy học sau COLL hoặc Winter Variation, và trước tiên hãy xem trong các lần giải của mình, bạn thường kết thúc F2L với một cặp đã ghép và các cạnh đúng hướng đến mức nào. Nhóm các trường hợp theo định hướng của các góc phía trên."
+        },
+        "cls": {
+          "when": "CLS là bộ công thức khe cuối dùng khi cạnh của cặp F2L cuối đã được giải, góc vẫn chưa vào đúng chỗ và các cạnh tầng cuối đã đúng hướng. Một công thức đưa góc vào và định hướng tầng cuối, chỉ còn lại PLL.",
+          "learn": "Hãy học CLS khi bạn thường xuyên đến khe cuối với cạnh đã được giải. Điều này tự nhiên xảy ra nếu bạn giải cạnh trước hoặc dùng kỹ thuật như keyhole. Bắt đầu với các trường hợp góc nằm ở tầng trên, rồi thêm các trường hợp góc bị xoắn trong khe của nó."
+        },
+        "sv": {
+          "when": "Summer Variation được dùng khi cặp F2L cuối có thể đưa vào bằng R U' R' và các cạnh tầng cuối đã đúng hướng. Thay vì đưa cặp vào như bình thường, một công thức vừa đưa vào vừa định hướng các góc tầng cuối, nên bạn bỏ qua OLL và đi thẳng tới PLL.",
+          "learn": "Hãy học SV sau Winter Variation, vì nó theo cùng ý tưởng nhưng với cách đưa vào khác. Nhóm các trường hợp theo hình dạng của các góc phía trên trước khi đưa cặp vào, và luyện nhận diện chúng ngay khi chuẩn bị cặp cuối để không bị ngập ngừng trước công thức."
+        },
+        "wv": {
+          "when": "Winter Variation được dùng khi cặp F2L cuối đã được ghép và có thể đưa vào bằng R U R', đồng thời các cạnh tầng cuối đã đúng hướng. Một công thức vừa đưa cặp vào vừa định hướng các góc tầng cuối, nên bạn bỏ qua OLL và đi thẳng tới PLL.",
+          "learn": "WV có 27 trường hợp và nhiều trong số đó là công thức R và U ngắn, nên đây là một trong những bộ khe cuối dễ tiếp cận nhất. Hãy học cách nhận diện định hướng các góc phía trên trong lúc cặp đang chờ đưa vào, và nhóm các trường hợp theo số góc đã đúng hướng."
+        },
+        "zbll-s": {
+          "when": "ZBLL-S bao gồm các trường hợp ZBLL khi các góc tầng cuối tạo thành hình Sune, với một góc đúng hướng. Khi các cạnh đã đúng hướng sau F2L, một trong các công thức này giải toàn bộ tầng cuối cùng lúc, bỏ qua cả OCLL và PLL.",
+          "learn": "ZBLL-S thường là nhóm con được học đầu tiên, vì Sune là hình dạng quen thuộc và nhiều công thức của nó ngắn. Chia các trường hợp theo hoán vị góc, tìm đèn pha và khối màu ở hai bên, rồi đọc các cạnh để xác định chính xác trường hợp."
+        },
+        "zbll-as": {
+          "when": "ZBLL-AS bao gồm các trường hợp ZBLL khi các góc tầng cuối tạo thành hình Antisune, ảnh gương của Sune, với một góc đúng hướng. Khi các cạnh đã đúng hướng, một công thức giải toàn bộ tầng cuối.",
+          "learn": "Nhiều người học ZBLL-AS ngay sau ZBLL-S vì hai nhóm là ảnh gương của nhau, nên cách nhận diện và nhiều công thức sẽ quen thuộc. Sắp xếp các trường hợp theo hoán vị góc trước, rồi theo vị trí các cạnh."
+        },
+        "zbll-u": {
+          "when": "ZBLL-U bao gồm các trường hợp ZBLL khi hai góc kề nhau ở tầng cuối đã đúng hướng và hai góc còn lại cùng hướng về một phía, tạo thành hình U. Khi các cạnh đã đúng hướng, một công thức giải toàn bộ tầng cuối.",
+          "learn": "Bắt đầu nhận diện từ phía có hai góc bị xoắn, sau đó kiểm tra hoán vị góc và cuối cùng là các cạnh. Học trước các trường hợp COLL tương ứng sẽ giúp ích, vì mỗi trường hợp COLL có một họ các trường hợp ZBLL xung quanh."
+        },
+        "zbll-t": {
+          "when": "ZBLL-T bao gồm các trường hợp ZBLL khi hai góc kề nhau ở tầng cuối đã đúng hướng và hai góc còn lại hướng về hai phía đối diện, tạo thành hình T. Khi các cạnh đã đúng hướng, một công thức giải toàn bộ tầng cuối.",
+          "learn": "Nhận ra hình T qua hai nhãn màu mặt trên ở hai phía đối diện, sau đó đọc hoán vị góc và các cạnh. Nhóm các trường hợp theo trường hợp COLL của chúng giúp 72 công thức dễ sắp xếp và ôn tập hơn nhiều."
+        },
+        "zbll-pi": {
+          "when": "ZBLL-Pi bao gồm các trường hợp ZBLL khi không có góc nào ở tầng cuối đúng hướng: một mặt bên có hai nhãn màu mặt trên và hai mặt bên cạnh nó mỗi mặt có một nhãn, tạo thành hình Pi. Khi các cạnh đã đúng hướng, một công thức giải toàn bộ tầng cuối.",
+          "learn": "Các trường hợp Pi cần luyện nhiều hơn để nhận diện, nên nhiều người học chúng sau Sune, Antisune, U và T. Cầm khối sao cho cặp nhãn màu mặt trên ở bên trái, kiểm tra hoán vị góc rồi đọc các cạnh."
+        },
+        "zbll-l": {
+          "when": "ZBLL-L bao gồm các trường hợp ZBLL khi hai góc chéo nhau ở tầng cuối đã đúng hướng, tạo thành hình L. Khi các cạnh đã đúng hướng, một công thức giải toàn bộ tầng cuối.",
+          "learn": "Nhận ra hình L qua hai góc đúng hướng nằm chéo nhau, sau đó nhìn các nhãn bên hông để xác định hoán vị góc và đọc các cạnh. Học trước các trường hợp L của COLL giúp bạn có điểm tựa vững chắc cho từng nhóm."
+        },
+        "zbll-h": {
+          "when": "ZBLL-H bao gồm các trường hợp ZBLL khi không có góc nào ở tầng cuối đúng hướng và các nhãn màu mặt trên hướng theo từng cặp về hai phía đối diện, tạo thành hình H. Khi các cạnh đã đúng hướng, một công thức giải toàn bộ tầng cuối.",
+          "learn": "Hình H đối xứng, nên nhóm con này có ít trường hợp hơn các nhóm khác, 40 thay vì 72. Vì vậy đây là nhóm con nên hoàn thành sớm. Nhận ra nó qua các cặp nhãn màu mặt trên ở hai phía đối diện, rồi đọc hoán vị góc và các cạnh."
+        },
+        "parity-4x4": {
+          "when": "Parity trên 4x4 xuất hiện ở giai đoạn 3x3 của cách giải rút gọn, vì 4x4 không có tâm cố định và có thể rơi vào những trạng thái không thể có trên 3x3. OLL parity trông như một cạnh bị lật, còn PLL parity trông như hai cạnh bị đổi chỗ hoặc các trạng thái khác mà không công thức 3x3 nào giải được.",
+          "learn": "Hãy học các công thức OLL parity và PLL parity tiêu chuẩn trước, vì chúng xử lý được mọi trường hợp. Khi đã thực hiện trôi chảy, hãy thêm các trường hợp kết hợp để sửa parity và tầng cuối với ít bước hơn. Luyện các bước xoay rộng đến khi chúng liền mạch mà không cần đổi tay cầm."
+        },
+        "parity-5x5": {
+          "when": "Khác với 4x4, khối 5x5 có tâm cố định nên không có PLL parity. Parity xuất hiện ở cuối giai đoạn ghép cạnh, khi cạnh cuối có hai mảnh bên ngoài bị lật và cần một công thức đặc biệt để ghép.",
+          "learn": "Chỉ có một trường hợp cần học, vì vậy hãy ghi nhớ và luyện đến khi có thể thực hiện mà không cần nhìn. Học cách phát hiện nó trong lúc ghép hai cạnh cuối để áp dụng công thức ngay và chuyển sang giai đoạn 3x3."
+        },
+        "l2c-5x5": {
+          "when": "L2C được dùng trong quá trình rút gọn khối 5x5 sau khi đã giải xong bốn tâm. Hai tâm cuối phải được xây mà không phá các tâm khác, và đó là lúc các công thức này cùng commutator phát huy tác dụng.",
+          "learn": "Khi hiểu cách một commutator di chuyển các mảnh tâm giữa hai mặt mà không ảnh hưởng phần còn lại, bạn có thể giải hầu hết các trường hợp bằng trực giác. Hãy dùng các công thức này cho những trường hợp tốn quá nhiều bước, và luyện đến khi hai tâm cuối của bạn ổn định."
+        },
+        "l2e-5x5": {
+          "when": "L2E được dùng ở cuối giai đoạn ghép cạnh trên khối 5x5, khi hai nhóm cạnh cuối không thể ghép bằng các bước xoay lát thông thường. Các công thức này ghép các mảnh cạnh còn lại để khối sẵn sàng cho giai đoạn 3x3.",
+          "learn": "Trước tiên hãy đảm bảo bạn ghép tám cạnh đầu một cách hiệu quả. Sau đó học cách nhận diện vị trí các mảnh còn lại trong hai cạnh cuối và luyện công thức cho từng trường hợp. Nếu cạnh cuối bị lật, hãy dùng công thức parity của 5x5."
+        },
+        "l4e": {
+          "when": "L4E là một phương pháp Pyraminx phổ biến. Sau khi giải các đỉnh và một khối gồm ba tâm và hai cạnh, một công thức giải bốn cạnh cuối. Khối này chỉ tốn ít bước, nên phương pháp nhanh và hiệu quả.",
+          "learn": "Hãy bắt đầu bằng cách giải khối đầu tiên theo trực giác. Sau đó học các công thức L4E, bắt đầu từ những trường hợp phổ biến nhất như Sune, Antisune và các trường hợp thanh. Lên kế hoạch cho khối trong lúc quan sát giúp cả lần giải trôi chảy hơn."
+        },
+        "sq1-cs": {
+          "when": "Đưa về hình lập phương là bước đầu tiên của mọi lần giải Square-1. Khi xáo trộn, hình dạng các tầng bị thay đổi, và các công thức này đưa khối trở lại hình lập phương để bắt đầu các bước định hướng và hoán vị.",
+          "learn": "Người mới đưa khối về hình lập phương bằng vài bước trực giác, lần nào cũng đi qua cùng các hình dạng trung gian. Người chơi nhanh hơn học cách giải trực tiếp từ mỗi hình dạng, được nhóm theo số lần slice. Hãy bắt đầu với các hình dạng bạn gặp nhiều nhất và tập trung đếm đúng số slice."
+        },
+        "sq1-co": {
+          "when": "CO được dùng khi Square-1 đã trở lại hình lập phương. Các công thức này định hướng các góc để mỗi góc hiện màu mặt trên hoặc mặt dưới ở đúng tầng, mà không phá hình lập phương.",
+          "learn": "Với ít trường hợp, CO học rất nhanh. Nhận diện số góc mỗi màu ở mỗi tầng và thực hiện công thức tương ứng. Luyện slice sẽ giúp ích, vì mọi công thức đều dựa vào những lần slice gọn gàng."
+        },
+        "sq1-eo": {
+          "when": "EO diễn ra sau khi các góc của Square-1 đã đúng hướng. Các công thức này di chuyển các cạnh để mỗi tầng chứa các cạnh cùng màu với nó, chuẩn bị cho các bước hoán vị.",
+          "learn": "Đếm số cạnh đang nằm sai tầng rồi chọn trường hợp tương ứng. CO và EO thường được học cùng nhau, vì cả hai bước dùng các bước xoay tương tự và công thức ngắn."
+        },
+        "sq1-cp": {
+          "when": "CP được dùng khi mọi mảnh của Square-1 đã đúng hướng. Các công thức này đưa các góc về đúng vị trí trên cả hai tầng, chỉ còn lại việc hoán vị các cạnh.",
+          "learn": "Nhận diện xem mỗi tầng có đổi chỗ góc kề nhau, đổi chỗ chéo hay không có. Học công thức cho những tổ hợp bạn gặp nhiều nhất, và chú ý căn chỉnh trước mỗi lần slice để công thức luôn đúng."
+        },
+        "sq1-ep": {
+          "when": "EP là bước thông thường cuối cùng của Square-1. Khi các góc đã được hoán vị, các công thức này đưa các cạnh về đúng vị trí và giải xong khối, trừ khi xuất hiện trường hợp parity.",
+          "learn": "Sau bước hình lập phương, EP là bước có nhiều trường hợp nhất của Square-1, vì vậy hãy học dần dần, bắt đầu từ những trường hợp chỉ cần sửa một tầng. Nhận diện cạnh của từng tầng riêng biệt và tìm những mẫu bạn đã quen từ 3x3."
+        },
+        "sq1-parity": {
+          "when": "Parity của Square-1 xuất hiện khi các cạnh hoặc góc của khối không thể giải bằng các công thức hoán vị thông thường. Nó xảy ra ở khoảng một nửa số lần giải, nên người chơi Square-1 nào cũng cần một cách để xử lý.",
+          "learn": "Hãy bắt đầu bằng một công thức sửa parity trong mọi trường hợp, sau đó thêm các công thức parity riêng cho những tình huống phổ biến để giải parity và hoán vị cùng lúc. Phát hiện parity sớm trong bước EP là cách tiết kiệm thời gian nhiều nhất."
+        },
+        "megaminx-eo": {
+          "when": "EO là bước đầu tiên của tầng cuối bốn bước trên Megaminx. Sau khi các tầng đầu đã xong, các công thức này lật các cạnh tầng cuối để màu mặt trên tạo thành hình ngôi sao trên mặt trên.",
+          "learn": "Chỉ có vài trường hợp và chúng hoạt động giống bước định hướng cạnh trên 3x3. Hãy học chúng trước và chú ý góc cầm của từng trường hợp, vì Megaminx có năm cạnh bên thay vì bốn."
+        },
+        "megaminx-ep": {
+          "when": "EP là bước thứ hai của tầng cuối bốn bước trên Megaminx. Khi các cạnh đã đúng hướng, các công thức này đưa chúng về đúng vị trí trước khi bạn xử lý các góc.",
+          "learn": "Nhận diện những cạnh đã đúng chỗ và cách các cạnh còn lại xoay vòng, rồi thực hiện công thức tương ứng. Với ít trường hợp, EP học rất nhanh và kết hợp tốt với EO."
+        },
+        "megaminx-co": {
+          "when": "CO là bước thứ ba của tầng cuối bốn bước trên Megaminx. Sau khi các cạnh đã xong, các công thức này xoắn các góc để toàn bộ mặt trên hiện màu mặt trên.",
+          "learn": "Học các trường hợp theo nhóm dựa trên số góc đã đúng hướng. Nhiều công thức được xây từ các bước giống Sune, nên dễ nhớ và dễ thực hiện hơn."
+        },
+        "megaminx-cp": {
+          "when": "CP là bước cuối cùng của tầng cuối bốn bước trên Megaminx. Khi mọi phần khác đã xong, các công thức này đưa các góc về đúng vị trí và hoàn thành khối.",
+          "learn": "Nhận diện cách các góc xoay vòng bằng cách so màu bên hông của chúng với các tâm. Bắt đầu với những trường hợp chỉ di chuyển ba góc, rồi thêm các trường hợp còn lại."
+        }
       }
     },
     "TrainerPage": {

@@ -1008,16 +1008,16 @@
       },
       "descriptions": {
         "pbl": "Ginagamit ang mga algorithm na ito para sabay na i-permute ang top at bottom layer ng 2x2 cube, na nagpapahintulot ng episyenteng pag-solve ng puzzle.",
-        "ocll": "COLL (Orient Corners of the Last Layer) - Nakatuon ang hakbang na ito sa pag-orient ng lahat ng corner ng last layer para maghanda sa mga huling hakbang ng pag-solve.",
-        "cll": "Ang CLL ay subset ng OLL para sa 2x2x2 cube na nilulutas ang last layer sa isang algorithm pagkatapos i-orient ang first layer.",
+        "ocll": "Ang OCLL (Orientation ng mga Corner ng Huling Layer) ay nag-o-orient sa apat na corner ng huling layer ng 2x2 para maging iisang kulay ang itaas na mukha. May pitong case: Sune, Antisune, H, Pi, U, T at L.",
+        "cll": "Nilulutas ng CLL (Mga Corner ng Huling Layer) ang buong huling layer ng 2x2 sa iisang algorithm kapag buo nang nalutas ang unang layer, habang sabay na ino-orient at pine-permute ang mga corner.",
         "eg-1": "Ang EG-1 ay set ng mga algorithm na ginagamit para lutasin ang last layer ng 2x2 cube pagkatapos makumpleto ang first layer, partikular kapag may adjacent swap sa bottom layer.",
         "eg-2": "Ang EG-2 ay set ng mga algorithm na ginagamit para lutasin ang last layer ng 2x2 cube pagkatapos makumpleto ang first layer, partikular kapag may diagonal swap sa bottom layer.",
-        "f2l": "Ang mga F2L (First Two Layers) algorithm para sa paglutas ng Rubik's Cube gamit ang CFOP method. Nililutas ng mga algorithm na ito ang unang dalawang layer sa pamamagitan ng sabay-sabay na pagpapares ng corner at edge pieces, kapag tapos na ang cross.",
+        "f2l": "Mga F2L (Unang Dalawang Layer) algorithm para lutasin ang Rubik's cube gamit ang CFOP method. Kapag tapos na ang cross, ipinapares ang bawat corner sa katugmang edge nito at ipinapasok sa slot nito, kaya nalulutas ang unang dalawang layer nang isa-isang pares.",
         "advanced-f2l": "Ang mga advanced F2L algorithm para sa mas mahirap na corner-edge pair cases sa CFOP method: mga pieces na nasilo sa huling slot, mga pieces na nasiksik sa maling layer, o pareho silang nasilo nang sabay-sabay. Lumalampas ito sa intuitive F2L para masakop ang mga case na karaniwang pinakamarami ang moves.",
         "oll": "Ang mga OLL (Orientation of Last Layer) algorithm para lutasin ang Rubik's cube gamit ang CFOP method. Ginagamit ang mga ito para i-orient ang lahat ng piraso sa last layer, kapag kumpleto na ang F2L.",
         "pll": "Ang mga PLL (Permutation of Last Layer) algorithm para lutasin ang Rubik's cube gamit ang CFOP method. Ginagamit ang mga ito sa huling hakbang ng CFOP method, para i-permute ang edges at corners ng last layer, kapag naka-orient na ang lahat ng piraso.",
         "coll": "Ang mga COLL (Corners and Orientation of Last Layer) algorithm ay ginagamit para sabay na i-orient at i-permute ang corners ng last layer mo, sa pag-aakalang naka-orient na ang lahat ng edge ng last layer.",
-        "ble": "Ang Brooks' Last Edge (BLE) ay paraan na ginagamit para lutasin nang episyente ang huling edge ng Rubik's Cube, kadalasang bahagi ng advanced solving techniques.",
+        "ble": "Ipinapasok ng BLE (Brooks' Last Edge) ang huling edge ng F2L habang ino-orient ang mga corner ng huling layer. Ginagamit ito kapag nalutas na ang corner ng huling slot at naka-orient na ang mga edge ng huling layer, kaya PLL na lang ang natitira.",
         "vls": "Ang mga VLS (Valk Last Slot) algorithm ay sabay na nilulutas ang huling F2L slot at OLL, sa mga kaso kung saan may connected F2L pair ka. Ang seleksyong ito ng mga algorithm ay panimula sa buong VLS algorithm set, at layuning ipakita ang pinakakapaki-pakinabang na mga kaso na dapat malaman.",
         "cls": "Ang mga CLS (Corner Last Slot) algorithm ay sabay na nilulutas ang huling F2L corner at ino-orient ang last layer mo. Ginagamit ang mga ito kapag nalutas na ang edge ng huling F2L pair mo, at naka-orient na ang last layer edges. Ang seleksyong ito ay panimula sa buong CLS algorithm set, at layuning ipakita ang pinakakapaki-pakinabang na mga kaso na dapat malaman.",
         "wv": "Ang mga WV (Winter Variation) algorithm ay ginagamit para i-orient ang corners ng last layer mo habang inilalagay mo ang huling F2L pair, sa kaso kung saan connected ang pair at naka-orient na ang lahat ng last layer edge.",
@@ -1032,7 +1032,7 @@
         "parity-5x5": "Tinutugunan ng mga algorithm na ito ang natatanging parity errors na maaaring mangyari kapag nilulutas ang 5x5 Rubik's Cube, na hindi nangyayari sa standard na 3x3 cube. Mahalaga ang mga ito para makumpleto ang solve pagkatapos i-reduce ang 5x5 sa 3x3 state.",
         "l2c-5x5": "Ang L2C (Last Two Centers) na mga algorithm ay lumulutas sa huling dalawang center ng 5x5 cube sa yugto ng reduction. Natatapos mo ang mga center nang hindi nasisira ang mga naibuo mo na.",
         "l2e-5x5": "Ang L2E (Last Two Edges) na mga algorithm ay umaayos sa huling dalawang edge group ng 5x5 cube sa yugto ng reduction, kapag hindi na sila mapapares sa simpleng slice moves.",
-        "l4e": "Last 4 slots (Pyraminx) - Ginagamit ang mga algorithm na ito para lutasin ang huling apat na edge piece ng Pyraminx puzzle. Ang layunin ay maposisyon at ma-orient nang tama ang mga pirasong ito para makumpleto ang puzzle.",
+        "l4e": "Ang L4E (Last 4 Edges, huling apat na edge) ay isang method para sa Pyraminx. Pagkatapos lutasin ang mga tip, tatlong center at dalawang edge, nilulutas ng mga algorithm na ito ang huling apat na edge sa iisang hakbang para matapos ang puzzle.",
         "sq1-cs": "CS (Cube Shape) - Ibinabalik ng mga algorithm na ito sa hugis-kubo ang isang na-scramble na Square-1, ang unang hakbang sa paglutas ng puzzle. Nakagrupo ang mga kaso ayon sa bilang ng slice na kailangan ng solusyon.",
         "sq1-co": "CO (Corner Orientation) - Kapag nasa hugis-kubo na ulit ang Square-1, ino-orient ng mga algorithm na ito ang lahat ng sulok para tama ang kulay sa itaas at ibaba, nang hindi nasisira ang hugis.",
         "sq1-eo": "EO (Edge Orientation) - Ibinabaling ng mga algorithm na ito ang mga gilid ng Square-1 sa tamang oryentasyon kapag naka-orient na ang mga sulok.",
@@ -1044,6 +1044,164 @@
         "megaminx-ep": "EP (Edge Permutation) - Inilalagay ng mga algorithm na ito sa tamang posisyon ang mga na-orient nang edge ng huling layer ng Megaminx.",
         "megaminx-co": "CO (Corner Orientation) - Kapag tapos na ang mga edge, iniikot ng mga algorithm na ito ang mga corner ng huling layer ng Megaminx para nakaharap sa itaas ang kulay sa ibabaw.",
         "megaminx-cp": "CP (Corner Permutation) - Inilalagay ng mga algorithm na ito sa tamang posisyon ang mga corner ng huling layer ng Megaminx para matapos ang puzzle."
+      },
+      "guide": {
+        "heading": "Tungkol sa {title}",
+        "what": "Ano ang {title}?",
+        "when": "Kailan ginagamit ang {title}?",
+        "count": "Ilan ang mga algorithm ng {title}?",
+        "count-answer": "May {count, plural, one {# algorithm ng {title}} other {# algorithm ng {title}}} ang Nexus Timer para sa {puzzle}, at bawat isa ay may interactive na 3D preview para makita mo kung paano nito nilulutas ang case.",
+        "learn": "Paano matututunan ang {title}?"
+      },
+      "guides": {
+        "pbl": {
+          "when": "Ang PBL ang huling hakbang ng Ortega method para sa 2x2. Pagkatapos mong lutasin ang isang mukha at i-orient ang kabilang layer, tama na ang mga kulay sa itaas at ibaba, pero puwede pang magkapalit ang mga piraso. Isang PBL algorithm ang sabay na magpe-permute sa dalawang layer at tatapos sa cube.",
+          "learn": "Magsimula sa mga case na isang layer lang: ang magkatabing palitan, na nilulutas gamit ang J perm o T perm, at ang pahilis na palitan, na nilulutas gamit ang Y perm. Pagkatapos, idagdag ang mga case kung saan kailangang ayusin ang dalawang layer. Hanapin ang headlights sa bawat layer para makilala ang magkatabi at pahilis na palitan bago ka magsimulang umikot."
+        },
+        "ocll": {
+          "when": "Ang OCLL ang ikalawang hakbang ng Ortega method at ng karamihan ng beginner method sa 2x2. Ginagamit mo ito kapag nalutas na ang unang mukha, para maging iisang kulay ang itaas bago i-permute ang mga corner gamit ang PBL o isang permutation algorithm.",
+          "learn": "Unahin ang Sune at Antisune, dahil malulutas ang limang natitirang case sa pag-uulit ng mga ito. Pagkatapos, palitan ang mga pag-uulit na iyon ng sariling algorithm ng bawat case. Pitong case lang ito, kaya ang OCLL ang pinakamadaling set na matutunan nang buo at magandang hakbang bago ang CLL."
+        },
+        "cll": {
+          "when": "Ginagamit ang CLL sa CLL method para sa 2x2: bumuo ng kumpletong unang layer, saka tapusin ang cube gamit ang iisang algorithm. Pinagsasama nito sa isa ang magkahiwalay na hakbang ng orientation at permutation, kaya ito ang karaniwang pinipili ng mga intermediate na cuber at ang pundasyon ng EG-1 at EG-2.",
+          "learn": "Pag-aralan ang CLL nang isa-isang orientation group: tig-anim na case ang Sune, Antisune, Pi, U, T at L, at apat ang H. Kilalanin muna ang orientation, saka tingnan ang mga sticker sa gilid para sa headlights o magkasalungat na kulay. Nakakatulong kung alam mo ang OCLL, dahil maraming case ang gumagamit ng parehong mga galaw."
+        },
+        "eg-1": {
+          "when": "Ginagamit ang EG-1 sa EG method kapag tapos na ang unang mukha ng 2x2 pero magkatabing nagkapalit ang mga piraso nito. Sa halip na ayusin muna ang ibabang layer, isang algorithm ang sabay na lulutas sa huling layer at sa palitan sa ibaba, kaya nakakatipid ka ng isang buong hakbang. Ang magkatabing palitan ang pinakamadalas na case sa ibabang layer.",
+          "learn": "Pag-aralan ang EG-1 pagkatapos ng CLL, dahil pareho ang mga orientation group at ang paraan ng pagkilala. Idadagdag mo lang ang magkatabing palitan sa ibaba sa alam mo na. Maraming cuber ang nag-aaral ng isang group sa bawat pagkakataon at nagsasanay tumingin habang nag-i-inspection kung lutas na ang ibabang layer, magkatabi o pahilis ang palitan."
+        },
+        "eg-2": {
+          "when": "Saklaw ng EG-2 ang mga EG case kung saan tapos na ang unang mukha pero pahilis na nagkapalit ang mga piraso. Kasama ang CLL at EG-1, kaya mong tapusin ang anumang 2x2 na tapos na ang unang mukha gamit ang huling algorithm, kahit paano man naka-permute ang ibabang layer.",
+          "learn": "Kasindalas ng lutas na ibabang layer ang pahilis na palitan sa ibaba at mas bihira kaysa sa magkatabing palitan, kaya maraming cuber ang huling nag-aaral ng EG-2. Pareho ang pagkilala sa CLL at EG-1, kaya ituon ang pansin sa pagsasaulo ng bawat algorithm at sa mabilis na pagsisimula pagkatapos ng inspection."
+        },
+        "f2l": {
+          "when": "Ang F2L ang ikalawa at pinakamahabang hakbang ng CFOP. Pagkatapos ng cross, lulutasin mo ang apat na pares ng corner at edge, isa sa bawat slot, hanggang makumpleto ang unang dalawang layer. Kadalasan, mahigit kalahati ng solve ang napupunta rito, kaya ang mahusay na F2L ang pinakamalaking improvement para sa karamihan ng cuber.",
+          "learn": "Karamihan ng cuber ay unang natututo ng F2L nang intuitive, inuunawa kung paano ipares ang corner sa edge nito at ipasok ang mga ito nang hindi nasisira ang cross. Gamitin ang mga algorithm na ito bilang sanggunian sa mga case na hindi mo pa nalulutas nang mahusay, magsanay nang mabagal habang hinahanap ang susunod na pares, at matutong lumutas ng pares mula sa iba't ibang anggulo para mas kaunti ang pag-ikot ng buong cube."
+        },
+        "advanced-f2l": {
+          "when": "Lumalabas ang mga advanced F2L case kapag nasa mahirap na kalagayan ang isang pares: naipit ang mga piraso sa ibang slot, nasa maling layer o mali ang harap. Kapag alam mo ang mahusay na solusyon, hindi mo na kailangang ilabas ang mga piraso gamit ang dagdag na galaw, at nananatiling maayos ang daloy ng F2L mo.",
+          "learn": "Pag-aralan ang advanced F2L kapag komportable ka na sa mga basic case. Magsimula sa mga case na pinakamadalas mong makita sa sarili mong mga solve, gaya ng corner o edge na naipit sa slot, at alamin ang mahusay na solusyon para sa bawat isa. Pagkatapos, gamitin ang mga ito sa totoong solve hanggang maging awtomatiko ang pagkilala sa case."
+        },
+        "oll": {
+          "when": "Ang OLL ang ikatlong hakbang ng CFOP. Kapag lutas na ang unang dalawang layer, isang OLL algorithm ang mag-o-orient sa lahat ng piraso ng huling layer para maging iisang kulay ang itaas, at PLL na lang ang kailangan para matapos ang cube.",
+          "learn": "Magsimula sa 2-look OLL: tatlong algorithm para i-orient ang mga edge bilang cross, saka ang pitong corner case. Pagkatapos, pag-aralan ang lahat ng 57 case, isang grupo ng hugis sa bawat pagkakataon. Nakabatay ang pagkilala sa pattern ng itaas na mukha at sa mga sticker sa gilid."
+        },
+        "pll": {
+          "when": "Ang PLL ang huling hakbang ng CFOP. Kapag iisang kulay na ang itaas, inililipat ng isang PLL algorithm ang mga piraso ng huling layer sa tamang posisyon at nilulutas ang cube. May 21 case, na pinangalanan ng mga letra gaya ng T, J, U at Y.",
+          "learn": "Magsimula sa 2-look PLL: i-permute ang mga corner gamit ang T perm o Y perm, saka ang mga edge gamit ang U, H at Z perm. Pagkatapos, pag-aralan ang natitirang mga case nang isa-isa. Gumagamit ang pagkilala ng headlights at blocks sa dalawang gilid, kaya magsanay kilalanin ang bawat case nang hindi iniikot ang cube."
+        },
+        "coll": {
+          "when": "Ginagamit ang COLL pagkatapos ng F2L kapag naka-orient na ang lahat ng edge ng huling layer, na makikita bilang cross sa itaas. Sa halip na i-orient lang ang mga corner, isang algorithm ang sabay na mag-o-orient at magpe-permute sa mga ito, kaya edge permutation na lang (U, H o Z perm) ang natitira, na mabilis at madaling makilala.",
+          "learn": "Nakaayos ang COLL ayon sa parehong mga hugis ng corner ng OCLL, kaya pag-aralan ang isang hugis sa bawat pagkakataon, simula sa Sune at Antisune. Kilalanin muna ang hugis, saka ang mga sticker sa gilid ng mga corner. Karaniwan itong hakbang papunta sa buong ZBLL at bagay sa mga method na maagang nag-o-orient ng edge, gaya ng ZZ."
+        },
+        "ble": {
+          "when": "Ang BLE ay isang last slot technique. Gamitin ito kapag lutas na ang corner ng huling F2L slot mo, nasa itaas na layer ang edge nito at naka-orient na ang mga edge ng huling layer. Isang algorithm ang magpapasok sa edge at mag-o-orient sa mga corner ng huling layer, kaya diretso ka na sa PLL.",
+          "learn": "Naka-grupo ang mga case ayon sa hugis ng mga corner ng huling layer, gaya ng OCLL. Pag-aralan ang BLE kapag komportable ka na sa OLL at PLL, at magsimula sa mga grupong pinakamadalas mong makita. Maraming algorithm ang maiikling kombinasyon ng R at U, kaya ituon ang pansin sa maayos na pag-execute gamit ang kanang kamay."
+        },
+        "vls": {
+          "when": "Ang VLS ay isang last slot set para sa sitwasyong magkakabit na sa itaas na layer ang huling F2L pair at naka-orient na ang mga edge ng huling layer. Isang algorithm ang magpapasok sa pair at mag-o-orient sa buong huling layer, kaya malalaktawan mo ang OLL at tatapusin sa PLL.",
+          "learn": "Daan-daang algorithm ang buong VLS set, kaya nakatuon ang seleksyong ito sa mga pinakakapaki-pakinabang na case. Pag-aralan ito pagkatapos ng COLL o Winter Variation, at tingnan muna sa sarili mong mga solve kung gaano kadalas mong natatapos ang F2L na may magkakabit na pair at naka-orient na mga edge. I-grupo ang mga case ayon sa orientation ng mga corner sa itaas."
+        },
+        "cls": {
+          "when": "Ang CLS ay isang last slot set para sa sitwasyong lutas na ang edge ng huling F2L pair, wala pa sa lugar ang corner at naka-orient na ang mga edge ng huling layer. Isang algorithm ang magpapasok sa corner at mag-o-orient sa huling layer, kaya PLL na lang ang natitira.",
+          "learn": "Pag-aralan ang CLS kapag madalas kang umaabot sa huling slot na lutas na ang edge. Kusa itong nangyayari kung inuuna mong lutasin ang mga edge o gumagamit ka ng technique gaya ng keyhole. Magsimula sa mga case na nasa itaas na layer ang corner, saka idagdag ang mga case na naka-twist ito sa loob ng slot nito."
+        },
+        "sv": {
+          "when": "Ginagamit ang Summer Variation kapag maipapasok ang huling F2L pair gamit ang R U' R' at naka-orient na ang mga edge ng huling layer. Sa halip na ipasok ang pair sa karaniwang paraan, isang algorithm ang magpapasok dito habang ino-orient ang mga corner ng huling layer, kaya malalaktawan mo ang OLL at diretso sa PLL.",
+          "learn": "Pag-aralan ang SV pagkatapos ng Winter Variation, dahil pareho ang ideya pero iba ang paraan ng pagpasok. I-grupo ang mga case ayon sa itsura ng mga corner sa itaas bago ang pagpasok, at magsanay kilalanin ang mga ito habang inihahanda ang huling pair para walang paghinto bago ang algorithm."
+        },
+        "wv": {
+          "when": "Ginagamit ang Winter Variation kapag magkakabit ang huling F2L pair at maipapasok gamit ang R U R', at naka-orient na ang mga edge ng huling layer. Isang algorithm ang magpapasok sa pair habang sabay na ino-orient ang mga corner ng huling layer, kaya malalaktawan mo ang OLL at diretso sa PLL.",
+          "learn": "May 27 case ang WV at marami rito ay maiikling R at U algorithm, kaya isa ito sa pinakamadaling simulan na last slot set. Matutong kilalanin ang orientation ng mga corner sa itaas habang naghihintay ang pair na maipasok, at i-grupo ang mga case ayon sa bilang ng naka-orient na corner."
+        },
+        "zbll-s": {
+          "when": "Saklaw ng ZBLL-S ang mga ZBLL case kung saan hugis Sune ang mga corner ng huling layer, na may isang naka-orient na corner. Kapag naka-orient na ang mga edge pagkatapos ng F2L, isa sa mga algorithm na ito ang lulutas sa buong huling layer nang minsanan, at malalaktawan ang OCLL at PLL.",
+          "learn": "Kadalasang ZBLL-S ang unang subset na pinag-aaralan, dahil pamilyar na hugis ang Sune at maiikli ang marami sa mga algorithm nito. Hatiin ang mga case ayon sa corner permutation, hanapin ang headlights at blocks sa gilid, saka basahin ang mga edge para matukoy ang eksaktong case."
+        },
+        "zbll-as": {
+          "when": "Saklaw ng ZBLL-AS ang mga ZBLL case kung saan hugis Antisune, ang salamin ng Sune, ang mga corner ng huling layer, na may isang naka-orient na corner. Kapag naka-orient na ang mga edge, isang algorithm ang lulutas sa buong huling layer.",
+          "learn": "Maraming cuber ang nag-aaral ng ZBLL-AS kasunod mismo ng ZBLL-S dahil salamin sila ng isa't isa, kaya pamilyar ang pagkilala at marami sa mga algorithm. Ayusin muna ang mga case ayon sa corner permutation, saka ayon sa posisyon ng mga edge."
+        },
+        "zbll-u": {
+          "when": "Saklaw ng ZBLL-U ang mga ZBLL case kung saan naka-orient ang dalawang magkatabing corner ng huling layer at nakaharap sa iisang gilid ang dalawa pa, kaya bumubuo ng U. Kapag naka-orient na ang mga edge, isang algorithm ang lulutas sa buong huling layer.",
+          "learn": "Simulan ang pagkilala sa gilid na may dalawang naka-twist na corner, saka tingnan ang corner permutation at panghuli ang mga edge. Makakatulong kung aaralin muna ang katugmang mga COLL case, dahil bawat COLL case ay may pamilya ng mga ZBLL case sa paligid nito."
+        },
+        "zbll-t": {
+          "when": "Saklaw ng ZBLL-T ang mga ZBLL case kung saan naka-orient ang dalawang magkatabing corner ng huling layer at nakaharap sa magkasalungat na gilid ang dalawa pa, kaya bumubuo ng T. Kapag naka-orient na ang mga edge, isang algorithm ang lulutas sa buong huling layer.",
+          "learn": "Kilalanin ang hugis T sa dalawang sticker ng kulay sa itaas na nasa magkasalungat na gilid, saka basahin ang corner permutation at ang mga edge. Kapag na-grupo ang mga case ayon sa kanilang COLL case, mas madaling ayusin at balikan ang 72 algorithm."
+        },
+        "zbll-pi": {
+          "when": "Saklaw ng ZBLL-Pi ang mga ZBLL case kung saan walang naka-orient na corner sa huling layer: may dalawang sticker ng kulay sa itaas ang isang gilid at tig-isa ang mga katabing gilid nito, kaya bumubuo ng hugis Pi. Kapag naka-orient na ang mga edge, isang algorithm ang lulutas sa buong huling layer.",
+          "learn": "Mas matagal sanayin ang pagkilala sa mga Pi case, kaya maraming cuber ang nag-aaral nito pagkatapos ng Sune, Antisune, U at T. Hawakan ang cube nang nasa kaliwa ang pares ng sticker ng kulay sa itaas, tingnan ang corner permutation, saka basahin ang mga edge."
+        },
+        "zbll-l": {
+          "when": "Saklaw ng ZBLL-L ang mga ZBLL case kung saan naka-orient ang dalawang pahilis na corner ng huling layer, kaya bumubuo ng L. Kapag naka-orient na ang mga edge, isang algorithm ang lulutas sa buong huling layer.",
+          "learn": "Kilalanin ang hugis L sa dalawang naka-orient na corner na magkapahilis, saka tingnan ang mga sticker sa gilid para sa corner permutation at basahin ang mga edge. Kapag inaral muna ang mga L case ng COLL, may matibay kang batayan para sa bawat grupo."
+        },
+        "zbll-h": {
+          "when": "Saklaw ng ZBLL-H ang mga ZBLL case kung saan walang naka-orient na corner sa huling layer at nakaharap nang magkapares ang mga sticker ng kulay sa itaas sa dalawang magkasalungat na gilid, kaya bumubuo ng H. Kapag naka-orient na ang mga edge, isang algorithm ang lulutas sa buong huling layer.",
+          "learn": "Simetriko ang hugis H, kaya mas kaunti ang case ng subset na ito kaysa sa iba, 40 sa halip na 72. Kaya magandang subset ito na tapusin nang maaga. Kilalanin ito sa mga pares ng sticker ng kulay sa itaas na nasa magkasalungat na gilid, saka basahin ang corner permutation at ang mga edge."
+        },
+        "parity-4x4": {
+          "when": "Lumalabas ang 4x4 parity sa 3x3 stage ng reduction solve, dahil walang nakapirming center ang 4x4 at puwede itong umabot sa mga kalagayang imposible sa 3x3. Ang OLL parity ay isang edge na nakabaligtad, at ang PLL parity ay dalawang edge na nagkapalit o iba pang kalagayang hindi kayang lutasin ng anumang 3x3 algorithm.",
+          "learn": "Unahin ang standard na OLL parity at PLL parity algorithm, dahil saklaw ng mga ito ang bawat case. Kapag maayos na ang mga ito, idagdag ang mga pinagsamang case para maayos ang parity at huling layer sa mas kaunting galaw. Sanayin ang mga wide move hanggang tuloy-tuloy na ang daloy nang hindi nagpapalit ng hawak."
+        },
+        "parity-5x5": {
+          "when": "Hindi tulad ng 4x4, may nakapirming center ang 5x5, kaya wala itong PLL parity. Lumalabas ang parity sa dulo ng edge pairing, kapag nakabaligtad ang dalawang panlabas na piraso ng huling edge at kailangan ng espesyal na algorithm para maipares ito.",
+          "learn": "Isang case lang ang kailangang matutunan, kaya isaulo ito at magsanay hanggang kaya mo nang gawin nang hindi tumitingin. Matutong mapansin ito habang pinapares ang huling dalawang edge para magamit agad ang algorithm at makapunta sa 3x3 stage."
+        },
+        "l2c-5x5": {
+          "when": "Ginagamit ang L2C sa reduction ng 5x5 kapag lutas na ang apat na center. Kailangang buuin ang huling dalawang center nang hindi nasisira ang iba, at dito nakakatulong ang mga algorithm na ito at ang mga commutator.",
+          "learn": "Unawain kung paano inililipat ng commutator ang mga center piece sa pagitan ng dalawang mukha nang hindi ginagalaw ang iba, at malulutas mo nang intuitive ang karamihan ng case. Gamitin ang mga algorithm na ito sa mga case na masyadong maraming galaw, at magsanay hanggang maging consistent ang huling dalawang center mo."
+        },
+        "l2e-5x5": {
+          "when": "Ginagamit ang L2E sa dulo ng edge pairing sa 5x5, kapag hindi na maipares ang huling dalawang grupo ng edge gamit ang karaniwang slice move. Pinapares ng mga algorithm na ito ang natitirang mga edge piece para handa na ang cube sa 3x3 stage.",
+          "learn": "Siguraduhin muna na mahusay mong napapares ang unang walong edge. Pagkatapos, matutong kilalanin ang posisyon ng natitirang mga piraso sa huling dalawang edge at sanayin ang algorithm ng bawat case. Kapag nakabaligtad ang huling edge, gamitin ang 5x5 parity algorithm."
+        },
+        "l4e": {
+          "when": "Ang L4E ay isang sikat na method para sa Pyraminx. Pagkatapos lutasin ang mga tip at isang block na binubuo ng tatlong center at dalawang edge, isang algorithm ang lulutas sa huling apat na edge. Kaunting galaw lang ang block, kaya mabilis at mahusay ang method na ito.",
+          "learn": "Magsimula sa pagbuo ng unang block nang intuitive. Pagkatapos, pag-aralan ang mga L4E algorithm, simula sa mga pinakakaraniwang case gaya ng Sune, Antisune at mga bar case. Kapag pinaplano mo ang block habang nag-i-inspection, mas tuloy-tuloy ang buong solve."
+        },
+        "sq1-cs": {
+          "when": "Ang cube shape ang unang hakbang ng bawat Square-1 solve. Binabago ng scramble ang hugis ng mga layer, at ibinabalik ng mga algorithm na ito ang puzzle sa hugis cube, kung saan puwede nang simulan ang orientation at permutation.",
+          "learn": "Naaabot ng mga baguhan ang cube shape sa ilang intuitive na hakbang, na dumaraan sa parehong mga intermediate na hugis tuwing susubukan. Ang mas mabibilis na cuber ay nag-aaral ng direktang solusyon mula sa bawat hugis, naka-grupo ayon sa bilang ng slice. Magsimula sa mga hugis na pinakamadalas mong makita at ituon ang pansin sa tamang pagbilang ng slice."
+        },
+        "sq1-co": {
+          "when": "Ginagamit ang CO kapag nakabalik na sa hugis cube ang Square-1. Ino-orient ng mga algorithm na ito ang mga corner para ipakita ng bawat isa ang kulay sa itaas o ibaba sa tamang layer, nang hindi nasisira ang hugis cube.",
+          "learn": "Kaunti lang ang case, kaya mabilis matutunan ang CO. Kilalanin kung ilang corner ng bawat kulay ang nasa bawat layer at gawin ang katugmang algorithm. Nakakatulong ang pagsasanay ng slice, dahil umaasa ang bawat algorithm sa malinis na slice."
+        },
+        "sq1-eo": {
+          "when": "Kasunod ng orientation ng mga corner sa Square-1 ang EO. Inililipat ng mga algorithm na ito ang mga edge para mapunta sa bawat layer ang mga edge ng kulay nito, bilang paghahanda sa mga permutation step.",
+          "learn": "Bilangin ang mga edge na nasa maling layer, saka piliin ang katugmang case. Karaniwang sabay na pinag-aaralan ang CO at EO, dahil magkahawig ang mga galaw at maiikli ang mga algorithm ng dalawang hakbang."
+        },
+        "sq1-cp": {
+          "when": "Ginagamit ang CP kapag naka-orient na ang lahat ng piraso ng Square-1. Inililipat ng mga algorithm na ito ang mga corner sa tamang posisyon sa dalawang layer, kaya ang pag-permute ng mga edge na lang ang natitira.",
+          "learn": "Kilalanin kung may magkatabing palitan ng corner, pahilis na palitan o wala sa bawat layer. Pag-aralan ang mga algorithm ng mga kombinasyong pinakamadalas mong makita, at bantayan ang alignment bago ang bawat slice para laging gumana ang algorithm."
+        },
+        "sq1-ep": {
+          "when": "Ang EP ang huling karaniwang hakbang ng Square-1. Kapag naka-permute na ang mga corner, inililipat ng mga algorithm na ito ang mga edge sa tamang posisyon at nilulutas ang puzzle, maliban kung may lumabas na parity case.",
+          "learn": "Bukod sa cube shape, ang EP ang hakbang ng Square-1 na may pinakamaraming case, kaya pag-aralan ito nang paunti-unti, simula sa mga case na isang layer lang ang kailangang ayusin. Kilalanin nang hiwalay ang mga edge ng bawat layer at hanapin ang mga pattern na alam mo na mula sa 3x3."
+        },
+        "sq1-parity": {
+          "when": "Lumalabas ang Square-1 parity kapag hindi malutas ang mga edge o corner ng puzzle gamit ang karaniwang permutation algorithm. Nangyayari ito sa halos kalahati ng mga solve, kaya kailangan ng bawat Square-1 solver ng paraan para ayusin ito.",
+          "learn": "Magsimula sa pag-aaral ng isang algorithm na nag-aayos ng parity sa anumang case, saka idagdag ang mga espesyal na parity algorithm para sa mga karaniwang sitwasyon para sabay na malutas ang parity at permutation. Ang maagang pagpansin sa parity habang nasa EP ang pinakamalaking nakakatipid ng oras."
+        },
+        "megaminx-eo": {
+          "when": "Ang EO ang unang hakbang ng four-look na huling layer ng Megaminx. Kapag lutas na ang mga naunang layer, binabaligtad ng mga algorithm na ito ang mga edge ng huling layer para bumuo ng bituin ang kulay sa itaas sa itaas na mukha.",
+          "learn": "Kaunti lang ang case, at gumagana ang mga ito gaya ng edge orientation step sa 3x3. Unahin ang mga ito at bantayan ang anggulo ng bawat case, dahil lima ang gilid ng Megaminx at hindi apat."
+        },
+        "megaminx-ep": {
+          "when": "Ang EP ang ikalawang hakbang ng four-look na huling layer ng Megaminx. Kapag naka-orient na ang mga edge, inililipat ng mga algorithm na ito ang mga ito sa tamang posisyon bago mo asikasuhin ang mga corner.",
+          "learn": "Kilalanin kung aling mga edge ang nasa lugar na at kung paano umiikot ang iba, saka gawin ang katugmang algorithm. Kaunti lang ang case, kaya mabilis matutunan ang EP at bagay itong ipares sa EO."
+        },
+        "megaminx-co": {
+          "when": "Ang CO ang ikatlong hakbang ng four-look na huling layer ng Megaminx. Kapag lutas na ang mga edge, pinipihit ng mga algorithm na ito ang mga corner para ipakita ng buong itaas na mukha ang kulay sa itaas.",
+          "learn": "Pag-aralan ang mga case nang naka-grupo ayon sa dami ng corner na naka-orient na. Marami sa mga ito ay binuo mula sa mga galaw na kahawig ng Sune, kaya mas madaling tandaan at gawin."
+        },
+        "megaminx-cp": {
+          "when": "Ang CP ang huling hakbang ng four-look na huling layer ng Megaminx. Kapag lutas na ang lahat ng iba pa, inililipat ng mga algorithm na ito ang mga corner sa tamang posisyon at tinatapos ang puzzle.",
+          "learn": "Kilalanin kung paano umiikot ang mga corner sa pamamagitan ng paghahambing ng mga kulay sa gilid nila sa mga center. Magsimula sa mga case na tatlong corner lang ang gumagalaw, saka idagdag ang iba pa."
+        }
       }
     },
     "TrainerPage": {

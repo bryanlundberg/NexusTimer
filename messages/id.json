@@ -1008,16 +1008,16 @@
       },
       "descriptions": {
         "pbl": "Algoritma ini digunakan untuk mempermutasi lapisan atas dan bawah kubus 2x2 secara bersamaan, memungkinkan penyelesaian puzzle yang efisien.",
-        "ocll": "COLL (Orientasi Sudut Lapisan Terakhir) - Langkah ini berfokus pada mengorientasikan semua sudut lapisan terakhir untuk bersiap menuju langkah akhir penyelesaian puzzle.",
-        "cll": "CLL adalah bagian dari OLL untuk kubus 2x2x2 yang menyelesaikan lapisan terakhir dalam satu algoritma setelah mengorientasikan lapisan pertama.",
+        "ocll": "OCLL (Orientasi Sudut Lapisan Terakhir) mengorientasikan empat sudut lapisan terakhir pada 2x2 sehingga sisi atas menjadi satu warna. Ada tujuh kasus: Sune, Antisune, H, Pi, U, T, dan L.",
+        "cll": "CLL (Sudut Lapisan Terakhir) menyelesaikan seluruh lapisan terakhir 2x2 dengan satu algoritma setelah lapisan pertama benar-benar selesai, sekaligus mengorientasikan dan mempermutasi sudut.",
         "eg-1": "EG-1 adalah set algoritma yang digunakan untuk menyelesaikan lapisan terakhir kubus 2x2 setelah lapisan pertama selesai, khususnya saat ada pertukaran berdampingan di lapisan bawah.",
         "eg-2": "EG-2 adalah set algoritma yang digunakan untuk menyelesaikan lapisan terakhir kubus 2x2 setelah lapisan pertama selesai, khususnya saat ada pertukaran diagonal di lapisan bawah.",
-        "f2l": "Algoritma F2L (First Two Layers) untuk menyelesaikan kubus Rubik dengan metode CFOP. Algoritma ini menyelesaikan dua lapisan pertama dengan memasangkan bagian sudut (corner) dan sisi (edge) secara bersamaan, setelah cross selesai.",
+        "f2l": "Algoritma F2L (Dua Lapisan Pertama) untuk menyelesaikan kubus Rubik dengan metode CFOP. Setelah cross selesai, setiap sudut dipasangkan dengan edge-nya lalu dimasukkan ke slotnya, sehingga dua lapisan pertama selesai pasang demi pasang.",
         "advanced-f2l": "Algoritma F2L tingkat lanjut untuk kasus pemasangan corner-edge CFOP yang lebih rumit: bagian yang terjebak di slot terakhir, bagian yang tersangkut di layer yang salah, atau kedua bagian terjebak sekaligus. Algoritma ini melampaui F2L intuitif untuk mencakup kasus yang biasanya membutuhkan gerakan paling banyak.",
         "oll": "Algoritma OLL (Orientasi Lapisan Terakhir) untuk menyelesaikan kubus Rubik dengan metode CFOP. Digunakan untuk mengorientasikan semua bagian lapisan terakhir, setelah F2L selesai.",
         "pll": "Algoritma PLL (Permutasi Lapisan Terakhir) untuk menyelesaikan kubus Rubik dengan metode CFOP. Digunakan untuk langkah terakhir metode CFOP, untuk mempermutasi edge dan sudut lapisan terakhir, setelah semua bagian terorientasi.",
         "coll": "Algoritma COLL (Sudut dan Orientasi Lapisan Terakhir) digunakan untuk mengorientasikan dan mempermutasi sudut lapisan terakhir secara bersamaan, dengan asumsi semua edge lapisan terakhir sudah terorientasi.",
-        "ble": "Brooks' Last Edge (BLE) adalah metode yang digunakan untuk menyelesaikan edge terakhir kubus Rubik secara efisien, sering kali sebagai bagian dari teknik penyelesaian tingkat lanjut.",
+        "ble": "BLE (Brooks' Last Edge) memasukkan edge F2L terakhir sambil mengorientasikan sudut lapisan terakhir. Digunakan saat sudut slot terakhir sudah selesai dan edge lapisan terakhir sudah terorientasi, sehingga hanya tersisa PLL.",
         "vls": "Algoritma VLS (Valk Last Slot) menyelesaikan slot F2L terakhir dan OLL secara bersamaan, dalam kasus di mana kamu memiliki pasangan F2L yang terhubung. Pilihan algoritma ini berfungsi sebagai pengantar untuk set algoritma VLS lengkap, dan bertujuan menyoroti kasus-kasus paling berguna untuk diketahui.",
         "cls": "Algoritma CLS (Corner Last Slot) menyelesaikan sudut F2L terakhir dan mengorientasikan lapisan terakhirmu secara bersamaan. Digunakan saat edge pasangan F2L terakhirmu sudah terselesaikan, dan edge lapisan terakhir sudah terorientasi. Pilihan ini berfungsi sebagai pengantar untuk set algoritma CLS lengkap, dan bertujuan menyoroti kasus-kasus paling berguna untuk diketahui.",
         "wv": "Algoritma WV (Winter Variation) digunakan untuk mengorientasikan sudut lapisan terakhirmu sambil memasukkan pasangan F2L terakhir, dalam kasus di mana pasangan terhubung dan semua edge lapisan terakhir sudah terorientasi.",
@@ -1032,7 +1032,7 @@
         "parity-5x5": "Algoritma ini mengatasi kesalahan parity unik yang dapat terjadi saat menyelesaikan kubus Rubik 5x5, yang tidak terjadi pada kubus 3x3 standar. Algoritma ini penting untuk menyelesaikan solve setelah mereduksi 5x5 ke kondisi 3x3.",
         "l2c-5x5": "Algoritma L2C (Last Two Centers) menyelesaikan dua center terakhir pada kubus 5x5 saat tahap reduction, tanpa merusak center yang sudah dibangun.",
         "l2e-5x5": "Algoritma L2E (Last Two Edges) memperbaiki dua kelompok edge terakhir pada kubus 5x5 saat tahap reduction, ketika keduanya tidak bisa dipasangkan dengan gerakan slice biasa.",
-        "l4e": "4 slot terakhir (Pyraminx) - Algoritma ini digunakan untuk menyelesaikan empat bagian edge terakhir dari puzzle Pyraminx. Tujuannya adalah memposisikan dan mengorientasikan bagian-bagian ini dengan benar untuk menyelesaikan puzzle.",
+        "l4e": "L4E (Last 4 Edges, empat edge terakhir) adalah metode untuk Pyraminx. Setelah ujung, tiga center, dan dua edge selesai, algoritma ini menyelesaikan empat edge terakhir dalam satu langkah untuk menuntaskan puzzle.",
         "sq1-cs": "CS (Cube Shape) - Algoritma ini mengembalikan Square-1 yang teracak ke bentuk kubus, langkah pertama dalam menyelesaikan puzzle ini. Kasus dikelompokkan berdasarkan jumlah slice yang dibutuhkan solusinya.",
         "sq1-co": "CO (Corner Orientation) - Setelah Square-1 kembali ke bentuk kubus, algoritma ini mengorientasikan semua sudut agar sisi atas dan bawah menunjukkan warna yang benar tanpa merusak bentuk kubus.",
         "sq1-eo": "EO (Edge Orientation) - Algoritma ini memutar edge Square-1 ke orientasi yang benar setelah sudut-sudutnya terorientasi.",
@@ -1044,6 +1044,164 @@
         "megaminx-ep": "EP (Edge Permutation) - Algoritma ini memindahkan edge lapisan terakhir Megaminx yang sudah terorientasi ke posisi yang benar.",
         "megaminx-co": "CO (Corner Orientation) - Setelah edge selesai, algoritma ini memutar corner lapisan terakhir Megaminx agar warna atasnya menghadap ke atas.",
         "megaminx-cp": "CP (Corner Permutation) - Algoritma ini memindahkan corner lapisan terakhir Megaminx ke posisi yang benar untuk menyelesaikan puzzle."
+      },
+      "guide": {
+        "heading": "Tentang {title}",
+        "what": "Apa itu {title}?",
+        "when": "Kapan {title} digunakan?",
+        "count": "Berapa banyak algoritma {title}?",
+        "count-answer": "Nexus Timer memuat {count} algoritma {title} untuk {puzzle}, masing-masing dengan pratinjau 3D interaktif agar kamu bisa melihat cara algoritma itu menyelesaikan kasusnya.",
+        "learn": "Bagaimana cara mempelajari {title}?"
+      },
+      "guides": {
+        "pbl": {
+          "when": "PBL adalah langkah terakhir metode Ortega untuk 2x2. Setelah kamu menyelesaikan satu sisi dan mengorientasikan lapisan di seberangnya, warna atas dan bawah sudah benar, tetapi kepingannya masih bisa tertukar. Satu algoritma PBL lalu mempermutasi kedua lapisan sekaligus dan menyelesaikan kubus.",
+          "learn": "Mulailah dari kasus satu lapisan: tukar bersebelahan, yang diselesaikan dengan J perm atau T perm, dan tukar diagonal, yang diselesaikan dengan Y perm. Lalu tambahkan kasus yang mengharuskan kedua lapisan diperbaiki. Cari headlight di setiap lapisan untuk membedakan tukar bersebelahan dan diagonal sebelum mulai memutar."
+        },
+        "ocll": {
+          "when": "OCLL adalah langkah kedua metode Ortega dan sebagian besar metode pemula untuk 2x2. Kamu memakainya setelah sisi pertama selesai, untuk membuat sisi atas menjadi satu warna sebelum mempermutasi sudut dengan PBL atau algoritma permutasi.",
+          "learn": "Pelajari Sune dan Antisune terlebih dahulu, karena lima kasus lainnya bisa diselesaikan dengan mengulanginya. Setelah itu ganti pengulangan tersebut dengan algoritma khusus untuk setiap kasus. Dengan hanya tujuh kasus, OCLL adalah set paling mudah untuk dikuasai sepenuhnya dan langkah yang baik sebelum CLL."
+        },
+        "cll": {
+          "when": "CLL digunakan dalam metode CLL untuk 2x2: bangun lapisan pertama yang lengkap, lalu selesaikan kubus dengan satu algoritma. CLL menggantikan langkah orientasi dan permutasi yang terpisah menjadi satu, sehingga menjadi pilihan standar bagi cuber tingkat menengah dan dasar untuk EG-1 dan EG-2.",
+          "learn": "Pelajari CLL per kelompok orientasi: Sune, Antisune, Pi, U, T, dan L masing-masing punya enam kasus, sedangkan H punya empat. Kenali orientasinya dulu, lalu baca stiker samping untuk mencari headlight atau warna berseberangan. Menguasai OCLL membantu, karena banyak kasus memakai gerakan yang sama."
+        },
+        "eg-1": {
+          "when": "EG-1 digunakan dalam metode EG saat sisi pertama 2x2 sudah jadi tetapi kepingannya tertukar secara bersebelahan. Alih-alih memperbaiki lapisan bawah dulu, satu algoritma menyelesaikan lapisan terakhir dan tukar di bawah sekaligus, sehingga menghemat satu langkah penuh. Tukar bersebelahan adalah kasus lapisan bawah yang paling sering muncul.",
+          "learn": "Pelajari EG-1 setelah CLL, karena memakai kelompok orientasi dan cara pengenalan yang sama. Kamu hanya menambahkan tukar bersebelahan di bawah ke apa yang sudah kamu tahu. Banyak cuber mempelajari satu kelompok setiap kali dan berlatih memeriksa saat inspeksi apakah lapisan bawah sudah selesai, tertukar bersebelahan, atau diagonal."
+        },
+        "eg-2": {
+          "when": "EG-2 mencakup kasus EG ketika sisi pertama sudah jadi tetapi kepingannya tertukar secara diagonal. Bersama CLL dan EG-1, EG-2 memungkinkanmu menyelesaikan 2x2 mana pun yang sisi pertamanya sudah jadi dengan satu algoritma terakhir, apa pun permutasi lapisan bawahnya.",
+          "learn": "Tukar diagonal di bawah muncul sama seringnya dengan lapisan bawah yang sudah selesai dan lebih jarang daripada tukar bersebelahan, jadi banyak cuber mempelajari EG-2 paling akhir. Cara pengenalannya sama dengan CLL dan EG-1, jadi fokuslah menghafal setiap algoritma dan memulainya dengan cepat setelah inspeksi."
+        },
+        "f2l": {
+          "when": "F2L adalah langkah kedua dan terpanjang dalam CFOP. Setelah cross, kamu menyelesaikan empat pasang sudut dan edge, satu per slot, sampai dua lapisan pertama selesai. Biasanya F2L memakan lebih dari separuh waktu solve, jadi F2L yang efisien adalah peningkatan terbesar bagi kebanyakan cuber.",
+          "learn": "Kebanyakan cuber mempelajari F2L secara intuitif terlebih dahulu, memahami cara memasangkan sudut dengan edge-nya dan memasukkannya tanpa merusak cross. Gunakan algoritma ini sebagai referensi untuk kasus yang kamu selesaikan secara tidak efisien, berlatih pelan sambil mencari pasangan berikutnya, dan belajar menyelesaikan pasangan dari berbagai sudut agar lebih jarang memutar kubus."
+        },
+        "advanced-f2l": {
+          "when": "Kasus F2L lanjutan muncul saat sebuah pasangan berada dalam posisi sulit: kepingan terjebak di slot lain, berada di lapisan yang salah, atau menghadap arah yang salah. Mengetahui solusi yang efisien membuatmu tidak perlu mengeluarkan kepingan dengan gerakan tambahan dan menjaga F2L tetap lancar.",
+          "learn": "Pelajari F2L lanjutan setelah kasus dasar terasa nyaman. Mulailah dari kasus yang paling sering muncul dalam solve-mu sendiri, seperti sudut atau edge yang terjebak di slot, lalu pelajari solusi efisien untuk masing-masing. Setelah itu gunakan dalam solve sungguhan sampai mengenali kasusnya terjadi secara otomatis."
+        },
+        "oll": {
+          "when": "OLL adalah langkah ketiga CFOP. Setelah dua lapisan pertama selesai, satu algoritma OLL mengorientasikan semua kepingan lapisan terakhir sehingga sisi atas menjadi satu warna, dan hanya tersisa PLL untuk menyelesaikan kubus.",
+          "learn": "Mulailah dengan 2-look OLL: tiga algoritma untuk mengorientasikan edge menjadi cross, lalu tujuh kasus sudut. Setelah itu pelajari seluruh 57 kasus, satu kelompok bentuk setiap kali. Pengenalan didasarkan pada pola sisi atas dan stiker di bagian samping."
+        },
+        "pll": {
+          "when": "PLL adalah langkah terakhir CFOP. Dengan sisi atas yang sudah satu warna, algoritma PLL memindahkan kepingan lapisan terakhir ke posisi yang benar dan menyelesaikan kubus. Ada 21 kasus yang dinamai dengan huruf seperti T, J, U, dan Y.",
+          "learn": "Mulailah dengan 2-look PLL: permutasi sudut dengan T perm atau Y perm, lalu edge dengan U, H, dan Z perm. Setelah itu pelajari kasus lainnya satu per satu. Pengenalan memakai headlight dan blok di dua sisi, jadi latihlah mengenali setiap kasus tanpa memutar kubus."
+        },
+        "coll": {
+          "when": "COLL digunakan setelah F2L ketika semua edge lapisan terakhir sudah terorientasi, yang terlihat sebagai cross di atas. Alih-alih hanya mengorientasikan sudut, satu algoritma mengorientasikan sekaligus mempermutasinya, sehingga hanya tersisa permutasi edge (U, H, atau Z perm) yang cepat dan mudah dikenali.",
+          "learn": "COLL disusun berdasarkan bentuk sudut yang sama dengan OCLL, jadi pelajari satu bentuk setiap kali, dimulai dari Sune dan Antisune. Kenali bentuknya dulu, lalu stiker samping sudutnya. COLL adalah langkah umum menuju ZBLL penuh dan cocok dengan metode yang mengorientasikan edge lebih awal, seperti ZZ."
+        },
+        "ble": {
+          "when": "BLE adalah teknik last slot. Gunakan saat sudut slot F2L terakhir sudah selesai, edge-nya ada di lapisan atas, dan edge lapisan terakhir sudah terorientasi. Satu algoritma memasukkan edge dan mengorientasikan sudut lapisan terakhir, jadi kamu langsung lanjut ke PLL.",
+          "learn": "Kasus-kasusnya dikelompokkan berdasarkan bentuk sudut lapisan terakhir, seperti OCLL. Pelajari BLE setelah kamu nyaman dengan OLL dan PLL, dimulai dari kelompok yang paling sering kamu temui. Banyak algoritmanya berupa kombinasi singkat gerakan R dan U, jadi fokuslah pada eksekusi yang lancar dengan tangan kanan."
+        },
+        "vls": {
+          "when": "VLS adalah set last slot untuk saat pasangan F2L terakhir sudah tersambung di lapisan atas dan edge lapisan terakhir sudah terorientasi. Satu algoritma memasukkan pasangan dan mengorientasikan seluruh lapisan terakhir, jadi kamu melewati OLL dan menyelesaikan dengan PLL.",
+          "learn": "Set VLS lengkap berisi ratusan algoritma, jadi pilihan ini berfokus pada kasus yang paling berguna. Pelajari setelah COLL atau Winter Variation, dan periksa dulu dalam solve-mu seberapa sering kamu mengakhiri F2L dengan pasangan tersambung dan edge terorientasi. Kelompokkan kasus berdasarkan orientasi sudut di atas."
+        },
+        "cls": {
+          "when": "CLS adalah set last slot untuk saat edge dari pasangan F2L terakhir sudah selesai, sudutnya belum di tempatnya, dan edge lapisan terakhir sudah terorientasi. Satu algoritma memasukkan sudut dan mengorientasikan lapisan terakhir, sehingga hanya tersisa PLL.",
+          "learn": "Pelajari CLS saat kamu sering sampai di slot terakhir dengan edge yang sudah selesai. Hal ini terjadi secara alami jika kamu menyelesaikan edge lebih dulu atau memakai teknik seperti keyhole. Mulailah dari kasus dengan sudut di lapisan atas, lalu tambahkan kasus ketika sudut terpelintir di dalam slotnya."
+        },
+        "sv": {
+          "when": "Summer Variation digunakan saat pasangan F2L terakhir bisa dimasukkan dengan R U' R' dan edge lapisan terakhir sudah terorientasi. Alih-alih memasukkan pasangan seperti biasa, satu algoritma memasukkannya sambil mengorientasikan sudut lapisan terakhir, jadi kamu melewati OLL dan langsung ke PLL.",
+          "learn": "Pelajari SV setelah Winter Variation, karena idenya sama dengan cara memasukkan yang berbeda. Kelompokkan kasus berdasarkan tampilan sudut atas sebelum pasangan dimasukkan, dan latih pengenalannya selagi menyiapkan pasangan terakhir agar tidak ada jeda sebelum algoritma."
+        },
+        "wv": {
+          "when": "Winter Variation digunakan saat pasangan F2L terakhir sudah tersambung dan bisa dimasukkan dengan R U R', serta edge lapisan terakhir sudah terorientasi. Satu algoritma memasukkan pasangan sekaligus mengorientasikan sudut lapisan terakhir, jadi kamu melewati OLL dan langsung ke PLL.",
+          "learn": "WV punya 27 kasus dan banyak di antaranya berupa algoritma R dan U yang singkat, sehingga menjadi salah satu set last slot yang paling mudah didekati. Belajarlah mengenali orientasi sudut atas saat pasangan menunggu untuk dimasukkan, dan kelompokkan kasus berdasarkan jumlah sudut yang sudah terorientasi."
+        },
+        "zbll-s": {
+          "when": "ZBLL-S mencakup kasus ZBLL ketika sudut lapisan terakhir membentuk Sune, dengan satu sudut terorientasi. Jika edge sudah terorientasi setelah F2L, salah satu algoritma ini menyelesaikan seluruh lapisan terakhir sekaligus, melewati OCLL dan PLL.",
+          "learn": "ZBLL-S sering menjadi subset pertama yang dipelajari, karena Sune adalah bentuk yang familier dan banyak algoritmanya singkat. Bagi kasus berdasarkan permutasi sudut, cari headlight dan blok di samping, lalu baca edge untuk menentukan kasus yang tepat."
+        },
+        "zbll-as": {
+          "when": "ZBLL-AS mencakup kasus ZBLL ketika sudut lapisan terakhir membentuk Antisune, cerminan Sune, dengan satu sudut terorientasi. Dengan edge yang sudah terorientasi, satu algoritma menyelesaikan seluruh lapisan terakhir.",
+          "learn": "Banyak cuber mempelajari ZBLL-AS tepat setelah ZBLL-S karena keduanya saling mencerminkan, sehingga pengenalan dan banyak algoritmanya terasa familier. Susun kasus berdasarkan permutasi sudut terlebih dahulu, lalu berdasarkan posisi edge."
+        },
+        "zbll-u": {
+          "when": "ZBLL-U mencakup kasus ZBLL ketika dua sudut bersebelahan di lapisan terakhir sudah terorientasi dan dua lainnya menghadap sisi yang sama, membentuk U. Dengan edge yang sudah terorientasi, satu algoritma menyelesaikan seluruh lapisan terakhir.",
+          "learn": "Mulai pengenalan dari sisi dengan dua sudut yang terpelintir, lalu periksa permutasi sudut dan terakhir edge-nya. Mempelajari kasus COLL yang sesuai lebih dulu akan membantu, karena setiap kasus COLL dikelilingi keluarga kasus ZBLL."
+        },
+        "zbll-t": {
+          "when": "ZBLL-T mencakup kasus ZBLL ketika dua sudut bersebelahan di lapisan terakhir sudah terorientasi dan dua lainnya menghadap sisi yang berseberangan, membentuk T. Dengan edge yang sudah terorientasi, satu algoritma menyelesaikan seluruh lapisan terakhir.",
+          "learn": "Kenali bentuk T dari dua stiker warna atas di sisi yang berseberangan, lalu baca permutasi sudut dan edge-nya. Mengelompokkan kasus berdasarkan kasus COLL-nya membuat 72 algoritma jauh lebih mudah disusun dan diulang."
+        },
+        "zbll-pi": {
+          "when": "ZBLL-Pi mencakup kasus ZBLL ketika tidak ada sudut lapisan terakhir yang terorientasi: satu sisi menampilkan dua stiker warna atas dan sisi di sebelahnya masing-masing satu, membentuk pola Pi. Dengan edge yang sudah terorientasi, satu algoritma menyelesaikan seluruh lapisan terakhir.",
+          "learn": "Kasus Pi butuh latihan lebih untuk dikenali, jadi banyak cuber mempelajarinya setelah Sune, Antisune, U, dan T. Pegang pasangan stiker warna atas di kiri, periksa permutasi sudut, lalu baca edge-nya."
+        },
+        "zbll-l": {
+          "when": "ZBLL-L mencakup kasus ZBLL ketika dua sudut diagonal di lapisan terakhir sudah terorientasi, membentuk L. Dengan edge yang sudah terorientasi, satu algoritma menyelesaikan seluruh lapisan terakhir.",
+          "learn": "Kenali bentuk L dari dua sudut terorientasi yang diagonal, lalu lihat stiker samping untuk menentukan permutasi sudut dan baca edge-nya. Mempelajari kasus L dari COLL lebih dulu memberimu pegangan yang kuat untuk setiap kelompok."
+        },
+        "zbll-h": {
+          "when": "ZBLL-H mencakup kasus ZBLL ketika tidak ada sudut lapisan terakhir yang terorientasi dan stiker warna atas menghadap dua sisi berseberangan secara berpasangan, membentuk H. Dengan edge yang sudah terorientasi, satu algoritma menyelesaikan seluruh lapisan terakhir.",
+          "learn": "Bentuk H simetris, jadi subset ini punya lebih sedikit kasus dibanding yang lain, 40 alih-alih 72. Karena itu subset ini cocok untuk dituntaskan lebih awal. Kenali dari pasangan stiker warna atas di sisi berseberangan, lalu baca permutasi sudut dan edge-nya."
+        },
+        "parity-4x4": {
+          "when": "Parity 4x4 muncul di tahap 3x3 dalam solve metode reduksi, karena 4x4 tidak punya center tetap dan bisa mencapai keadaan yang mustahil pada 3x3. OLL parity terlihat sebagai satu edge yang terbalik, sedangkan PLL parity terlihat sebagai dua edge yang tertukar atau keadaan lain yang tidak bisa diselesaikan algoritma 3x3 mana pun.",
+          "learn": "Pelajari algoritma standar OLL parity dan PLL parity terlebih dahulu, karena keduanya mencakup semua kasus. Setelah lancar, tambahkan kasus gabungan agar parity dan lapisan terakhir bisa diselesaikan dengan lebih sedikit gerakan. Latih gerakan wide sampai mengalir tanpa perlu mengubah pegangan."
+        },
+        "parity-5x5": {
+          "when": "Berbeda dengan 4x4, 5x5 punya center tetap sehingga tidak punya PLL parity. Parity muncul di akhir pemasangan edge, ketika dua keping luar pada edge terakhir terbalik dan dibutuhkan algoritma khusus untuk memasangkannya.",
+          "learn": "Hanya ada satu kasus untuk dipelajari, jadi hafalkan dan latih sampai kamu bisa menjalankannya tanpa melihat. Belajarlah mengenalinya saat memasangkan dua edge terakhir agar algoritmanya bisa langsung dipakai dan kamu lanjut ke tahap 3x3."
+        },
+        "l2c-5x5": {
+          "when": "L2C digunakan dalam reduksi 5x5 setelah empat center selesai. Dua center terakhir harus dibangun tanpa merusak yang lain, dan di sinilah algoritma ini serta commutator membantu.",
+          "learn": "Pahami bagaimana commutator memindahkan keping center di antara dua sisi tanpa mengganggu bagian lain, maka kamu bisa menyelesaikan sebagian besar kasus secara intuitif. Gunakan algoritma ini untuk kasus yang memakan terlalu banyak gerakan, dan latih sampai dua center terakhirmu konsisten."
+        },
+        "l2e-5x5": {
+          "when": "L2E digunakan di akhir pemasangan edge pada 5x5, ketika dua kelompok edge terakhir tidak bisa dipasangkan dengan gerakan slice biasa. Algoritma ini memasangkan keping edge yang tersisa agar kubus siap untuk tahap 3x3.",
+          "learn": "Pastikan dulu kamu bisa memasangkan delapan edge pertama dengan efisien. Lalu belajarlah mengenali posisi keping yang tersisa pada dua edge terakhir dan latih algoritma untuk setiap kasus. Jika edge terakhir ternyata terbalik, gunakan algoritma parity 5x5."
+        },
+        "l4e": {
+          "when": "L4E adalah metode Pyraminx yang populer. Setelah menyelesaikan ujung dan sebuah blok berisi tiga center dan dua edge, satu algoritma menyelesaikan empat edge terakhir. Blok ini hanya butuh sedikit gerakan, jadi metodenya cepat dan efisien.",
+          "learn": "Mulailah dengan menyelesaikan blok pertama secara intuitif. Lalu pelajari algoritma L4E, dimulai dari kasus yang paling umum seperti Sune, Antisune, dan kasus bar. Merencanakan blok saat inspeksi membuat seluruh solve lebih lancar."
+        },
+        "sq1-cs": {
+          "when": "Cube shape adalah langkah pertama setiap solve Square-1. Acakan mengubah bentuk lapisan, dan algoritma ini mengembalikan puzzle ke bentuk kubus, tempat langkah orientasi dan permutasi bisa dimulai.",
+          "learn": "Pemula mencapai cube shape dalam beberapa langkah intuitif, selalu melewati bentuk perantara yang sama. Cuber yang lebih cepat mempelajari solusi langsung dari setiap bentuk, dikelompokkan berdasarkan jumlah slice. Mulailah dari bentuk yang paling sering kamu lihat dan fokus menghitung slice dengan benar."
+        },
+        "sq1-co": {
+          "when": "CO digunakan setelah Square-1 kembali ke bentuk kubus. Algoritma ini mengorientasikan sudut sehingga setiap sudut menampilkan warna atas atau bawah di lapisan yang benar, tanpa merusak bentuk kubus.",
+          "learn": "Dengan sedikit kasus, CO cepat dipelajari. Kenali berapa banyak sudut setiap warna di setiap lapisan dan jalankan algoritma yang sesuai. Melatih slice membantu, karena setiap algoritma bergantung pada slice yang bersih."
+        },
+        "sq1-eo": {
+          "when": "EO dilakukan setelah sudut Square-1 terorientasi. Algoritma ini memindahkan edge sehingga setiap lapisan berisi edge dengan warnanya sendiri, menyiapkan puzzle untuk langkah permutasi.",
+          "learn": "Hitung edge yang berada di lapisan yang salah, lalu pilih kasus yang sesuai. CO dan EO sering dipelajari bersama, karena kedua langkah memakai gerakan serupa dan algoritma yang singkat."
+        },
+        "sq1-cp": {
+          "when": "CP digunakan setelah semua kepingan Square-1 terorientasi. Algoritma ini menukar sudut ke posisi yang benar di kedua lapisan, sehingga hanya tersisa permutasi edge.",
+          "learn": "Kenali apakah setiap lapisan punya tukar sudut bersebelahan, diagonal, atau tidak sama sekali. Pelajari algoritma untuk kombinasi yang paling sering kamu lihat, dan perhatikan penyelarasan sebelum setiap slice agar algoritmanya selalu berhasil."
+        },
+        "sq1-ep": {
+          "when": "EP adalah langkah reguler terakhir pada Square-1. Dengan sudut yang sudah terpermutasi, algoritma ini memindahkan edge ke posisi yang benar dan menyelesaikan puzzle, kecuali muncul kasus parity.",
+          "learn": "Setelah cube shape, EP adalah langkah Square-1 dengan kasus terbanyak, jadi pelajari secara bertahap, dimulai dari kasus yang hanya perlu memperbaiki satu lapisan. Kenali edge di setiap lapisan secara terpisah dan cari pola yang sudah kamu kenal dari 3x3."
+        },
+        "sq1-parity": {
+          "when": "Parity Square-1 muncul ketika edge atau sudut puzzle tidak bisa diselesaikan dengan algoritma permutasi biasa. Parity terjadi pada kira-kira separuh solve, jadi setiap pemain Square-1 membutuhkan cara untuk memperbaikinya.",
+          "learn": "Mulailah dengan mempelajari satu algoritma yang memperbaiki parity dalam kasus apa pun, lalu tambahkan algoritma parity khusus untuk situasi umum agar parity dan permutasi bisa diselesaikan bersamaan. Mengenali parity lebih awal saat EP adalah cara paling ampuh untuk menghemat waktu."
+        },
+        "megaminx-eo": {
+          "when": "EO adalah langkah pertama lapisan terakhir empat tahap pada Megaminx. Setelah lapisan-lapisan awal selesai, algoritma ini membalik edge lapisan terakhir sehingga warna atas membentuk bintang di sisi atas.",
+          "learn": "Kasusnya hanya sedikit dan cara kerjanya seperti langkah orientasi edge pada 3x3. Pelajari lebih dulu dan perhatikan sudut pegangan setiap kasus, karena Megaminx punya lima sisi, bukan empat."
+        },
+        "megaminx-ep": {
+          "when": "EP adalah langkah kedua lapisan terakhir empat tahap pada Megaminx. Dengan edge yang sudah terorientasi, algoritma ini memindahkannya ke posisi yang benar sebelum kamu mengerjakan sudut.",
+          "learn": "Kenali edge mana yang sudah di tempatnya dan bagaimana edge lainnya berputar, lalu jalankan algoritma yang sesuai. Dengan sedikit kasus, EP cepat dipelajari dan cocok dipadukan dengan EO."
+        },
+        "megaminx-co": {
+          "when": "CO adalah langkah ketiga lapisan terakhir empat tahap pada Megaminx. Setelah edge selesai, algoritma ini memutar sudut sehingga seluruh sisi atas menampilkan warna atas.",
+          "learn": "Pelajari kasus dalam kelompok berdasarkan jumlah sudut yang sudah terorientasi. Banyak di antaranya dibangun dari gerakan mirip Sune, sehingga lebih mudah diingat dan dijalankan."
+        },
+        "megaminx-cp": {
+          "when": "CP adalah langkah terakhir lapisan terakhir empat tahap pada Megaminx. Dengan semua bagian lain sudah selesai, algoritma ini memindahkan sudut ke posisi yang benar dan menyelesaikan puzzle.",
+          "learn": "Kenali bagaimana sudut berputar dengan membandingkan warna sampingnya dengan center. Mulailah dari kasus yang hanya memindahkan tiga sudut, lalu tambahkan sisanya."
+        }
       }
     },
     "TrainerPage": {
