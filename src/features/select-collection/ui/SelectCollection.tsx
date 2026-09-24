@@ -97,6 +97,7 @@ export default function SelectCollection() {
   return (
     <Dialog
       open={isOpen}
+      dismissible={!lockSelectClose}
       onOpenChange={(open) => {
         // During the onboarding tour, force the user to click the "create
         // collection" button — ignore outside-click/ESC dismissals.
