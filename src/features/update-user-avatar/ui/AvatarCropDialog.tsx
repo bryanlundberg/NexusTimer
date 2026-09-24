@@ -96,6 +96,7 @@ export function AvatarCropDialog({ open, imageSrc, onConfirm, onCancel }: Avatar
 
         <div
           ref={setFrame}
+          data-vaul-no-drag
           className="relative mx-auto aspect-square w-full max-w-[min(100%,55vh)] overflow-hidden rounded-md bg-muted"
         >
           {imageSrc && (
@@ -130,6 +131,7 @@ export function AvatarCropDialog({ open, imageSrc, onConfirm, onCancel }: Avatar
           </Button>
           <input
             type="range"
+            data-vaul-no-drag
             min={MIN_ZOOM}
             max={MAX_ZOOM}
             step={0.01}
