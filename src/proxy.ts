@@ -1,8 +1,36 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { defaultLocale, isLocale, LOCALE_COOKIE, localeCookieOptions } from '@/shared/config/i18n/locales'
+import {
+  defaultLocale,
+  isLocale,
+  isLocalizedPath,
+  LOCALE_COOKIE,
+  LOCALE_HEADER,
+  localeCookieOptions
+} from '@/shared/config/i18n/locales'
 
 export function proxy(request: NextRequest) {
+  const [, pathLocale, ...rest] = request.nextUrl.pathname.split('/')
+  const target = `/${rest.join('/')}`.replace(/(.)\/$/, '$1')
+
+  // Public pages under a locale prefix (/es, /es/algorithms/oll): crawlable per-language URLs.
+  // The app itself stays unprefixed and follows the cookie.
+  if (isLocale(pathLocale) && isLocalizedPath(target)) {
+    const url = new URL(`${target}${request.nextUrl.search}`, request.url)
+
+    if (pathLocale === defaultLocale) {
+      return NextResponse.redirect(url, 308)
+    }
+
+    const headers = new Headers(request.headers)
+    headers.set(LOCALE_HEADER, pathLocale)
+    const response = NextResponse.rewrite(url, { request: { headers } })
+    if (!request.cookies.has(LOCALE_COOKIE)) {
+      response.cookies.set(LOCALE_COOKIE, pathLocale, localeCookieOptions)
+    }
+    return response
+  }
+
   // Cookie already set — locale preference is known, nothing to do
   if (request.cookies.has(LOCALE_COOKIE)) return NextResponse.next()
 
