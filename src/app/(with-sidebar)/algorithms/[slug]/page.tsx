@@ -7,8 +7,10 @@ import Suggestions from '@/shared/ui/suggestions/suggestions'
 import SuggestAlgorithmButton from '@/features/suggest-algorithm/ui/SuggestAlgorithmButton'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import Information from '@/features/algorithms-list/ui/information'
+import SetGuide from '@/features/algorithms-list/ui/set-guide'
 import TrainerCTA from '@/features/algorithms-list/ui/trainer-cta'
 import { ALGORITHMS_GITHUB_URL } from '@/shared/const/algorithms-github-url'
+import { cubeCollection } from '@/shared/const/cube-collection'
 import { getLocale, getTranslations } from 'next-intl/server'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
@@ -87,6 +89,16 @@ export default async function AlgorithmsMethodPage({ params }: Props) {
 
   const pageTitle = `${collection.title} - ${t('title')}`
   const pageDescription = t(`descriptions.${collection.slug}`)
+  const { title } = collection
+  const puzzle = cubeCollection.find((cube) => cube.displayId === collection.puzzle)?.name ?? collection.puzzle
+  const guideItems = [
+    { question: t('guide.when', { title }), answer: t(`guides.${collection.slug}.when`) },
+    {
+      question: t('guide.count', { title }),
+      answer: t('guide.count-answer', { title, count: collection.algorithms.length, puzzle })
+    },
+    { question: t('guide.learn', { title }), answer: t(`guides.${collection.slug}.learn`) }
+  ]
   const pageUrl = `https://nexustimer.com${localizedPath(locale, `/algorithms/${slug}`)}`
 
   const breadcrumbSchema = {
@@ -117,32 +129,15 @@ export default async function AlgorithmsMethodPage({ params }: Props) {
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: `What is ${collection.title}?`,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: pageDescription
-        }
-      },
-      {
-        '@type': 'Question',
-        name: `How many ${collection.title} algorithms are there?`,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: `The ${collection.title} set contains ${collection.algorithms.length} algorithms for the ${collection.puzzle} puzzle.`
-        }
-      },
-      {
-        '@type': 'Question',
-        name: `How can I learn ${collection.title} algorithms?`,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: `You can learn ${collection.title} algorithms using Nexus Timer's interactive algorithm trainer. Each algorithm is displayed with a 3D visualization and move notation to help you memorize and practice them efficiently.`
-        }
+    inLanguage: locale,
+    mainEntity: [{ question: t('guide.what', { title }), answer: pageDescription }, ...guideItems].map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer
       }
-    ]
+    }))
   }
 
   const softwareSchema = {
@@ -185,6 +180,8 @@ export default async function AlgorithmsMethodPage({ params }: Props) {
           puzzle={collection.puzzle}
           methodSlug={collection.slug}
         />
+
+        <SetGuide heading={t('guide.heading', { title })} items={guideItems} />
 
         <div className="mt-6 flex flex-col items-center gap-1 sm:flex-row sm:justify-center sm:gap-6">
           <SuggestAlgorithmButton
