@@ -43,6 +43,9 @@ describe('parseProfileLink', () => {
     ['https://www.tiktok.com/@nexus', 'tiktok', '@nexus'],
     ['https://vm.tiktok.com/ZMabc/', 'tiktok', null],
     ['twitch.tv/nexus', 'twitch', '@nexus'],
+    ['https://thecubeindex.com/user/nexus', 'cubeindex', '@nexus'],
+    ['https://beta.thecubeindex.com/user/nexus/collection', 'cubeindex', '@nexus'],
+    ['https://thecubeindex.com/explore/cubes', 'cubeindex', null],
     ['https://www.instagram.com/p/abc123/', 'instagram', null]
   ])('detects %s', (input, platform, handle) => {
     expect(parseProfileLink(input)).toMatchObject({ platform, handle })
