@@ -3,7 +3,7 @@ import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { Dialog } from '@/components/ui/dialog'
 import { useEffect } from 'react'
 
-const CLOSE_ANIMATION_MS = 250
+const CLOSE_ANIMATION_MS = 500
 
 export const Overlay = () => {
   const activeOverlay = useOverlayStore((state) => state.activeOverlay)
