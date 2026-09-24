@@ -858,7 +858,7 @@
     },
     "ProfileLinks": {
       "label": "링크",
-      "description": "Instagram, YouTube, TikTok, Twitch 링크는 프로필에 전용 아이콘으로 표시됩니다.",
+      "description": "Instagram, YouTube, TikTok, Twitch, CubeIndex 링크는 프로필에 전용 아이콘으로 표시됩니다.",
       "placeholder": "링크 붙여넣기",
       "add": "링크 추가",
       "reorder": "드래그하거나 화살표 키로 순서를 바꾸세요",

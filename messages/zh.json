@@ -858,7 +858,7 @@
     },
     "ProfileLinks": {
       "label": "链接",
-      "description": "Instagram、YouTube、TikTok 和 Twitch 链接会在你的主页上显示专属图标。",
+      "description": "Instagram、YouTube、TikTok、Twitch 和 CubeIndex 链接会在你的主页上显示专属图标。",
       "placeholder": "粘贴链接",
       "add": "添加链接",
       "reorder": "拖动或使用方向键调整顺序",

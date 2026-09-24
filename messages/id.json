@@ -861,7 +861,7 @@
     },
     "ProfileLinks": {
       "label": "Tautan",
-      "description": "Tautan Instagram, YouTube, TikTok, dan Twitch tampil dengan ikonnya sendiri di profilmu.",
+      "description": "Tautan Instagram, YouTube, TikTok, Twitch, dan CubeIndex tampil dengan ikonnya sendiri di profilmu.",
       "placeholder": "Tempel tautan",
       "add": "Tambah tautan",
       "reorder": "Seret atau gunakan tombol panah untuk mengurutkan",

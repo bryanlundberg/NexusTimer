@@ -861,7 +861,7 @@
     },
     "ProfileLinks": {
       "label": "Mga link",
-      "description": "Ang mga link ng Instagram, YouTube, TikTok at Twitch ay may sariling icon sa iyong profile.",
+      "description": "Ang mga link ng Instagram, YouTube, TikTok, Twitch at CubeIndex ay may sariling icon sa iyong profile.",
       "placeholder": "I-paste ang link",
       "add": "Magdagdag ng link",
       "reorder": "I-drag o gamitin ang mga arrow key para ayusin ang order",

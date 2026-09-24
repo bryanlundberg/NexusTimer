@@ -858,7 +858,7 @@
     },
     "ProfileLinks": {
       "label": "リンク",
-      "description": "Instagram、YouTube、TikTok、Twitchのリンクはプロフィールに専用アイコンで表示されます。",
+      "description": "Instagram、YouTube、TikTok、Twitch、CubeIndexのリンクはプロフィールに専用アイコンで表示されます。",
       "placeholder": "リンクを貼り付け",
       "add": "リンクを追加",
       "reorder": "ドラッグまたは矢印キーで並べ替え",

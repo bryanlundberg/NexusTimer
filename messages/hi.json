@@ -858,7 +858,7 @@
     },
     "ProfileLinks": {
       "label": "लिंक",
-      "description": "Instagram, YouTube, TikTok और Twitch के लिंक आपकी प्रोफ़ाइल पर अपने आइकन के साथ दिखते हैं।",
+      "description": "Instagram, YouTube, TikTok, Twitch और CubeIndex के लिंक आपकी प्रोफ़ाइल पर अपने आइकन के साथ दिखते हैं।",
       "placeholder": "लिंक पेस्ट करें",
       "add": "लिंक जोड़ें",
       "reorder": "क्रम बदलने के लिए खींचें या एरो कुंजियों का उपयोग करें",

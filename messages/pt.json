@@ -858,7 +858,7 @@
     },
     "ProfileLinks": {
       "label": "Links",
-      "description": "Links do Instagram, YouTube, TikTok e Twitch mostram o próprio ícone no seu perfil.",
+      "description": "Links do Instagram, YouTube, TikTok, Twitch e CubeIndex mostram o próprio ícone no seu perfil.",
       "placeholder": "Cole um link",
       "add": "Adicionar link",
       "reorder": "Arraste ou use as setas para reordenar",

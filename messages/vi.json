@@ -861,7 +861,7 @@
     },
     "ProfileLinks": {
       "label": "Liên kết",
-      "description": "Liên kết Instagram, YouTube, TikTok và Twitch sẽ hiện biểu tượng riêng trên hồ sơ của bạn.",
+      "description": "Liên kết Instagram, YouTube, TikTok, Twitch và CubeIndex sẽ hiện biểu tượng riêng trên hồ sơ của bạn.",
       "placeholder": "Dán liên kết",
       "add": "Thêm liên kết",
       "reorder": "Kéo hoặc dùng phím mũi tên để sắp xếp lại",

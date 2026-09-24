@@ -858,7 +858,7 @@
     },
     "ProfileLinks": {
       "label": "Links",
-      "description": "Links zu Instagram, YouTube, TikTok und Twitch erscheinen mit eigenem Symbol in deinem Profil.",
+      "description": "Links zu Instagram, YouTube, TikTok, Twitch und CubeIndex erscheinen mit eigenem Symbol in deinem Profil.",
       "placeholder": "Link einfügen",
       "add": "Link hinzufügen",
       "reorder": "Ziehen oder mit den Pfeiltasten neu anordnen",

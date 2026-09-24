@@ -861,7 +861,7 @@
     },
     "ProfileLinks": {
       "label": "Linki",
-      "description": "Linki do Instagrama, YouTube, TikToka i Twitcha mają na Twoim profilu własną ikonę.",
+      "description": "Linki do Instagrama, YouTube, TikToka, Twitcha i CubeIndex mają na Twoim profilu własną ikonę.",
       "placeholder": "Wklej link",
       "add": "Dodaj link",
       "reorder": "Przeciągnij lub użyj strzałek, aby zmienić kolejność",

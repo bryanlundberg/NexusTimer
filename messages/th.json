@@ -861,7 +861,7 @@
     },
     "ProfileLinks": {
       "label": "ลิงก์",
-      "description": "ลิงก์ Instagram, YouTube, TikTok และ Twitch จะแสดงไอคอนของตัวเองบนโปรไฟล์ของคุณ",
+      "description": "ลิงก์ Instagram, YouTube, TikTok, Twitch และ CubeIndex จะแสดงไอคอนของตัวเองบนโปรไฟล์ของคุณ",
       "placeholder": "วางลิงก์",
       "add": "เพิ่มลิงก์",
       "reorder": "ลากหรือใช้ปุ่มลูกศรเพื่อจัดลำดับ",

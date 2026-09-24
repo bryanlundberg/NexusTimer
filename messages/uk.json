@@ -861,7 +861,7 @@
     },
     "ProfileLinks": {
       "label": "Посилання",
-      "description": "Посилання на Instagram, YouTube, TikTok і Twitch показуються в профілі з власною іконкою.",
+      "description": "Посилання на Instagram, YouTube, TikTok, Twitch і CubeIndex показуються в профілі з власною іконкою.",
       "placeholder": "Вставте посилання",
       "add": "Додати посилання",
       "reorder": "Перетягніть або скористайтеся стрілками, щоб змінити порядок",
