@@ -437,7 +437,7 @@ export const ALGORITHM_SETS = [
     slug: 'l4e',
     goal: 'full',
     title: 'L4E',
-    subtitle: 'Last 4 slots (Pyraminx)',
+    subtitle: 'Last 4 Edges (Pyraminx)',
     puzzle: 'pyraminx',
     algorithms: L4E_ALGS,
     Icon: TriangleIcon,
