@@ -1,14 +1,15 @@
 export const MAX_PROFILE_LINKS = 5
 export const PROFILE_LINK_MAX_LENGTH = 200
 
-export const SOCIAL_PLATFORMS = ['instagram', 'youtube', 'tiktok', 'twitch'] as const
+export const SOCIAL_PLATFORMS = ['instagram', 'youtube', 'tiktok', 'twitch', 'cubeindex'] as const
 export type SocialPlatform = (typeof SOCIAL_PLATFORMS)[number]
 
 const PLATFORM_DOMAINS: Record<SocialPlatform, string[]> = {
   instagram: ['instagram.com', 'instagr.am'],
   youtube: ['youtube.com', 'youtu.be'],
   tiktok: ['tiktok.com'],
-  twitch: ['twitch.tv']
+  twitch: ['twitch.tv'],
+  cubeindex: ['thecubeindex.com']
 }
 
 const NON_HANDLE_SEGMENTS = new Set([
@@ -78,7 +79,8 @@ export function parseProfileLink(href: string): ProfileLinkInfo | null {
     ) ?? null
 
   let handle: string | null = null
-  const [segment] = url.pathname.split('/').filter(Boolean)
+  const segments = url.pathname.split('/').filter(Boolean)
+  const segment = platform === 'cubeindex' ? (segments[0] === 'user' ? segments[1] : undefined) : segments[0]
   if (segment && platform) {
     const needsAt = platform === 'youtube' || platform === 'tiktok'
     const name = segment.replace(/^@/, '')
