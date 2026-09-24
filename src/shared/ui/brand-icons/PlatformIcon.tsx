@@ -6,12 +6,14 @@ import { InstagramIcon } from '@/shared/ui/brand-icons/InstagramIcon'
 import { YoutubeIcon } from '@/shared/ui/brand-icons/YoutubeIcon'
 import { TiktokIcon } from '@/shared/ui/brand-icons/TiktokIcon'
 import { TwitchIcon } from '@/shared/ui/brand-icons/TwitchIcon'
+import { CubeIndexIcon } from '@/shared/ui/brand-icons/CubeIndexIcon'
 
 const PLATFORM_ICONS: Record<SocialPlatform, ComponentType<BrandIconProps>> = {
   instagram: InstagramIcon,
   youtube: YoutubeIcon,
   tiktok: TiktokIcon,
-  twitch: TwitchIcon
+  twitch: TwitchIcon,
+  cubeindex: CubeIndexIcon
 }
 
 export function PlatformIcon({ platform, branded, ...props }: BrandIconProps & { platform: SocialPlatform | null }) {
