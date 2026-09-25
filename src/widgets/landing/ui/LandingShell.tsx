@@ -15,15 +15,16 @@ import * as React from 'react'
 import { cn } from '@/shared/lib/utils'
 
 const NAV = [
-  { href: '/free-play', key: 'multiplayer', wide: false },
-  { href: '/people', key: 'people', wide: false },
-  { href: '/algorithms', key: 'algorithms', wide: true },
-  { href: '/leaderboards', key: 'leaderboards', wide: true }
+  { href: '/app', page: 'timer', wide: false },
+  { href: '/leaderboards', page: 'leaderboards', wide: false },
+  { href: '/people', page: 'community', wide: true },
+  { href: '/algorithms/trainer', page: 'trainer', wide: true }
 ] as const
 
 export default function LandingShell({ footer }: { footer: ReactNode }) {
   const t = useTranslations('LandingPage')
   const tAuth = useTranslations('Index.Auth')
+  const tPages = useTranslations('Metadata.pages')
   const reduce = useReducedMotion()
   const [scrolled, setScrolled] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -99,7 +100,7 @@ export default function LandingShell({ footer }: { footer: ReactNode }) {
                       item.wide && 'hidden lg:inline-flex'
                     )}
                   >
-                    {t(`header.${item.key}`)}
+                    {tPages(`${item.page}.title`)}
                   </Link>
                 ))}
               </nav>

@@ -10,18 +10,19 @@ const FORUM_URL = 'https://www.speedsolving.com/threads/nexus-timer-all-in-one-c
 export default async function LandingFooter() {
   const locale = await getLocale()
   const t = await getTranslations({ locale, namespace: 'LandingPage.footer' })
+  const tPages = await getTranslations({ locale, namespace: 'Metadata.pages' })
 
   const linkClass = 'text-sm text-gray-400 hover:text-white transition-colors duration-300'
 
   const productLinks = [
-    { href: '/app', label: t('timer-app') },
+    { href: '/app', label: tPages('timer.title') },
     { href: '/stats', label: t('statistics') },
     { href: '/cubes', label: t('cubes') },
     { href: '/free-play', label: t('multiplayer') },
     { href: '/algorithms', label: t('algorithms') },
-    { href: '/algorithms/trainer', label: t('trainer') },
-    { href: '/leaderboards', label: t('leaderboards') },
-    { href: '/people', label: t('people') }
+    { href: '/algorithms/trainer', label: tPages('trainer.title') },
+    { href: '/leaderboards', label: tPages('leaderboards.title') },
+    { href: '/people', label: tPages('community.title') }
   ]
 
   const companyLinks = [
