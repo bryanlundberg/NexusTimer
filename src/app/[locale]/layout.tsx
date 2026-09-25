@@ -12,6 +12,7 @@ import CookieConsentBanner from '@/components/cookie-consent-banner'
 import { CONSENT_KEY } from '@/shared/lib/analyticsConsent'
 import { OfflineIndicator } from '@/shared/ui/offline-indicator/OfflineIndicator'
 import { DiagnosticsRecorder } from '@/shared/ui/diagnostics-recorder/DiagnosticsRecorder'
+import { ChunkRecovery } from '@/shared/ui/chunk-recovery/ChunkRecovery'
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale()
@@ -126,6 +127,7 @@ export default async function LocaleLayout({ children }: { children: React.React
       </head>
       <body className={`font-sans ${spaceGrotesk.variable} ${chakraPetch.variable}`}>
         <DiagnosticsRecorder />
+        <ChunkRecovery />
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-441RYCJK0K" strategy="lazyOnload" />
         <Script id="google-analytics" strategy="lazyOnload">
           {`

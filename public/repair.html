@@ -224,6 +224,26 @@
             )
             log('caches removed: ' + names.length)
           }
+          var failedFiles = []
+          try {
+            JSON.parse(localStorage.getItem('nx-diag') || '[]').forEach(function (run) {
+              run.events.forEach(function (event) {
+                if (event.type === 'resource' && failedFiles.indexOf(event.detail) === -1)
+                  failedFiles.push(event.detail)
+              })
+            })
+          } catch (error) {}
+          for (var f = 0; f < failedFiles.length; f++) {
+            try {
+              var refreshed = await fetch(failedFiles[f], { cache: 'reload' })
+              log('refreshed ' + failedFiles[f] + ' -> ' + refreshed.status)
+            } catch (error) {
+              log('refresh failed ' + failedFiles[f] + ': ' + error)
+            }
+          }
+          try {
+            sessionStorage.removeItem('nx-chunk-recovery')
+          } catch (error) {}
           log('done. Tap "Open app".')
         }
 
