@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Nexus Timer repair</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 16px;
+        background: #0b0f1a;
+        color: #e5e7eb;
+        font:
+          14px/1.5 system-ui,
+          sans-serif;
+      }
+      h1 {
+        font-size: 18px;
+        margin: 0 0 4px;
+      }
+      p {
+        color: #9ca3af;
+        margin: 0 0 16px;
+      }
+      button,
+      a.btn {
+        display: inline-block;
+        margin: 0 8px 16px 0;
+        padding: 10px 14px;
+        border: 0;
+        border-radius: 8px;
+        background: #6366f1;
+        color: #fff;
+        font: inherit;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      a.btn {
+        background: #1f2937;
+      }
+      pre {
+        white-space: pre-wrap;
+        word-break: break-all;
+        background: #111827;
+        border: 1px solid #1f2937;
+        border-radius: 8px;
+        padding: 12px;
+        font:
+          12px/1.45 ui-monospace,
+          monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Nexus Timer repair</h1>
+    <p>Fixes a blank app by removing offline caches. Your solves, cubes and settings are kept.</p>
+    <button id="repair" type="button">Repair app</button>
+    <a class="btn" href="/app">Open app</a>
+    <pre id="report">Collecting diagnostics...</pre>
+    <script>
+      ;(function () {
+        var KEEP = 'auth-session'
+        var out = document.getElementById('report')
+        var lines = []
+        var log = function (line) {
+          lines.push(line)
+          out.textContent = lines.join('\n')
+        }
+        var describe = function (response) {
+          if (!response) return 'none'
+          return [
+            'status=' + response.status,
+            'type=' + response.type,
+            'redirected=' + response.redirected,
+            'url=' + (response.url || '-'),
+            'ctype=' + (response.headers.get('content-type') || '-')
+          ].join(' ')
+        }
+        var buildOf = function (response) {
+          if (!response || response.type !== 'basic' || response.status !== 200) return Promise.resolve('')
+          return response
+            .clone()
+            .text()
+            .then(function (html) {
+              var chunk = html.match(/_next\/static\/chunks\/[^"']*webpack[^"']*/)
+              return (html.indexOf('hrefLang=') > -1 ? ' build=new' : ' build=old') + (chunk ? ' ' + chunk[0] : '')
+            })
+            .catch(function () {
+              return ''
+            })
+        }
+
+        var diagnose = async function () {
+          lines = []
+          log('time: ' + new Date().toISOString())
+          log('online: ' + navigator.onLine)
+          log('ua: ' + navigator.userAgent)
+          if (navigator.storage && navigator.storage.estimate) {
+            var estimate = await navigator.storage.estimate()
+            log('storage: ' + Math.round(estimate.usage / 1e6) + 'MB of ' + Math.round(estimate.quota / 1e6) + 'MB')
+          }
+
+          log('\n[service workers]')
+          if (!navigator.serviceWorker) log('not supported')
+          else {
+            var controller = navigator.serviceWorker.controller
+            log('controller: ' + (controller ? controller.scriptURL + ' (' + controller.state + ')' : 'none'))
+            var registrations = await navigator.serviceWorker.getRegistrations()
+            if (!registrations.length) log('no registrations')
+            registrations.forEach(function (registration) {
+              ;['installing', 'waiting', 'active'].forEach(function (slot) {
+                var worker = registration[slot]
+                if (worker) log(registration.scope + ' ' + slot + ': ' + worker.scriptURL + ' (' + worker.state + ')')
+              })
+            })
+          }
+
+          log('\n[caches]')
+          if (!window.caches) log('not supported')
+          else {
+            var names = await caches.keys()
+            if (!names.length) log('no caches')
+            for (var i = 0; i < names.length; i++) {
+              var cache = await caches.open(names[i])
+              var keys = await cache.keys()
+              log(names[i] + ': ' + keys.length + ' entries')
+              for (var j = 0; j < keys.length; j++) {
+                var path = new URL(keys[j].url).pathname
+                if (/^\/([a-z]{2,3}\/)?app\/?$/.test(path) || path === '/') {
+                  var cached = await cache.match(keys[j])
+                  log('  ' + path + ' -> ' + describe(cached) + (await buildOf(cached)))
+                }
+              }
+            }
+          }
+
+          log('\n[live fetch]')
+          for (var k = 0; k < 2; k++) {
+            var target = k === 0 ? '/app' : '/es/app'
+            try {
+              var response = await fetch(target, { cache: 'no-store' })
+              log(target + ' -> ' + describe(response) + (await buildOf(response)))
+            } catch (error) {
+              log(target + ' -> ERROR ' + error)
+            }
+          }
+        }
+
+        var repair = async function () {
+          log('\n[repair]')
+          if (navigator.serviceWorker) {
+            var registrations = await navigator.serviceWorker.getRegistrations()
+            await Promise.all(
+              registrations.map(function (registration) {
+                return registration.unregister()
+              })
+            )
+            log('service workers removed: ' + registrations.length)
+          }
+          if (window.caches) {
+            var names = (await caches.keys()).filter(function (name) {
+              return name !== KEEP
+            })
+            await Promise.all(
+              names.map(function (name) {
+                return caches.delete(name)
+              })
+            )
+            log('caches removed: ' + names.length)
+          }
+          log('done. Tap "Open app".')
+        }
+
+        document.getElementById('repair').addEventListener('click', function () {
+          repair().catch(function (error) {
+            log('repair failed: ' + error)
+          })
+        })
+        diagnose().catch(function (error) {
+          log('diagnostics failed: ' + error)
+        })
+      })()
+    </script>
+  </body>
+</html>
