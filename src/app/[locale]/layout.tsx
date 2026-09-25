@@ -11,6 +11,7 @@ import Script from 'next/script'
 import CookieConsentBanner from '@/components/cookie-consent-banner'
 import { CONSENT_KEY } from '@/shared/lib/analyticsConsent'
 import { OfflineIndicator } from '@/shared/ui/offline-indicator/OfflineIndicator'
+import { DiagnosticsRecorder } from '@/shared/ui/diagnostics-recorder/DiagnosticsRecorder'
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale()
@@ -124,6 +125,7 @@ export default async function LocaleLayout({ children }: { children: React.React
         <JsonLd locale={locale} title={title} description={description} url={url} />
       </head>
       <body className={`font-sans ${spaceGrotesk.variable} ${chakraPetch.variable}`}>
+        <DiagnosticsRecorder />
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-441RYCJK0K" strategy="lazyOnload" />
         <Script id="google-analytics" strategy="lazyOnload">
           {`

@@ -135,6 +135,61 @@
             }
           }
 
+          log('\n[app log]')
+          var runs = []
+          try {
+            runs = JSON.parse(localStorage.getItem('nx-diag') || '[]')
+          } catch (error) {
+            log('unreadable: ' + error)
+          }
+          if (!runs.length) log('no app loads recorded yet. Open the app, wait 10s, come back.')
+          runs.forEach(function (run) {
+            log('load ' + new Date(run.start).toISOString() + ' ' + run.url)
+            run.events.forEach(function (event) {
+              log('  +' + event.t + 'ms ' + event.type + (event.detail ? ': ' + event.detail : ''))
+            })
+          })
+
+          log('\n[storage]')
+          try {
+            var storageKeys = Object.keys(localStorage)
+            log('localStorage: ' + storageKeys.length + ' keys')
+            storageKeys.forEach(function (key) {
+              log('  ' + key + ' (' + (localStorage.getItem(key) || '').length + ' chars)')
+            })
+          } catch (error) {
+            log('localStorage error: ' + error)
+          }
+          if (indexedDB.databases) {
+            var databases = await indexedDB.databases()
+            databases.forEach(function (db) {
+              log('indexedDB: ' + db.name + ' v' + db.version)
+            })
+          }
+          log(
+            'open nx-data: ' +
+              (await new Promise(function (resolve) {
+                var timer = setTimeout(function () {
+                  resolve('HANGS after 4s (blocked by another open copy of the app?)')
+                }, 4000)
+                var request = indexedDB.open('IDBWrapper-nx-data')
+                request.onblocked = function () {
+                  resolve('BLOCKED by another open copy of the app')
+                }
+                request.onerror = function () {
+                  clearTimeout(timer)
+                  resolve('error ' + request.error)
+                }
+                request.onsuccess = function () {
+                  clearTimeout(timer)
+                  var db = request.result
+                  var stores = Array.prototype.slice.call(db.objectStoreNames).join(',')
+                  db.close()
+                  resolve('ok v' + db.version + ' stores=' + stores)
+                }
+              }))
+          )
+
           log('\n[live fetch]')
           for (var k = 0; k < 2; k++) {
             var target = k === 0 ? '/app' : '/es/app'
