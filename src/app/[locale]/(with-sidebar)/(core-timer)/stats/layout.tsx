@@ -1,10 +1,9 @@
 import React from 'react'
 import type { Metadata } from 'next'
+import { localizedPathMetadata } from '@/shared/config/i18n/pageMetadata'
 
-export const metadata: Metadata = {
-  alternates: {
-    canonical: '/stats'
-  }
+export function generateMetadata(): Promise<Metadata> {
+  return localizedPathMetadata('/stats')
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {

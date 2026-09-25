@@ -1,10 +1,11 @@
 import React from 'react'
 import { SidebarInset } from '@/components/ui/sidebar'
 import { Metadata } from 'next'
+import { localizedPathMetadata } from '@/shared/config/i18n/pageMetadata'
 import { AppSidebar } from '@/widgets/sidebar/ui/AppSidebar'
 import StatisticsProvider from '@/components/statistics-provider'
 
-export const metadata: Metadata = {
+const multiplayerMetadata: Metadata = {
   title: 'Multiplayer Cubing - Nexus Timer',
   description:
     "Compete in real-time Rubik's cube solving sessions with cubers worldwide. Challenge friends, participate in group solves with synchronized timing.",
@@ -24,10 +25,11 @@ export const metadata: Metadata = {
     title: 'Multiplayer Cubing - Nexus Timer',
     description: "Join real-time competitive Rubik's cube solving sessions with cubers worldwide.",
     type: 'website'
-  },
-  alternates: {
-    canonical: '/free-play'
   }
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  return { ...multiplayerMetadata, ...(await localizedPathMetadata('/free-play')) }
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {

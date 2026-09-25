@@ -1,10 +1,9 @@
 import React from 'react'
 import type { Metadata } from 'next'
+import { localizedPageMetadata } from '@/shared/config/i18n/pageMetadata'
 
-export const metadata: Metadata = {
-  alternates: {
-    canonical: '/leaderboards'
-  }
+export function generateMetadata(): Promise<Metadata> {
+  return localizedPageMetadata('leaderboards', '/leaderboards')
 }
 
 const leaderboardsSchema = {
