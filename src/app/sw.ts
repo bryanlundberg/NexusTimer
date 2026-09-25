@@ -35,18 +35,3 @@ const serwist = new Serwist({
 })
 
 serwist.addEventListeners()
-
-// Bump when the route structure changes, so runtime caches from older builds are dropped once.
-const CACHE_EPOCH = 'nx-cache-epoch-locale-routing'
-
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    (async () => {
-      if (await caches.has(CACHE_EPOCH)) return
-      const keys = await caches.keys()
-      const stale = keys.filter((key) => !key.startsWith('serwist-precache') && key !== AUTH_SESSION_CACHE)
-      await Promise.all(stale.map((key) => caches.delete(key)))
-      await caches.open(CACHE_EPOCH)
-    })()
-  )
-})
