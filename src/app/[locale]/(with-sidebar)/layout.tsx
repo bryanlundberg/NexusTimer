@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { SidebarInset } from '@/components/ui/sidebar'
 import { AppSidebar } from '@/widgets/sidebar/ui/AppSidebar'
 import StatisticsProvider from '@/components/statistics-provider'
@@ -11,7 +11,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <AppShellProviders>
       <AppSidebar />
       <SidebarInset className={'h-svh max-h-svh overflow-hidden relative'}>
-        <StatisticsProvider>{children}</StatisticsProvider>
+        <StatisticsProvider>
+          <Suspense>{children}</Suspense>
+        </StatisticsProvider>
         <MobileBottomNav />
       </SidebarInset>
       <ChatDock />
