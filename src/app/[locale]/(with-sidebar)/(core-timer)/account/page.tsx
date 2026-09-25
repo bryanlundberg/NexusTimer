@@ -18,7 +18,7 @@ export default function AccountPage() {
   const { data: session } = useSession()
   const t = useTranslations('Index')
   const tAccount = useTranslations('Index.AccountPage')
-  const { data: user, mutate, isLoading: userLoading } = useUser(session!.user?.id || '')
+  const { data: user, mutate, isLoading: userLoading } = useUser(session?.user?.id)
   const [tab, setTab] = useQueryState('tab', { defaultValue: 'account' })
   const [preview, setPreview] = useState<ProfilePreview | null>(null)
 
@@ -29,14 +29,17 @@ export default function AccountPage() {
   ]
 
   const hero = preview ?? user
+  const header = <CoreHeader breadcrumbs={[{ label: t('SettingsPage.account'), href: '/account' }]} />
+
+  if (!session) return <div className="flex flex-col pb-10">{header}</div>
 
   return (
     <div className="flex flex-col pb-10">
-      <CoreHeader breadcrumbs={[{ label: t('SettingsPage.account'), href: '/account' }]} />
+      {header}
 
       <PageBody variant="hero" className="max-w-3xl mx-auto w-full px-4 space-y-8">
         <ProfileHero
-          session={session!}
+          session={session}
           name={hero?.name}
           isPreview={!!preview}
           bio={hero?.bio}
