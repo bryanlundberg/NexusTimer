@@ -1,4 +1,4 @@
-import { signOut, useSession } from 'next-auth/react'
+import { getCsrfToken, signOut, useSession } from 'next-auth/react'
 import { toast } from 'sonner'
 import { useTranslations } from 'next-intl'
 import useAlert from '@/shared/model/useAlert'
@@ -25,6 +25,7 @@ export default function useLogout() {
       })
 
       if (!confirm) return
+      if (!(await getCsrfToken())) throw new Error('Auth server unreachable, keeping local data')
 
       await cubesDB.clear()
       await clearCachedSession()
