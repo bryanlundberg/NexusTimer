@@ -1453,10 +1453,6 @@
   },
   "LandingPage": {
     "header": {
-      "multiplayer": "マルチプレイヤー",
-      "people": "ユーザー",
-      "algorithms": "アルゴリズム",
-      "leaderboards": "ランキング",
       "github": "GitHub",
       "start-timing": "タイマーを始める"
     },
@@ -1511,13 +1507,9 @@
     "footer": {
       "tagline": "スピードキューバーの拠点。計測、練習、対戦、つながり。あなたの歩みすべてを残すプロフィールとともに。",
       "product": "プロダクト",
-      "timer-app": "タイマーアプリ",
       "statistics": "統計",
       "multiplayer": "マルチプレイヤー",
       "algorithms": "アルゴリズム",
-      "trainer": "アルゴリズムトレーナー",
-      "leaderboards": "ランキング",
-      "people": "キューバー",
       "cubes": "マイキューブ",
       "company": "会社",
       "about-us": "私たちについて",
@@ -1563,6 +1555,24 @@
       "key12": "cubing",
       "key13": "cubing timer",
       "key14": "world cubing association"
+    },
+    "pages": {
+      "timer": {
+        "title": "タイマー",
+        "description": "スクランブル、インスペクション、スマートキューブ対応、そして全ソルブの詳細な統計を備えた無料のオンライン・ルービックキューブタイマー。オフラインでも使えます。"
+      },
+      "leaderboards": {
+        "title": "ランキング",
+        "description": "3x3、2x2などの最速タイムを集めたスピードキューブの世界ランキング。世界中のキューバーの中で自分の順位をチェックしましょう。"
+      },
+      "community": {
+        "title": "コミュニティ",
+        "description": "世界中のスピードキューバーを見つけて、プロフィールや自己ベストをチェックし、Nexus Timerのコミュニティで友達とつながりましょう。"
+      },
+      "trainer": {
+        "title": "アルゴリズムトレーナー",
+        "description": "無料のアルゴリズムトレーナーでOLL、PLLなどを練習。ランダムなケースを反復し、各実行のタイムを計測し、覚えたアルゴリズムを管理できます。"
+      }
     }
   },
   "OpenGraphImage": {

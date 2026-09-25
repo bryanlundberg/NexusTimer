@@ -28,7 +28,7 @@ export default function TrainerHistoryView() {
   const setMethod = useTrainerStore((s) => s.setMethod)
   const targetSeconds = useTrainerStore((s) => s.targetByMethod[s.methodSlug] ?? TRAINER_DEFAULT_TARGET_SECONDS)
 
-  const { data: session } = useSession()
+  const { data: session, status } = useSession()
   const isAuthed = !!session?.user?.id
 
   const [tab, setTab] = useState('method')
@@ -64,6 +64,8 @@ export default function TrainerHistoryView() {
       })
     }
   }
+
+  if (status === 'loading') return null
 
   if (!isAuthed) {
     return <div className="p-4 text-sm text-muted-foreground">{t('signInPrompt')}</div>

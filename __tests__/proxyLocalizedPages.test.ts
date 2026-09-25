@@ -1,54 +1,47 @@
 // @vitest-environment node
 import { NextRequest } from 'next/server'
-import { proxy } from '@/proxy'
-import { LOCALE_COOKIE, LOCALE_HEADER } from '@/shared/config/i18n/locales'
+import proxy from '@/proxy'
+import { LOCALE_COOKIE } from '@/shared/config/i18n/locales'
 
-const request = (path: string, cookie?: string) =>
-  new NextRequest(`https://nexustimer.com${path}`, {
-    headers: cookie ? { cookie: `${LOCALE_COOKIE}=${cookie}` } : {}
+const request = (path: string, headers: Record<string, string> = {}) =>
+  new NextRequest(`https://nexustimer.com${path}`, { headers })
+
+const rewriteOf = (response: Response) => response.headers.get('x-middleware-rewrite')
+
+describe('locale proxy', () => {
+  it('serves unprefixed urls as english without redirecting', () => {
+    const response = proxy(request('/algorithms/oll'))
+
+    expect(response.status).toBe(200)
+    expect(rewriteOf(response)).toBe('https://nexustimer.com/en/algorithms/oll')
   })
 
-describe('proxy localized public pages', () => {
-  it('rewrites /es to the root page with the locale header', () => {
-    const response = proxy(request('/es'))
+  it('serves prefixed urls in their locale', () => {
+    const response = proxy(request('/es/app?tab=stats'))
 
-    expect(response.headers.get('x-middleware-rewrite')).toBe('https://nexustimer.com/')
-    expect(response.headers.get(`x-middleware-request-${LOCALE_HEADER}`)).toBe('es')
-    expect(response.cookies.get(LOCALE_COOKIE)?.value).toBe('es')
+    expect(response.status).toBe(200)
+    expect(response.headers.get('location')).toBeNull()
+    expect(response.headers.get('x-middleware-request-x-next-intl-locale')).toBe('es')
   })
 
-  it('keeps an existing locale cookie on a localized landing', () => {
-    const response = proxy(request('/es', 'fr'))
+  it('redirects the english prefix to the unprefixed url', () => {
+    const response = proxy(request('/en/algorithms'))
 
-    expect(response.headers.get(`x-middleware-request-${LOCALE_HEADER}`)).toBe('es')
-    expect(response.cookies.get(LOCALE_COOKIE)).toBeUndefined()
-  })
-
-  it('redirects /en to the root', () => {
-    const response = proxy(request('/en'))
-
-    expect(response.status).toBe(308)
-    expect(response.headers.get('location')).toBe('https://nexustimer.com/')
-  })
-
-  it('rewrites localized algorithm pages keeping the query', () => {
-    const response = proxy(request('/ja/algorithms/oll?view=grid'))
-
-    expect(response.headers.get('x-middleware-rewrite')).toBe('https://nexustimer.com/algorithms/oll?view=grid')
-    expect(response.headers.get(`x-middleware-request-${LOCALE_HEADER}`)).toBe('ja')
-  })
-
-  it('redirects /en/algorithms to the unprefixed url', () => {
-    const response = proxy(request('/en/algorithms/'))
-
-    expect(response.status).toBe(308)
+    expect(response.status).toBe(307)
     expect(response.headers.get('location')).toBe('https://nexustimer.com/algorithms')
   })
 
-  it('leaves app paths under a locale prefix alone', () => {
-    const response = proxy(request('/es/app', 'es'))
+  it('never redirects a cookieless client back to the same url', () => {
+    const response = proxy(request('/algorithms/oll', { 'accept-language': 'es-ES' }))
+    const location = response.headers.get('location')
 
-    expect(response.headers.get('x-middleware-rewrite')).toBeNull()
-    expect(response.headers.get(`x-middleware-request-${LOCALE_HEADER}`)).toBeNull()
+    expect(location).toBe('https://nexustimer.com/es/algorithms/oll')
+    expect(proxy(request('/es/algorithms/oll', { 'accept-language': 'es-ES' })).headers.get('location')).toBeNull()
+  })
+
+  it('follows the stored locale cookie', () => {
+    const response = proxy(request('/app', { cookie: `${LOCALE_COOKIE}=ja` }))
+
+    expect(response.headers.get('location')).toBe('https://nexustimer.com/ja/app')
   })
 })

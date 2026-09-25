@@ -1,6 +1,6 @@
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/shared/config/i18n/navigation'
 import { useLocale } from 'next-intl'
 import type { SolveServer } from '@/entities/solve/model/types'
 import { CountryFlag } from '@/shared/ui/country-flag/CountryFlag'

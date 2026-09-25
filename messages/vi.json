@@ -1353,6 +1353,24 @@
       "key12": "cubing",
       "key13": "đồng hồ cubing",
       "key14": "world cube association"
+    },
+    "pages": {
+      "timer": {
+        "title": "Đồng hồ",
+        "description": "Bộ đếm giờ Rubik trực tuyến miễn phí với xáo trộn, thời gian quan sát, hỗ trợ smart cube và thống kê chi tiết cho mỗi lần giải. Dùng được cả khi ngoại tuyến."
+      },
+      "leaderboards": {
+        "title": "Bảng xếp hạng",
+        "description": "Bảng xếp hạng speedcubing toàn cầu với thời gian nhanh nhất cho 3x3, 2x2 và nhiều hơn nữa. Xem thứ hạng của bạn so với các cuber trên khắp thế giới."
+      },
+      "community": {
+        "title": "Cộng đồng",
+        "description": "Tìm các speedcuber trên khắp thế giới, xem hồ sơ và kỷ lục cá nhân của họ, và kết nối với bạn bè trong cộng đồng Nexus Timer."
+      },
+      "trainer": {
+        "title": "Trình luyện thuật toán",
+        "description": "Luyện OLL, PLL và nhiều hơn nữa với công cụ luyện công thức miễn phí. Ôn trường hợp ngẫu nhiên, bấm giờ từng lần thực hiện và theo dõi công thức đã thuộc."
+      }
     }
   },
   "OpenGraphImage": {
@@ -1453,10 +1471,6 @@
   },
   "LandingPage": {
     "header": {
-      "multiplayer": "Multiplayer",
-      "people": "Mọi người",
-      "algorithms": "Thuật toán",
-      "leaderboards": "Bảng xếp hạng",
       "github": "GitHub",
       "start-timing": "Bắt đầu bấm giờ"
     },
@@ -1511,13 +1525,9 @@
     "footer": {
       "tagline": "Ngôi nhà của các speedcuber. Bấm giờ, luyện tập, thi đấu và kết nối, với một hồ sơ lưu trọn hành trình của bạn.",
       "product": "Sản phẩm",
-      "timer-app": "Ứng dụng đồng hồ",
       "statistics": "Thống kê",
       "multiplayer": "Multiplayer",
       "algorithms": "Thuật toán",
-      "trainer": "Trình luyện thuật toán",
-      "leaderboards": "Bảng xếp hạng",
-      "people": "Cuber",
       "cubes": "Khối của tôi",
       "company": "Công ty",
       "about-us": "Về chúng tôi",

@@ -1353,6 +1353,24 @@
       "key12": "cubero",
       "key13": "resolver cubo rápido",
       "key14": "asociación mundial de cuberos"
+    },
+    "pages": {
+      "timer": {
+        "title": "Cronómetro",
+        "description": "Cronómetro de cubo Rubik online y gratis con mezclas, inspección, cubos inteligentes y estadísticas detalladas de cada resolución. Funciona sin conexión."
+      },
+      "leaderboards": {
+        "title": "Clasificaciones",
+        "description": "Clasificaciones mundiales de speedcubing con los tiempos más rápidos en 3x3, 2x2 y más. Descubre en qué posición estás frente a cuberos de todo el mundo."
+      },
+      "community": {
+        "title": "Comunidad",
+        "description": "Encuentra speedcubers de todo el mundo, explora sus perfiles y mejores marcas, y conecta con amigos en la comunidad de Nexus Timer."
+      },
+      "trainer": {
+        "title": "Entrenador de algoritmos",
+        "description": "Practica OLL, PLL y más con un entrenador de algoritmos gratuito. Repasa casos aleatorios, cronometra cada ejecución y lleva el control de lo que ya aprendiste."
+      }
     }
   },
   "OpenGraphImage": {
@@ -1453,10 +1471,6 @@
   },
   "LandingPage": {
     "header": {
-      "multiplayer": "Multijugador",
-      "people": "Personas",
-      "algorithms": "Algoritmos",
-      "leaderboards": "Clasificaciones",
       "github": "GitHub",
       "start-timing": "Empezar a cronometrar"
     },
@@ -1511,13 +1525,9 @@
     "footer": {
       "tagline": "El hogar de los speedcubers. Cronometra, entrena, compite y conecta, con un perfil que guarda toda tu trayectoria.",
       "product": "Producto",
-      "timer-app": "App de cronómetro",
       "statistics": "Estadísticas",
       "multiplayer": "Multijugador",
       "algorithms": "Algoritmos",
-      "trainer": "Entrenador de algoritmos",
-      "leaderboards": "Clasificaciones",
-      "people": "Cuberos",
       "cubes": "Mis cubos",
       "company": "Empresa",
       "about-us": "Sobre nosotros",

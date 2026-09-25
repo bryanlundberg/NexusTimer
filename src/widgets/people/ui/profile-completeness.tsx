@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { Link } from '@/shared/config/i18n/navigation'
 import { useTranslations } from 'next-intl'
 import { Plus } from 'lucide-react'
 import type { UserDocument } from '@/entities/user/model/user'

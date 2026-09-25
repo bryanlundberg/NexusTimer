@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { Link } from '@/shared/config/i18n/navigation'
 import { motion } from 'motion/react'
 import { type ElementType } from 'react'
 import { cn } from '@/shared/lib/utils'

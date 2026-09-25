@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { CheckCircle2, ExternalLink, Eye } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import * as React from 'react'
-import Link from 'next/link'
+import { Link } from '@/shared/config/i18n/navigation'
 import { TimerStatus } from '@/features/timer/model/enums'
 import { useTranslations } from 'next-intl'
 

@@ -8,7 +8,12 @@ export default defineConfig({
     clearMocks: true,
     setupFiles: ['./vitest.setup.ts'],
     include: ['__tests__/**/*.test.{ts,tsx}'],
-    exclude: ['node_modules', '.next', 'e2e', '__tests__/fixtures/**']
+    exclude: ['node_modules', '.next', 'e2e', '__tests__/fixtures/**'],
+    server: {
+      deps: {
+        inline: ['next-intl']
+      }
+    }
   },
   resolve: {
     alias: {

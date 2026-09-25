@@ -1,4 +1,4 @@
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/shared/config/i18n/navigation'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { Cube } from '@/entities/cube/model/types'
 import DeleteCollectionForm from '@/features/manage-cubes/ui/DeleteCollectionForm'

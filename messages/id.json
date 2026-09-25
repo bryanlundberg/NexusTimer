@@ -1353,6 +1353,24 @@
       "key12": "cubing",
       "key13": "timer cubing",
       "key14": "world cube association"
+    },
+    "pages": {
+      "timer": {
+        "title": "Timer",
+        "description": "Timer kubus Rubik online gratis dengan scramble, inspeksi, dukungan smart cube, dan statistik lengkap untuk setiap solve. Bisa dipakai offline."
+      },
+      "leaderboards": {
+        "title": "Papan Peringkat",
+        "description": "Papan peringkat speedcubing global dengan waktu tercepat untuk 3x3, 2x2, dan lainnya. Lihat peringkatmu di antara cuber dari seluruh dunia."
+      },
+      "community": {
+        "title": "Komunitas",
+        "description": "Temukan speedcuber dari seluruh dunia, jelajahi profil dan rekor pribadi mereka, dan terhubung dengan teman di komunitas Nexus Timer."
+      },
+      "trainer": {
+        "title": "Pelatih Algoritma",
+        "description": "Latih OLL, PLL, dan lainnya dengan algorithm trainer gratis. Ulangi kasus acak, catat waktu setiap eksekusi, dan pantau algoritma yang sudah kamu kuasai."
+      }
     }
   },
   "OpenGraphImage": {
@@ -1453,10 +1471,6 @@
   },
   "LandingPage": {
     "header": {
-      "multiplayer": "Multiplayer",
-      "people": "Orang",
-      "algorithms": "Algoritma",
-      "leaderboards": "Papan Peringkat",
       "github": "GitHub",
       "start-timing": "Mulai Menghitung Waktu"
     },
@@ -1511,13 +1525,9 @@
     "footer": {
       "tagline": "Rumah bagi para speedcuber. Catat waktu, berlatih, bertanding, dan terhubung, dengan profil yang menyimpan seluruh perjalananmu.",
       "product": "Produk",
-      "timer-app": "Aplikasi Timer",
       "statistics": "Statistik",
       "multiplayer": "Multiplayer",
       "algorithms": "Algoritma",
-      "trainer": "Pelatih Algoritma",
-      "leaderboards": "Papan Peringkat",
-      "people": "Cuber",
       "cubes": "Kubus Saya",
       "company": "Perusahaan",
       "about-us": "Tentang Kami",

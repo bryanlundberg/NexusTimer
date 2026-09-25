@@ -1,6 +1,6 @@
 'use client'
 import { useBackgroundImageStore } from '@/shared/model/settings/useBackgroundImageStore'
-import { usePathname } from 'next/navigation'
+import { usePathname } from '@/shared/config/i18n/navigation'
 import { ReactNode } from 'react'
 
 export default function BackgroundImageApp({ children }: { children: ReactNode }) {

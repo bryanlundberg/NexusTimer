@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from '@/shared/config/i18n/navigation'
 import { useLocale, useTranslations } from 'next-intl'
 import { PlayCircle } from 'lucide-react'
 import formatTime from '@/shared/lib/formatTime'

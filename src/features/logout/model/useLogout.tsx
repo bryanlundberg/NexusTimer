@@ -1,8 +1,9 @@
-import { signOut, useSession } from 'next-auth/react'
+import { getCsrfToken, signOut, useSession } from 'next-auth/react'
 import { toast } from 'sonner'
 import { useTranslations } from 'next-intl'
 import useAlert from '@/shared/model/useAlert'
 import { cubesDB } from '@/entities/cube/api/indexdb'
+import { clearCachedSession } from '@/shared/lib/authSessionCache'
 
 export default function useLogout() {
   const t = useTranslations('Index')
@@ -24,9 +25,11 @@ export default function useLogout() {
       })
 
       if (!confirm) return
+      if (!(await getCsrfToken())) throw new Error('Auth server unreachable, keeping local data')
 
       await cubesDB.clear()
-      await signOut({ redirectTo: '/' })
+      await clearCachedSession()
+      await signOut({ redirectTo: '/app' })
     } catch (error) {
       console.error('Error resetting device data:', error)
       toast.error('Error unlinking account')

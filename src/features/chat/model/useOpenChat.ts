@@ -1,4 +1,4 @@
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname, useRouter } from '@/shared/config/i18n/navigation'
 import { useSWRConfig } from 'swr'
 import { apiPost } from '@/shared/api/client'
 import type { ChatSummary } from '@/entities/chat/model/types'

@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { cn } from '@/shared/lib/utils'
 import { ArrowLeftIcon } from '@radix-ui/react-icons'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/shared/config/i18n/navigation'
 
 interface AccountHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   label: string

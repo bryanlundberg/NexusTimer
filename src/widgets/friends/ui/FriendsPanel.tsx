@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
+import { Link } from '@/shared/config/i18n/navigation'
 import { useTranslations } from 'next-intl'
 import { Check, Send, UserMinus, UserPlus, Users, X } from 'lucide-react'
 import { Button, buttonVariants } from '@/components/ui/button'

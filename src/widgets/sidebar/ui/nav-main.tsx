@@ -16,8 +16,7 @@ import {
   useSidebar
 } from '@/components/ui/sidebar'
 import { ChevronRightIcon } from '@radix-ui/react-icons'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { Link, usePathname } from '@/shared/config/i18n/navigation'
 import React, { useEffect, useState } from 'react'
 import { cn } from '@/shared/lib/utils'
 import { LinkPendingHint } from '@/shared/ui/link-pending-hint/LinkPendingHint'

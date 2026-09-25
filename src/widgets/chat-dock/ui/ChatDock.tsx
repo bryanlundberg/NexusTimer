@@ -1,6 +1,6 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
+import { usePathname } from '@/shared/config/i18n/navigation'
 import { useSession } from 'next-auth/react'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { TimerStatus } from '@/features/timer/model/enums'

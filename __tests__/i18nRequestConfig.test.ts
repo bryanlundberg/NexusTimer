@@ -4,12 +4,17 @@ vi.mock('next-intl/server', () => ({
   getRequestConfig: (factory: unknown) => factory
 }))
 
-vi.mock('next/headers', () => ({
-  cookies: vi.fn(),
-  headers: vi.fn()
+vi.mock('next/root-params', () => ({
+  locale: vi.fn()
 }))
 
-import { cookies, headers } from 'next/headers'
+vi.mock('next/navigation', () => ({
+  notFound: vi.fn(() => {
+    throw new Error('NEXT_NOT_FOUND')
+  })
+}))
+
+import * as rootParams from 'next/root-params'
 import requestConfig from '@/shared/config/i18n/request'
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
@@ -17,15 +22,9 @@ import path from 'node:path'
 type Messages = Record<string, unknown>
 
 const en: Messages = JSON.parse(readFileSync(path.resolve(__dirname, '../messages/en.json'), 'utf8'))
-const loadConfig = requestConfig as unknown as () => Promise<{ locale: string; messages: Messages }>
-
-const setLocale = (locale?: string, pathLocale?: string) => {
-  ;(cookies as unknown as Mock).mockResolvedValue({
-    get: () => (locale ? { value: locale } : undefined)
-  })
-  ;(headers as unknown as Mock).mockResolvedValue({
-    get: () => pathLocale ?? null
-  })
+const loadConfig = (locale?: string) => {
+  ;(rootParams.locale as Mock).mockResolvedValue(locale)
+  return (requestConfig as unknown as () => Promise<{ locale: string; messages: Messages }>)()
 }
 
 const leafPaths = (value: unknown, prefix = ''): string[] =>
@@ -35,34 +34,25 @@ const leafPaths = (value: unknown, prefix = ''): string[] =>
 
 describe('i18n request config', () => {
   it('keeps every english key when the locale is missing some', async () => {
-    setLocale('es')
-    const { locale, messages } = await loadConfig()
+    const { locale, messages } = await loadConfig('es')
 
     expect(locale).toBe('es')
     expect(leafPaths(messages)).toEqual(expect.arrayContaining(leafPaths(en)))
   })
 
   it('does not leak a previous locale into english messages', async () => {
-    setLocale('es')
-    await loadConfig()
-    setLocale()
-    const { locale, messages } = await loadConfig()
+    await loadConfig('es')
+    const { locale, messages } = await loadConfig('en')
 
     expect(locale).toBe('en')
     expect(messages).toEqual(en)
   })
 
-  it('prefers the locale from a localized landing url over the cookie', async () => {
-    setLocale('fr', 'ja')
-    const { locale } = await loadConfig()
-
-    expect(locale).toBe('ja')
+  it('treats an unknown locale as not found', async () => {
+    await expect(loadConfig('xx')).rejects.toThrow('NEXT_NOT_FOUND')
   })
 
-  it('ignores an unknown locale header', async () => {
-    setLocale('fr', 'xx')
-    const { locale } = await loadConfig()
-
-    expect(locale).toBe('fr')
+  it('treats a missing locale root param as not found', async () => {
+    await expect(loadConfig()).rejects.toThrow('NEXT_NOT_FOUND')
   })
 })

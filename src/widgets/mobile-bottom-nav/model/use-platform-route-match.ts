@@ -1,6 +1,6 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
+import { usePathname } from '@/shared/config/i18n/navigation'
 import { useMemo } from 'react'
 import { PLATFORM_ROUTES, isPathActive } from './platform-routes'
 

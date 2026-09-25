@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/shared/config/i18n/navigation'
 import { groupBy } from 'es-toolkit'
 import { Badge } from '@/components/ui/badge'
 import { PuzzleID, TwistyPlayer } from '@rednaxela101/cubing/twisty'

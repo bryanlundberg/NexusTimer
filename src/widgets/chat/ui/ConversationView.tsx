@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { Link } from '@/shared/config/i18n/navigation'
 import { useTranslations } from 'next-intl'
 import { ArrowLeft } from 'lucide-react'
 import { ConversationPeerSkeleton } from '@/shared/ui/skeletons/chat-skeleton'

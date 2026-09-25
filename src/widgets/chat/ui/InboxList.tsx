@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { Link } from '@/shared/config/i18n/navigation'
 import { useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
 import { MessagesSquare, Users } from 'lucide-react'

@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/shared/config/i18n/navigation'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { SolveServer } from '@/entities/solve/model/types'
 import formatTime from '@/shared/lib/formatTime'

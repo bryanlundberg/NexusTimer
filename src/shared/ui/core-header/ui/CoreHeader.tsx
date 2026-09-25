@@ -8,11 +8,12 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator
 } from '@/components/ui/breadcrumb'
-import Link from 'next/link'
+import { Link } from '@/shared/config/i18n/navigation'
 import { NavUser } from '@/widgets/sidebar/ui/nav-user'
 import * as React from 'react'
 import { useSession } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
+import { Skeleton } from '@/components/ui/skeleton'
 import { useTranslations } from 'next-intl'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { LogInIcon, SmilePlus } from 'lucide-react'
@@ -34,7 +35,7 @@ interface CoreHeaderProps {
 }
 
 export default function CoreHeader({ breadcrumbs, actions, accentStripe = false }: CoreHeaderProps) {
-  const { data: session } = useSession()
+  const { data: session, status } = useSession()
   const open = useOverlayStore((store) => store.open)
   const tAuth = useTranslations('Index.Auth')
   const tHeader = useTranslations('Index.CoreHeader')
@@ -92,7 +93,9 @@ export default function CoreHeader({ breadcrumbs, actions, accentStripe = false 
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           {actions}
 
-          {session?.user ? (
+          {status === 'loading' ? (
+            <Skeleton className="h-9 w-24 rounded-md" />
+          ) : session?.user ? (
             <>
               <SyncProgress />
               <MessagesMenu />

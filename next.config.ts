@@ -15,6 +15,7 @@ const withSerwist = withSerwistInit({
 const nextConfig: NextConfig = {
   reactCompiler: true,
   experimental: {
+    globalNotFound: true,
     turbopackFileSystemCacheForDev: true,
     turbopackRustReactCompiler: process.env.NODE_ENV !== 'production'
   },

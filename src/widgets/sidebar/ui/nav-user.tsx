@@ -10,7 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/shared/config/i18n/navigation'
 import useLogout from '@/features/logout/model/useLogout'
 import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'

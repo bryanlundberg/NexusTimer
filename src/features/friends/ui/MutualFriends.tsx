@@ -1,7 +1,7 @@
 'use client'
 
 import type { ReactNode } from 'react'
-import Link from 'next/link'
+import { Link } from '@/shared/config/i18n/navigation'
 import { useTranslations } from 'next-intl'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import type { FriendUser, RelationshipResponse } from '@/entities/friendship/model/types'

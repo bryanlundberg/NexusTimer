@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from '@/shared/config/i18n/navigation'
 import { cn } from '@/shared/lib/utils'
 
 interface NavLinkCardProps {

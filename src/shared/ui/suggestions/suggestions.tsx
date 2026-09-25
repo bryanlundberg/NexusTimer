@@ -1,5 +1,5 @@
 import { SquarePen } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from '@/shared/config/i18n/navigation'
 import { ALGORITHMS_GITHUB_URL } from '@/shared/const/algorithms-github-url'
 
 export default function Suggestions({ message = '', link = ALGORITHMS_GITHUB_URL }) {

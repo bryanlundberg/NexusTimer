@@ -1353,6 +1353,24 @@
       "key12": "cubing",
       "key13": "cubing timer",
       "key14": "world cubing association"
+    },
+    "pages": {
+      "timer": {
+        "title": "Timer",
+        "description": "Free online Rubik's cube timer with scrambles, inspection, smart cube support and detailed statistics for every solve. Works offline."
+      },
+      "leaderboards": {
+        "title": "Leaderboards",
+        "description": "Global speedcubing leaderboards with the fastest times for 3x3, 2x2 and more. See where you rank among cubers worldwide."
+      },
+      "community": {
+        "title": "Community",
+        "description": "Find speedcubers from around the world, explore their profiles and personal bests, and connect with friends in the Nexus Timer community."
+      },
+      "trainer": {
+        "title": "Algorithm Trainer",
+        "description": "Practice OLL, PLL and more with a free algorithm trainer. Drill random cases, time every execution and track which algorithms you have learned."
+      }
     }
   },
   "OpenGraphImage": {
@@ -1453,10 +1471,6 @@
   },
   "LandingPage": {
     "header": {
-      "multiplayer": "Multiplayer",
-      "people": "People",
-      "algorithms": "Algorithms",
-      "leaderboards": "Leaderboards",
       "github": "GitHub",
       "start-timing": "Start Timing"
     },
@@ -1511,13 +1525,9 @@
     "footer": {
       "tagline": "The home for speedcubers. Time, train, compete and connect, with a profile that keeps your whole journey.",
       "product": "Product",
-      "timer-app": "Timer App",
       "statistics": "Statistics",
       "multiplayer": "Multiplayer",
       "algorithms": "Algorithms",
-      "trainer": "Algorithm Trainer",
-      "leaderboards": "Leaderboards",
-      "people": "Cubers",
       "cubes": "My Cubes",
       "company": "Company",
       "about-us": "About Us",

@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { Link } from '@/shared/config/i18n/navigation'
 import { useTranslations } from 'next-intl'
 import { ChevronUp, Maximize2, Minus, X } from 'lucide-react'
 import { Skeleton } from '@/components/ui/skeleton'

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
-import Link from 'next/link'
+import { Link } from '@/shared/config/i18n/navigation'
 import { useTranslations } from 'next-intl'
 import { BarChart3, Bluetooth, Settings as SettingsIcon } from 'lucide-react'
 import SmartCube from '@/features/smart-cube/ui/SmartCube'
