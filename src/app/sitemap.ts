@@ -4,6 +4,8 @@ import { locales, localizedPath } from '@/shared/config/i18n/locales'
 
 const host = 'https://nexustimer.com'
 
+const ENGLISH_ONLY = new Set(['/about-us', '/contact-us', '/account-deletion', '/privacy-policy', '/terms-of-service'])
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = [
     { path: '/', priority: 1.0, changeFrequency: 'weekly' as const },
@@ -34,6 +36,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const buildDate = new Date()
 
   pages.forEach(({ path, priority, changeFrequency }) => {
+    if (ENGLISH_ONLY.has(path)) {
+      sitemapEntries.push({ url: `${host}${path}`, lastModified: buildDate, changeFrequency, priority })
+      return
+    }
+
     const alternates = {
       languages: {
         ...Object.fromEntries(locales.map((code) => [code, `${host}${localizedPath(code, path)}`])),
