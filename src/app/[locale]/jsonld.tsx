@@ -17,7 +17,8 @@ export default function JsonLd({ locale, title, description, url }: JsonLdProps)
   const organization = {
     '@type': 'Organization',
     '@id': 'https://nexustimer.com/#organization',
-    name: 'NexusTimer',
+    name: 'Nexus Timer',
+    alternateName: 'nxtimer',
     url: 'https://nexustimer.com',
     logo: {
       '@type': 'ImageObject',
@@ -93,7 +94,8 @@ export default function JsonLd({ locale, title, description, url }: JsonLdProps)
       '@context': 'https://schema.org',
       '@type': 'WebSite',
       '@id': 'https://nexustimer.com/#website',
-      name: 'NexusTimer',
+      name: 'Nexus Timer',
+      alternateName: ['NexusTimer', 'NXTimer'],
       url: 'https://nexustimer.com',
       inLanguage: locale,
       publisher: { '@id': 'https://nexustimer.com/#organization' }
