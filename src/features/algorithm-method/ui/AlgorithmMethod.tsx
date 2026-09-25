@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import Link from 'next/link'
+import { Link } from '@/shared/config/i18n/navigation'
 import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import { PUZZLE_LABELS } from '@/features/algorithm-method/model/method-filters'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'

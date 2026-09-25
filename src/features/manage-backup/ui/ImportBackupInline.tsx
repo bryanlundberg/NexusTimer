@@ -6,7 +6,7 @@ import importDataFromFile, {
   normalizeOldData,
   preventDuplicateDeleteStatus
 } from '@/features/manage-backup/lib/importDataFromFile'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/shared/config/i18n/navigation'
 import { toast } from 'sonner'
 import ImportReview from './ImportReview'
 import { Dropzone, DropzoneContent, DropzoneEmptyState } from '@/components/ui/shadcn-io/dropzone'

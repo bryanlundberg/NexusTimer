@@ -1,5 +1,5 @@
 'use client'
-import Link from 'next/link'
+import { Link } from '@/shared/config/i18n/navigation'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { HelpCircle } from 'lucide-react'

@@ -1,6 +1,6 @@
 import { Clock, Timer, Users, ArrowRight, Lock } from 'lucide-react'
 import formatTime from '@/shared/lib/formatTime'
-import Link from 'next/link'
+import { Link } from '@/shared/config/i18n/navigation'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { useCountdown } from '@/shared/model/useCountdown'

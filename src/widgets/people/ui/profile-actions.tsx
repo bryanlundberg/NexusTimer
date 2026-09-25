@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/shared/config/i18n/navigation'
 import { useTranslations } from 'next-intl'
 import { Pencil } from 'lucide-react'
 import { Button } from '@/components/ui/button'

@@ -1,5 +1,5 @@
 import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/shared/config/i18n/navigation'
 import { Controller, useForm } from 'react-hook-form'
 import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Globe2, Lock, Copy, Check } from 'lucide-react'

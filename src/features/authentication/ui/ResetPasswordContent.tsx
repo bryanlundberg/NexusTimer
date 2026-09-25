@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import { Link } from '@/shared/config/i18n/navigation'
 import { useTranslations } from 'next-intl'
 import { useValidateResetToken } from '@/features/authentication/model/hooks/use-validate-reset-token'
 import ResetPasswordForm from '@/features/authentication/ui/ResetPasswordForm'

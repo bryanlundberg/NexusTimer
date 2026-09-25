@@ -33,8 +33,7 @@ import {
 
 import { ApertureIcon, ArrowRightLeftIcon } from 'lucide-react'
 
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { Link, useRouter } from '@/shared/config/i18n/navigation'
 import { useTheme } from 'next-themes'
 import { useTranslations } from 'next-intl'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'

@@ -12,7 +12,7 @@ import {
   SidebarMenuItem,
   useSidebar
 } from '@/components/ui/sidebar'
-import Link from 'next/link'
+import { Link } from '@/shared/config/i18n/navigation'
 import { LinkPendingHint } from '@/shared/ui/link-pending-hint/LinkPendingHint'
 import { SIDEBAR_HINT_CLASS } from '@/widgets/sidebar/model/link-hint'
 

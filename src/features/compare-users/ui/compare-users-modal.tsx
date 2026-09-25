@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { XIcon, PlusIcon } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/shared/config/i18n/navigation'
 import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { useManyUserStats } from '@/entities/user-stats/model/useUserStats'

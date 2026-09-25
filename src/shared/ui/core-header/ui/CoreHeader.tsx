@@ -8,7 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator
 } from '@/components/ui/breadcrumb'
-import Link from 'next/link'
+import { Link } from '@/shared/config/i18n/navigation'
 import { NavUser } from '@/widgets/sidebar/ui/nav-user'
 import * as React from 'react'
 import { useSession } from 'next-auth/react'

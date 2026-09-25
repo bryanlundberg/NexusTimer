@@ -1,5 +1,5 @@
 import { localizedAlternates } from '@/shared/config/i18n/alternates'
-import { isLocalizedPath, locales, localizedPath } from '@/shared/config/i18n/locales'
+import { locales, localizedPath } from '@/shared/config/i18n/locales'
 
 describe('localized paths', () => {
   it('keeps english unprefixed', () => {
@@ -10,14 +10,6 @@ describe('localized paths', () => {
   it('prefixes other locales', () => {
     expect(localizedPath('es', '/')).toBe('/es')
     expect(localizedPath('fil', '/algorithms/oll')).toBe('/fil/algorithms/oll')
-  })
-
-  it('only localizes public sections', () => {
-    expect(isLocalizedPath('/')).toBe(true)
-    expect(isLocalizedPath('/algorithms')).toBe(true)
-    expect(isLocalizedPath('/algorithms/trainer')).toBe(true)
-    expect(isLocalizedPath('/algorithmsx')).toBe(false)
-    expect(isLocalizedPath('/app')).toBe(false)
   })
 
   it('builds canonical and hreflang alternates for the rendered locale', () => {

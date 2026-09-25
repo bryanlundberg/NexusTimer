@@ -1,7 +1,7 @@
 'use client'
 
 import { Fragment, type ReactNode, type Ref } from 'react'
-import Link from 'next/link'
+import { Link } from '@/shared/config/i18n/navigation'
 import { useLocale, useTranslations } from 'next-intl'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import dayjs from '@/shared/lib/dayjs'
