@@ -1353,6 +1353,24 @@
       "key12": "cubing",
       "key13": "stoper cubing",
       "key14": "world cube association"
+    },
+    "pages": {
+      "timer": {
+        "title": "Stoper",
+        "description": "Darmowy timer online do kostki Rubika z generatorem scramble, inspekcją, obsługą smart kostek i szczegółowymi statystykami każdego ułożenia. Działa offline."
+      },
+      "leaderboards": {
+        "title": "Rankingi",
+        "description": "Światowe rankingi speedcubingu z najszybszymi czasami dla 3x3, 2x2 i innych. Sprawdź, na którym miejscu jesteś wśród cuberów z całego świata."
+      },
+      "community": {
+        "title": "Społeczność",
+        "description": "Znajdź speedcuberów z całego świata, przeglądaj ich profile i rekordy osobiste oraz łącz się ze znajomymi w społeczności Nexus Timer."
+      },
+      "trainer": {
+        "title": "Trener algorytmów",
+        "description": "Ćwicz OLL, PLL i więcej z darmowym trenerem algorytmów. Trenuj losowe przypadki, mierz czas każdego wykonania i śledź, czego już się nauczyłeś."
+      }
     }
   },
   "OpenGraphImage": {
@@ -1453,10 +1471,6 @@
   },
   "LandingPage": {
     "header": {
-      "multiplayer": "Multiplayer",
-      "people": "Ludzie",
-      "algorithms": "Algorytmy",
-      "leaderboards": "Rankingi",
       "github": "GitHub",
       "start-timing": "Zacznij mierzyć czas"
     },
@@ -1511,13 +1525,9 @@
     "footer": {
       "tagline": "Dom speedcuberów. Mierz czas, trenuj, rywalizuj i poznawaj innych, z profilem, który zapisuje całą twoją drogę.",
       "product": "Produkt",
-      "timer-app": "Aplikacja stopera",
       "statistics": "Statystyki",
       "multiplayer": "Multiplayer",
       "algorithms": "Algorytmy",
-      "trainer": "Trener algorytmów",
-      "leaderboards": "Rankingi",
-      "people": "Kostkarze",
       "cubes": "Moje kostki",
       "company": "Firma",
       "about-us": "O nas",

@@ -1453,10 +1453,6 @@
   },
   "LandingPage": {
     "header": {
-      "multiplayer": "Multiplayer",
-      "people": "Pessoas",
-      "algorithms": "Algoritmos",
-      "leaderboards": "Classificações",
       "github": "GitHub",
       "start-timing": "Começar a cronometrar"
     },
@@ -1511,13 +1507,9 @@
     "footer": {
       "tagline": "A casa dos speedcubers. Cronometre, treine, dispute e se conecte, com um perfil que guarda toda a sua trajetória.",
       "product": "Produto",
-      "timer-app": "App de cronômetro",
       "statistics": "Estatísticas",
       "multiplayer": "Multiplayer",
       "algorithms": "Algoritmos",
-      "trainer": "Treinador de algoritmos",
-      "leaderboards": "Classificações",
-      "people": "Cubers",
       "cubes": "Meus cubos",
       "company": "Empresa",
       "about-us": "Sobre nós",
@@ -1563,6 +1555,24 @@
       "key12": "cubing",
       "key13": "cubing timer",
       "key14": "world cubing association"
+    },
+    "pages": {
+      "timer": {
+        "title": "Cronômetro",
+        "description": "Cronômetro de cubo mágico online e gratuito com embaralhamentos, inspeção, cubos inteligentes e estatísticas detalhadas de cada resolução. Funciona offline."
+      },
+      "leaderboards": {
+        "title": "Classificações",
+        "description": "Rankings mundiais de speedcubing com os tempos mais rápidos em 3x3, 2x2 e mais. Veja sua posição entre cubers do mundo todo."
+      },
+      "community": {
+        "title": "Comunidade",
+        "description": "Encontre speedcubers do mundo todo, explore seus perfis e recordes pessoais e conecte-se com amigos na comunidade Nexus Timer."
+      },
+      "trainer": {
+        "title": "Treinador de algoritmos",
+        "description": "Pratique OLL, PLL e mais com um treinador de algoritmos gratuito. Treine casos aleatórios, cronometre cada execução e acompanhe o que você já aprendeu."
+      }
     }
   },
   "OpenGraphImage": {

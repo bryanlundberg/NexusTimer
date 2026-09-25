@@ -1453,10 +1453,6 @@
   },
   "LandingPage": {
     "header": {
-      "multiplayer": "多人对战",
-      "people": "用户",
-      "algorithms": "算法",
-      "leaderboards": "排行榜",
       "github": "GitHub",
       "start-timing": "开始计时"
     },
@@ -1511,13 +1507,9 @@
     "footer": {
       "tagline": "魔方玩家的家。计时、训练、对战、交流，还有一个记录你完整历程的主页。",
       "product": "产品",
-      "timer-app": "计时器应用",
       "statistics": "统计",
       "multiplayer": "多人对战",
       "algorithms": "算法",
-      "trainer": "公式训练器",
-      "leaderboards": "排行榜",
-      "people": "魔友",
       "cubes": "我的魔方",
       "company": "公司",
       "about-us": "关于我们",
@@ -1563,6 +1555,24 @@
       "key12": "cubing",
       "key13": "cubing timer",
       "key14": "world cubing association"
+    },
+    "pages": {
+      "timer": {
+        "title": "计时器",
+        "description": "免费在线魔方计时器，支持打乱、观察计时、智能魔方，并为每次还原提供详细统计。支持离线使用。"
+      },
+      "leaderboards": {
+        "title": "排行榜",
+        "description": "速拧全球排行榜，汇集 3x3、2x2 等项目的最快成绩。看看你在全球魔友中的排名。"
+      },
+      "community": {
+        "title": "社区",
+        "description": "寻找来自世界各地的速拧玩家，浏览他们的资料和个人最佳成绩，并在 Nexus Timer 社区与好友互动。"
+      },
+      "trainer": {
+        "title": "公式训练器",
+        "description": "使用免费的公式训练器练习 OLL、PLL 等。随机练习各种情况，为每次执行计时，并记录你已掌握的公式。"
+      }
     }
   },
   "OpenGraphImage": {

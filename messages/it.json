@@ -1353,6 +1353,24 @@
       "key12": "cubing",
       "key13": "timer cubing",
       "key14": "world cube association"
+    },
+    "pages": {
+      "timer": {
+        "title": "Timer",
+        "description": "Timer online gratuito per il cubo di Rubik con scramble, ispezione, supporto per smart cube e statistiche dettagliate per ogni risoluzione. Funziona offline."
+      },
+      "leaderboards": {
+        "title": "Classifiche",
+        "description": "Classifiche mondiali di speedcubing con i tempi più veloci per 3x3, 2x2 e altro. Scopri la tua posizione tra i cuber di tutto il mondo."
+      },
+      "community": {
+        "title": "Community",
+        "description": "Trova speedcuber da tutto il mondo, esplora i loro profili e record personali e collegati con gli amici nella community di Nexus Timer."
+      },
+      "trainer": {
+        "title": "Trainer di algoritmi",
+        "description": "Allenati su OLL, PLL e altro con un trainer di algoritmi gratuito. Ripassa casi casuali, cronometra ogni esecuzione e tieni traccia di ciò che hai imparato."
+      }
     }
   },
   "OpenGraphImage": {
@@ -1453,10 +1471,6 @@
   },
   "LandingPage": {
     "header": {
-      "multiplayer": "Multiplayer",
-      "people": "Persone",
-      "algorithms": "Algoritmi",
-      "leaderboards": "Classifiche",
       "github": "GitHub",
       "start-timing": "Inizia a cronometrare"
     },
@@ -1511,13 +1525,9 @@
     "footer": {
       "tagline": "La casa degli speedcuber. Cronometra, allenati, sfida e connettiti, con un profilo che conserva tutto il tuo percorso.",
       "product": "Prodotto",
-      "timer-app": "App Timer",
       "statistics": "Statistiche",
       "multiplayer": "Multiplayer",
       "algorithms": "Algoritmi",
-      "trainer": "Trainer di algoritmi",
-      "leaderboards": "Classifiche",
-      "people": "Cuber",
       "cubes": "I miei cubi",
       "company": "Azienda",
       "about-us": "Chi siamo",

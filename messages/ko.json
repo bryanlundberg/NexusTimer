@@ -1453,10 +1453,6 @@
   },
   "LandingPage": {
     "header": {
-      "multiplayer": "멀티플레이어",
-      "people": "사용자",
-      "algorithms": "알고리즘",
-      "leaderboards": "리더보드",
       "github": "GitHub",
       "start-timing": "타이밍 시작"
     },
@@ -1511,13 +1507,9 @@
     "footer": {
       "tagline": "스피드큐버의 홈. 기록하고, 연습하고, 겨루고, 연결되세요. 당신의 모든 여정을 담은 프로필과 함께.",
       "product": "제품",
-      "timer-app": "타이머 앱",
       "statistics": "통계",
       "multiplayer": "멀티플레이어",
       "algorithms": "알고리즘",
-      "trainer": "알고리즘 트레이너",
-      "leaderboards": "리더보드",
-      "people": "큐버들",
       "cubes": "내 큐브",
       "company": "회사",
       "about-us": "소개",
@@ -1563,6 +1555,24 @@
       "key12": "cubing",
       "key13": "cubing timer",
       "key14": "world cubing association"
+    },
+    "pages": {
+      "timer": {
+        "title": "타이머",
+        "description": "스크램블, 인스펙션, 스마트 큐브 지원과 모든 솔브의 상세 통계를 제공하는 무료 온라인 루빅스 큐브 타이머. 오프라인에서도 작동합니다."
+      },
+      "leaderboards": {
+        "title": "순위표",
+        "description": "3x3, 2x2 등 가장 빠른 기록을 모은 스피드큐빙 세계 랭킹. 전 세계 큐버 중 나의 순위를 확인해 보세요."
+      },
+      "community": {
+        "title": "커뮤니티",
+        "description": "전 세계 스피드큐버를 찾고, 프로필과 개인 최고 기록을 살펴보고, Nexus Timer 커뮤니티에서 친구들과 연결하세요."
+      },
+      "trainer": {
+        "title": "알고리즘 트레이너",
+        "description": "무료 알고리즘 트레이너로 OLL, PLL 등을 연습하세요. 무작위 케이스를 반복하고, 매 실행 시간을 측정하고, 익힌 알고리즘을 관리할 수 있습니다."
+      }
     }
   },
   "OpenGraphImage": {

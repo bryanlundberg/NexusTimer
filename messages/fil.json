@@ -1353,6 +1353,24 @@
       "key12": "cubing",
       "key13": "cubing timer",
       "key14": "world cubing association"
+    },
+    "pages": {
+      "timer": {
+        "title": "Timer",
+        "description": "Libreng online na Rubik's cube timer na may scramble, inspection, suporta sa smart cube at detalyadong estadistika sa bawat solve. Gumagana kahit offline."
+      },
+      "leaderboards": {
+        "title": "Mga Leaderboard",
+        "description": "Pandaigdigang speedcubing leaderboards na may pinakamabilis na oras para sa 3x3, 2x2 at iba pa. Alamin ang ranggo mo sa mga cuber sa buong mundo."
+      },
+      "community": {
+        "title": "Komunidad",
+        "description": "Maghanap ng mga speedcuber mula sa buong mundo, tingnan ang kanilang profile at personal best, at kumonekta sa mga kaibigan sa komunidad ng Nexus Timer."
+      },
+      "trainer": {
+        "title": "Algorithm Trainer",
+        "description": "Magsanay ng OLL, PLL at iba pa gamit ang libreng algorithm trainer. Ulitin ang mga random na case, orasan ang bawat execution at subaybayan ang natutunan mo."
+      }
     }
   },
   "OpenGraphImage": {
@@ -1453,10 +1471,6 @@
   },
   "LandingPage": {
     "header": {
-      "multiplayer": "Multiplayer",
-      "people": "Mga Tao",
-      "algorithms": "Mga Algorithm",
-      "leaderboards": "Mga Leaderboard",
       "github": "GitHub",
       "start-timing": "Simulan ang Pag-time"
     },
@@ -1511,13 +1525,9 @@
     "footer": {
       "tagline": "Ang tahanan ng mga speedcuber. Mag-time, mag-ensayo, makipaglaban at makipag-connect, kasama ang profile na nagtatago ng buong journey mo.",
       "product": "Produkto",
-      "timer-app": "Timer App",
       "statistics": "Statistics",
       "multiplayer": "Multiplayer",
       "algorithms": "Mga Algorithm",
-      "trainer": "Algorithm Trainer",
-      "leaderboards": "Mga Leaderboard",
-      "people": "Mga Cuber",
       "cubes": "Mga Cube Ko",
       "company": "Kumpanya",
       "about-us": "Tungkol sa Amin",
