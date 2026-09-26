@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const emailAtom = (msg?: string) => z.string().email(msg)
+export const emailAtom = (msg?: string) => z.string().trim().toLowerCase().email(msg)
 
 export const passwordAtom = (msgs?: { tooShort?: string; tooLong?: string }) =>
   z.string().min(8, msgs?.tooShort).max(72, msgs?.tooLong)
