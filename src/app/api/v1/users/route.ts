@@ -12,7 +12,7 @@ import { withoutStats } from '@/entities/privacy/lib/without-stats'
 import { ok, serverError } from '@/shared/api/responses'
 
 const createUserSchema = z.object({
-  email: z.string().email(),
+  email: z.string().trim().toLowerCase().email(),
   name: z.string().min(1),
   image: z.string().min(1),
   provider: z.string().optional(),
