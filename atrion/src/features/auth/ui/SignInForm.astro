@@ -1,0 +1,55 @@
+---
+import { signInError } from '@/features/auth/model/sign-in-errors'
+
+const error = signInError(Astro.url.searchParams.get('error'))
+---
+
+<section class="notch-panel card">
+  {error && <p class="notch-panel error">{error}</p>}
+
+  <form method="post" action="/api/auth/login">
+    <label>
+      <span>Email</span>
+      <span class="field-notch">
+        <input type="email" name="email" autocomplete="email" required />
+      </span>
+    </label>
+    <label>
+      <span>Password</span>
+      <span class="field-notch">
+        <input type="password" name="password" autocomplete="current-password" required />
+      </span>
+    </label>
+    <button class="btn-notch" type="submit">Sign in</button>
+  </form>
+</section>
+
+<style>
+  .card {
+    --np-cut: 16px;
+    padding: 1.5rem;
+  }
+
+  .error {
+    --np-cut: 8px;
+    --np-border-color: color-mix(in oklab, var(--destructive) 40%, transparent);
+    --np-fill: color-mix(in oklab, var(--destructive) 12%, var(--background));
+    margin: 0 0 1.25rem;
+    padding: 0.6rem 0.75rem;
+    color: var(--destructive);
+    font-size: 0.82rem;
+  }
+
+  form {
+    display: grid;
+    gap: 1rem;
+  }
+
+  label {
+    display: grid;
+    gap: 0.4rem;
+    color: var(--muted-foreground);
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+</style>

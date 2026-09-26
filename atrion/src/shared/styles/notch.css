@@ -1,0 +1,136 @@
+.notch-bl-tr {
+  --nblt: 10px;
+  border-radius: 0;
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--nblt)) 0,
+    100% var(--nblt),
+    100% 100%,
+    var(--nblt) 100%,
+    0 calc(100% - var(--nblt))
+  );
+}
+
+.notch-panel {
+  --np-cut: 16px;
+  --np-border: 1px;
+  --np-border-color: var(--border);
+  --np-fill: var(--background);
+  --np-shape: polygon(
+    0 0,
+    calc(100% - var(--np-cut)) 0,
+    100% var(--np-cut),
+    100% 100%,
+    var(--np-cut) 100%,
+    0 calc(100% - var(--np-cut))
+  );
+  position: relative;
+  isolation: isolate;
+  border: 0;
+  border-radius: 0;
+  background-color: var(--np-border-color);
+  clip-path: var(--np-shape);
+}
+
+.notch-panel::before {
+  content: '';
+  position: absolute;
+  inset: var(--np-border);
+  z-index: -1;
+  background-color: var(--np-fill);
+  clip-path: var(--np-shape);
+  pointer-events: none;
+  transition: background-color 200ms ease;
+}
+
+.field-notch {
+  --f-cut: 9px;
+  --f-shape: polygon(
+    0 0,
+    calc(100% - var(--f-cut)) 0,
+    100% var(--f-cut),
+    100% 100%,
+    var(--f-cut) 100%,
+    0 calc(100% - var(--f-cut))
+  );
+  --f-border: var(--input);
+  --f-fill: var(--background);
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  background-color: var(--f-border);
+  clip-path: var(--f-shape);
+}
+
+.field-notch::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  background-color: var(--f-fill);
+  clip-path: var(--f-shape);
+  pointer-events: none;
+}
+
+.field-notch:focus-within {
+  --f-border: var(--primary);
+}
+
+.field-notch input {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-width: 0;
+  height: 2.25rem;
+  padding: 0.25rem 0.75rem;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 0.875rem;
+  outline: none;
+}
+
+.field-notch input::placeholder {
+  color: var(--muted-foreground);
+}
+
+.field-notch input::selection {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.btn-notch {
+  --btn-cut: 9px;
+  border-radius: 0;
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--btn-cut)) 0,
+    100% var(--btn-cut),
+    100% 100%,
+    var(--btn-cut) 100%,
+    0 calc(100% - var(--btn-cut))
+  );
+  border: 0;
+  padding: 0.55rem 0.9rem;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 150ms ease;
+}
+
+.btn-notch:hover {
+  filter: brightness(1.15);
+}
+
+.btn-notch.ghost {
+  background: var(--muted);
+  color: var(--foreground);
+  font-weight: 500;
+}
