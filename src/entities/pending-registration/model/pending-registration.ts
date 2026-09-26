@@ -13,7 +13,7 @@ export interface PendingRegistrationDocument {
 
 const PendingRegistrationSchema = new Schema(
   {
-    email: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true, trim: true, lowercase: true },
     name: { type: String, required: true },
     passwordHash: { type: String, required: true },
     code: { type: String, required: true },
