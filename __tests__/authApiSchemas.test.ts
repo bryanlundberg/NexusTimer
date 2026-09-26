@@ -40,6 +40,18 @@ describe('registerRequestSchema', () => {
     ).toBe(false)
   })
 
+  it('trims and lowercases the email', () => {
+    const result = registerRequestSchema.safeParse({
+      name: 'Mateo',
+      email: '  Mateo.Perez@Example.COM ',
+      password: 'longenough'
+    })
+    expect(result.success).toBe(true)
+    if (result.success) {
+      expect(result.data.email).toBe('mateo.perez@example.com')
+    }
+  })
+
   it('rejects invalid emails', () => {
     expect(
       registerRequestSchema.safeParse({ name: 'Mateo', email: 'not-an-email', password: 'longenough' }).success
