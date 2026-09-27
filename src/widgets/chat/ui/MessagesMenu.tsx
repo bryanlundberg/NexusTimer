@@ -44,7 +44,7 @@ export function MessagesMenu() {
           <Button
             variant="ghost"
             size="icon"
-            className="btn-notch btn-notch-alt btn-notch-border size-9 [&_svg]:size-5"
+            className="btn-notch btn-notch-alt btn-notch-border size-9 pointer-coarse:size-10 [&_svg]:size-5"
             aria-label={unread > 0 ? `${t('title')} (${formatBadgeCount(unread)})` : t('title')}
           >
             <MessageCircle />
