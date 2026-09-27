@@ -1,8 +1,9 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 
 export interface SolveClock {
   solvingTime: number
   isRunning: boolean
+  getElapsed: () => number
   start: () => void
   stop: () => number
   reset: () => void
@@ -12,45 +13,37 @@ export function useSolveClock(): SolveClock {
   const [solvingTime, setSolvingTime] = useState(0)
   const [isRunning, setIsRunning] = useState(false)
   const performanceStartRef = useRef<number | null>(null)
-  const rafRef = useRef<number | null>(null)
+  const frozenTimeRef = useRef(0)
 
-  const cancelRaf = () => {
-    if (rafRef.current != null) {
-      cancelAnimationFrame(rafRef.current)
-      rafRef.current = null
-    }
-  }
+  const getElapsed = useCallback(
+    () =>
+      performanceStartRef.current != null ? performance.now() - performanceStartRef.current : frozenTimeRef.current,
+    []
+  )
 
   const start = useCallback(() => {
-    if (rafRef.current != null) return
-    setIsRunning(true)
+    if (performanceStartRef.current != null) return
     performanceStartRef.current = performance.now()
+    frozenTimeRef.current = 0
+    setIsRunning(true)
     setSolvingTime(0)
-    const tick = () => {
-      if (performanceStartRef.current == null) return
-      setSolvingTime(performance.now() - performanceStartRef.current)
-      rafRef.current = requestAnimationFrame(tick)
-    }
-    rafRef.current = requestAnimationFrame(tick)
   }, [])
 
   const stop = useCallback((): number => {
-    cancelRaf()
-    setIsRunning(false)
     const finalTime = performanceStartRef.current != null ? performance.now() - performanceStartRef.current : 0
-    setSolvingTime(finalTime)
     performanceStartRef.current = null
+    frozenTimeRef.current = finalTime
+    setIsRunning(false)
+    setSolvingTime(finalTime)
     return finalTime
   }, [])
 
   const reset = useCallback(() => {
-    cancelRaf()
-    setIsRunning(false)
     performanceStartRef.current = null
+    frozenTimeRef.current = 0
+    setIsRunning(false)
     setSolvingTime(0)
   }, [])
 
-  useEffect(() => () => cancelRaf(), [])
-
-  return { solvingTime, isRunning, start, stop, reset }
+  return { solvingTime, isRunning, getElapsed, start, stop, reset }
 }
