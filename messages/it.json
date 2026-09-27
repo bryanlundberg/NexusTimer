@@ -639,20 +639,26 @@
         "replay-available": "Replay disponibile"
       },
       "comparative": {
-        "title": "Confronto",
+        "title": "Confronta cuber",
         "country": "Paese",
-        "first-solve": "Primo solve",
+        "first-solve": "Iscritto",
         "total-solves": "Solve totali",
         "total-cubes": "Cubi totali",
         "single": "Singolo",
         "average": "Media",
         "count": "Conteggio",
-        "name": "Nome",
-        "last-backup": "Ultimo backup?",
-        "never": "Mai",
         "close": "Chiudi",
         "compare": "Confronta",
-        "add-more": "Aggiungi altri"
+        "add-more": "Aggiungi altri",
+        "empty": "Nessun cuber da confrontare",
+        "empty-hint": "Tocca Confronta su un cuber per aggiungerlo qui",
+        "ready": "Pronti per il confronto",
+        "need-two": "Aggiungi almeno 2 cuber per confrontare",
+        "clear-all": "Rimuovi tutti",
+        "remove": "Rimuovi {name}",
+        "data-from": "Dati: {date}",
+        "no-data": "Nessun backup ancora",
+        "no-stats": "Nessuno di questi cuber ha ancora tempi da confrontare"
       }
     },
     "NavMain": {

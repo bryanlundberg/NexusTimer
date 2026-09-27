@@ -636,20 +636,26 @@
         "replay-available": "리플레이 있음"
       },
       "comparative": {
-        "title": "기록 비교",
+        "title": "큐버 비교",
         "country": "국가",
-        "first-solve": "첫 솔빙",
+        "first-solve": "가입",
         "total-solves": "총 솔빙 횟수",
         "total-cubes": "총 큐브 수",
         "single": "싱글",
         "average": "평균",
         "count": "횟수",
-        "name": "이름",
-        "last-backup": "최근 백업?",
-        "never": "없음",
         "close": "닫기",
         "compare": "비교",
-        "add-more": "더 추가"
+        "add-more": "더 추가",
+        "empty": "아직 비교할 큐버가 없습니다",
+        "empty-hint": "큐버의 비교 버튼을 눌러 여기에 추가하세요",
+        "ready": "비교할 준비가 되었습니다",
+        "need-two": "비교하려면 큐버를 2명 이상 추가하세요",
+        "clear-all": "모두 제거",
+        "remove": "{name} 제거",
+        "data-from": "데이터: {date}",
+        "no-data": "아직 백업 없음",
+        "no-stats": "아직 비교할 기록이 없습니다"
       }
     },
     "NavMain": {

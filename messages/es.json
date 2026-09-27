@@ -594,20 +594,26 @@
         "replay-available": "Repetición disponible"
       },
       "comparative": {
-        "add-more": "Añadir más",
-        "title": "Comparativa",
+        "add-more": "Añadir cuberos",
+        "title": "Comparar cuberos",
         "country": "País",
-        "first-solve": "Primera resolución",
-        "total-solves": "Total de soluciones",
+        "first-solve": "Se unió",
+        "total-solves": "Tiempos totales",
         "total-cubes": "Total de cubos",
         "single": "Single",
         "average": "Promedio",
-        "count": "Conteo",
-        "name": "Nombre",
-        "last-backup": "¿Último respaldo?",
-        "never": "Nunca",
+        "count": "Tiempos",
         "close": "Cerrar",
-        "compare": "Comparar"
+        "compare": "Comparar",
+        "empty": "Aún no hay cuberos para comparar",
+        "empty-hint": "Toca Comparar en cualquier cubero para añadirlo aquí",
+        "ready": "Listos para comparar",
+        "need-two": "Añade al menos 2 cuberos para comparar",
+        "clear-all": "Quitar todos",
+        "remove": "Quitar a {name}",
+        "data-from": "Datos de {date}",
+        "no-data": "Sin respaldo todavía",
+        "no-stats": "Ninguno de estos cuberos tiene tiempos para comparar todavía"
       }
     },
     "Settings-menu": {

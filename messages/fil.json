@@ -639,20 +639,26 @@
         "replay-available": "May replay"
       },
       "comparative": {
-        "title": "Paghahambing",
+        "title": "Ikumpara ang mga cuber",
         "country": "Bansa",
-        "first-solve": "Unang solve",
+        "first-solve": "Sumali",
         "total-solves": "Kabuuang solve",
         "total-cubes": "Kabuuang Cube",
         "single": "Single",
         "average": "Average",
         "count": "Bilang",
-        "name": "Pangalan",
-        "last-backup": "Huling Backup?",
-        "never": "Kailanman",
         "close": "Isara",
         "compare": "Ikumpara",
-        "add-more": "Magdagdag pa"
+        "add-more": "Magdagdag pa",
+        "empty": "Wala pang cuber na ikukumpara",
+        "empty-hint": "I-tap ang Ikumpara sa kahit sinong cuber para idagdag dito",
+        "ready": "Handa nang ikumpara",
+        "need-two": "Magdagdag ng hindi bababa sa 2 cuber para ikumpara",
+        "clear-all": "Alisin lahat",
+        "remove": "Alisin si {name}",
+        "data-from": "Data: {date}",
+        "no-data": "Wala pang backup",
+        "no-stats": "Wala pang solve na maikukumpara ang mga cuber na ito"
       }
     },
     "NavMain": {

@@ -639,20 +639,26 @@
         "replay-available": "Replay available"
       },
       "comparative": {
-        "title": "Comparative",
+        "title": "Compare cubers",
         "country": "Country",
-        "first-solve": "First solve",
+        "first-solve": "Joined",
         "total-solves": "Total solves",
-        "total-cubes": "Total Cubes",
+        "total-cubes": "Total cubes",
         "single": "Single",
         "average": "Average",
-        "count": "Count",
-        "name": "Name",
-        "last-backup": "Last Backup?",
-        "never": "Never",
+        "count": "Solves",
         "close": "Close",
         "compare": "Compare",
-        "add-more": "Add more"
+        "add-more": "Add cubers",
+        "empty": "No cubers to compare yet",
+        "empty-hint": "Tap Compare on any cuber to add them here",
+        "ready": "Ready to compare",
+        "need-two": "Add at least 2 cubers to compare",
+        "clear-all": "Clear all",
+        "remove": "Remove {name}",
+        "data-from": "Data from {date}",
+        "no-data": "No backup yet",
+        "no-stats": "None of these cubers has solves to compare yet"
       }
     },
     "NavMain": {

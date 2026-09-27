@@ -636,20 +636,26 @@
         "replay-available": "Replay disponível"
       },
       "comparative": {
-        "title": "Comparação",
+        "title": "Comparar cubistas",
         "country": "País",
-        "first-solve": "Primeiro tempo",
+        "first-solve": "Entrou",
         "total-solves": "Total de tempos",
         "total-cubes": "Total de cubos",
         "single": "Single",
         "average": "Média",
         "count": "Contagem",
-        "name": "Nome",
-        "last-backup": "Último Backup?",
-        "never": "Nunca",
         "close": "Fechar",
         "compare": "Comparar",
-        "add-more": "Adicionar mais"
+        "add-more": "Adicionar mais",
+        "empty": "Nenhum cubista para comparar ainda",
+        "empty-hint": "Toque em Comparar em qualquer cubista para adicioná-lo aqui",
+        "ready": "Prontos para comparar",
+        "need-two": "Adicione pelo menos 2 cubistas para comparar",
+        "clear-all": "Remover todos",
+        "remove": "Remover {name}",
+        "data-from": "Dados: {date}",
+        "no-data": "Ainda sem backup",
+        "no-stats": "Nenhum desses cubistas tem tempos para comparar ainda"
       }
     },
     "NavMain": {

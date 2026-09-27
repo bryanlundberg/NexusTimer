@@ -636,20 +636,26 @@
         "replay-available": "可回放"
       },
       "comparative": {
-        "title": "成绩对比",
+        "title": "比较魔友",
         "country": "国家/地区",
-        "first-solve": "第一次还原",
+        "first-solve": "加入",
         "total-solves": "总还原次数",
         "total-cubes": "魔方总数",
         "single": "最快 (Single)",
         "average": "平均成绩",
         "count": "计数",
-        "name": "名称",
-        "last-backup": "最近备份？",
-        "never": "从未",
         "close": "关闭",
         "compare": "对比",
-        "add-more": "添加更多"
+        "add-more": "添加更多",
+        "empty": "还没有要比较的魔友",
+        "empty-hint": "在任意魔友处点按「比较」即可添加",
+        "ready": "可以开始比较了",
+        "need-two": "至少添加 2 位魔友才能比较",
+        "clear-all": "全部移除",
+        "remove": "移除 {name}",
+        "data-from": "数据：{date}",
+        "no-data": "暂无备份",
+        "no-stats": "这些魔友还没有可比较的成绩"
       }
     },
     "NavMain": {

@@ -639,20 +639,26 @@
         "replay-available": "Powtórka dostępna"
       },
       "comparative": {
-        "title": "Porównanie",
+        "title": "Porównaj cuberów",
         "country": "Kraj",
-        "first-solve": "Pierwsze ułożenie",
+        "first-solve": "Dołączono",
         "total-solves": "Wszystkie ułożenia",
         "total-cubes": "Wszystkie kostki",
         "single": "Pojedyncze",
         "average": "Średnia",
         "count": "Liczba",
-        "name": "Nazwa",
-        "last-backup": "Ostatnia kopia zapasowa?",
-        "never": "Nigdy",
         "close": "Zamknij",
         "compare": "Porównaj",
-        "add-more": "Dodaj więcej"
+        "add-more": "Dodaj więcej",
+        "empty": "Brak cuberów do porównania",
+        "empty-hint": "Stuknij Porównaj przy cuberze, aby go tu dodać",
+        "ready": "Gotowe do porównania",
+        "need-two": "Dodaj co najmniej 2 cuberów, aby porównać",
+        "clear-all": "Usuń wszystkich",
+        "remove": "Usuń {name}",
+        "data-from": "Dane: {date}",
+        "no-data": "Brak kopii zapasowej",
+        "no-stats": "Ci cuberzy nie mają jeszcze czasów do porównania"
       }
     },
     "NavMain": {

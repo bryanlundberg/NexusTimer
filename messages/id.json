@@ -639,20 +639,26 @@
         "replay-available": "Putar ulang tersedia"
       },
       "comparative": {
-        "title": "Perbandingan",
+        "title": "Bandingkan cuber",
         "country": "Negara",
-        "first-solve": "Solve pertama",
+        "first-solve": "Bergabung",
         "total-solves": "Total solve",
         "total-cubes": "Total Kubus",
         "single": "Tunggal",
         "average": "Rata-rata",
         "count": "Jumlah",
-        "name": "Nama",
-        "last-backup": "Cadangan terakhir?",
-        "never": "Tidak pernah",
         "close": "Tutup",
         "compare": "Bandingkan",
-        "add-more": "Tambah lagi"
+        "add-more": "Tambah lagi",
+        "empty": "Belum ada cuber untuk dibandingkan",
+        "empty-hint": "Ketuk Bandingkan pada cuber mana pun untuk menambahkannya",
+        "ready": "Siap dibandingkan",
+        "need-two": "Tambahkan minimal 2 cuber untuk membandingkan",
+        "clear-all": "Hapus semua",
+        "remove": "Hapus {name}",
+        "data-from": "Data: {date}",
+        "no-data": "Belum ada cadangan",
+        "no-stats": "Belum ada solve untuk dibandingkan dari cuber ini"
       }
     },
     "NavMain": {

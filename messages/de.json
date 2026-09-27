@@ -636,20 +636,26 @@
         "replay-available": "Replay verfügbar"
       },
       "comparative": {
-        "title": "Vergleich",
+        "title": "Cuber vergleichen",
         "country": "Land",
-        "first-solve": "Erster Solve",
+        "first-solve": "Beigetreten",
         "total-solves": "Gesamtanzahl Solves",
         "total-cubes": "Gesamtanzahl Würfel",
         "single": "Single",
         "average": "Durchschnitt",
         "count": "Anzahl",
-        "name": "Name",
-        "last-backup": "Letztes Backup?",
-        "never": "Nie",
         "close": "Schließen",
         "compare": "Vergleichen",
-        "add-more": "Mehr hinzufügen"
+        "add-more": "Mehr hinzufügen",
+        "empty": "Noch keine Cuber zum Vergleichen",
+        "empty-hint": "Tippe bei einem Cuber auf Vergleichen, um ihn hinzuzufügen",
+        "ready": "Bereit zum Vergleichen",
+        "need-two": "Füge mindestens 2 Cuber hinzu, um zu vergleichen",
+        "clear-all": "Alle entfernen",
+        "remove": "{name} entfernen",
+        "data-from": "Daten: {date}",
+        "no-data": "Noch kein Backup",
+        "no-stats": "Keiner dieser Cuber hat bisher Zeiten zum Vergleichen"
       }
     },
     "NavMain": {

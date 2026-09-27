@@ -636,20 +636,26 @@
         "replay-available": "リプレイあり"
       },
       "comparative": {
-        "title": "記録比較",
+        "title": "キューバーを比較",
         "country": "国",
-        "first-solve": "最初のソルブ",
+        "first-solve": "参加",
         "total-solves": "合計ソルブ数",
         "total-cubes": "合計キューブ数",
         "single": "単発",
         "average": "平均",
         "count": "回数",
-        "name": "名前",
-        "last-backup": "最終バックアップ",
-        "never": "なし",
         "close": "閉じる",
         "compare": "比較",
-        "add-more": "さらに追加"
+        "add-more": "さらに追加",
+        "empty": "比較するキューバーがいません",
+        "empty-hint": "キューバーの「比較」をタップして追加します",
+        "ready": "比較の準備ができました",
+        "need-two": "比較するには2人以上追加してください",
+        "clear-all": "すべて削除",
+        "remove": "{name}を削除",
+        "data-from": "データ: {date}",
+        "no-data": "バックアップなし",
+        "no-stats": "比較できるソルブがまだありません"
       }
     },
     "NavMain": {

@@ -639,20 +639,26 @@
         "replay-available": "Có bản phát lại"
       },
       "comparative": {
-        "title": "So sánh",
+        "title": "So sánh người chơi",
         "country": "Quốc gia",
-        "first-solve": "Lượt giải đầu tiên",
+        "first-solve": "Tham gia",
         "total-solves": "Tổng lượt giải",
         "total-cubes": "Tổng số khối",
         "single": "Đơn",
         "average": "Trung bình",
         "count": "Số lượng",
-        "name": "Tên",
-        "last-backup": "Sao lưu lần cuối?",
-        "never": "Chưa bao giờ",
         "close": "Đóng",
         "compare": "So sánh",
-        "add-more": "Thêm nữa"
+        "add-more": "Thêm nữa",
+        "empty": "Chưa có ai để so sánh",
+        "empty-hint": "Nhấn So sánh ở bất kỳ ai để thêm vào đây",
+        "ready": "Sẵn sàng so sánh",
+        "need-two": "Thêm ít nhất 2 người để so sánh",
+        "clear-all": "Xóa tất cả",
+        "remove": "Xóa {name}",
+        "data-from": "Dữ liệu: {date}",
+        "no-data": "Chưa có bản sao lưu",
+        "no-stats": "Chưa có lần giải nào để so sánh"
       }
     },
     "NavMain": {

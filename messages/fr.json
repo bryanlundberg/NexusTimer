@@ -636,20 +636,26 @@
         "replay-available": "Replay disponible"
       },
       "comparative": {
-        "title": "Comparaison",
+        "title": "Comparer des cubeurs",
         "country": "Pays",
-        "first-solve": "Premier temps",
+        "first-solve": "Inscrit",
         "total-solves": "Total des temps",
         "total-cubes": "Total des cubes",
         "single": "Single",
         "average": "Moyenne",
         "count": "Nombre",
-        "name": "Nom",
-        "last-backup": "Dernière sauvegarde ?",
-        "never": "Jamais",
         "close": "Fermer",
         "compare": "Comparer",
-        "add-more": "En ajouter"
+        "add-more": "En ajouter",
+        "empty": "Aucun cubeur à comparer pour l'instant",
+        "empty-hint": "Touche Comparer sur un cubeur pour l'ajouter ici",
+        "ready": "Prêts à comparer",
+        "need-two": "Ajoute au moins 2 cubeurs pour comparer",
+        "clear-all": "Tout retirer",
+        "remove": "Retirer {name}",
+        "data-from": "Données : {date}",
+        "no-data": "Pas encore de sauvegarde",
+        "no-stats": "Aucun de ces cubeurs n'a encore de temps à comparer"
       }
     },
     "NavMain": {
