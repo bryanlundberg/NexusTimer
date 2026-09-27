@@ -108,8 +108,6 @@
     "@types/three": "^0.185.4",
     "babel-plugin-react-compiler": "^1.0.0",
     "baseline-browser-mapping": "^2.8.32",
-    "eslint": "9.26.0",
-    "eslint-config-next": "16.2.10",
     "husky": "^9.1.7",
     "jsdom": "^30.0.1",
     "lint-staged": "^16.2.4",
