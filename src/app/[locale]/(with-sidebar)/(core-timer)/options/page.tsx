@@ -66,7 +66,7 @@ export default function OptionsPage() {
       <PageBody variant="hero" className="w-full max-w-6xl mx-auto px-3 sm:px-6 pb-4">
         <div className="flex items-start gap-10">
           <SettingsSectionsNav observeKey={formKey} />
-          <div key={formKey} className="flex-1 min-w-0 max-w-2xl mx-auto lg:mx-0 flex flex-col gap-7">
+          <div key={formKey} className="flex-1 min-w-0 max-w-2xl mx-auto lg:mx-0 flex flex-col gap-8">
             <MenuSelectLanguage />
             <MenuTimerSection control={control} />
             <MenuFeaturesSection control={control} />
