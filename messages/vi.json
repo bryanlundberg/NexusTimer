@@ -466,9 +466,12 @@
       },
       "badges": {
         "title": "Thành tích",
-        "counter": "{unlocked} / {total}",
-        "view-all": "Xem tất cả",
-        "empty": "Chưa mở khóa thành tích nào."
+        "empty": "Chưa mở khóa thành tích nào.",
+        "levels": "Đã đạt {unlocked}/{total} cấp",
+        "filter-unlocked": "Đã mở khóa",
+        "filter-locked": "Chưa mở khóa",
+        "all-unlocked": "Đã mở khóa tất cả thành tích.",
+        "view-all": "Xem tất cả"
       },
       "edit-profile": "Chỉnh sửa hồ sơ",
       "no-backup-data": "Người dùng này chưa tạo bản sao lưu dữ liệu của mình, nên không có gì để hiển thị.",

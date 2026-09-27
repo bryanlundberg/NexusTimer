@@ -506,9 +506,12 @@
       "search": "検索",
       "compare-basket": "<b>{count}</b>人を比較中",
       "badges": {
-        "counter": "{unlocked} / {total}",
         "empty": "まだ解除された実績はありません。",
         "title": "実績",
+        "levels": "{total} レベル中 {unlocked} レベル獲得",
+        "filter-unlocked": "獲得済み",
+        "filter-locked": "未獲得",
+        "all-unlocked": "すべての実績を獲得しました。",
         "view-all": "すべて見る"
       },
       "stats-hidden": "{name}さんの統計と手順は非公開です。",

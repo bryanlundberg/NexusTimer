@@ -509,9 +509,12 @@
       "search": "Пошук",
       "compare-basket": "<b>{count}</b> у кошику порівняння",
       "badges": {
-        "counter": "{unlocked} / {total}",
         "empty": "Ще немає розблокованих досягнень.",
         "title": "Досягнення",
+        "levels": "Отримано рівнів: {unlocked} з {total}",
+        "filter-unlocked": "Відкриті",
+        "filter-locked": "Закриті",
+        "all-unlocked": "Усі досягнення відкрито.",
         "view-all": "Переглянути всі"
       },
       "stats-hidden": "Статистика та алгоритми користувача {name} приховані.",

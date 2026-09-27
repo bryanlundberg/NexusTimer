@@ -506,9 +506,12 @@
       "search": "Chercher",
       "compare-basket": "<b>{count}</b> en comparaison",
       "badges": {
-        "counter": "{unlocked} / {total}",
         "empty": "Aucun succès débloqué pour l’instant.",
         "title": "Succès",
+        "levels": "{unlocked} niveaux obtenus sur {total}",
+        "filter-unlocked": "Débloqués",
+        "filter-locked": "À débloquer",
+        "all-unlocked": "Tous les succès sont débloqués.",
         "view-all": "Tout voir"
       },
       "stats-hidden": "Les statistiques et algorithmes de {name} sont privés.",

@@ -506,9 +506,12 @@
       "search": "Suchen",
       "compare-basket": "<b>{count}</b> im Vergleich",
       "badges": {
-        "counter": "{unlocked} / {total}",
         "empty": "Noch keine Erfolge freigeschaltet.",
         "title": "Erfolge",
+        "levels": "{unlocked} von {total} Stufen erreicht",
+        "filter-unlocked": "Freigeschaltet",
+        "filter-locked": "Gesperrt",
+        "all-unlocked": "Alle Erfolge freigeschaltet.",
         "view-all": "Alle ansehen"
       },
       "stats-hidden": "Die Statistiken und Algorithmen von {name} sind privat.",

@@ -506,9 +506,12 @@
       "search": "搜索",
       "compare-basket": "<b>{count}</b> 个对比中",
       "badges": {
-        "counter": "{unlocked} / {total}",
         "empty": "还没有解锁任何成就。",
         "title": "成就",
+        "levels": "已获得 {unlocked}/{total} 个等级",
+        "filter-unlocked": "已解锁",
+        "filter-locked": "未解锁",
+        "all-unlocked": "已解锁全部成就。",
         "view-all": "查看全部"
       },
       "stats-hidden": "{name} 的统计和公式不公开。",

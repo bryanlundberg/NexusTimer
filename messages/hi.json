@@ -506,9 +506,12 @@
       "search": "खोजें",
       "compare-basket": "<b>{count}</b> तुलना में",
       "badges": {
-        "counter": "{unlocked} / {total}",
         "empty": "अभी तक कोई उपलब्धि अनलॉक नहीं हुई है।",
         "title": "उपलब्धियाँ",
+        "levels": "{total} में से {unlocked} स्तर हासिल",
+        "filter-unlocked": "अनलॉक",
+        "filter-locked": "लॉक",
+        "all-unlocked": "सभी उपलब्धियाँ अनलॉक हो गईं।",
         "view-all": "सभी देखें"
       },
       "stats-hidden": "{name} के आँकड़े और एल्गोरिदम निजी हैं।",

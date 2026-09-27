@@ -466,9 +466,12 @@
       },
       "badges": {
         "title": "Mga Achievement",
-        "counter": "{unlocked} / {total}",
-        "view-all": "Tingnan lahat",
-        "empty": "Wala pang na-unlock na achievement."
+        "empty": "Wala pang na-unlock na achievement.",
+        "levels": "{unlocked} sa {total} level ang nakuha",
+        "filter-unlocked": "Na-unlock",
+        "filter-locked": "Naka-lock",
+        "all-unlocked": "Na-unlock na ang lahat ng achievement.",
+        "view-all": "Tingnan lahat"
       },
       "edit-profile": "I-edit ang profile",
       "no-backup-data": "Hindi pa gumagawa ng backup ng kanyang data ang user na ito, kaya walang maipapakita.",

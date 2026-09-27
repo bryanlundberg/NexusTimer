@@ -466,9 +466,12 @@
       },
       "badges": {
         "title": "Obiettivi",
-        "counter": "{unlocked} / {total}",
-        "view-all": "Vedi tutti",
-        "empty": "Nessun obiettivo sbloccato ancora."
+        "empty": "Nessun obiettivo sbloccato ancora.",
+        "levels": "{unlocked} livelli ottenuti su {total}",
+        "filter-unlocked": "Sbloccati",
+        "filter-locked": "Da sbloccare",
+        "all-unlocked": "Tutti gli obiettivi sbloccati.",
+        "view-all": "Vedi tutti"
       },
       "edit-profile": "Modifica profilo",
       "no-backup-data": "Questo utente non ha ancora creato un backup dei propri dati, quindi non c'è nulla da mostrare.",

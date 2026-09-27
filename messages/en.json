@@ -466,9 +466,12 @@
       },
       "badges": {
         "title": "Achievements",
-        "counter": "{unlocked} / {total}",
-        "view-all": "View all",
-        "empty": "No achievements unlocked yet."
+        "empty": "No achievements unlocked yet.",
+        "levels": "{unlocked} of {total} levels earned",
+        "filter-unlocked": "Unlocked",
+        "filter-locked": "Locked",
+        "all-unlocked": "All achievements unlocked.",
+        "view-all": "View all"
       },
       "edit-profile": "Edit profile",
       "no-backup-data": "This user hasn't created a backup of their data yet, so there's nothing to display.",

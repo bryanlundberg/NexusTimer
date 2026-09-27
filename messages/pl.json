@@ -466,9 +466,12 @@
       },
       "badges": {
         "title": "Osiągnięcia",
-        "counter": "{unlocked} / {total}",
-        "view-all": "Zobacz wszystkie",
-        "empty": "Brak odblokowanych osiągnięć."
+        "empty": "Brak odblokowanych osiągnięć.",
+        "levels": "Zdobyte poziomy: {unlocked} z {total}",
+        "filter-unlocked": "Odblokowane",
+        "filter-locked": "Do zdobycia",
+        "all-unlocked": "Wszystkie osiągnięcia odblokowane.",
+        "view-all": "Zobacz wszystkie"
       },
       "edit-profile": "Edytuj profil",
       "no-backup-data": "Ten użytkownik nie utworzył jeszcze kopii zapasowej swoich danych, więc nie ma nic do wyświetlenia.",

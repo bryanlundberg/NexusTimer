@@ -466,9 +466,12 @@
       },
       "badges": {
         "title": "Pencapaian",
-        "counter": "{unlocked} / {total}",
-        "view-all": "Lihat semua",
-        "empty": "Belum ada pencapaian yang terbuka."
+        "empty": "Belum ada pencapaian yang terbuka.",
+        "levels": "{unlocked} dari {total} level diraih",
+        "filter-unlocked": "Terbuka",
+        "filter-locked": "Terkunci",
+        "all-unlocked": "Semua pencapaian sudah terbuka.",
+        "view-all": "Lihat semua"
       },
       "edit-profile": "Edit profil",
       "no-backup-data": "Pengguna ini belum membuat cadangan datanya, jadi tidak ada yang bisa ditampilkan.",

@@ -506,9 +506,12 @@
       "search": "Buscar",
       "compare-basket": "<b>{count}</b> na comparação",
       "badges": {
-        "counter": "{unlocked} / {total}",
         "empty": "Nenhuma conquista desbloqueada ainda.",
         "title": "Conquistas",
+        "levels": "{unlocked} de {total} níveis conquistados",
+        "filter-unlocked": "Desbloqueadas",
+        "filter-locked": "Bloqueadas",
+        "all-unlocked": "Todas as conquistas desbloqueadas.",
         "view-all": "Ver todas"
       },
       "stats-hidden": "As estatísticas e algoritmos de {name} são privados.",

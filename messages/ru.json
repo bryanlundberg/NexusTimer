@@ -506,9 +506,12 @@
       "search": "Поиск",
       "compare-basket": "<b>{count}</b> в сравнении",
       "badges": {
-        "counter": "{unlocked} / {total}",
         "empty": "Пока нет разблокированных достижений.",
         "title": "Достижения",
+        "levels": "Получено уровней: {unlocked} из {total}",
+        "filter-unlocked": "Открытые",
+        "filter-locked": "Закрытые",
+        "all-unlocked": "Все достижения открыты.",
         "view-all": "Показать все"
       },
       "stats-hidden": "Статистика и алгоритмы пользователя {name} скрыты.",

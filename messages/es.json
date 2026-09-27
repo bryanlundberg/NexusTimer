@@ -392,9 +392,12 @@
     },
     "PeoplePage": {
       "badges": {
-        "counter": "{unlocked} / {total}",
         "empty": "Aún no hay logros desbloqueados.",
         "title": "Logros",
+        "levels": "{unlocked} de {total} niveles conseguidos",
+        "filter-unlocked": "Desbloqueados",
+        "filter-locked": "Por desbloquear",
+        "all-unlocked": "Todos los logros desbloqueados.",
         "view-all": "Ver todos"
       },
       "title": "Personas",

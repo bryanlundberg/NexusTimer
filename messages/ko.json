@@ -506,9 +506,12 @@
       "search": "검색",
       "compare-basket": "<b>{count}</b>명 비교 중",
       "badges": {
-        "counter": "{unlocked} / {total}",
         "empty": "아직 잠금 해제된 업적이 없습니다.",
         "title": "업적",
+        "levels": "{total}개 레벨 중 {unlocked}개 달성",
+        "filter-unlocked": "달성",
+        "filter-locked": "미달성",
+        "all-unlocked": "모든 업적을 달성했습니다.",
         "view-all": "모두 보기"
       },
       "stats-hidden": "{name}님의 통계와 알고리즘은 비공개입니다.",
