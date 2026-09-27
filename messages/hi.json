@@ -821,7 +821,14 @@
       "backup-uploading": "आपका बैकअप सहेजा जा रहा है",
       "backup-uploading-hint": "आप ब्राउज़ करना जारी रख सकते हैं। बस पूरा होने तक ऐप बंद न करें।",
       "backup-upload-error": "बैकअप सहेजा नहीं जा सका। फिर से कोशिश करें।",
-      "load-data-toast": "डेटा लोड हो गया"
+      "load-data-toast": "डेटा लोड हो गया",
+      "backup-device-section": "इस डिवाइस पर",
+      "backup-cloud-section": "क्लाउड में",
+      "backup-cubes": "क्यूब",
+      "backup-solves": "सॉल्व",
+      "backup-latest": "नवीनतम बैकअप",
+      "backup-size": "आकार",
+      "backup-history": "इतिहास"
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",

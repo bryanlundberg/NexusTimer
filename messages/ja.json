@@ -821,7 +821,14 @@
       "backup-uploading": "バックアップを保存しています",
       "backup-uploading-hint": "このまま操作を続けられます。完了するまでアプリを閉じないでください。",
       "backup-upload-error": "バックアップを保存できませんでした。もう一度お試しください。",
-      "load-data-toast": "データを読み込みました"
+      "load-data-toast": "データを読み込みました",
+      "backup-device-section": "このデバイス",
+      "backup-cloud-section": "クラウド",
+      "backup-cubes": "キューブ",
+      "backup-solves": "ソルブ",
+      "backup-latest": "最新のバックアップ",
+      "backup-size": "サイズ",
+      "backup-history": "履歴"
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",

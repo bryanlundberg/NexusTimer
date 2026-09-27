@@ -824,7 +824,14 @@
       "backup-uploading": "กำลังบันทึกข้อมูลสำรอง",
       "backup-uploading-hint": "คุณใช้งานต่อได้ตามปกติ แค่อย่าปิดแอปจนกว่าจะเสร็จ",
       "backup-upload-error": "บันทึกข้อมูลสำรองไม่สำเร็จ ลองอีกครั้ง",
-      "load-data-toast": "โหลดข้อมูลแล้ว"
+      "load-data-toast": "โหลดข้อมูลแล้ว",
+      "backup-device-section": "บนอุปกรณ์นี้",
+      "backup-cloud-section": "บนคลาวด์",
+      "backup-cubes": "คิวบ์",
+      "backup-solves": "ครั้งที่ต่อ",
+      "backup-latest": "ข้อมูลสำรองล่าสุด",
+      "backup-size": "ขนาด",
+      "backup-history": "ประวัติ"
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",

@@ -821,7 +821,14 @@
       "backup-uploading": "Enregistrement de votre sauvegarde",
       "backup-uploading-hint": "Vous pouvez continuer à naviguer. Ne fermez simplement pas l’application avant la fin.",
       "backup-upload-error": "Impossible d’enregistrer la sauvegarde. Réessayez.",
-      "load-data-toast": "Données chargées"
+      "load-data-toast": "Données chargées",
+      "backup-device-section": "Sur cet appareil",
+      "backup-cloud-section": "Dans le cloud",
+      "backup-cubes": "Cubes",
+      "backup-solves": "Résolutions",
+      "backup-latest": "Dernière sauvegarde",
+      "backup-size": "Taille",
+      "backup-history": "Historique"
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",

@@ -821,7 +821,14 @@
       "backup-uploading": "正在保存备份",
       "backup-uploading-hint": "你可以继续浏览，只是在完成前请不要关闭应用。",
       "backup-upload-error": "无法保存备份，请重试。",
-      "load-data-toast": "数据已加载"
+      "load-data-toast": "数据已加载",
+      "backup-device-section": "此设备",
+      "backup-cloud-section": "云端",
+      "backup-cubes": "魔方",
+      "backup-solves": "成绩",
+      "backup-latest": "最近备份",
+      "backup-size": "大小",
+      "backup-history": "历史记录"
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",

@@ -814,7 +814,14 @@
       "backup-uploading": "Saving your backup",
       "backup-uploading-hint": "You can keep browsing. Just don't close the app until it finishes.",
       "backup-upload-error": "Couldn't save your backup. Try again.",
-      "load-data-toast": "Data loaded"
+      "load-data-toast": "Data loaded",
+      "backup-device-section": "On this device",
+      "backup-cloud-section": "In the cloud",
+      "backup-cubes": "Cubes",
+      "backup-solves": "Solves",
+      "backup-latest": "Latest backup",
+      "backup-size": "Size",
+      "backup-history": "History"
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",

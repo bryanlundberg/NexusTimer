@@ -824,7 +824,14 @@
       "backup-uploading": "Зберігаємо копію",
       "backup-uploading-hint": "Можна далі користуватися застосунком. Лише не закривайте його до завершення.",
       "backup-upload-error": "Не вдалося зберегти копію. Спробуйте ще раз.",
-      "load-data-toast": "Дані завантажено"
+      "load-data-toast": "Дані завантажено",
+      "backup-device-section": "На цьому пристрої",
+      "backup-cloud-section": "У хмарі",
+      "backup-cubes": "Куби",
+      "backup-solves": "Складання",
+      "backup-latest": "Остання копія",
+      "backup-size": "Розмір",
+      "backup-history": "Історія"
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",

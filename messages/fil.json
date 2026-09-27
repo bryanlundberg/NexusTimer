@@ -824,7 +824,14 @@
       "backup-uploading": "Sine-save ang backup mo",
       "backup-uploading-hint": "Puwede kang magpatuloy sa pag-browse. Huwag lang isara ang app hangga't hindi pa tapos.",
       "backup-upload-error": "Hindi ma-save ang backup. Subukan ulit.",
-      "load-data-toast": "Na-load ang data"
+      "load-data-toast": "Na-load ang data",
+      "backup-device-section": "Sa device na ito",
+      "backup-cloud-section": "Sa cloud",
+      "backup-cubes": "Mga cube",
+      "backup-solves": "Mga solve",
+      "backup-latest": "Pinakabagong backup",
+      "backup-size": "Laki",
+      "backup-history": "Kasaysayan"
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",

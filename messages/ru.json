@@ -821,7 +821,14 @@
       "backup-uploading": "Сохраняем копию",
       "backup-uploading-hint": "Можно продолжать пользоваться приложением. Только не закрывайте его до завершения.",
       "backup-upload-error": "Не удалось сохранить копию. Попробуйте ещё раз.",
-      "load-data-toast": "Данные загружены"
+      "load-data-toast": "Данные загружены",
+      "backup-device-section": "На этом устройстве",
+      "backup-cloud-section": "В облаке",
+      "backup-cubes": "Кубы",
+      "backup-solves": "Сборки",
+      "backup-latest": "Последняя копия",
+      "backup-size": "Размер",
+      "backup-history": "История"
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",

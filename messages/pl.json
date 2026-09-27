@@ -824,7 +824,14 @@
       "backup-uploading": "Zapisywanie kopii zapasowej",
       "backup-uploading-hint": "Możesz dalej korzystać z aplikacji. Tylko jej nie zamykaj, dopóki się nie skończy.",
       "backup-upload-error": "Nie udało się zapisać kopii zapasowej. Spróbuj ponownie.",
-      "load-data-toast": "Dane wczytane"
+      "load-data-toast": "Dane wczytane",
+      "backup-device-section": "Na tym urządzeniu",
+      "backup-cloud-section": "W chmurze",
+      "backup-cubes": "Kostki",
+      "backup-solves": "Ułożenia",
+      "backup-latest": "Ostatnia kopia",
+      "backup-size": "Rozmiar",
+      "backup-history": "Historia"
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",

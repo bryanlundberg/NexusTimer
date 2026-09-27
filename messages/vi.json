@@ -824,7 +824,14 @@
       "backup-uploading": "Đang lưu bản sao lưu",
       "backup-uploading-hint": "Bạn vẫn có thể tiếp tục sử dụng. Chỉ cần đừng đóng ứng dụng cho đến khi hoàn tất.",
       "backup-upload-error": "Không thể lưu bản sao lưu. Hãy thử lại.",
-      "load-data-toast": "Đã tải dữ liệu"
+      "load-data-toast": "Đã tải dữ liệu",
+      "backup-device-section": "Trên thiết bị này",
+      "backup-cloud-section": "Trên đám mây",
+      "backup-cubes": "Khối",
+      "backup-solves": "Lần giải",
+      "backup-latest": "Bản sao lưu gần nhất",
+      "backup-size": "Dung lượng",
+      "backup-history": "Lịch sử"
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",
