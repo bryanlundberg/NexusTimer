@@ -120,7 +120,7 @@ export default function SelectCollection() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={t('Inputs.search')}
-                className="relative z-[1] h-9 w-full min-w-0 border-0 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
+                className="relative z-[1] h-9 w-full min-w-0 border-0 bg-transparent text-base outline-none placeholder:text-muted-foreground pointer-coarse:h-11 sm:text-sm"
               />
             </div>
 
@@ -129,7 +129,7 @@ export default function SelectCollection() {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="h-9 shrink-0 gap-1.5"
+                  className="h-9 shrink-0 gap-1.5 pointer-coarse:h-11"
                   aria-label={t('CubesPage.category')}
                 >
                   {filter === 'all' ? (
