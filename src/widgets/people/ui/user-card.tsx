@@ -51,9 +51,11 @@ export default function UserCard({ user }: { user: UserDocument }) {
         actions={
           <Button
             onClick={handleCompareClick}
+            aria-label={t('compare')}
+            aria-pressed={isAdded}
             variant={isAdded ? 'secondary' : 'outline'}
             size="sm"
-            className="gap-1.5 text-xs h-8"
+            className="h-8 gap-1.5 text-xs pointer-coarse:h-10 pointer-coarse:min-w-10"
           >
             {isAdded ? (
               <CheckCircle2 className="size-3.5 text-primary animate-in zoom-in duration-300" />
