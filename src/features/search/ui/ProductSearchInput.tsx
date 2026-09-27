@@ -125,7 +125,7 @@ export function ProductSearchInput({
           }}
           onBlur={() => setFocused(false)}
           onKeyDown={onKeyDown}
-          className="placeholder:text-muted-foreground h-9 w-full bg-transparent text-sm outline-none"
+          className="placeholder:text-muted-foreground h-9 w-full bg-transparent text-base outline-none pointer-coarse:h-11 sm:text-sm"
         />
         {isLoading && <Spinner className="text-muted-foreground size-4 shrink-0" />}
         {!isLoading && value.length > 0 && (
