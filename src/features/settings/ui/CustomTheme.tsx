@@ -83,7 +83,7 @@ export default function CustomTheme() {
         </div>
       )}
 
-      <div className="mt-1.5 max-w-28 sm:max-w-36 text-center text-xs font-medium leading-tight">
+      <div className="mt-1.5 max-w-28 sm:max-w-36 text-center text-[13px] leading-tight sm:text-xs">
         {t('custom-background-image')}
       </div>
     </div>
