@@ -81,18 +81,23 @@ export const AlgorithmsList = ({ algorithms, virtualization, puzzle, methodSlug 
             </span>
             <span aria-hidden className="h-px min-w-4 flex-1 bg-gradient-to-r from-border to-transparent" />
           </div>
-          <div className="flex flex-wrap gap-1.5 min-w-0">
-            {groupKeys.map((group) => (
-              <Badge
-                key={group}
-                variant={activeGroups.includes(group) ? 'default' : 'outline'}
-                onClick={() => handleChooseGroup(group)}
-                className="badge-notch cursor-pointer transition-colors select-none text-[10px] sm:text-xs px-2 py-0.5 whitespace-normal break-all max-w-full"
-              >
-                <span className="min-w-0 break-all">{group}</span>
-                <span className="ml-1 opacity-60 shrink-0">{groups[group].length}</span>
-              </Badge>
-            ))}
+          <div role="group" aria-label={t('AlgorithmsPage.filters.group')} className="flex flex-wrap gap-1.5 min-w-0">
+            {groupKeys.map((group) => {
+              const active = activeGroups.includes(group)
+              return (
+                <Badge
+                  key={group}
+                  asChild
+                  variant={active ? 'default' : 'outline'}
+                  className="badge-notch cursor-pointer transition-colors select-none text-[11px] sm:text-xs px-2 py-0.5 whitespace-normal break-all max-w-full focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-ring pointer-coarse:px-3 pointer-coarse:py-2 pointer-coarse:text-[13px]"
+                >
+                  <button type="button" aria-pressed={active} onClick={() => handleChooseGroup(group)}>
+                    <span className="min-w-0 break-all">{group}</span>
+                    <span className="ml-1 opacity-60 shrink-0">{groups[group].length}</span>
+                  </button>
+                </Badge>
+              )
+            })}
           </div>
         </div>
       )}
@@ -102,7 +107,11 @@ export const AlgorithmsList = ({ algorithms, virtualization, puzzle, methodSlug 
         <p className="text-xs text-muted-foreground tabular-nums">
           {t('TrainerPage.algsSuffix', { count: displayedAlgs.length })}
           {activeGroups.length > 0 && (
-            <button onClick={() => setActiveGroups([])} className="ml-2 text-primary hover:underline">
+            <button
+              type="button"
+              onClick={() => setActiveGroups([])}
+              className="-my-2 ml-1 px-1 py-2 text-primary hover:underline pointer-coarse:text-[13px]"
+            >
               {t('AlgorithmsPage.filters.clear')}
             </button>
           )}
