@@ -37,7 +37,7 @@ export default function MethodsExplorer() {
               asChild
               variant={active ? 'default' : 'outline'}
               className={cn(
-                'badge-notch cursor-pointer select-none gap-1.5 px-2 py-0.5 text-[10px] transition-colors sm:text-xs',
+                'badge-notch cursor-pointer select-none gap-1.5 px-2 py-0.5 text-[11px] transition-colors sm:text-xs pointer-coarse:px-3 pointer-coarse:py-2 pointer-coarse:text-[13px]',
                 // badge-notch clips with clip-path, which would swallow the default
                 // focus ring, so draw the focus indicator inside the box instead.
                 'focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-ring',
@@ -63,7 +63,11 @@ export default function MethodsExplorer() {
           {t('filters.results', { sets: sets.length, algorithms })}
         </p>
         {selected.length > 0 && (
-          <button type="button" onClick={() => setSelected([])} className="text-xs text-primary hover:underline">
+          <button
+            type="button"
+            onClick={() => setSelected([])}
+            className="-my-2 px-1 py-2 text-xs text-primary hover:underline pointer-coarse:text-[13px]"
+          >
             {t('filters.clear')}
           </button>
         )}
