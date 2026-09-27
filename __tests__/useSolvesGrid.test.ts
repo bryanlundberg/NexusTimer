@@ -2,10 +2,6 @@ import type { Mock } from 'vitest'
 import { renderHook } from '@testing-library/react'
 import { Order, Sort } from '@/shared/types/enums'
 
-vi.mock('nuqs', () => ({
-  useQueryState: () => ['']
-}))
-
 vi.mock('@/features/solves-grid/model/useSolvesFilter', () => ({
   useSolvesFilter: () => ({ isVisible: () => true })
 }))
