@@ -678,7 +678,6 @@
       "friends": "Друзі",
       "messages": "Повідомлення",
       "leaderboards": "Таблиця лідерів",
-      "multiplayer": "Онлайн",
       "free-play": "Вільна гра",
       "install-app": "Встановити застосунок",
       "settings": "Налаштування",
@@ -689,7 +688,9 @@
       "download-data": "Відновити резервну копію",
       "log-out": "Вийти",
       "activity-solves": "збірки",
-      "activity-calendar": "Календар активності"
+      "activity-calendar": "Календар активності",
+      "toggle-section": "Показати або приховати {title}",
+      "toggle-sidebar": "Показати або приховати бічну панель"
     },
     "Presence": {
       "online": "У мережі",

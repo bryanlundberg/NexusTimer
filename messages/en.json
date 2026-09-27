@@ -678,7 +678,6 @@
       "friends": "Friends",
       "messages": "Messages",
       "leaderboards": "Leaderboards",
-      "multiplayer": "Online",
       "free-play": "Free Play",
       "install-app": "Install App",
       "settings": "Settings",
@@ -689,7 +688,9 @@
       "download-data": "Restore Backup",
       "log-out": "Sign Out",
       "activity-solves": "solves",
-      "activity-calendar": "Activity calendar"
+      "activity-calendar": "Activity calendar",
+      "toggle-section": "Show or hide {title}",
+      "toggle-sidebar": "Show or hide sidebar"
     },
     "tooltips": {
       "plus-two": "+2 Penalty",

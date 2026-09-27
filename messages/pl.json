@@ -678,7 +678,6 @@
       "friends": "Znajomi",
       "messages": "Wiadomości",
       "leaderboards": "Rankingi",
-      "multiplayer": "Online",
       "free-play": "Swobodna gra",
       "install-app": "Zainstaluj aplikację",
       "settings": "Ustawienia",
@@ -689,7 +688,9 @@
       "download-data": "Przywróć kopię zapasową",
       "log-out": "Wyloguj się",
       "activity-solves": "ułożenia",
-      "activity-calendar": "Kalendarz aktywności"
+      "activity-calendar": "Kalendarz aktywności",
+      "toggle-section": "Pokaż lub ukryj {title}",
+      "toggle-sidebar": "Pokaż lub ukryj pasek boczny"
     },
     "Presence": {
       "online": "Online",

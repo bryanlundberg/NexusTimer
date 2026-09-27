@@ -673,7 +673,6 @@
       "friends": "친구",
       "messages": "메시지",
       "leaderboards": "순위표",
-      "multiplayer": "온라인",
       "free-play": "자유 연습",
       "install-app": "앱 설치",
       "settings": "설정",
@@ -686,7 +685,9 @@
       "activity-solves": "풀이",
       "activity-calendar": "활동 캘린더",
       "trainer": "트레이너",
-      "training": "트레이닝"
+      "training": "트레이닝",
+      "toggle-section": "{title} 표시/숨기기",
+      "toggle-sidebar": "사이드바 표시/숨기기"
     },
     "Presence": {
       "online": "온라인",

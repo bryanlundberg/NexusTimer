@@ -678,7 +678,6 @@
       "friends": "เพื่อน",
       "messages": "ข้อความ",
       "leaderboards": "ลีดเดอร์บอร์ด",
-      "multiplayer": "ออนไลน์",
       "free-play": "เล่นอิสระ",
       "install-app": "ติดตั้งแอป",
       "settings": "การตั้งค่า",
@@ -689,7 +688,9 @@
       "download-data": "กู้คืนข้อมูลสำรอง",
       "log-out": "ออกจากระบบ",
       "activity-solves": "การไข",
-      "activity-calendar": "ปฏิทินกิจกรรม"
+      "activity-calendar": "ปฏิทินกิจกรรม",
+      "toggle-section": "แสดงหรือซ่อน {title}",
+      "toggle-sidebar": "แสดงหรือซ่อนแถบด้านข้าง"
     },
     "Presence": {
       "online": "ออนไลน์",

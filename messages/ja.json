@@ -673,7 +673,6 @@
       "friends": "フレンド",
       "messages": "メッセージ",
       "leaderboards": "ランキング",
-      "multiplayer": "オンライン",
       "free-play": "フリープレイ",
       "install-app": "アプリをインストール",
       "settings": "設定",
@@ -686,7 +685,9 @@
       "activity-solves": "解き",
       "activity-calendar": "アクティビティカレンダー",
       "trainer": "トレーナー",
-      "training": "トレーニング"
+      "training": "トレーニング",
+      "toggle-section": "{title}の表示を切り替え",
+      "toggle-sidebar": "サイドバーの表示を切り替え"
     },
     "Presence": {
       "online": "オンライン",

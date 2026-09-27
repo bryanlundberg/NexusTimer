@@ -678,7 +678,6 @@
       "friends": "Mga Kaibigan",
       "messages": "Mga Mensahe",
       "leaderboards": "Mga Leaderboard",
-      "multiplayer": "Online",
       "free-play": "Free Play",
       "install-app": "I-install ang App",
       "settings": "Mga Setting",
@@ -689,7 +688,9 @@
       "download-data": "I-restore ang backup",
       "log-out": "Mag-log out",
       "activity-solves": "solves",
-      "activity-calendar": "Kalendaryo ng aktibidad"
+      "activity-calendar": "Kalendaryo ng aktibidad",
+      "toggle-section": "Ipakita o itago ang {title}",
+      "toggle-sidebar": "Ipakita o itago ang sidebar"
     },
     "Presence": {
       "online": "Online",

@@ -673,7 +673,6 @@
       "friends": "Amis",
       "messages": "Messages",
       "leaderboards": "Classements",
-      "multiplayer": "En ligne",
       "free-play": "Jeu Libre",
       "install-app": "Installer l'application",
       "settings": "Paramètres",
@@ -686,7 +685,9 @@
       "activity-solves": "résolutions",
       "activity-calendar": "Calendrier d'activité",
       "trainer": "Entraîneur",
-      "training": "Entraînement"
+      "training": "Entraînement",
+      "toggle-section": "Afficher ou masquer {title}",
+      "toggle-sidebar": "Afficher ou masquer la barre latérale"
     },
     "Presence": {
       "online": "En ligne",

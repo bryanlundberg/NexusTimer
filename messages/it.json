@@ -678,7 +678,6 @@
       "friends": "Amici",
       "messages": "Messaggi",
       "leaderboards": "Classifiche",
-      "multiplayer": "Online",
       "free-play": "Gioco libero",
       "install-app": "Installa app",
       "settings": "Impostazioni",
@@ -689,7 +688,9 @@
       "download-data": "Ripristina backup",
       "log-out": "Esci",
       "activity-solves": "soluzioni",
-      "activity-calendar": "Calendario attività"
+      "activity-calendar": "Calendario attività",
+      "toggle-section": "Mostra o nascondi {title}",
+      "toggle-sidebar": "Mostra o nascondi la barra laterale"
     },
     "Presence": {
       "online": "Online",

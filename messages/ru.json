@@ -673,7 +673,6 @@
       "friends": "Друзья",
       "messages": "Сообщения",
       "leaderboards": "Рейтинги",
-      "multiplayer": "Онлайн",
       "free-play": "Свободная игра",
       "install-app": "Установить приложение",
       "settings": "Настройки",
@@ -686,7 +685,9 @@
       "activity-solves": "сборки",
       "activity-calendar": "Календарь активности",
       "trainer": "Тренажёр",
-      "training": "Тренировка"
+      "training": "Тренировка",
+      "toggle-section": "Показать или скрыть {title}",
+      "toggle-sidebar": "Показать или скрыть боковую панель"
     },
     "Presence": {
       "online": "В сети",

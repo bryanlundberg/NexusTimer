@@ -953,7 +953,6 @@
       "friends": "Amigos",
       "messages": "Mensajes",
       "leaderboards": "Clasificaciones",
-      "multiplayer": "En línea",
       "free-play": "Juego Libre",
       "install-app": "Instalar App",
       "settings": "Ajustes",
@@ -964,7 +963,9 @@
       "download-data": "Restaurar copia de seguridad",
       "log-out": "Cerrar sesión",
       "activity-solves": "soluciones",
-      "activity-calendar": "Calendario de actividad"
+      "activity-calendar": "Calendario de actividad",
+      "toggle-section": "Mostrar u ocultar {title}",
+      "toggle-sidebar": "Mostrar u ocultar la barra lateral"
     },
     "Presence": {
       "online": "En línea",

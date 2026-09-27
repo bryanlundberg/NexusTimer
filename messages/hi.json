@@ -673,7 +673,6 @@
       "friends": "मित्र",
       "messages": "संदेश",
       "leaderboards": "लीडरबोर्ड",
-      "multiplayer": "ऑनलाइन",
       "free-play": "फ्री प्ले",
       "install-app": "ऐप इंस्टॉल करें",
       "settings": "सेटिंग्स",
@@ -686,7 +685,9 @@
       "activity-solves": "सॉल्व",
       "activity-calendar": "गतिविधि कैलेंडर",
       "trainer": "ट्रेनर",
-      "training": "ट्रेनिंग"
+      "training": "ट्रेनिंग",
+      "toggle-section": "{title} दिखाएँ या छिपाएँ",
+      "toggle-sidebar": "साइडबार दिखाएँ या छिपाएँ"
     },
     "Presence": {
       "online": "ऑनलाइन",

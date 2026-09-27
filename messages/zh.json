@@ -673,7 +673,6 @@
       "friends": "好友",
       "messages": "消息",
       "leaderboards": "排行榜",
-      "multiplayer": "在线",
       "free-play": "自由练习",
       "install-app": "安装应用",
       "settings": "设置",
@@ -686,7 +685,9 @@
       "activity-solves": "次还原",
       "activity-calendar": "活动日历",
       "trainer": "训练器",
-      "training": "训练"
+      "training": "训练",
+      "toggle-section": "显示或隐藏{title}",
+      "toggle-sidebar": "显示或隐藏侧边栏"
     },
     "Presence": {
       "online": "在线",

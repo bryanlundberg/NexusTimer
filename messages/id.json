@@ -678,7 +678,6 @@
       "friends": "Teman",
       "messages": "Pesan",
       "leaderboards": "Papan Peringkat",
-      "multiplayer": "Online",
       "free-play": "Main Bebas",
       "install-app": "Pasang Aplikasi",
       "settings": "Pengaturan",
@@ -689,7 +688,9 @@
       "download-data": "Pulihkan cadangan",
       "log-out": "Keluar",
       "activity-solves": "solve",
-      "activity-calendar": "Kalender aktivitas"
+      "activity-calendar": "Kalender aktivitas",
+      "toggle-section": "Tampilkan atau sembunyikan {title}",
+      "toggle-sidebar": "Tampilkan atau sembunyikan sidebar"
     },
     "Presence": {
       "online": "Online",

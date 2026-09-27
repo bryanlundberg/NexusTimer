@@ -673,7 +673,6 @@
       "friends": "Freunde",
       "messages": "Nachrichten",
       "leaderboards": "Bestenlisten",
-      "multiplayer": "Online",
       "free-play": "Freies Spiel",
       "install-app": "App installieren",
       "settings": "Einstellungen",
@@ -686,7 +685,9 @@
       "activity-solves": "Lösungen",
       "activity-calendar": "Aktivitätskalender",
       "trainer": "Trainer",
-      "training": "Training"
+      "training": "Training",
+      "toggle-section": "{title} ein- oder ausblenden",
+      "toggle-sidebar": "Seitenleiste ein- oder ausblenden"
     },
     "Presence": {
       "online": "Online",

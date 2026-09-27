@@ -678,7 +678,6 @@
       "friends": "Bạn bè",
       "messages": "Tin nhắn",
       "leaderboards": "Bảng xếp hạng",
-      "multiplayer": "Trực tuyến",
       "free-play": "Chơi tự do",
       "install-app": "Cài đặt ứng dụng",
       "settings": "Cài đặt",
@@ -689,7 +688,9 @@
       "download-data": "Khôi phục bản sao lưu",
       "log-out": "Đăng xuất",
       "activity-solves": "lượt giải",
-      "activity-calendar": "Lịch hoạt động"
+      "activity-calendar": "Lịch hoạt động",
+      "toggle-section": "Hiện hoặc ẩn {title}",
+      "toggle-sidebar": "Hiện hoặc ẩn thanh bên"
     },
     "Presence": {
       "online": "Trực tuyến",
