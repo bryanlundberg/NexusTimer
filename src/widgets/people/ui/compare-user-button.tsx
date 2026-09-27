@@ -43,7 +43,7 @@ export function CompareUserButton({ user, className }: { user: UserProfile; clas
         ref={buttonRef}
         variant={isAdded ? 'secondary' : 'outline'}
         size="sm"
-        className={cn('gap-1.5', className)}
+        className={cn('gap-1.5 pointer-coarse:h-10', className)}
         onClick={handleClick}
       >
         {isAdded ? (
