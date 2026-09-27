@@ -9,6 +9,7 @@ import { createForgotPasswordSchema, type ForgotPasswordValues } from '@/feature
 import { useAuthSchemaMessages } from '@/features/authentication/model/use-auth-schema-messages'
 import { useForgotPassword } from '@/features/authentication/model/hooks/use-forgot-password'
 import AuthField from '@/features/authentication/ui/AuthField'
+import AuthFieldGroup from '@/features/authentication/ui/AuthFieldGroup'
 
 export default function ForgotPasswordForm() {
   const t = useTranslations('Index.Auth')
@@ -43,15 +44,17 @@ export default function ForgotPasswordForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-      <AuthField
-        id="email"
-        label={t('email')}
-        type="email"
-        autoComplete="email"
-        placeholder="you@example.com"
-        error={errors.email?.message}
-        {...register('email')}
-      />
+      <AuthFieldGroup>
+        <AuthField
+          id="email"
+          label={t('email')}
+          type="email"
+          autoComplete="email"
+          placeholder="you@example.com"
+          error={errors.email?.message}
+          {...register('email')}
+        />
+      </AuthFieldGroup>
 
       <Button type="submit" disabled={isLoading} className="w-full h-10 font-semibold tracking-wide">
         {isLoading ? t('loading') : t('forgot-password-submit')}
