@@ -139,7 +139,7 @@ export default function SolvesSelectionBar({ allIds }: SolvesSelectionBarProps) 
         <Button
           variant="ghost"
           size="sm"
-          className="shrink-0 gap-1.5 text-background hover:bg-background/15 hover:text-background dark:hover:bg-background/15"
+          className="shrink-0 gap-1.5 pointer-coarse:h-10 text-background hover:bg-background/15 hover:text-background dark:hover:bg-background/15"
           disabled={allSelected}
           onClick={() => selectAll(allIds)}
           data-testid="bulk-select-all-button"
@@ -151,7 +151,7 @@ export default function SolvesSelectionBar({ allIds }: SolvesSelectionBarProps) 
         <Button
           variant="ghost"
           size="sm"
-          className="shrink-0 gap-1.5 text-red-500 hover:bg-red-500/15 hover:text-red-500 dark:hover:bg-red-500/15"
+          className="shrink-0 gap-1.5 pointer-coarse:h-10 text-red-500 hover:bg-red-500/15 hover:text-red-500 dark:hover:bg-red-500/15"
           disabled={count === 0}
           onClick={() => setConfirmOpen(true)}
           data-testid="bulk-delete-button"
@@ -163,7 +163,7 @@ export default function SolvesSelectionBar({ allIds }: SolvesSelectionBarProps) 
         <Button
           variant="secondary"
           size="sm"
-          className="shrink-0 gap-1.5"
+          className="shrink-0 gap-1.5 pointer-coarse:h-10"
           disabled={count === 0}
           onClick={handleShare}
           data-testid="bulk-share-button"
@@ -175,7 +175,7 @@ export default function SolvesSelectionBar({ allIds }: SolvesSelectionBarProps) 
         <Button
           variant="default"
           size="sm"
-          className="shrink-0 gap-1.5"
+          className="shrink-0 gap-1.5 pointer-coarse:h-10"
           disabled={count === 0}
           onClick={handleMove}
           data-testid={isSession ? 'bulk-move-to-history-button' : 'bulk-move-to-session-button'}
@@ -195,7 +195,12 @@ export default function SolvesSelectionBar({ allIds }: SolvesSelectionBarProps) 
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>{t('Inputs.cancel')}</AlertDialogCancel>
-            <AlertDialogAction onClick={handleDelete}>{t('SolvesPage.selection.delete')}</AlertDialogAction>
+            <AlertDialogAction
+              onClick={handleDelete}
+              className="bg-destructive text-white hover:bg-destructive/90 dark:bg-destructive/60"
+            >
+              {t('SolvesPage.selection.delete')}
+            </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
