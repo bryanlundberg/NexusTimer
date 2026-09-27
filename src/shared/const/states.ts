@@ -8,10 +8,6 @@ export const STATES = {
       KEY: 'tab-mode',
       DEFAULT_VALUE: SolveTab.SESSION
     },
-    QUERY: {
-      KEY: 'query',
-      DEFAULT_VALUE: ''
-    },
     SORT: {
       KEY: 'sort',
       DEFAULT_VALUE: Sort.DATE
