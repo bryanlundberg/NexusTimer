@@ -197,19 +197,10 @@
 .dark .sidebar-ambient {
   opacity: 0.12;
 }
-.sidebar-watermark {
-  color: var(--sidebar-ambient);
-  opacity: 0.07;
-  transition: color 500ms var(--ease-solve);
-}
-.dark .sidebar-watermark {
-  opacity: 0.09;
-}
 @media (prefers-reduced-motion: reduce) {
   .nav-notch::before,
   .nav-indicator,
-  .sidebar-ambient,
-  .sidebar-watermark {
+  .sidebar-ambient {
     transition: none;
   }
 }
