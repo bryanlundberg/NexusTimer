@@ -511,7 +511,8 @@
       "showing-members": "Menampilkan <b>{showing}</b> dari <b>{total}</b> anggota",
       "search": "Cari",
       "compare-basket": "<b>{count}</b> di keranjang perbandingan",
-      "stats-hidden": "Statistik dan algoritma {name} bersifat pribadi."
+      "stats-hidden": "Statistik dan algoritma {name} bersifat pribadi.",
+      "clear-filters": "Hapus filter"
     },
     "FriendsPage": {
       "title": "Teman",

@@ -390,7 +390,7 @@
     "PeoplePage": {
       "badges": {
         "counter": "{unlocked} / {total}",
-        "empty": "Aún no has desbloqueado logros.",
+        "empty": "Aún no hay logros desbloqueados.",
         "title": "Logros",
         "view-all": "Ver todos"
       },
@@ -399,20 +399,20 @@
       "all-countries": "Todos los países",
       "search-country": "Buscar país…",
       "no-country-found": "No se encontró el país",
-      "no-users-found": "No se encontraron usuarios que coincidan con tus criterios",
-      "no-results-for": "No se encontraron cubers para <b>“{query}”</b>",
+      "no-users-found": "Ningún cubero coincide con estos filtros",
+      "no-results-for": "No encontramos cuberos para <b>“{query}”</b>",
       "clear-search": "Limpiar búsqueda",
       "results": "Resultados",
       "user-card": {
         "compare": "Comparar",
         "compare-stats": "Comparar estadísticas",
-        "view-profile": "Ver Perfil"
+        "view-profile": "Ver perfil"
       },
       "tabs": {
         "achievements": "Logros",
         "overview": "Resumen",
         "cubes": "Cubos",
-        "timeline": "Timeline",
+        "timeline": "Actividad",
         "algorithms": "Algoritmos",
         "shared": "Compartidos"
       },
@@ -428,10 +428,10 @@
         "single": "Single",
         "ao5": "Ao5 (Mejor)",
         "time-spent": "Tiempo invertido",
-        "solves": "Soluciones"
+        "solves": "Tiempos"
       },
       "stats": {
-        "total-solves": "Soluciones totales",
+        "total-solves": "Tiempos totales",
         "time-on-timer": "Tiempo en cronómetro",
         "lifetime": "acumulado",
         "events": "Eventos",
@@ -442,7 +442,7 @@
         "col-name": "Nombre",
         "col-best": "Mejor",
         "col-ao5": "Ao5",
-        "col-solves": "Soluciones",
+        "col-solves": "Tiempos",
         "col-time": "Tiempo",
         "col-distribution": "Distribución"
       },
@@ -450,7 +450,7 @@
         "col-category": "Categoría",
         "col-cube": "Cubo",
         "col-cube-record": "Cubo del récord",
-        "col-scramble": "Mezcla",
+        "col-scramble": "Scramble",
         "col-time": "Tiempo",
         "col-date": "Fecha"
       },
@@ -466,7 +466,8 @@
       "showing-members": "Mostrando <b>{showing}</b> de <b>{total}</b> miembros",
       "search": "Buscar",
       "compare-basket": "<b>{count}</b> en la comparación",
-      "stats-hidden": "Las estadísticas y algoritmos de {name} son privados."
+      "stats-hidden": "Las estadísticas y algoritmos de {name} son privados.",
+      "clear-filters": "Borrar filtros"
     },
     "FriendsPage": {
       "title": "Amigos",

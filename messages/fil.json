@@ -511,7 +511,8 @@
       "showing-members": "Ipinapakita ang <b>{showing}</b> sa <b>{total}</b> na miyembro",
       "search": "Maghanap",
       "compare-basket": "<b>{count}</b> sa compare basket",
-      "stats-hidden": "Pribado ang stats at algorithm ni {name}."
+      "stats-hidden": "Pribado ang stats at algorithm ni {name}.",
+      "clear-filters": "I-clear ang mga filter"
     },
     "FriendsPage": {
       "title": "Mga Kaibigan",

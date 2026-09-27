@@ -508,7 +508,8 @@
         "title": "उपलब्धियाँ",
         "view-all": "सभी देखें"
       },
-      "stats-hidden": "{name} के आँकड़े और एल्गोरिदम निजी हैं।"
+      "stats-hidden": "{name} के आँकड़े और एल्गोरिदम निजी हैं।",
+      "clear-filters": "फ़िल्टर हटाएँ"
     },
     "FriendsPage": {
       "title": "मित्र",

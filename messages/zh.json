@@ -508,7 +508,8 @@
         "title": "成就",
         "view-all": "查看全部"
       },
-      "stats-hidden": "{name} 的统计和公式不公开。"
+      "stats-hidden": "{name} 的统计和公式不公开。",
+      "clear-filters": "清除筛选"
     },
     "FriendsPage": {
       "title": "好友",

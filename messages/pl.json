@@ -511,7 +511,8 @@
       "showing-members": "Wyświetlanie <b>{showing}</b> z <b>{total}</b> członków",
       "search": "Szukaj",
       "compare-basket": "<b>{count}</b> w koszyku porównania",
-      "stats-hidden": "Statystyki i algorytmy użytkownika {name} są prywatne."
+      "stats-hidden": "Statystyki i algorytmy użytkownika {name} są prywatne.",
+      "clear-filters": "Wyczyść filtry"
     },
     "FriendsPage": {
       "title": "Znajomi",

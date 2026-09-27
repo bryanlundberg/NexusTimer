@@ -438,14 +438,14 @@
       "all-countries": "All countries",
       "search-country": "Search country…",
       "no-country-found": "No country found",
-      "no-users-found": "No users found matching your criteria",
+      "no-users-found": "No cubers match these filters",
       "no-results-for": "No cubers found for <b>“{query}”</b>",
       "clear-search": "Clear search",
       "results": "Results",
       "user-card": {
         "compare": "Compare",
         "compare-stats": "Compare stats",
-        "view-profile": "View Profile"
+        "view-profile": "View profile"
       },
       "tabs": {
         "overview": "Overview",
@@ -472,12 +472,12 @@
       "solve-card": {
         "single": "Single",
         "ao5": "Ao5 (Best)",
-        "time-spent": "Time Spent",
+        "time-spent": "Time spent",
         "solves": "Solves"
       },
       "stats": {
-        "total-solves": "Total Solves",
-        "time-on-timer": "Time on Timer",
+        "total-solves": "Total solves",
+        "time-on-timer": "Time on timer",
         "lifetime": "lifetime",
         "events": "Events",
         "favorite": "Favorite",
@@ -511,7 +511,8 @@
       "showing-members": "Showing <b>{showing}</b> of <b>{total}</b> members",
       "search": "Search",
       "compare-basket": "<b>{count}</b> in compare basket",
-      "stats-hidden": "{name}'s stats and algorithms are private."
+      "stats-hidden": "{name}'s stats and algorithms are private.",
+      "clear-filters": "Clear filters"
     },
     "FriendsPage": {
       "title": "Friends",

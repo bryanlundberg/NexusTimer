@@ -508,7 +508,8 @@
         "title": "Conquistas",
         "view-all": "Ver todas"
       },
-      "stats-hidden": "As estatísticas e algoritmos de {name} são privados."
+      "stats-hidden": "As estatísticas e algoritmos de {name} são privados.",
+      "clear-filters": "Limpar filtros"
     },
     "FriendsPage": {
       "title": "Amigos",

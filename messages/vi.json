@@ -511,7 +511,8 @@
       "showing-members": "Đang hiển thị <b>{showing}</b> trong <b>{total}</b> thành viên",
       "search": "Tìm kiếm",
       "compare-basket": "<b>{count}</b> trong giỏ so sánh",
-      "stats-hidden": "Thống kê và thuật toán của {name} được đặt riêng tư."
+      "stats-hidden": "Thống kê và thuật toán của {name} được đặt riêng tư.",
+      "clear-filters": "Xóa bộ lọc"
     },
     "FriendsPage": {
       "title": "Bạn bè",

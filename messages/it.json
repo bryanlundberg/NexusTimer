@@ -511,7 +511,8 @@
       "showing-members": "Mostrando <b>{showing}</b> di <b>{total}</b> membri",
       "search": "Cerca",
       "compare-basket": "<b>{count}</b> nel confronto",
-      "stats-hidden": "Le statistiche e gli algoritmi di {name} sono privati."
+      "stats-hidden": "Le statistiche e gli algoritmi di {name} sono privati.",
+      "clear-filters": "Cancella filtri"
     },
     "FriendsPage": {
       "title": "Amici",

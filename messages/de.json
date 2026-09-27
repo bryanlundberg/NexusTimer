@@ -508,7 +508,8 @@
         "title": "Erfolge",
         "view-all": "Alle ansehen"
       },
-      "stats-hidden": "Die Statistiken und Algorithmen von {name} sind privat."
+      "stats-hidden": "Die Statistiken und Algorithmen von {name} sind privat.",
+      "clear-filters": "Filter zurücksetzen"
     },
     "FriendsPage": {
       "title": "Freunde",

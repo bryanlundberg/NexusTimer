@@ -508,7 +508,8 @@
         "title": "업적",
         "view-all": "모두 보기"
       },
-      "stats-hidden": "{name}님의 통계와 알고리즘은 비공개입니다."
+      "stats-hidden": "{name}님의 통계와 알고리즘은 비공개입니다.",
+      "clear-filters": "필터 지우기"
     },
     "FriendsPage": {
       "title": "친구",

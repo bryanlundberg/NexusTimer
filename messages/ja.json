@@ -508,7 +508,8 @@
         "title": "実績",
         "view-all": "すべて見る"
       },
-      "stats-hidden": "{name}さんの統計と手順は非公開です。"
+      "stats-hidden": "{name}さんの統計と手順は非公開です。",
+      "clear-filters": "フィルターをクリア"
     },
     "FriendsPage": {
       "title": "フレンド",
