@@ -22,7 +22,12 @@ export default function ButtonMoveSolves() {
       <TooltipProvider delayDuration={100}>
         <Tooltip>
           <TooltipTrigger asChild>
-            <Button variant={'outline'} size={'sm'} className={'gap-2'} onClick={handleMoveSolvesToHistory}>
+            <Button
+              variant={'outline'}
+              size={'sm'}
+              className={'gap-2 pointer-coarse:h-10'}
+              onClick={handleMoveSolvesToHistory}
+            >
               <EnterIcon />
               <span>{t('SolvesPage.finish-session')}</span>
             </Button>
