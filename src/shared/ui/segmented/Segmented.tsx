@@ -29,26 +29,48 @@ export default function Segmented<T extends string>({
   className,
   ...props
 }: SegmentedProps<T>) {
+  const refs = React.useRef<Array<HTMLButtonElement | null>>([])
+  const selectedIndex = options.findIndex((option) => option.value === value)
+
+  const move = (from: number, step: 1 | -1) => {
+    const next = (from + step + options.length) % options.length
+    onChange(options[next].value)
+    refs.current[next]?.focus()
+  }
+
   return (
     <div
-      role="tablist"
+      role="radiogroup"
       aria-label={props['aria-label']}
       className={cn(
         'inline-flex w-fit shrink-0 items-center gap-1 p-1 rounded-none border border-border/60 bg-background/60',
         className
       )}
     >
-      {options.map((option) => {
+      {options.map((option, index) => {
         const active = value === option.value
         return (
           <button
             key={option.value}
+            ref={(node) => {
+              refs.current[index] = node
+            }}
             type="button"
-            role="tab"
-            aria-selected={active}
+            role="radio"
+            aria-checked={active}
+            tabIndex={active || (selectedIndex < 0 && index === 0) ? 0 : -1}
             onClick={() => onChange(option.value)}
+            onKeyDown={(event) => {
+              if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+                event.preventDefault()
+                move(index, 1)
+              } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+                event.preventDefault()
+                move(index, -1)
+              }
+            }}
             className={cn(
-              'relative flex shrink-0 items-center gap-2 px-2.5 py-1.5 rounded-none text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-solve)] cursor-pointer',
+              'relative flex shrink-0 items-center gap-2 px-2.5 py-1.5 rounded-none text-xs font-semibold outline-none transition-colors duration-[var(--dur-fast)] ease-[var(--ease-solve)] cursor-pointer [-webkit-tap-highlight-color:transparent] focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-ring pointer-coarse:py-2.5 pointer-coarse:text-[13px]',
               active ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
             )}
           >
