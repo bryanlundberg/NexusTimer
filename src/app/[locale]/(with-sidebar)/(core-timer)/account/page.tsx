@@ -17,7 +17,6 @@ import ScrollableUnderlineTabs from '@/shared/ui/animated-tabs/ScrollableUnderli
 export default function AccountPage() {
   const { data: session } = useSession()
   const t = useTranslations('Index')
-  const tAccount = useTranslations('Index.AccountPage')
   const { data: user, mutate, isLoading: userLoading } = useUser(session?.user?.id)
   const [tab, setTab] = useQueryState('tab', { defaultValue: 'account' })
   const [preview, setPreview] = useState<ProfilePreview | null>(null)
@@ -59,21 +58,11 @@ export default function AccountPage() {
             className="max-w-sm"
           />
 
-          <TabsContent value="account" forceMount className="space-y-6 data-[state=inactive]:hidden">
-            <div>
-              <h2 className="font-display text-lg font-semibold tracking-tight">{tAccount('personal-info')}</h2>
-              <p className="text-sm text-muted-foreground mt-1">{tAccount('personal-info-description')}</p>
-            </div>
-
+          <TabsContent value="account" forceMount className="data-[state=inactive]:hidden">
             {!userLoading && <AccountInfoForm user={user} mutate={mutate} onPreviewChange={setPreview} />}
           </TabsContent>
 
-          <TabsContent value="privacy" className="space-y-6">
-            <div>
-              <h2 className="font-display text-lg font-semibold tracking-tight">{t('PrivacyPage.title')}</h2>
-              <p className="text-sm text-muted-foreground mt-1">{t('PrivacyPage.description')}</p>
-            </div>
-
+          <TabsContent value="privacy">
             <PrivacySettings />
           </TabsContent>
 
