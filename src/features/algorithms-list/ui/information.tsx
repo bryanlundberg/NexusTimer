@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useTranslations } from 'next-intl'
 
 interface InformationProps {
   className?: string
@@ -9,6 +10,8 @@ interface InformationProps {
 }
 
 export default function Information({ title, description, algorithmCount, actions }: InformationProps) {
+  const t = useTranslations('Index.AlgorithmsPage')
+
   return (
     <div className="mb-6 border-b pb-6">
       <div className="flex items-start justify-between gap-4">
@@ -20,7 +23,7 @@ export default function Information({ title, description, algorithmCount, action
           <div className="icon-notch hidden size-16 shrink-0 flex-col items-center justify-center gap-1 text-center sm:flex">
             <span className="font-display text-xl font-bold leading-none tabular-nums">{algorithmCount}</span>
             <span className="font-display text-[9px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-              Algs
+              {t('algs-unit')}
             </span>
           </div>
         )}
