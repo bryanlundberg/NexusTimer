@@ -47,7 +47,7 @@ export default function CreateRoomModal() {
   const {
     handleSubmit,
     control,
-    formState: { isSubmitting },
+    formState: { isSubmitting, errors },
     register
   } = useForm({
     defaultValues: {
@@ -110,7 +110,7 @@ export default function CreateRoomModal() {
       <div className="overflow-y-auto flex-1 min-h-0">
         <div className="space-y-6">
           <div className="grid gap-2">
-            <Label htmlFor="room-name" className="text-sm font-bold uppercase tracking-wider text-muted-foreground/80">
+            <Label htmlFor="room-name" className="text-sm font-medium">
               {t('room-name')}
             </Label>
             <Input
@@ -118,16 +118,18 @@ export default function CreateRoomModal() {
               {...register('name', { required: t('room-name-required') })}
               id="room-name"
               placeholder={t('room-name-placeholder')}
-              className="h-12 border-muted-foreground/20 focus-visible:ring-primary/30"
+              enterKeyHint="done"
+              aria-invalid={!!errors.name}
+              className="h-11"
             />
+            {errors.name && (
+              <p className="text-[13px] font-medium text-destructive sm:text-xs">{errors.name.message}</p>
+            )}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="flex flex-col gap-2">
-              <Label
-                htmlFor="room-event"
-                className="text-sm font-bold uppercase tracking-wider text-muted-foreground/80"
-              >
+              <Label htmlFor="room-event" className="text-sm font-medium">
                 {t('event')}
               </Label>
               <Controller
@@ -135,7 +137,7 @@ export default function CreateRoomModal() {
                 control={control}
                 render={({ field: { onChange, value } }) => (
                   <Select value={value} onValueChange={onChange}>
-                    <SelectTrigger className="h-12 border-muted-foreground/20 w-full">
+                    <SelectTrigger id="room-event" className="h-11 w-full">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -159,7 +161,7 @@ export default function CreateRoomModal() {
             </div>
 
             <div className="grid gap-2">
-              <Label htmlFor="insp" className="text-sm font-bold uppercase tracking-wider text-muted-foreground/80">
+              <Label htmlFor="room-max-time" className="text-sm font-medium">
                 {t('max-round-time')}
               </Label>
               <Controller
@@ -167,7 +169,7 @@ export default function CreateRoomModal() {
                 control={control}
                 render={({ field: { onChange, value } }) => (
                   <Select value={value} onValueChange={onChange}>
-                    <SelectTrigger className={'h-12 border-muted-foreground/20 w-full'}>
+                    <SelectTrigger id="room-max-time" className="h-11 w-full">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -180,52 +182,62 @@ export default function CreateRoomModal() {
                   </Select>
                 )}
               />
+              <p className="text-[13px] leading-snug text-muted-foreground sm:text-xs">
+                {t('max-round-time-description')}
+              </p>
             </div>
           </div>
 
           {/* Private room toggle */}
-          <div className="flex items-center justify-between rounded-lg border border-muted-foreground/20 p-4">
-            <div className="flex items-center gap-3">
-              <Lock className="size-4 text-muted-foreground" />
-              <div>
-                <p className="text-sm font-medium">{t('private')}</p>
-                <p className="text-xs text-muted-foreground">{t('private-description')}</p>
-              </div>
-            </div>
-            <Switch checked={isPrivate} onCheckedChange={handlePrivateToggle} />
-          </div>
+          <label
+            htmlFor="room-private"
+            className="panel-notch-bl-tr flex cursor-pointer select-none items-center justify-between gap-4 p-4 [-webkit-tap-highlight-color:transparent]"
+          >
+            <span className="flex items-center gap-3">
+              <Lock className="size-4 shrink-0 text-muted-foreground" />
+              <span className="flex flex-col gap-0.5">
+                <span className="text-[15px] leading-snug sm:text-sm">{t('private')}</span>
+                <span className="text-[13px] leading-snug text-muted-foreground sm:text-xs">
+                  {t('private-description')}
+                </span>
+              </span>
+            </span>
+            <Switch id="room-private" checked={isPrivate} onCheckedChange={handlePrivateToggle} />
+          </label>
 
           {/* Room code display */}
           {isPrivate && (
             <div className="grid gap-2">
-              <Label className="text-sm font-bold uppercase tracking-wider text-muted-foreground/80">
-                {t('room-code')}
-              </Label>
+              <span className="text-sm font-medium">{t('room-code')}</span>
               <div className="flex items-center gap-2">
-                <div className="flex-1 flex items-center h-12 px-4 rounded-md border border-muted-foreground/20 bg-muted/40">
-                  <span className="font-mono text-lg font-semibold tracking-[0.3em]">{roomCode}</span>
+                <div className="field-notch flex h-11 flex-1 items-center px-4">
+                  <span className="relative z-[1] font-mono text-lg font-semibold tracking-[0.3em] select-all">
+                    {roomCode}
+                  </span>
                 </div>
                 <Button
                   type="button"
                   variant="outline"
                   size="icon"
-                  className="size-12 shrink-0"
+                  aria-label={codeCopied ? t('code-copied') : t('copy-code')}
+                  title={codeCopied ? t('code-copied') : t('copy-code')}
+                  className="size-11 shrink-0"
                   onClick={handleCopyCode}
                 >
                   {codeCopied ? <Check className="size-4 text-emerald-500" /> : <Copy className="size-4" />}
                 </Button>
               </div>
-              <p className="text-xs text-muted-foreground">{t('room-code-hint')}</p>
+              <p className="text-[13px] leading-snug text-muted-foreground sm:text-xs">{t('room-code-hint')}</p>
             </div>
           )}
-
-          <p className="text-xs text-muted-foreground bg-muted/50 p-3 rounded-lg border border-dashed">
-            💡 {t('max-round-time-description')}
-          </p>
         </div>
 
         <DialogFooter className="mt-6 shrink-0">
-          <Button className="w-full md:w-auto" onClick={handleSubmit(submitForm)} disabled={isSubmitting}>
+          <Button
+            className="w-full pointer-coarse:h-11 md:w-auto"
+            onClick={handleSubmit(submitForm)}
+            disabled={isSubmitting}
+          >
             {isSubmitting ? t('creating') : t('continue')}
           </Button>
         </DialogFooter>
