@@ -47,13 +47,17 @@ export function FormSaveActions({ isDirty, isValid, isSubmitting, onDiscard, onS
       {isDirty && (
         <motion.div
           key="save-actions"
-          initial={{ opacity: 0, x: 12 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 12 }}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 16 }}
           transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-          className="flex shrink-0 items-center gap-2"
+          className="panel-notch-bl-tr flex items-center gap-2 py-2 pr-2 pl-4"
         >
-          <span role="status" className="flex min-w-0 items-center gap-2 text-xs font-medium" title={status}>
+          <span
+            role="status"
+            className="flex min-w-0 flex-1 items-center gap-2 text-[13px] font-medium sm:text-xs"
+            title={status}
+          >
             <span className="relative flex size-2 shrink-0" aria-hidden>
               <span
                 className={
@@ -66,7 +70,7 @@ export function FormSaveActions({ isDirty, isValid, isSubmitting, onDiscard, onS
                 className={`relative inline-flex size-2 rounded-full ${isValid ? 'bg-primary' : 'bg-destructive'}`}
               />
             </span>
-            <span className="sr-only sm:not-sr-only sm:max-w-52 sm:truncate">{status}</span>
+            <span className="truncate">{status}</span>
           </span>
 
           <Button
@@ -76,7 +80,7 @@ export function FormSaveActions({ isDirty, isValid, isSubmitting, onDiscard, onS
             onClick={onDiscard}
             disabled={isSubmitting}
             aria-label={t('discard')}
-            className="h-8 px-2.5"
+            className="h-10 px-3 sm:h-8 sm:px-2.5"
           >
             <Undo2 className="size-4 sm:hidden" aria-hidden />
             <span className="hidden sm:inline">{t('discard')}</span>
@@ -86,7 +90,7 @@ export function FormSaveActions({ isDirty, isValid, isSubmitting, onDiscard, onS
             size="sm"
             disabled={isSubmitting || !isValid}
             title={isMac() ? '⌘ S' : 'Ctrl S'}
-            className="h-8 gap-1.5 px-3"
+            className="h-10 gap-1.5 px-4 sm:h-8 sm:px-3"
           >
             {isSubmitting ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}
             {tInputs('save')}
