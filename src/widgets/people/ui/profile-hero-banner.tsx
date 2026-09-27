@@ -33,8 +33,8 @@ export function ProfileHeroBanner({ user, level, actions, children }: Props) {
 
   return (
     <div className="w-full px-4 md:px-6 py-6 flex flex-col gap-6 border-b border-border/40">
-      <div className="flex flex-col sm:flex-row items-start justify-between gap-6">
-        <div className="flex flex-col items-start gap-4 min-w-0 w-full sm:w-auto sm:flex-row sm:items-center">
+      <div className="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-start">
+        <div className="flex flex-col items-center gap-4 min-w-0 w-full sm:w-auto sm:flex-row">
           <div className="relative shrink-0 self-center sm:self-auto">
             <Avatar className="size-28 md:size-32 rounded-full shadow-xl ring-2 ring-border/40">
               <AvatarImage className="object-cover" src={user.image} alt={user.name} />
@@ -52,7 +52,7 @@ export function ProfileHeroBanner({ user, level, actions, children }: Props) {
             )}
           </div>
 
-          <div className="flex flex-col gap-1.5 min-w-0 w-full sm:w-auto">
+          <div className="flex flex-col items-center gap-1.5 min-w-0 w-full text-center sm:w-auto sm:items-start sm:text-left">
             {user.goal && (
               <div className="flex items-center gap-2 flex-wrap">
                 <Badge variant="default" className="badge-notch text-[10px] font-bold uppercase px-1.5 py-0 h-4">
@@ -60,13 +60,13 @@ export function ProfileHeroBanner({ user, level, actions, children }: Props) {
                 </Badge>
               </div>
             )}
-            <h1 className="font-display text-2xl sm:text-3xl font-bold tracking-tight leading-none flex items-baseline gap-2 min-w-0">
+            <h1 className="font-display text-2xl sm:text-3xl font-bold tracking-tight leading-none flex items-baseline gap-2 min-w-0 max-w-full">
               <span className="min-w-0 truncate">{user.name}</span>
               {user.pronoun && (
                 <span className="text-base font-normal text-muted-foreground shrink-0">{user.pronoun}</span>
               )}
             </h1>
-            <div className="flex items-center gap-1.5 text-sm text-muted-foreground flex-wrap">
+            <div className="flex items-center justify-center gap-1.5 text-sm text-muted-foreground flex-wrap sm:justify-start">
               {user.country && (
                 <>
                   <span className="flex items-center gap-1.5">
@@ -89,13 +89,17 @@ export function ProfileHeroBanner({ user, level, actions, children }: Props) {
               )}
               <span>{t('member-since', { date: memberSince })}</span>
             </div>
-            <ProfileTraits method={user.method} mainColors={user.mainColors} />
+            <ProfileTraits
+              method={user.method}
+              mainColors={user.mainColors}
+              className="justify-center sm:justify-start"
+            />
             {user.bio && <p className="text-sm text-muted-foreground wrap-break-word">{user.bio}</p>}
             {children}
           </div>
         </div>
 
-        <ProfileLinks links={user.links} className="shrink-0 sm:max-w-[40%] sm:justify-end" />
+        <ProfileLinks links={user.links} className="shrink-0 justify-center sm:max-w-[40%] sm:justify-end" />
       </div>
 
       {actions}
