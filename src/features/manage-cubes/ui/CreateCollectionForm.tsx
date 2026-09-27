@@ -83,7 +83,7 @@ export default function CreateCollectionForm() {
             <ProductSearchInput
               id="name"
               data-testid="drawer-input-name"
-              placeholder="E.g: X Man Tornado V3 M"
+              placeholder={t('Cubes-modal.name-placeholder')}
               value={formWatch.name}
               onValueChange={(value) => setValue('name', value, { shouldValidate: isSubmitted })}
               onSelect={(hit) => {
@@ -139,7 +139,7 @@ export default function CreateCollectionForm() {
                     </span>
                     <span
                       className={cn(
-                        'w-full truncate text-center text-[8px] leading-tight font-medium block',
+                        'w-full truncate text-center text-[10px] leading-tight font-medium block sm:text-[11px]',
                         selected ? 'text-foreground' : 'text-muted-foreground'
                       )}
                     >
@@ -154,7 +154,7 @@ export default function CreateCollectionForm() {
       </div>
 
       <DialogFooter className="shrink-0">
-        <div className="flex w-full justify-end gap-2">
+        <div className="flex w-full justify-end gap-2 [&>*]:flex-1 sm:[&>*]:flex-none [&>*]:pointer-coarse:h-11">
           <DialogClose asChild>
             <Button variant={'secondary'} data-testid="drawer-cancel-button">
               {t('Inputs.cancel')}
