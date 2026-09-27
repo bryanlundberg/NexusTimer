@@ -1291,6 +1291,117 @@
   );
 }
 
+.auth-rise {
+  animation: auth-rise 600ms var(--ease-solve) both;
+  animation-delay: var(--d, 0ms);
+}
+@keyframes auth-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.auth-flow {
+  --flow-cut: 14px;
+  --flow-cut-inner: calc(var(--flow-cut) - 0.586px);
+  --flow-border: var(--border);
+  --flow-shape: polygon(
+    0 0,
+    calc(100% - var(--flow-cut)) 0,
+    100% var(--flow-cut),
+    100% 100%,
+    var(--flow-cut) 100%,
+    0 calc(100% - var(--flow-cut))
+  );
+  --flow-shape-inner: polygon(
+    0 0,
+    calc(100% - var(--flow-cut-inner)) 0,
+    100% var(--flow-cut-inner),
+    100% 100%,
+    var(--flow-cut-inner) 100%,
+    0 calc(100% - var(--flow-cut-inner))
+  );
+  position: relative;
+  isolation: isolate;
+  background-color: var(--flow-border);
+  clip-path: var(--flow-shape);
+  transition: background-color 250ms var(--ease-solve);
+}
+.auth-flow::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  background-color: var(--card);
+  clip-path: var(--flow-shape-inner);
+  pointer-events: none;
+}
+.auth-flow:focus-within {
+  --flow-border: color-mix(in oklab, var(--primary) 40%, var(--border));
+}
+.auth-flow-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 18px 11px;
+}
+.auth-flow-row + .auth-flow-row {
+  border-top: 1px solid var(--border);
+}
+.auth-flow-label {
+  font-size: 12px;
+  color: var(--muted-foreground);
+  transition: color 200ms var(--ease-solve);
+}
+.auth-flow-row:focus-within .auth-flow-label {
+  color: var(--primary);
+}
+.auth-flow-row[data-invalid='true'] .auth-flow-label {
+  color: var(--destructive);
+}
+.auth-flow-highlight {
+  --hl-cut: 8px;
+  position: absolute;
+  top: 0;
+  left: 4px;
+  right: 4px;
+  height: 0;
+  background-color: color-mix(in oklab, var(--primary) 9%, transparent);
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--hl-cut)) 0,
+    100% var(--hl-cut),
+    100% 100%,
+    var(--hl-cut) 100%,
+    0 calc(100% - var(--hl-cut))
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    translate 480ms cubic-bezier(0.34, 1.36, 0.5, 1),
+    height 480ms cubic-bezier(0.34, 1.36, 0.5, 1),
+    opacity 200ms ease;
+}
+.auth-flow-highlight[data-instant='true'] {
+  transition: opacity 200ms ease;
+}
+.auth-flow-highlight[data-visible='true'] {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-rise {
+    animation: none;
+  }
+  .auth-flow,
+  .auth-flow-highlight {
+    transition: none;
+  }
+}
+
 .legend-notch {
   --lg-notch: 7px;
   --lg-border: 1px;
