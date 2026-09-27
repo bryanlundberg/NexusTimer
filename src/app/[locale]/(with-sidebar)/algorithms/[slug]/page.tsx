@@ -151,7 +151,7 @@ export default async function AlgorithmsMethodPage({ params }: Props) {
       <CoreHeader
         breadcrumbs={[
           { label: t('title'), href: '/algorithms' },
-          { label: slug.toUpperCase(), href: `/algorithms/${slug}` }
+          { label: collection.title, href: `/algorithms/${slug}` }
         ]}
       />
 
