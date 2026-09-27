@@ -1,7 +1,5 @@
 'use client'
 
-import { type LucideIcon } from 'lucide-react'
-
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import {
   SidebarGroup,
@@ -21,31 +19,11 @@ import React, { useEffect, useState } from 'react'
 import { cn } from '@/shared/lib/utils'
 import { LinkPendingHint } from '@/shared/ui/link-pending-hint/LinkPendingHint'
 import { SIDEBAR_HINT_CLASS } from '@/widgets/sidebar/model/link-hint'
+import type { SidebarNavItem } from '@/widgets/sidebar/model/useSidebarNav'
+import { useTranslations } from 'next-intl'
 
-export function NavMain({
-  items,
-  label,
-  accent
-}: {
-  items: {
-    title: string
-    url: string
-    icon: React.ElementType
-    isActive?: boolean
-    badge?: string
-    action?: {
-      icon: LucideIcon
-      label: string
-      onClick: () => void
-    }
-    items?: {
-      title: string
-      url: string
-    }[]
-  }[]
-  label?: string
-  accent?: string
-}) {
+export function NavMain({ items, label, accent }: { items: SidebarNavItem[]; label?: string; accent?: string }) {
+  const t = useTranslations('Index.NavMain')
   const pathname = usePathname() ?? ''
   const [hash, setHash] = useState<string>('')
   const { setOpenMobile, isMobile } = useSidebar()
@@ -73,7 +51,7 @@ export function NavMain({
   }
 
   const isItemActive = (item: (typeof items)[number]) =>
-    isPathActive(item.url) || (item.items?.some((s) => isPathActive(s.url)) ?? false)
+    item.items?.length ? pathname === item.url || item.items.some((s) => isPathActive(s.url)) : isPathActive(item.url)
   const sectionActive = items.some(isItemActive)
 
   return (
@@ -117,19 +95,19 @@ export function NavMain({
       <SidebarMenu>
         {items.map((item) => {
           const itemActive = isItemActive(item)
-          const isOpen = item.isActive
 
           return (
-            <Collapsible key={item.title} asChild defaultOpen={isOpen}>
+            <Collapsible key={`${item.title}-${itemActive}`} asChild defaultOpen={itemActive}>
               <SidebarMenuItem>
                 <SidebarMenuButton
                   asChild
-                  tooltip={item.title}
+                  tooltip={item.badge ? `${item.title} (${item.badge})` : item.title}
                   isActive={itemActive}
                   data-active-item={itemActive ? 'true' : undefined}
                   className={cn(
                     'nav-notch transition-[width,height,padding,color] text-sidebar-foreground/75 hover:text-sidebar-foreground data-[active=true]:text-sidebar-foreground group-data-[collapsible=icon]:[&>svg]:opacity-90',
-                    accent && '[&>svg]:text-(--nav-accent)'
+                    accent && '[&>svg]:text-(--nav-accent)',
+                    isMobile && 'h-10'
                   )}
                 >
                   <Link href={item.url} onClick={handleNavClick}>
@@ -146,9 +124,15 @@ export function NavMain({
                       {item.title}
                     </span>
                     {item.badge && (
-                      <span className="ml-auto rounded-full bg-cube-red px-1.5 py-0.5 text-[10px] font-semibold leading-none text-white group-data-[collapsible=icon]:hidden">
-                        {item.badge}
-                      </span>
+                      <>
+                        <span className="ml-auto rounded-full bg-cube-red px-1.5 py-0.5 text-[10px] font-semibold leading-none text-white group-data-[collapsible=icon]:hidden">
+                          {item.badge}
+                        </span>
+                        <span
+                          aria-hidden
+                          className="absolute top-1 right-1 hidden size-2 rounded-full bg-cube-red ring-2 ring-sidebar group-data-[collapsible=icon]:block"
+                        />
+                      </>
                     )}
                   </Link>
                 </SidebarMenuButton>
@@ -171,7 +155,7 @@ export function NavMain({
                     <CollapsibleTrigger asChild>
                       <SidebarMenuAction className="data-[state=open]:rotate-90">
                         <ChevronRightIcon />
-                        <span className="sr-only">Toggle</span>
+                        <span className="sr-only">{t('toggle-section', { title: item.title })}</span>
                       </SidebarMenuAction>
                     </CollapsibleTrigger>
                     <CollapsibleContent>
@@ -190,7 +174,10 @@ export function NavMain({
                               <SidebarMenuSubButton
                                 asChild
                                 isActive={subIsActive}
-                                className="nav-notch text-sidebar-foreground/70 hover:text-sidebar-foreground data-[active=true]:text-sidebar-foreground"
+                                className={cn(
+                                  'nav-notch text-sidebar-foreground/70 hover:text-sidebar-foreground data-[active=true]:text-sidebar-foreground',
+                                  isMobile && 'h-9'
+                                )}
                               >
                                 <Link href={subItem.url} onClick={handleNavClick}>
                                   <LinkPendingHint className={SIDEBAR_HINT_CLASS} />
