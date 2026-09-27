@@ -1,7 +1,9 @@
 'use client'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { triggerHaptic } from '@/shared/model/useHaptics'
 import { cn } from '@/shared/lib/utils'
 import { MenuRow } from './MenuRow'
+import MenuSelectDrawer from './MenuSelectDrawer'
 
 interface MenuSelectOptionProps {
   label: string
@@ -10,6 +12,7 @@ interface MenuSelectOptionProps {
   onValueChange: (value: string) => void
   options: Array<{ value: string; label: React.ReactNode }>
   triggerClassName?: string
+  disabled?: boolean
 }
 
 export default function MenuSelectOption({
@@ -18,22 +21,39 @@ export default function MenuSelectOption({
   value,
   onValueChange,
   options,
-  triggerClassName
+  triggerClassName,
+  disabled
 }: MenuSelectOptionProps) {
+  const handleValueChange = (next: string) => {
+    onValueChange(next)
+    triggerHaptic()
+  }
+
   return (
-    <MenuRow label={label} description={description}>
-      <Select defaultValue={value} value={value} onValueChange={onValueChange}>
-        <SelectTrigger className={cn('w-[140px] sm:w-[180px] shrink-0 bg-background', triggerClassName)}>
-          <SelectValue />
-        </SelectTrigger>
-        <SelectContent>
-          {options.map((opt) => (
-            <SelectItem key={opt.value} value={opt.value}>
-              {opt.label}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-    </MenuRow>
+    <div>
+      <MenuRow label={label} description={description} className="pointer-coarse:hidden">
+        <Select value={value} onValueChange={handleValueChange} disabled={disabled}>
+          <SelectTrigger className={cn('w-[140px] sm:w-[180px] shrink-0 bg-background', triggerClassName)}>
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {options.map((opt) => (
+              <SelectItem key={opt.value} value={opt.value}>
+                {opt.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </MenuRow>
+      <MenuSelectDrawer
+        label={label}
+        description={description}
+        value={value}
+        onValueChange={handleValueChange}
+        options={options}
+        disabled={disabled}
+        className="hidden pointer-coarse:flex"
+      />
+    </div>
   )
 }
