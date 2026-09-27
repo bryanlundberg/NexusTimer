@@ -1,6 +1,6 @@
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { useRouter } from '@/shared/config/i18n/navigation'
+import { Link } from '@/shared/config/i18n/navigation'
 import { useLocale } from 'next-intl'
 import type { SolveServer } from '@/entities/solve/model/types'
 import { CountryFlag } from '@/shared/ui/country-flag/CountryFlag'
@@ -11,25 +11,22 @@ interface UserCellProps {
 }
 
 export function UserCell({ user }: UserCellProps) {
-  const router = useRouter()
   const locale = useLocale()
 
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <div
-          className="flex flex-row items-center gap-2 min-w-0 hover:underline w-fit"
-          onClick={(e) => {
-            e.stopPropagation()
-            router.push(`/people/${user._id}`)
-          }}
+        <Link
+          href={`/people/${user._id}`}
+          onClick={(e) => e.stopPropagation()}
+          className="flex w-fit min-w-0 max-w-full flex-row items-center gap-2 outline-none hover:underline focus-visible:underline"
         >
           <Avatar className="size-7 shrink-0">
             <AvatarImage className="object-cover" src={user.image} />
             <AvatarFallback className="text-[10px]">{user.name.slice(0, 2)}</AvatarFallback>
           </Avatar>
           <span className="text-sm font-medium truncate">{user.name}</span>
-        </div>
+        </Link>
       </TooltipTrigger>
       <TooltipContent className="p-0 max-w-56">
         <div className="flex items-center gap-2.5 px-2.5 py-2">
