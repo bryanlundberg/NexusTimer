@@ -27,7 +27,7 @@ export default function LearnedToggle({ learned, onClick, className }: LearnedTo
         onClick()
       }}
       className={cn(
-        'h-7 gap-1.5 px-2 text-xs font-medium',
+        'h-7 gap-1.5 px-2 text-xs font-medium pointer-coarse:h-10 pointer-coarse:min-w-10',
         learned
           ? 'border-primary/40 bg-primary/10 text-primary hover:bg-primary/15 hover:text-primary'
           : 'text-muted-foreground',
