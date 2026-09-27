@@ -257,21 +257,37 @@ export default function FreePlayRoomPage() {
             }
             onKeyDown={handlePasswordKeyDown}
             placeholder={t('join-private-room.placeholder')}
-            className={`h-12 font-mono text-lg text-center tracking-[0.3em] uppercase ${passwordError ? 'border-destructive focus-visible:ring-destructive/30' : ''}`}
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="characters"
+            spellCheck={false}
+            enterKeyHint="go"
+            aria-label={t('join-private-room.title')}
+            aria-invalid={passwordError}
+            aria-describedby={passwordError ? 'room-code-error' : undefined}
+            className="h-12 text-center font-mono text-lg tracking-[0.3em] uppercase"
             maxLength={6}
           />
-          {passwordError && <p className="text-xs text-destructive text-center">{t('join-private-room.wrong-code')}</p>}
+          {passwordError && (
+            <p
+              id="room-code-error"
+              role="alert"
+              className="text-center text-[13px] font-medium text-destructive sm:text-xs"
+            >
+              {t('join-private-room.wrong-code')}
+            </p>
+          )}
           <div className="flex gap-2">
             <Button
               variant="outline"
-              className="flex-1"
+              className="flex-1 pointer-coarse:h-11"
               onClick={() => router.push('/free-play')}
               disabled={passwordSubmitting}
             >
               {t('join-private-room.cancel')}
             </Button>
             <Button
-              className="flex-1"
+              className="flex-1 pointer-coarse:h-11"
               onClick={handlePasswordSubmit}
               disabled={passwordInput.length !== 6 || passwordSubmitting}
             >
@@ -345,7 +361,13 @@ export default function FreePlayRoomPage() {
           </AvatarGroup>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button size="icon" variant="ghost" className="size-7 shrink-0" onClick={handleInvite}>
+              <Button
+                size="icon"
+                variant="ghost"
+                aria-label={t('invite')}
+                className="size-7 shrink-0 pointer-coarse:size-10"
+                onClick={handleInvite}
+              >
                 <Plus className="size-3.5" />
               </Button>
             </TooltipTrigger>
@@ -394,13 +416,16 @@ export default function FreePlayRoomPage() {
 
       {/* Tab bar */}
       <div className="px-3 pt-3 pb-4 md:pb-3">
-        <div className="chip-notch relative flex items-center bg-muted/60 p-1 md:max-w-xs md:mx-auto">
+        <div role="tablist" className="chip-notch relative flex items-center bg-muted/60 p-1 md:max-w-xs md:mx-auto">
           {tabs.map((tab) => {
             const isActive = currentTab === tab.key
             const Icon = tab.icon
             return (
               <button
                 key={tab.key}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
                 onClick={() => setCurrentTab(tab.key)}
                 className="relative flex-1 flex items-center justify-center gap-1.5 py-2.5 md:py-2 text-sm font-medium z-10 transition-colors cursor-pointer"
               >
