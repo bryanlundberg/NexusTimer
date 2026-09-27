@@ -182,7 +182,10 @@
       "submit": "Isumite",
       "sending": "Nagpapadala...",
       "thanks": "Salamat sa feedback mo!",
-      "close": "Isara"
+      "close": "Isara",
+      "personal-note": "Binabasa namin ang bawat mensahe, kaya hindi mawawala ang sa iyo.",
+      "thanks-note": "Natanggap na namin. Salamat sa paglaan ng oras.",
+      "error": "Hindi naipadala ang feedback mo. Subukan ulit."
     },
     "HomePage": {
       "title": "Timer",

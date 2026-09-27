@@ -170,7 +170,7 @@
       "modal-close": "Close"
     },
     "Feedback": {
-      "title": "Give Feedback",
+      "title": "Give feedback",
       "description": "How is your experience with NexusTimer?",
       "rating-1": "Terrible",
       "rating-2": "Bad",
@@ -182,7 +182,10 @@
       "submit": "Submit",
       "sending": "Sending...",
       "thanks": "Thanks for your feedback!",
-      "close": "Close"
+      "close": "Close",
+      "personal-note": "We read every message, so yours won't get lost.",
+      "thanks-note": "It reached us. Thanks for taking the time.",
+      "error": "Couldn't send your feedback. Try again."
     },
     "HomePage": {
       "title": "Timer",

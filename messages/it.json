@@ -182,7 +182,10 @@
       "submit": "Invia",
       "sending": "Invio in corso...",
       "thanks": "Grazie per il tuo feedback!",
-      "close": "Chiudi"
+      "close": "Chiudi",
+      "personal-note": "Leggiamo ogni messaggio, il tuo non andrà perso.",
+      "thanks-note": "Ci è arrivato. Grazie per il tempo che ci hai dedicato.",
+      "error": "Impossibile inviare il feedback. Riprova."
     },
     "HomePage": {
       "title": "Timer",

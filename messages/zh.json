@@ -179,7 +179,10 @@
       "submit": "提交",
       "sending": "发送中...",
       "thanks": "感谢您的反馈！",
-      "close": "关闭"
+      "close": "关闭",
+      "personal-note": "每条留言我们都会阅读，你的反馈不会被忽略。",
+      "thanks-note": "我们已经收到啦，感谢你抽出时间。",
+      "error": "反馈发送失败，请重试。"
     },
     "HomePage": {
       "title": "计时器",

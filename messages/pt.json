@@ -179,7 +179,10 @@
       "submit": "Enviar",
       "sending": "Enviando...",
       "thanks": "Obrigado pelo seu feedback!",
-      "close": "Fechar"
+      "close": "Fechar",
+      "personal-note": "Lemos todas as mensagens, a sua não vai se perder.",
+      "thanks-note": "Chegou até nós. Obrigado por dedicar seu tempo.",
+      "error": "Não foi possível enviar seu feedback. Tente novamente."
     },
     "HomePage": {
       "title": "Cronômetro",

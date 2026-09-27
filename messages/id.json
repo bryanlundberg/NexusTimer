@@ -182,7 +182,10 @@
       "submit": "Kirim",
       "sending": "Mengirim...",
       "thanks": "Terima kasih atas masukanmu!",
-      "close": "Tutup"
+      "close": "Tutup",
+      "personal-note": "Kami membaca setiap pesan, jadi pesanmu tidak akan hilang.",
+      "thanks-note": "Sudah kami terima. Terima kasih sudah meluangkan waktu.",
+      "error": "Masukanmu gagal dikirim. Coba lagi."
     },
     "HomePage": {
       "title": "Timer",

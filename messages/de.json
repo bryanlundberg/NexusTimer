@@ -179,7 +179,10 @@
       "submit": "Absenden",
       "sending": "Wird gesendet...",
       "thanks": "Danke fur dein Feedback!",
-      "close": "Schliessen"
+      "close": "Schliessen",
+      "personal-note": "Wir lesen jede Nachricht, deine geht nicht verloren.",
+      "thanks-note": "Sie ist bei uns angekommen. Danke, dass du dir die Zeit nimmst.",
+      "error": "Dein Feedback konnte nicht gesendet werden. Versuch es noch einmal."
     },
     "HomePage": {
       "title": "Timer",

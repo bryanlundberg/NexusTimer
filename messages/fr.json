@@ -179,7 +179,10 @@
       "submit": "Envoyer",
       "sending": "Envoi en cours...",
       "thanks": "Merci pour votre avis !",
-      "close": "Fermer"
+      "close": "Fermer",
+      "personal-note": "On lit chaque message, le tien ne sera pas perdu.",
+      "thanks-note": "Bien reçu. Merci d'avoir pris le temps.",
+      "error": "Impossible d'envoyer ton avis. Réessaie."
     },
     "HomePage": {
       "title": "Chronomètre",

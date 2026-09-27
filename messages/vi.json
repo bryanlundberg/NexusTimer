@@ -182,7 +182,10 @@
       "submit": "Gửi",
       "sending": "Đang gửi...",
       "thanks": "Cảm ơn phản hồi của bạn!",
-      "close": "Đóng"
+      "close": "Đóng",
+      "personal-note": "Chúng mình đọc mọi tin nhắn, góp ý của bạn sẽ không bị bỏ qua.",
+      "thanks-note": "Chúng mình đã nhận được. Cảm ơn bạn đã dành thời gian.",
+      "error": "Không gửi được góp ý. Hãy thử lại."
     },
     "HomePage": {
       "title": "Đồng hồ",

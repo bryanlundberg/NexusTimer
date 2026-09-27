@@ -182,7 +182,10 @@
       "submit": "Wyślij",
       "sending": "Wysyłanie...",
       "thanks": "Dziękujemy za opinię!",
-      "close": "Zamknij"
+      "close": "Zamknij",
+      "personal-note": "Czytamy każdą wiadomość, twoja nie zginie.",
+      "thanks-note": "Dotarło do nas. Dzięki za poświęcony czas.",
+      "error": "Nie udało się wysłać opinii. Spróbuj ponownie."
     },
     "HomePage": {
       "title": "Stoper",

@@ -133,19 +133,22 @@
       "modal-close": "Cerrar"
     },
     "Feedback": {
-      "title": "Dar Feedback",
-      "description": "Como es tu experiencia con NexusTimer?",
+      "title": "Dar feedback",
+      "description": "¿Cómo es tu experiencia con NexusTimer?",
       "rating-1": "Terrible",
       "rating-2": "Malo",
       "rating-3": "Regular",
       "rating-4": "Bueno",
-      "rating-5": "Increible",
-      "placeholder": "Cuentanos mas sobre tu experiencia... (opcional)",
+      "rating-5": "Increíble",
+      "placeholder": "Cuéntanos más sobre tu experiencia... (opcional)",
       "cancel": "Cancelar",
       "submit": "Enviar",
       "sending": "Enviando...",
-      "thanks": "Gracias por tu feedback!",
-      "close": "Cerrar"
+      "thanks": "¡Gracias por tu feedback!",
+      "close": "Cerrar",
+      "personal-note": "Leemos todos los mensajes, el tuyo no se va a perder.",
+      "thanks-note": "Ya nos llegó. Gracias por tomarte el tiempo.",
+      "error": "No se pudo enviar tu comentario. Inténtalo de nuevo."
     },
     "HomePage": {
       "title": "Cronómetro",
