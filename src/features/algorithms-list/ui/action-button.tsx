@@ -16,7 +16,10 @@ export default function ActionButton({ icon: Icon, label, onClick, active }: Act
       variant={active ? 'outline' : 'default'}
       size="sm"
       haptic
-      className={cn('btn-notch h-7 gap-1.5 px-2 text-xs font-medium', active && 'border-primary/40 text-primary')}
+      className={cn(
+        'btn-notch h-7 gap-1.5 px-2 text-xs font-medium pointer-coarse:h-10 pointer-coarse:min-w-10',
+        active && 'border-primary/40 text-primary'
+      )}
       onClick={(e) => {
         e.stopPropagation()
         onClick()
