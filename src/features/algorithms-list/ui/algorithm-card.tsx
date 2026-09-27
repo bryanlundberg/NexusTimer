@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { merge } from 'es-toolkit'
 import { PuzzleID, TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import { ChevronDown, Play } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/shared/lib/utils'
@@ -31,6 +32,7 @@ export default function AlgorithmCard({
   onToggleLearned,
   className
 }: AlgorithmCardProps) {
+  const t = useTranslations('Index.AlgorithmsPage')
   const { open } = useOverlayStore()
   const [expanded, setExpanded] = useState(false)
 
@@ -76,8 +78,16 @@ export default function AlgorithmCard({
           canExpand && 'cursor-pointer'
         )}
         onClick={() => canExpand && setExpanded((v) => !v)}
+        onKeyDown={(e) => {
+          if (!canExpand || e.target !== e.currentTarget) return
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            setExpanded((v) => !v)
+          }
+        }}
         role={canExpand ? 'button' : undefined}
         tabIndex={canExpand ? 0 : undefined}
+        aria-expanded={canExpand ? expanded : undefined}
       >
         <div
           className={cn(
@@ -99,13 +109,13 @@ export default function AlgorithmCard({
             )}
           </div>
           <code className="block min-w-0 break-all font-mono leading-relaxed text-muted-foreground">
-            {primary?.moves ?? '—'}
+            {primary?.moves ?? '--'}
           </code>
         </div>
 
         <div className="flex shrink-0 items-center gap-1 self-center">
           {onToggleLearned && <LearnedToggle learned={isLearned} onClick={onToggleLearned} />}
-          <ActionButton icon={Play} label="Play" onClick={() => primary && openPreview(primary.moves)} />
+          <ActionButton icon={Play} label={t('play')} onClick={() => primary && openPreview(primary.moves)} />
           {canExpand && (
             <ChevronDown
               className={cn(
