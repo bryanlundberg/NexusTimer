@@ -1,6 +1,7 @@
 'use client'
 
 import {
+  ArrowRightLeft,
   ChevronDown,
   ChevronRight,
   Globe,
@@ -61,7 +62,8 @@ export function NavUser({
 
   const dataItems = [
     { icon: HardDriveUpload, label: t('NavMain.save-data'), href: '/account/save' },
-    { icon: HardDriveDownload, label: t('NavMain.download-data'), href: '/account/load' }
+    { icon: HardDriveDownload, label: t('NavMain.download-data'), href: '/account/load' },
+    { icon: ArrowRightLeft, label: t('NavMain.transfer'), href: '/transfer-solves' }
   ]
 
   return (
