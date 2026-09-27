@@ -1,20 +1,13 @@
 import { useTranslations } from 'next-intl'
-import { FeaturesIcon } from '@/components/ui/settings-icons'
 import { MenuSection } from './MenuSection'
 import { MenuOption } from './MenuOption'
 import MenuSelectScrambleSize from './MenuSelectScrambleSize'
-import { SECTION_ACCENTS } from '../lib/settingsSections'
 
 export default function MenuFeaturesSection({ control }: { control: any }) {
   const t = useTranslations('Index')
 
   return (
-    <MenuSection
-      id="features"
-      accent={SECTION_ACCENTS['features']}
-      icon={<FeaturesIcon />}
-      title={t('Settings-menu.features')}
-    >
+    <MenuSection id="features" title={t('Settings-menu.features')}>
       <MenuOption
         name={'features.scrambleImage'}
         label={t('Settings-menu.scramble-image')}
