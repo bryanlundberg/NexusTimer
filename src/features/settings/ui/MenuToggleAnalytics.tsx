@@ -19,8 +19,12 @@ export default function MenuToggleAnalytics() {
   }
 
   return (
-    <MenuRow label={t('Settings-menu.analytics')} description={t('Settings-descriptions.analytics')}>
-      <Switch checked={enabled} onCheckedChange={handleChange} />
+    <MenuRow
+      label={t('Settings-menu.analytics')}
+      description={t('Settings-descriptions.analytics')}
+      htmlFor="setting-analytics"
+    >
+      <Switch id="setting-analytics" checked={enabled} onCheckedChange={handleChange} />
     </MenuRow>
   )
 }
