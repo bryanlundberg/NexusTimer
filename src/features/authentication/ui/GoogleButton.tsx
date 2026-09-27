@@ -12,7 +12,7 @@ export default function GoogleButton() {
   if (session?.user?.id) return null
 
   return (
-    <OAuthIconButton provider="google" label={t('continue-google')}>
+    <OAuthIconButton provider="google" label={t('continue-google')} brand="#4285f4">
       <Image src="/timer-logos/google.svg" alt="" width={20} height={20} />
     </OAuthIconButton>
   )
