@@ -40,7 +40,7 @@ export default function MenuSelectColor() {
   const currentColor = settings.preferences.colorTheme
 
   return (
-    <div className="flex flex-col gap-2 px-3 py-2">
+    <div className="flex flex-col gap-2 px-4 py-3.5">
       <div className="flex flex-wrap gap-2">
         {colorOptions.map((color) => {
           const isSelected = currentColor === color.key
