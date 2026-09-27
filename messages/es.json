@@ -241,13 +241,12 @@
         "move-to-history": "Mover al historial"
       },
       "dialogs": {
-        "move-to-history": "¿Finalizar práctica?",
-        "move-to-history-para": "Se moverán al historial todos los tiempos de las sesiones de los cubos de la misma categoría. Podrás seguir accediendo a ellos en la pestaña Historial.",
-        "confirm": "Finalizar"
+        "move-to-history": "¿Terminar la sesión?",
+        "move-to-history-para": "Los tiempos de la sesión de todos los cubos de esta categoría pasarán al Historial. Ahí los podrás seguir viendo.",
+        "confirm": "Terminar"
       },
       "empty-solves": "¡Nada por aquí!",
-      "empty-solves-description": "Activa el interruptor en la parte superior para ver tu historial.",
-      "filter-by-time": "Filtrar por tiempo",
+      "empty-solves-description": "Empieza a cronometrar y aquí aparecerán tus tiempos.",
       "historial": "Historial",
       "order": "Orden",
       "share-clipboard": {
@@ -257,12 +256,12 @@
       },
       "sort": "Ordenar",
       "toast": {
-        "success-copy": "Copiado con éxito",
-        "success-copy-description": "Se ha copiado al portapapeles.",
+        "success-copy": "Copiado",
+        "success-copy-description": "Listo para pegar.",
         "unable-action": "Acción no disponible",
-        "warning-select-cube": "Por favor, selecciona un cubo primero."
+        "warning-select-cube": "Selecciona un cubo primero."
       },
-      "finish-session": "Finalizar",
+      "finish-session": "Terminar sesión",
       "selection": {
         "cancel": "Cancelar",
         "delete": "Eliminar",
@@ -277,7 +276,7 @@
         "select-all": "Seleccionar todo"
       },
       "tooltips": {
-        "move-to-history": "Finalizar práctica"
+        "move-to-history": "Mover esta sesión al historial"
       },
       "show": "Mostrar"
     },
@@ -354,14 +353,15 @@
     "Cubes-modal": {
       "category": "Categoría",
       "current-selection": "Selección actual:",
-      "danger-msg": "Modificar la categoría de la colección también cambia las soluciones asociadas con esa categoría.",
+      "danger-msg": "Cambiar la categoría también afecta a todos los tiempos de esta colección.",
       "delete-collection": "Eliminar colección",
-      "delete-collection-description": "Esta colección de cubos se eliminará, junto con todas sus soluciones, registros y configuraciones.",
+      "delete-collection-description": "Se eliminará esta colección junto con todos sus tiempos, récords y ajustes.",
       "edit-collection": "Editar colección",
       "name": "Nombre",
       "new-collection": "Nueva colección",
-      "select-an-option": "Seleccione una opción",
-      "delete-confirmation-check": "Entiendo que \"{name}\" y todas sus soluciones se eliminarán permanentemente."
+      "select-an-option": "Selecciona una opción",
+      "delete-confirmation-check": "Entiendo que \"{name}\" y todos sus tiempos se eliminarán para siempre.",
+      "name-placeholder": "Ej. X-Man Tornado V3 M"
     },
     "Inputs": {
       "delete": "Eliminar",
@@ -672,10 +672,10 @@
     },
     "Errors": {
       "repeated-name": "Esa colección de nombres ya existe.",
-      "collection-edit-failed": "Error al editar la colección de cubos",
+      "collection-edit-failed": "No se pudo guardar la colección. Inténtalo de nuevo.",
       "required-field": "Campo requerido",
-      "collection-deleted": "Colección eliminada exitosamente",
-      "collection-delete-failed": "Error al eliminar la colección",
+      "collection-deleted": "Colección eliminada",
+      "collection-delete-failed": "No se pudo eliminar la colección. Inténtalo de nuevo.",
       "permanent-delete-warning": "Esto eliminará permanentemente la colección."
     },
     "tooltips": {
@@ -716,11 +716,7 @@
       "manage-backups-title": "Gestionar respaldos",
       "no-backups": "Aún no tienes respaldos guardados.",
       "account": "Cuenta",
-      "fetching-last-backup": "Obteniendo información del servidor, espera un momento...",
       "help": "Ayuda",
-      "last-backup": "Último respaldo:",
-      "up-to-date": "Al día",
-      "no-backup": "Sin respaldo",
       "loading": "Cargando...",
       "no-backup-yet": "Aún no hay respaldos",
       "backup-tip": "Haz respaldos seguido para no perder nunca tus tiempos",

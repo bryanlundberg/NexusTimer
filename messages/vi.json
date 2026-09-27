@@ -260,7 +260,6 @@
       "title": "Lượt giải",
       "session": "Phiên",
       "historial": "Lịch sử",
-      "filter-by-time": "Lọc theo thời gian",
       "show": "Hiển thị",
       "selection": {
         "selected": "Đã chọn {count}",
@@ -299,7 +298,7 @@
         "move-to-history": "Chuyển vào lịch sử"
       },
       "empty-solves": "Chưa có gì ở đây!",
-      "empty-solves-description": "Bật công tắc ở trên để xem lịch sử của bạn.",
+      "empty-solves-description": "Bắt đầu bấm giờ và các lần giải của bạn sẽ hiện ở đây.",
       "sort": "Sắp xếp",
       "time": "Thời gian",
       "date": "Ngày",
@@ -398,7 +397,8 @@
       "select-an-option": "Chọn một tùy chọn",
       "new-collection": "Bộ sưu tập mới",
       "current-selection": "Lựa chọn hiện tại:",
-      "delete-confirmation-check": "Tôi hiểu rằng \"{name}\" và tất cả lượt giải của nó sẽ bị xóa vĩnh viễn."
+      "delete-confirmation-check": "Tôi hiểu rằng \"{name}\" và tất cả lượt giải của nó sẽ bị xóa vĩnh viễn.",
+      "name-placeholder": "VD: X-Man Tornado V3 M"
     },
     "Errors": {
       "repeated-name": "Tên bộ sưu tập đó đã tồn tại.",
@@ -776,16 +776,12 @@
     "SettingsPage": {
       "title": "Cài đặt",
       "not-authenticated": "Xác thực để được cấp quyền truy cập",
-      "fetching-last-backup": "Đang lấy thông tin từ máy chủ, vui lòng chờ...",
       "unlink-account": "Hủy liên kết tài khoản",
       "unlink-account-para1": "Bạn có chắc muốn hủy liên kết với tài khoản",
       "unlink-account-para2": "Hủy liên kết sẽ xóa toàn bộ dữ liệu khỏi thiết bị này.",
       "options": "Tùy chọn",
       "help": "Trợ giúp",
       "account": "Tài khoản",
-      "last-backup": "Sao lưu lần cuối:",
-      "up-to-date": "Mới nhất",
-      "no-backup": "Không có bản sao lưu",
       "loading": "Đang tải...",
       "no-backup-yet": "Chưa có bản sao lưu nào",
       "backup-tip": "Sao lưu thường xuyên để không bao giờ mất thời gian giải của bạn",

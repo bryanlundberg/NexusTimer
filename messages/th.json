@@ -260,7 +260,6 @@
       "title": "การต่อ",
       "session": "เซสชัน",
       "historial": "ประวัติ",
-      "filter-by-time": "กรองตามเวลา",
       "show": "แสดง",
       "selection": {
         "selected": "เลือกแล้ว {count} รายการ",
@@ -299,7 +298,7 @@
         "move-to-history": "ย้ายไปประวัติ"
       },
       "empty-solves": "ยังไม่มีอะไรที่นี่!",
-      "empty-solves-description": "เปิดสวิตช์ด้านบนเพื่อดูประวัติของคุณ",
+      "empty-solves-description": "เริ่มจับเวลา แล้วเวลาของคุณจะแสดงที่นี่",
       "sort": "เรียงลำดับ",
       "time": "เวลา",
       "date": "วันที่",
@@ -398,7 +397,8 @@
       "select-an-option": "เลือกตัวเลือก",
       "new-collection": "คอลเลกชันใหม่",
       "current-selection": "ที่เลือกอยู่ในปัจจุบัน:",
-      "delete-confirmation-check": "ฉันเข้าใจว่า \"{name}\" และการต่อทั้งหมดจะถูกลบอย่างถาวร"
+      "delete-confirmation-check": "ฉันเข้าใจว่า \"{name}\" และการต่อทั้งหมดจะถูกลบอย่างถาวร",
+      "name-placeholder": "เช่น X-Man Tornado V3 M"
     },
     "Errors": {
       "repeated-name": "ชื่อคอลเลกชันนั้นมีอยู่แล้ว",
@@ -776,16 +776,12 @@
     "SettingsPage": {
       "title": "การตั้งค่า",
       "not-authenticated": "ยืนยันตัวตนเพื่อรับสิทธิ์การเข้าถึง",
-      "fetching-last-backup": "กำลังดึงข้อมูลจากเซิร์ฟเวอร์ โปรดรอ...",
       "unlink-account": "ยกเลิกการเชื่อมต่อบัญชี",
       "unlink-account-para1": "คุณแน่ใจหรือไม่ว่าต้องการยกเลิกการเชื่อมต่อจากบัญชี",
       "unlink-account-para2": "การยกเลิกการเชื่อมต่อจะลบข้อมูลทั้งหมดออกจากอุปกรณ์นี้",
       "options": "ตัวเลือก",
       "help": "ช่วยเหลือ",
       "account": "บัญชี",
-      "last-backup": "สำรองข้อมูลล่าสุด:",
-      "up-to-date": "เป็นปัจจุบัน",
-      "no-backup": "ไม่มีข้อมูลสำรอง",
       "loading": "กำลังโหลด...",
       "no-backup-yet": "ยังไม่มีข้อมูลสำรอง",
       "backup-tip": "สำรองข้อมูลเป็นประจำเพื่อไม่ให้เวลาของคุณหายไป",

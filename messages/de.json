@@ -257,7 +257,6 @@
       "title": "Zeiten",
       "session": "Sitzung",
       "historial": "Verlauf",
-      "filter-by-time": "Nach Zeit filtern",
       "show": "Anzeigen",
       "finish-session": "Abschließen",
       "selection": {
@@ -296,7 +295,7 @@
         "move-to-history": "In Verlauf verschieben"
       },
       "empty-solves": "Hier ist noch nichts!",
-      "empty-solves-description": "Nutze den Schalter oben, um deinen Verlauf zu sehen.",
+      "empty-solves-description": "Starte den Timer und deine Zeiten erscheinen hier.",
       "sort": "Sortieren",
       "time": "Zeit",
       "date": "Datum",
@@ -395,7 +394,8 @@
       "select-an-option": "Option wählen",
       "new-collection": "Neue Sammlung",
       "current-selection": "Aktuelle Auswahl:",
-      "delete-confirmation-check": "Ich verstehe, dass \"{name}\" und alle zugehörigen Zeiten dauerhaft gelöscht werden."
+      "delete-confirmation-check": "Ich verstehe, dass \"{name}\" und alle zugehörigen Zeiten dauerhaft gelöscht werden.",
+      "name-placeholder": "z. B. X-Man Tornado V3 M"
     },
     "Errors": {
       "repeated-name": "Dieser Sammlungsname existiert bereits.",
@@ -773,16 +773,12 @@
     "SettingsPage": {
       "title": "Einstellungen",
       "not-authenticated": "Anmelden für Zugriff",
-      "fetching-last-backup": "Informationen werden abgerufen, bitte warten...",
       "unlink-account": "Konto trennen",
       "unlink-account-para1": "Möchtest du die Verknüpfung wirklich aufheben?",
       "unlink-account-para2": "Dies löscht alle Daten von diesem Gerät.",
       "options": "Optionen",
       "help": "Hilfe",
       "account": "Konto",
-      "last-backup": "Letztes Backup:",
-      "up-to-date": "Aktuell",
-      "no-backup": "Kein Backup",
       "loading": "Lade...",
       "no-backup-yet": "Noch kein Backup vorhanden",
       "backup-tip": "Sichere regelmäßig, damit du nie deine Zeiten verlierst",

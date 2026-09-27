@@ -257,7 +257,6 @@
       "title": "还原纪录",
       "session": "当前组",
       "historial": "历史记录",
-      "filter-by-time": "按时间过滤",
       "show": "显示",
       "finish-session": "完成",
       "selection": {
@@ -296,7 +295,7 @@
         "move-to-history": "移至历史记录"
       },
       "empty-solves": "这里还没有内容！",
-      "empty-solves-description": "点击顶部的开关以查看你的历史记录。",
+      "empty-solves-description": "开始计时后，你的成绩会显示在这里。",
       "sort": "排序",
       "time": "时间",
       "date": "日期",
@@ -395,7 +394,8 @@
       "select-an-option": "选择一个选项",
       "new-collection": "新系列",
       "current-selection": "当前选择：",
-      "delete-confirmation-check": "我了解\"{name}\"及其所有还原纪录将被永久删除。"
+      "delete-confirmation-check": "我了解\"{name}\"及其所有还原纪录将被永久删除。",
+      "name-placeholder": "例如 X-Man Tornado V3 M"
     },
     "Errors": {
       "repeated-name": "该系列名称已存在。",
@@ -773,16 +773,12 @@
     "SettingsPage": {
       "title": "设置",
       "not-authenticated": "身份验证以获得访问权限",
-      "fetching-last-backup": "正在从服务器获取信息，请稍候...",
       "unlink-account": "断开账户连接",
       "unlink-account-para1": "你确定要断开账户连接吗？",
       "unlink-account-para2": "断开连接将删除此设备上的所有数据。",
       "options": "选项",
       "help": "帮助",
       "account": "账户",
-      "last-backup": "最近备份：",
-      "up-to-date": "已是最新",
-      "no-backup": "无备份",
       "loading": "加载中...",
       "no-backup-yet": "目前尚无备份",
       "backup-tip": "定期备份，永远不会丢失你的成绩",

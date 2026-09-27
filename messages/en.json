@@ -259,9 +259,8 @@
     "SolvesPage": {
       "title": "Solves",
       "session": "Session",
-      "finish-session": "Finalize",
+      "finish-session": "End session",
       "historial": "History",
-      "filter-by-time": "Filter by time",
       "show": "Show",
       "selection": {
         "selected": "{count} selected",
@@ -277,18 +276,18 @@
         "select-all": "Select all"
       },
       "tooltips": {
-        "move-to-history": "Finalize practice"
+        "move-to-history": "Move this session to History"
       },
       "dialogs": {
-        "move-to-history": "Finalize practice?",
-        "move-to-history-para": "All session times for every cube in this category will be moved to history. You can still access them in the History tab.",
-        "confirm": "Finalize"
+        "move-to-history": "End this session?",
+        "move-to-history-para": "Session solves for every cube in this category move to History. You can still see them there.",
+        "confirm": "End session"
       },
       "toast": {
         "unable-action": "Action unavailable",
-        "warning-select-cube": "Please select a cube first.",
-        "success-copy": "Copied successfully",
-        "success-copy-description": "Copied to clipboard."
+        "warning-select-cube": "Select a cube first.",
+        "success-copy": "Copied",
+        "success-copy-description": "Ready to paste."
       },
       "alert": {
         "title": "Attention!",
@@ -299,7 +298,7 @@
         "move-to-history": "Move to History"
       },
       "empty-solves": "Nothing here yet!",
-      "empty-solves-description": "Toggle the switch at the top to see your history.",
+      "empty-solves-description": "Start timing and your solves will show up here.",
       "sort": "Sort",
       "time": "Time",
       "date": "Date",
@@ -380,7 +379,7 @@
       "delete": "Delete",
       "created": "Created",
       "total": "total",
-      "utilize": "Utilize",
+      "utilize": "Use",
       "utilize-cube": "Utilize `{name}`",
       "session-solves": "Session solves",
       "historical-solves": "Historical solves",
@@ -390,22 +389,23 @@
     },
     "Cubes-modal": {
       "delete-collection": "Delete collection",
-      "delete-collection-description": "This cube collection will be deleted, along with all of its solves, records, and settings.",
+      "delete-collection-description": "This collection and all of its solves, records and settings will be deleted.",
       "edit-collection": "Edit collection",
-      "danger-msg": "Modifying the collection category also changes the solves associated with that category.",
+      "danger-msg": "Changing the category also applies to all of this collection's solves.",
       "name": "Name",
       "category": "Category",
       "select-an-option": "Select an option",
       "new-collection": "New collection",
       "current-selection": "Current selection:",
-      "delete-confirmation-check": "I understand that \"{name}\" and all of its solves will be permanently deleted."
+      "delete-confirmation-check": "I understand that \"{name}\" and all of its solves will be permanently deleted.",
+      "name-placeholder": "e.g. X-Man Tornado V3 M"
     },
     "Errors": {
       "repeated-name": "That collection name already exists.",
-      "collection-edit-failed": "Failed to edit cube collection",
+      "collection-edit-failed": "Couldn't save the collection. Try again.",
       "required-field": "Required field",
-      "collection-deleted": "Collection deleted successfully",
-      "collection-delete-failed": "Failed to delete collection",
+      "collection-deleted": "Collection deleted",
+      "collection-delete-failed": "Couldn't delete the collection. Try again.",
       "permanent-delete-warning": "This will permanently delete the collection."
     },
     "Inputs": {
@@ -766,16 +766,12 @@
     "SettingsPage": {
       "title": "Settings",
       "not-authenticated": "Authenticate to grant access",
-      "fetching-last-backup": "Fetching information from the server, please wait...",
       "unlink-account": "Unlink account",
       "unlink-account-para1": "Are you sure you want to unlink from the account",
       "unlink-account-para2": "Unlinking will delete all data from this device.",
       "options": "Options",
       "help": "Help",
       "account": "Account",
-      "last-backup": "Last backup:",
-      "up-to-date": "Up to date",
-      "no-backup": "No backup",
       "loading": "Loading...",
       "no-backup-yet": "There is no backup yet",
       "backup-tip": "Back up regularly so you never lose your solves",

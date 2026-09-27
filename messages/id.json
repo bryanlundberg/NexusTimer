@@ -260,7 +260,6 @@
       "title": "Solve",
       "session": "Sesi",
       "historial": "Riwayat",
-      "filter-by-time": "Filter berdasarkan waktu",
       "show": "Tampilkan",
       "selection": {
         "selected": "{count} dipilih",
@@ -299,7 +298,7 @@
         "move-to-history": "Pindahkan ke Riwayat"
       },
       "empty-solves": "Belum ada apa-apa di sini!",
-      "empty-solves-description": "Aktifkan sakelar di atas untuk melihat riwayatmu.",
+      "empty-solves-description": "Mulai mencatat waktu dan solve-mu akan muncul di sini.",
       "sort": "Urutkan",
       "time": "Waktu",
       "date": "Tanggal",
@@ -398,7 +397,8 @@
       "select-an-option": "Pilih opsi",
       "new-collection": "Koleksi baru",
       "current-selection": "Pilihan saat ini:",
-      "delete-confirmation-check": "Saya mengerti bahwa \"{name}\" dan semua solve-nya akan dihapus secara permanen."
+      "delete-confirmation-check": "Saya mengerti bahwa \"{name}\" dan semua solve-nya akan dihapus secara permanen.",
+      "name-placeholder": "mis. X-Man Tornado V3 M"
     },
     "Errors": {
       "repeated-name": "Nama koleksi itu sudah ada.",
@@ -776,16 +776,12 @@
     "SettingsPage": {
       "title": "Pengaturan",
       "not-authenticated": "Autentikasi untuk mendapatkan akses",
-      "fetching-last-backup": "Mengambil informasi dari server, mohon tunggu...",
       "unlink-account": "Putuskan tautan akun",
       "unlink-account-para1": "Apakah kamu yakin ingin memutuskan tautan dari akun",
       "unlink-account-para2": "Memutuskan tautan akan menghapus semua data dari perangkat ini.",
       "options": "Opsi",
       "help": "Bantuan",
       "account": "Akun",
-      "last-backup": "Cadangan terakhir:",
-      "up-to-date": "Terkini",
-      "no-backup": "Tidak ada cadangan",
       "loading": "Memuat...",
       "no-backup-yet": "Belum ada cadangan",
       "backup-tip": "Cadangkan secara rutin agar solve-mu tidak pernah hilang",

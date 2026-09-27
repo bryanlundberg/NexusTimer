@@ -257,7 +257,6 @@
       "title": "Сборки",
       "session": "Сессия",
       "historial": "История",
-      "filter-by-time": "Фильтр по времени",
       "show": "Показать",
       "finish-session": "Завершить",
       "selection": {
@@ -296,7 +295,7 @@
         "move-to-history": "В историю"
       },
       "empty-solves": "Здесь пока ничего нет!",
-      "empty-solves-description": "Включите переключатель вверху, чтобы увидеть историю.",
+      "empty-solves-description": "Запустите таймер, и здесь появятся ваши сборки.",
       "sort": "Сортировка",
       "time": "Время",
       "date": "Дата",
@@ -395,7 +394,8 @@
       "select-an-option": "Выберите вариант",
       "new-collection": "Новая коллекция",
       "current-selection": "Текущий выбор:",
-      "delete-confirmation-check": "Я понимаю, что «{name}» и все её сборки будут удалены навсегда."
+      "delete-confirmation-check": "Я понимаю, что «{name}» и все её сборки будут удалены навсегда.",
+      "name-placeholder": "например, X-Man Tornado V3 M"
     },
     "Errors": {
       "repeated-name": "Коллекция с таким именем уже существует.",
@@ -773,16 +773,12 @@
     "SettingsPage": {
       "title": "Настройки",
       "not-authenticated": "Авторизуйтесь для доступа",
-      "fetching-last-backup": "Получение данных с сервера...",
       "unlink-account": "Отвязать аккаунт",
       "unlink-account-para1": "Вы уверены, что хотите выйти из аккаунта?",
       "unlink-account-para2": "Это удалит все данные с этого устройства.",
       "options": "Опции",
       "help": "Помощь",
       "account": "Аккаунт",
-      "last-backup": "Последний бэкап:",
-      "up-to-date": "Актуально",
-      "no-backup": "Нет бэкапа",
       "loading": "Загрузка...",
       "no-backup-yet": "Бэкапов пока нет",
       "backup-tip": "Регулярно делайте резервные копии, чтобы не потерять свои сборки",

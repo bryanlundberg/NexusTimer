@@ -257,7 +257,6 @@
       "title": "Tempos",
       "session": "Sessão",
       "historial": "Histórico",
-      "filter-by-time": "Filtrar por tempo",
       "show": "Mostrar",
       "finish-session": "Finalizar",
       "selection": {
@@ -296,7 +295,7 @@
         "move-to-history": "Mover para o Histórico"
       },
       "empty-solves": "Nada aqui ainda!",
-      "empty-solves-description": "Ative o interruptor no topo para ver seu histórico.",
+      "empty-solves-description": "Comece a cronometrar e seus tempos aparecerão aqui.",
       "sort": "Organizar",
       "time": "Tempo",
       "date": "Data",
@@ -395,7 +394,8 @@
       "select-an-option": "Selecione uma opção",
       "new-collection": "Nova coleção",
       "current-selection": "Seleção atual:",
-      "delete-confirmation-check": "Entendo que \"{name}\" e todos os seus tempos serão excluídos permanentemente."
+      "delete-confirmation-check": "Entendo que \"{name}\" e todos os seus tempos serão excluídos permanentemente.",
+      "name-placeholder": "ex.: X-Man Tornado V3 M"
     },
     "Errors": {
       "repeated-name": "Esse nome de coleção já existe.",
@@ -773,16 +773,12 @@
     "SettingsPage": {
       "title": "Configurações",
       "not-authenticated": "Autenticar para conceder acesso",
-      "fetching-last-backup": "Buscando informações do servidor, aguarde...",
       "unlink-account": "Desvincular conta",
       "unlink-account-para1": "Tem certeza que deseja desvincular a conta?",
       "unlink-account-para2": "Desvincular excluirá todos os dados deste dispositivo.",
       "options": "Opções",
       "help": "Ajuda",
       "account": "Conta",
-      "last-backup": "Último backup:",
-      "up-to-date": "Atualizado",
-      "no-backup": "Sem backup",
       "loading": "Carregando...",
       "no-backup-yet": "Ainda não há backups",
       "backup-tip": "Faça backups com frequência para nunca perder seus tempos",

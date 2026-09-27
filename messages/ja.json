@@ -257,7 +257,6 @@
       "title": "ソルブ履歴",
       "session": "セッション",
       "historial": "アーカイブ",
-      "filter-by-time": "タイムでフィルタリング",
       "show": "表示",
       "finish-session": "完了",
       "selection": {
@@ -296,7 +295,7 @@
         "move-to-history": "アーカイブへ移動"
       },
       "empty-solves": "履歴がまだありません！",
-      "empty-solves-description": "上部のスイッチを切り替えて履歴を表示します。",
+      "empty-solves-description": "タイムを計ると、ここにソルブが表示されます。",
       "sort": "並び替え",
       "time": "タイム",
       "date": "日付",
@@ -395,7 +394,8 @@
       "select-an-option": "オプションを選択",
       "new-collection": "新規コレクション",
       "current-selection": "現在の選択：",
-      "delete-confirmation-check": "「{name}」とそのすべてのタイムが完全に削除されることを理解しています。"
+      "delete-confirmation-check": "「{name}」とそのすべてのタイムが完全に削除されることを理解しています。",
+      "name-placeholder": "例: X-Man Tornado V3 M"
     },
     "Errors": {
       "repeated-name": "そのコレクション名はすでに存在します。",
@@ -773,16 +773,12 @@
     "SettingsPage": {
       "title": "設定",
       "not-authenticated": "アクセスするにはログインしてください",
-      "fetching-last-backup": "サーバーから情報を取得中...",
       "unlink-account": "アカウント連携解除",
       "unlink-account-para1": "アカウントからログアウトしますか？",
       "unlink-account-para2": "連携を解除するとこのデバイスのデータが削除される場合があります。",
       "options": "オプション",
       "help": "ヘルプ",
       "account": "アカウント",
-      "last-backup": "最終バックアップ：",
-      "up-to-date": "最新です",
-      "no-backup": "バックアップなし",
       "loading": "読み込み中...",
       "no-backup-yet": "バックアップがありません",
       "backup-tip": "定期的にバックアップして、タイムを失わないようにしましょう",

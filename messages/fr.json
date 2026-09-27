@@ -257,7 +257,6 @@
       "title": "Temps",
       "session": "Session",
       "historial": "Historique",
-      "filter-by-time": "Filtrer par temps",
       "show": "Afficher",
       "finish-session": "Terminer",
       "selection": {
@@ -296,7 +295,7 @@
         "move-to-history": "Déplacer vers l'historique"
       },
       "empty-solves": "Rien ici pour l'instant !",
-      "empty-solves-description": "Activez l'interrupteur en haut pour voir votre historique.",
+      "empty-solves-description": "Lance le chrono et tes temps apparaîtront ici.",
       "sort": "Trier",
       "time": "Temps",
       "date": "Date",
@@ -395,7 +394,8 @@
       "select-an-option": "Sélectionnez une option",
       "new-collection": "Nouvelle collection",
       "current-selection": "Sélection actuelle :",
-      "delete-confirmation-check": "Je comprends que \"{name}\" et tous ses temps seront supprimés définitivement."
+      "delete-confirmation-check": "Je comprends que \"{name}\" et tous ses temps seront supprimés définitivement.",
+      "name-placeholder": "ex. X-Man Tornado V3 M"
     },
     "Errors": {
       "repeated-name": "Ce nom de collection existe déjà.",
@@ -773,16 +773,12 @@
     "SettingsPage": {
       "title": "Paramètres",
       "not-authenticated": "S'authentifier pour accorder l'accès",
-      "fetching-last-backup": "Récupération des informations du serveur, veuillez patienter...",
       "unlink-account": "Dissocier le compte",
       "unlink-account-para1": "Êtes-vous sûr de vouloir vous dissocier du compte ?",
       "unlink-account-para2": "La dissociation supprimera toutes les données de cet appareil.",
       "options": "Options",
       "help": "Aide",
       "account": "Compte",
-      "last-backup": "Dernière sauvegarde :",
-      "up-to-date": "À jour",
-      "no-backup": "Pas de sauvegarde",
       "loading": "Chargement...",
       "no-backup-yet": "Il n'y a pas encore de sauvegarde",
       "backup-tip": "Sauvegarde régulièrement pour ne jamais perdre tes temps",

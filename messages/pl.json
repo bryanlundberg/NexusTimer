@@ -260,7 +260,6 @@
       "title": "Ułożenia",
       "session": "Sesja",
       "historial": "Historia",
-      "filter-by-time": "Filtruj według czasu",
       "show": "Pokaż",
       "selection": {
         "selected": "Zaznaczono: {count}",
@@ -299,7 +298,7 @@
         "move-to-history": "Przenieś do historii"
       },
       "empty-solves": "Jeszcze nic tu nie ma!",
-      "empty-solves-description": "Przełącz przełącznik na górze, aby zobaczyć swoją historię.",
+      "empty-solves-description": "Zacznij mierzyć czas, a tutaj pojawią się twoje ułożenia.",
       "sort": "Sortuj",
       "time": "Czas",
       "date": "Data",
@@ -398,7 +397,8 @@
       "select-an-option": "Wybierz opcję",
       "new-collection": "Nowa kolekcja",
       "current-selection": "Bieżący wybór:",
-      "delete-confirmation-check": "Rozumiem, że \"{name}\" i wszystkie jego ułożenia zostaną trwale usunięte."
+      "delete-confirmation-check": "Rozumiem, że \"{name}\" i wszystkie jego ułożenia zostaną trwale usunięte.",
+      "name-placeholder": "np. X-Man Tornado V3 M"
     },
     "Errors": {
       "repeated-name": "Taka nazwa kolekcji już istnieje.",
@@ -776,16 +776,12 @@
     "SettingsPage": {
       "title": "Ustawienia",
       "not-authenticated": "Zaloguj się, aby uzyskać dostęp",
-      "fetching-last-backup": "Pobieranie informacji z serwera, poczekaj...",
       "unlink-account": "Odłącz konto",
       "unlink-account-para1": "Czy na pewno chcesz odłączyć się od konta",
       "unlink-account-para2": "Odłączenie usunie wszystkie dane z tego urządzenia.",
       "options": "Opcje",
       "help": "Pomoc",
       "account": "Konto",
-      "last-backup": "Ostatnia kopia zapasowa:",
-      "up-to-date": "Aktualna",
-      "no-backup": "Brak kopii zapasowej",
       "loading": "Ładowanie...",
       "no-backup-yet": "Nie ma jeszcze kopii zapasowej",
       "backup-tip": "Rób kopie regularnie, aby nigdy nie stracić swoich czasów",

@@ -260,7 +260,6 @@
       "title": "Solve",
       "session": "Sessione",
       "historial": "Cronologia",
-      "filter-by-time": "Filtra per tempo",
       "show": "Mostra",
       "selection": {
         "selected": "{count} selezionati",
@@ -299,7 +298,7 @@
         "move-to-history": "Sposta nella cronologia"
       },
       "empty-solves": "Ancora niente qui!",
-      "empty-solves-description": "Attiva l'interruttore in alto per vedere la tua cronologia.",
+      "empty-solves-description": "Avvia il timer e qui appariranno i tuoi tempi.",
       "sort": "Ordina",
       "time": "Tempo",
       "date": "Data",
@@ -398,7 +397,8 @@
       "select-an-option": "Seleziona un'opzione",
       "new-collection": "Nuova collezione",
       "current-selection": "Selezione attuale:",
-      "delete-confirmation-check": "Capisco che \"{name}\" e tutti i suoi solve verranno eliminati definitivamente."
+      "delete-confirmation-check": "Capisco che \"{name}\" e tutti i suoi solve verranno eliminati definitivamente.",
+      "name-placeholder": "es. X-Man Tornado V3 M"
     },
     "Errors": {
       "repeated-name": "Questo nome di collezione esiste già.",
@@ -776,16 +776,12 @@
     "SettingsPage": {
       "title": "Impostazioni",
       "not-authenticated": "Autenticati per ottenere l'accesso",
-      "fetching-last-backup": "Recupero delle informazioni dal server, attendi...",
       "unlink-account": "Scollega account",
       "unlink-account-para1": "Sei sicuro di voler scollegare l'account",
       "unlink-account-para2": "Scollegando verranno eliminati tutti i dati da questo dispositivo.",
       "options": "Opzioni",
       "help": "Aiuto",
       "account": "Account",
-      "last-backup": "Ultimo backup:",
-      "up-to-date": "Aggiornato",
-      "no-backup": "Nessun backup",
       "loading": "Caricamento...",
       "no-backup-yet": "Non c'è ancora alcun backup",
       "backup-tip": "Fai un backup regolarmente per non perdere mai i tuoi tempi",

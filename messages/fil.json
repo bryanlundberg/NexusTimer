@@ -260,7 +260,6 @@
       "title": "Mga Solve",
       "session": "Session",
       "historial": "History",
-      "filter-by-time": "I-filter ayon sa oras",
       "show": "Ipakita",
       "selection": {
         "selected": "{count} ang napili",
@@ -299,7 +298,7 @@
         "move-to-history": "Ilipat sa History"
       },
       "empty-solves": "Wala pa rito!",
-      "empty-solves-description": "I-on ang switch sa itaas para makita ang history mo.",
+      "empty-solves-description": "Magsimulang mag-time at lalabas dito ang mga solve mo.",
       "sort": "Ayusin",
       "time": "Oras",
       "date": "Petsa",
@@ -398,7 +397,8 @@
       "select-an-option": "Pumili ng opsyon",
       "new-collection": "Bagong collection",
       "current-selection": "Kasalukuyang napili:",
-      "delete-confirmation-check": "Nauunawaan ko na ang \"{name}\" at lahat ng solves nito ay permanenteng mabubura."
+      "delete-confirmation-check": "Nauunawaan ko na ang \"{name}\" at lahat ng solves nito ay permanenteng mabubura.",
+      "name-placeholder": "hal. X-Man Tornado V3 M"
     },
     "Errors": {
       "repeated-name": "May ganyang pangalan na ng collection.",
@@ -776,16 +776,12 @@
     "SettingsPage": {
       "title": "Mga Setting",
       "not-authenticated": "Mag-authenticate para mabigyan ng access",
-      "fetching-last-backup": "Kinukuha ang impormasyon mula sa server, mangyaring maghintay...",
       "unlink-account": "I-unlink ang account",
       "unlink-account-para1": "Sigurado ka bang gusto mong i-unlink mula sa account",
       "unlink-account-para2": "Ang pag-unlink ay magbubura ng lahat ng data mula sa device na ito.",
       "options": "Mga Opsyon",
       "help": "Tulong",
       "account": "Account",
-      "last-backup": "Huling backup:",
-      "up-to-date": "Napapanahon",
-      "no-backup": "Walang backup",
       "loading": "Naglo-load...",
       "no-backup-yet": "Wala pang backup",
       "backup-tip": "Mag-backup nang regular para hindi mawala ang mga solve mo",
