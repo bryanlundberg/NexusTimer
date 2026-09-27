@@ -8,8 +8,15 @@ import { Tabs } from '@/components/ui/tabs'
 import CubesIcon from '@/components/ui/cubes-icon'
 import StackIcon from '@/components/ui/stack-icon'
 import ScrollableUnderlineTabs from '@/shared/ui/animated-tabs/ScrollableUnderlineTabs'
+import { cn } from '@/shared/lib/utils'
 
-export default function SolvesTabSwitcher() {
+export default function SolvesTabSwitcher({
+  className,
+  listClassName
+}: {
+  className?: string
+  listClassName?: string
+}) {
   const t = useTranslations('Index')
   const [tabMode, setTabMode] = useQueryState(STATES.SOLVES_PAGE.TAB_MODE.KEY, {
     defaultValue: STATES.SOLVES_PAGE.TAB_MODE.DEFAULT_VALUE
@@ -21,8 +28,13 @@ export default function SolvesTabSwitcher() {
   ]
 
   return (
-    <Tabs value={tabMode} onValueChange={(value) => setTabMode(value as SolveTab)} className="w-auto">
-      <ScrollableUnderlineTabs items={tabs} activeValue={tabMode} layoutId="solves-tab-indicator" />
+    <Tabs value={tabMode} onValueChange={(value) => setTabMode(value as SolveTab)} className={cn('w-auto', className)}>
+      <ScrollableUnderlineTabs
+        items={tabs}
+        activeValue={tabMode}
+        layoutId="solves-tab-indicator"
+        className={listClassName}
+      />
     </Tabs>
   )
 }

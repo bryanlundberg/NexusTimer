@@ -14,18 +14,30 @@ export default function SolvesPageHeader() {
   const isSession = tabMode === SolveTab.SESSION
 
   return (
-    <div className="flex flex-wrap items-center w-full gap-2 px-3 mb-2">
-      <div className="flex items-center order-1 shrink-0 min-w-0">
-        <SolvesTabSwitcher />
-      </div>
+    <div className="@container mb-2 w-full px-3">
+      <div className="flex flex-col gap-2 @2xl:flex-row @2xl:items-center">
+        <div className="flex items-center gap-2 @2xl:contents">
+          <div className="flex min-w-0 flex-1 items-center @2xl:order-1 @2xl:flex-none">
+            <SolvesTabSwitcher
+              className="w-full @2xl:w-auto"
+              listClassName="[&_[data-slot=tabs-trigger]]:grow @2xl:[&_[data-slot=tabs-trigger]]:grow-0"
+            />
+          </div>
+          {isSession && (
+            <div className="flex shrink-0 items-center @2xl:order-3">
+              <ButtonMoveSolves />
+            </div>
+          )}
+        </div>
 
-      <div className="flex items-center gap-2 order-2 ml-auto md:order-3 md:ml-0">
-        {isSession && <ButtonMoveSolves />}
-        <SolvesViewOptionsButton />
-      </div>
-
-      <div className="flex items-center min-w-0 w-full order-3 md:order-2 md:w-auto md:flex-1">
-        <MainCubeSelector />
+        <div className="flex items-center gap-2 @2xl:contents">
+          <div className="flex min-w-0 flex-1 items-center @2xl:order-2">
+            <MainCubeSelector />
+          </div>
+          <div className="flex shrink-0 items-center @2xl:order-4">
+            <SolvesViewOptionsButton />
+          </div>
+        </div>
       </div>
     </div>
   )
