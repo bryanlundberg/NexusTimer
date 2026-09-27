@@ -1,21 +1,30 @@
 'use client'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { useSession } from 'next-auth/react'
 import { toast } from 'sonner'
 import { Link, useRouter } from '@/shared/config/i18n/navigation'
 import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { CloudDownload, Info, Loader2 } from 'lucide-react'
+import { Button, buttonVariants } from '@/components/ui/button'
+import { Skeleton } from '@/components/ui/skeleton'
+import { CloudDownload, Loader2 } from 'lucide-react'
 import { useSyncBackup } from '@/shared/model/backup/useSyncBackup'
 import { useUser } from '@/entities/user/model/useUser'
+import { useBackups } from '@/entities/backup/model/useBackups'
+import { MenuSection } from '@/features/settings/ui/MenuSection'
+import { MenuRow } from '@/features/settings/ui/MenuRow'
+import dayjs from '@/shared/lib/dayjs'
+import { formatBytes } from '@/shared/lib/format-bytes'
+import { cn } from '@/shared/lib/utils'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
 
 export default function AccountLoadPage() {
   const t = useTranslations('Index')
+  const locale = useLocale()
   const { handleDownloadData } = useSyncBackup()
   const { data: session } = useSession()
   const { data: user } = useUser(session?.user?.id!)
+  const { backups, isLoading: backupsLoading } = useBackups()
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
 
@@ -31,6 +40,10 @@ export default function AccountLoadPage() {
     }
   }
 
+  const latest = backups[0]
+  const created = latest ? dayjs(latest.createdAt).locale(locale) : null
+  const value = 'text-[15px] tabular-nums text-muted-foreground sm:text-sm'
+
   return (
     <>
       <CoreHeader
@@ -40,42 +53,46 @@ export default function AccountLoadPage() {
         ]}
       />
 
-      <PageBody variant="hero" className="mx-auto w-full max-w-md px-4 pb-8" aria-busy={isLoading}>
-        <div className="flex flex-col items-center pt-8 text-center">
-          <CloudDownload className="size-8 text-muted-foreground" />
-          <h1 className="mt-4 text-xl font-semibold tracking-tight">{t('SettingsPage.load-data-title')}</h1>
-          <p className="mt-2 text-sm text-muted-foreground">{t('SettingsPage.load-data-description')}</p>
-        </div>
+      <PageBody variant="hero" className="mx-auto w-full max-w-2xl space-y-8 px-3 pb-8 sm:px-4" aria-busy={isLoading}>
+        <p className="px-4 text-[15px] leading-snug text-muted-foreground sm:text-sm">
+          {t('SettingsPage.load-data-description')}
+        </p>
 
-        <div className="mt-6 flex items-start gap-3 rounded-xl border border-sky-500/20 bg-sky-500/5 p-3.5">
-          <Info className="mt-0.5 size-4 shrink-0 text-sky-500" />
-          <p className="text-xs leading-relaxed text-sky-600 dark:text-sky-400">
-            {t('SettingsPage.load-data-warning')}
-          </p>
-        </div>
-
-        <div className="mt-8 flex flex-col gap-2">
-          <Button onClick={handleDownloadDataWrapper} disabled={!user || isLoading}>
-            {isLoading ? (
-              <span className="inline-flex items-center gap-2">
-                <Loader2 className="size-4 animate-spin" />
-                {t('SettingsPage.load-data-action')}
-              </span>
+        <MenuSection title={t('SettingsPage.backup-cloud-section')} footer={t('SettingsPage.load-data-warning')}>
+          <MenuRow label={t('SettingsPage.backup-latest')}>
+            {backupsLoading ? (
+              <Skeleton className="h-4 w-20" />
             ) : (
-              t('SettingsPage.load-data-action')
+              <span className={value} title={created?.format('LLL')}>
+                {created ? created.fromNow() : t('SettingsPage.no-backup-yet')}
+              </span>
             )}
-          </Button>
+          </MenuRow>
+          {latest && (
+            <MenuRow label={t('SettingsPage.backup-size')}>
+              <span className={value}>{formatBytes(latest.size)}</span>
+            </MenuRow>
+          )}
+        </MenuSection>
 
+        <div className="flex flex-col gap-2">
+          <Button onClick={handleDownloadDataWrapper} disabled={!user || isLoading} className="h-11 gap-2">
+            {isLoading ? <Loader2 className="size-4 animate-spin" /> : <CloudDownload className="size-4" />}
+            {t('SettingsPage.load-data-action')}
+          </Button>
           <Link
-            href="/account"
+            href="/account?tab=backups"
             aria-disabled={isLoading}
             onClick={(e) => {
               if (isLoading) e.preventDefault()
             }}
+            className={cn(
+              buttonVariants({ variant: 'ghost' }),
+              'h-11 w-full',
+              isLoading && 'pointer-events-none opacity-50'
+            )}
           >
-            <Button variant="ghost" className="w-full" disabled={isLoading}>
-              {t('Inputs.back')}
-            </Button>
+            {t('Inputs.back')}
           </Link>
         </div>
       </PageBody>
