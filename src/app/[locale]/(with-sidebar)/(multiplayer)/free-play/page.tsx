@@ -11,7 +11,7 @@ const JoinPrivateRoomModal = dynamic(() => import('@/features/free-play/ui/join-
 import RoomCard from '@/features/free-play/ui/room-card'
 import { useTranslations } from 'next-intl'
 import { motion } from 'motion/react'
-import { Plus, Radio, Gamepad2 } from 'lucide-react'
+import { Plus, Gamepad2 } from 'lucide-react'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 
 export default function FreePlayPage() {
@@ -48,12 +48,8 @@ export default function FreePlayPage() {
           transition={{ duration: 0.4, ease: 'easeOut' }}
           className="mb-12"
         >
-          <div className="flex items-center gap-2 mb-4">
-            <span className="chip-notch chip-notch-sm inline-flex items-center gap-1.5 bg-cube-red/10 px-2.5 py-1 font-display text-[11px] font-semibold uppercase tracking-[0.14em] text-cube-red">
-              <Radio className="size-3" />
-              Beta
-            </span>
-            {displayRooms.length > 0 && (
+          {displayRooms.length > 0 && (
+            <div className="mb-4 flex items-center gap-2">
               <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground tabular-nums">
                 <span className="relative flex size-2">
                   <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:hidden" />
@@ -61,13 +57,13 @@ export default function FreePlayPage() {
                 </span>
                 {t('active-rooms-count', { count: displayRooms.length })}
               </span>
-            )}
-          </div>
+            </div>
+          )}
 
           <h1 className="font-display text-3xl font-bold tracking-tight lg:text-4xl mb-2">{t('title')}</h1>
           <p className="text-muted-foreground max-w-lg mb-6">{t('description')}</p>
 
-          <Button size="default" className="gap-2" onClick={handleCreateRoom}>
+          <Button size="default" className="gap-2 pointer-coarse:h-11" onClick={handleCreateRoom}>
             <Plus className="size-4" />
             {t('new-room')}
           </Button>
