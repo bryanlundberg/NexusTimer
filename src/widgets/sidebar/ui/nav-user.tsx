@@ -1,6 +1,15 @@
 'use client'
 
-import { ChevronRight, Globe, HardDriveDownload, HardDriveUpload, LogOut, Settings, UserRound } from 'lucide-react'
+import {
+  ChevronDown,
+  ChevronRight,
+  Globe,
+  HardDriveDownload,
+  HardDriveUpload,
+  LogOut,
+  Settings,
+  UserRound
+} from 'lucide-react'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
@@ -13,7 +22,6 @@ import {
 import { useRouter } from '@/shared/config/i18n/navigation'
 import useLogout from '@/features/logout/model/useLogout'
 import { useTranslations } from 'next-intl'
-import { Button } from '@/components/ui/button'
 import { usePresenceStatus } from '@/features/presence/model/usePresenceStatus'
 import { PresenceDot } from '@/features/presence/ui/PresenceDot'
 import { resolvePresenceDisplay, usePresence } from '@/features/presence/model/usePresence'
@@ -43,6 +51,7 @@ export function NavUser({
   const tp = useTranslations('Index.Presence')
   const { status, setStatus } = usePresenceStatus()
   const statusDisplay = resolvePresenceDisplay(usePresence(user.id))
+  const initials = user.name.substring(0, 2).toUpperCase()
 
   const navItems = [
     { icon: Globe, label: t('NavMain.public-profile'), href: '/people/' + user.id },
@@ -57,19 +66,29 @@ export function NavUser({
 
   return (
     <DropdownMenu>
-      <div className="relative inline-flex">
-        <DropdownMenuTrigger asChild>
-          <Button variant={'ghost'} size={'icon'} className={'rounded-full'}>
-            <Avatar className="size-8 rounded-full">
-              <AvatarImage className={'object-cover'} src={user.avatar} alt={user.name} />
-              <AvatarFallback className="rounded-full">CN</AvatarFallback>
+      <DropdownMenuTrigger asChild>
+        <button
+          type="button"
+          aria-label={user.name}
+          data-testid="header-user-menu"
+          className="relative flex h-9 min-w-9 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full px-1 outline-none transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring data-[state=open]:bg-accent pointer-coarse:h-10 pointer-coarse:min-w-10 @3xl/header:justify-start @3xl/header:rounded-lg @3xl/header:pr-2.5 @3xl/header:pl-1"
+        >
+          <span className="relative shrink-0">
+            <Avatar className="size-7 rounded-full">
+              <AvatarImage className="object-cover" src={user.avatar} alt="" />
+              <AvatarFallback className="rounded-full text-[10px] font-semibold">{initials}</AvatarFallback>
             </Avatar>
-          </Button>
-        </DropdownMenuTrigger>
-        <span className="pointer-events-none absolute bottom-1 right-1 z-10 rounded-full bg-background p-px">
-          <PresenceDot state={statusDisplay} className="size-2" />
-        </span>
-      </div>
+            <span className="pointer-events-none absolute -right-0.5 -bottom-0.5 rounded-full bg-background p-px">
+              <PresenceDot state={statusDisplay} className="size-2" />
+            </span>
+          </span>
+          <span className="hidden max-w-44 min-w-0 flex-col text-left leading-tight @3xl/header:flex">
+            <span className="truncate text-[13px] font-medium">{user.name}</span>
+            {user.email && <span className="truncate text-[11px] text-muted-foreground">{user.email}</span>}
+          </span>
+          <ChevronDown aria-hidden className="hidden size-3.5 shrink-0 text-muted-foreground @3xl/header:block" />
+        </button>
+      </DropdownMenuTrigger>
       <DropdownMenuContent className="w-64" innerClassName="p-px" side={'bottom'} align="end" sideOffset={8}>
         {/* Identity header */}
         <DropdownMenuItem
@@ -79,7 +98,7 @@ export function NavUser({
           <div className="relative shrink-0">
             <Avatar className="size-10 rounded-full shadow-sm ring-1 ring-border/60">
               <AvatarImage className="object-cover" src={user.avatar} alt={user.name} />
-              <AvatarFallback className="rounded-full">{user.name.substring(0, 2).toUpperCase()}</AvatarFallback>
+              <AvatarFallback className="rounded-full">{initials}</AvatarFallback>
             </Avatar>
             <span className="absolute -bottom-1 -right-1 rounded-full bg-popover p-0.5">
               <PresenceDot state={statusDisplay} className="size-2.5" />
@@ -87,7 +106,7 @@ export function NavUser({
           </div>
           <div className="grid min-w-0 flex-1 leading-tight">
             <span className="truncate text-sm font-semibold">{user.name}</span>
-            <span className="truncate text-xs text-muted-foreground">{user.email}</span>
+            {user.email && <span className="truncate text-xs text-muted-foreground">{user.email}</span>}
           </div>
           <ChevronRight className="size-4 shrink-0 text-muted-foreground opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100 group-focus:translate-x-0.5 group-focus:opacity-100" />
         </DropdownMenuItem>
