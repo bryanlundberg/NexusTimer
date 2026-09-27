@@ -1,17 +1,15 @@
 import { useTranslations } from 'next-intl'
-import { TimerIcon } from '@/components/ui/settings-icons'
 import { MenuSection } from './MenuSection'
 import { MenuOption } from './MenuOption'
 import MenuInputOption from './MenuInputOption'
 import MenuSegmentedOption from './MenuSegmentedOption'
 import MenuSelectActivationKey from './MenuSelectActivationKey'
-import { SECTION_ACCENTS } from '../lib/settingsSections'
 
 export default function MenuTimerSection({ control }: { control: any }) {
   const t = useTranslations('Index')
 
   return (
-    <MenuSection id="timer" accent={SECTION_ACCENTS['timer']} icon={<TimerIcon />} title={t('Settings-menu.timer')}>
+    <MenuSection id="timer" title={t('Settings-menu.timer')}>
       <MenuSelectActivationKey />
       <MenuOption
         label={t('Settings-menu.inspection')}
