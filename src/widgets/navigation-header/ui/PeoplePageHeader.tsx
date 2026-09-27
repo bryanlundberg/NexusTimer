@@ -15,7 +15,7 @@ interface PeoplePageHeaderProps {
 
 export default function PeoplePageHeader({ total, showing }: PeoplePageHeaderProps) {
   const t = useTranslations('Index.PeoplePage')
-  const { searchTerm, setSearchTerm } = usePeopleSearch()
+  const { searchTerm, setSearchTerm, clearSearch } = usePeopleSearch()
   const basketCount = useCompareUsersStore((state) => state.users.length)
   const [country, setCountry] = useQueryState('country')
   const [, setPage] = useQueryState('page')
@@ -58,15 +58,38 @@ export default function PeoplePageHeader({ total, showing }: PeoplePageHeaderPro
 
       {/* Right: search + basket */}
       <div className="flex flex-col gap-1.5 w-full sm:w-auto">
-        <div className="flex flex-col-reverse sm:flex-row gap-2">
+        <div className="flex flex-col gap-2 sm:flex-row">
           <div className="relative group flex-1 sm:flex-none">
-            <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
+            <MagnifyingGlassIcon className="pointer-events-none absolute left-3 top-1/2 z-[2] -translate-y-1/2 size-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
             <Input
+              type="search"
+              inputMode="search"
+              enterKeyHint="search"
+              autoComplete="off"
+              autoCapitalize="none"
+              spellCheck={false}
+              aria-label={t('search')}
               placeholder={t('search-placeholder')}
               value={searchTerm || ''}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-9 w-full sm:w-80"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') e.currentTarget.blur()
+              }}
+              className="w-full appearance-none pr-10 pl-9 pointer-coarse:h-11 sm:w-80 [&::-webkit-search-cancel-button]:appearance-none"
             />
+            {searchTerm && (
+              <button
+                type="button"
+                aria-label={t('clear-search')}
+                onClick={() => {
+                  setSearchTerm('')
+                  clearSearch()
+                }}
+                className="absolute right-1 top-1/2 z-[2] grid size-8 -translate-y-1/2 place-items-center text-muted-foreground transition-colors hover:text-foreground pointer-coarse:size-10"
+              >
+                <X className="size-4" />
+              </button>
+            )}
           </div>
           <div className="flex items-center gap-1">
             <CountryCombobox
@@ -76,17 +99,17 @@ export default function PeoplePageHeader({ total, showing }: PeoplePageHeaderPro
               clearLabel={t('all-countries')}
               searchPlaceholder={t('search-country')}
               emptyText={t('no-country-found')}
-              className="w-full sm:w-44 h-9"
+              className="h-9 w-full pointer-coarse:h-11 sm:w-44"
             />
             {country && (
               <Button
                 variant="ghost"
                 size="icon"
-                aria-label={t('clear-search')}
-                className="size-7 shrink-0 text-muted-foreground/60 hover:text-foreground"
+                aria-label={t('all-countries')}
+                className="size-9 shrink-0 text-muted-foreground/60 hover:text-foreground pointer-coarse:size-11"
                 onClick={() => handleCountryChange(null)}
               >
-                <X className="size-3.5" />
+                <X className="size-4" />
               </Button>
             )}
           </div>
