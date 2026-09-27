@@ -10,16 +10,13 @@ import {
   type PrivacySettings as Privacy
 } from '@/entities/privacy/model/types'
 import { usePrivacy } from '@/entities/privacy/model/usePrivacy'
-import { FormSection } from '@/features/account-form/ui/FormSection'
+import { triggerHaptic } from '@/shared/model/useHaptics'
 import { MenuRow } from '@/features/settings/ui/MenuRow'
+import { MenuSection } from '@/features/settings/ui/MenuSection'
 import MenuSelectOption from '@/features/settings/ui/MenuSelectOption'
 import { BlockedUsers } from '@/features/privacy-settings/ui/BlockedUsers'
 
 type ToggleKey = Exclude<keyof Privacy, 'friendRequests' | 'statsVisibility'>
-
-function Rows({ children }: { children: React.ReactNode }) {
-  return <div className="divide-y divide-border/40 border border-border/60 bg-card/40">{children}</div>
-}
 
 export function PrivacySettings() {
   const t = useTranslations('Index.PrivacyPage')
@@ -35,62 +32,64 @@ export function PrivacySettings() {
         id={`privacy-${key}`}
         checked={!!privacy?.[key]}
         disabled={!privacy}
-        onCheckedChange={(checked) => save({ [key]: checked })}
+        onCheckedChange={(checked) => {
+          save({ [key]: checked })
+          triggerHaptic()
+        }}
       />
     </MenuRow>
   )
 
   return (
     <div className="space-y-8">
-      <FormSection id="privacy-requests" title={t('requests-section')}>
-        <Rows>
-          {privacy ? (
-            <MenuSelectOption
-              label={t('friendRequests.label')}
-              description={t('friendRequests.description')}
-              value={privacy.friendRequests}
-              onValueChange={(value) => save({ friendRequests: value as Privacy['friendRequests'] })}
-              options={FRIEND_REQUEST_POLICIES.map((policy) => ({
-                value: policy,
-                label: t(`friendRequests.${policy}`)
-              }))}
-            />
-          ) : (
-            <Skeleton className="h-16 w-full" />
-          )}
-          {toggle('friendRequestEmails')}
-        </Rows>
-      </FormSection>
+      <MenuSection id="privacy-requests" title={t('requests-section')}>
+        {privacy ? (
+          <MenuSelectOption
+            label={t('friendRequests.label')}
+            description={t('friendRequests.description')}
+            value={privacy.friendRequests}
+            onValueChange={(value) => save({ friendRequests: value as Privacy['friendRequests'] })}
+            options={FRIEND_REQUEST_POLICIES.map((policy) => ({
+              value: policy,
+              label: t(`friendRequests.${policy}`)
+            }))}
+          />
+        ) : (
+          <Skeleton className="h-16 w-full" />
+        )}
+        {toggle('friendRequestEmails')}
+      </MenuSection>
 
-      <FormSection id="privacy-messages" title={t('messages-section')}>
-        <Rows>
-          {toggle('readReceipts')}
-          {toggle('typingIndicator')}
-        </Rows>
-      </FormSection>
+      <MenuSection id="privacy-messages" title={t('messages-section')}>
+        {toggle('readReceipts')}
+        {toggle('typingIndicator')}
+      </MenuSection>
 
-      <FormSection id="privacy-profile" title={t('profile-section')}>
-        <Rows>
-          {privacy ? (
-            <MenuSelectOption
-              label={t('statsVisibility.label')}
-              description={t('statsVisibility.description')}
-              value={privacy.statsVisibility}
-              onValueChange={(value) => save({ statsVisibility: value as Privacy['statsVisibility'] })}
-              options={STATS_VISIBILITIES.map((visibility) => ({
-                value: visibility,
-                label: t(`statsVisibility.${visibility}`)
-              }))}
-            />
-          ) : (
-            <Skeleton className="h-16 w-full" />
-          )}
-        </Rows>
-      </FormSection>
+      <MenuSection id="privacy-profile" title={t('profile-section')}>
+        {privacy ? (
+          <MenuSelectOption
+            label={t('statsVisibility.label')}
+            description={t('statsVisibility.description')}
+            value={privacy.statsVisibility}
+            onValueChange={(value) => save({ statsVisibility: value as Privacy['statsVisibility'] })}
+            options={STATS_VISIBILITIES.map((visibility) => ({
+              value: visibility,
+              label: t(`statsVisibility.${visibility}`)
+            }))}
+          />
+        ) : (
+          <Skeleton className="h-16 w-full" />
+        )}
+      </MenuSection>
 
-      <FormSection id="privacy-blocked" title={t('blocked-section')} description={t('blocked-description')}>
+      <MenuSection
+        id="privacy-blocked"
+        title={t('blocked-section')}
+        footer={t('blocked-description')}
+        separators={false}
+      >
         <BlockedUsers />
-      </FormSection>
+      </MenuSection>
     </div>
   )
 }

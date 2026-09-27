@@ -2,7 +2,7 @@ import { Control, UseFormSetValue, useFieldArray } from 'react-hook-form'
 import { Reorder } from 'motion/react'
 import { useTranslations } from 'next-intl'
 import { Plus } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { MenuActionRow } from '@/features/settings/ui/MenuActionRow'
 import { AccountInfoForm } from '@/features/account-form/model/types'
 import { ProfileLinkRow } from '@/features/account-form/ui/ProfileLinkRow'
 import { MAX_PROFILE_LINKS } from '@/shared/lib/profile-links'
@@ -40,28 +40,27 @@ export function ProfileLinksField({
   }
 
   return (
-    <div className="space-y-3">
-      <Reorder.Group axis="y" values={ids} onReorder={handleReorder} className="space-y-3">
-        {fields.map((item, index) => (
-          <ProfileLinkRow
-            key={item.id}
-            id={item.id}
-            control={control}
-            index={index}
-            count={fields.length}
-            onRemove={() => remove(index)}
-            onMove={move}
-            onPasteLinks={handlePasteLinks}
-          />
-        ))}
-      </Reorder.Group>
+    <>
+      <div className="px-4 py-3.5">
+        <Reorder.Group axis="y" values={ids} onReorder={handleReorder} className="space-y-2.5">
+          {fields.map((item, index) => (
+            <ProfileLinkRow
+              key={item.id}
+              id={item.id}
+              control={control}
+              index={index}
+              count={fields.length}
+              onRemove={() => remove(index)}
+              onMove={move}
+              onPasteLinks={handlePasteLinks}
+            />
+          ))}
+        </Reorder.Group>
+      </div>
 
       {fields.length < MAX_PROFILE_LINKS && (
-        <Button type="button" variant="outline" size="sm" className="gap-1.5" onClick={() => append({ url: '' })}>
-          <Plus className="size-4" />
-          {t('add')}
-        </Button>
+        <MenuActionRow icon={<Plus />} label={t('add')} onClick={() => append({ url: '' })} />
       )}
-    </div>
+    </>
   )
 }

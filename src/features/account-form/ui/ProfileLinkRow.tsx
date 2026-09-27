@@ -62,7 +62,7 @@ export function ProfileLinkRow({ id, control, index, count, onRemove, onMove, on
             title={t('reorder')}
             onPointerDown={(event) => dragControls.start(event)}
             onKeyDown={handleKeyDown}
-            className="grid h-10 w-7 shrink-0 cursor-grab touch-none place-items-center text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50 active:cursor-grabbing"
+            className="grid h-11 w-7 shrink-0 cursor-grab sm:h-10 touch-none place-items-center text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50 active:cursor-grabbing"
           >
             <GripVertical className="size-4" />
           </button>
@@ -80,7 +80,7 @@ export function ProfileLinkRow({ id, control, index, count, onRemove, onMove, on
             autoComplete="url"
             autoCapitalize="none"
             spellCheck={false}
-            className={cn('peer h-10 pl-9', info?.handle && 'pr-32')}
+            className={cn('peer h-11 pl-9 sm:h-10', info?.handle && 'pr-32')}
           />
           {info ? (
             <PlatformIcon
@@ -109,7 +109,7 @@ export function ProfileLinkRow({ id, control, index, count, onRemove, onMove, on
           size="icon"
           aria-label={t('remove')}
           onClick={onRemove}
-          className="size-10 shrink-0 text-muted-foreground hover:text-destructive"
+          className="size-11 shrink-0 text-muted-foreground hover:text-destructive sm:size-10"
         >
           <X className="size-4" />
         </Button>
