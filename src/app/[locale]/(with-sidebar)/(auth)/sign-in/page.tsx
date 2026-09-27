@@ -1,11 +1,11 @@
 import { Link, redirect } from '@/shared/config/i18n/navigation'
 import { getLocale, getTranslations } from 'next-intl/server'
+import { ArrowRight } from 'lucide-react'
 import { auth } from '@/shared/config/auth/auth'
 import SignInForm from '@/features/authentication/ui/SignInForm'
 import OAuthProviders from '@/features/authentication/ui/OAuthProviders'
 import AuthDivider from '@/features/authentication/ui/AuthDivider'
-import AuthBackground from '@/features/authentication/ui/AuthBackground'
-import CubeGrid from '@/features/authentication/ui/CubeGrid'
+import AuthScreen from '@/features/authentication/ui/AuthScreen'
 
 export default async function SignInPage() {
   const session = await auth()
@@ -14,33 +14,26 @@ export default async function SignInPage() {
   const t = await getTranslations('Index.Auth')
 
   return (
-    <div className="relative flex-1 flex items-center justify-center px-4 py-10">
-      <AuthBackground variant="signin" />
-
-      <div className="relative w-full max-w-sm flex flex-col items-center gap-6">
-        <CubeGrid className="size-12 drop-shadow-xl" />
-
-        <div className="text-center space-y-1">
-          <h1 className="font-display text-3xl font-bold tracking-tight">{t('welcome-back')}</h1>
-          <p className="text-sm text-muted-foreground">{t('sign-in-subtitle')}</p>
-        </div>
-
-        <div className="w-full notch-bl-tr [--nblt:16px] border bg-background/80 backdrop-blur-sm p-6 shadow-sm flex flex-col gap-5">
-          <SignInForm />
-          <AuthDivider label={t('or-continue-with')} />
-          <OAuthProviders />
-        </div>
-
-        <div className="w-full flex items-center justify-center gap-2 notch-bl-tr [--nblt:10px] border border-primary/30 bg-primary/5 px-4 py-3 text-sm">
-          <span className="text-muted-foreground">{t('no-account')}</span>
+    <AuthScreen
+      variant="signin"
+      title={t('welcome-back')}
+      subtitle={t('sign-in-subtitle')}
+      footer={
+        <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
+          {t('no-account')}
           <Link
             href="/sign-up"
-            className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80"
+            className="group inline-flex items-center gap-1 font-semibold text-primary hover:text-primary/80"
           >
             {t('sign-up')}
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none" />
           </Link>
-        </div>
-      </div>
-    </div>
+        </p>
+      }
+    >
+      <SignInForm />
+      <AuthDivider label={t('or-continue-with')} />
+      <OAuthProviders />
+    </AuthScreen>
   )
 }
