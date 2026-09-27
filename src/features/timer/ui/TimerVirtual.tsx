@@ -5,6 +5,7 @@ import formatTime from '@/shared/lib/formatTime'
 import { useVirtualCube } from '@/features/timer/model/useVirtualCube'
 import { useVirtualKeyboardMoves } from '@/features/timer/model/useVirtualKeyboardMoves'
 import { useSolveSession } from '@/features/timer/model/useSolveSession'
+import { SolveClockText } from '@/features/timer/ui/SolveClockText'
 
 export default function TimerVirtual() {
   const scramble = useTimerStore((store) => store.scramble)
@@ -18,6 +19,7 @@ export default function TimerVirtual() {
   const { containerRef, player, engine, recreatePlayer } = useVirtualCube({
     cubeSize,
     scramble,
+    tempoScale: 3,
     hintFacelets: 'floating'
   })
 
@@ -25,7 +27,7 @@ export default function TimerVirtual() {
     if (selectedCube) setNewScramble(selectedCube)
   }, [selectedCube, setNewScramble])
 
-  const { phase, solvingTime, processMove, cancel } = useSolveSession({
+  const { phase, clock, processMove, cancel } = useSolveSession({
     player,
     engine,
     scramble,
@@ -42,7 +44,9 @@ export default function TimerVirtual() {
   return (
     <div className="grow flex justify-center items-center flex-col gap-2 sm:gap-4">
       <div ref={containerRef} />
-      <div className="text-2xl sm:text-3xl">{formatTime(solvingTime || 0)}</div>
+      <div className="text-2xl sm:text-3xl">
+        <SolveClockText clock={clock} format={formatTime} />
+      </div>
     </div>
   )
 }
