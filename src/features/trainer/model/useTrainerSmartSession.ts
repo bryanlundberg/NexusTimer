@@ -195,7 +195,7 @@ export function useTrainerSmartSession({
   return {
     phase,
     isSolving: phase === 'solving',
-    solvingTime: clock.solvingTime,
+    clock,
     guide,
     resync,
     getHistory: () => moveLogRef.current
