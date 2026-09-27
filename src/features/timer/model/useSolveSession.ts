@@ -148,7 +148,7 @@ export function useSolveSession({ player, engine, scramble, onAdvanceScramble, r
   return {
     phase,
     isSolving: phase === 'solving',
-    solvingTime: clock.solvingTime,
+    clock,
     processMove,
     cancel
   }
