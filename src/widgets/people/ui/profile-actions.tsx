@@ -27,7 +27,12 @@ export function ProfileActions({ user, isCurrentUser, status, canRequest, classN
   return (
     <div className={cn('flex flex-wrap items-center gap-2', className)}>
       {isCurrentUser && (
-        <Button variant="secondary" size="sm" className="gap-1.5" onClick={() => router.push('/account')}>
+        <Button
+          variant="secondary"
+          size="sm"
+          className="gap-1.5 pointer-coarse:h-10"
+          onClick={() => router.push('/account')}
+        >
           <Pencil className="size-4" />
           {t('edit-profile')}
         </Button>
