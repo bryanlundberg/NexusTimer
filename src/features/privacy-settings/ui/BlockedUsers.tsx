@@ -19,15 +19,11 @@ export function BlockedUsers() {
   if (isLoading || !data) return <Skeleton className="h-16 w-full" />
 
   if (data.blocked.length === 0) {
-    return (
-      <div className="border border-border/60 bg-card/40 px-4 py-8 text-center text-sm text-muted-foreground">
-        {t('no-blocked')}
-      </div>
-    )
+    return <p className="px-4 py-6 text-center text-[15px] text-muted-foreground sm:text-sm">{t('no-blocked')}</p>
   }
 
   return (
-    <section className="overflow-hidden border border-border/60 bg-card/40">
+    <>
       {data.blocked.map(({ user, since }) => (
         <UserListRow
           key={user._id}
@@ -47,6 +43,6 @@ export function BlockedUsers() {
           }
         />
       ))}
-    </section>
+    </>
   )
 }
