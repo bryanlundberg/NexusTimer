@@ -1,5 +1,4 @@
 'use client'
-import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
@@ -16,6 +15,8 @@ import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { editCubeCollection } from '@/features/manage-cubes/api/editCubeCollection'
 import { useEffect } from 'react'
 import RatedIcon from '@/shared/ui/rate-icon/RateIcon'
+import { CubeCategoryIcon } from '@/shared/ui/cube-category-icon/CubeCategoryIcon'
+import { TriangleAlert } from 'lucide-react'
 
 export default function EditCollectionForm() {
   const t = useTranslations('Index')
@@ -79,45 +80,68 @@ export default function EditCollectionForm() {
           </DialogTitle>
         </DialogHeader>
 
-        <Alert data-tone="warning" className="alert-notch">
-          <AlertDescription className="text-yellow-300">{t('Cubes-modal.danger-msg')}</AlertDescription>
-        </Alert>
+        <div className="space-y-5">
+          <div className="space-y-2">
+            <Label htmlFor="edit-collection-name">{t('Cubes-modal.name')}</Label>
+            <Input
+              id="edit-collection-name"
+              {...register('name')}
+              aria-invalid={!!errors?.name}
+              autoComplete="off"
+              className="h-11 sm:h-10"
+              data-testid="drawer-edit-input-name"
+            />
+            {errors?.name && (
+              <p
+                className="text-destructive text-[13px] font-medium sm:text-xs"
+                data-testid="drawer-edit-collection-error-message"
+              >
+                {errors.name.message?.toString()}
+              </p>
+            )}
+          </div>
 
-        <Label>{t('Cubes-modal.name')}</Label>
-        <Input {...register('name')} data-testid="drawer-edit-input-name" />
-
-        {errors?.name && (
-          <p className="text-destructive text-sm" data-testid="drawer-edit-collection-error-message">
-            {errors.name.message?.toString()}
-          </p>
-        )}
-
-        <Label>{t('Cubes-modal.category')}</Label>
-        <Controller
-          name="category"
-          control={control}
-          rules={{ required: t('Errors.required-field') }}
-          render={({ field }) => (
-            <Select value={field.value} onValueChange={field.onChange}>
-              <SelectTrigger className={'w-full'} data-testid="drawer-edit-select-category">
-                <SelectValue placeholder={t('Cubes-modal.select-an-option')} />
-              </SelectTrigger>
-              <SelectContent>
-                {cubeCollection.map((cube) => (
-                  <SelectItem
-                    key={cube.id}
-                    value={cube.name}
-                    data-testid={`drawer-edit-select-category-item-${cube.name}`}
+          <div className="space-y-2">
+            <Label htmlFor="edit-collection-category">{t('Cubes-modal.category')}</Label>
+            <Controller
+              name="category"
+              control={control}
+              rules={{ required: t('Errors.required-field') }}
+              render={({ field }) => (
+                <Select value={field.value} onValueChange={field.onChange}>
+                  <SelectTrigger
+                    id="edit-collection-category"
+                    className="h-11 w-full sm:h-10"
+                    data-testid="drawer-edit-select-category"
                   >
-                    {cube.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          )}
-        />
+                    <SelectValue placeholder={t('Cubes-modal.select-an-option')} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {cubeCollection.map((cube) => (
+                      <SelectItem
+                        key={cube.id}
+                        value={cube.name}
+                        data-testid={`drawer-edit-select-category-item-${cube.name}`}
+                      >
+                        <span className="size-4 shrink-0">
+                          <CubeCategoryIcon category={cube.name} />
+                        </span>
+                        {cube.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
+            />
+            <p className="flex items-start gap-1.5 text-[13px] leading-snug text-muted-foreground sm:text-xs">
+              <TriangleAlert aria-hidden className="mt-0.5 size-3.5 shrink-0 text-amber-500" />
+              {t('Cubes-modal.danger-msg')}
+            </p>
+          </div>
+        </div>
+
         <DialogFooter>
-          <div className="flex justify-end gap-2 w-full">
+          <div className="flex w-full justify-end gap-2 [&>*]:flex-1 sm:[&>*]:flex-none [&>*]:pointer-coarse:h-11">
             <DialogClose asChild>
               <Button variant={'secondary'} data-testid="drawer-edit-cancel-button">
                 {t('Inputs.cancel')}
@@ -129,7 +153,7 @@ export default function EditCollectionForm() {
               onClick={handleSubmit(handleSubmitEditCubeCollection)}
               data-testid="drawer-edit-accept-button"
             >
-              {t('Inputs.continue')}
+              {t('Inputs.save')}
             </Button>
           </div>
         </DialogFooter>

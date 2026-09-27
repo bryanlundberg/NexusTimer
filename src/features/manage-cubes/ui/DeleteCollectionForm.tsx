@@ -94,13 +94,14 @@ export default function DeleteCollectionForm() {
           control={control}
           name="confirmDeletion"
           render={({ field }) => (
-            <Label className="flex items-start gap-2">
+            <Label className="-mx-2 flex cursor-pointer items-start gap-3 px-2 py-2 transition-colors hover:bg-muted/30 active:bg-muted/50">
               <Checkbox
+                className="mt-0.5"
                 checked={field.value}
                 onCheckedChange={field.onChange}
                 data-testid="dialog-delete-cube-checkbox"
               />
-              <span className="text-secondary-foreground text-sm">
+              <span className="text-[15px] leading-snug font-normal text-secondary-foreground sm:text-sm">
                 {t('Cubes-modal.delete-confirmation-check', { name: activeOverlay?.metadata?.name ?? '' })}
               </span>
             </Label>
@@ -108,7 +109,7 @@ export default function DeleteCollectionForm() {
         />
 
         <DialogFooter>
-          <div className="flex justify-end gap-2 w-full">
+          <div className="flex w-full justify-end gap-2 [&>*]:flex-1 sm:[&>*]:flex-none [&>*]:pointer-coarse:h-11">
             <DialogClose asChild>
               <Button variant={'secondary'} data-testid="dialog-delete-cube-cancel-button">
                 {t('Inputs.cancel')}
@@ -116,12 +117,12 @@ export default function DeleteCollectionForm() {
             </DialogClose>
 
             <Button
-              variant={'default'}
+              variant={'destructive'}
               disabled={!confirmDeletion}
               onClick={handleSubmit(handleDeleteCube)}
               data-testid="dialog-delete-cube-accept-button"
             >
-              {t('Inputs.continue')}
+              {t('Inputs.delete')}
             </Button>
           </div>
         </DialogFooter>

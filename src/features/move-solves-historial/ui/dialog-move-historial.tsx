@@ -30,15 +30,15 @@ export default function DialogMoveHistorial() {
         <DialogHeader>
           <DialogTitle>{t('SolvesPage.dialogs.move-to-history')}</DialogTitle>
           <DialogDescription>{t('SolvesPage.dialogs.move-to-history-para')}</DialogDescription>
-          <DialogFooter>
-            <div className="flex justify-end gap-1 mt-5">
-              <Button variant={'secondary'} onClick={overlayStore.close}>
-                {t('Inputs.cancel')}
-              </Button>
-              <Button onClick={handleMoveSessionToHistorial}>{t('SolvesPage.dialogs.confirm')}</Button>
-            </div>
-          </DialogFooter>
         </DialogHeader>
+        <DialogFooter>
+          <div className="flex w-full justify-end gap-2 [&>*]:flex-1 sm:[&>*]:flex-none [&>*]:pointer-coarse:h-11">
+            <Button variant={'secondary'} onClick={overlayStore.close}>
+              {t('Inputs.cancel')}
+            </Button>
+            <Button onClick={handleMoveSessionToHistorial}>{t('SolvesPage.dialogs.confirm')}</Button>
+          </div>
+        </DialogFooter>
       </DialogContent>
     </>
   )
