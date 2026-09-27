@@ -34,9 +34,9 @@ export default function SyncProgress() {
           onClick={handleOpen}
           aria-label={tooltip}
           data-testid="header-sync-progress"
-          className="flex size-9 cursor-pointer items-center justify-center rounded-lg transition-colors hover:bg-muted/60 sm:size-11"
+          className="btn-notch btn-notch-alt btn-notch-border relative isolate flex size-9 shrink-0 cursor-pointer items-center justify-center outline-none focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-ring pointer-coarse:size-10"
         >
-          <svg width="32" height="32" viewBox="0 0 36 36" className="shrink-0 text-muted-foreground" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 36 36" className="shrink-0 text-muted-foreground" aria-hidden="true">
             <circle cx="18" cy="18" r={RADIUS} fill="none" className="stroke-muted" strokeWidth="3" />
             <circle
               cx="18"
