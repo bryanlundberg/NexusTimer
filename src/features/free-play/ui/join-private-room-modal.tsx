@@ -66,10 +66,9 @@ export default function JoinPrivateRoomModal({ room }: JoinPrivateRoomModalProps
           <Lock className="size-4 text-muted-foreground" />
           {t('title')}
         </DialogTitle>
-        <DialogDescription>
+        <DialogDescription className="flex flex-col gap-1">
           <span className="font-medium text-foreground">{room.name}</span>
-          {' — '}
-          {t('description')}
+          <span>{t('description')}</span>
         </DialogDescription>
       </DialogHeader>
 
@@ -82,17 +81,33 @@ export default function JoinPrivateRoomModal({ room }: JoinPrivateRoomModalProps
             onChange={(e) => handleCodeChange(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder={t('placeholder')}
-            className={`h-12 font-mono text-lg text-center tracking-[0.3em] uppercase border-muted-foreground/20 focus-visible:ring-primary/30 ${error ? 'border-destructive focus-visible:ring-destructive/30' : ''}`}
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="characters"
+            spellCheck={false}
+            enterKeyHint="go"
+            aria-label={t('title')}
+            aria-invalid={error}
+            aria-describedby={error ? 'room-code-error' : undefined}
+            className="h-12 text-center font-mono text-lg tracking-[0.3em] uppercase"
             maxLength={6}
           />
-          {error && <p className="text-xs text-destructive text-center">{t('wrong-code')}</p>}
+          {error && (
+            <p
+              id="room-code-error"
+              role="alert"
+              className="text-center text-[13px] font-medium text-destructive sm:text-xs"
+            >
+              {t('wrong-code')}
+            </p>
+          )}
         </div>
 
         <div className="flex gap-2">
-          <Button variant="outline" className="flex-1" onClick={close} disabled={isJoining}>
+          <Button variant="outline" className="flex-1 pointer-coarse:h-11" onClick={close} disabled={isJoining}>
             {t('cancel')}
           </Button>
-          <Button className="flex-1" onClick={handleJoin} disabled={code.length !== 6 || isJoining}>
+          <Button className="flex-1 pointer-coarse:h-11" onClick={handleJoin} disabled={code.length !== 6 || isJoining}>
             {isJoining ? t('joining') : t('join')}
           </Button>
         </div>
