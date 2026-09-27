@@ -9,6 +9,7 @@ import { createSignUpSchema, type SignUpValues } from '@/features/authentication
 import { useAuthSchemaMessages } from '@/features/authentication/model/use-auth-schema-messages'
 import { useCredentialsRegister } from '@/features/authentication/model/hooks/use-credentials-register'
 import AuthField from '@/features/authentication/ui/AuthField'
+import AuthFieldGroup from '@/features/authentication/ui/AuthFieldGroup'
 
 interface Props {
   onSuccess: (values: SignUpValues) => void
@@ -43,36 +44,38 @@ export default function SignUpDetailsStep({ onSuccess }: Props) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-      <AuthField
-        id="name"
-        label={t('name')}
-        placeholder={t('name-placeholder')}
-        autoComplete="name"
-        error={errors.name?.message}
-        {...register('name')}
-      />
-      <AuthField
-        id="email"
-        label={t('email')}
-        type="email"
-        placeholder="you@example.com"
-        autoComplete="email"
-        error={errors.email?.message}
-        {...register('email')}
-      />
-      <AuthField
-        id="password"
-        label={t('password')}
-        type="password"
-        placeholder="••••••••"
-        autoComplete="new-password"
-        error={errors.password?.message}
-        {...register('password')}
-      />
+      <AuthFieldGroup>
+        <AuthField
+          id="name"
+          label={t('name')}
+          placeholder={t('name-placeholder')}
+          autoComplete="name"
+          error={errors.name?.message}
+          {...register('name')}
+        />
+        <AuthField
+          id="email"
+          label={t('email')}
+          type="email"
+          placeholder="you@example.com"
+          autoComplete="email"
+          error={errors.email?.message}
+          {...register('email')}
+        />
+        <AuthField
+          id="password"
+          label={t('password')}
+          type="password"
+          placeholder="••••••••"
+          autoComplete="new-password"
+          error={errors.password?.message}
+          {...register('password')}
+        />
+      </AuthFieldGroup>
 
       {formError && <p className="text-sm text-destructive">{formError}</p>}
 
-      <Button type="submit" disabled={isLoading} className="w-full h-10 font-semibold tracking-wide">
+      <Button type="submit" disabled={isLoading} className="w-full h-11 font-semibold tracking-wide">
         {isLoading ? t('loading') : t('create-account')}
       </Button>
     </form>
