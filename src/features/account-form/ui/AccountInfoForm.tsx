@@ -24,15 +24,14 @@ import { MethodSelect } from '@/features/account-form/ui/MethodSelect'
 import { ProfileLinksField } from '@/features/account-form/ui/ProfileLinksField'
 import { FieldClearButton } from '@/features/account-form/ui/FieldClearButton'
 import { FieldClearSlot } from '@/features/account-form/ui/FieldClearSlot'
-import { FieldLabel } from '@/features/account-form/ui/FieldLabel'
-import { FormSection } from '@/features/account-form/ui/FormSection'
-import { FormSectionNav } from '@/features/account-form/ui/FormSectionNav'
+import { useScrollToHash } from '@/features/account-form/model/useScrollToHash'
 import { FormSaveActions } from '@/features/account-form/ui/FormSaveActions'
 import { MarsIcon } from '@/features/account-form/ui/MarsIcon'
 import { VenusIcon } from '@/features/account-form/ui/VenusIcon'
 import { VenusAndMarsIcon } from '@/features/account-form/ui/VenusAndMarsIcon'
 import { normalizeProfileLink } from '@/shared/lib/profile-links'
-import { AlignLeft, Target, User } from 'lucide-react'
+import { MenuSection } from '@/features/settings/ui/MenuSection'
+import { MenuFieldRow } from '@/features/settings/ui/MenuFieldRow'
 
 const SECTION_IDS = PROFILE_SECTION_IDS
 
@@ -123,182 +122,159 @@ export default function AccountInfoForm({ user, mutate, onPreviewChange }: Accou
 
   const submit = handleSubmit(handleSaveChanges)
 
-  const sections = React.useMemo(
-    () => [
-      { id: SECTION_IDS.identity, label: t('identity-section') },
-      { id: SECTION_IDS.speedcubing, label: t('cubing-section') },
-      { id: SECTION_IDS.links, label: tLinks('label') }
-    ],
-    [t, tLinks]
-  )
+  useScrollToHash(Object.values(SECTION_IDS))
 
   const nameErrorMessage = errors.name?.message as React.ReactNode | undefined
   const clearLabel = t('clear')
 
   return (
-    <form onSubmit={submit} className="space-y-6">
-      <FormSectionNav
-        sections={sections}
-        label={t('sections-nav')}
-        actions={
-          <FormSaveActions
-            isDirty={isDirty}
-            isValid={isValid}
-            isSubmitting={isSubmitting}
-            onDiscard={() => reset(savedValues.current)}
-            onSave={() => submit()}
-          />
-        }
-      />
+    <form onSubmit={submit} className="space-y-8">
+      <MenuSection
+        id={SECTION_IDS.identity}
+        title={t('identity-section')}
+        footer={t('personal-info-description')}
+        className="scroll-mt-20"
+      >
+        <LimitedField
+          id="account-name"
+          label={t('name')}
+          control={control}
+          register={register}
+          name="name"
+          max={NAME_MAX_LENGTH}
+          error={nameErrorMessage}
+        />
 
-      <FormSection id={SECTION_IDS.identity} title={t('identity-section')}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
-          <div className="sm:col-span-2">
-            <FieldLabel htmlFor="account-name">{t('name')}</FieldLabel>
-            <LimitedField
-              id="account-name"
-              control={control}
-              register={register}
-              name="name"
-              max={NAME_MAX_LENGTH}
-              icon={User}
-            />
-            {nameErrorMessage && <p className="mt-1 text-destructive text-xs font-medium">{nameErrorMessage}</p>}
-          </div>
-
-          <div>
-            <FieldLabel htmlFor="account-pronoun">{t('pronoun')}</FieldLabel>
-            <Controller
-              control={control}
-              name="pronoun"
-              render={({ field }) => (
-                <div className="relative">
-                  <Select value={field.value ?? ''} onValueChange={field.onChange}>
-                    <SelectTrigger id="account-pronoun" className="w-full h-10">
-                      <span className="flex flex-1 items-center gap-2 min-w-0">
-                        {!field.value && <VenusAndMarsIcon className="size-4 shrink-0 text-muted-foreground" />}
-                        <SelectValue placeholder={t('select-pronoun')} />
+        <MenuFieldRow label={t('pronoun')} htmlFor="account-pronoun">
+          <Controller
+            control={control}
+            name="pronoun"
+            render={({ field }) => (
+              <div className="relative">
+                <Select value={field.value ?? ''} onValueChange={field.onChange}>
+                  <SelectTrigger id="account-pronoun" className="h-11 w-full sm:h-10">
+                    <span className="flex flex-1 items-center gap-2 min-w-0">
+                      {!field.value && <VenusAndMarsIcon className="size-4 shrink-0 text-muted-foreground" />}
+                      <SelectValue placeholder={t('select-pronoun')} />
+                    </span>
+                    {field.value && <FieldClearSlot />}
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value={'He'}>
+                      <span className="flex items-center gap-2">
+                        <MarsIcon className="size-4 text-muted-foreground" />
+                        {t('pronouns.he')}
                       </span>
-                      {field.value && <FieldClearSlot />}
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value={'He'}>
-                        <span className="flex items-center gap-2">
-                          <MarsIcon className="size-4 text-muted-foreground" />
-                          {t('pronouns.he')}
-                        </span>
-                      </SelectItem>
-                      <SelectItem value={'She'}>
-                        <span className="flex items-center gap-2">
-                          <VenusIcon className="size-4 text-muted-foreground" />
-                          {t('pronouns.she')}
-                        </span>
-                      </SelectItem>
-                      <SelectItem value={'Other'}>
-                        <span className="flex items-center gap-2">
-                          <VenusAndMarsIcon className="size-4 text-muted-foreground" />
-                          {t('pronouns.other')}
-                        </span>
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                  {field.value && <FieldClearButton label={clearLabel} onClear={() => field.onChange('')} />}
-                </div>
-              )}
-            />
-          </div>
+                    </SelectItem>
+                    <SelectItem value={'She'}>
+                      <span className="flex items-center gap-2">
+                        <VenusIcon className="size-4 text-muted-foreground" />
+                        {t('pronouns.she')}
+                      </span>
+                    </SelectItem>
+                    <SelectItem value={'Other'}>
+                      <span className="flex items-center gap-2">
+                        <VenusAndMarsIcon className="size-4 text-muted-foreground" />
+                        {t('pronouns.other')}
+                      </span>
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+                {field.value && <FieldClearButton label={clearLabel} onClear={() => field.onChange('')} />}
+              </div>
+            )}
+          />
+        </MenuFieldRow>
 
-          <div>
-            <FieldLabel htmlFor="account-country">{t('country')}</FieldLabel>
-            <Controller
-              control={control}
-              name="country"
-              render={({ field }) => (
-                <div className="relative">
-                  <CountryCombobox
-                    id="account-country"
-                    value={field.value || null}
-                    onChange={(code) => field.onChange(code || '')}
-                    placeholder={t('select-country')}
-                    searchPlaceholder={t('search-country')}
-                    emptyText={t('no-country-found')}
-                    className="w-full h-10"
-                    reserveClearSlot={!!field.value}
-                  />
-                  {field.value && <FieldClearButton label={clearLabel} onClear={() => field.onChange('')} />}
-                </div>
-              )}
-            />
-          </div>
-
-          <div className="sm:col-span-2">
-            <FieldLabel htmlFor="account-bio">{t('bio')}</FieldLabel>
-            <LimitedField
-              id="account-bio"
-              control={control}
-              register={register}
-              name="bio"
-              max={BIO_MAX_LENGTH}
-              multiline
-              placeholder={t('bio-placeholder')}
-              icon={AlignLeft}
-            />
-          </div>
-        </div>
-      </FormSection>
-
-      <FormSection id={SECTION_IDS.speedcubing} title={t('cubing-section')}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
-          <div>
-            <FieldLabel htmlFor="account-goal">{t('goal')}</FieldLabel>
-            <LimitedField
-              id="account-goal"
-              control={control}
-              register={register}
-              name="goal"
-              max={GOAL_MAX_LENGTH}
-              placeholder={t('goal-placeholder')}
-              icon={Target}
-            />
-          </div>
-
-          <div>
-            <FieldLabel htmlFor="account-method">{tMethod('label')}</FieldLabel>
-            <Controller
-              control={control}
-              name="method"
-              render={({ field }) => (
-                <MethodSelect
-                  id="account-method"
-                  value={field.value}
-                  onChange={field.onChange}
-                  clearLabel={clearLabel}
+        <MenuFieldRow label={t('country')} htmlFor="account-country">
+          <Controller
+            control={control}
+            name="country"
+            render={({ field }) => (
+              <div className="relative">
+                <CountryCombobox
+                  id="account-country"
+                  value={field.value || null}
+                  onChange={(code) => field.onChange(code || '')}
+                  placeholder={t('select-country')}
+                  searchPlaceholder={t('search-country')}
+                  emptyText={t('no-country-found')}
+                  className="h-11 w-full sm:h-10"
+                  reserveClearSlot={!!field.value}
                 />
-              )}
-            />
-          </div>
+                {field.value && <FieldClearButton label={clearLabel} onClear={() => field.onChange('')} />}
+              </div>
+            )}
+          />
+        </MenuFieldRow>
 
-          <div className="sm:col-span-2">
-            <FieldLabel htmlFor="account-main-colors">{tColors('label')}</FieldLabel>
-            <Controller
-              control={control}
-              name="mainColors"
-              render={({ field }) => (
-                <MainColorsSelect
-                  id="account-main-colors"
-                  value={field.value}
-                  onChange={field.onChange}
-                  clearLabel={clearLabel}
-                />
-              )}
-            />
-          </div>
-        </div>
-      </FormSection>
+        <LimitedField
+          id="account-bio"
+          label={t('bio')}
+          control={control}
+          register={register}
+          name="bio"
+          max={BIO_MAX_LENGTH}
+          multiline
+          placeholder={t('bio-placeholder')}
+        />
+      </MenuSection>
 
-      <FormSection id={SECTION_IDS.links} title={tLinks('label')} description={tLinks('description')}>
+      <MenuSection id={SECTION_IDS.speedcubing} title={t('cubing-section')} className="scroll-mt-20">
+        <LimitedField
+          id="account-goal"
+          label={t('goal')}
+          control={control}
+          register={register}
+          name="goal"
+          max={GOAL_MAX_LENGTH}
+          placeholder={t('goal-placeholder')}
+        />
+
+        <MenuFieldRow label={tMethod('label')} htmlFor="account-method">
+          <Controller
+            control={control}
+            name="method"
+            render={({ field }) => (
+              <MethodSelect id="account-method" value={field.value} onChange={field.onChange} clearLabel={clearLabel} />
+            )}
+          />
+        </MenuFieldRow>
+
+        <MenuFieldRow label={tColors('label')} htmlFor="account-main-colors">
+          <Controller
+            control={control}
+            name="mainColors"
+            render={({ field }) => (
+              <MainColorsSelect
+                id="account-main-colors"
+                value={field.value}
+                onChange={field.onChange}
+                clearLabel={clearLabel}
+              />
+            )}
+          />
+        </MenuFieldRow>
+      </MenuSection>
+
+      <MenuSection
+        id={SECTION_IDS.links}
+        title={tLinks('label')}
+        footer={tLinks('description')}
+        className="scroll-mt-20"
+      >
         <ProfileLinksField control={control} setValue={setValue} />
-      </FormSection>
+      </MenuSection>
+
+      <div className="sticky bottom-4 z-40 drop-shadow-lg">
+        <FormSaveActions
+          isDirty={isDirty}
+          isValid={isValid}
+          isSubmitting={isSubmitting}
+          onDiscard={() => reset(savedValues.current)}
+          onSave={() => submit()}
+        />
+      </div>
     </form>
   )
 }
