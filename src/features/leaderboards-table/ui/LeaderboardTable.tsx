@@ -9,7 +9,8 @@ interface LeaderboardTableProps {
   solves: SolveServer[]
 }
 
-export const GRID = 'grid-cols-[2.5rem_minmax(10rem,1fr)_6rem_4rem_4rem_6rem_8rem]'
+export const GRID =
+  'grid-cols-[2rem_minmax(0,1fr)_auto] sm:grid-cols-[2.5rem_minmax(10rem,1fr)_6rem_4rem_4rem_6rem_8rem]'
 
 const STAGGER_BUDGET = 0.5
 const STAGGER_STEP = 0.03
@@ -25,15 +26,15 @@ export default function LeaderboardTable({ solves }: LeaderboardTableProps) {
 
   return (
     <div className="overflow-x-auto max-w-4xl mx-auto border border-border/60 bg-card/40">
-      <div className="min-w-160">
+      <div className="sm:min-w-160">
         <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60 bg-muted/30`}>
           <span className={`${headerCell} text-right`}>#</span>
           <span className={headerCell}>{t('user')}</span>
-          <span className={headerCell}>{t('category')}</span>
-          <span className={headerCell}>{t('tps')}</span>
-          <span className={headerCell}>{t('moves')}</span>
-          <span className={headerCell}>{t('time')}</span>
-          <span className={headerCell}>{t('date')}</span>
+          <span className={`${headerCell} hidden sm:block`}>{t('category')}</span>
+          <span className={`${headerCell} hidden sm:block`}>{t('tps')}</span>
+          <span className={`${headerCell} hidden sm:block`}>{t('moves')}</span>
+          <span className={`${headerCell} justify-self-end sm:justify-self-auto`}>{t('time')}</span>
+          <span className={`${headerCell} hidden sm:block`}>{t('date')}</span>
         </div>
 
         <motion.div
