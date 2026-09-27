@@ -2,26 +2,9 @@
 
 import * as React from 'react'
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react'
-import { motion } from 'motion/react'
+import { motion, useReducedMotion } from 'motion/react'
 import { useActiveIndicator } from '@/widgets/sidebar/model/useActiveIndicator'
-import { ChevronDown, MonitorDown, PlusIcon } from 'lucide-react'
-import {
-  TimerNavIcon,
-  SolvesNavIcon,
-  StatsNavIcon,
-  CubeNavIcon,
-  TransferNavIcon,
-  SettingsNavIcon,
-  TrainerNavIcon,
-  AlgorithmsNavIcon,
-  PeopleNavIcon,
-  FriendsNavIcon,
-  MessagesNavIcon,
-  LeaderboardsNavIcon,
-  FreePlayNavIcon
-} from '@/components/ui/nav-icons'
-import { useCubeActions } from '@/features/manage-cubes/model/useCubeActions'
-
+import { ChevronDown, MonitorDown } from 'lucide-react'
 import {
   Sidebar,
   SidebarContent,
@@ -39,27 +22,14 @@ import { Link, usePathname } from '@/shared/config/i18n/navigation'
 import { useTranslations } from 'next-intl'
 import { RotatingText } from '@/components/ui/shadcn-io/rotating-text'
 import { NavMain } from '@/widgets/sidebar/ui/nav-main'
-import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 import { SidebarBgEffect } from '@/widgets/sidebar/ui/sidebar-bg-effect'
 import { SidebarActivity } from '@/widgets/sidebar/ui/sidebar-activity'
 import { SmartCubeIndicator } from '@/features/smart-cube/ui/SmartCubeIndicator'
+import { SmartCubeIndicatorCompact } from '@/features/smart-cube/ui/SmartCubeIndicatorCompact'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
 import { INDICATOR_SPRING } from '@/shared/lib/motion'
-import { formatBadgeCount } from '@/shared/lib/badge-count'
-import { useFriends } from '@/entities/friendship/model/useFriends'
-import { useInbox } from '@/entities/chat/model/useInbox'
-
-const SECTION_ACCENT = {
-  platform: 'var(--cube-blue)',
-  community: 'var(--cube-orange)',
-  multiplayer: 'var(--cube-red)',
-  training: 'var(--cube-green)'
-} as const
-
-type SectionKey = keyof typeof SECTION_ACCENT
-
-const SECTION_KEYS = Object.keys(SECTION_ACCENT) as SectionKey[]
+import { SECTION_ACCENT, SECTION_KEYS, useSidebarNav, type SectionKey } from '@/widgets/sidebar/model/useSidebarNav'
 
 const subscribeNoop = () => () => {}
 const getIsMac = () => /Mac|iPhone|iPad/.test(navigator.userAgent)
@@ -70,16 +40,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const isMac = useSyncExternalStore(subscribeNoop, getIsMac, getIsMacServer)
   const t = useTranslations('Index')
   const { isInstallable, install } = usePwaInstall()
-  const { handleCreate } = useCubeActions()
   const pathname = usePathname() ?? ''
   const isSolving = useTimerStore((store) => store.isSolving)
   const isFocusMode = useFocusModeStore((store) => store.isFocusMode)
   const [hash, setHash] = useState<string>('')
   const { menuRef, indicator } = useActiveIndicator<HTMLDivElement>([pathname, hash, state])
-  const { data: friends } = useFriends()
-  const incomingRequests = friends?.incoming?.length ?? 0
-  const { data: inbox } = useInbox()
-  const unreadMessages = inbox?.totalUnread ?? 0
+  const sections = useSidebarNav()
+  const reduceMotion = useReducedMotion()
 
   const scrollRef = useRef<HTMLDivElement>(null)
   const [showScrollHint, setShowScrollHint] = useState(false)
@@ -106,107 +73,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     }
   }, [menuRef])
 
-  const data = useMemo(
-    () => ({
-      platform: [
-        {
-          title: t('NavMain.timer'),
-          url: '/app',
-          icon: TimerNavIcon
-        },
-        {
-          title: t('NavMain.solves'),
-          url: '/solves',
-          icon: SolvesNavIcon
-        },
-        {
-          title: t('NavMain.statistics'),
-          url: '/stats',
-          icon: StatsNavIcon
-        },
-        {
-          title: t('NavMain.cubes'),
-          url: '/cubes',
-          icon: CubeNavIcon,
-          action: {
-            icon: PlusIcon,
-            label: t('CubesPage.new-collection'),
-            onClick: handleCreate
-          }
-        },
-        {
-          title: t('NavMain.transfer'),
-          url: '/transfer-solves',
-          icon: TransferNavIcon
-        },
-        {
-          title: t('NavMain.settings'),
-          url: '/options',
-          icon: SettingsNavIcon
-        }
-      ],
-      training: [
-        {
-          title: t('NavMain.trainer'),
-          url: '/algorithms/trainer',
-          icon: TrainerNavIcon
-        },
-        {
-          title: t('AlgorithmsPage.title'),
-          url: '/algorithms',
-          icon: AlgorithmsNavIcon,
-          isActive: true,
-          items: [
-            ...ALGORITHM_SETS.map((set) => ({
-              title: set.title.toUpperCase(),
-              url: `/algorithms/${set.slug.toLowerCase()}`
-            }))
-          ]
-        }
-      ],
-      community: [
-        {
-          title: t('NavMain.people'),
-          url: '/people',
-          icon: PeopleNavIcon
-        },
-        {
-          title: t('NavMain.friends'),
-          url: '/friends',
-          icon: FriendsNavIcon,
-          badge: incomingRequests > 0 ? formatBadgeCount(incomingRequests) : undefined
-        },
-        {
-          title: t('NavMain.messages'),
-          url: '/messages',
-          icon: MessagesNavIcon,
-          badge: unreadMessages > 0 ? formatBadgeCount(unreadMessages) : undefined
-        },
-        {
-          title: t('NavMain.leaderboards'),
-          url: '/leaderboards',
-          icon: LeaderboardsNavIcon
-        }
-      ],
-      multiplayer: [
-        {
-          title: t('NavMain.free-play'),
-          url: '/free-play',
-          icon: FreePlayNavIcon
-        }
-      ]
-    }),
-    [t, handleCreate, incomingRequests, unreadMessages]
-  )
-
   const activeSection = useMemo<SectionKey | null>(() => {
     const matches = (items: { url: string; items?: { url: string }[] }[]) =>
       items.some((it) => {
         const hit = (url: string) => !!url && (pathname === url || (url !== '/' && pathname.startsWith(url + '/')))
         return hit(it.url) || (it.items?.some((s) => hit(s.url.split('#')[0])) ?? false)
       })
-    return SECTION_KEYS.find((key) => matches(data[key])) ?? null
-  }, [data, pathname])
+    return sections.find((section) => matches(section.items))?.key ?? null
+  }, [sections, pathname])
   const activeAccent = SECTION_ACCENT[activeSection ?? 'platform']
 
   if (isFocusMode) return null
@@ -255,7 +129,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                       t('sidebar-rotating-text.text20')
                     ]}
                     duration={10000}
-                    paused={isSolving}
+                    paused={isSolving || !!reduceMotion}
                     transition={{ duration: 0.2, ease: 'easeInOut' }}
                     className={'text-xs text-muted-foreground p-0'}
                   />
@@ -305,10 +179,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               />
             </motion.div>
           )}
-          <NavMain items={data.platform} label={t('NavMain.platform')} accent={SECTION_ACCENT.platform} />
-          <NavMain items={data.community} label={t('NavMain.community')} accent={SECTION_ACCENT.community} />
-          <NavMain items={data.multiplayer} label={t('NavMain.multiplayer')} accent={SECTION_ACCENT.multiplayer} />
-          <NavMain items={data.training} label={t('NavMain.training')} accent={SECTION_ACCENT.training} />
+          {sections.map((section) => (
+            <NavMain key={section.key} items={section.items} label={section.label} accent={section.accent} />
+          ))}
         </div>
 
         <div className="pointer-events-none sticky bottom-0 z-10 -mt-7 flex h-7 items-end justify-center group-data-[collapsible=icon]:hidden">
@@ -321,56 +194,61 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </motion.span>
         </div>
       </SidebarContent>
-      <SidebarFooter className="relative group-data-[collapsible=icon]:hidden">
-        <SmartCubeIndicator />
-        <SidebarActivity />
-        {isInstallable && (
-          <button
-            type="button"
-            onClick={install}
-            className="notch-bl-tr [--nblt:9px] group flex items-center gap-2 border bg-background/60 px-3 py-2 text-xs font-medium cursor-pointer transition-colors hover:border-primary hover:bg-accent"
-          >
-            <MonitorDown className="size-4 text-primary transition-transform group-hover:translate-y-0.5" />
-            <span>{t('NavMain.install-app')}</span>
-          </button>
-        )}
-        <div className="flex items-center justify-between gap-2 px-1">
-          <div className="flex items-center gap-1">
-            <a
-              href="https://github.com/bryanlundberg/NexusTimer"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              className="chip-notch chip-notch-sm flex size-7 items-center justify-center text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-foreground"
-            >
-              <GithubIcon size={16} />
-            </a>
-            <a
-              href="https://discord.gg/eCgTKcavec"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Discord"
-              className="chip-notch chip-notch-sm flex size-7 items-center justify-center text-muted-foreground transition-colors hover:bg-[#5865F2]/12 hover:text-[#5865F2]"
-            >
-              <DiscordIcon size={16} />
-            </a>
-          </div>
-          {!isMobile && (
+      <SidebarFooter className="relative">
+        <div className="hidden group-data-[collapsible=icon]:block">
+          <SmartCubeIndicatorCompact />
+        </div>
+        <div className="flex flex-col gap-2 group-data-[collapsible=icon]:hidden">
+          <SmartCubeIndicator />
+          <SidebarActivity />
+          {isInstallable && (
             <button
               type="button"
-              onClick={toggleSidebar}
-              aria-label="Toggle Sidebar"
-              aria-keyshortcuts={isMac ? 'Meta+B' : 'Control+B'}
-              className="flex cursor-pointer items-center gap-1 text-muted-foreground transition-colors hover:text-foreground"
+              onClick={install}
+              className="notch-bl-tr [--nblt:9px] group flex items-center gap-2 border bg-background/60 px-3 py-2 text-xs font-medium cursor-pointer transition-colors hover:border-primary hover:bg-accent"
             >
-              <kbd className="flex h-5 min-w-5 items-center justify-center rounded-[3px] border border-sidebar-border bg-background/50 px-1 font-mono text-[10px] leading-none">
-                {isMac ? '⌘' : 'Ctrl'}
-              </kbd>
-              <kbd className="flex h-5 min-w-5 items-center justify-center rounded-[3px] border border-sidebar-border bg-background/50 px-1 font-mono text-[10px] leading-none">
-                B
-              </kbd>
+              <MonitorDown className="size-4 text-primary transition-transform group-hover:translate-y-0.5" />
+              <span>{t('NavMain.install-app')}</span>
             </button>
           )}
+          <div className="flex items-center justify-between gap-2 px-1">
+            <div className="flex items-center gap-1">
+              <a
+                href="https://github.com/bryanlundberg/NexusTimer"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="chip-notch chip-notch-sm flex size-7 items-center justify-center text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-foreground"
+              >
+                <GithubIcon size={16} />
+              </a>
+              <a
+                href="https://discord.gg/eCgTKcavec"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Discord"
+                className="chip-notch chip-notch-sm flex size-7 items-center justify-center text-muted-foreground transition-colors hover:bg-[#5865F2]/12 hover:text-[#5865F2]"
+              >
+                <DiscordIcon size={16} />
+              </a>
+            </div>
+            {!isMobile && (
+              <button
+                type="button"
+                onClick={toggleSidebar}
+                aria-label={t('NavMain.toggle-sidebar')}
+                aria-keyshortcuts={isMac ? 'Meta+B' : 'Control+B'}
+                className="flex cursor-pointer items-center gap-1 text-muted-foreground transition-colors hover:text-foreground"
+              >
+                <kbd className="flex h-5 min-w-5 items-center justify-center rounded-[3px] border border-sidebar-border bg-background/50 px-1 font-mono text-[10px] leading-none">
+                  {isMac ? '⌘' : 'Ctrl'}
+                </kbd>
+                <kbd className="flex h-5 min-w-5 items-center justify-center rounded-[3px] border border-sidebar-border bg-background/50 px-1 font-mono text-[10px] leading-none">
+                  B
+                </kbd>
+              </button>
+            )}
+          </div>
         </div>
       </SidebarFooter>
     </Sidebar>
