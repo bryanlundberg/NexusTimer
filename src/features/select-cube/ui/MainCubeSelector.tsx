@@ -41,7 +41,7 @@ export default function MainCubeSelector() {
       <button
         type="button"
         className={cn(
-          "field-notch field-notch-alt field-notch-hover [--f-border:var(--border)] cursor-pointer hover:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground flex h-9 w-full items-center justify-between gap-2 px-3 py-2 text-left text-sm whitespace-nowrap transition-[color] outline-none disabled:cursor-not-allowed disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+          "field-notch field-notch-alt field-notch-hover cursor-pointer hover:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground flex h-9 w-full items-center justify-between pointer-coarse:h-10 gap-2 px-3 py-2 text-left text-sm whitespace-nowrap transition-[color] outline-none disabled:cursor-not-allowed disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
           !selectedCube && 'text-muted-foreground'
         )}
         onClick={handleOpenSelector}
