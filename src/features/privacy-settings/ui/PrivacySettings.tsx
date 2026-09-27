@@ -30,8 +30,13 @@ export function PrivacySettings() {
   }
 
   const toggle = (key: ToggleKey) => (
-    <MenuRow label={t(`${key}.label`)} description={t(`${key}.description`)}>
-      <Switch checked={!!privacy?.[key]} disabled={!privacy} onCheckedChange={(checked) => save({ [key]: checked })} />
+    <MenuRow label={t(`${key}.label`)} description={t(`${key}.description`)} htmlFor={`privacy-${key}`}>
+      <Switch
+        id={`privacy-${key}`}
+        checked={!!privacy?.[key]}
+        disabled={!privacy}
+        onCheckedChange={(checked) => save({ [key]: checked })}
+      />
     </MenuRow>
   )
 
