@@ -60,7 +60,7 @@
     },
     "Settings-descriptions": {
       "inspection": "Bật thời gian quan sát WCA trước khi bắt đầu giải",
-      "inspection-time": "Đặt thời lượng quan sát tính bằng mili giây (5000-60000ms)",
+      "inspection-time": "Đặt thời lượng quan sát",
       "start-cue": "Hiển thị tín hiệu trực quan khi đồng hồ sẵn sàng bắt đầu",
       "hold-to-start": "Yêu cầu giữ phím cách trước khi bắt đầu đồng hồ",
       "hold-to-start-time": "Đặt thời gian giữ phím cách trước khi bắt đầu (300-1000ms)",
@@ -424,7 +424,9 @@
       "search": "Tìm kiếm...",
       "menu": "Menu",
       "fullscreen": "Toàn màn hình",
-      "save": "Lưu"
+      "save": "Lưu",
+      "increase": "Tăng",
+      "decrease": "Giảm"
     },
     "pagination": {
       "previous": "Trước",

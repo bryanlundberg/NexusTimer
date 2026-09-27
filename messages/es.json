@@ -379,7 +379,9 @@
       "search": "Buscar...",
       "menu": "Menú",
       "fullscreen": "Pantalla completa",
-      "save": "Guardar"
+      "save": "Guardar",
+      "increase": "Aumentar",
+      "decrease": "Disminuir"
     },
     "pagination": {
       "previous": "Anterior",
@@ -773,7 +775,7 @@
       "hold-to-start": "Requiere mantener pulsado antes de comenzar.",
       "hold-to-start-time": "Establece cuánto tiempo debes mantener pulsado (300-1000 ms).",
       "inspection": "Habilita el tiempo de inspección oficial (WCA).",
-      "inspection-time": "Establece la duración de la inspección (5-60 segundos).",
+      "inspection-time": "Configura la duración del tiempo de inspección.",
       "language-description": "Cambia el idioma de la aplicación.",
       "new-personal-best-sound": "Reproduce un sonido al lograr un nuevo récord personal (PB).",
       "quick-action-buttons": "Muestra botones para acciones rápidas como Borrar y DNF.",

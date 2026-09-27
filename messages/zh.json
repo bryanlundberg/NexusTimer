@@ -57,7 +57,7 @@
     },
     "Settings-descriptions": {
       "inspection": "在还原开始前启用 WCA 观察时间",
-      "inspection-time": "设置观察时间的长度（以毫秒为单位，5000-60000ms）",
+      "inspection-time": "设置观察时间的长度",
       "start-cue": "当计时器准备好启动时显示视觉提示",
       "hold-to-start": "启动计时器前需要按住空格键",
       "hold-to-start-time": "设置启动前按住空格键的时间（300-1000ms）",
@@ -421,7 +421,9 @@
       "search": "搜索...",
       "menu": "菜单",
       "fullscreen": "全屏",
-      "save": "保存"
+      "save": "保存",
+      "increase": "增加",
+      "decrease": "减少"
     },
     "pagination": {
       "previous": "上一页",

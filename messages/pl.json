@@ -60,7 +60,7 @@
     },
     "Settings-descriptions": {
       "inspection": "Włącz czas inspekcji WCA przed rozpoczęciem ułożenia",
-      "inspection-time": "Ustaw długość czasu inspekcji w milisekundach (5000-60000ms)",
+      "inspection-time": "Ustaw długość czasu inspekcji",
       "start-cue": "Pokaż wizualny sygnał, gdy stoper jest gotowy do startu",
       "hold-to-start": "Wymagaj przytrzymania spacji przed uruchomieniem stopera",
       "hold-to-start-time": "Ustaw, jak długo trzymać spację przed startem (300-1000ms)",
@@ -424,7 +424,9 @@
       "search": "Szukaj...",
       "menu": "Menu",
       "fullscreen": "Pełny ekran",
-      "save": "Zapisz"
+      "save": "Zapisz",
+      "increase": "Zwiększ",
+      "decrease": "Zmniejsz"
     },
     "pagination": {
       "previous": "Poprzednia",

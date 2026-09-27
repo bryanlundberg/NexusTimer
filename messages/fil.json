@@ -60,7 +60,7 @@
     },
     "Settings-descriptions": {
       "inspection": "I-enable ang WCA inspection time bago simulan ang solve",
-      "inspection-time": "Itakda ang tagal ng inspection time sa milliseconds (5000-60000ms)",
+      "inspection-time": "Itakda ang tagal ng inspection time",
       "start-cue": "Magpakita ng visual cue kapag handa nang magsimula ang timer",
       "hold-to-start": "Kailanganing pindutin nang matagal ang spacebar bago simulan ang timer",
       "hold-to-start-time": "Itakda kung gaano katagal pindutin ang spacebar bago magsimula (300-1000ms)",
@@ -424,7 +424,9 @@
       "search": "Maghanap...",
       "menu": "Menu",
       "fullscreen": "Fullscreen",
-      "save": "I-save"
+      "save": "I-save",
+      "increase": "Dagdagan",
+      "decrease": "Bawasan"
     },
     "pagination": {
       "previous": "Nakaraan",

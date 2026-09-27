@@ -57,7 +57,7 @@
     },
     "Settings-descriptions": {
       "inspection": "WCA-Inspektionszeit vor Beginn des Solves aktivieren",
-      "inspection-time": "Dauer der Inspektionszeit in Millisekunden festlegen (5000-60000ms)",
+      "inspection-time": "Dauer der Inspektionszeit festlegen",
       "start-cue": "Visueller Hinweis, wenn der Timer startbereit ist",
       "hold-to-start": "Leertaste gedrückt halten, um den Timer zu starten",
       "hold-to-start-time": "Dauer des Gedrückthaltens der Leertaste festlegen (300-1000ms)",
@@ -421,7 +421,9 @@
       "search": "Suchen...",
       "menu": "Menü",
       "fullscreen": "Vollbild",
-      "save": "Speichern"
+      "save": "Speichern",
+      "increase": "Erhöhen",
+      "decrease": "Verringern"
     },
     "pagination": {
       "previous": "Vorherige",

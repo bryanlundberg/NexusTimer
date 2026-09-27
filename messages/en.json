@@ -60,7 +60,7 @@
     },
     "Settings-descriptions": {
       "inspection": "Enable WCA inspection time before starting the solve",
-      "inspection-time": "Set the duration of inspection time in milliseconds (5000-60000ms)",
+      "inspection-time": "Set the duration of the inspection time",
       "start-cue": "Show a visual cue when the timer is ready to start",
       "hold-to-start": "Require holding the spacebar before starting the timer",
       "hold-to-start-time": "Set how long to hold the spacebar before starting (300-1000ms)",
@@ -424,7 +424,9 @@
       "search": "Search...",
       "menu": "Menu",
       "fullscreen": "Fullscreen",
-      "save": "Save"
+      "save": "Save",
+      "increase": "Increase",
+      "decrease": "Decrease"
     },
     "pagination": {
       "previous": "Previous",

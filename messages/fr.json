@@ -57,7 +57,7 @@
     },
     "Settings-descriptions": {
       "inspection": "Activer le temps d'inspection WCA avant de commencer la résolution",
-      "inspection-time": "Régler la durée du temps d'inspection en millisecondes (5000-60000ms)",
+      "inspection-time": "Régler la durée du temps d'inspection",
       "start-cue": "Afficher un signal visuel lorsque le chronomètre est prêt à démarrer",
       "hold-to-start": "Nécessite de maintenir la barre d'espace avant de démarrer le chronomètre",
       "hold-to-start-time": "Régler la durée du maintien de la barre d'espace avant le démarrage (300-1000ms)",
@@ -421,7 +421,9 @@
       "search": "Rechercher...",
       "menu": "Menu",
       "fullscreen": "Plein écran",
-      "save": "Enregistrer"
+      "save": "Enregistrer",
+      "increase": "Augmenter",
+      "decrease": "Diminuer"
     },
     "pagination": {
       "previous": "Précédent",

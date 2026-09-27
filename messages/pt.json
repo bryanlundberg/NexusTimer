@@ -57,7 +57,7 @@
     },
     "Settings-descriptions": {
       "inspection": "Ativar o tempo de inspeção da WCA antes de iniciar a resolução",
-      "inspection-time": "Definir a duração do tempo de inspeção em milissegundos (5000-60000ms)",
+      "inspection-time": "Definir a duração do tempo de inspeção",
       "start-cue": "Mostrar uma pista visual quando o cronômetro estiver pronto para começar",
       "hold-to-start": "Exigir segurar a barra de espaço antes de iniciar o cronômetro",
       "hold-to-start-time": "Definir por quanto tempo segurar a barra de espaço antes de começar (300-1000ms)",
@@ -421,7 +421,9 @@
       "search": "Procurar...",
       "menu": "Menu",
       "fullscreen": "Tela cheia",
-      "save": "Salvar"
+      "save": "Salvar",
+      "increase": "Aumentar",
+      "decrease": "Diminuir"
     },
     "pagination": {
       "previous": "Anterior",

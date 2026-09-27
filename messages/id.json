@@ -60,7 +60,7 @@
     },
     "Settings-descriptions": {
       "inspection": "Aktifkan waktu inspeksi WCA sebelum memulai solve",
-      "inspection-time": "Atur durasi waktu inspeksi dalam milidetik (5000-60000ms)",
+      "inspection-time": "Atur durasi waktu inspeksi",
       "start-cue": "Tampilkan isyarat visual saat timer siap untuk dimulai",
       "hold-to-start": "Haruskan menahan spasi sebelum memulai timer",
       "hold-to-start-time": "Atur berapa lama menahan spasi sebelum memulai (300-1000ms)",
@@ -424,7 +424,9 @@
       "search": "Cari...",
       "menu": "Menu",
       "fullscreen": "Layar penuh",
-      "save": "Simpan"
+      "save": "Simpan",
+      "increase": "Tambah",
+      "decrease": "Kurangi"
     },
     "pagination": {
       "previous": "Sebelumnya",

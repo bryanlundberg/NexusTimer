@@ -57,7 +57,7 @@
     },
     "Settings-descriptions": {
       "inspection": "솔빙 시작 전 WCA 미리보기 시간을 활성화합니다",
-      "inspection-time": "미리보기 시간의 길이를 설정합니다 (밀리초, 5000-60000ms)",
+      "inspection-time": "미리보기 시간의 길이를 설정합니다",
       "start-cue": "타이머가 시작될 준비가 되면 시각적 신호를 표시합니다",
       "hold-to-start": "타이머를 시작하기 위해 스페이스바를 길게 누르도록 설정합니다",
       "hold-to-start-time": "시작 전 스페이스바를 누르고 있어야 하는 시간을 설정합니다 (300-1000ms)",
@@ -421,7 +421,9 @@
       "search": "검색...",
       "menu": "메뉴",
       "fullscreen": "전체 화면",
-      "save": "저장"
+      "save": "저장",
+      "increase": "늘리기",
+      "decrease": "줄이기"
     },
     "pagination": {
       "previous": "이전",

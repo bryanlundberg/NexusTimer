@@ -57,7 +57,7 @@
     },
     "Settings-descriptions": {
       "inspection": "ソルブ開始前のWCAインスペクションタイムを有効にします",
-      "inspection-time": "インスペクションタイムの長さをミリ秒単位で設定します (5000-60000ms)",
+      "inspection-time": "インスペクションタイムの長さを設定します",
       "start-cue": "タイマーの準備ができたときに視覚的な合図を表示します",
       "hold-to-start": "タイマーを開始する前にスペースキーを長押しする必要があります",
       "hold-to-start-time": "開始前にスペースキーを押し続ける時間を設定します (300-1000ms)",
@@ -421,7 +421,9 @@
       "search": "検索...",
       "menu": "メニュー",
       "fullscreen": "全画面表示",
-      "save": "保存"
+      "save": "保存",
+      "increase": "増やす",
+      "decrease": "減らす"
     },
     "pagination": {
       "previous": "前へ",
