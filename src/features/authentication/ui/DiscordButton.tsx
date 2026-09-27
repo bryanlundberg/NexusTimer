@@ -12,7 +12,7 @@ export default function DiscordButton() {
   if (session?.user?.id) return null
 
   return (
-    <OAuthIconButton provider="discord" label={t('continue-discord')}>
+    <OAuthIconButton provider="discord" label={t('continue-discord')} brand="#5865f2">
       <Image src="/timer-logos/discord.png" alt="" width={22} height={22} />
     </OAuthIconButton>
   )
