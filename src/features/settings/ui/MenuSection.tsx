@@ -1,25 +1,37 @@
 import { cn } from '@/shared/lib/utils'
 
-interface MenuSectionProps extends React.HTMLAttributes<HTMLDivElement> {
+interface MenuSectionProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode
-  icon: React.ReactNode
   title: string
-  accent?: string
   className?: string
+  tone?: 'default' | 'destructive'
+  footer?: string
 }
 
-export function MenuSection({ children, icon, title, accent, className, ...rest }: MenuSectionProps) {
+export function MenuSection({ children, title, className, tone = 'default', footer, ...rest }: MenuSectionProps) {
   return (
     <section {...rest} className={cn('scroll-mt-16', className)}>
-      <div className="flex items-center gap-2 px-1 pb-2">
-        <span className={cn('size-2 shrink-0 rounded-[2px]', accent ?? 'bg-primary/60')} aria-hidden />
-        <div className="text-muted-foreground [&>svg]:size-4">{icon}</div>
-        <span className="font-display text-[11px] font-semibold uppercase tracking-[0.14em] text-foreground/80">
-          {title}
-        </span>
-        <span aria-hidden className="h-px min-w-4 flex-1 bg-gradient-to-r from-border to-transparent" />
+      <h2
+        className={cn(
+          'px-4 pb-2 text-[13px] font-medium',
+          tone === 'destructive' ? 'text-destructive' : 'text-muted-foreground'
+        )}
+      >
+        {title}
+      </h2>
+      <div
+        style={
+          tone === 'destructive'
+            ? ({
+                '--pn-border-color': 'color-mix(in oklab, var(--destructive) 40%, var(--border))'
+              } as React.CSSProperties)
+            : undefined
+        }
+        className="panel-notch-bl-tr [&>*+*]:relative [&>*+*]:before:pointer-events-none [&>*+*]:before:absolute [&>*+*]:before:top-0 [&>*+*]:before:right-0 [&>*+*]:before:left-4 [&>*+*]:before:h-px [&>*+*]:before:bg-border/60 [&>*+*]:before:content-['']"
+      >
+        {children}
       </div>
-      <div className="divide-y divide-border/40 border border-border/60 bg-card/40">{children}</div>
+      {footer && <p className="px-4 pt-2 text-[13px] leading-snug text-muted-foreground sm:text-xs">{footer}</p>}
     </section>
   )
 }
