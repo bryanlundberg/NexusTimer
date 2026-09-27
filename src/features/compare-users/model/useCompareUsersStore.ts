@@ -9,6 +9,7 @@ type CompareUsersProps = {
   users: UserDocument[]
   addUser: (user: UserDocument) => void
   removeUser: (userId: string) => void
+  clearUsers: () => void
 }
 
 export const useCompareUsersStore = create<CompareUsersProps>((set) => ({
@@ -29,5 +30,6 @@ export const useCompareUsersStore = create<CompareUsersProps>((set) => ({
   removeUser: (userId: string) =>
     set((state) => ({
       users: state.users.filter((u) => u._id !== userId)
-    }))
+    })),
+  clearUsers: () => set({ users: [] })
 }))
