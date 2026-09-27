@@ -1207,7 +1207,11 @@
           "when": "CP é o último passo da última camada em quatro etapas do Megaminx. Com todo o resto resolvido, estes algoritmos levam os cantos às suas posições corretas e terminam o puzzle.",
           "learn": "Reconheça como os cantos giram comparando as suas cores laterais com os centros. Comece pelos casos que movem só três cantos e depois adicione os restantes."
         }
-      }
+      },
+      "play": "Reproduzir",
+      "algorithm-label": "Algoritmo",
+      "alt": "Alt {index}",
+      "algs-unit": "algs"
     },
     "Metadata": {
       "title": "Nexus Timer - Cronômetro Profissional para Cubo de Rubik",

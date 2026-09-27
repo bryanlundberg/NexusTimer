@@ -969,9 +969,9 @@
     },
     "AlgorithmsPage": {
       "title": "Algorithms",
-      "description": "Explore a wide range of algorithm sets for various puzzles, complete with interactive 3D visualizations to enhance your learning experience.",
+      "description": "Explore algorithm sets for many puzzles, each case with an interactive 3D preview.",
       "suggestions": "If you find any errors or want to extend with more algorithms, please submit it on our GitHub.",
-      "edit-github": "Edit this algorithms on Github",
+      "edit-github": "Edit these algorithms on GitHub",
       "suggest": {
         "button": "Suggest an algorithm",
         "title": "Suggest an algorithm",
@@ -991,9 +991,9 @@
         "close": "Close",
         "error": "Something went wrong. Please try again later."
       },
-      "casual-enthusiast": "Casual Enthusiast",
-      "dedicated-learner": "Dedicated Learner",
-      "algorithm-master": "Algorithm Master",
+      "casual-enthusiast": "Casual enthusiast",
+      "dedicated-learner": "Dedicated learner",
+      "algorithm-master": "Algorithm master",
       "filters": {
         "puzzle": "Puzzle",
         "clear": "Clear filters",
@@ -1200,7 +1200,11 @@
           "when": "CP is the last step of the four-look last layer on the Megaminx. With everything else solved, these algorithms move the corners into their correct positions and finish the puzzle.",
           "learn": "Recognize how the corners cycle by comparing their side colors with the centers. Start with the cases that only move three corners, then add the remaining ones."
         }
-      }
+      },
+      "play": "Play",
+      "algorithm-label": "Algorithm",
+      "alt": "Alt {index}",
+      "algs-unit": "algs"
     },
     "TrainerPage": {
       "breadcrumb": "Trainer",

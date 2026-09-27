@@ -1210,7 +1210,11 @@
           "when": "CP adalah langkah terakhir lapisan terakhir empat tahap pada Megaminx. Dengan semua bagian lain sudah selesai, algoritma ini memindahkan sudut ke posisi yang benar dan menyelesaikan puzzle.",
           "learn": "Kenali bagaimana sudut berputar dengan membandingkan warna sampingnya dengan center. Mulailah dari kasus yang hanya memindahkan tiga sudut, lalu tambahkan sisanya."
         }
-      }
+      },
+      "play": "Putar",
+      "algorithm-label": "Algoritma",
+      "alt": "Alt {index}",
+      "algs-unit": "alg"
     },
     "TrainerPage": {
       "breadcrumb": "Pelatih",

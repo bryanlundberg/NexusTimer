@@ -1207,7 +1207,11 @@
           "when": "Le CP est la dernière étape de la dernière couche en quatre temps sur le Megaminx. Tout le reste étant résolu, ces algorithmes placent les coins dans leur position correcte et terminent le puzzle.",
           "learn": "Repérez comment les coins tournent en comparant leurs couleurs latérales avec les centres. Commencez par les cas qui ne déplacent que trois coins, puis ajoutez les autres."
         }
-      }
+      },
+      "play": "Lire",
+      "algorithm-label": "Algorithme",
+      "alt": "Alt {index}",
+      "algs-unit": "algs"
     },
     "Metadata": {
       "title": "Nexus Timer - Chronomètre Professionnel pour Rubik's Cube",

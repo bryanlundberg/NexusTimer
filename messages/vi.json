@@ -1210,7 +1210,11 @@
           "when": "CP là bước cuối cùng của tầng cuối bốn bước trên Megaminx. Khi mọi phần khác đã xong, các công thức này đưa các góc về đúng vị trí và hoàn thành khối.",
           "learn": "Nhận diện cách các góc xoay vòng bằng cách so màu bên hông của chúng với các tâm. Bắt đầu với những trường hợp chỉ di chuyển ba góc, rồi thêm các trường hợp còn lại."
         }
-      }
+      },
+      "play": "Phát",
+      "algorithm-label": "Thuật toán",
+      "alt": "Cách {index}",
+      "algs-unit": "thuật toán"
     },
     "TrainerPage": {
       "breadcrumb": "Trình luyện tập",

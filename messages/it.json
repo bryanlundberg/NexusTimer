@@ -1210,7 +1210,11 @@
           "when": "Il CP è l'ultimo passaggio dell'ultimo strato in quattro fasi sul Megaminx. Con tutto il resto risolto, questi algoritmi portano gli angoli nelle posizioni corrette e completano il puzzle.",
           "learn": "Riconosci come ruotano gli angoli confrontando i loro colori laterali con i centri. Inizia dai casi che spostano solo tre angoli, poi aggiungi gli altri."
         }
-      }
+      },
+      "play": "Riproduci",
+      "algorithm-label": "Algoritmo",
+      "alt": "Alt {index}",
+      "algs-unit": "alg"
     },
     "TrainerPage": {
       "breadcrumb": "Trainer",

@@ -1207,7 +1207,11 @@
           "when": "CP ist der letzte Schritt der vierstufigen letzten Ebene am Megaminx. Wenn alles andere gelöst ist, bringen diese Algorithmen die Ecken an ihre richtige Position und beenden das Puzzle.",
           "learn": "Erkenne, wie die Ecken zyklisch vertauscht sind, indem du ihre Seitenfarben mit den Zentren vergleichst. Beginne mit den Fällen, die nur drei Ecken bewegen, und füge dann die übrigen hinzu."
         }
-      }
+      },
+      "play": "Abspielen",
+      "algorithm-label": "Algorithmus",
+      "alt": "Alt {index}",
+      "algs-unit": "Algs"
     },
     "Metadata": {
       "title": "Nexus Timer - Professioneller Zauberwürfel Timer",

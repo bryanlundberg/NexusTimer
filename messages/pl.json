@@ -1210,7 +1210,11 @@
           "when": "CP to ostatni krok czteroetapowej ostatniej warstwy na Megaminxie. Gdy cała reszta jest ułożona, te algorytmy przestawiają rogi na właściwe miejsca i kończą łamigłówkę.",
           "learn": "Rozpoznaj, jak cyklicznie zamieniają się rogi, porównując ich boczne kolory ze środkami. Zacznij od przypadków, w których przemieszczają się tylko trzy rogi, a potem dodaj pozostałe."
         }
-      }
+      },
+      "play": "Odtwórz",
+      "algorithm-label": "Algorytm",
+      "alt": "Alt {index}",
+      "algs-unit": "alg."
     },
     "TrainerPage": {
       "breadcrumb": "Trener",

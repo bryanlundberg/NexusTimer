@@ -1210,7 +1210,11 @@
           "when": "Ang CP ang huling hakbang ng four-look na huling layer ng Megaminx. Kapag lutas na ang lahat ng iba pa, inililipat ng mga algorithm na ito ang mga corner sa tamang posisyon at tinatapos ang puzzle.",
           "learn": "Kilalanin kung paano umiikot ang mga corner sa pamamagitan ng paghahambing ng mga kulay sa gilid nila sa mga center. Magsimula sa mga case na tatlong corner lang ang gumagalaw, saka idagdag ang iba pa."
         }
-      }
+      },
+      "play": "I-play",
+      "algorithm-label": "Algorithm",
+      "alt": "Alt {index}",
+      "algs-unit": "algs"
     },
     "TrainerPage": {
       "breadcrumb": "Trainer",
