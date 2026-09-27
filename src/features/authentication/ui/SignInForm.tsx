@@ -10,6 +10,7 @@ import { createSignInSchema, type SignInValues } from '@/features/authentication
 import { useAuthSchemaMessages } from '@/features/authentication/model/use-auth-schema-messages'
 import { useCredentialsLogin } from '@/features/authentication/model/hooks/use-credentials-login'
 import AuthField from '@/features/authentication/ui/AuthField'
+import AuthFieldGroup from '@/features/authentication/ui/AuthFieldGroup'
 
 export default function SignInForm() {
   const router = useRouter()
@@ -42,24 +43,26 @@ export default function SignInForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-      <AuthField
-        id="email"
-        label={t('email')}
-        type="email"
-        autoComplete="email"
-        placeholder="you@example.com"
-        error={errors.email?.message}
-        {...register('email')}
-      />
-      <AuthField
-        id="password"
-        label={t('password')}
-        type="password"
-        autoComplete="current-password"
-        placeholder="••••••••"
-        error={errors.password?.message}
-        {...register('password')}
-      />
+      <AuthFieldGroup>
+        <AuthField
+          id="email"
+          label={t('email')}
+          type="email"
+          autoComplete="email"
+          placeholder="you@example.com"
+          error={errors.email?.message}
+          {...register('email')}
+        />
+        <AuthField
+          id="password"
+          label={t('password')}
+          type="password"
+          autoComplete="current-password"
+          placeholder="••••••••"
+          error={errors.password?.message}
+          {...register('password')}
+        />
+      </AuthFieldGroup>
 
       <Link
         href="/forgot-password"
@@ -70,7 +73,7 @@ export default function SignInForm() {
 
       {formError && <p className="text-sm text-destructive">{formError}</p>}
 
-      <Button type="submit" disabled={isLoading} className="w-full h-10 font-semibold tracking-wide">
+      <Button type="submit" disabled={isLoading} className="w-full h-11 font-semibold tracking-wide">
         {isLoading ? t('loading') : t('sign-in')}
       </Button>
     </form>
