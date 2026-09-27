@@ -147,6 +147,7 @@ export function CubeCard({ cube }: CubeCardProps) {
         <Button
           variant={'default'}
           size={'sm'}
+          className="pointer-coarse:h-10"
           onClick={handleRedirect}
           onMouseEnter={() => playRef.current?.startAnimation()}
           onMouseLeave={() => playRef.current?.stopAnimation()}
@@ -162,7 +163,7 @@ export function CubeCard({ cube }: CubeCardProps) {
                 <Button
                   variant={'ghost'}
                   size={'icon'}
-                  className="h-8 w-8"
+                  className="size-8 pointer-coarse:size-10"
                   onClick={handleEdit}
                   onMouseEnter={() => gearRef.current?.startAnimation()}
                   onMouseLeave={() => gearRef.current?.stopAnimation()}
@@ -185,7 +186,7 @@ export function CubeCard({ cube }: CubeCardProps) {
                 <Button
                   variant={'ghost'}
                   size={'icon'}
-                  className="h-8 w-8 text-muted-foreground hover:text-destructive"
+                  className="size-8 text-muted-foreground hover:text-destructive pointer-coarse:size-10"
                   onClick={handleDelete}
                   onMouseEnter={() => trashRef.current?.startAnimation()}
                   onMouseLeave={() => trashRef.current?.stopAnimation()}
