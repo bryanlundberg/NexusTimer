@@ -622,18 +622,15 @@
       "next-refresh": "Próxima atualização em {time}",
       "refreshing": "Atualizando",
       "refresh-hint": "A classificação é reconstruída a cada hora cheia, no horário do servidor (UTC).",
-      "type": "Tipo",
       "table": {
         "user": "Usuário",
         "category": "Categoria",
-        "scramble": "Embaralhamento",
         "time": "Tempo",
-        "image": "Imagem",
         "date": "Data",
         "tps": "tps",
         "not-available": "N/D",
         "moves": "Movimentos",
-        "replay-available": "Replay disponível"
+        "watch-replay": "Ver replay"
       },
       "comparative": {
         "title": "Comparar cubistas",

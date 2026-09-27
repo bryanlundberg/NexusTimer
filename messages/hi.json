@@ -622,18 +622,15 @@
       "next-refresh": "अगला रिफ़्रेश {time} में",
       "refreshing": "रिफ़्रेश हो रहा है",
       "refresh-hint": "रैंकिंग हर घंटे, ठीक घंटे पर, सर्वर समय (UTC) के अनुसार फिर से बनाई जाती है।",
-      "type": "प्रकार",
       "table": {
         "user": "उपयोगकर्ता",
         "category": "श्रेणी",
-        "scramble": "स्क्रैम्बल",
         "time": "समय",
-        "image": "छवि",
         "date": "तारीख",
         "tps": "tps",
         "not-available": "N/A",
         "moves": "मूव्स",
-        "replay-available": "रीप्ले उपलब्ध"
+        "watch-replay": "रीप्ले देखें"
       },
       "comparative": {
         "title": "क्यूबर की तुलना करें",

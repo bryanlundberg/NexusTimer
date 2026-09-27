@@ -625,18 +625,15 @@
       "next-refresh": "Pembaruan berikutnya dalam {time}",
       "refreshing": "Memperbarui",
       "refresh-hint": "Papan peringkat dibangun ulang setiap jam tepat, dalam waktu server (UTC).",
-      "type": "Tipe",
       "table": {
         "user": "Pengguna",
         "category": "Kategori",
-        "scramble": "Scramble",
         "time": "Waktu",
-        "image": "Gambar",
         "date": "Tanggal",
         "tps": "tps",
         "moves": "Gerakan",
         "not-available": "T/A",
-        "replay-available": "Putar ulang tersedia"
+        "watch-replay": "Tonton replay"
       },
       "comparative": {
         "title": "Bandingkan cuber",

@@ -622,18 +622,15 @@
       "next-refresh": "Prochaine actualisation dans {time}",
       "refreshing": "Actualisation",
       "refresh-hint": "Le classement est reconstruit à chaque heure pile, en heure serveur (UTC).",
-      "type": "Type",
       "table": {
         "user": "Utilisateur",
         "category": "Catégorie",
-        "scramble": "Mélange",
         "time": "Temps",
-        "image": "Image",
         "date": "Date",
         "tps": "tps",
         "not-available": "N/A",
         "moves": "Mouvements",
-        "replay-available": "Replay disponible"
+        "watch-replay": "Voir la rediffusion"
       },
       "comparative": {
         "title": "Comparer des cubeurs",

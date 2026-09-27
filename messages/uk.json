@@ -625,18 +625,15 @@
       "next-refresh": "Наступне оновлення через {time}",
       "refreshing": "Оновлення",
       "refresh-hint": "Рейтинг оновлюється щогодини, на початку години, за часом сервера (UTC).",
-      "type": "Тип",
       "table": {
         "user": "Користувач",
         "category": "Категорія",
-        "scramble": "Скрамбл",
         "time": "Час",
-        "image": "Зображення",
         "date": "Дата",
         "tps": "tps",
         "not-available": "Н/Д",
         "moves": "Ходи",
-        "replay-available": "Доступний повтор"
+        "watch-replay": "Переглянути повтор"
       },
       "comparative": {
         "title": "Порівняти спідкуберів",

@@ -580,18 +580,15 @@
       "next-refresh": "Próxima actualización en {time}",
       "refreshing": "Actualizando",
       "refresh-hint": "La clasificación se reconstruye cada hora en punto, en hora del servidor (UTC).",
-      "type": "Tipo",
       "table": {
-        "user": "Usuario",
+        "user": "Cubero",
         "category": "Categoría",
-        "scramble": "Scramble",
         "time": "Tiempo",
-        "image": "Imagen",
         "date": "Fecha",
-        "tps": "tps",
+        "tps": "TPS",
         "moves": "Movs",
         "not-available": "N/D",
-        "replay-available": "Repetición disponible"
+        "watch-replay": "Ver repetición"
       },
       "comparative": {
         "add-more": "Añadir cuberos",

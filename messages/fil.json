@@ -625,18 +625,15 @@
       "next-refresh": "Susunod na pag-refresh sa {time}",
       "refreshing": "Nagre-refresh",
       "refresh-hint": "Muling binubuo ang ranking kada oras, sa simula ng oras, sa oras ng server (UTC).",
-      "type": "Uri",
       "table": {
         "user": "User",
         "category": "Kategorya",
-        "scramble": "Scramble",
         "time": "Oras",
-        "image": "Larawan",
         "date": "Petsa",
         "tps": "tps",
         "moves": "Moves",
         "not-available": "N/A",
-        "replay-available": "May replay"
+        "watch-replay": "Panoorin ang replay"
       },
       "comparative": {
         "title": "Ikumpara ang mga cuber",

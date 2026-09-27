@@ -625,18 +625,15 @@
       "next-refresh": "Prossimo aggiornamento tra {time}",
       "refreshing": "Aggiornamento",
       "refresh-hint": "La classifica viene ricostruita ogni ora esatta, nell'ora del server (UTC).",
-      "type": "Tipo",
       "table": {
         "user": "Utente",
         "category": "Categoria",
-        "scramble": "Scramble",
         "time": "Tempo",
-        "image": "Immagine",
         "date": "Data",
         "tps": "tps",
         "moves": "Mosse",
         "not-available": "N/D",
-        "replay-available": "Replay disponibile"
+        "watch-replay": "Guarda il replay"
       },
       "comparative": {
         "title": "Confronta cuber",

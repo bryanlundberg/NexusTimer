@@ -622,18 +622,15 @@
       "next-refresh": "다음 갱신까지 {time}",
       "refreshing": "갱신 중",
       "refresh-hint": "순위는 서버 시간(UTC) 기준 매 정시마다 새로 집계됩니다.",
-      "type": "유형",
       "table": {
         "user": "사용자",
         "category": "카테고리",
-        "scramble": "스크램블",
         "time": "시간",
-        "image": "이미지",
         "date": "날짜",
         "tps": "TPS",
         "not-available": "N/A",
         "moves": "무브",
-        "replay-available": "리플레이 있음"
+        "watch-replay": "리플레이 보기"
       },
       "comparative": {
         "title": "큐버 비교",

@@ -625,18 +625,15 @@
       "next-refresh": "Następne odświeżenie za {time}",
       "refreshing": "Odświeżanie",
       "refresh-hint": "Ranking jest przebudowywany co godzinę, o pełnej godzinie, w czasie serwera (UTC).",
-      "type": "Typ",
       "table": {
         "user": "Użytkownik",
         "category": "Kategoria",
-        "scramble": "Scramble",
         "time": "Czas",
-        "image": "Obraz",
         "date": "Data",
         "tps": "tps",
         "moves": "Ruchy",
         "not-available": "Brak",
-        "replay-available": "Powtórka dostępna"
+        "watch-replay": "Obejrzyj powtórkę"
       },
       "comparative": {
         "title": "Porównaj cuberów",

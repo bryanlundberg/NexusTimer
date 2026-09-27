@@ -622,18 +622,15 @@
       "next-refresh": "距下次刷新 {time}",
       "refreshing": "刷新中",
       "refresh-hint": "排行榜按服务器时间（UTC）每小时整点重新生成。",
-      "type": "类型",
       "table": {
         "user": "魔友",
         "category": "类别",
-        "scramble": "打乱公式",
         "time": "时间",
-        "image": "图像",
         "date": "日期",
         "tps": "TPS",
         "not-available": "暂无",
         "moves": "步数",
-        "replay-available": "可回放"
+        "watch-replay": "观看回放"
       },
       "comparative": {
         "title": "比较魔友",

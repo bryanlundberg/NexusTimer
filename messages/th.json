@@ -625,18 +625,15 @@
       "next-refresh": "รีเฟรชครั้งถัดไปใน {time}",
       "refreshing": "กำลังรีเฟรช",
       "refresh-hint": "อันดับจะถูกสร้างใหม่ทุกชั่วโมงตรง ตามเวลาเซิร์ฟเวอร์ (UTC)",
-      "type": "ประเภท",
       "table": {
         "user": "ผู้ใช้",
         "category": "หมวดหมู่",
-        "scramble": "Scramble",
         "time": "เวลา",
-        "image": "รูปภาพ",
         "date": "วันที่",
         "tps": "tps",
         "moves": "การหมุน",
         "not-available": "ไม่มี",
-        "replay-available": "มีรีเพลย์"
+        "watch-replay": "ดูรีเพลย์"
       },
       "comparative": {
         "title": "เปรียบเทียบนักคิวบ์",

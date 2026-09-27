@@ -622,18 +622,15 @@
       "next-refresh": "次の更新まで {time}",
       "refreshing": "更新中",
       "refresh-hint": "ランキングはサーバー時間 (UTC) の毎正時に再構築されます。",
-      "type": "タイプ",
       "table": {
         "user": "ユーザー",
         "category": "カテゴリ",
-        "scramble": "スクランブル",
         "time": "タイム",
-        "image": "画像",
         "date": "日付",
         "tps": "TPS",
         "not-available": "なし",
         "moves": "手数",
-        "replay-available": "リプレイあり"
+        "watch-replay": "リプレイを見る"
       },
       "comparative": {
         "title": "キューバーを比較",

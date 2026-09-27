@@ -617,7 +617,7 @@
       "block-user": "Block user"
     },
     "LeaderboardsPage": {
-      "title": "Fastest Solves",
+      "title": "Fastest solves",
       "description": "The 100 fastest solves for the selected puzzle and mode, ranked by time, with the solver, TPS, move count and date for each.",
       "view-label": "View",
       "view-all": "All times",
@@ -625,18 +625,15 @@
       "next-refresh": "Next refresh in {time}",
       "refreshing": "Refreshing",
       "refresh-hint": "Standings are rebuilt every hour, on the hour, in server time (UTC).",
-      "type": "Type",
       "table": {
-        "user": "User",
+        "user": "Cuber",
         "category": "Category",
-        "scramble": "Scramble",
         "time": "Time",
-        "image": "Image",
         "date": "Date",
-        "tps": "tps",
+        "tps": "TPS",
         "moves": "Moves",
         "not-available": "N/A",
-        "replay-available": "Replay available"
+        "watch-replay": "Watch replay"
       },
       "comparative": {
         "title": "Compare cubers",

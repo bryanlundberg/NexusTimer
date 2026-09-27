@@ -622,18 +622,15 @@
       "next-refresh": "Nächste Aktualisierung in {time}",
       "refreshing": "Wird aktualisiert",
       "refresh-hint": "Die Rangliste wird jede volle Stunde neu erstellt, in Serverzeit (UTC).",
-      "type": "Typ",
       "table": {
         "user": "Nutzer",
         "category": "Kategorie",
-        "scramble": "Scramble",
         "time": "Zeit",
-        "image": "Bild",
         "date": "Datum",
         "tps": "tps",
         "not-available": "N/V",
         "moves": "Züge",
-        "replay-available": "Replay verfügbar"
+        "watch-replay": "Wiederholung ansehen"
       },
       "comparative": {
         "title": "Cuber vergleichen",

@@ -625,18 +625,15 @@
       "next-refresh": "Làm mới tiếp theo sau {time}",
       "refreshing": "Đang làm mới",
       "refresh-hint": "Bảng xếp hạng được dựng lại mỗi giờ, vào đầu giờ, theo giờ máy chủ (UTC).",
-      "type": "Loại",
       "table": {
         "user": "Người dùng",
         "category": "Hạng mục",
-        "scramble": "Scramble",
         "time": "Thời gian",
-        "image": "Hình ảnh",
         "date": "Ngày",
         "tps": "tps",
         "moves": "Bước",
         "not-available": "N/A",
-        "replay-available": "Có bản phát lại"
+        "watch-replay": "Xem lại"
       },
       "comparative": {
         "title": "So sánh người chơi",
