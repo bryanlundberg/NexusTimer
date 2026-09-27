@@ -4,6 +4,7 @@ import { useRouter } from '@/shared/config/i18n/navigation'
 import { useTranslations } from 'next-intl'
 import { Dumbbell } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { cn } from '@/shared/lib/utils'
 import { useTrainerStore } from '@/features/trainer/model/useTrainerStore'
 
 interface TrainerCTAProps {
@@ -22,7 +23,7 @@ export default function TrainerCTA({ methodSlug, className }: TrainerCTAProps) {
   }
 
   return (
-    <Button size="sm" variant="default" onClick={handleStart} className={className}>
+    <Button size="sm" variant="default" onClick={handleStart} className={cn('pointer-coarse:h-10', className)}>
       <Dumbbell className="size-3.5" />
       {t('practiceNow')}
     </Button>
