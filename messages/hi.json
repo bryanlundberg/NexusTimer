@@ -1394,7 +1394,7 @@
     "create-room": {
       "title": "नया सार्वजनिक कमरा",
       "title-private": "नया निजी कमरा",
-      "description": "अपने Clash इवेंट के लिए एक नया कमरा बनाएं। नियम, आवश्यकताएं और बहुत कुछ सेट करें।",
+      "description": "एक इवेंट और समय सीमा चुनें, फिर दूसरों को अपने साथ सॉल्व करने के लिए बुलाएँ।",
       "room-name": "कमरे का नाम",
       "room-name-placeholder": "जैसे क्यूबिंग की रात",
       "room-name-required": "कमरे का नाम आवश्यक है",
@@ -1405,8 +1405,10 @@
       "private-description": "केवल कोड वाले लोग ही शामिल हो सकते हैं",
       "room-code": "कमरे का कोड",
       "room-code-hint": "यह कोड अपने दोस्तों के साथ साझा करें ताकि वे शामिल हो सकें",
-      "continue": "जारी रखें",
-      "creating": "बनाया जा रहा है..."
+      "continue": "कमरा बनाएँ",
+      "creating": "बनाया जा रहा है...",
+      "copy-code": "कोड कॉपी करें",
+      "code-copied": "कोड कॉपी हो गया"
     },
     "join-private-room": {
       "title": "निजी कमरा",
@@ -1449,10 +1451,7 @@
     "view-profile": "प्रोफ़ाइल देखें",
     "anonymous": "अनाम",
     "room-card": {
-      "users-online": "ऑनलाइन उपयोगकर्ता:",
-      "event": "इवेंट:",
-      "next-round-starts-in": "अगला राउंड शुरू होता है:",
-      "join": "शामिल हों"
+      "players-online": "{count, plural, =0 {कोई ऑनलाइन नहीं} other {# ऑनलाइन}}"
     },
     "room-not-found": "कमरा नहीं मिला",
     "invite-link-copied": "आमंत्रण लिंक कॉपी किया गया",

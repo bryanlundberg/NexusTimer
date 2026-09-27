@@ -1394,7 +1394,7 @@
     "create-room": {
       "title": "公開ルームを作成",
       "title-private": "プライベートルームを作成",
-      "description": "対戦イベント用の部屋を新規作成します。ルールや参加条件を設定してください。",
+      "description": "種目と制限時間を選んで、ほかの人を招待して一緒にソルブしましょう。",
       "room-name": "部屋の名前",
       "room-name-placeholder": "例：夜のキューブ練習",
       "room-name-required": "部屋の名前は必須です",
@@ -1405,8 +1405,10 @@
       "private-description": "コードを持つ人のみが参加できます",
       "room-code": "ルームコード",
       "room-code-hint": "このコードを友達と共有して参加してもらいましょう",
-      "continue": "作成する",
-      "creating": "作成中..."
+      "continue": "部屋を作成",
+      "creating": "作成中...",
+      "copy-code": "コードをコピー",
+      "code-copied": "コードをコピーしました"
     },
     "join-private-room": {
       "title": "プライベートルーム",
@@ -1449,10 +1451,7 @@
     "view-profile": "プロフィールを見る",
     "anonymous": "匿名",
     "room-card": {
-      "users-online": "オンライン人数：",
-      "event": "種目：",
-      "next-round-starts-in": "次ラウンド：",
-      "join": "参加"
+      "players-online": "{count, plural, =0 {オンラインのユーザーなし} other {# 人オンライン}}"
     },
     "room-not-found": "部屋が見つかりません",
     "invite-link-copied": "招待リンクをコピーしました",

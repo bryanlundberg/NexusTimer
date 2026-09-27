@@ -1412,7 +1412,7 @@
     "create-room": {
       "title": "Nowy pokój publiczny",
       "title-private": "Nowy pokój prywatny",
-      "description": "Utwórz nowy pokój dla swojego wydarzenia Clash. Ustaw zasady, wymagania i więcej.",
+      "description": "Wybierz konkurencję i limit czasu, a potem zaproś innych do wspólnego układania.",
       "room-name": "Nazwa pokoju",
       "room-name-placeholder": "np. Noc cubingu",
       "room-name-required": "Nazwa pokoju jest wymagana",
@@ -1423,8 +1423,10 @@
       "private-description": "Tylko osoby z kodem mogą dołączyć",
       "room-code": "Kod pokoju",
       "room-code-hint": "Udostępnij ten kod znajomym, aby mogli dołączyć",
-      "continue": "Kontynuuj",
-      "creating": "Tworzenie..."
+      "continue": "Utwórz pokój",
+      "creating": "Tworzenie...",
+      "copy-code": "Kopiuj kod",
+      "code-copied": "Skopiowano kod"
     },
     "join-private-room": {
       "title": "Pokój prywatny",
@@ -1467,10 +1469,7 @@
     "view-profile": "Zobacz profil",
     "anonymous": "Anonimowy",
     "room-card": {
-      "users-online": "Użytkownicy online:",
-      "event": "Konkurencja:",
-      "next-round-starts-in": "Następna runda zaczyna się za:",
-      "join": "Dołącz"
+      "players-online": "{count, plural, =0 {Nikt online} other {# online}}"
     },
     "room-not-found": "Nie znaleziono pokoju",
     "invite-link-copied": "Link z zaproszeniem skopiowany",

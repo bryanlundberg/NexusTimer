@@ -1412,7 +1412,7 @@
     "create-room": {
       "title": "Bagong public room",
       "title-private": "Bagong private room",
-      "description": "Gumawa ng bagong room para sa Clash event mo. Itakda ang mga panuntunan, requirement, at iba pa.",
+      "description": "Pumili ng event at time limit, tapos imbitahan ang iba na mag-solve kasama mo.",
       "room-name": "Pangalan ng room",
       "room-name-placeholder": "hal. Gabi ng cubing",
       "room-name-required": "Kailangan ang pangalan ng room",
@@ -1423,8 +1423,10 @@
       "private-description": "Ang may code lang ang makakasali",
       "room-code": "Code ng room",
       "room-code-hint": "Ibahagi ang code na ito sa mga kaibigan mo para makasali sila",
-      "continue": "Magpatuloy",
-      "creating": "Ginagawa..."
+      "continue": "Gumawa ng room",
+      "creating": "Ginagawa...",
+      "copy-code": "Kopyahin ang code",
+      "code-copied": "Nakopya ang code"
     },
     "join-private-room": {
       "title": "Private Room",
@@ -1467,10 +1469,7 @@
     "view-profile": "Tingnan ang Profile",
     "anonymous": "Anonymous",
     "room-card": {
-      "users-online": "Mga user online:",
-      "event": "Event:",
-      "next-round-starts-in": "Magsisimula ang susunod na round sa:",
-      "join": "Sumali"
+      "players-online": "{count, plural, =0 {Walang online} other {# online}}"
     },
     "room-not-found": "Hindi nahanap ang room",
     "invite-link-copied": "Nakopya ang invite link",

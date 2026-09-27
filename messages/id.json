@@ -1412,7 +1412,7 @@
     "create-room": {
       "title": "Ruang publik baru",
       "title-private": "Ruang privat baru",
-      "description": "Buat ruang baru untuk event Clash-mu. Atur aturan, persyaratan, dan lainnya.",
+      "description": "Pilih event dan batas waktu, lalu ajak yang lain solve bersamamu.",
       "room-name": "Nama ruang",
       "room-name-placeholder": "mis. Malam cubing",
       "room-name-required": "Nama ruang wajib diisi",
@@ -1423,8 +1423,10 @@
       "private-description": "Hanya orang dengan kode yang bisa bergabung",
       "room-code": "Kode ruang",
       "room-code-hint": "Bagikan kode ini ke temanmu agar mereka bisa bergabung",
-      "continue": "Lanjutkan",
-      "creating": "Membuat..."
+      "continue": "Buat ruang",
+      "creating": "Membuat...",
+      "copy-code": "Salin kode",
+      "code-copied": "Kode disalin"
     },
     "join-private-room": {
       "title": "Ruang Privat",
@@ -1467,10 +1469,7 @@
     "view-profile": "Lihat Profil",
     "anonymous": "Anonim",
     "room-card": {
-      "users-online": "Pengguna online:",
-      "event": "Event:",
-      "next-round-starts-in": "Ronde berikutnya dimulai dalam:",
-      "join": "Gabung"
+      "players-online": "{count, plural, =0 {Tidak ada yang online} other {# online}}"
     },
     "room-not-found": "Ruang tidak ditemukan",
     "invite-link-copied": "Tautan undangan disalin",

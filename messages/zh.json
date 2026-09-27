@@ -1394,7 +1394,7 @@
     "create-room": {
       "title": "新建公共房间",
       "title-private": "新建私人房间",
-      "description": "为你的 Clash 活动创建一个新房间。设置规则、要求等。",
+      "description": "选择项目和时间限制，然后邀请其他人和你一起还原。",
       "room-name": "房间名称",
       "room-name-placeholder": "例如：魔友之夜",
       "room-name-required": "房间名称为必填项",
@@ -1405,8 +1405,10 @@
       "private-description": "只有拥有代码的人才能加入",
       "room-code": "房间代码",
       "room-code-hint": "将此代码分享给朋友，让他们可以加入",
-      "continue": "继续",
-      "creating": "创建中..."
+      "continue": "创建房间",
+      "creating": "创建中...",
+      "copy-code": "复制代码",
+      "code-copied": "已复制代码"
     },
     "join-private-room": {
       "title": "私人房间",
@@ -1449,10 +1451,7 @@
     "view-profile": "查看资料",
     "anonymous": "匿名",
     "room-card": {
-      "users-online": "在线人数：",
-      "event": "项目：",
-      "next-round-starts-in": "下一轮开始：",
-      "join": "加入"
+      "players-online": "{count, plural, =0 {无人在线} other {# 人在线}}"
     },
     "room-not-found": "找不到房间",
     "invite-link-copied": "邀请链接已复制",

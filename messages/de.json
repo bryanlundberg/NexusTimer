@@ -1394,7 +1394,7 @@
     "create-room": {
       "title": "Neuer öffentlicher Raum",
       "title-private": "Neuer privater Raum",
-      "description": "Erstelle einen neuen Raum für dein Clash-Event. Lege Regeln, Anforderungen und mehr fest.",
+      "description": "Wähle ein Event und ein Zeitlimit und lade andere ein, mit dir zu lösen.",
       "room-name": "Raumname",
       "room-name-placeholder": "z.B. Cubing-Nacht",
       "room-name-required": "Raumname erforderlich",
@@ -1405,8 +1405,10 @@
       "private-description": "Nur Personen mit dem Code können beitreten",
       "room-code": "Raumcode",
       "room-code-hint": "Teile diesen Code mit deinen Freunden, damit sie beitreten können",
-      "continue": "Weiter",
-      "creating": "Wird erstellt..."
+      "continue": "Raum erstellen",
+      "creating": "Wird erstellt...",
+      "copy-code": "Code kopieren",
+      "code-copied": "Code kopiert"
     },
     "join-private-room": {
       "title": "Privater Raum",
@@ -1449,10 +1451,7 @@
     "view-profile": "Profil ansehen",
     "anonymous": "Anonym",
     "room-card": {
-      "users-online": "Nutzer online:",
-      "event": "Event:",
-      "next-round-starts-in": "Nächste Runde in:",
-      "join": "Beitreten"
+      "players-online": "{count, plural, =0 {Niemand online} other {# online}}"
     },
     "room-not-found": "Raum nicht gefunden",
     "invite-link-copied": "Einladungslink kopiert",

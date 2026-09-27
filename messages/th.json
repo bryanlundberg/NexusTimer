@@ -1412,7 +1412,7 @@
     "create-room": {
       "title": "ห้องสาธารณะใหม่",
       "title-private": "ห้องส่วนตัวใหม่",
-      "description": "สร้างห้องใหม่สำหรับงาน Clash ของคุณ ตั้งกฎ ข้อกำหนด และอื่น ๆ",
+      "description": "เลือกประเภทและเวลาจำกัด แล้วชวนคนอื่นมาต่อไปด้วยกัน",
       "room-name": "ชื่อห้อง",
       "room-name-placeholder": "เช่น คืนแห่งคิวบ์",
       "room-name-required": "ต้องระบุชื่อห้อง",
@@ -1423,8 +1423,10 @@
       "private-description": "เฉพาะคนที่มีรหัสเท่านั้นที่เข้าร่วมได้",
       "room-code": "รหัสห้อง",
       "room-code-hint": "แชร์รหัสนี้กับเพื่อนของคุณเพื่อให้พวกเขาเข้าร่วมได้",
-      "continue": "ดำเนินการต่อ",
-      "creating": "กำลังสร้าง..."
+      "continue": "สร้างห้อง",
+      "creating": "กำลังสร้าง...",
+      "copy-code": "คัดลอกโค้ด",
+      "code-copied": "คัดลอกโค้ดแล้ว"
     },
     "join-private-room": {
       "title": "ห้องส่วนตัว",
@@ -1467,10 +1469,7 @@
     "view-profile": "ดูโปรไฟล์",
     "anonymous": "ไม่ระบุชื่อ",
     "room-card": {
-      "users-online": "ผู้ใช้ออนไลน์:",
-      "event": "ประเภท:",
-      "next-round-starts-in": "รอบถัดไปเริ่มใน:",
-      "join": "เข้าร่วม"
+      "players-online": "{count, plural, =0 {ไม่มีใครออนไลน์} other {# ออนไลน์}}"
     },
     "room-not-found": "ไม่พบห้อง",
     "invite-link-copied": "คัดลอกลิงก์เชิญแล้ว",

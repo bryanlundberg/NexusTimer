@@ -1412,7 +1412,7 @@
     "create-room": {
       "title": "Phòng công khai mới",
       "title-private": "Phòng riêng tư mới",
-      "description": "Tạo phòng mới cho sự kiện Clash của bạn. Đặt luật, yêu cầu, và nhiều hơn nữa.",
+      "description": "Chọn nội dung và giới hạn thời gian, rồi mời người khác cùng giải với bạn.",
       "room-name": "Tên phòng",
       "room-name-placeholder": "vd. Đêm cubing",
       "room-name-required": "Tên phòng là bắt buộc",
@@ -1423,8 +1423,10 @@
       "private-description": "Chỉ người có mã mới có thể tham gia",
       "room-code": "Mã phòng",
       "room-code-hint": "Chia sẻ mã này với bạn bè để họ có thể tham gia",
-      "continue": "Tiếp tục",
-      "creating": "Đang tạo..."
+      "continue": "Tạo phòng",
+      "creating": "Đang tạo...",
+      "copy-code": "Sao chép mã",
+      "code-copied": "Đã sao chép mã"
     },
     "join-private-room": {
       "title": "Phòng riêng tư",
@@ -1467,10 +1469,7 @@
     "view-profile": "Xem hồ sơ",
     "anonymous": "Ẩn danh",
     "room-card": {
-      "users-online": "Người dùng trực tuyến:",
-      "event": "Nội dung:",
-      "next-round-starts-in": "Vòng tiếp theo bắt đầu sau:",
-      "join": "Tham gia"
+      "players-online": "{count, plural, =0 {Không ai trực tuyến} other {# trực tuyến}}"
     },
     "room-not-found": "Không tìm thấy phòng",
     "invite-link-copied": "Đã sao chép liên kết mời",

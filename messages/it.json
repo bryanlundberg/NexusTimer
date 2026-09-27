@@ -1412,7 +1412,7 @@
     "create-room": {
       "title": "Nuova stanza pubblica",
       "title-private": "Nuova stanza privata",
-      "description": "Crea una nuova stanza per il tuo evento Clash. Imposta le regole, i requisiti e altro.",
+      "description": "Scegli un evento e un limite di tempo, poi invita altri a risolvere con te.",
       "room-name": "Nome stanza",
       "room-name-placeholder": "es. Notte di cubing",
       "room-name-required": "Il nome della stanza è obbligatorio",
@@ -1423,8 +1423,10 @@
       "private-description": "Solo chi ha il codice può entrare",
       "room-code": "Codice stanza",
       "room-code-hint": "Condividi questo codice con i tuoi amici così possono entrare",
-      "continue": "Continua",
-      "creating": "Creazione..."
+      "continue": "Crea stanza",
+      "creating": "Creazione...",
+      "copy-code": "Copia codice",
+      "code-copied": "Codice copiato"
     },
     "join-private-room": {
       "title": "Stanza privata",
@@ -1467,10 +1469,7 @@
     "view-profile": "Vedi profilo",
     "anonymous": "Anonimo",
     "room-card": {
-      "users-online": "Utenti online:",
-      "event": "Evento:",
-      "next-round-starts-in": "Il prossimo round inizia tra:",
-      "join": "Entra"
+      "players-online": "{count, plural, =0 {Nessuno online} other {# online}}"
     },
     "room-not-found": "Stanza non trovata",
     "invite-link-copied": "Link di invito copiato",

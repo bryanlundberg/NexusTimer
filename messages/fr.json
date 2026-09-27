@@ -1394,7 +1394,7 @@
     "create-room": {
       "title": "Nouvelle salle publique",
       "title-private": "Nouvelle salle privée",
-      "description": "Créez une nouvelle salle pour votre événement Clash. Définissez les règles, les exigences et plus encore.",
+      "description": "Choisis une épreuve et une limite de temps, puis invite d'autres cubeurs à résoudre avec toi.",
       "room-name": "Nom de la salle",
       "room-name-placeholder": "ex: Nuit du cubing",
       "room-name-required": "Le nom de la salle est requis",
@@ -1405,8 +1405,10 @@
       "private-description": "Seules les personnes avec le code peuvent rejoindre",
       "room-code": "Code de la salle",
       "room-code-hint": "Partagez ce code avec vos amis pour qu'ils puissent rejoindre",
-      "continue": "Continuer",
-      "creating": "Création..."
+      "continue": "Créer la salle",
+      "creating": "Création...",
+      "copy-code": "Copier le code",
+      "code-copied": "Code copié"
     },
     "join-private-room": {
       "title": "Salle privée",
@@ -1449,10 +1451,7 @@
     "view-profile": "Voir le profil",
     "anonymous": "Anonyme",
     "room-card": {
-      "users-online": "Utilisateurs :",
-      "event": "Événement :",
-      "next-round-starts-in": "Prochaine ronde dans :",
-      "join": "Rejoindre"
+      "players-online": "{count, plural, =0 {Personne en ligne} other {# en ligne}}"
     },
     "room-not-found": "Salle introuvable",
     "invite-link-copied": "Lien d'invitation copié",

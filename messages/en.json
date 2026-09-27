@@ -1392,27 +1392,27 @@
   "Multiplayer": {
     "title": "Free Play",
     "description": "Join real-time cubing sessions. A casual space to practice freely without the pressure of rankings.",
-    "new-room": "New Room",
+    "new-room": "New room",
     "no-active-rooms": "No active rooms yet",
     "no-active-rooms-description": "Be the first to start a session! Create a room and invite others for some casual practice.",
-    "account-required": "Account Required",
+    "account-required": "Account required",
     "account-required-description": "You need to be signed in to access online games.",
     "next-round-starts-in": "Next round starts in:",
     "timer": "Timer",
     "results": "Results",
     "people": "People",
-    "available-rooms": "Available Rooms",
+    "available-rooms": "Available rooms",
     "active-rooms-count": "{count, plural, =0 {No rooms active now} =1 {1 room active now} other {# rooms active now}}",
     "how-to-play": {
-      "title": "How to Play?",
+      "title": "How to play",
       "step1": "Create or join a room.",
-      "step2": "Prepare your cube and wait the round to start.",
+      "step2": "Get your cube ready and wait for the round to start.",
       "step3": "Solve the cube as fast as possible."
     },
     "create-room": {
       "title": "New public room",
       "title-private": "New private room",
-      "description": "Create a new room for your Clash event. Set the rules, requirements, and more.",
+      "description": "Pick an event and a time limit, then invite others to solve with you.",
       "room-name": "Room name",
       "room-name-placeholder": "e.g. Night of cubing",
       "room-name-required": "Room name is required",
@@ -1423,14 +1423,16 @@
       "private-description": "Only people with the code can join",
       "room-code": "Room code",
       "room-code-hint": "Share this code with your friends so they can join",
-      "continue": "Continue",
-      "creating": "Creating..."
+      "continue": "Create room",
+      "creating": "Creating...",
+      "copy-code": "Copy code",
+      "code-copied": "Code copied"
     },
     "join-private-room": {
-      "title": "Private Room",
+      "title": "Private room",
       "description": "Enter the 6-character code to join this room.",
       "placeholder": "e.g. A3BX2Z",
-      "wrong-code": "Incorrect code.",
+      "wrong-code": "Wrong code. Try again.",
       "cancel": "Cancel",
       "join": "Join",
       "joining": "Joining..."
@@ -1449,7 +1451,7 @@
     "previous-round": "Previous round",
     "current-round": "Current round",
     "confirm-solve": {
-      "title": "Confirm Solve Time ({time})",
+      "title": "Confirm solve time ({time})",
       "description": "How would you like to register this solve?",
       "dnf": "DNF",
       "plus2": "+2",
@@ -1464,13 +1466,10 @@
       "updating-live": "Updating live",
       "cubers": "Cubers"
     },
-    "view-profile": "View Profile",
+    "view-profile": "View profile",
     "anonymous": "Anonymous",
     "room-card": {
-      "users-online": "Users online:",
-      "event": "Event:",
-      "next-round-starts-in": "Next round starts in:",
-      "join": "Join"
+      "players-online": "{count, plural, =0 {Nobody online} other {# online}}"
     },
     "room-not-found": "Room not found",
     "invite-link-copied": "Invite link copied",
