@@ -11,6 +11,7 @@ import { useAuthSchemaMessages } from '@/features/authentication/model/use-auth-
 import { useResetPassword } from '@/features/authentication/model/hooks/use-reset-password'
 import { signInWithCredentials } from '@/features/authentication/model/sign-in-credentials'
 import AuthField from '@/features/authentication/ui/AuthField'
+import AuthFieldGroup from '@/features/authentication/ui/AuthFieldGroup'
 
 interface Props {
   oobCode: string
@@ -52,24 +53,26 @@ export default function ResetPasswordForm({ oobCode }: Props) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-      <AuthField
-        id="password"
-        label={t('new-password')}
-        type="password"
-        autoComplete="new-password"
-        placeholder="••••••••"
-        error={errors.password?.message}
-        {...register('password')}
-      />
-      <AuthField
-        id="confirmPassword"
-        label={t('confirm-password')}
-        type="password"
-        autoComplete="new-password"
-        placeholder="••••••••"
-        error={errors.confirmPassword?.message}
-        {...register('confirmPassword')}
-      />
+      <AuthFieldGroup>
+        <AuthField
+          id="password"
+          label={t('new-password')}
+          type="password"
+          autoComplete="new-password"
+          placeholder="••••••••"
+          error={errors.password?.message}
+          {...register('password')}
+        />
+        <AuthField
+          id="confirmPassword"
+          label={t('confirm-password')}
+          type="password"
+          autoComplete="new-password"
+          placeholder="••••••••"
+          error={errors.confirmPassword?.message}
+          {...register('confirmPassword')}
+        />
+      </AuthFieldGroup>
 
       {formError && <p className="text-sm text-destructive">{formError}</p>}
 
