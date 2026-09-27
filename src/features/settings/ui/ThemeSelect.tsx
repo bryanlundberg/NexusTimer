@@ -97,7 +97,7 @@ export default function ThemeSelect() {
   }
 
   return (
-    <div className="flex flex-col px-3 py-2 gap-2">
+    <div className="flex flex-col gap-3 px-4 py-3.5">
       <div className="flex gap-3 flex-wrap">
         <div className="flex flex-col items-center">
           <div className="relative">
@@ -110,7 +110,7 @@ export default function ThemeSelect() {
               className="absolute inset-0 h-full w-full rounded-xl p-0 m-0 opacity-0"
             />
           </div>
-          <div className="mt-1.5 text-xs font-medium">{t('light')}</div>
+          <div className="mt-1.5 text-[13px] sm:text-xs">{t('light')}</div>
         </div>
 
         <div className="flex flex-col items-center">
@@ -124,13 +124,15 @@ export default function ThemeSelect() {
               className="absolute inset-0 h-full w-full rounded-xl p-0 m-0 opacity-0"
             />
           </div>
-          <div className="mt-1.5 text-xs font-medium">{t('dark')}</div>
+          <div className="mt-1.5 text-[13px] sm:text-xs">{t('dark')}</div>
         </div>
 
         <CustomTheme />
       </div>
 
-      <div className="text-xs text-muted-foreground">{tDescriptions('custom-background-description')}</div>
+      <div className="text-[13px] text-muted-foreground sm:text-xs">
+        {tDescriptions('custom-background-description')}
+      </div>
     </div>
   )
 }
