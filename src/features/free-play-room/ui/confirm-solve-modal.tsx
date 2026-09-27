@@ -70,13 +70,14 @@ export default function ConfirmSolveModal({ isOpen, onClose, onChoose, category 
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>{t('title', { time: formatTime(solvingTime) })}</AlertDialogTitle>
-          <AlertDialogDescription></AlertDialogDescription>
-          <div className="text-sm text-muted-foreground mb-4">{t('description')}</div>
+          <AlertDialogDescription className="mb-4">{t('description')}</AlertDialogDescription>
 
           <div className="mb-4 space-y-1.5">
-            <label className="text-xs text-muted-foreground">{t('save-to-cube-label')}</label>
+            <label htmlFor="confirm-solve-cube" className="text-[13px] text-muted-foreground sm:text-xs">
+              {t('save-to-cube-label')}
+            </label>
             <Select value={selectedCubeId} onValueChange={handleSelect} disabled={cubes.length === 0}>
-              <SelectTrigger className="w-full h-9 [--f-border:var(--primary)]">
+              <SelectTrigger id="confirm-solve-cube" className="h-10 w-full pointer-coarse:h-11">
                 <SelectValue placeholder={cubes.length === 0 ? t('save-to-cube-empty') : t('save-to-cube-none')} />
               </SelectTrigger>
               <SelectContent>
@@ -90,7 +91,7 @@ export default function ConfirmSolveModal({ isOpen, onClose, onChoose, category 
             </Select>
           </div>
 
-          <div className={'grid grid-cols-3 gap-2'}>
+          <div className="grid grid-cols-3 gap-2 [&>*]:pointer-coarse:h-12">
             <Button
               className={'w-full'}
               variant={'destructive'}
