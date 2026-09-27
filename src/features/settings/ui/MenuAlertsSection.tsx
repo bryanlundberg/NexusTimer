@@ -1,14 +1,12 @@
 import { useTranslations } from 'next-intl'
-import { AlertsIcon } from '@/components/ui/settings-icons'
 import { MenuSection } from './MenuSection'
 import { MenuOption } from './MenuOption'
-import { SECTION_ACCENTS } from '../lib/settingsSections'
 
 export default function MenuAlertsSection({ control }: { control: any }) {
   const t = useTranslations('Index')
 
   return (
-    <MenuSection id="alerts" accent={SECTION_ACCENTS['alerts']} icon={<AlertsIcon />} title={t('Settings-menu.alerts')}>
+    <MenuSection id="alerts" title={t('Settings-menu.alerts')}>
       <MenuOption
         name={'alerts.bestTime'}
         label={t('Settings-menu.best-time')}
