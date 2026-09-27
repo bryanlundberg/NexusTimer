@@ -35,6 +35,7 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
   const hasReplay = Boolean(solve.replay?.moves?.length)
   const tps = analysis?.tps != null ? formatTps(analysis.tps) : null
   const moveCount = analysis ? analysis.moves.length : null
+  const date = dayjs(solve.createdAt).locale(locale).format('ll')
 
   return (
     <motion.div
@@ -64,35 +65,49 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
         </span>
       )}
 
-      <div className="min-w-0">
+      <div className="flex min-w-0 flex-col gap-0.5">
         <UserCell user={solve.user} />
+        <span className="truncate pl-9 text-[11px] text-muted-foreground tabular-nums sm:hidden">
+          {date}
+          {tps && ` · ${tps} ${t('tps')}`}
+        </span>
       </div>
 
-      <CategoryBadge category={solve.puzzle} />
+      <span className="hidden sm:block">
+        <CategoryBadge category={solve.puzzle} />
+      </span>
 
-      <span className="text-[10px] font-mono text-muted-foreground/70 tabular-nums">{tps ?? t('not-available')}</span>
+      <span className="hidden text-[10px] font-mono text-muted-foreground/70 tabular-nums sm:block">
+        {tps ?? t('not-available')}
+      </span>
 
-      <span className="text-[10px] font-mono text-muted-foreground/70 tabular-nums">
+      <span className="hidden text-[10px] font-mono text-muted-foreground/70 tabular-nums sm:block">
         {moveCount ?? t('not-available')}
       </span>
 
-      <div className="flex items-center gap-1.5 min-w-0">
+      <div className="flex min-w-0 items-center gap-1 justify-self-end sm:justify-self-auto">
         <TimeDisplay value={formatTime(solve.time)} isRecord={rank === 1} />
         {hasReplay && (
           <Tooltip>
             <TooltipTrigger asChild>
-              <span className="inline-flex shrink-0 text-primary">
+              <button
+                type="button"
+                aria-label={t('watch-replay')}
+                onClick={(event) => {
+                  event.stopPropagation()
+                  openModal()
+                }}
+                className="inline-flex size-6 shrink-0 items-center justify-center text-primary outline-none transition-colors hover:bg-primary/10 focus-visible:ring-2 focus-visible:ring-ring pointer-coarse:size-10"
+              >
                 <PlayIcon className="size-3.5" />
-              </span>
+              </button>
             </TooltipTrigger>
-            <TooltipContent>{t('replay-available')}</TooltipContent>
+            <TooltipContent>{t('watch-replay')}</TooltipContent>
           </Tooltip>
         )}
       </div>
 
-      <span className="text-xs text-muted-foreground tabular-nums">
-        {dayjs(solve.createdAt).locale(locale).format('ll')}
-      </span>
+      <span className="hidden text-xs text-muted-foreground tabular-nums sm:block">{date}</span>
     </motion.div>
   )
 }
