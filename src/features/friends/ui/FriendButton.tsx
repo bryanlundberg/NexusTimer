@@ -51,14 +51,19 @@ export function FriendButton({ userId, name, status, canRequest = true }: Props)
             <Button
               size="sm"
               variant="outline"
-              className="btn-notch btn-notch-border flex-1 gap-1.5"
+              className="btn-notch btn-notch-border flex-1 gap-1.5 pointer-coarse:h-10"
               disabled={busy}
               onClick={() => setConfirming(true)}
             >
               <X className="size-4" />
               {t('decline')}
             </Button>
-            <Button size="sm" className="btn-notch flex-1 gap-1.5" disabled={busy} onClick={() => add(userId)}>
+            <Button
+              size="sm"
+              className="btn-notch flex-1 gap-1.5 pointer-coarse:h-10"
+              disabled={busy}
+              onClick={() => add(userId)}
+            >
               <Check className="size-4" />
               {t('accept')}
             </Button>
@@ -77,7 +82,13 @@ export function FriendButton({ userId, name, status, canRequest = true }: Props)
 
   if (status === 'blocked') {
     return (
-      <Button size="sm" variant="secondary" className="gap-1.5" disabled={busy} onClick={() => unblock(userId)}>
+      <Button
+        size="sm"
+        variant="secondary"
+        className="gap-1.5 pointer-coarse:h-10"
+        disabled={busy}
+        onClick={() => unblock(userId)}
+      >
         <UserX className="size-4" />
         {t('unblock')}
       </Button>
@@ -86,7 +97,7 @@ export function FriendButton({ userId, name, status, canRequest = true }: Props)
 
   if (status === 'none' && !canRequest) {
     return (
-      <Button size="sm" variant="secondary" className="gap-1.5" disabled>
+      <Button size="sm" variant="secondary" className="gap-1.5 pointer-coarse:h-10" disabled>
         <UserLock className="size-4" />
         {t('requests-closed-label')}
       </Button>
@@ -95,7 +106,7 @@ export function FriendButton({ userId, name, status, canRequest = true }: Props)
 
   if (status === 'none') {
     return (
-      <Button size="sm" className="gap-1.5" disabled={busy} onClick={() => add(userId)}>
+      <Button size="sm" className="gap-1.5 pointer-coarse:h-10" disabled={busy} onClick={() => add(userId)}>
         <UserPlus className="size-4" />
         {t('add-friend')}
       </Button>
@@ -109,7 +120,7 @@ export function FriendButton({ userId, name, status, canRequest = true }: Props)
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button size="sm" variant="secondary" className="gap-1.5" disabled={busy}>
+          <Button size="sm" variant="secondary" className="gap-1.5 pointer-coarse:h-10" disabled={busy}>
             {isFriend ? <UserCheck className="size-4" /> : <Clock className="size-4" />}
             <span>{isFriend ? t('title') : t('request-sent')}</span>
             <ChevronDown className="size-3.5 opacity-60" />
