@@ -6,6 +6,7 @@ import { DialogContent, DialogDescription, DialogTitle } from '@/components/ui/d
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { Badge } from '@/components/ui/badge'
 import { buildAlgorithmReplay } from '@/features/solve-replay/lib/buildAlgorithmReplay'
+import { useTranslations } from 'next-intl'
 
 const RealtimeReplayPlayer = dynamic(
   () => import('@/features/solve-replay/ui/RealtimeReplayPlayer').then((m) => m.RealtimeReplayPlayer),
@@ -16,6 +17,7 @@ const TEMPO_SCALE = 1
 const MOVE_MS = 1100
 
 export default function AlgorithmModal() {
+  const t = useTranslations('Index.AlgorithmsPage')
   const metadata = useOverlayStore((s) => s.activeOverlay?.metadata)
   const alg = metadata?.alg as string | undefined
   const cube = (metadata?.cube as string | undefined) || '3x3'
@@ -38,7 +40,7 @@ export default function AlgorithmModal() {
 
       <div className="notch-bl-tr [--nblt:14px] w-full border border-border bg-muted/60 p-3 sm:p-4 text-center text-foreground">
         <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider block mb-1.5">
-          Algorithm
+          {t('algorithm-label')}
         </span>
         <code className="text-sm sm:text-base font-mono break-all">{alg}</code>
       </div>
