@@ -36,6 +36,8 @@ export default function ModeDropdown({ value, onChange }: ModeDropdownProps) {
           <Button
             data-testid="button-select-mode"
             variant="ghost"
+            aria-label={tIndex('HomePage.mode')}
+            title={tIndex('HomePage.mode')}
             className="group py-0 px-3"
             onMouseEnter={() => iconRef.current?.startAnimation()}
             onMouseLeave={() => iconRef.current?.stopAnimation()}
