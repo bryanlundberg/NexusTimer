@@ -7,8 +7,8 @@ import { PeopleTabs as PTabs } from '@/widgets/people/model/types'
 import { PeopleContent } from '@/widgets/people/ui/PeopleContent'
 import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
 import { ProfileHeroBanner } from '@/widgets/people/ui/profile-hero-banner'
-import { ProfileBadgesStrip } from '@/widgets/people/ui/profile-badges-strip'
 import { ProfileCompletenessBar } from '@/widgets/people/ui/profile-completeness'
+import { ProfileBadgesStrip } from '@/widgets/people/ui/profile-badges-strip'
 import { ProfileActions } from '@/widgets/people/ui/profile-actions'
 import { CompareUserButton } from '@/widgets/people/ui/compare-user-button'
 import { TabTableSkeleton } from '@/shared/ui/skeletons/people-skeleton'
@@ -30,7 +30,7 @@ interface PeopleTabsProps {
   isLoadingStats?: boolean
 }
 
-const tabs = [PTabs.OVERVIEW, PTabs.CUBES, PTabs.TIMELINE, PTabs.ALGORITHMS, PTabs.SHARED] as const
+const tabs = [PTabs.OVERVIEW, PTabs.CUBES, PTabs.TIMELINE, PTabs.ALGORITHMS, PTabs.ACHIEVEMENTS, PTabs.SHARED] as const
 
 export function PeopleTabs({ user, stats, isLoadingStats = false }: PeopleTabsProps) {
   const t = useTranslations('Index.PeoplePage.tabs')
@@ -60,7 +60,8 @@ export function PeopleTabs({ user, stats, isLoadingStats = false }: PeopleTabsPr
     [PTabs.OVERVIEW]: stats?.categories.length ?? 0,
     [PTabs.CUBES]: stats?.cubes.length ?? 0,
     [PTabs.TIMELINE]: stats?.totalSolves ?? 0,
-    [PTabs.ALGORITHMS]: learned?.total ?? 0
+    [PTabs.ALGORITHMS]: learned?.total ?? 0,
+    [PTabs.ACHIEVEMENTS]: userBadges.unlockedFamilies.length
   }
 
   const showCount = (tab: PTabs) =>
@@ -94,7 +95,7 @@ export function PeopleTabs({ user, stats, isLoadingStats = false }: PeopleTabsPr
           isCurrentUser={isCurrentUser}
           status={relationship?.status}
           canRequest={relationship?.canRequest}
-          className="mt-1.5 sm:hidden"
+          className="mt-1.5 justify-center sm:hidden"
         >
           {!statsHidden && <CompareUserButton user={user} />}
         </ProfileActions>
