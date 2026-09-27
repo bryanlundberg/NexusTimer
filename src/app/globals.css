@@ -653,6 +653,34 @@
   color: var(--secondary-foreground);
 }
 
+/* iOS Safari zooms into any focused field whose font-size is below 16px. */
+@layer base {
+  @media (pointer: coarse) {
+    :is(input:not([type='checkbox'], [type='radio'], [type='range'], [type='file'], [type='color']), textarea, select) {
+      font-size: max(1rem, 1em);
+    }
+  }
+}
+@media (pointer: coarse) {
+  :is(input:not([type='checkbox'], [type='radio'], [type='range'], [type='file'], [type='color']), textarea, select):is(
+    [class~='text-xs'],
+    [class~='sm:text-xs'],
+    [class~='md:text-xs'],
+    [class~='text-sm'],
+    [class~='sm:text-sm'],
+    [class~='md:text-sm'],
+    [class~='text-[11px]'],
+    [class~='text-[12px]'],
+    [class~='text-[13px]'],
+    [class~='sm:text-[13px]'],
+    [class~='text-[14px]'],
+    [class~='text-[15px]'],
+    [class~='sm:text-[15px]']
+  ) {
+    font-size: 1rem;
+  }
+}
+
 .field-notch {
   --f-cut: 9px;
   --f-border-w: 1px;
