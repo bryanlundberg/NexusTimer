@@ -1,79 +1,78 @@
 'use client'
 
-import { AchievementItem } from '@/entities/achievement/ui/achievement-item'
-import { UserBadgesResult, BadgeFamily } from '@/entities/achievement/model/useUserBadges'
-import { cn } from '@/shared/lib/utils'
+import { useState } from 'react'
 import { useTranslations } from 'next-intl'
+import { UserBadgesResult } from '@/entities/achievement/model/useUserBadges'
+import Segmented from '@/shared/ui/segmented/Segmented'
+import { AchievementFamilyCard } from '@/widgets/people/ui/achievement-family-card'
 
 interface Props {
   badges: UserBadgesResult
 }
 
-function FamilyCard({ family }: { family: BadgeFamily }) {
-  const locked = !family.unlocked
-  const { progress } = family
-
-  return (
-    <div
-      className={cn(
-        'notch-bl-tr [--nblt:12px] flex items-center gap-3 border border-border/40 bg-card/40 p-3 transition-colors',
-        locked ? 'opacity-60' : 'hover:border-primary'
-      )}
-    >
-      <div className="shrink-0">
-        <AchievementItem
-          achievement={family}
-          locked={locked}
-          level={family.level}
-          maxLevel={family.maxLevel}
-          disableTooltip
-        />
-      </div>
-
-      <div className="min-w-0 flex-1">
-        <p className="text-sm font-semibold leading-tight truncate">{family.title}</p>
-        <p className="text-xs text-muted-foreground leading-snug">{family.description}</p>
-
-        {progress && (
-          <div className="mt-1.5 flex flex-col gap-1">
-            {progress.ratio !== undefined && (
-              <div className="h-1 w-full overflow-hidden rounded-full bg-border/60">
-                <div
-                  className="h-full rounded-full bg-primary transition-[width] duration-500"
-                  style={{ width: `${Math.round(progress.ratio * 100)}%` }}
-                />
-              </div>
-            )}
-            <span className="text-[11px] tabular-nums text-muted-foreground">{progress.label}</span>
-          </div>
-        )}
-      </div>
-    </div>
-  )
-}
+type Filter = 'unlocked' | 'locked'
 
 export default function AchievementsTabContent({ badges }: Props) {
   const t = useTranslations('Index.PeoplePage.badges')
   const { unlockedFamilies, lockedFamilies, earnedTiers, totalTiers } = badges
+  const [filter, setFilter] = useState<Filter>(unlockedFamilies.length > 0 ? 'unlocked' : 'locked')
+
+  const families = filter === 'unlocked' ? unlockedFamilies : lockedFamilies
+  const percent = totalTiers > 0 ? Math.round((earnedTiers / totalTiers) * 100) : 0
+
+  const option = (value: Filter, label: string, count: number) => ({
+    value,
+    label: (
+      <span className="flex items-center gap-1.5">
+        {label}
+        <span className="tabular-nums opacity-60">{count}</span>
+      </span>
+    )
+  })
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex items-center justify-between">
-        <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-100">
-          {t('title')}
-        </h3>
-        <span className="text-xs text-muted-foreground tabular-nums">
-          {t('counter', { unlocked: earnedTiers, total: totalTiers })}
-        </span>
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex min-w-0 flex-col gap-1.5">
+          <span className="text-[13px] text-muted-foreground tabular-nums sm:text-xs">
+            {t('levels', { unlocked: earnedTiers, total: totalTiers })}
+          </span>
+          <div
+            role="progressbar"
+            aria-valuenow={percent}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label={t('title')}
+            className="h-1 w-full overflow-hidden bg-muted sm:w-56"
+          >
+            <div className="h-full bg-primary transition-[width] duration-500" style={{ width: `${percent}%` }} />
+          </div>
+        </div>
+
+        <Segmented
+          value={filter}
+          onChange={setFilter}
+          layoutId="achievements-filter"
+          aria-label={t('title')}
+          className="w-full sm:w-auto [&>button]:flex-1 [&>button]:justify-center sm:[&>button]:flex-none"
+          options={[
+            option('unlocked', t('filter-unlocked'), unlockedFamilies.length),
+            option('locked', t('filter-locked'), lockedFamilies.length)
+          ]}
+        />
       </div>
 
-      {unlockedFamilies.length === 0 && <p className="text-sm text-muted-foreground">{t('empty')}</p>}
-
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-3">
-        {[...unlockedFamilies, ...lockedFamilies].map((family) => (
-          <FamilyCard key={family.id} family={family} />
-        ))}
-      </div>
+      {families.length === 0 ? (
+        <p className="py-8 text-center text-[15px] text-muted-foreground sm:text-sm">
+          {filter === 'unlocked' ? t('empty') : t('all-unlocked')}
+        </p>
+      ) : (
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-3">
+          {families.map((family) => (
+            <AchievementFamilyCard key={family.id} family={family} />
+          ))}
+        </div>
+      )}
     </div>
   )
 }
