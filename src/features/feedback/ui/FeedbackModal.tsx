@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { Nexi, type NexiState } from '@/shared/ui/nexi'
+import { MailCheck } from 'lucide-react'
 
 const RATING_NEXI = [
   { value: 1, state: 'oops', labelKey: 'rating-1' },
@@ -25,11 +26,13 @@ export default function FeedbackModal() {
   const [comment, setComment] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [failed, setFailed] = useState(false)
 
   const handleSubmit = async () => {
     if (!rating || !session?.user?.id) return
 
     setIsSubmitting(true)
+    setFailed(false)
     try {
       const res = await fetch('/api/v1/feedback', {
         method: 'POST',
@@ -37,11 +40,11 @@ export default function FeedbackModal() {
         body: JSON.stringify({ rating, comment })
       })
 
-      if (res.ok) {
-        setSubmitted(true)
-      }
+      if (res.ok) setSubmitted(true)
+      else setFailed(true)
     } catch (error) {
       console.error('Error submitting feedback:', error)
+      setFailed(true)
     } finally {
       setIsSubmitting(false)
     }
@@ -50,10 +53,13 @@ export default function FeedbackModal() {
   if (submitted) {
     return (
       <DialogContent className="sm:max-w-md">
-        <div className="flex flex-col items-center gap-4 py-8">
-          <Nexi state="pb" size={88} aria-label={t('thanks')} />
-          <DialogTitle>{t('thanks')}</DialogTitle>
-          <Button onClick={close} variant="outline">
+        <div className="flex flex-col items-center gap-4 py-8 text-center">
+          <Nexi state="pb" size={88} aria-hidden />
+          <div className="flex flex-col gap-1.5">
+            <DialogTitle>{t('thanks')}</DialogTitle>
+            <DialogDescription>{t('thanks-note')}</DialogDescription>
+          </div>
+          <Button onClick={close} variant="outline" className="pointer-coarse:h-11">
             {t('close')}
           </Button>
         </div>
@@ -68,34 +74,47 @@ export default function FeedbackModal() {
         <DialogDescription>{t('description')}</DialogDescription>
       </DialogHeader>
 
-      <div className="flex justify-center gap-1 py-4">
+      <div role="radiogroup" aria-label={t('description')} className="flex justify-center gap-1 py-4">
         {RATING_NEXI.map(({ value, state, labelKey }) => (
           <button
             key={value}
             type="button"
+            role="radio"
             onClick={() => setRating(value)}
-            aria-pressed={rating === value}
+            aria-checked={rating === value}
             className={`flex flex-col items-center gap-1 p-2 rounded-none transition-all cursor-pointer ${
               rating === value
                 ? 'bg-accent scale-110 ring-2 ring-primary'
                 : 'opacity-60 hover:opacity-100 hover:bg-accent/50'
             }`}
           >
-            <Nexi state={state} size={48} aria-label={t(labelKey)} />
+            <Nexi state={state} size={48} aria-hidden />
             <span className="text-xs text-muted-foreground">{t(labelKey)}</span>
           </button>
         ))}
       </div>
 
-      <Textarea
-        placeholder={t('placeholder')}
-        value={comment}
-        onChange={(e) => setComment(e.target.value)}
-        rows={4}
-        className="resize-none"
-      />
+      <div className="flex flex-col gap-2">
+        <Textarea
+          aria-label={t('placeholder')}
+          placeholder={t('placeholder')}
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          rows={4}
+          className="resize-none"
+        />
+        <p className="flex items-start gap-2 text-[13px] leading-snug text-muted-foreground sm:text-xs">
+          <MailCheck aria-hidden className="mt-px size-4 shrink-0 text-primary sm:size-3.5" />
+          {t('personal-note')}
+        </p>
+        {failed && (
+          <p role="alert" className="text-[13px] font-medium text-destructive sm:text-xs">
+            {t('error')}
+          </p>
+        )}
+      </div>
 
-      <DialogFooter className="gap-2">
+      <DialogFooter className="gap-2 [&>*]:pointer-coarse:h-11">
         <Button variant="outline" onClick={close}>
           {t('cancel')}
         </Button>
