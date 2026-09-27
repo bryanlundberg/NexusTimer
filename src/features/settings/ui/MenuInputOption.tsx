@@ -1,48 +1,58 @@
 import { Controller } from 'react-hook-form'
-import React from 'react'
+import { useTranslations } from 'next-intl'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
+import { triggerHaptic } from '@/shared/model/useHaptics'
+import { NumberStepper } from '@/components/ui/number-stepper'
 import { MenuRow } from './MenuRow'
+
+interface MenuInputOptionProps {
+  label: string
+  control: any
+  name: string
+  min: number
+  max: number
+  step?: number
+  scale?: number
+  unit?: string
+  description?: string
+}
 
 export default function MenuInputOption({
   label,
   control,
   name,
-  inputProps,
+  min,
+  max,
+  step,
+  scale,
+  unit,
   description
-}: {
-  label: string
-  control: any
-  name: string
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement>
-  description?: string
-}) {
+}: MenuInputOptionProps) {
+  const t = useTranslations('Index.Inputs')
   const updateSetting = useSettingsStore((state) => state.updateSetting)
 
   return (
-    <MenuRow label={label} description={description}>
+    <MenuRow label={label} description={description} stack>
       <Controller
         control={control}
         render={({ field: { onChange, value } }) => (
-          <div className="field-notch flex w-24 sm:w-28 shrink-0">
-            <input
-              type="number"
-              value={typeof value === 'number' && !Number.isNaN(value) ? value : 0}
-              onChange={(e) => {
-                const newValue = e.target.value.replace(/[^0-9]/g, '')
-                let finalValue: number
-                if (inputProps?.max !== undefined && Number(newValue) > Number(inputProps.max)) {
-                  finalValue = Number(inputProps.max)
-                } else {
-                  finalValue = Number(newValue)
-                }
-                onChange(finalValue)
-                updateSetting(name as any, finalValue)
-              }}
-              className="relative z-[1] w-full min-w-0 border-0 bg-transparent px-4 py-1 text-sm outline-none"
-              min={0}
-              {...inputProps}
-            />
-          </div>
+          <NumberStepper
+            aria-label={label}
+            className="w-full sm:w-36"
+            value={Number(value)}
+            min={min}
+            max={max}
+            step={step}
+            scale={scale}
+            unit={unit}
+            decrementLabel={t('decrease')}
+            incrementLabel={t('increase')}
+            onValueChange={(next) => {
+              onChange(next)
+              updateSetting(name as any, next)
+              triggerHaptic()
+            }}
+          />
         )}
         name={name}
       />
