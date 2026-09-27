@@ -79,14 +79,14 @@ export default function RoomCard({ room, onJoinPrivate }: RoomCardProps) {
               </div>
             )}
           </div>
-          <span className="text-xs text-muted-foreground">
-            {usersPresence.length} {t('users-online')}
+          <span className="text-xs text-muted-foreground tabular-nums">
+            {t('players-online', { count: usersPresence.length })}
           </span>
         </div>
 
         {room.currentRoundTimeLimit && !isFinished && (
           <div className="flex items-center gap-1 text-xs text-muted-foreground">
-            <Timer className="size-3 animate-pulse" />
+            <Timer className="size-3 animate-pulse motion-reduce:animate-none" />
             <span className="font-mono tabular-nums">{mmss}</span>
           </div>
         )}
