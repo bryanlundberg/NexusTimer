@@ -21,7 +21,7 @@ export function MethodSelect({ id, value, onChange, clearLabel }: MethodSelectPr
   return (
     <div className="relative">
       <Select value={selected ?? ''} onValueChange={(next) => isCubingMethod(next) && onChange(next)}>
-        <SelectTrigger id={id} className="w-full h-10">
+        <SelectTrigger id={id} className="h-11 w-full sm:h-10">
           <span className="flex flex-1 items-center gap-2.5 min-w-0">
             <MethodGlyph method={selected} />
             <SelectValue placeholder={t('placeholder')} className="flex min-w-0 items-baseline gap-2">

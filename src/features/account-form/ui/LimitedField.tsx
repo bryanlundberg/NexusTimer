@@ -1,28 +1,30 @@
 import { Control, UseFormRegister, useWatch } from 'react-hook-form'
-import { type LucideIcon } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { AccountInfoForm } from '@/features/account-form/model/types'
+import { MenuFieldRow } from '@/features/settings/ui/MenuFieldRow'
 import { cn } from '@/shared/lib/utils'
 
 export function LimitedField({
   id,
+  label,
   control,
   register,
   name,
   max,
   multiline,
   placeholder,
-  icon: Icon
+  error
 }: {
-  id?: string
+  id: string
+  label: string
   control: Control<AccountInfoForm>
   register: UseFormRegister<AccountInfoForm>
   name: 'name' | 'goal' | 'bio'
   max: number
   multiline?: boolean
   placeholder?: string
-  icon?: LucideIcon
+  error?: React.ReactNode
 }) {
   // React Compiler would memoize register(), leaving the input blank after reset().
   'use no memo'
@@ -30,40 +32,41 @@ export function LimitedField({
   const over = length > max
 
   return (
-    <>
-      <div className="relative">
-        {multiline ? (
-          <Textarea
-            id={id}
-            placeholder={placeholder}
-            {...register(name)}
-            aria-invalid={over}
-            className={cn('peer w-full resize-none min-h-25', Icon && 'pl-9')}
-            rows={4}
-          />
-        ) : (
-          <Input
-            id={id}
-            placeholder={placeholder}
-            {...register(name)}
-            aria-invalid={over}
-            className={cn('peer h-10', Icon && 'pl-9')}
-          />
-        )}
-        {Icon && (
-          <Icon
-            className={cn(
-              'pointer-events-none absolute left-3 size-4 text-muted-foreground',
-              multiline ? 'top-3' : 'top-1/2 -translate-y-1/2'
-            )}
-          />
-        )}
-      </div>
-      <div className="mt-1.5 flex justify-end">
-        <span className={`text-xs ${over ? 'text-destructive font-medium' : 'text-muted-foreground'}`}>
+    <MenuFieldRow
+      label={label}
+      htmlFor={id}
+      error={error}
+      hint={
+        <span
+          className={cn(
+            'text-xs tabular-nums',
+            over ? 'font-medium text-destructive' : length > max * 0.8 ? 'text-foreground' : 'text-muted-foreground'
+          )}
+        >
           {length}/{max}
         </span>
-      </div>
-    </>
+      }
+    >
+      {multiline ? (
+        <Textarea
+          id={id}
+          placeholder={placeholder}
+          {...register(name)}
+          aria-invalid={over || !!error}
+          className="min-h-25 w-full resize-none"
+          rows={4}
+        />
+      ) : (
+        <Input
+          id={id}
+          placeholder={placeholder}
+          {...register(name)}
+          aria-invalid={over || !!error}
+          autoComplete={name === 'name' ? 'name' : 'off'}
+          enterKeyHint="next"
+          className="h-11 sm:h-10"
+        />
+      )}
+    </MenuFieldRow>
   )
 }

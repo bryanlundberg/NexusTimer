@@ -40,7 +40,7 @@ export function MainColorsSelect({ id, value, onChange, clearLabel }: MainColors
           <button
             id={id}
             type="button"
-            className="field-notch field-notch-hover flex h-10 w-full items-center justify-between gap-2 px-3 text-sm outline-none"
+            className="field-notch field-notch-hover flex h-11 w-full sm:h-10 items-center justify-between gap-2 px-3 text-sm outline-none"
           >
             <span className="flex min-w-0 flex-1 items-center gap-2">
               {isNeutral || !selected.length ? (
