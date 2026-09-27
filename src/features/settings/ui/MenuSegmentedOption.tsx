@@ -1,7 +1,7 @@
 import { Controller } from 'react-hook-form'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { triggerHaptic } from '@/shared/model/useHaptics'
-import { SegmentedControl } from '@/components/ui/segmented-control'
+import Segmented from '@/shared/ui/segmented/Segmented'
 import { MenuRow } from './MenuRow'
 
 interface MenuSegmentedOptionProps {
@@ -20,12 +20,13 @@ export default function MenuSegmentedOption({ label, control, name, options, des
       <Controller
         control={control}
         render={({ field: { onChange, value } }) => (
-          <SegmentedControl
+          <Segmented
             aria-label={label}
-            className="w-full sm:w-36"
+            layoutId={`segmented-${name}`}
+            className="w-full tabular-nums sm:w-auto [&>button]:flex-1 [&>button]:justify-center sm:[&>button]:min-w-11"
             value={String(value)}
             options={options.map((option) => ({ value: String(option), label: option }))}
-            onValueChange={(next) => {
+            onChange={(next) => {
               onChange(Number(next))
               updateSetting(name as any, Number(next))
               triggerHaptic()
