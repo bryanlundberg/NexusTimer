@@ -10,6 +10,7 @@ import { cn } from '@/shared/lib/utils'
 import { useSession } from 'next-auth/react'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
 import { ScrambleGuideMoves } from '@/features/timer/ui/ScrambleGuideMoves'
+import { SolveClockText } from '@/features/timer/ui/SolveClockText'
 import { useVirtualCube } from '@/features/timer/model/useVirtualCube'
 import { useTrainerSession } from '@/features/trainer/model/useTrainerSession'
 import { useTrainerStore } from '@/features/trainer/model/useTrainerStore'
@@ -93,7 +94,7 @@ export default function TrainerSmartTimer({ connection }: TrainerSmartTimerProps
     [advanceCase, recordSolve, attachLastSolveId, isAuthed, methodSlug]
   )
 
-  const { phase, solvingTime, guide, resync } = useTrainerSmartSession({
+  const { phase, clock, guide, resync } = useTrainerSmartSession({
     engine,
     player,
     connection,
@@ -193,7 +194,7 @@ export default function TrainerSmartTimer({ connection }: TrainerSmartTimerProps
       </div>
 
       <div className={cn('text-4xl sm:text-6xl tabular-nums font-semibold', timeColorClass)}>
-        {phase === 'ready' ? '0.00' : formatMs(solvingTime || 0)}
+        {phase === 'ready' ? '0.00' : <SolveClockText clock={clock} format={formatMs} />}
       </div>
 
       {phase === 'guiding' && (
