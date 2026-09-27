@@ -1,5 +1,6 @@
 import React from 'react'
 import { cn } from '@/shared/lib/utils'
+import { LABEL_COLUMN } from '@/features/compare-users/model/columns'
 
 export default function CompareTableRow({
   title,
@@ -22,14 +23,18 @@ export default function CompareTableRow({
         className
       )}
     >
-      <div
-        className={cn(
-          'w-32 py-4 text-sm sticky left-0 z-40 px-4 flex justify-end text-right font-medium text-muted-foreground bg-background',
-          isHeader && 'text-foreground font-bold'
-        )}
-      >
-        {title}
-      </div>
+      {isHeader ? (
+        <div aria-hidden className={cn(LABEL_COLUMN, 'shrink-0')} />
+      ) : (
+        <div
+          className={cn(
+            LABEL_COLUMN,
+            'py-4 text-[13px] sm:text-sm sticky left-0 z-40 px-3 sm:px-4 flex justify-end text-right font-medium text-muted-foreground bg-background shadow-[1px_0_0_var(--border)]'
+          )}
+        >
+          {title}
+        </div>
+      )}
       {children}
     </div>
   )
