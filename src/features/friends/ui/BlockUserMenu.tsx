@@ -25,7 +25,7 @@ export function BlockUserMenu({ userId, name }: Props) {
           <Button
             size="icon"
             variant="ghost"
-            className="size-9"
+            className="size-9 pointer-coarse:size-10"
             aria-label={t('more-actions')}
             disabled={pendingId === userId}
           >
