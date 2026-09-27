@@ -49,9 +49,9 @@ export default function CoreHeader({ breadcrumbs, actions, accentStripe = false 
 
   return (
     <div className="w-full sticky top-0 z-50" data-testid="core-header">
-      <div className="h-14 border-b px-3 flex justify-between items-center gap-2 bg-background/60 backdrop-blur-md">
+      <div className="@container/header h-14 border-b px-3 flex justify-between items-center gap-2 bg-background/60 backdrop-blur-md">
         <div className="flex items-center gap-3 min-w-0">
-          <SidebarTrigger className="btn-notch btn-notch-alt btn-notch-border size-9 shrink-0 [&_svg]:size-5" />
+          <SidebarTrigger className="btn-notch btn-notch-alt btn-notch-border size-9 shrink-0 pointer-coarse:size-10 [&_svg]:size-5" />
           <Breadcrumb className="min-w-0">
             <BreadcrumbList className="flex-nowrap gap-1.5 sm:gap-2">
               {breadcrumbs.map((crumb, index) => {
@@ -94,7 +94,7 @@ export default function CoreHeader({ breadcrumbs, actions, accentStripe = false 
           {actions}
 
           {status === 'loading' ? (
-            <Skeleton className="h-9 w-24 rounded-md" />
+            <Skeleton className="h-9 w-24 rounded-none" />
           ) : session?.user ? (
             <>
               <SyncProgress />
@@ -102,9 +102,9 @@ export default function CoreHeader({ breadcrumbs, actions, accentStripe = false 
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
-                    variant="outline"
+                    variant="ghost"
                     size="sm"
-                    className="h-9 gap-1.5 px-2 sm:px-3"
+                    className="btn-notch btn-notch-alt btn-notch-border h-9 min-w-9 gap-1.5 px-2 pointer-coarse:h-10 pointer-coarse:min-w-10 sm:px-3"
                     onClick={handleOpenFeedback}
                     aria-label={tHeader('give-feedback')}
                     data-testid="header-feedback-button"
