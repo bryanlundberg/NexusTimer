@@ -45,13 +45,13 @@ function AlgorithmMethod({ set }: { set: ALGORITHM_SET }) {
               />
               <span className="flex items-baseline gap-1">
                 <span className="text-sm font-bold tabular-nums">{algorithms.length}</span>
-                <span className="text-[11px] text-muted-foreground">algs</span>
+                <span className="text-[11px] text-muted-foreground">{t('algs-unit')}</span>
               </span>
             </div>
 
             <Tooltip>
               <TooltipTrigger asChild>
-                <span className="flex shrink-0 items-center gap-1" aria-label={difficultyLabel}>
+                <span role="img" className="flex shrink-0 items-center gap-1" aria-label={difficultyLabel}>
                   {[1, 2, 3].map((level) => (
                     <span
                       key={level}
