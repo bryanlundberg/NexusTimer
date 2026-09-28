@@ -551,7 +551,28 @@
       "requests-closed-label": "요청 받지 않음",
       "requests-closed": "이 사용자는 친구 요청을 받지 않습니다.",
       "request-cooldown": "최근에 이 사용자에게 보낸 요청을 취소했습니다. 나중에 다시 시도하세요.",
-      "request-limit": "오늘 너무 많은 요청을 보냈습니다. 내일 다시 시도하세요."
+      "request-limit": "오늘 너무 많은 요청을 보냈습니다. 내일 다시 시도하세요.",
+      "ranking": {
+        "tab": "랭킹",
+        "overall": "종합",
+        "metric-label": "랭킹 기준",
+        "metrics": {
+          "single": "싱글",
+          "ao5": "Ao5",
+          "solves": "솔브",
+          "time": "시간",
+          "streak": "연속 일수"
+        },
+        "position": "{total}명 중 <strong>{rank}위</strong>",
+        "you": "나",
+        "updated": "{time} 업데이트",
+        "days": "{count, plural, other {#일}}",
+        "no-friends": "친구를 추가해서 통계를 비교해 보세요.",
+        "empty": "아직 여기에 통계가 있는 친구가 없습니다.",
+        "no-backup": "백업을 저장하면 친구 랭킹에 표시됩니다.",
+        "save-backup": "백업 저장",
+        "source-hint": "통계는 각 큐버의 최신 백업에서 가져오며 새 백업을 저장하면 업데이트됩니다."
+      }
     },
     "ChatPage": {
       "title": "메시지",

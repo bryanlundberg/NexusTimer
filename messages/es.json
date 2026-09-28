@@ -509,7 +509,28 @@
       "requests-closed-label": "No acepta solicitudes",
       "requests-closed": "Este usuario no acepta solicitudes de amistad.",
       "request-cooldown": "Cancelaste una solicitud a este usuario hace poco. Inténtalo más tarde.",
-      "request-limit": "Enviaste demasiadas solicitudes hoy. Inténtalo mañana."
+      "request-limit": "Enviaste demasiadas solicitudes hoy. Inténtalo mañana.",
+      "ranking": {
+        "tab": "Ranking",
+        "overall": "General",
+        "metric-label": "Métrica del ranking",
+        "metrics": {
+          "single": "Single",
+          "ao5": "Ao5",
+          "solves": "Solves",
+          "time": "Tiempo",
+          "streak": "Racha"
+        },
+        "position": "Vas <strong>#{rank}</strong> de {total}",
+        "you": "Tú",
+        "updated": "Actualizado {time}",
+        "days": "{count, plural, one {# día} other {# días}}",
+        "no-friends": "Agrega amigos para comparar tus estadísticas con las suyas.",
+        "empty": "Ninguno de tus amigos tiene estadísticas aquí todavía.",
+        "no-backup": "Guarda un backup para aparecer en el ranking de tus amigos.",
+        "save-backup": "Guardar backup",
+        "source-hint": "Las estadísticas salen del último backup de cada cubero y se actualizan cuando guarda uno nuevo."
+      }
     },
     "ChatPage": {
       "title": "Mensajes",

@@ -554,7 +554,28 @@
       "requests-closed-label": "Nie przyjmuje zaproszeń",
       "requests-closed": "Ten użytkownik nie przyjmuje zaproszeń do znajomych.",
       "request-cooldown": "Niedawno anulowałeś zaproszenie do tego użytkownika. Spróbuj później.",
-      "request-limit": "Wysłałeś dziś zbyt wiele zaproszeń. Spróbuj jutro."
+      "request-limit": "Wysłałeś dziś zbyt wiele zaproszeń. Spróbuj jutro.",
+      "ranking": {
+        "tab": "Ranking",
+        "overall": "Ogólnie",
+        "metric-label": "Kryterium rankingu",
+        "metrics": {
+          "single": "Pojedyncze",
+          "ao5": "Ao5",
+          "solves": "Ułożenia",
+          "time": "Czas",
+          "streak": "Seria"
+        },
+        "position": "Jesteś <strong>#{rank}</strong> z {total}",
+        "you": "Ty",
+        "updated": "Zaktualizowano {time}",
+        "days": "{count, plural, one {# dzień} few {# dni} many {# dni} other {# dnia}}",
+        "no-friends": "Dodaj znajomych, aby porównać z nimi swoje statystyki.",
+        "empty": "Żaden z twoich znajomych nie ma tu jeszcze statystyk.",
+        "no-backup": "Zapisz kopię zapasową, aby pojawić się w rankingu znajomych.",
+        "save-backup": "Zapisz kopię",
+        "source-hint": "Statystyki pochodzą z najnowszej kopii zapasowej każdego cubera i aktualizują się, gdy zapisze nową."
+      }
     },
     "ChatPage": {
       "title": "Wiadomości",

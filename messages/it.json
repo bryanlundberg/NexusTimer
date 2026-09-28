@@ -554,7 +554,28 @@
       "requests-closed-label": "Non accetta richieste",
       "requests-closed": "Questo utente non accetta richieste di amicizia.",
       "request-cooldown": "Hai annullato di recente una richiesta a questo utente. Riprova più tardi.",
-      "request-limit": "Hai inviato troppe richieste oggi. Riprova domani."
+      "request-limit": "Hai inviato troppe richieste oggi. Riprova domani.",
+      "ranking": {
+        "tab": "Classifica",
+        "overall": "Generale",
+        "metric-label": "Metrica della classifica",
+        "metrics": {
+          "single": "Singolo",
+          "ao5": "Ao5",
+          "solves": "Solve",
+          "time": "Tempo",
+          "streak": "Serie"
+        },
+        "position": "Sei <strong>#{rank}</strong> su {total}",
+        "you": "Tu",
+        "updated": "Aggiornato {time}",
+        "days": "{count, plural, one {# giorno} other {# giorni}}",
+        "no-friends": "Aggiungi amici per confrontare le tue statistiche con le loro.",
+        "empty": "Nessuno dei tuoi amici ha ancora statistiche qui.",
+        "no-backup": "Salva un backup per apparire nella classifica dei tuoi amici.",
+        "save-backup": "Salva backup",
+        "source-hint": "Le statistiche provengono dall'ultimo backup di ogni cuber e si aggiornano quando ne salva uno nuovo."
+      }
     },
     "ChatPage": {
       "title": "Messaggi",

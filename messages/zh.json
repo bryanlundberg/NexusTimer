@@ -551,7 +551,28 @@
       "requests-closed-label": "不接受请求",
       "requests-closed": "该用户不接受好友请求。",
       "request-cooldown": "你最近撤回了发给该用户的请求，请稍后再试。",
-      "request-limit": "你今天发送的请求过多，请明天再试。"
+      "request-limit": "你今天发送的请求过多，请明天再试。",
+      "ranking": {
+        "tab": "排行",
+        "overall": "综合",
+        "metric-label": "排行指标",
+        "metrics": {
+          "single": "单次",
+          "ao5": "Ao5",
+          "solves": "还原次数",
+          "time": "用时",
+          "streak": "连续天数"
+        },
+        "position": "你在 {total} 人中排 <strong>第 {rank}</strong>",
+        "you": "你",
+        "updated": "更新于{time}",
+        "days": "{count, plural, other {# 天}}",
+        "no-friends": "添加好友，和他们比较你的数据。",
+        "empty": "你的好友在这里还没有数据。",
+        "no-backup": "保存一份备份，就能出现在好友排行中。",
+        "save-backup": "保存备份",
+        "source-hint": "数据来自每位魔友最新的备份，保存新备份后会更新。"
+      }
     },
     "ChatPage": {
       "title": "消息",

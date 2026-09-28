@@ -551,7 +551,28 @@
       "requests-closed-label": "Nimmt keine Anfragen an",
       "requests-closed": "Diese Person nimmt keine Freundschaftsanfragen an.",
       "request-cooldown": "Du hast kürzlich eine Anfrage an diese Person zurückgezogen. Versuche es später erneut.",
-      "request-limit": "Du hast heute zu viele Anfragen gesendet. Versuche es morgen erneut."
+      "request-limit": "Du hast heute zu viele Anfragen gesendet. Versuche es morgen erneut.",
+      "ranking": {
+        "tab": "Rangliste",
+        "overall": "Gesamt",
+        "metric-label": "Ranglisten-Metrik",
+        "metrics": {
+          "single": "Single",
+          "ao5": "Ao5",
+          "solves": "Solves",
+          "time": "Zeit",
+          "streak": "Serie"
+        },
+        "position": "Du bist <strong>#{rank}</strong> von {total}",
+        "you": "Du",
+        "updated": "Aktualisiert {time}",
+        "days": "{count, plural, one {# Tag} other {# Tage}}",
+        "no-friends": "Füge Freunde hinzu, um deine Statistiken mit ihren zu vergleichen.",
+        "empty": "Noch keiner deiner Freunde hat hier Statistiken.",
+        "no-backup": "Speichere ein Backup, um in der Rangliste deiner Freunde zu erscheinen.",
+        "save-backup": "Backup speichern",
+        "source-hint": "Die Statistiken stammen aus dem letzten Backup jedes Cubers und werden aktualisiert, wenn ein neues gespeichert wird."
+      }
     },
     "ChatPage": {
       "title": "Nachrichten",

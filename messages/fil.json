@@ -554,7 +554,28 @@
       "requests-closed-label": "Hindi tumatanggap ng request",
       "requests-closed": "Hindi tumatanggap ng friend request ang user na ito.",
       "request-cooldown": "Kamakailan mong kinansela ang request sa user na ito. Subukan ulit mamaya.",
-      "request-limit": "Masyado kang maraming naipadalang request ngayong araw. Subukan ulit bukas."
+      "request-limit": "Masyado kang maraming naipadalang request ngayong araw. Subukan ulit bukas.",
+      "ranking": {
+        "tab": "Ranking",
+        "overall": "Pangkalahatan",
+        "metric-label": "Sukatan ng ranking",
+        "metrics": {
+          "single": "Single",
+          "ao5": "Ao5",
+          "solves": "Solve",
+          "time": "Oras",
+          "streak": "Streak"
+        },
+        "position": "Ika-<strong>{rank}</strong> ka sa {total}",
+        "you": "Ikaw",
+        "updated": "Na-update {time}",
+        "days": "{count, plural, one {# araw} other {# araw}}",
+        "no-friends": "Magdagdag ng mga kaibigan para ikumpara ang stats mo sa kanila.",
+        "empty": "Wala pang stats dito ang mga kaibigan mo.",
+        "no-backup": "Mag-save ng backup para lumabas ka sa ranking ng mga kaibigan mo.",
+        "save-backup": "I-save ang backup",
+        "source-hint": "Galing ang stats sa pinakabagong backup ng bawat cuber at naa-update kapag nag-save sila ng bago."
+      }
     },
     "ChatPage": {
       "title": "Mga Mensahe",

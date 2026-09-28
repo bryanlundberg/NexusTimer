@@ -554,7 +554,28 @@
       "requests-closed-label": "Không nhận lời mời",
       "requests-closed": "Người dùng này không nhận lời mời kết bạn.",
       "request-cooldown": "Bạn vừa hủy lời mời gửi tới người này. Hãy thử lại sau.",
-      "request-limit": "Hôm nay bạn đã gửi quá nhiều lời mời. Hãy thử lại vào ngày mai."
+      "request-limit": "Hôm nay bạn đã gửi quá nhiều lời mời. Hãy thử lại vào ngày mai.",
+      "ranking": {
+        "tab": "Xếp hạng",
+        "overall": "Tổng",
+        "metric-label": "Tiêu chí xếp hạng",
+        "metrics": {
+          "single": "Đơn",
+          "ao5": "Ao5",
+          "solves": "Lượt giải",
+          "time": "Thời gian",
+          "streak": "Chuỗi ngày"
+        },
+        "position": "Bạn đứng <strong>#{rank}</strong> trên {total}",
+        "you": "Bạn",
+        "updated": "Cập nhật {time}",
+        "days": "{count, plural, other {# ngày}}",
+        "no-friends": "Thêm bạn bè để so sánh thống kê của bạn với họ.",
+        "empty": "Chưa có người bạn nào có thống kê ở đây.",
+        "no-backup": "Lưu bản sao lưu để xuất hiện trong bảng xếp hạng của bạn bè.",
+        "save-backup": "Lưu sao lưu",
+        "source-hint": "Thống kê lấy từ bản sao lưu mới nhất của mỗi cuber và được cập nhật khi họ lưu bản mới."
+      }
     },
     "ChatPage": {
       "title": "Tin nhắn",

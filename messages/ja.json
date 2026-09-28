@@ -551,7 +551,28 @@
       "requests-closed-label": "リクエスト受付停止中",
       "requests-closed": "このユーザーはフレンドリクエストを受け付けていません。",
       "request-cooldown": "このユーザーへのリクエストを最近取り消しました。時間をおいて再度お試しください。",
-      "request-limit": "本日のリクエスト送信数が上限に達しました。明日もう一度お試しください。"
+      "request-limit": "本日のリクエスト送信数が上限に達しました。明日もう一度お試しください。",
+      "ranking": {
+        "tab": "ランキング",
+        "overall": "総合",
+        "metric-label": "ランキングの指標",
+        "metrics": {
+          "single": "単発",
+          "ao5": "Ao5",
+          "solves": "ソルブ数",
+          "time": "時間",
+          "streak": "連続日数"
+        },
+        "position": "{total}人中 <strong>{rank}位</strong>",
+        "you": "あなた",
+        "updated": "{time}に更新",
+        "days": "{count, plural, other {#日}}",
+        "no-friends": "フレンドを追加して、統計を比べてみましょう。",
+        "empty": "ここにはまだフレンドの統計がありません。",
+        "no-backup": "バックアップを保存すると、フレンドのランキングに表示されます。",
+        "save-backup": "バックアップを保存",
+        "source-hint": "統計は各キューバーの最新のバックアップから取得され、新しいバックアップを保存すると更新されます。"
+      }
     },
     "ChatPage": {
       "title": "メッセージ",

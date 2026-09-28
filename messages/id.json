@@ -554,7 +554,28 @@
       "requests-closed-label": "Tidak menerima permintaan",
       "requests-closed": "Pengguna ini tidak menerima permintaan pertemanan.",
       "request-cooldown": "Kamu baru saja membatalkan permintaan ke pengguna ini. Coba lagi nanti.",
-      "request-limit": "Kamu mengirim terlalu banyak permintaan hari ini. Coba lagi besok."
+      "request-limit": "Kamu mengirim terlalu banyak permintaan hari ini. Coba lagi besok.",
+      "ranking": {
+        "tab": "Peringkat",
+        "overall": "Keseluruhan",
+        "metric-label": "Metrik peringkat",
+        "metrics": {
+          "single": "Tunggal",
+          "ao5": "Ao5",
+          "solves": "Solve",
+          "time": "Waktu",
+          "streak": "Beruntun"
+        },
+        "position": "Kamu <strong>#{rank}</strong> dari {total}",
+        "you": "Kamu",
+        "updated": "Diperbarui {time}",
+        "days": "{count, plural, other {# hari}}",
+        "no-friends": "Tambahkan teman untuk membandingkan statistikmu dengan mereka.",
+        "empty": "Belum ada temanmu yang punya statistik di sini.",
+        "no-backup": "Simpan cadangan agar kamu muncul di peringkat teman-temanmu.",
+        "save-backup": "Simpan cadangan",
+        "source-hint": "Statistik diambil dari cadangan terbaru setiap cuber dan diperbarui saat mereka menyimpan yang baru."
+      }
     },
     "ChatPage": {
       "title": "Pesan",
