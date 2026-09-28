@@ -11,6 +11,7 @@ import {
 } from '@/entities/friendship/model/types'
 import { FRIENDS_KEY, relationshipKey } from '@/entities/friendship/model/useFriends'
 import { BLOCKS_KEY, blockKey } from '@/entities/block/model/useBlocks'
+import { FRIENDS_RANKING_KEY } from '@/features/friends/model/useFriendsRanking'
 
 const requestErrorOf = (error: unknown): FriendRequestError | null => {
   const message = error instanceof Error ? error.message : ''
@@ -31,7 +32,9 @@ export function useFriendActions() {
       toast.error(t(requestErrorOf(error) ?? 'action-failed'))
       return false
     } finally {
-      await Promise.all([FRIENDS_KEY, relationshipKey(userId), ...extraKeys].map((key) => mutate(key)))
+      await Promise.all(
+        [FRIENDS_KEY, FRIENDS_RANKING_KEY, relationshipKey(userId), ...extraKeys].map((key) => mutate(key))
+      )
       setPendingId(null)
     }
   }
