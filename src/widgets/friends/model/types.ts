@@ -1,5 +1,6 @@
 export enum FriendsTabs {
   FRIENDS = 'friends',
+  RANKING = 'ranking',
   REQUESTS = 'requests',
   SENT = 'sent'
 }
