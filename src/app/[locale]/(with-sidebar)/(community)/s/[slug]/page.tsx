@@ -16,7 +16,7 @@ import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
 import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'
-import PeopleSkeleton from '@/shared/ui/skeletons/people-skeleton'
+import SharedSolveSkeleton from '@/shared/ui/skeletons/shared-solve-skeleton'
 import formatTime from '@/shared/lib/formatTime'
 import { formatTps } from '@/shared/lib/formatTps'
 import dayjs from '@/shared/lib/dayjs'
@@ -47,7 +47,7 @@ export default function SharedSolvePage() {
 
   const [visualization, setVisualization] = useState<'2D' | '3D'>('2D')
 
-  if (isLoading) return <PeopleSkeleton />
+  if (isLoading) return <SharedSolveSkeleton />
 
   if (!solve) {
     return (
