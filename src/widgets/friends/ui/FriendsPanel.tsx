@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Link } from '@/shared/config/i18n/navigation'
 import { useTranslations } from 'next-intl'
-import { Check, Send, UserMinus, UserPlus, Users, X } from 'lucide-react'
+import { Check, Send, Trophy, UserMinus, UserPlus, Users, X } from 'lucide-react'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Tabs, TabsContent } from '@/components/ui/tabs'
 import { cn } from '@/shared/lib/utils'
@@ -16,28 +16,17 @@ import { useFriendsTab } from '@/features/friends/model/useFriendsTab'
 import { FriendActionDialog, type FriendAction } from '@/features/friends/ui/FriendActionDialog'
 import { FriendsTabs } from '@/widgets/friends/model/types'
 import { FriendRow } from '@/widgets/friends/ui/FriendRow'
+import { FriendTable } from '@/widgets/friends/ui/FriendTable'
+import { EmptyTable } from '@/widgets/friends/ui/EmptyTable'
+import { FriendsRanking } from '@/widgets/friends/ui/FriendsRanking'
 import { MessageLink } from '@/features/chat/ui/MessageLink'
 
 const TAB_ICONS = {
   [FriendsTabs.FRIENDS]: Users,
+  [FriendsTabs.RANKING]: Trophy,
   [FriendsTabs.REQUESTS]: UserPlus,
   [FriendsTabs.SENT]: Send
 } as const
-
-function FriendTable({ children }: { children: React.ReactNode }) {
-  return <section className="overflow-hidden border border-border/60 bg-card/40">{children}</section>
-}
-
-function EmptyTable({ message, children }: { message: string; children?: React.ReactNode }) {
-  return (
-    <FriendTable>
-      <div className="flex flex-col items-center gap-3 py-12 text-center">
-        <p className="text-sm text-muted-foreground">{message}</p>
-        {children}
-      </div>
-    </FriendTable>
-  )
-}
 
 export function FriendsPanel() {
   const t = useTranslations('Index.FriendsPage')
@@ -71,7 +60,7 @@ export function FriendsPanel() {
       />
     ))
 
-  const counts: Record<FriendsTabs, number> = {
+  const counts: Partial<Record<FriendsTabs, number>> = {
     [FriendsTabs.FRIENDS]: data.friends.length,
     [FriendsTabs.REQUESTS]: data.incoming.length,
     [FriendsTabs.SENT]: data.outgoing.length
@@ -79,6 +68,7 @@ export function FriendsPanel() {
 
   const labels: Record<FriendsTabs, string> = {
     [FriendsTabs.FRIENDS]: t('title'),
+    [FriendsTabs.RANKING]: t('ranking.tab'),
     [FriendsTabs.REQUESTS]: t('requests'),
     [FriendsTabs.SENT]: t('sent')
   }
@@ -92,9 +82,11 @@ export function FriendsPanel() {
           label: (
             <span className="inline-flex items-center gap-1.5">
               {labels[value]}
-              <span className="inline-flex items-center justify-center min-w-[1.125rem] h-[1.125rem] px-1 rounded-full bg-muted text-[10px] font-semibold tabular-nums leading-none text-muted-foreground transition-colors group-data-[state=active]:bg-primary/10 group-data-[state=active]:text-primary">
-                {counts[value]}
-              </span>
+              {counts[value] !== undefined && (
+                <span className="inline-flex items-center justify-center min-w-[1.125rem] h-[1.125rem] px-1 rounded-full bg-muted text-[10px] font-semibold tabular-nums leading-none text-muted-foreground transition-colors group-data-[state=active]:bg-primary/10 group-data-[state=active]:text-primary">
+                  {counts[value]}
+                </span>
+              )}
             </span>
           )
         }))}
@@ -135,6 +127,10 @@ export function FriendsPanel() {
             )}
           </FriendTable>
         )}
+      </TabsContent>
+
+      <TabsContent value={FriendsTabs.RANKING}>
+        <FriendsRanking />
       </TabsContent>
 
       <TabsContent value={FriendsTabs.REQUESTS}>
