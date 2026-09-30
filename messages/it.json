@@ -14,7 +14,11 @@
       "hide": "Nascondi solve"
     },
     "Offline": {
-      "offline": "Offline"
+      "offline": "Offline",
+      "title": "Sei offline",
+      "description": "Questa pagina non è ancora stata salvata su questo dispositivo. Le pagine che apri mentre sei connesso restano disponibili offline.",
+      "retry": "Riprova",
+      "back": "Torna al timer"
     },
     "OnboardingTour": {
       "skip": "Esci dalla guida",

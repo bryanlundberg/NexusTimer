@@ -14,7 +14,11 @@
       "hide": "Hide solves"
     },
     "Offline": {
-      "offline": "Offline"
+      "offline": "Offline",
+      "title": "You're offline",
+      "description": "This page hasn't been saved on this device yet. Pages you open while connected stay available offline.",
+      "retry": "Try again",
+      "back": "Back to timer"
     },
     "OnboardingTour": {
       "skip": "Exit guide",

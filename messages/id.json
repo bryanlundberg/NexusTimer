@@ -14,7 +14,11 @@
       "hide": "Sembunyikan solve"
     },
     "Offline": {
-      "offline": "Offline"
+      "offline": "Offline",
+      "title": "Kamu sedang offline",
+      "description": "Halaman ini belum tersimpan di perangkat ini. Halaman yang kamu buka saat terhubung tetap tersedia secara offline.",
+      "retry": "Coba lagi",
+      "back": "Kembali ke timer"
     },
     "OnboardingTour": {
       "skip": "Keluar dari panduan",

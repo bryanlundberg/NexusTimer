@@ -1343,7 +1343,11 @@
       }
     },
     "Offline": {
-      "offline": "Offline"
+      "offline": "Offline",
+      "title": "Você está offline",
+      "description": "Esta página ainda não foi salva neste dispositivo. As páginas que você abre com conexão ficam disponíveis offline.",
+      "retry": "Tentar novamente",
+      "back": "Voltar ao cronômetro"
     },
     "SharedSolves": {
       "create-link": "Criar link",

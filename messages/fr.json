@@ -1343,7 +1343,11 @@
       }
     },
     "Offline": {
-      "offline": "Hors ligne"
+      "offline": "Hors ligne",
+      "title": "Vous êtes hors ligne",
+      "description": "Cette page n'a pas encore été enregistrée sur cet appareil. Les pages que vous ouvrez en ligne restent disponibles hors ligne.",
+      "retry": "Réessayer",
+      "back": "Retour au chronomètre"
     },
     "SharedSolves": {
       "create-link": "Créer un lien",
