@@ -1343,7 +1343,11 @@
       }
     },
     "Offline": {
-      "offline": "离线"
+      "offline": "离线",
+      "title": "你已离线",
+      "description": "此页面尚未保存到此设备。联网时打开的页面可在离线时继续使用。",
+      "retry": "重试",
+      "back": "返回计时器"
     },
     "SharedSolves": {
       "create-link": "创建链接",

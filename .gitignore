@@ -40,10 +40,6 @@ next-env.d.ts
 /blob-report/
 /playwright/.cache/
 
-# Serwist
-public/sw*
-public/swe-worker*
-
 # Vectors
 cubes.json
 /scraped-products/

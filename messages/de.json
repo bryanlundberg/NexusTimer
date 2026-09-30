@@ -1343,7 +1343,11 @@
       }
     },
     "Offline": {
-      "offline": "Offline"
+      "offline": "Offline",
+      "title": "Du bist offline",
+      "description": "Diese Seite wurde auf diesem Gerät noch nicht gespeichert. Seiten, die du mit Verbindung öffnest, bleiben offline verfügbar.",
+      "retry": "Erneut versuchen",
+      "back": "Zurück zum Timer"
     },
     "SharedSolves": {
       "create-link": "Link erstellen",

@@ -14,7 +14,11 @@
       "hide": "Itago ang mga solve"
     },
     "Offline": {
-      "offline": "Offline"
+      "offline": "Offline",
+      "title": "Offline ka",
+      "description": "Hindi pa naka-save ang page na ito sa device na ito. Mananatiling available offline ang mga page na binuksan mo habang may koneksyon.",
+      "retry": "Subukan ulit",
+      "back": "Bumalik sa timer"
     },
     "OnboardingTour": {
       "skip": "Lumabas sa gabay",

@@ -14,7 +14,11 @@
       "hide": "Ocultar tiempos"
     },
     "Offline": {
-      "offline": "Sin conexión"
+      "offline": "Sin conexión",
+      "title": "Estás sin conexión",
+      "description": "Esta página aún no se ha guardado en este dispositivo. Las páginas que abras con conexión seguirán disponibles sin conexión.",
+      "retry": "Reintentar",
+      "back": "Volver al cronómetro"
     },
     "OnboardingTour": {
       "skip": "Salir de la guía",

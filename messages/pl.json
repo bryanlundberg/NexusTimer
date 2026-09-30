@@ -14,7 +14,11 @@
       "hide": "Ukryj ułożenia"
     },
     "Offline": {
-      "offline": "Offline"
+      "offline": "Offline",
+      "title": "Jesteś offline",
+      "description": "Ta strona nie została jeszcze zapisana na tym urządzeniu. Strony otwarte z połączeniem pozostają dostępne offline.",
+      "retry": "Spróbuj ponownie",
+      "back": "Wróć do timera"
     },
     "OnboardingTour": {
       "skip": "Zakończ przewodnik",

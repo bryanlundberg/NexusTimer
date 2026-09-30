@@ -11,8 +11,7 @@ import Script from 'next/script'
 import CookieConsentBanner from '@/components/cookie-consent-banner'
 import { CONSENT_KEY } from '@/shared/lib/analyticsConsent'
 import { OfflineIndicator } from '@/shared/ui/offline-indicator/OfflineIndicator'
-import { DiagnosticsRecorder } from '@/shared/ui/diagnostics-recorder/DiagnosticsRecorder'
-import { ChunkRecovery } from '@/shared/ui/chunk-recovery/ChunkRecovery'
+import { SerwistProvider } from '@serwist/turbopack/react'
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale()
@@ -126,8 +125,6 @@ export default async function LocaleLayout({ children }: { children: React.React
         <JsonLd locale={locale} title={title} description={description} url={url} />
       </head>
       <body className={`font-sans ${spaceGrotesk.variable} ${chakraPetch.variable}`}>
-        <DiagnosticsRecorder />
-        <ChunkRecovery />
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-441RYCJK0K" strategy="lazyOnload" />
         <Script id="google-analytics" strategy="lazyOnload">
           {`
@@ -144,14 +141,16 @@ export default async function LocaleLayout({ children }: { children: React.React
             gtag('config', 'G-441RYCJK0K');
           `}
         </Script>
-        <NextIntlClientProvider messages={messages}>
-          <ThemeProvider attribute="class" defaultTheme={'system'} enableSystem disableTransitionOnChange>
-            <OfflineIndicator />
-            {children}
-            <CookieConsentBanner />
-            <Toaster />
-          </ThemeProvider>
-        </NextIntlClientProvider>
+        <SerwistProvider swUrl="/serwist/sw.js" disable={process.env.NODE_ENV !== 'production'}>
+          <NextIntlClientProvider messages={messages}>
+            <ThemeProvider attribute="class" defaultTheme={'system'} enableSystem disableTransitionOnChange>
+              <OfflineIndicator />
+              {children}
+              <CookieConsentBanner />
+              <Toaster />
+            </ThemeProvider>
+          </NextIntlClientProvider>
+        </SerwistProvider>
       </body>
     </html>
   )

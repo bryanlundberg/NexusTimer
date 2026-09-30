@@ -14,7 +14,11 @@
       "hide": "Ẩn lượt giải"
     },
     "Offline": {
-      "offline": "Ngoại tuyến"
+      "offline": "Ngoại tuyến",
+      "title": "Bạn đang ngoại tuyến",
+      "description": "Trang này chưa được lưu trên thiết bị này. Các trang bạn mở khi có kết nối vẫn dùng được khi ngoại tuyến.",
+      "retry": "Thử lại",
+      "back": "Quay lại bộ đếm giờ"
     },
     "OnboardingTour": {
       "skip": "Thoát hướng dẫn",
