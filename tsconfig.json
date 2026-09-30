@@ -8,7 +8,6 @@
       "WebWorker"
     ],
     "types": [
-      "@serwist/next/typings",
       "vitest/globals",
       "node"
     ],
@@ -42,7 +41,6 @@
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules",
-    "public/sw.js"
+    "node_modules"
   ]
 }
