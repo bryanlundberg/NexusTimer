@@ -82,6 +82,14 @@ const pageFallback: SerwistPlugin = {
   }
 }
 
+// Turbopack passes a worker's config in the script URL fragment. A cached response carries its own URL without it,
+// while a fresh Response takes the request URL, fragment included.
+// github.com/vercel/next.js/issues/99389
+const workerScripts: SerwistPlugin = {
+  handlerWillRespond: async ({ request, response }) =>
+    request.destination === 'worker' ? new Response(response.body, response) : response
+}
+
 const pageNavigations: RuntimeCaching = {
   matcher: ({ request, url }) => request.mode === 'navigate' && isPage(url),
   method: 'GET',
@@ -115,6 +123,7 @@ const authSessionCache: RuntimeCaching = {
 
 const serwist = new Serwist({
   precacheEntries: self.__SW_MANIFEST,
+  precacheOptions: { plugins: [workerScripts] },
   skipWaiting: true,
   clientsClaim: true,
   navigationPreload: true,
