@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 import { useSWRConfig } from 'swr'
 import useSWRInfinite from 'swr/infinite'
 import { fetcher } from '@/shared/lib/fetcher'

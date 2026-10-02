@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 import { TimerStatus } from '@/features/timer/model/enums'
 import useFreeMode from '@/features/free-play-room/model/useFreeMode'
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { onDisconnect, onValue, ref, serverTimestamp, set, update } from '@firebase/database'
 import { rtdb } from '@/shared/config/firebase'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 import { TimerStatus } from '@/features/timer/model/enums'
 
 interface UserPresence {

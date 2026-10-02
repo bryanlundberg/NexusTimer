@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 import { useParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { AnimatePresence, motion } from 'motion/react'

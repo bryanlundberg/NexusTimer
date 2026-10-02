@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 import { useTranslations } from 'next-intl'
 import { Layers, Target } from 'lucide-react'
 import { Tabs, TabsContent } from '@/components/ui/tabs'

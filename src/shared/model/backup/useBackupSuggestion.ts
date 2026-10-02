@@ -1,6 +1,6 @@
 'use client'
 import { useCallback, useEffect } from 'react'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 import { useIsOnline } from '@/shared/model/useIsOnline'
 import { useUser } from '@/entities/user/model/useUser'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'

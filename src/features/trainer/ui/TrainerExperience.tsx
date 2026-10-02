@@ -34,7 +34,7 @@ import { deleteTrainerSolve } from '@/features/trainer/model/mutateTrainerSolve'
 import { patchTrainerTarget } from '@/features/trainer/model/patchTrainerTarget'
 import { TRAINER_DEFAULT_TARGET_SECONDS } from '@/features/trainer/lib/constants'
 import { buildVizConfig, formatMs } from '@/features/trainer/lib/trainerUtils'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 import { cn } from '@/shared/lib/utils'
 
 export default function TrainerExperience() {
