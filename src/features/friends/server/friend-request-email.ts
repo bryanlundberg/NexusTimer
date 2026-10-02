@@ -4,6 +4,7 @@ import { getMutualFriendIds } from '@/entities/friendship/server/friends'
 import FriendRequestEmailLog from '@/entities/friendship/model/friend-request-email-log'
 import { isDuplicateKeyError } from '@/shared/api/mongo-errors'
 import { pairKeyOf } from '@/shared/lib/pair-key'
+import { appUrl } from '@/shared/lib/app-url'
 import { resolvePrivacy, type PrivacySettings } from '@/entities/privacy/model/types'
 import { getFriendRequestEmailSubject, renderFriendRequestEmail } from './friend-request-email-template'
 
@@ -14,10 +15,6 @@ type EmailUser = {
   wcaId?: string
   privacy?: Partial<PrivacySettings>
 }
-
-const appUrl = () =>
-  process.env.NEXTAUTH_URL ||
-  (process.env.NODE_ENV === 'production' ? 'https://nexustimer.com' : 'http://localhost:3000')
 
 async function claimFirstEmail(senderId: string, recipientId: string): Promise<boolean> {
   try {
