@@ -1,19 +1,17 @@
 'use client'
 
-import { signIn } from 'next-auth/react'
-
 interface Props {
-  provider: string
   label: string
   brand?: string
+  onClick: () => void
   children: React.ReactNode
 }
 
-export default function OAuthIconButton({ provider, label, brand = 'var(--primary)', children }: Props) {
+export default function OAuthIconButton({ label, brand = 'var(--primary)', onClick, children }: Props) {
   return (
     <button
       type="button"
-      onClick={() => signIn(provider)}
+      onClick={onClick}
       aria-label={label}
       title={label}
       data-brand
