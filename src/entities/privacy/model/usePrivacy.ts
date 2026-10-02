@@ -1,5 +1,5 @@
 import useSWR from 'swr'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 import { fetcher } from '@/shared/lib/fetcher'
 import { apiPatch } from '@/shared/api/client'
 import type { PrivacySettings } from '@/entities/privacy/model/types'
