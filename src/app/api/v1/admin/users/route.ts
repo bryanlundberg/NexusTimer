@@ -17,7 +17,7 @@ import EmailVerification from '@/entities/email-verification/model/email-verific
 import PendingRegistration from '@/entities/pending-registration/model/pending-registration'
 import PasswordResetToken from '@/entities/password-reset-token/model/password-reset-token'
 import Session from '@/entities/session/model/session'
-import { sessionCache } from '@/shared/lib/session-cache'
+import { auth } from '@/shared/config/auth/auth'
 import { clearPresence } from '@/shared/lib/realtime/presence'
 import { requireAdmin } from '@/shared/api/require-admin'
 import { parseEmailParam } from '@/shared/api/admin-helpers'
@@ -44,6 +44,15 @@ const RELATED_COLLECTIONS: RelatedCollection[] = [
   { key: 'pendingRegistrations', model: PendingRegistration, filter: ({ email }) => ({ email }) },
   { key: 'sessions', model: Session, filter: ({ userId }) => ({ userId }) }
 ]
+
+async function countAuthRecords(userId: string) {
+  const { internalAdapter } = await auth.$context
+  const [accounts, authSessions] = await Promise.all([
+    internalAdapter.findAccounts(userId),
+    internalAdapter.listSessions(userId)
+  ])
+  return { accounts: accounts.length, authSessions: authSessions.length }
+}
 
 async function deleteBackupFile(userId: string) {
   try {
@@ -78,9 +87,12 @@ export async function GET(request: NextRequest) {
     if (!user) return notFound('User not found')
 
     const ctx = { userId: user._id, email }
-    const counts = Object.fromEntries(
-      await Promise.all(RELATED_COLLECTIONS.map(async (c) => [c.key, await c.model.countDocuments(c.filter(ctx))]))
-    )
+    const counts = {
+      ...Object.fromEntries(
+        await Promise.all(RELATED_COLLECTIONS.map(async (c) => [c.key, await c.model.countDocuments(c.filter(ctx))]))
+      ),
+      ...(await countAuthRecords(String(user._id)))
+    }
 
     return ok({
       user: {
@@ -112,8 +124,6 @@ export async function DELETE(request: NextRequest) {
     await deleteBackupFile(String(user._id))
     await deleteAvatarFile(String(user._id))
 
-    const userSessions = await Session.find({ userId: user._id }, { sessionId: 1 }).lean<{ sessionId: string }[]>()
-    await Promise.all(userSessions.map((s) => sessionCache.invalidate(s.sessionId)))
     await clearPresence(String(user._id))
     await dropUserSharedSolvesCache(user._id)
 
@@ -127,11 +137,13 @@ export async function DELETE(request: NextRequest) {
       )
     )
 
-    await User.deleteOne({ _id: user._id })
+    const authRecords = await countAuthRecords(String(user._id))
+    const { internalAdapter } = await auth.$context
+    await internalAdapter.deleteUser(String(user._id))
     await Promise.all([userProfileCache.invalidate(String(user._id)), userStatsCache.invalidate(String(user._id))])
 
     return ok({
-      deleted: { user: { _id: user._id, email }, ...deleted }
+      deleted: { user: { _id: user._id, email }, ...deleted, ...authRecords }
     })
   } catch (error) {
     return serverError('admin/users:DELETE', error)

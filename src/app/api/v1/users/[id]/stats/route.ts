@@ -6,7 +6,7 @@ import { userProfileCache } from '@/entities/user/model/user-cache'
 import UserStats, { type UserStatsDocument } from '@/entities/user-stats/model/user-stats'
 import { userStatsCache, type CachedUserStats } from '@/entities/user-stats/model/user-stats-cache'
 import { USER_STATS_VERSION } from '@/entities/user-stats/model/types'
-import { auth } from '@/shared/config/auth/auth'
+import { getSession } from '@/shared/config/auth/session'
 import { statsVisibleTo } from '@/entities/privacy/server/stats-visibility'
 import { badRequest, ok, serverError } from '@/shared/api/responses'
 
@@ -29,7 +29,7 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<{
 
     await connectDB()
 
-    const session = await auth()
+    const session = await getSession()
     if (!(await statsVisibleTo(userId, session?.user?.id))) return ok({ stats: null, hidden: true })
 
     const [backupUpdatedAt, cached] = await Promise.all([currentBackupUpdatedAt(userId), userStatsCache.get(userId)])

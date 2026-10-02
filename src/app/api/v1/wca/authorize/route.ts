@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { randomUUID } from 'crypto'
-import { auth } from '@/shared/config/auth/auth'
+import { getSession } from '@/shared/config/auth/session'
 
 const WCA_BASE = 'https://www.worldcubeassociation.org'
 
 export async function GET(request: NextRequest) {
   const origin = request.nextUrl.origin
 
-  const session = await auth()
+  const session = await getSession()
   if (!session?.user?.id) {
     return NextResponse.redirect(new URL('/account?tab=account&wca=error', origin))
   }

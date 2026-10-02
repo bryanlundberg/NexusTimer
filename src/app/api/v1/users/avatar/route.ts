@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server'
-import { auth } from '@/shared/config/auth/auth'
+import { getSession } from '@/shared/config/auth/session'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
 import { userProfileCache } from '@/entities/user/model/user-cache'
@@ -12,7 +12,7 @@ const avatarKey = (userId: string) => `avatars/${userId}`
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await auth()
+    const session = await getSession()
     if (!session?.user?.id) return unauthorized()
 
     const formData = await request.formData()

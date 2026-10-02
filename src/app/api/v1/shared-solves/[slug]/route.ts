@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server'
 import connectDB from '@/shared/config/mongodb/mongodb'
-import { auth } from '@/shared/config/auth/auth'
+import { getSession } from '@/shared/config/auth/session'
 import { requireUser } from '@/shared/api/require-user'
 import { noContent, notFound, ok, serverError } from '@/shared/api/responses'
 import { isValidSlug } from '@/entities/shared-solve/lib/slug'
@@ -24,7 +24,7 @@ export async function GET(_request: NextRequest, { params }: Params) {
     const solve = await getSharedSolveBySlug(slug)
     if (!solve) return notFound()
 
-    const session = await auth()
+    const session = await getSession()
     const viewerId = session?.user?.id
     const [hidden, author] = await Promise.all([
       isHiddenBetween(solve.ownerId, viewerId),

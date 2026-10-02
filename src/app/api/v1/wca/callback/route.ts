@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
 import { userProfileCache } from '@/entities/user/model/user-cache'
-import { auth } from '@/shared/config/auth/auth'
+import { getSession } from '@/shared/config/auth/session'
 
 const WCA_BASE = 'https://www.worldcubeassociation.org'
 
@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
   const origin = request.nextUrl.origin
 
   try {
-    const session = await auth()
+    const session = await getSession()
     if (!session?.user?.id) return redirectWith(origin, 'error')
 
     const code = request.nextUrl.searchParams.get('code')

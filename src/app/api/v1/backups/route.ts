@@ -1,6 +1,6 @@
 import { gunzipSync } from 'node:zlib'
 import { NextRequest, after } from 'next/server'
-import { auth } from '@/shared/config/auth/auth'
+import { getSession } from '@/shared/config/auth/session'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
 import { userProfileCache } from '@/entities/user/model/user-cache'
@@ -26,7 +26,7 @@ const isGzip = (bytes: Uint8Array): boolean => bytes.length >= 2 && bytes[0] ===
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await auth()
+    const session = await getSession()
     if (!session?.user?.id) return unauthorized()
 
     const received = new Uint8Array(await request.arrayBuffer())
@@ -87,7 +87,7 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
   try {
-    const session = await auth()
+    const session = await getSession()
     if (!session?.user?.id) return unauthorized()
 
     const userId = session.user.id
@@ -114,7 +114,7 @@ export async function GET() {
 
 export async function DELETE(request: NextRequest) {
   try {
-    const session = await auth()
+    const session = await getSession()
     if (!session?.user?.id) return unauthorized()
 
     const userId = session.user.id
