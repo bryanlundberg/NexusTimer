@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname } from '@/shared/config/i18n/navigation'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { TimerStatus } from '@/features/timer/model/enums'
 import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'

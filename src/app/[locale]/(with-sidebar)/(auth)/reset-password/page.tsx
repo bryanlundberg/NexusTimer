@@ -1,6 +1,6 @@
 import { Link, redirect } from '@/shared/config/i18n/navigation'
 import { getLocale, getTranslations } from 'next-intl/server'
-import { auth } from '@/shared/config/auth/auth'
+import { getSession } from '@/shared/config/auth/session'
 import ResetPasswordContent from '@/features/authentication/ui/ResetPasswordContent'
 import AuthBackground from '@/features/authentication/ui/AuthBackground'
 import CubeGrid from '@/features/authentication/ui/CubeGrid'
@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default async function ResetPasswordPage({ searchParams }: Props) {
-  const session = await auth()
+  const session = await getSession()
   if (session?.user) redirect({ href: '/app', locale: await getLocale() })
 
   const t = await getTranslations('Index.Auth')

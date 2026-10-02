@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { redirect } from '@/shared/config/i18n/navigation'
 import { getLocale } from 'next-intl/server'
-import { auth } from '@/shared/config/auth/auth'
+import { getSession } from '@/shared/config/auth/session'
 
 export const metadata: Metadata = {
   robots: {
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 }
 
 export default async function FriendsLayout({ children }: { children: React.ReactNode }) {
-  const session = await auth()
+  const session = await getSession()
   if (!session?.user?.id) redirect({ href: '/sign-in', locale: await getLocale() })
 
   return <>{children}</>

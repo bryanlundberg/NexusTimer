@@ -1,17 +1,23 @@
 import { Link, redirect } from '@/shared/config/i18n/navigation'
 import { getLocale, getTranslations } from 'next-intl/server'
 import { ArrowRight } from 'lucide-react'
-import { auth } from '@/shared/config/auth/auth'
+import { getSession } from '@/shared/config/auth/session'
 import SignInForm from '@/features/authentication/ui/SignInForm'
 import OAuthProviders from '@/features/authentication/ui/OAuthProviders'
 import AuthDivider from '@/features/authentication/ui/AuthDivider'
 import AuthScreen from '@/features/authentication/ui/AuthScreen'
 
-export default async function SignInPage() {
-  const session = await auth()
+interface Props {
+  searchParams: Promise<{ error?: string }>
+}
+
+export default async function SignInPage({ searchParams }: Props) {
+  const session = await getSession()
   if (session?.user) redirect({ href: '/app', locale: await getLocale() })
 
   const t = await getTranslations('Index.Auth')
+  const { error } = await searchParams
+  const oauthError = error ? t(error === 'account_not_linked' ? 'oauth-account-not-linked' : 'oauth-error') : null
 
   return (
     <AuthScreen
@@ -34,6 +40,11 @@ export default async function SignInPage() {
       <SignInForm />
       <AuthDivider label={t('or-continue-with')} />
       <OAuthProviders />
+      {oauthError && (
+        <p role="alert" className="text-sm text-destructive">
+          {oauthError}
+        </p>
+      )}
     </AuthScreen>
   )
 }

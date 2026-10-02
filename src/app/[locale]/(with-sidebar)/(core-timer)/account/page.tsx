@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 import { useTranslations } from 'next-intl'
 import { useQueryState } from 'nuqs'
 import { Tabs, TabsContent } from '@/components/ui/tabs'

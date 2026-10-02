@@ -1,14 +1,14 @@
 import { Link, redirect } from '@/shared/config/i18n/navigation'
 import { getLocale, getTranslations } from 'next-intl/server'
 import { ArrowRight } from 'lucide-react'
-import { auth } from '@/shared/config/auth/auth'
+import { getSession } from '@/shared/config/auth/session'
 import SignUpForm from '@/features/authentication/ui/SignUpForm'
 import OAuthProviders from '@/features/authentication/ui/OAuthProviders'
 import AuthDivider from '@/features/authentication/ui/AuthDivider'
 import AuthScreen from '@/features/authentication/ui/AuthScreen'
 
 export default async function SignUpPage() {
-  const session = await auth()
+  const session = await getSession()
   if (session?.user) redirect({ href: '/app', locale: await getLocale() })
 
   const t = await getTranslations('Index.Auth')

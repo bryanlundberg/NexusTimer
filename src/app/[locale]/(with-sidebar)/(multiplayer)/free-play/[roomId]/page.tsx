@@ -7,7 +7,7 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList } from '@/co
 import { Link, useRouter } from '@/shared/config/i18n/navigation'
 import * as React from 'react'
 import { useCallback, useEffect, useRef, useState, KeyboardEvent } from 'react'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import genScramble from '@/shared/lib/timer/genScramble'
 import { Button } from '@/components/ui/button'

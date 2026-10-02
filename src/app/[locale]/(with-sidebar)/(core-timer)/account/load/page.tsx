@@ -1,6 +1,6 @@
 'use client'
 import { useLocale, useTranslations } from 'next-intl'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 import { toast } from 'sonner'
 import { Link, useRouter } from '@/shared/config/i18n/navigation'
 import { useState } from 'react'

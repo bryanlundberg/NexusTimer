@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { useUpdateUserAvatar } from '../model/useUpdateUserAvatar'
 import { AvatarCropDialog } from './AvatarCropDialog'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 import { Input } from '@/components/ui/input'
 import { useEffect, useRef, useState, type ChangeEvent } from 'react'
 import { Camera, Loader2 } from 'lucide-react'

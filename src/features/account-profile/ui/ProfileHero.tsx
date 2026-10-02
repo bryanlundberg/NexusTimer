@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { Session } from 'next-auth'
 import { useLocale, useTranslations } from 'next-intl'
+import type { ClientSession } from '@/shared/config/auth/auth-client'
 import { useQueryState } from 'nuqs'
 import { toast } from 'sonner'
 import { Link } from '@/shared/config/i18n/navigation'
@@ -28,7 +28,7 @@ import {
 } from '@/components/ui/alert-dialog'
 
 interface ProfileHeroProps {
-  session: Session
+  session: ClientSession
   name?: string
   isPreview?: boolean
   bio?: string

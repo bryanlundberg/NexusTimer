@@ -1,7 +1,7 @@
 'use client'
 
 import { Link } from '@/shared/config/i18n/navigation'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 import { useTranslations } from 'next-intl'
 import { MessagesSquare, Users } from 'lucide-react'
 import { buttonVariants } from '@/components/ui/button'

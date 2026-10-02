@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { auth } from '@/shared/config/auth/auth'
+import { getSession } from '@/shared/config/auth/session'
 import AccountNotAuth from '@/features/account/ui/account-not-auth'
 
 export const metadata: Metadata = {
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const session = await auth()
+  const session = await getSession()
   if (!session?.user?.id) return <AccountNotAuth />
 
   return (
