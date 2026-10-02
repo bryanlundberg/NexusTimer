@@ -1,10 +1,10 @@
 import type { Mock } from 'vitest'
 
-const { updateOne, findOne, findById, auth, statsVisibleTo, statsCache, profileCache } = vi.hoisted(() => ({
+const { updateOne, findOne, findById, getSession, statsVisibleTo, statsCache, profileCache } = vi.hoisted(() => ({
   updateOne: vi.fn(),
   findOne: vi.fn(),
   findById: vi.fn(),
-  auth: vi.fn(),
+  getSession: vi.fn(),
   statsVisibleTo: vi.fn(),
   statsCache: { get: vi.fn(), set: vi.fn(), invalidate: vi.fn() },
   profileCache: { get: vi.fn() }
@@ -13,7 +13,7 @@ const { updateOne, findOne, findById, auth, statsVisibleTo, statsCache, profileC
 vi.mock('@/entities/user-stats/model/user-stats', () => ({ default: { updateOne, findOne } }))
 vi.mock('@/entities/user/model/user', () => ({ default: { findById } }))
 vi.mock('@/shared/config/mongodb/mongodb', () => ({ default: vi.fn(async () => true) }))
-vi.mock('@/shared/config/auth/auth', () => ({ auth }))
+vi.mock('@/shared/config/auth/session', () => ({ getSession }))
 vi.mock('@/entities/privacy/server/stats-visibility', () => ({ statsVisibleTo }))
 vi.mock('@/entities/user-stats/model/user-stats-cache', () => ({ userStatsCache: statsCache }))
 vi.mock('@/entities/user/model/user-cache', () => ({ userProfileCache: profileCache }))
@@ -88,7 +88,7 @@ describe('GET /api/v1/users/[id]/stats', () => {
   }
 
   beforeEach(() => {
-    auth.mockResolvedValue({ user: { id: 'viewer' } })
+    getSession.mockResolvedValue({ user: { id: 'viewer' } })
     ;(statsVisibleTo as Mock).mockResolvedValue(true)
     findById.mockReturnValue(lean({ backup: { updatedAt: 500 } }))
     findOne.mockReturnValue(lean({ version: USER_STATS_VERSION, backupUpdatedAt: 500, summary }))
