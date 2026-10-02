@@ -5,7 +5,7 @@ import crypto from 'crypto'
  */
 export function signRoomId(roomId: string): string {
   return crypto
-    .createHmac('sha256', process.env.NEXTAUTH_SECRET || '')
+    .createHmac('sha256', process.env.ROOM_SIGNING_SECRET || '')
     .update(roomId)
     .digest('hex')
 }
