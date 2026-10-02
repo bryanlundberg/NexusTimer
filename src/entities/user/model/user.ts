@@ -8,6 +8,7 @@ export interface UserDocument {
   _id: string
   name: string
   email: string
+  emailVerified?: boolean
   image: string
   bio?: string
   pronoun?: string
@@ -53,6 +54,9 @@ const UserSchema = new Schema(
       required: true,
       trim: true,
       lowercase: true
+    },
+    emailVerified: {
+      type: Boolean
     },
     image: {
       type: String,
