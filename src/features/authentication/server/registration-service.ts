@@ -1,15 +1,12 @@
-import { hash } from 'bcryptjs'
 import connectDB from '@/shared/config/mongodb/mongodb'
-import User from '@/entities/user/model/user'
-import UserCredential from '@/entities/user-credential/model/user-credential'
 import PendingRegistration from '@/entities/pending-registration/model/pending-registration'
+import { auth } from '@/shared/config/auth/auth'
+import { hashPassword } from '@/shared/config/auth/password'
 import { AuthError } from './auth-error'
 import { generateVerificationCode, getVerificationExpiry } from './verification-code'
 import { sendVerificationEmail } from './verification-email'
-import { sendWelcomeEmail } from './welcome-email'
-import Log, { LogType } from '@/entities/log/model/log'
 
-const PASSWORD_HASH_ROUNDS = 12
+const CREDENTIAL_PROVIDER_ID = 'credential'
 
 interface CreatePendingRegistrationArgs {
   email: string
@@ -21,7 +18,7 @@ export async function createPendingRegistration({ email, name, password }: Creat
   await connectDB()
   await assertEmailAvailable(email)
 
-  const passwordHash = await hash(password, PASSWORD_HASH_ROUNDS)
+  const passwordHash = await hashPassword(password)
   const code = generateVerificationCode()
   const expiresAt = getVerificationExpiry()
 
@@ -78,11 +75,9 @@ export async function confirmRegistration({ email, code }: ConfirmRegistrationAr
 }
 
 async function assertEmailAvailable(email: string) {
-  const existingUser = await User.findOne({ email }).lean()
-  if (!existingUser) return
-
-  const existingCredential = await UserCredential.findOne({ userId: existingUser._id }).lean()
-  if (existingCredential) {
+  const { internalAdapter } = await auth.$context
+  const existing = await internalAdapter.findUserByEmail(email, { includeAccounts: true })
+  if (existing?.accounts.some((account) => account.providerId === CREDENTIAL_PROVIDER_ID)) {
     throw new AuthError('email-in-use', 'Email already in use')
   }
 }
@@ -94,56 +89,36 @@ interface UpsertUserArgs {
 }
 
 async function upsertUserWithCredentials({ email, name, passwordHash }: UpsertUserArgs) {
-  const existingUser = await User.findOne({ email })
+  const { internalAdapter } = await auth.$context
+  const existing = await internalAdapter.findUserByEmail(email, { includeAccounts: true })
 
-  if (existingUser) {
-    const existingCredential = await UserCredential.findOne({ userId: existingUser._id })
-    if (existingCredential) {
+  if (existing) {
+    if (existing.accounts.some((account) => account.providerId === CREDENTIAL_PROVIDER_ID)) {
       throw new AuthError('email-in-use', 'Email already in use')
     }
 
-    await UserCredential.create({ userId: existingUser._id, passwordHash })
-    await User.updateOne(
-      { _id: existingUser._id },
-      { $addToSet: { providers: { provider: 'credentials', providerId: email } } }
-    )
+    const userId = existing.user.id
+    await internalAdapter.linkAccount({
+      userId,
+      providerId: CREDENTIAL_PROVIDER_ID,
+      accountId: userId,
+      password: passwordHash
+    })
+    if (!existing.user.emailVerified) await internalAdapter.updateUser(userId, { emailVerified: true })
     return
   }
 
-  const image = buildAvatarUrl(name)
-
-  const newUser = await User.create({
-    email,
-    name,
-    image,
-    providers: [{ provider: 'credentials', providerId: email }]
-  })
+  const user = await internalAdapter.createUser({ email, name, emailVerified: true }, { method: 'email-password' })
 
   try {
-    await UserCredential.create({ userId: newUser._id, passwordHash })
+    await internalAdapter.linkAccount({
+      userId: user.id,
+      providerId: CREDENTIAL_PROVIDER_ID,
+      accountId: user.id,
+      password: passwordHash
+    })
   } catch (err) {
-    await User.deleteOne({ _id: newUser._id })
+    await internalAdapter.deleteUser(user.id)
     throw err
   }
-
-  sendWelcomeEmail({ email, name }).catch(async (err) => {
-    try {
-      await Log.create({
-        type: LogType.ApiError,
-        message: err instanceof Error ? err.message : String(err),
-        metadata: {
-          source: 'welcome-email',
-          email,
-          stack: err instanceof Error ? err.stack : undefined
-        }
-      })
-    } catch (logErr) {
-      console.error('Failed to log welcome email error:', logErr)
-    }
-  })
-}
-
-function buildAvatarUrl(name: string): string {
-  const encoded = name.replace(/\s+/g, '+')
-  return `https://ui-avatars.com/api/?name=${encoded}&background=random&size=128`
 }
