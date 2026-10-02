@@ -156,7 +156,9 @@
         "code-length": "Ang code ay dapat 6 na digit",
         "code-numeric": "Ang code ay dapat numero",
         "passwords-dont-match": "Hindi tugma ang mga password"
-      }
+      },
+      "oauth-account-not-linked": "May account na gamit ang email na ito. Mag-sign in gamit ang paraang ginamit mo dati.",
+      "oauth-error": "Hindi ka namin ma-sign in. Pakisubukang muli."
     },
     "CoreHeader": {
       "give-feedback": "Magbigay ng Feedback"
