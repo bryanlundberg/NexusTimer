@@ -1,20 +1,24 @@
-import Credentials from 'next-auth/providers/credentials'
+import type { BetterAuthPlugin } from 'better-auth'
+import { createAuthEndpoint } from 'better-auth/api'
+import { setSessionCookie } from 'better-auth/cookies'
+import { DEV_LOGIN_PATH } from '@/shared/config/auth/constants'
 
-export const DevProviders =
-  process.env.NODE_ENV !== 'production'
-    ? [
-        Credentials({
-          id: 'dev-login',
-          name: 'Dev Login (local only)',
-          credentials: {},
-          authorize: async () => {
-            return {
-              id: 'dev-user',
-              email: 'dev@local.test',
-              name: 'Dev User',
-              image: 'https://ui-avatars.com/api/?name=developer&background=random&size=128'
-            }
-          }
-        })
-      ]
-    : []
+const DEV_USER = { email: 'dev@local.test', name: 'Dev User' }
+
+const devLogin = (): BetterAuthPlugin => ({
+  id: 'dev-login',
+  endpoints: {
+    devLogin: createAuthEndpoint(DEV_LOGIN_PATH, { method: 'POST' }, async (ctx) => {
+      const { internalAdapter } = ctx.context
+      const existing = await internalAdapter.findUserByEmail(DEV_USER.email)
+      const user =
+        existing?.user ??
+        (await internalAdapter.createUser({ ...DEV_USER, emailVerified: true }, { method: 'dev-login' }))
+      const session = await internalAdapter.createSession(user.id)
+      await setSessionCookie(ctx, { session, user })
+      return ctx.json({ ok: true })
+    })
+  }
+})
+
+export const DevAuthPlugins = process.env.NODE_ENV !== 'production' ? [devLogin()] : []
