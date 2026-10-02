@@ -4,7 +4,7 @@ import connectDB from '@/shared/config/mongodb/mongodb'
 import TrainerLearned from '@/entities/trainer-learned/model/trainer-learned'
 import { learnedCache } from '@/entities/trainer-learned/model/learned-cache'
 import { badRequest, ok, serverError } from '@/shared/api/responses'
-import { auth } from '@/shared/config/auth/auth'
+import { getSession } from '@/shared/config/auth/session'
 import { statsVisibleTo } from '@/entities/privacy/server/stats-visibility'
 
 interface LearnedMethodAggregate {
@@ -21,7 +21,7 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<{
 
     await connectDB()
 
-    const session = await auth()
+    const session = await getSession()
     if (!(await statsVisibleTo(userId, session?.user?.id))) return ok({ total: 0, methods: [], hidden: true })
 
     const cached = await learnedCache.getSummary(userId)

@@ -149,7 +149,9 @@
       "verify-button": "Vérifier",
       "verify-description": "Nous avons envoyé un code à 6 chiffres à {email}",
       "verify-title": "Vérifie tes e-mails",
-      "welcome-back": "Content de te revoir, cubeur"
+      "welcome-back": "Content de te revoir, cubeur",
+      "oauth-account-not-linked": "Cet e-mail appartient déjà à un compte. Connecte-toi avec la méthode que tu as utilisée auparavant.",
+      "oauth-error": "Impossible de te connecter. Réessaie."
     },
     "CoreHeader": {
       "give-feedback": "Donner un avis"

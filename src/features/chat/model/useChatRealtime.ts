@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 import { useSWRConfig } from 'swr'
 import { apiPost } from '@/shared/api/client'
 import { playSound } from '@/shared/lib/play-sound'

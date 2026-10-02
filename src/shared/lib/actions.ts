@@ -3,7 +3,7 @@
 import connectDB from '@/shared/config/mongodb/mongodb'
 import type { Solve as ISolve } from '@/entities/solve/model/types'
 import Solve from '@/entities/solve/model/solve'
-import { auth } from '@/shared/config/auth/auth'
+import { getSession } from '@/shared/config/auth/session'
 
 interface SendSolveToServerParams {
   solve: Partial<ISolve>
@@ -19,7 +19,7 @@ export async function sendSolveToServer({
   smart = false
 }: SendSolveToServerParams): Promise<boolean> {
   try {
-    const session = await auth()
+    const session = await getSession()
     const userId = session?.user?.id
     if (!userId) return true
 

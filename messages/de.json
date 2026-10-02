@@ -149,7 +149,9 @@
       "verify-button": "Bestätigen",
       "verify-description": "Wir haben einen 6-stelligen Code an {email} gesendet",
       "verify-title": "Prüfe deine E-Mails",
-      "welcome-back": "Willkommen zurück, Cuber"
+      "welcome-back": "Willkommen zurück, Cuber",
+      "oauth-account-not-linked": "Diese E-Mail gehört bereits zu einem Konto. Melde dich mit der Methode an, die du vorher verwendet hast.",
+      "oauth-error": "Die Anmeldung ist fehlgeschlagen. Bitte versuche es erneut."
     },
     "CoreHeader": {
       "give-feedback": "Feedback geben"

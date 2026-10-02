@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { ACTIONS, EVENTS, STATUS, type EventData, type Step } from 'react-joyride'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 import { useTranslations } from 'next-intl'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'

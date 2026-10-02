@@ -149,7 +149,9 @@
       "verify-button": "验证",
       "verify-description": "我们已向 {email} 发送 6 位验证码",
       "verify-title": "请查看你的邮箱",
-      "welcome-back": "欢迎回来，魔友"
+      "welcome-back": "欢迎回来，魔友",
+      "oauth-account-not-linked": "该邮箱已关联一个账号，请使用你之前的方式登录。",
+      "oauth-error": "登录失败，请重试。"
     },
     "CoreHeader": {
       "give-feedback": "提供反馈"

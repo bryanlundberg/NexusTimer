@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server'
 import { Types } from 'mongoose'
 import connectDB from '@/shared/config/mongodb/mongodb'
-import { auth } from '@/shared/config/auth/auth'
+import { getSession } from '@/shared/config/auth/session'
 import { ok, serverError } from '@/shared/api/responses'
 import { isHiddenBetween, listUserSharedSolves } from '@/entities/shared-solve/server/shared-solves'
 import type { SharedSolvesPage } from '@/entities/shared-solve/model/types'
@@ -15,7 +15,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 
     await connectDB()
 
-    const session = await auth()
+    const session = await getSession()
     if (await isHiddenBetween(userId, session?.user?.id)) return ok(EMPTY)
 
     const cursor = request.nextUrl.searchParams.get('cursor')

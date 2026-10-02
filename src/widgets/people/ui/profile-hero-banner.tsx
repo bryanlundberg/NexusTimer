@@ -12,7 +12,7 @@ import { ProfileTraits } from '@/entities/user/ui/ProfileTraits'
 import { ProfileLinks } from '@/entities/user/ui/ProfileLinks'
 import { PresenceDot } from '@/features/presence/ui/PresenceDot'
 import { usePresence, resolvePresenceDisplay } from '@/features/presence/model/usePresence'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 
 interface Props {
   user: UserDocument

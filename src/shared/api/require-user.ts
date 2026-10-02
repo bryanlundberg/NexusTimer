@@ -1,4 +1,4 @@
-import { auth } from '@/shared/config/auth/auth'
+import { getSession } from '@/shared/config/auth/session'
 import { unauthorized } from './responses'
 
 /**
@@ -6,7 +6,7 @@ import { unauthorized } from './responses'
  * Use: `const userId = await requireUser(); if (userId instanceof Response) return userId`
  */
 export async function requireUser() {
-  const session = await auth()
+  const session = await getSession()
   if (!session?.user?.id) return unauthorized()
   return session.user.id
 }

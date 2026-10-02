@@ -1,5 +1,5 @@
 import { toast } from 'sonner'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 import { useState } from 'react'
 import loader from '@/shared/lib/loader'
 import uploadFile from '@/shared/lib/uploadFile'
@@ -19,9 +19,8 @@ export function useUpdateUserAvatar() {
         body: JSON.stringify({ image: urlImage.url })
       })
       if (!res.ok) throw new Error('PATCH /users failed')
-      const updatedUser = await res.json()
       toast.success('User image updated successfully')
-      await update({ user: { image: updatedUser.image } })
+      await update()
     } catch (e) {
       toast.error('Error updating user image')
     } finally {

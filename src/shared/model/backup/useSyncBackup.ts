@@ -1,6 +1,6 @@
 import { importNexusTimerData, normalizeOldData } from '@/features/manage-backup/lib/importDataFromFile'
 import { toast } from 'sonner'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 import { useTranslations } from 'next-intl'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'

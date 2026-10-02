@@ -6,7 +6,7 @@ import User, { type UserProfile } from '@/entities/user/model/user'
 import { userProfileCache } from '@/entities/user/model/user-cache'
 import { buildUserUpdate } from '@/entities/user/lib/build-user-update'
 import UserAchievement from '@/entities/achievement/model/user-achievement'
-import { auth } from '@/shared/config/auth/auth'
+import { getSession } from '@/shared/config/auth/session'
 import { statsVisibleTo } from '@/entities/privacy/server/stats-visibility'
 import { withoutStats } from '@/entities/privacy/lib/without-stats'
 import { parseJsonBody } from '@/shared/api/parse-json'
@@ -20,7 +20,7 @@ import {
   profileLinksSchema
 } from '@/features/account-form/model/types'
 
-const PUBLIC_PROJECTION = '-email -providers -privacy -__v'
+const PUBLIC_PROJECTION = '-email -emailVerified -providers -privacy -__v'
 
 const clearable = <T extends z.ZodTypeAny>(schema: T) =>
   z.preprocess((value) => (value === '' ? null : value), schema.nullable()).optional()
@@ -44,7 +44,7 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     const userId = (await params).id
     if (!userId) return badRequest('ID is required')
 
-    const session = await auth()
+    const session = await getSession()
     if (!session || session.user.id !== userId) return unauthorized()
 
     const body = await parseJsonBody(request, updateUserSchema)
@@ -76,7 +76,7 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<{
     const profile = await loadProfile(userId)
     if (!profile) return notFound('User not found')
 
-    const session = await auth()
+    const session = await getSession()
     if (await statsVisibleTo(userId, session?.user?.id)) return ok(profile)
 
     return ok(withoutStats(profile))

@@ -10,7 +10,7 @@ import { useTranslations } from 'next-intl'
 import { FlyingAvatar } from '@/features/compare-users/ui/FlyingAvatar'
 import { UserListRow } from '@/entities/user/ui/UserListRow'
 import { usePresenceInView } from '@/features/presence/model/usePresenceInView'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 
 export default function UserCard({ user }: { user: UserDocument }) {
   const t = useTranslations('Index.PeoplePage.user-card')

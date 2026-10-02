@@ -2,7 +2,7 @@ import { Controller, useForm, useWatch } from 'react-hook-form'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import * as React from 'react'
 import { toast } from 'sonner'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 import { CountryCombobox } from '@/shared/ui/country-combobox/CountryCombobox'
 import { UserDocument } from '@/entities/user/model/user'
 import { PROFILE_SECTION_IDS } from '@/entities/user/model/profile-completeness'
@@ -112,7 +112,7 @@ export default function AccountInfoForm({ user, mutate, onPreviewChange }: Accou
       savedValues.current = toFormValues(saved)
       reset(savedValues.current)
       await mutate()
-      await update({ user: { name: saved.name } })
+      await update()
       toast.success(t('update-success'))
     } catch (error) {
       console.error('Error updating user:', error)

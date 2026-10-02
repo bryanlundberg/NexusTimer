@@ -149,7 +149,9 @@
       "verify-button": "Verificar",
       "verify-description": "Enviamos um código de 6 dígitos para {email}",
       "verify-title": "Verifique seu e-mail",
-      "welcome-back": "Bem-vindo de volta, cuber"
+      "welcome-back": "Bem-vindo de volta, cuber",
+      "oauth-account-not-linked": "Já existe uma conta com este e-mail. Entre com o método que você usou antes.",
+      "oauth-error": "Não conseguimos fazer seu login. Tente novamente."
     },
     "CoreHeader": {
       "give-feedback": "Dar Feedback"

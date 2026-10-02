@@ -1,9 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 import { useTranslations } from 'next-intl'
 import OAuthIconButton from '@/features/authentication/ui/OAuthIconButton'
+import { signInWithProvider } from '@/features/authentication/model/sign-in-social'
 
 export default function GoogleButton() {
   const { data: session } = useSession()
@@ -12,7 +13,7 @@ export default function GoogleButton() {
   if (session?.user?.id) return null
 
   return (
-    <OAuthIconButton provider="google" label={t('continue-google')} brand="#4285f4">
+    <OAuthIconButton label={t('continue-google')} brand="#4285f4" onClick={() => signInWithProvider('google')}>
       <Image src="/timer-logos/google.svg" alt="" width={20} height={20} />
     </OAuthIconButton>
   )

@@ -119,7 +119,9 @@
       "welcome-back": "Bienvenido de vuelta, cubero",
       "sign-in": "Iniciar sesión",
       "continue-google": "Continuar con Google",
-      "continue-discord": "Continuar con Discord"
+      "continue-discord": "Continuar con Discord",
+      "oauth-account-not-linked": "Este correo ya pertenece a una cuenta. Inicia sesión con el método que usaste antes.",
+      "oauth-error": "No pudimos iniciar tu sesión. Inténtalo de nuevo."
     },
     "CoreHeader": {
       "give-feedback": "Dar Feedback"

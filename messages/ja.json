@@ -149,7 +149,9 @@
       "verify-button": "確認",
       "verify-description": "{email} に6桁のコードを送信しました",
       "verify-title": "メールを確認してください",
-      "welcome-back": "おかえりなさい、キューバー"
+      "welcome-back": "おかえりなさい、キューバー",
+      "oauth-account-not-linked": "このメールアドレスのアカウントは既に存在します。以前と同じ方法でログインしてください。",
+      "oauth-error": "ログインできませんでした。もう一度お試しください。"
     },
     "CoreHeader": {
       "give-feedback": "フィードバック"

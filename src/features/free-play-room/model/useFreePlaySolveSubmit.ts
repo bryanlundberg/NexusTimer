@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import genId from '@/shared/lib/genId'

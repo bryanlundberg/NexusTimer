@@ -149,7 +149,9 @@
       "verify-button": "확인",
       "verify-description": "{email}로 6자리 코드를 보냈습니다",
       "verify-title": "이메일을 확인하세요",
-      "welcome-back": "다시 오신 것을 환영합니다, 큐버님"
+      "welcome-back": "다시 오신 것을 환영합니다, 큐버님",
+      "oauth-account-not-linked": "이 이메일로 된 계정이 이미 있습니다. 이전에 사용한 방법으로 로그인하세요.",
+      "oauth-error": "로그인하지 못했습니다. 다시 시도해 주세요."
     },
     "CoreHeader": {
       "give-feedback": "피드백 보내기"

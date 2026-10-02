@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Link, useRouter } from '@/shared/config/i18n/navigation'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 import { useTranslations } from 'next-intl'
 import { MessageCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'

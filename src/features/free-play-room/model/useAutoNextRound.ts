@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 import useFreeMode from '@/features/free-play-room/model/useFreeMode'
 import genScramble from '@/shared/lib/timer/genScramble'
 import { CubeCategory } from '@/shared/const/cube-categories'

@@ -156,7 +156,9 @@
         "code-length": "Mã phải có 6 chữ số",
         "code-numeric": "Mã phải là số",
         "passwords-dont-match": "Mật khẩu không khớp"
-      }
+      },
+      "oauth-account-not-linked": "Email này đã thuộc về một tài khoản. Hãy đăng nhập bằng phương thức bạn đã dùng trước đó.",
+      "oauth-error": "Không thể đăng nhập. Vui lòng thử lại."
     },
     "CoreHeader": {
       "give-feedback": "Gửi phản hồi"

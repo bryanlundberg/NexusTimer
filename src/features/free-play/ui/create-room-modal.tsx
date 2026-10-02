@@ -1,4 +1,4 @@
-import { useSession } from 'next-auth/react'
+import { useSession } from '@/shared/model/useSession'
 import { useRouter } from '@/shared/config/i18n/navigation'
 import { Controller, useForm } from 'react-hook-form'
 import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'

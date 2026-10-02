@@ -156,7 +156,9 @@
         "code-length": "Kode harus 6 digit",
         "code-numeric": "Kode harus berupa angka",
         "passwords-dont-match": "Kata sandi tidak cocok"
-      }
+      },
+      "oauth-account-not-linked": "Email ini sudah terdaftar di sebuah akun. Masuk dengan metode yang kamu gunakan sebelumnya.",
+      "oauth-error": "Kami tidak bisa memasukkanmu. Silakan coba lagi."
     },
     "CoreHeader": {
       "give-feedback": "Beri Masukan"

@@ -156,7 +156,9 @@
         "code-length": "Code must be 6 digits",
         "code-numeric": "Code must be numeric",
         "passwords-dont-match": "Passwords don't match"
-      }
+      },
+      "oauth-account-not-linked": "This email already belongs to an account. Sign in with the method you used before.",
+      "oauth-error": "We couldn't sign you in. Please try again."
     },
     "CoreHeader": {
       "give-feedback": "Give Feedback"

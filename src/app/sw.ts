@@ -112,11 +112,12 @@ const pageWarmups: RuntimeCaching = {
 
 // Pages are static and carry no user data, so the last known session is what keeps the app signed in offline.
 const authSessionCache: RuntimeCaching = {
-  matcher: ({ sameOrigin, url: { pathname } }) => sameOrigin && pathname === '/api/auth/session',
+  matcher: ({ sameOrigin, url: { pathname } }) => sameOrigin && pathname === '/api/auth/get-session',
   method: 'GET',
   handler: new NetworkFirst({
     cacheName: AUTH_SESSION_CACHE,
     networkTimeoutSeconds: 3,
+    matchOptions: { ignoreSearch: true },
     plugins: [new ExpirationPlugin({ maxEntries: 1 })]
   })
 }

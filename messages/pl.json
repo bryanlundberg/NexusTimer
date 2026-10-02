@@ -156,7 +156,9 @@
         "code-length": "Kod musi mieć 6 cyfr",
         "code-numeric": "Kod musi być liczbą",
         "passwords-dont-match": "Hasła nie są zgodne"
-      }
+      },
+      "oauth-account-not-linked": "Konto z tym adresem e-mail już istnieje. Zaloguj się metodą, której używasz zwykle.",
+      "oauth-error": "Nie udało się zalogować. Spróbuj ponownie."
     },
     "CoreHeader": {
       "give-feedback": "Wyraź opinię"

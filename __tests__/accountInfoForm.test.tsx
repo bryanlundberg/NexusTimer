@@ -3,7 +3,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import messages from '../messages/en.json'
 import AccountInfoForm from '@/features/account-form/ui/AccountInfoForm'
 
-vi.mock('next-auth/react', () => ({
+vi.mock('@/shared/model/useSession', () => ({
   useSession: () => ({ data: { user: { id: 'u1', name: 'Mateo' } }, update: vi.fn() })
 }))
 

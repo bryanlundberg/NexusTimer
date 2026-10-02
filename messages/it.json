@@ -156,7 +156,9 @@
         "code-length": "Il codice deve avere 6 cifre",
         "code-numeric": "Il codice deve essere numerico",
         "passwords-dont-match": "Le password non corrispondono"
-      }
+      },
+      "oauth-account-not-linked": "Questa email appartiene già a un account. Accedi con il metodo che hai usato in precedenza.",
+      "oauth-error": "Non siamo riusciti a farti accedere. Riprova."
     },
     "CoreHeader": {
       "give-feedback": "Lascia un feedback"
