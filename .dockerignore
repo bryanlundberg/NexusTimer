@@ -1,0 +1,9 @@
+.git
+.next
+node_modules
+.env*
+services
+.claude
+.idea
+.vscode
+*.tsbuildinfo
