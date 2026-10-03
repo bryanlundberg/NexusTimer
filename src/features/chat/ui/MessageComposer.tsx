@@ -25,8 +25,6 @@ interface Props {
   editing?: ComposerEdit | null
   onSaveEdit?: (messageId: string, text: string) => void
   onCancelEdit?: () => void
-  draft?: string
-  onDraftApplied?: () => void
 }
 
 export function MessageComposer({
@@ -38,9 +36,7 @@ export function MessageComposer({
   onFocused,
   editing,
   onSaveEdit,
-  onCancelEdit,
-  draft,
-  onDraftApplied
+  onCancelEdit
 }: Props) {
   const t = useTranslations('Index.ChatPage')
   const [text, setText] = useState('')
@@ -60,14 +56,6 @@ export function MessageComposer({
     caret.current = editing.text.length
     inputRef.current?.focus()
   }, [editingId])
-
-  useEffect(() => {
-    if (!draft || editing) return
-    setText(draft)
-    caret.current = draft.length
-    inputRef.current?.focus()
-    onDraftApplied?.()
-  }, [draft, editing, onDraftApplied])
 
   const canSend = !disabled && text.trim().length > 0
 
