@@ -22,6 +22,7 @@ declare const self: ServiceWorkerGlobalScope
 const OFFLINE_URL = '/~offline'
 const PAGES_CACHE = 'pages-documents'
 const OFFLINE_CACHE = 'pages-offline'
+const CORE_PAGES = ['/app', '/solves', '/options', '/cubes', '/transfer-solves']
 
 const isPage = (url: URL) =>
   url.origin === self.location.origin && !/^\/(api|_next)(\/|$)/.test(url.pathname) && !/\.[^/]+$/.test(url.pathname)
@@ -144,16 +145,18 @@ const serwist = new Serwist({
 // Saved pages reference the chunks of the deploy that rendered them, which this worker no longer precaches.
 const renewPages = async (event: ExtendableEvent) => {
   const cache = await caches.open(PAGES_CACHE)
-  const saved = (await cache.keys()).map((key) => key.url)
+  const saved = await cache.keys()
   const open = (await self.clients.matchAll({ type: 'window', includeUncontrolled: true }))
     .map((client) => new URL(client.url))
     .filter(isPage)
-    .map((url) => pageKey(url.href))
-  await Promise.all([caches.delete(OFFLINE_CACHE), ...saved.map((url) => cache.delete(url))])
+  const pageLocales = open.length
+    ? open.map(({ pathname }) => pathLocale(pathname) ?? defaultLocale)
+    : [await preferredLocale('/')]
+  await Promise.all([caches.delete(OFFLINE_CACHE), ...saved.map((key) => cache.delete(key))])
   await Promise.allSettled(
-    [...new Set([...saved, ...open])].map((url) =>
-      serwist.handleRequest({ request: new Request(url, { signal: AbortSignal.timeout(5000) }), event })
-    )
+    [...new Set(pageLocales)]
+      .flatMap((locale) => CORE_PAGES.map((page) => localizedPath(locale, page)))
+      .map((url) => serwist.handleRequest({ request: new Request(url, { signal: AbortSignal.timeout(5000) }), event }))
   )
 }
 
