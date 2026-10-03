@@ -8,14 +8,13 @@ const ENGLISH_ONLY = new Set(['/about-us', '/contact-us', '/account-deletion', '
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = [
-    { path: '/', priority: 1.0, changeFrequency: 'weekly' as const },
-    { path: '/app', priority: 0.9, changeFrequency: 'daily' as const },
-    { path: '/people', priority: 0.9, changeFrequency: 'daily' as const },
-    { path: '/leaderboards', priority: 0.9, changeFrequency: 'daily' as const },
-    { path: '/free-play', priority: 0.8, changeFrequency: 'daily' as const },
-    { path: '/solves', priority: 0.8, changeFrequency: 'daily' as const },
-    { path: '/stats', priority: 0.8, changeFrequency: 'daily' as const },
-    { path: '/cubes', priority: 0.8, changeFrequency: 'weekly' as const },
+    { path: '/', priority: 1.0, changeFrequency: 'monthly' as const },
+    { path: '/app', priority: 0.9, changeFrequency: 'monthly' as const },
+    { path: '/leaderboards', priority: 0.9, changeFrequency: 'monthly' as const },
+    { path: '/free-play', priority: 0.8, changeFrequency: 'monthly' as const },
+    { path: '/solves', priority: 0.8, changeFrequency: 'monthly' as const },
+    { path: '/stats', priority: 0.8, changeFrequency: 'monthly' as const },
+    { path: '/cubes', priority: 0.8, changeFrequency: 'monthly' as const },
     { path: '/transfer-solves', priority: 0.8, changeFrequency: 'monthly' as const },
     { path: '/options', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: '/about-us', priority: 0.7, changeFrequency: 'monthly' as const },
@@ -23,21 +22,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/account-deletion', priority: 0.5, changeFrequency: 'yearly' as const },
     { path: '/privacy-policy', priority: 0.6, changeFrequency: 'yearly' as const },
     { path: '/terms-of-service', priority: 0.6, changeFrequency: 'yearly' as const },
-    { path: '/algorithms', priority: 0.9, changeFrequency: 'weekly' as const },
-    { path: '/algorithms/trainer', priority: 0.9, changeFrequency: 'weekly' as const },
+    { path: '/algorithms', priority: 0.9, changeFrequency: 'monthly' as const },
+    { path: '/algorithms/trainer', priority: 0.9, changeFrequency: 'monthly' as const },
     ...ALGORITHM_SETS.map((set) => ({
       priority: 0.9,
       path: `/algorithms/${set.slug.toLowerCase()}`,
-      changeFrequency: 'weekly' as const
+      changeFrequency: 'monthly' as const
     }))
   ]
 
   const sitemapEntries: MetadataRoute.Sitemap = []
-  const buildDate = new Date()
 
   pages.forEach(({ path, priority, changeFrequency }) => {
     if (ENGLISH_ONLY.has(path)) {
-      sitemapEntries.push({ url: `${host}${path}`, lastModified: buildDate, changeFrequency, priority })
+      sitemapEntries.push({ url: `${host}${path}`, changeFrequency, priority })
       return
     }
 
@@ -51,7 +49,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     locales.forEach((locale) => {
       sitemapEntries.push({
         url: `${host}${localizedPath(locale, path)}`,
-        lastModified: buildDate,
         changeFrequency,
         priority,
         alternates
