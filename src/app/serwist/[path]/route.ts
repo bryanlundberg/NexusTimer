@@ -8,6 +8,12 @@ const revision =
 
 export const { dynamic, dynamicParams, revalidate, generateStaticParams, GET } = createSerwistRoute({
   additionalPrecacheEntries: [{ url: '/~offline', revision }],
+  // Only what the timer needs offline; the rest of public is cached on first use.
+  globPatterns: [
+    '.next/static/**/*.{js,css,html,ico,apng,png,avif,jpg,jpeg,jfif,pjpeg,pjp,gif,svg,webp,json,webmanifest}',
+    'public/{sounds,categories,icons}/**/*',
+    'public/vendors/**/*.js'
+  ],
   swSrc: 'src/app/sw.ts',
   useNativeEsbuild: true
 })
