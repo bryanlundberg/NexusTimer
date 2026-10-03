@@ -1,6 +1,5 @@
 import { CUBE_CATEGORIES, type CubeCategory } from '@/shared/const/cube-categories'
 import formatTime from '@/shared/lib/formatTime'
-import type { Solve } from '@/entities/solve/model/types'
 import { MAX_MESSAGE_LENGTH } from '@/entities/chat/model/types'
 
 export interface SolveCardData {
@@ -39,18 +38,6 @@ export function encodeSolveCard(data: SolveCardData): string {
 
   const card = build(true)
   return card.length <= MAX_MESSAGE_LENGTH ? card : build(false)
-}
-
-export function solveCardFromSolve(solve: Solve, puzzle: CubeCategory): string {
-  return encodeSolveCard({
-    puzzle,
-    time: solve.time,
-    scramble: solve.scramble,
-    moves: solve.replay?.moves.map((move) => move.m).join(' '),
-    date: solve.endTime,
-    plus2: solve.plus2,
-    dnf: solve.dnf
-  })
 }
 
 export function decodeSolveCard(body: string): SolveCardData | null {
