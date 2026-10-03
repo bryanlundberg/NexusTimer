@@ -1,22 +1,46 @@
 import { MetadataRoute } from 'next'
+import { locales, localizedPath } from '@/shared/config/i18n/locales'
+
+const AI_TRAINING_BOTS = [
+  'GPTBot',
+  'ClaudeBot',
+  'CCBot',
+  'Bytespider',
+  'meta-externalagent',
+  'Amazonbot',
+  'Google-Extended',
+  'Applebot-Extended'
+]
+
+const NOT_INDEXED = [
+  '/sign-in',
+  '/sign-up',
+  '/forgot-password',
+  '/reset-password',
+  '/account$',
+  '/account/',
+  '/messages',
+  '/friends',
+  '/free-play/',
+  '/people',
+  '/algorithms/trainer/history',
+  '/~offline'
+]
 
 export default function robots(): MetadataRoute.Robots {
-  const sitemaps = ['https://nexustimer.com/sitemap.xml']
-
   return {
     rules: [
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/private/', '/api/', '/server-sitemap.xml']
+        disallow: ['/api/', ...locales.flatMap((locale) => NOT_INDEXED.map((path) => localizedPath(locale, path)))]
       },
       {
-        userAgent: 'Googlebot',
-        allow: '/',
-        disallow: ['/private/', '/api/']
+        userAgent: AI_TRAINING_BOTS,
+        disallow: '/'
       }
     ],
-    sitemap: sitemaps,
+    sitemap: 'https://nexustimer.com/sitemap.xml',
     host: 'https://nexustimer.com'
   }
 }
