@@ -107,6 +107,7 @@ export default function LandingShell({ footer }: { footer: ReactNode }) {
               <div className="flex items-center gap-1.5 sm:gap-3">
                 <Link
                   href="/sign-in"
+                  prefetch={false}
                   className="hidden sm:inline-flex md:hidden lg:inline-flex whitespace-nowrap items-center rounded-full px-3 py-2 text-sm font-medium text-gray-600 transition-colors duration-300 hover:text-gray-900"
                 >
                   {tAuth('sign-in')}
