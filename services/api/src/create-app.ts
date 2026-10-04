@@ -35,6 +35,8 @@ import { blocksRoutes, friendsRoutes } from './modules/social/social.routes'
 import { leaderboardsRoutes } from './modules/solves/leaderboards.routes'
 import type { LeaderboardsService } from './modules/solves/leaderboards.service'
 import { trainerRoutes } from './modules/trainer/trainer.routes'
+import { wcaRoutes } from './modules/wca/wca.routes'
+import type { WcaService } from './modules/wca/wca.service'
 import type { TrainerService } from './modules/trainer/trainer.service'
 import { type PrivacyService, privacyRoutes } from './modules/users/privacy.routes'
 
@@ -58,6 +60,7 @@ export type AppDeps = {
   feedback: FeedbackService
   suggestions: SuggestionsService
   rooms: RoomsService
+  wca: WcaService
 }
 
 const PUBLIC_PATHS = ['/api/health']
@@ -90,6 +93,7 @@ export function createApp(deps: AppDeps) {
   app.route('/v1/feedback', feedbackRoutes(deps.feedback, signedIn))
   app.route('/v1/algorithms/suggestions', suggestionsRoutes(deps.suggestions))
   app.route('/v1/rooms', roomsRoutes(deps.rooms))
+  app.route('/v1/wca', wcaRoutes(deps.wca, { secureCookies: env.NODE_ENV === 'production' }, signedIn, viewer))
 
   app.notFound(handleNotFound)
   app.onError(handleError)

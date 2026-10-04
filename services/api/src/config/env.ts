@@ -42,6 +42,8 @@ const envSchema = z
     REALTIME_SECRET: optionalSecret,
     ADMIN_EMAIL: z.string().email().optional(),
     ROOM_SIGNING_SECRET: optionalSecret,
+    WCA_CLIENT_ID: optionalSecret,
+    WCA_CLIENT_SECRET: optionalSecret,
     FIREBASE_DATABASE_URL: z.string().url().optional(),
     GITHUB_APP_ID: optionalSecret,
     GITHUB_APP_PRIVATE_KEY: optionalSecret,

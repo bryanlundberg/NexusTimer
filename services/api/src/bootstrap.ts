@@ -7,6 +7,7 @@ import { createRealtimePublisher } from './infra/realtime'
 import { getRedis, pingRedis } from './infra/redis'
 import { createSearchEngine } from './infra/search'
 import { createStorage } from './infra/storage'
+import { createWcaClient } from './infra/wca'
 import { runInBackground } from './platform/background'
 import { createSuggestionLimits } from './modules/algorithms/suggestions.limits'
 import { createSuggestionsService } from './modules/algorithms/suggestions.service'
@@ -50,6 +51,7 @@ import { createTrainerService } from './modules/trainer/trainer.service'
 import { createProfileCache, createStatsCache } from './modules/users/users.cache'
 import { usersRepository } from './modules/users/users.repository'
 import { createUsersService } from './modules/users/users.service'
+import { createWcaService } from './modules/wca/wca.service'
 
 export function buildApp() {
   const env = getEnv()
@@ -166,6 +168,11 @@ export function buildApp() {
     rooms: createRoomsService({
       passwords: createRoomPasswords(env.FIREBASE_DATABASE_URL),
       signingSecret: env.ROOM_SIGNING_SECRET
+    }),
+    wca: createWcaService({
+      wca: createWcaClient({ clientId: env.WCA_CLIENT_ID, clientSecret: env.WCA_CLIENT_SECRET }),
+      users,
+      appUrl
     })
   })
   return { env, app }

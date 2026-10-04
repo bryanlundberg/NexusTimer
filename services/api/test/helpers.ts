@@ -26,6 +26,8 @@ export function testEnv(overrides: Partial<Env> = {}): Env {
     REALTIME_SECRET: undefined,
     ADMIN_EMAIL: undefined,
     ROOM_SIGNING_SECRET: undefined,
+    WCA_CLIENT_ID: undefined,
+    WCA_CLIENT_SECRET: undefined,
     FIREBASE_DATABASE_URL: undefined,
     GITHUB_APP_ID: undefined,
     GITHUB_APP_PRIVATE_KEY: undefined,
@@ -109,6 +111,12 @@ export function buildTestApp(overrides: Partial<AppDeps> = {}) {
     feedback: { submit: unused },
     suggestions: { allow: unused, suggest: unused },
     rooms: { hashPassword: unused, verifyPassword: unused, authCookie: () => '', isAuthorized: () => false },
+    wca: {
+      start: () => null,
+      link: unused,
+      unlink: unused,
+      resultUrl: (status) => `http://localhost:3000/account?wca=${status}`
+    },
     ...overrides
   })
 }
