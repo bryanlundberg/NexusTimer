@@ -57,6 +57,15 @@ export function buildTestApp(overrides: Partial<AppDeps> = {}) {
     auth: testAuthServices(),
     leaderboards: { get: unused },
     search: { search: unused },
+    trainer: {
+      learned: unused,
+      setLearned: unused,
+      solves: unused,
+      recordSolve: unused,
+      deleteSolve: unused,
+      stats: unused,
+      setTarget: unused
+    },
     ...overrides
   })
 }
