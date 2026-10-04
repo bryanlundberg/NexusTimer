@@ -20,6 +20,7 @@
     "bcryptjs": "^3.0.3",
     "better-auth": "^1.7.7",
     "hono": "^4.13.0",
+    "meilisearch": "^0.60.0",
     "mongodb": "~7.2.0",
     "mongoose": "^9.7.2",
     "redis": "^5.12.1",
