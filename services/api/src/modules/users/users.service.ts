@@ -16,7 +16,7 @@ import type { ProfileCache, StatsCache } from './users.cache'
 import type { ListedUser, ProfileUpdate, StatsSnapshot, UsersRepository } from './users.repository'
 
 export type UsersListQuery = { name: string; country: string; page: number; excludeIds: string[] }
-export type MailContact = { email: string | null; privacy: PrivacySettings }
+export type MailContact = { name: string; email: string | null; privacy: PrivacySettings }
 
 export type UsersService = {
   publicProfiles(ids: string[]): Promise<Map<string, PublicUser>>
@@ -138,7 +138,7 @@ export function createUsersService({ repository, profileCache, statsCache, achie
 
     async mailContact(id) {
       const contact = await repository.findContact(id)
-      return contact ? { email: contact.email, privacy: resolvePrivacy(contact.privacy) } : null
+      return contact ? { name: contact.name, email: contact.email, privacy: resolvePrivacy(contact.privacy) } : null
     },
 
     backup: (id) => repository.findBackup(id),

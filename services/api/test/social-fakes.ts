@@ -113,7 +113,7 @@ export function fakeUsers(privacy: Record<string, Partial<PrivacySettings>> = {}
     privacy: async (id: string) => resolvePrivacy(privacy[id]),
     async mailContact(id: string) {
       const person = people[id]
-      return person ? { email: person.email ?? null, privacy: resolvePrivacy(privacy[id]) } : null
+      return person ? { name: person.name, email: person.email ?? null, privacy: resolvePrivacy(privacy[id]) } : null
     }
   }
 }

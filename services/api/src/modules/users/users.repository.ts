@@ -25,7 +25,7 @@ export type ProfileUpdate = { $set?: Record<string, unknown>; $unset?: Record<st
 export type ListQuery = { name: string; country: string; excludeIds: string[]; page: number; perPage: number }
 export type ListedUser = { profile: PublicProfile; privacy?: Partial<PrivacySettings> }
 export type StatsSnapshot = { version: number; backupUpdatedAt: number; summary: UserStatsSummary }
-export type UserContact = { email: string | null; privacy?: Partial<PrivacySettings> }
+export type UserContact = { name: string; email: string | null; privacy?: Partial<PrivacySettings> }
 
 export type UsersRepository = {
   findPublicProfiles(ids: string[]): Promise<PublicUser[]>
@@ -199,9 +199,9 @@ export const usersRepository: UsersRepository = {
   async findContact(id) {
     if (!Types.ObjectId.isValid(id)) return null
     const doc = await UserModel.findById(id)
-      .select('email privacy')
-      .lean<{ email?: string | null; privacy?: Partial<PrivacySettings> | null }>()
-    return doc ? { email: doc.email || null, privacy: doc.privacy ?? undefined } : null
+      .select('name email privacy')
+      .lean<{ name: string; email?: string | null; privacy?: Partial<PrivacySettings> | null }>()
+    return doc ? { name: doc.name, email: doc.email || null, privacy: doc.privacy ?? undefined } : null
   },
 
   async updatePrivacy(id, input) {
