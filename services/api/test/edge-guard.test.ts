@@ -37,6 +37,18 @@ describe('edge guard', () => {
     expect(await res.json()).toEqual({ clientIp: '203.0.113.7' })
   })
 
+  it('keeps liveness public for platform health checks', async () => {
+    const res = await appWithIpProbe(TEST_EDGE_SECRET).request('/api/health')
+
+    expect(res.status).toBe(200)
+  })
+
+  it('still guards readiness, which reveals dependency status', async () => {
+    const res = await appWithIpProbe(TEST_EDGE_SECRET).request('/api/health/ready')
+
+    expect(res.status).toBe(401)
+  })
+
   it('falls back to x-forwarded-for when no secret is configured', async () => {
     const res = await appWithIpProbe().request('/api/probe', {
       headers: { [CLIENT_IP_HEADER]: '203.0.113.7', 'x-forwarded-for': '198.51.100.4, 10.0.0.1' }
