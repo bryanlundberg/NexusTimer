@@ -14,7 +14,6 @@ export const REPLAY_MAX_MOVES = 1000
 export const SCRAMBLE_MAX_LENGTH = 1000
 export const MAX_SOLVE_TIME_MS = 24 * 60 * 60 * 1000
 
-/** A replay sent by a client, bounded so it cannot bloat the documents that store it. */
 export const replayInputSchema = z.object({
   version: z.literal(1),
   puzzle: z.string().max(32),

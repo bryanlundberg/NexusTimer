@@ -33,7 +33,6 @@ type BackupsDeps = {
   now?: () => number
 }
 
-/** gzip streams start with the magic bytes 0x1f 0x8b. */
 const isGzip = (bytes: Uint8Array): boolean => bytes.length >= 2 && bytes[0] === 0x1f && bytes[1] === 0x8b
 
 const isOverLimit = (error: unknown) => (error as { code?: string } | null)?.code === 'ERR_BUFFER_TOO_LARGE'
@@ -115,7 +114,6 @@ export function createBackupsService({
 
       let current = await users.backup(userId)
 
-      // When the active backup goes, the newest remaining one takes its place, or the field is cleared.
       if (current?.url === deletedUrl) {
         const [newest] = await listUserBackups(storage, userId)
         current = newest ? { url: newest.url, updatedAt: newest.createdAt } : null

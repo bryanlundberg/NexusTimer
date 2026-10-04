@@ -45,7 +45,6 @@ export function roomsRoutes(rooms: RoomsService) {
 
         const res = ok<VerifyRoomPasswordResponse>({ success: true })
         if (result === 'granted') {
-          // One cookie for the last room joined; a new room overwrites it.
           const cookie = serialize(ROOMS_AUTH_COOKIE, rooms.authCookie(body.roomId), {
             httpOnly: true,
             sameSite: 'Lax',

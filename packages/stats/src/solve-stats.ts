@@ -50,7 +50,6 @@ export function computeSolveStats(cubes: Cube[], timezone?: string): SolveStats 
       if (solve.comment && solve.comment.trim().length > 0) commentCount++
       if (solve.replay) replayCount++
 
-      // A DNF still cost the solver those minutes, so it counts as time spent.
       totalTimeSpent += solve.time
 
       if (!solve.dnf) {
@@ -58,7 +57,6 @@ export function computeSolveStats(cubes: Cube[], timezone?: string): SolveStats 
         if (cube.category === '3x3') cube3x3Count++
 
         countByCategory.set(cube.category, (countByCategory.get(cube.category) ?? 0) + 1)
-        // Raw time a +2 penalty is deliberately not folded in here.
         if (solve.time < (bestByCategory.get(cube.category) ?? Infinity)) {
           bestByCategory.set(cube.category, solve.time)
         }

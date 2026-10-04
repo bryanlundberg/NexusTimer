@@ -10,7 +10,6 @@ interface SubmitLeaderboardSolveParams {
   solution?: string
 }
 
-/** Resolves false only when the server failed; a signed-out user has nothing to store. */
 export async function submitLeaderboardSolve({
   solve,
   puzzle,

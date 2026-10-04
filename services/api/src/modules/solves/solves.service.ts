@@ -3,7 +3,6 @@ import type { SolvesRepository } from './solves.repository'
 
 const ROTATIONS = new Set(['x', "x'", 'y', "y'", 'z', "z'"])
 
-/** Drops the rotations before the first turn; the ones after it are part of the solution. */
 export function cleanRotations(alg: string): string {
   const result: string[] = []
   let seenNormalMove = false

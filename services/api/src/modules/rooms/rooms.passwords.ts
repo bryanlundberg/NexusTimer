@@ -1,6 +1,5 @@
 const REQUEST_TIMEOUT_MS = 5000
 
-/** `null` when the room cannot be read; `hash: null` when it has no password. */
 export type RoomPasswords = { passwordHash(roomId: string): Promise<{ hash: string | null } | null> }
 
 export function createRoomPasswords(databaseUrl: string | undefined, request: typeof fetch = fetch): RoomPasswords {

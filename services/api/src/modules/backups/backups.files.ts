@@ -4,12 +4,10 @@ const BACKUPS_ROOT = 'backups'
 
 export type StoredBackup = { key: string; id: string; createdAt: number; size: number; url: string }
 
-/** Whether a file name is a safe, single backup segment (rejects path traversal). */
 export const isValidBackupFile = (file: string): boolean => !file.includes('..') && /^[A-Za-z0-9._-]+$/.test(file)
 
 export const backupKey = (userId: string, file: string): string => `${BACKUPS_ROOT}/${userId}/${file}`
 
-/** Compact ISO stamp used as a backup file name (`20260606T120000Z`). */
 const compactIso = (timestamp: number) =>
   new Date(timestamp)
     .toISOString()
@@ -27,7 +25,6 @@ const parseCompactIso = (name: string): number | null => {
   return Number.isNaN(ms) ? null : ms
 }
 
-/** Every backup stored under a user's folder, newest first. */
 export async function listUserBackups(storage: Storage, userId: string): Promise<StoredBackup[]> {
   const prefix = `${BACKUPS_ROOT}/${userId}/`
   const backups: StoredBackup[] = []

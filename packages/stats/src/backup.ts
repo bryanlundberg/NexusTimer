@@ -75,7 +75,6 @@ export function filterCubes(backup?: Cube[] | null): Cube[] {
   })
 }
 
-/** Cleans a stored backup the way the app reads it: defaults for old fields, one copy per solve, deleted entries dropped. */
 export function prepareBackupCubes(backup: unknown): Cube[] {
   if (!Array.isArray(backup)) throw new Error('Backup is not an array of cubes')
   return filterCubes(preventDuplicateDeleteStatus(normalizeOldData(backup as Cube[])))

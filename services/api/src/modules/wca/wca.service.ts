@@ -4,7 +4,6 @@ import type { WcaClient } from '../../infra/wca'
 import type { UsersService } from '../users/users.service'
 
 export type WcaService = {
-  /** Where to send the browser to authorize, or `null` when the WCA app is not configured. */
   start(): { url: string; state: string } | null
   link(userId: string, code: string): Promise<WcaLinkStatus>
   unlink(userId: string): Promise<void>

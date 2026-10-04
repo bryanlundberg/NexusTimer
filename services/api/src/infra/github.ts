@@ -38,7 +38,6 @@ export function createGithub({
   fetch: request = fetch,
   now = () => Date.now()
 }: GithubConfig): Github {
-  // Hosts often store the PEM on one line with literal \n.
   const pem = privateKey?.replace(/\\n/g, '\n')
   let cached: { token: string; expiresAt: number } | null = null
 

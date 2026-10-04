@@ -6,9 +6,7 @@ export type WcaProfile = { wcaId: string | null }
 export type WcaClient = {
   configured: boolean
   authorizeUrl(redirectUri: string, state: string): string
-  /** The access token, or `null` when WCA refuses the code. */
   exchangeCode(code: string, redirectUri: string): Promise<string | null>
-  /** `null` when the profile cannot be read; `wcaId: null` for an account without a WCA ID. */
   profile(accessToken: string): Promise<WcaProfile | null>
 }
 

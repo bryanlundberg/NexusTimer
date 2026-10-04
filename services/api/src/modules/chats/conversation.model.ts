@@ -24,7 +24,6 @@ const conversationSchema = new Schema(
   { timestamps: { createdAt: true, updatedAt: false } }
 )
 
-// `members` is multikey, so uniqueness lives on `pairKey` instead
 conversationSchema.index({ pairKey: 1 }, { unique: true })
 conversationSchema.index({ members: 1, lastMessageAt: -1 })
 

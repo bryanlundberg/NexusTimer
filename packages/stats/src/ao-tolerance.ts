@@ -1,7 +1,5 @@
 import type { Solve } from './types'
 
-// Solves trimmed per side of an AoX (fastest/slowest 5% rounded up).
-// ao3 -> 0, ao5 -> 1, ao12 -> 1, ao50 -> 3, ao100 -> 5, ao1000 -> 50.
 export function getAoTolerance(ao: number): number {
   if (ao < 5) return 0
   return Math.ceil(ao / 20)
