@@ -43,6 +43,7 @@ export type UsersRepository = {
   setBackup(id: string, backup: CurrentBackup | null): Promise<boolean>
   setImage(id: string, url: string): Promise<boolean>
   saveStats(id: string, stats: StatsSnapshot): Promise<'saved' | 'stale'>
+  setWca(id: string, wca: { wcaId: string; verifiedAt: number } | null): Promise<'saved' | 'taken'>
 }
 
 type RawUser = {
@@ -241,6 +242,19 @@ export const usersRepository: UsersRepository = {
       return 'saved'
     } catch (error) {
       if ((error as { code?: number } | null)?.code === 11000) return 'stale'
+      throw error
+    }
+  },
+
+  async setWca(id, wca) {
+    try {
+      await UserModel.updateOne(
+        { _id: id },
+        wca ? { $set: { wcaId: wca.wcaId, wcaVerifiedAt: wca.verifiedAt } } : { $unset: { wcaId: 1, wcaVerifiedAt: 1 } }
+      )
+      return 'saved'
+    } catch (error) {
+      if ((error as { code?: number } | null)?.code === 11000) return 'taken'
       throw error
     }
   }

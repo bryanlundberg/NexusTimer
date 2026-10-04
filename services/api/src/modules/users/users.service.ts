@@ -34,6 +34,7 @@ export type UsersService = {
   setBackup(id: string, backup: CurrentBackup | null): Promise<boolean>
   setImage(id: string, url: string): Promise<boolean>
   saveStats(id: string, stats: StatsSnapshot): Promise<void>
+  setWca(id: string, wca: { wcaId: string; verifiedAt: number } | null): Promise<'saved' | 'taken'>
 }
 
 type UsersDeps = {
@@ -157,6 +158,12 @@ export function createUsersService({ repository, profileCache, statsCache, achie
 
     async saveStats(id, stats) {
       if ((await repository.saveStats(id, stats)) === 'saved') await statsCache.set(id, stats)
+    },
+
+    async setWca(id, wca) {
+      const result = await repository.setWca(id, wca)
+      if (result === 'saved') await profileCache.invalidate(id)
+      return result
     }
   }
 }
