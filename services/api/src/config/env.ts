@@ -1,5 +1,17 @@
 import { z } from 'zod'
 
+const optionalSecret = z.string().min(1).optional()
+
+const PRODUCTION_REQUIRED = [
+  'EDGE_SECRET',
+  'AUTH_GOOGLE_ID',
+  'AUTH_GOOGLE_SECRET',
+  'AUTH_DISCORD_ID',
+  'AUTH_DISCORD_SECRET',
+  'RESEND_API_KEY',
+  'BREVO_API_KEY'
+] as const
+
 const envSchema = z
   .object({
     NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
@@ -9,12 +21,19 @@ const envSchema = z
     EDGE_SECRET: z.string().min(32).optional(),
     BETTER_AUTH_SECRET: z.string().min(1),
     BETTER_AUTH_URL: z.string().url(),
+    AUTH_GOOGLE_ID: optionalSecret,
+    AUTH_GOOGLE_SECRET: optionalSecret,
+    AUTH_DISCORD_ID: optionalSecret,
+    AUTH_DISCORD_SECRET: optionalSecret,
+    RESEND_API_KEY: optionalSecret,
+    BREVO_API_KEY: optionalSecret,
     REALTIME_URL: z.string().url().optional(),
-    REALTIME_SECRET: z.string().min(1).optional()
+    REALTIME_SECRET: optionalSecret
   })
   .superRefine((env, ctx) => {
-    if (env.NODE_ENV === 'production' && !env.EDGE_SECRET) {
-      ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['EDGE_SECRET'], message: 'Required in production' })
+    if (env.NODE_ENV !== 'production') return
+    for (const key of PRODUCTION_REQUIRED) {
+      if (!env[key]) ctx.addIssue({ code: z.ZodIssueCode.custom, path: [key], message: 'Required in production' })
     }
   })
 

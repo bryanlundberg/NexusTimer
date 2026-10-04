@@ -26,6 +26,15 @@ describe('parseEnv', () => {
     expect(() => parseEnv({ ...base, NODE_ENV: 'production' })).toThrow(/EDGE_SECRET/)
   })
 
+  it('requires oauth and mail credentials in production only', () => {
+    const production = () => parseEnv({ ...base, NODE_ENV: 'production', EDGE_SECRET: 'e'.repeat(32) })
+
+    expect(production).toThrow(
+      /AUTH_GOOGLE_ID.*AUTH_GOOGLE_SECRET.*AUTH_DISCORD_ID.*AUTH_DISCORD_SECRET.*RESEND_API_KEY.*BREVO_API_KEY/
+    )
+    expect(() => parseEnv(base)).not.toThrow()
+  })
+
   it('rejects a short edge secret', () => {
     expect(() => parseEnv({ ...base, EDGE_SECRET: 'short' })).toThrow(/EDGE_SECRET/)
   })
