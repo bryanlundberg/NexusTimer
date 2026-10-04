@@ -4,8 +4,11 @@ import { edgeGuard } from './http/edge-guard'
 import { handleError, handleNotFound } from './http/errors'
 import { requestId } from './http/request-id'
 import { requestLogger } from './http/request-logger'
+import { requireAdmin } from './http/require-admin'
 import { optionalUser, requireUser, type SessionReader } from './http/require-user'
 import type { AppEnv } from './http/types'
+import { adminRoutes } from './modules/admin/admin.routes'
+import type { AdminService } from './modules/admin/admin.service'
 import { suggestionsRoutes } from './modules/algorithms/suggestions.routes'
 import type { SuggestionsService } from './modules/algorithms/suggestions.service'
 import { authRoutes, type AuthServices } from './modules/auth/auth.routes'
@@ -20,6 +23,7 @@ import type { FeedbackService } from './modules/feedback/feedback.service'
 import { healthRoutes, type HealthChecks } from './modules/health/health.routes'
 import { profilesRoutes } from './modules/profiles/profiles.routes'
 import type { ProfilesService } from './modules/profiles/profiles.service'
+import type { ProductsService } from './modules/products/products.service'
 import { presenceRoutes } from './modules/realtime/presence.routes'
 import type { PresenceStore } from './modules/realtime/presence.store'
 import { realtimeRoutes } from './modules/realtime/realtime.routes'
@@ -64,6 +68,8 @@ export type AppDeps = {
   rooms: RoomsService
   wca: WcaService
   solves: SolvesService
+  admin: AdminService
+  products: ProductsService
 }
 
 const PUBLIC_PATHS = ['/api/health']
@@ -83,6 +89,7 @@ export function createApp(deps: AppDeps) {
   app.route('/v1/realtime', realtimeRoutes({ url: env.REALTIME_URL, secret: env.REALTIME_SECRET }, signedIn))
   app.route('/v1/leaderboards', leaderboardsRoutes(deps.leaderboards))
   app.route('/v1/solves', solvesRoutes(deps.solves, signedIn))
+  app.route('/v1/admin', adminRoutes({ admin: deps.admin, products: deps.products }, requireAdmin(env.ADMIN_TOKEN)))
   app.route('/v1/search', searchRoutes(deps.search))
   app.route('/v1/trainer', trainerRoutes(deps.trainer, signedIn))
   app.route('/v1/shared-solves', sharedSolvesRoutes(deps.sharedSolves, signedIn, viewer))

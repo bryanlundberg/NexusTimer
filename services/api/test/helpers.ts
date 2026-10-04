@@ -25,6 +25,7 @@ export function testEnv(overrides: Partial<Env> = {}): Env {
     REALTIME_URL: undefined,
     REALTIME_SECRET: undefined,
     ADMIN_EMAIL: undefined,
+    ADMIN_TOKEN: undefined,
     ROOM_SIGNING_SECRET: undefined,
     WCA_CLIENT_ID: undefined,
     WCA_CLIENT_SECRET: undefined,
@@ -73,6 +74,23 @@ export function buildTestApp(overrides: Partial<AppDeps> = {}) {
     auth: testAuthServices(),
     leaderboards: { get: unused },
     solves: { submit: unused },
+    admin: {
+      achievements: unused,
+      grant: unused,
+      revoke: unused,
+      saveRarity: unused,
+      userSummary: unused,
+      deleteUser: unused
+    },
+    products: {
+      index: unused,
+      deleteIndex: unused,
+      stats: unused,
+      discover: unused,
+      pending: unused,
+      recordScrapes: unused,
+      publish: unused
+    },
     search: { search: unused },
     trainer: {
       learned: unused,
@@ -84,12 +102,19 @@ export function buildTestApp(overrides: Partial<AppDeps> = {}) {
       setTarget: unused,
       learnedSummary: unused
     },
-    sharedSolves: { myIds: unused, share: unused, detail: unused, remove: unused, userPage: unused },
+    sharedSolves: {
+      myIds: unused,
+      share: unused,
+      detail: unused,
+      remove: unused,
+      userPage: unused,
+      forgetUser: unused
+    },
     profiles: { list: unused, profile: unused, update: unused, learned: unused, stats: unused, sharedSolves: unused },
     friends: { list: unused, relationship: unused, request: unused, remove: unused },
     blocks: { list: unused, block: unused, unblock: unused },
     privacy: { privacy: unused, updatePrivacy: unused },
-    presence: { setStatus: unused },
+    presence: { setStatus: unused, clear: unused },
     chats: {
       inbox: unused,
       open: unused,

@@ -5,7 +5,7 @@ import { createMailers } from './infra/mail'
 import { pingMongo, startMongo } from './infra/mongo'
 import { createRealtimePublisher } from './infra/realtime'
 import { getRedis, pingRedis } from './infra/redis'
-import { createSearchEngine } from './infra/search'
+import { createSearchAdmin, createSearchEngine } from './infra/search'
 import { createStorage } from './infra/storage'
 import { createWcaClient } from './infra/wca'
 import { runInBackground } from './platform/background'
@@ -13,13 +13,20 @@ import { createSuggestionLimits } from './modules/algorithms/suggestions.limits'
 import { createSuggestionsService } from './modules/algorithms/suggestions.service'
 import { createAuthProvider, createSessionReader } from './modules/auth/auth'
 import { createAccountStore } from './modules/auth/auth.accounts'
-import { authRepository } from './modules/auth/auth.repository'
+import {
+  authRepository,
+  legacyCredentialsUserData,
+  legacyEmailVerificationsUserData,
+  legacySessionsUserData,
+  passwordResetTokensUserData,
+  pendingRegistrationsUserData
+} from './modules/auth/auth.repository'
 import { hashPassword } from './modules/auth/password'
 import { createAvatarsService } from './modules/avatars/avatars.service'
 import { createBackupsService } from './modules/backups/backups.service'
 import { chatsRepository } from './modules/chats/chats.repository'
 import { createChatsService } from './modules/chats/chats.service'
-import { feedbackRepository } from './modules/feedback/feedback.repository'
+import { feedbackRepository, feedbackUserData } from './modules/feedback/feedback.repository'
 import { createFeedbackService } from './modules/feedback/feedback.service'
 import { recordLog } from './modules/logs/logs.service'
 import { createPasswordResetService } from './modules/auth/password-reset.service'
@@ -31,9 +38,13 @@ import { createRoomsService } from './modules/rooms/rooms.service'
 import { createSearchService } from './modules/search/search.service'
 import { createSharedSolvesCache } from './modules/shared-solves/shared-solves.cache'
 import { createShareQuota } from './modules/shared-solves/shared-solves.quota'
-import { sharedSolvesRepository } from './modules/shared-solves/shared-solves.repository'
+import { sharedSolvesRepository, sharedSolvesUserData } from './modules/shared-solves/shared-solves.repository'
 import { createSharedSolvesService } from './modules/shared-solves/shared-solves.service'
+import { createRarityCache } from './modules/achievements/achievements.cache'
 import { createAchievementsService } from './modules/achievements/achievements.service'
+import { createAdminService } from './modules/admin/admin.service'
+import { productsRepository } from './modules/products/products.repository'
+import { createProductsService } from './modules/products/products.service'
 import { achievementsRepository } from './modules/achievements/achievements.repository'
 import { blocksRepository } from './modules/social/blocks.repository'
 import { createBlocksService } from './modules/social/blocks.service'
@@ -44,13 +55,18 @@ import { createFriendsService } from './modules/social/friends.service'
 import { createSocialService } from './modules/social/social.service'
 import { createLeaderboardCache } from './modules/solves/leaderboards.cache'
 import { createLeaderboardsService } from './modules/solves/leaderboards.service'
-import { solvesRepository } from './modules/solves/solves.repository'
+import { solvesRepository, solvesUserData } from './modules/solves/solves.repository'
 import { createSolvesService } from './modules/solves/solves.service'
 import { createLearnedCache, createSolvesCache } from './modules/trainer/trainer.cache'
-import { trainerRepository } from './modules/trainer/trainer.repository'
+import {
+  trainerLearnedUserData,
+  trainerRepository,
+  trainerSolvesUserData,
+  trainerStatsUserData
+} from './modules/trainer/trainer.repository'
 import { createTrainerService } from './modules/trainer/trainer.service'
 import { createProfileCache, createStatsCache } from './modules/users/users.cache'
-import { usersRepository } from './modules/users/users.repository'
+import { userStatsUserData, usersRepository } from './modules/users/users.repository'
 import { createUsersService } from './modules/users/users.service'
 import { createWcaService } from './modules/wca/wca.service'
 
@@ -73,11 +89,13 @@ export function buildApp() {
   })
   const getAuth = createAuthProvider(env, mail)
   const accounts = createAccountStore(getAuth)
+  const achievements = createAchievementsService(achievementsRepository, createRarityCache(redis))
+  const presence = createPresenceStore(redis, realtime)
   const users = createUsersService({
     repository: usersRepository,
     profileCache: createProfileCache(redis),
     statsCache: createStatsCache(redis),
-    achievements: createAchievementsService(achievementsRepository)
+    achievements
   })
   const friendsCache = createFriendsCache(redis)
   const social = createSocialService({ blocks: blocksRepository, friends: friendsRepository, friendsCache })
@@ -145,7 +163,7 @@ export function buildApp() {
       realtime
     }),
     privacy: users,
-    presence: createPresenceStore(redis, realtime),
+    presence,
     chats: createChatsService({ repository: chatsRepository, social, users, realtime }),
     backups: createBackupsService({ storage, users, background: runInBackground }),
     avatars: createAvatarsService({ storage, users }),
@@ -175,7 +193,33 @@ export function buildApp() {
       users,
       appUrl
     }),
-    solves: createSolvesService({ repository: solvesRepository })
+    solves: createSolvesService({ repository: solvesRepository }),
+    admin: createAdminService({
+      users,
+      achievements,
+      userData: {
+        solves: solvesUserData,
+        sharedSolves: sharedSolvesUserData,
+        trainerSolves: trainerSolvesUserData,
+        trainerLearned: trainerLearnedUserData,
+        trainerStats: trainerStatsUserData,
+        userStats: userStatsUserData,
+        feedback: feedbackUserData,
+        credentials: legacyCredentialsUserData,
+        emailVerifications: legacyEmailVerificationsUserData,
+        passwordResetTokens: passwordResetTokensUserData,
+        pendingRegistrations: pendingRegistrationsUserData,
+        sessions: legacySessionsUserData
+      },
+      accounts,
+      storage,
+      presence,
+      sharedSolves
+    }),
+    products: createProductsService({
+      repository: productsRepository,
+      search: createSearchAdmin({ host: env.MEILISEARCH_HOST, apiKey: env.MEILISEARCH_API_KEY })
+    })
   })
   return { env, app }
 }

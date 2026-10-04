@@ -41,6 +41,7 @@ const envSchema = z
     REALTIME_URL: z.string().url().optional(),
     REALTIME_SECRET: optionalSecret,
     ADMIN_EMAIL: z.string().email().optional(),
+    ADMIN_TOKEN: optionalSecret,
     ROOM_SIGNING_SECRET: optionalSecret,
     WCA_CLIENT_ID: optionalSecret,
     WCA_CLIENT_SECRET: optionalSecret,
