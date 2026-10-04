@@ -51,7 +51,7 @@ describe('error handling', () => {
       throw new Error('kaboom')
     })
 
-    const rejected = await guarded.request('/api/health', { headers: { [REQUEST_ID_HEADER]: 'ray-401' } })
+    const rejected = await guarded.request('/api/health/ready', { headers: { [REQUEST_ID_HEADER]: 'ray-401' } })
     const failed = await failing.request('/api/boom', { headers: { [REQUEST_ID_HEADER]: 'ray-500' } })
 
     expect(rejected.status).toBe(401)

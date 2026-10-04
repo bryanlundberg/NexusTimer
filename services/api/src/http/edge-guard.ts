@@ -10,9 +10,11 @@ function safeEqual(provided: string, expected: string) {
   return left.length === right.length && timingSafeEqual(left, right)
 }
 
-export function edgeGuard(secret: string | undefined): MiddlewareHandler<AppEnv> {
+export function edgeGuard(secret: string | undefined, publicPaths: readonly string[] = []): MiddlewareHandler<AppEnv> {
   return async (c, next) => {
-    if (secret) {
+    if (publicPaths.includes(c.req.path)) {
+      c.set('clientIp', null)
+    } else if (secret) {
       const provided = c.req.header(EDGE_SECRET_HEADER)
       if (!provided || !safeEqual(provided, secret)) return unauthorized()
       c.set('clientIp', c.req.header(CLIENT_IP_HEADER) ?? null)

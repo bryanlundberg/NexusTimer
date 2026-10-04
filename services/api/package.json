@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "tsx watch --env-file-if-exists=.env src/main.ts",
     "build": "node build.mjs",
-    "start": "node --env-file-if-exists=.env dist/main.js",
+    "start": "node --enable-source-maps --env-file-if-exists=.env dist/main.js",
     "typecheck": "tsc --noEmit",
     "test": "vitest run"
   },
