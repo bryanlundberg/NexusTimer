@@ -38,6 +38,7 @@ const envSchema = z
     MEILISEARCH_API_KEY: optionalSecret,
     REALTIME_URL: z.string().url().optional(),
     REALTIME_SECRET: optionalSecret,
+    ADMIN_EMAIL: z.string().email().optional(),
     FILES_BUCKET: optionalSecret,
     FILES_ACCESS_KEY_ID: optionalSecret,
     FILES_SECRET_ACCESS_KEY: optionalSecret,

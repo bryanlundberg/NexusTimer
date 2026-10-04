@@ -15,6 +15,9 @@ import { createAvatarsService } from './modules/avatars/avatars.service'
 import { createBackupsService } from './modules/backups/backups.service'
 import { chatsRepository } from './modules/chats/chats.repository'
 import { createChatsService } from './modules/chats/chats.service'
+import { feedbackRepository } from './modules/feedback/feedback.repository'
+import { createFeedbackService } from './modules/feedback/feedback.service'
+import { recordLog } from './modules/logs/logs.service'
 import { createPasswordResetService } from './modules/auth/password-reset.service'
 import { createRegistrationService } from './modules/auth/registration.service'
 import { createProfilesService } from './modules/profiles/profiles.service'
@@ -137,7 +140,15 @@ export function buildApp() {
     presence: createPresenceStore(redis, realtime),
     chats: createChatsService({ repository: chatsRepository, social, users, realtime }),
     backups: createBackupsService({ storage, users, background: runInBackground }),
-    avatars: createAvatarsService({ storage, users })
+    avatars: createAvatarsService({ storage, users }),
+    feedback: createFeedbackService({
+      repository: feedbackRepository,
+      users,
+      mail: mail.brevo,
+      adminEmail: env.ADMIN_EMAIL,
+      log: recordLog,
+      background: runInBackground
+    })
   })
   return { env, app }
 }

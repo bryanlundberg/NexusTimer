@@ -13,6 +13,8 @@ import { backupsRoutes } from './modules/backups/backups.routes'
 import type { BackupsService } from './modules/backups/backups.service'
 import { chatsRoutes } from './modules/chats/chats.routes'
 import type { ChatsService } from './modules/chats/chats.service'
+import { feedbackRoutes } from './modules/feedback/feedback.routes'
+import type { FeedbackService } from './modules/feedback/feedback.service'
 import { healthRoutes, type HealthChecks } from './modules/health/health.routes'
 import { profilesRoutes } from './modules/profiles/profiles.routes'
 import type { ProfilesService } from './modules/profiles/profiles.service'
@@ -49,6 +51,7 @@ export type AppDeps = {
   chats: ChatsService
   backups: BackupsService
   avatars: AvatarsService
+  feedback: FeedbackService
 }
 
 const PUBLIC_PATHS = ['/api/health']
@@ -78,6 +81,7 @@ export function createApp(deps: AppDeps) {
   app.route('/v1/presence', presenceRoutes(deps.presence, signedIn))
   app.route('/v1/chats', chatsRoutes(deps.chats, signedIn))
   app.route('/v1/backups', backupsRoutes(deps.backups, signedIn))
+  app.route('/v1/feedback', feedbackRoutes(deps.feedback, signedIn))
 
   app.notFound(handleNotFound)
   app.onError(handleError)

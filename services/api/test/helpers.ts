@@ -24,6 +24,7 @@ export function testEnv(overrides: Partial<Env> = {}): Env {
     MEILISEARCH_API_KEY: undefined,
     REALTIME_URL: undefined,
     REALTIME_SECRET: undefined,
+    ADMIN_EMAIL: undefined,
     FILES_BUCKET: undefined,
     FILES_ACCESS_KEY_ID: undefined,
     FILES_SECRET_ACCESS_KEY: undefined,
@@ -99,6 +100,7 @@ export function buildTestApp(overrides: Partial<AppDeps> = {}) {
     },
     backups: { upload: unused, list: unused, remove: unused },
     avatars: { upload: unused },
+    feedback: { submit: unused },
     ...overrides
   })
 }
