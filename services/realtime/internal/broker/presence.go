@@ -13,7 +13,7 @@ import (
 	"nexustimer/realtime/internal/hub"
 )
 
-// Presence keys, mirrored in src/shared/lib/realtime/presence.ts.
+// Presence keys, mirrored in services/api/src/modules/realtime/presence.store.ts.
 const (
 	// One field per open tab, "{instanceID}:{unixSeconds}:{idle 0|1}". Nothing refreshes these:
 	// an entry is live while the instance that wrote it is.
