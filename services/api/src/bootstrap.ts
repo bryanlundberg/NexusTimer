@@ -2,8 +2,10 @@ import { getEnv } from './config/env'
 import { createApp } from './create-app'
 import { createMailers } from './infra/mail'
 import { pingMongo, startMongo } from './infra/mongo'
+import { createRealtimePublisher } from './infra/realtime'
 import { getRedis, pingRedis } from './infra/redis'
 import { createSearchEngine } from './infra/search'
+import { runInBackground } from './platform/background'
 import { createAuthProvider, createSessionReader } from './modules/auth/auth'
 import { createAccountStore } from './modules/auth/auth.accounts'
 import { authRepository } from './modules/auth/auth.repository'
@@ -11,6 +13,7 @@ import { hashPassword } from './modules/auth/password'
 import { createPasswordResetService } from './modules/auth/password-reset.service'
 import { createRegistrationService } from './modules/auth/registration.service'
 import { createProfilesService } from './modules/profiles/profiles.service'
+import { createPresenceStore } from './modules/realtime/presence.store'
 import { createSearchService } from './modules/search/search.service'
 import { createSharedSolvesCache } from './modules/shared-solves/shared-solves.cache'
 import { createShareQuota } from './modules/shared-solves/shared-solves.quota'
@@ -19,8 +22,11 @@ import { createSharedSolvesService } from './modules/shared-solves/shared-solves
 import { createAchievementsService } from './modules/achievements/achievements.service'
 import { achievementsRepository } from './modules/achievements/achievements.repository'
 import { blocksRepository } from './modules/social/blocks.repository'
+import { createBlocksService } from './modules/social/blocks.service'
+import { createFriendRequestLimits } from './modules/social/friend-requests.limits'
 import { createFriendsCache } from './modules/social/friends.cache'
 import { friendsRepository } from './modules/social/friends.repository'
+import { createFriendsService } from './modules/social/friends.service'
 import { createSocialService } from './modules/social/social.service'
 import { createLeaderboardCache } from './modules/solves/leaderboards.cache'
 import { createLeaderboardsService } from './modules/solves/leaderboards.service'
@@ -38,6 +44,8 @@ export function buildApp() {
 
   const redis = () => getRedis(env.REDIS_URL)
   const mail = createMailers({ resend: env.RESEND_API_KEY, brevo: env.BREVO_API_KEY })
+  const appUrl = new URL(env.BETTER_AUTH_URL).origin
+  const realtime = createRealtimePublisher(redis)
   const getAuth = createAuthProvider(env, mail)
   const accounts = createAccountStore(getAuth)
   const users = createUsersService({
@@ -46,11 +54,8 @@ export function buildApp() {
     statsCache: createStatsCache(redis),
     achievements: createAchievementsService(achievementsRepository)
   })
-  const social = createSocialService({
-    blocks: blocksRepository,
-    friends: friendsRepository,
-    friendsCache: createFriendsCache(redis)
-  })
+  const friendsCache = createFriendsCache(redis)
+  const social = createSocialService({ blocks: blocksRepository, friends: friendsRepository, friendsCache })
   const trainer = createTrainerService({
     repository: trainerRepository,
     learnedCache: createLearnedCache(redis),
@@ -84,7 +89,7 @@ export function buildApp() {
         repository: authRepository,
         mail: mail.resend,
         hashPassword,
-        appUrl: new URL(env.BETTER_AUTH_URL).origin
+        appUrl
       })
     },
     leaderboards: createLeaderboardsService({
@@ -95,7 +100,27 @@ export function buildApp() {
     search: createSearchService(createSearchEngine({ host: env.MEILISEARCH_HOST, apiKey: env.MEILISEARCH_API_KEY })),
     trainer,
     sharedSolves,
-    profiles: createProfilesService({ users, social, trainer, sharedSolves })
+    profiles: createProfilesService({ users, social, trainer, sharedSolves }),
+    friends: createFriendsService({
+      repository: friendsRepository,
+      cache: friendsCache,
+      limits: createFriendRequestLimits(redis),
+      social,
+      users,
+      realtime,
+      mail: mail.brevo,
+      appUrl,
+      background: runInBackground
+    }),
+    blocks: createBlocksService({
+      repository: blocksRepository,
+      friendships: friendsRepository,
+      friendsCache,
+      users,
+      realtime
+    }),
+    privacy: users,
+    presence: createPresenceStore(redis, realtime)
   })
   return { env, app }
 }

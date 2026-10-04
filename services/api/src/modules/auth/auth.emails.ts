@@ -1,8 +1,6 @@
+import { escapeHtml } from '../../lib/escape-html'
+
 export type EmailContent = { subject: string; html: string }
-
-const HTML_ENTITIES: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }
-
-const escapeHtml = (value: string) => value.replace(/[&<>"']/g, (char) => HTML_ENTITIES[char] ?? char)
 
 export function verificationEmail({ name, code, isResend }: { name: string; code: string; isResend?: boolean }) {
   const safeName = escapeHtml(name)
