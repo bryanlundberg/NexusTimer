@@ -10,6 +10,7 @@ import type {
   UserStatsSummary
 } from '@nexustimer/contracts'
 import { Types } from 'mongoose'
+import { userDocuments } from '../../infra/user-documents'
 import { toPublicUser } from './public-user'
 import { UserStatsModel } from './user-stats.model'
 import { UserModel } from './users.model'
@@ -25,6 +26,7 @@ export type ProfileUpdate = { $set?: Record<string, unknown>; $unset?: Record<st
 export type ListQuery = { name: string; country: string; excludeIds: string[]; page: number; perPage: number }
 export type ListedUser = { profile: PublicProfile; privacy?: Partial<PrivacySettings> }
 export type StatsSnapshot = { version: number; backupUpdatedAt: number; summary: UserStatsSummary }
+export type AccountSummary = { id: string; email: string; name: string; createdAt: string; hasBackupFile: boolean }
 export type UserContact = { name: string; email: string | null; privacy?: Partial<PrivacySettings> }
 
 export type UsersRepository = {
@@ -44,6 +46,7 @@ export type UsersRepository = {
   setImage(id: string, url: string): Promise<boolean>
   saveStats(id: string, stats: StatsSnapshot): Promise<'saved' | 'stale'>
   setWca(id: string, wca: { wcaId: string; verifiedAt: number } | null): Promise<'saved' | 'taken'>
+  findAccountByEmail(email: string): Promise<AccountSummary | null>
 }
 
 type RawUser = {
@@ -246,6 +249,26 @@ export const usersRepository: UsersRepository = {
     }
   },
 
+  async findAccountByEmail(email) {
+    const doc = await UserModel.findOne({ email })
+      .select('email name createdAt backup.url')
+      .lean<{
+        _id: Types.ObjectId
+        email: string
+        name: string
+        createdAt: Date
+        backup?: { url?: string | null } | null
+      }>()
+    if (!doc) return null
+    return {
+      id: doc._id.toString(),
+      email: doc.email,
+      name: doc.name,
+      createdAt: new Date(doc.createdAt).toISOString(),
+      hasBackupFile: Boolean(doc.backup?.url)
+    }
+  },
+
   async setWca(id, wca) {
     try {
       await UserModel.updateOne(
@@ -259,3 +282,5 @@ export const usersRepository: UsersRepository = {
     }
   }
 }
+
+export const userStatsUserData = userDocuments(UserStatsModel, ({ id }) => ({ user: id }))

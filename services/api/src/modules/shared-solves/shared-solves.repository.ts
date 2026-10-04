@@ -6,6 +6,7 @@ import type {
   SolveReplayPayload
 } from '@nexustimer/contracts'
 import { Types } from 'mongoose'
+import { userDocuments } from '../../infra/user-documents'
 import { SharedSolveModel } from './shared-solves.model'
 
 const LIST_PROJECTION = '-replay.moves -user -localSolveId'
@@ -25,6 +26,7 @@ export type SharedSolvesRepository = {
     limit: number
   ): Promise<{ items: SharedSolveItem[]; lastId: string | null }>
   countForUser(userId: string): Promise<number>
+  slugsForUser(userId: string): Promise<string[]>
 }
 
 type RawSharedSolve = {
@@ -119,7 +121,14 @@ export const sharedSolvesRepository: SharedSolvesRepository = {
     return { items: docs.map(toSharedSolveItem), lastId: last ? last._id.toString() : null }
   },
 
+  async slugsForUser(userId) {
+    const docs = await SharedSolveModel.find({ user: userId }, { slug: 1 }).lean<{ slug: string }[]>()
+    return docs.map((doc) => doc.slug)
+  },
+
   countForUser(userId) {
     return SharedSolveModel.countDocuments({ user: userId })
   }
 }
+
+export const sharedSolvesUserData = userDocuments(SharedSolveModel, ({ id }) => ({ user: id }))

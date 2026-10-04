@@ -40,7 +40,15 @@ function appWith(overrides: Partial<SharedSolvesService>, userId: string | null 
   const unused = () => Promise.reject(new Error('not used'))
   return buildTestApp({
     sessions: testSessions(userId),
-    sharedSolves: { myIds: unused, share: unused, detail: unused, remove: unused, userPage: unused, ...overrides }
+    sharedSolves: {
+      myIds: unused,
+      share: unused,
+      detail: unused,
+      remove: unused,
+      userPage: unused,
+      forgetUser: unused,
+      ...overrides
+    }
   })
 }
 

@@ -24,6 +24,10 @@ export function fakeAccounts() {
     async deleteUser(userId) {
       users.delete(userId)
     },
+    async authRecords(userId) {
+      const account = users.get(userId)
+      return { accounts: account ? 1 : 0, authSessions: account?.sessions ?? 0 }
+    },
     async markEmailVerified(userId) {
       const account = users.get(userId)
       if (account) account.user = { ...account.user, emailVerified: true }

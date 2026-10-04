@@ -130,7 +130,7 @@ describe('presence route', () => {
     setStatus: (userId: string, status: PresenceStatus) => Promise<void>,
     userId: string | null = ALICE
   ) {
-    return buildTestApp({ sessions: testSessions(userId), presence: { setStatus } })
+    return buildTestApp({ sessions: testSessions(userId), presence: { setStatus, clear: async () => {} } })
   }
 
   const patch = (body: unknown) => ({

@@ -24,6 +24,7 @@ export type SharedSolvesService = {
   detail(slug: string, viewerId: string | null): Promise<SharedSolveDetail | null>
   remove(userId: string, slug: string): Promise<boolean>
   userPage(userId: string, viewerId: string | null, cursor: string | null): Promise<SharedSolvesPage>
+  forgetUser(userId: string): Promise<void>
 }
 
 export const EMPTY_SHARED_SOLVES_PAGE: SharedSolvesPage = { items: [], total: 0, nextCursor: null }
@@ -123,6 +124,10 @@ export function createSharedSolvesService({
         ...(solve.replay ? { replay: solve.replay } : {}),
         isOwner: viewerId === solve.ownerId
       }
+    },
+
+    async forgetUser(userId) {
+      await cache.invalidate(userId, await repository.slugsForUser(userId))
     },
 
     async remove(userId, slug) {

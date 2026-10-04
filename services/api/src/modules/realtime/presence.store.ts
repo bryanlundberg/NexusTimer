@@ -14,6 +14,7 @@ const LAST_SEEN_TTL_SECONDS = 30 * 24 * 60 * 60
 
 export type PresenceStore = {
   setStatus(userId: string, status: PresenceStatus): Promise<void>
+  clear(userId: string): Promise<void>
 }
 
 type ConnEntry = { instanceId: string; seconds: number; idle: boolean }
@@ -119,6 +120,14 @@ export function createPresenceStore(
       }
 
       await publisher.presence(await read(userId))
+    },
+
+    async clear(userId) {
+      try {
+        await (await redis()).del([CONNS_PREFIX + userId, STATUS_PREFIX + userId, LAST_SEEN_PREFIX + userId])
+      } catch (error) {
+        logger.warn('presence clear failed', { error: serializeError(error) })
+      }
     }
   }
 }

@@ -14,6 +14,7 @@ export type AccountStore = {
   linkCredential(userId: string, passwordHash: string): Promise<void>
   updatePassword(userId: string, passwordHash: string): Promise<void>
   revokeSessions(userId: string): Promise<void>
+  authRecords(userId: string): Promise<{ accounts: number; authSessions: number }>
 }
 
 export function createAccountStore(getAuth: AuthProvider): AccountStore {
@@ -55,6 +56,11 @@ export function createAccountStore(getAuth: AuthProvider): AccountStore {
     },
     async revokeSessions(userId) {
       await (await adapter()).deleteUserSessions(userId)
+    },
+    async authRecords(userId) {
+      const internal = await adapter()
+      const [accounts, sessions] = await Promise.all([internal.findAccounts(userId), internal.listSessions(userId)])
+      return { accounts: accounts.length, authSessions: sessions.length }
     }
   }
 }

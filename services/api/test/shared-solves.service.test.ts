@@ -82,6 +82,9 @@ function fakeRepository() {
     async countForUser(userId) {
       return [...solves.values()].filter((solve) => solve.ownerId === userId).length
     },
+    async slugsForUser(userId) {
+      return [...solves.values()].filter((solve) => solve.ownerId === userId).map((solve) => solve.item.slug)
+    },
     async idsByLocalSolve(userId) {
       calls.idsByLocalSolve++
       return Object.fromEntries(

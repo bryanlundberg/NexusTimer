@@ -13,7 +13,7 @@ import {
 } from '@nexustimer/contracts'
 import type { AchievementsService } from '../achievements/achievements.service'
 import type { ProfileCache, StatsCache } from './users.cache'
-import type { ListedUser, ProfileUpdate, StatsSnapshot, UsersRepository } from './users.repository'
+import type { AccountSummary, ListedUser, ProfileUpdate, StatsSnapshot, UsersRepository } from './users.repository'
 
 export type UsersListQuery = { name: string; country: string; page: number; excludeIds: string[] }
 export type MailContact = { name: string; email: string | null; privacy: PrivacySettings }
@@ -35,13 +35,16 @@ export type UsersService = {
   setImage(id: string, url: string): Promise<boolean>
   saveStats(id: string, stats: StatsSnapshot): Promise<void>
   setWca(id: string, wca: { wcaId: string; verifiedAt: number } | null): Promise<'saved' | 'taken'>
+  findByEmail(email: string): Promise<AccountSummary | null>
+  forgetProfile(id: string): Promise<void>
+  forgetCaches(id: string): Promise<void>
 }
 
 type UsersDeps = {
   repository: UsersRepository
   profileCache: ProfileCache
   statsCache: StatsCache
-  achievements: AchievementsService
+  achievements: Pick<AchievementsService, 'grantedKeys'>
 }
 
 export function buildProfileUpdate(input: Record<string, unknown>): ProfileUpdate | null {
@@ -158,6 +161,14 @@ export function createUsersService({ repository, profileCache, statsCache, achie
 
     async saveStats(id, stats) {
       if ((await repository.saveStats(id, stats)) === 'saved') await statsCache.set(id, stats)
+    },
+
+    findByEmail: (email) => repository.findAccountByEmail(email),
+
+    forgetProfile: (id) => profileCache.invalidate(id),
+
+    async forgetCaches(id) {
+      await Promise.all([profileCache.invalidate(id), statsCache.invalidate(id)])
     },
 
     async setWca(id, wca) {
