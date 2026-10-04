@@ -1,3 +1,4 @@
+export * from './algorithms'
 export * from './auth'
 export * from './backups'
 export * from './chats'
