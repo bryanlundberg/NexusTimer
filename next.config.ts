@@ -9,7 +9,7 @@ const DEV_API_ORIGIN = process.env.DEV_API_ORIGIN ?? 'http://localhost:4000'
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
   reactCompiler: true,
-  transpilePackages: ['@nexustimer/contracts'],
+  transpilePackages: ['@nexustimer/algorithms', '@nexustimer/contracts'],
   async rewrites() {
     if (process.env.NODE_ENV !== 'development') return []
     return [{ source: '/api/:path*', destination: `${DEV_API_ORIGIN}/api/:path*` }]
