@@ -34,6 +34,8 @@ import type { FriendsService } from './modules/social/friends.service'
 import { blocksRoutes, friendsRoutes } from './modules/social/social.routes'
 import { leaderboardsRoutes } from './modules/solves/leaderboards.routes'
 import type { LeaderboardsService } from './modules/solves/leaderboards.service'
+import { solvesRoutes } from './modules/solves/solves.routes'
+import type { SolvesService } from './modules/solves/solves.service'
 import { trainerRoutes } from './modules/trainer/trainer.routes'
 import { wcaRoutes } from './modules/wca/wca.routes'
 import type { WcaService } from './modules/wca/wca.service'
@@ -61,6 +63,7 @@ export type AppDeps = {
   suggestions: SuggestionsService
   rooms: RoomsService
   wca: WcaService
+  solves: SolvesService
 }
 
 const PUBLIC_PATHS = ['/api/health']
@@ -79,6 +82,7 @@ export function createApp(deps: AppDeps) {
   app.route('/', authRoutes(deps.auth))
   app.route('/v1/realtime', realtimeRoutes({ url: env.REALTIME_URL, secret: env.REALTIME_SECRET }, signedIn))
   app.route('/v1/leaderboards', leaderboardsRoutes(deps.leaderboards))
+  app.route('/v1/solves', solvesRoutes(deps.solves, signedIn))
   app.route('/v1/search', searchRoutes(deps.search))
   app.route('/v1/trainer', trainerRoutes(deps.trainer, signedIn))
   app.route('/v1/shared-solves', sharedSolvesRoutes(deps.sharedSolves, signedIn, viewer))

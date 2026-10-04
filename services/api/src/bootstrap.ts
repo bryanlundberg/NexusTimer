@@ -45,6 +45,7 @@ import { createSocialService } from './modules/social/social.service'
 import { createLeaderboardCache } from './modules/solves/leaderboards.cache'
 import { createLeaderboardsService } from './modules/solves/leaderboards.service'
 import { solvesRepository } from './modules/solves/solves.repository'
+import { createSolvesService } from './modules/solves/solves.service'
 import { createLearnedCache, createSolvesCache } from './modules/trainer/trainer.cache'
 import { trainerRepository } from './modules/trainer/trainer.repository'
 import { createTrainerService } from './modules/trainer/trainer.service'
@@ -173,7 +174,8 @@ export function buildApp() {
       wca: createWcaClient({ clientId: env.WCA_CLIENT_ID, clientSecret: env.WCA_CLIENT_SECRET }),
       users,
       appUrl
-    })
+    }),
+    solves: createSolvesService({ repository: solvesRepository })
   })
   return { env, app }
 }

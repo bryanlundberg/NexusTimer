@@ -30,7 +30,7 @@ function setup({
   const writes: { windowStartedAt: number; variant: string; ttlSeconds: number; solves: LeaderboardSolve[] }[] = []
   const reads: string[] = []
 
-  const repository: SolvesRepository = {
+  const repository: Pick<SolvesRepository, 'fastest' | 'fastestPerUser'> = {
     async fastest(filter, limit) {
       calls.push({ method: 'fastest', filter, limit })
       return solves

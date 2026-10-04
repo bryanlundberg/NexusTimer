@@ -17,9 +17,20 @@ export type StoredSolve = {
 
 export type SolveFilter = { puzzle?: LeaderboardPuzzle; smart?: boolean }
 
+export type NewSolve = {
+  userId: string
+  time: number
+  scramble: string
+  solution: string | null
+  puzzle: LeaderboardPuzzle
+  smart: boolean
+  replay: SolveReplayPayload | null
+}
+
 export type SolvesRepository = {
   fastest(filter: SolveFilter, limit: number): Promise<StoredSolve[]>
   fastestPerUser(filter: SolveFilter, limit: number): Promise<StoredSolve[]>
+  insert(solve: NewSolve): Promise<void>
 }
 
 type RawSolve = {
@@ -67,5 +78,8 @@ export const solvesRepository: SolvesRepository = {
       { $limit: limit }
     ])
     return docs.map(toStoredSolve)
+  },
+  async insert({ userId, ...solve }) {
+    await SolveModel.create({ user: userId, ...solve })
   }
 }

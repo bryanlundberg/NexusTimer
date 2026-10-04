@@ -20,7 +20,7 @@ export type LeaderboardsService = {
 }
 
 type LeaderboardsDeps = {
-  solves: SolvesRepository
+  solves: Pick<SolvesRepository, 'fastest' | 'fastestPerUser'>
   users: Pick<UsersService, 'publicProfiles'>
   cache: LeaderboardCache
   now?: () => number
