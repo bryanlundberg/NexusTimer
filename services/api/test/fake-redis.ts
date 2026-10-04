@@ -51,14 +51,25 @@ export function fakeRedis() {
     async get(key: string) {
       return strings.get(key) ?? null
     },
-    async set(key: string, value: string) {
-      strings.set(key, value)
+    async mGet(keys: string[]) {
+      return keys.map((key) => strings.get(key) ?? null)
     },
-    async del(key: string) {
-      sets.delete(key)
-      lists.delete(key)
-      strings.delete(key)
-      ttls.delete(key)
+    async set(key: string, value: string, options?: { EX?: number }) {
+      strings.set(key, value)
+      if (options?.EX) ttls.set(key, options.EX)
+    },
+    async incr(key: string) {
+      const next = Number(strings.get(key) ?? 0) + 1
+      strings.set(key, String(next))
+      return next
+    },
+    async del(keys: string | string[]) {
+      for (const key of asArray(keys)) {
+        sets.delete(key)
+        lists.delete(key)
+        strings.delete(key)
+        ttls.delete(key)
+      }
     }
   } satisfies Record<string, Command>
 
@@ -70,8 +81,9 @@ export function fakeRedis() {
           state.failNextExec = false
           throw new Error('exec failed')
         }
-        for (const run of queued) await run()
-        return []
+        const results: unknown[] = []
+        for (const run of queued) results.push(await run())
+        return results
       }
     }
     for (const [name, command] of Object.entries(commands)) {

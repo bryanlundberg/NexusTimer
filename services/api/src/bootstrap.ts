@@ -11,12 +11,19 @@ import { hashPassword } from './modules/auth/password'
 import { createPasswordResetService } from './modules/auth/password-reset.service'
 import { createRegistrationService } from './modules/auth/registration.service'
 import { createSearchService } from './modules/search/search.service'
+import { createSharedSolvesCache } from './modules/shared-solves/shared-solves.cache'
+import { createShareQuota } from './modules/shared-solves/shared-solves.quota'
+import { sharedSolvesRepository } from './modules/shared-solves/shared-solves.repository'
+import { createSharedSolvesService } from './modules/shared-solves/shared-solves.service'
+import { blocksRepository } from './modules/social/blocks.repository'
+import { createSocialService } from './modules/social/social.service'
 import { createLeaderboardCache } from './modules/solves/leaderboards.cache'
 import { createLeaderboardsService } from './modules/solves/leaderboards.service'
 import { solvesRepository } from './modules/solves/solves.repository'
 import { createLearnedCache, createSolvesCache } from './modules/trainer/trainer.cache'
 import { trainerRepository } from './modules/trainer/trainer.repository'
 import { createTrainerService } from './modules/trainer/trainer.service'
+import { createProfileCache } from './modules/users/users.cache'
 import { usersRepository } from './modules/users/users.repository'
 import { createUsersService } from './modules/users/users.service'
 
@@ -28,7 +35,8 @@ export function buildApp() {
   const mail = createMailers({ resend: env.RESEND_API_KEY, brevo: env.BREVO_API_KEY })
   const getAuth = createAuthProvider(env, mail)
   const accounts = createAccountStore(getAuth)
-  const users = createUsersService(usersRepository)
+  const users = createUsersService(usersRepository, createProfileCache(redis))
+  const social = createSocialService(blocksRepository)
 
   const app = createApp({
     env,
@@ -63,6 +71,13 @@ export function buildApp() {
       repository: trainerRepository,
       learnedCache: createLearnedCache(redis),
       solvesCache: createSolvesCache(redis)
+    }),
+    sharedSolves: createSharedSolvesService({
+      repository: sharedSolvesRepository,
+      cache: createSharedSolvesCache(redis),
+      quota: createShareQuota(redis),
+      users,
+      social
     })
   })
   return { env, app }

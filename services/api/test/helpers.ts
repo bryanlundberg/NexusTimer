@@ -66,6 +66,7 @@ export function buildTestApp(overrides: Partial<AppDeps> = {}) {
       stats: unused,
       setTarget: unused
     },
+    sharedSolves: { myIds: unused, share: unused, detail: unused, remove: unused },
     ...overrides
   })
 }
