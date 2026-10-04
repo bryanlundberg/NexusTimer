@@ -23,7 +23,8 @@ const DEV_API_PREFIXES = [
   '/api/v1/backups',
   '/api/v1/feedback',
   '/api/v1/algorithms',
-  '/api/v1/rooms'
+  '/api/v1/rooms',
+  '/api/v1/wca'
 ]
 
 /** @type {import('next').NextConfig} */
