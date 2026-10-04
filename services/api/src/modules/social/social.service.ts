@@ -7,9 +7,14 @@ export type SocialService = {
   blockedEitherWay(userId: string): Promise<string[]>
   friendIds(userId: string): Promise<string[]>
   areFriends(userId: string, otherId: string): Promise<boolean>
+  mutualFriendIds(userId: string, otherId: string): Promise<string[]>
 }
 
-type SocialDeps = { blocks: BlocksRepository; friends: FriendsRepository; friendsCache: FriendsCache }
+type SocialDeps = {
+  blocks: Pick<BlocksRepository, 'blockState' | 'blockedEitherWay'>
+  friends: Pick<FriendsRepository, 'acceptedFriendIds'>
+  friendsCache: FriendsCache
+}
 
 export function createSocialService({ blocks, friends, friendsCache }: SocialDeps): SocialService {
   async function friendIds(userId: string) {
@@ -27,6 +32,11 @@ export function createSocialService({ blocks, friends, friendsCache }: SocialDep
     friendIds,
     async areFriends(userId, otherId) {
       return (await friendIds(userId)).includes(otherId)
+    },
+    async mutualFriendIds(userId, otherId) {
+      const [mine, theirs] = await Promise.all([friendIds(userId), friendIds(otherId)])
+      const theirSet = new Set(theirs)
+      return mine.filter((id) => theirSet.has(id))
     }
   }
 }

@@ -1,3 +1,5 @@
+import { escapeHtml } from '../../lib/escape-html'
+
 interface Sender {
   id: string
   name: string
@@ -31,15 +33,6 @@ const CUBE_STRIPE = ['#ef4444', '#f97316', '#eab308', '#22c55e', '#3b82f6']
 const DISPLAY_FONT = "'Chakra Petch', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
 const BODY_FONT = "'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
 
-function escapeHtml(value: string): string {
-  return value
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;')
-}
-
 const absolute = (url: string, base: string) => (url.startsWith('/') ? `${base}${url}` : url)
 
 function renderAvatar(sender: Sender, appUrl: string): string {
@@ -51,7 +44,7 @@ function renderAvatar(sender: Sender, appUrl: string): string {
   return `<div style="width:56px;height:56px;border-radius:12px;background:${COLORS.accentSoft};color:${COLORS.accent};font:700 18px/56px ${DISPLAY_FONT};text-align:center">${initials}</div>`
 }
 
-export function renderFriendRequestEmail({ sender, mutualCount, appUrl }: TemplateArgs): string {
+function renderFriendRequestEmail({ sender, mutualCount, appUrl }: TemplateArgs): string {
   const name = escapeHtml(sender.name)
   const requestsUrl = `${appUrl}/friends?tab=requests`
   const profileUrl = `${appUrl}/people/${sender.id}`
@@ -119,6 +112,9 @@ export function renderFriendRequestEmail({ sender, mutualCount, appUrl }: Templa
 </html>`
 }
 
-export function getFriendRequestEmailSubject(senderName: string): string {
-  return `${senderName} wants to add you as a friend on Nexus Timer`
+export function friendRequestEmail(args: TemplateArgs) {
+  return {
+    subject: `${args.sender.name} wants to add you as a friend on Nexus Timer`,
+    html: renderFriendRequestEmail(args)
+  }
 }

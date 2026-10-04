@@ -43,4 +43,16 @@ describe('social service', () => {
 
     expect(reads).toBe(1)
   })
+
+  it('finds mutual friends from both cached lists', async () => {
+    const lists: Record<string, string[]> = { ana: ['cam', 'ben', 'dan'], ben: ['dan', 'ana', 'cam'] }
+    const service = createSocialService({
+      blocks: { blockState: async () => 'none', blockedEitherWay: async () => [] },
+      friends: { acceptedFriendIds: async (userId) => lists[userId] ?? [] },
+      friendsCache: createFriendsCache(fakeRedis().provider)
+    })
+
+    expect(await service.mutualFriendIds('ana', 'ben')).toEqual(['cam', 'dan'])
+    expect(await service.mutualFriendIds('ana', 'eve')).toEqual([])
+  })
 })
