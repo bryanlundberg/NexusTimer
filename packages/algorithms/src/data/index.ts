@@ -1,4 +1,4 @@
-import { AlgorithmCollection } from '@/features/algorithms-list/model/types'
+import type { AlgorithmCollection } from '../types'
 
 export { ADVANCED_F2L_ALGS } from './advanced-f2l'
 export { BLE_ALGS } from './ble'
@@ -126,8 +126,7 @@ export const COLLECTION_BY_ID = new Map(ALL_ALGS.map((c) => [c.id, c]))
 
 export const COLLECTIONS_BY_METHOD: Record<string, AlgorithmCollection[]> = ALL_ALGS.reduce(
   (acc, c) => {
-    if (!acc[c.idMethod]) acc[c.idMethod] = []
-    acc[c.idMethod].push(c)
+    ;(acc[c.idMethod] ??= []).push(c)
     return acc
   },
   {} as Record<string, AlgorithmCollection[]>

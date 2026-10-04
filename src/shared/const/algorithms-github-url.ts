@@ -1,1 +1,2 @@
-export const ALGORITHMS_GITHUB_URL = 'https://github.com/bryanlundberg/NexusTimer/tree/main/src/shared/data/algs'
+export const ALGORITHMS_GITHUB_URL =
+  'https://github.com/bryanlundberg/NexusTimer/tree/main/packages/algorithms/src/data'
