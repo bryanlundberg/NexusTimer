@@ -8,7 +8,7 @@ export const TEST_EDGE_SECRET = 'test-edge-secret-0123456789abcdef'
 export function testEnv(overrides: Partial<Env> = {}): Env {
   return {
     NODE_ENV: 'test',
-    PORT: 4000,
+    PORT: 4100,
     MONGODB_URI: 'mongodb://localhost:27017/test',
     REDIS_URL: 'redis://localhost:6379',
     EDGE_SECRET: undefined,
@@ -69,6 +69,10 @@ export function buildTestApp(overrides: Partial<AppDeps> = {}) {
     },
     sharedSolves: { myIds: unused, share: unused, detail: unused, remove: unused, userPage: unused },
     profiles: { list: unused, profile: unused, update: unused, learned: unused, stats: unused, sharedSolves: unused },
+    friends: { list: unused, relationship: unused, request: unused, remove: unused },
+    blocks: { list: unused, block: unused, unblock: unused },
+    privacy: { privacy: unused, updatePrivacy: unused },
+    presence: { setStatus: unused },
     ...overrides
   })
 }
