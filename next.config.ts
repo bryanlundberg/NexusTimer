@@ -6,38 +6,13 @@ const withNextIntl = createNextIntlPlugin('./src/shared/config/i18n/request.ts')
 
 const DEV_API_ORIGIN = process.env.DEV_API_ORIGIN ?? 'http://localhost:4100'
 
-const DEV_API_PREFIXES = [
-  '/api/health',
-  '/api/auth',
-  '/api/v1/realtime',
-  '/api/v1/leaderboards',
-  '/api/v1/search',
-  '/api/v1/trainer',
-  '/api/v1/shared-solves',
-  '/api/v1/users',
-  '/api/v1/friends',
-  '/api/v1/blocks',
-  '/api/v1/privacy',
-  '/api/v1/presence',
-  '/api/v1/chats',
-  '/api/v1/backups',
-  '/api/v1/feedback',
-  '/api/v1/algorithms',
-  '/api/v1/rooms',
-  '/api/v1/wca',
-  '/api/v1/solves'
-]
-
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
   reactCompiler: true,
   transpilePackages: ['@nexustimer/algorithms', '@nexustimer/contracts', '@nexustimer/stats'],
   async rewrites() {
     if (process.env.NODE_ENV !== 'development') return []
-    return DEV_API_PREFIXES.flatMap((prefix) => [
-      { source: prefix, destination: `${DEV_API_ORIGIN}${prefix}` },
-      { source: `${prefix}/:path*`, destination: `${DEV_API_ORIGIN}${prefix}/:path*` }
-    ])
+    return [{ source: '/api/:path*', destination: `${DEV_API_ORIGIN}/api/:path*` }]
   },
   experimental: {
     globalNotFound: true,
