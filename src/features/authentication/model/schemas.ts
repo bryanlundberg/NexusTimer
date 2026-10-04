@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { codeAtom, emailAtom, nameAtom, passwordAtom, passwordRequiredAtom } from './atoms'
+import { codeAtom, emailAtom, nameAtom, passwordAtom, passwordRequiredAtom } from '@nexustimer/contracts'
 
 export interface AuthSchemaMessages {
   emailInvalid: string
