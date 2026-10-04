@@ -1,29 +1,17 @@
 import { Types } from 'mongoose'
 import SharedSolve, { type SharedSolveDocument } from '@/entities/shared-solve/model/shared-solve'
 import { sharedSolveCache, type CachedSharedSolve } from '@/entities/shared-solve/model/shared-solve-cache'
-import { generateSlug } from '@/entities/shared-solve/lib/slug'
 import {
   SHARED_SOLVES_PAGE_SIZE,
-  type MySharedIds,
   type SharedSolveAuthor,
   type SharedSolveItem,
-  type SharedSolvesPage,
-  type ShareSolveInput
+  type SharedSolvesPage
 } from '@/entities/shared-solve/model/types'
 import { blockStateOf } from '@/entities/block/server/blocks'
 import { findFriendUsers } from '@/entities/friendship/server/friends'
 import { userProfileCache } from '@/entities/user/model/user-cache'
 
-const SLUG_ATTEMPTS = 3
-const MY_IDS_LIMIT = 5000
 const LIST_PROJECTION = '-replay.moves -user -localSolveId'
-
-type DuplicateKeyError = { code?: number; keyPattern?: Record<string, unknown> }
-
-const isDuplicateKey = (error: unknown, field: string) => {
-  const err = error as DuplicateKeyError
-  return err?.code === 11000 && !!err.keyPattern && field in err.keyPattern
-}
 
 export function toSharedSolveItem(doc: Omit<SharedSolveDocument, 'user' | 'localSolveId'>): SharedSolveItem {
   return {
@@ -37,43 +25,6 @@ export function toSharedSolveItem(doc: Omit<SharedSolveDocument, 'user' | 'local
     hasReplay: !!doc.replay,
     sharedAt: new Date(doc.createdAt).toISOString()
   }
-}
-
-async function findExistingSlug(userId: string, localSolveId: string): Promise<string | null> {
-  const existing = await SharedSolve.findOne({ user: userId, localSolveId }, { slug: 1 }).lean<{ slug: string }>()
-  return existing?.slug ?? null
-}
-
-export async function createSharedSolve(
-  userId: string,
-  input: ShareSolveInput
-): Promise<{ slug: string; created: boolean }> {
-  const existing = await findExistingSlug(userId, input.localSolveId)
-  if (existing) return { slug: existing, created: false }
-
-  for (let attempt = 0; attempt < SLUG_ATTEMPTS; attempt++) {
-    const slug = generateSlug()
-    try {
-      await SharedSolve.create({ ...input, slug, user: userId })
-      await sharedSolveCache.invalidate(userId, [slug])
-      return { slug, created: true }
-    } catch (error) {
-      if (isDuplicateKey(error, 'localSolveId')) {
-        const raced = await findExistingSlug(userId, input.localSolveId)
-        if (raced) return { slug: raced, created: false }
-      }
-      if (!isDuplicateKey(error, 'slug')) throw error
-    }
-  }
-
-  throw new Error('Could not allocate a unique slug')
-}
-
-export async function deleteSharedSolve(userId: string, slug: string): Promise<boolean> {
-  const deleted = await SharedSolve.findOneAndDelete({ slug, user: userId }, { projection: { _id: 1 } }).lean()
-  if (!deleted) return false
-  await sharedSolveCache.invalidate(userId, [slug])
-  return true
 }
 
 export async function dropUserSharedSolvesCache(userId: Types.ObjectId | string): Promise<void> {
@@ -130,20 +81,6 @@ export async function listUserSharedSolves(userId: string, cursor?: string | nul
 
   if (isFirstPage) await sharedSolveCache.primeFirstPage(userId, page)
   return page
-}
-
-export async function listMySharedIds(userId: string): Promise<MySharedIds> {
-  const cached = await sharedSolveCache.getIds(userId)
-  if (cached) return cached
-
-  const docs = await SharedSolve.find({ user: userId }, { slug: 1, localSolveId: 1 })
-    .sort({ _id: -1 })
-    .limit(MY_IDS_LIMIT)
-    .lean<Pick<SharedSolveDocument, 'slug' | 'localSolveId'>[]>()
-  const ids = Object.fromEntries(docs.map((doc) => [doc.localSolveId, doc.slug]))
-
-  await sharedSolveCache.primeIds(userId, ids)
-  return ids
 }
 
 export async function isHiddenBetween(ownerId: string, viewerId: string | undefined): Promise<boolean> {

@@ -1,4 +1,3 @@
-import { generateSlug, isValidSlug, SLUG_LENGTH } from '@/entities/shared-solve/lib/slug'
 import { REPLAY_MAX_MOVES, shareSolveSchema } from '@/entities/shared-solve/model/types'
 import { toShareInput } from '@/features/share-solve/api/sharedSolvesApi'
 import type { Solve } from '@/entities/solve/model/types'
@@ -15,27 +14,6 @@ const baseSolve: Solve = {
   dnf: false,
   plus2: false
 }
-
-describe('shared solve slug', () => {
-  it('generates base62 slugs of the expected length', () => {
-    for (let i = 0; i < 500; i++) {
-      const slug = generateSlug()
-      expect(slug).toHaveLength(SLUG_LENGTH)
-      expect(isValidSlug(slug)).toBe(true)
-    }
-  })
-
-  it('does not repeat across many generations', () => {
-    const slugs = new Set(Array.from({ length: 5000 }, generateSlug))
-    expect(slugs.size).toBe(5000)
-  })
-
-  it('rejects malformed slugs', () => {
-    for (const value of ['', 'abc', 'abcdefghijk', 'abc-efghij', 'abc_efghij', '../etc/pas', 42, null, undefined]) {
-      expect(isValidSlug(value)).toBe(false)
-    }
-  })
-})
 
 describe('shareSolveSchema', () => {
   it('accepts the payload built from a local solve', () => {
