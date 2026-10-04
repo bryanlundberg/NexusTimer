@@ -1,7 +1,5 @@
+import { LEADERBOARD_PUZZLES } from '@nexustimer/contracts'
 import { model, models, Schema } from 'mongoose'
-
-export const LEADERBOARD_PUZZLES = ['3x3x3', '2x2x2'] as const
-export type LeaderboardPuzzle = (typeof LEADERBOARD_PUZZLES)[number]
 
 const ReplayMoveSchema = new Schema(
   {
