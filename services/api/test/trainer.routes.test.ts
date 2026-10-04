@@ -33,6 +33,7 @@ function appWith(overrides: Partial<TrainerService>, userId: string | null = USE
     deleteSolve: unused,
     stats: unused,
     setTarget: unused,
+    learnedSummary: unused,
     ...overrides
   }
   return buildTestApp({ trainer, sessions: testSessions(userId) })

@@ -1,4 +1,5 @@
 import {
+  type LearnedMethodSummary,
   TRAINER_RECENT_TIMES_WINDOW,
   type TrainerCaseStatsDoc,
   type TrainerMethodStatsDoc,
@@ -13,6 +14,7 @@ export type MethodTotals = { totalSolves: number; totalTimeMs: number; bestSingl
 
 export type TrainerRepository = {
   learnedCaseIds(userId: string, methodSlug: string): Promise<string[]>
+  learnedByMethod(userId: string): Promise<LearnedMethodSummary[]>
   markLearned(userId: string, methodSlug: string, caseId: string): Promise<void>
   unmarkLearned(userId: string, methodSlug: string, caseId: string): Promise<void>
   listSolves(filter: SolveListFilter, limit: number): Promise<TrainerSolveItem[]>
@@ -69,6 +71,14 @@ export const trainerRepository: TrainerRepository = {
       .select({ caseId: 1, _id: 0 })
       .lean<{ caseId: string }[]>()
     return docs.map((doc) => doc.caseId)
+  },
+
+  async learnedByMethod(userId) {
+    const grouped = await TrainerLearnedModel.aggregate<{ _id: string; count: number; caseIds: string[] }>([
+      { $match: { user: new Types.ObjectId(userId) } },
+      { $group: { _id: '$methodSlug', count: { $sum: 1 }, caseIds: { $push: '$caseId' } } }
+    ])
+    return grouped.map((group) => ({ methodSlug: group._id, count: group.count, caseIds: group.caseIds }))
   },
 
   async markLearned(userId, methodSlug, caseId) {

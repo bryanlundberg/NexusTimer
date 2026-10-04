@@ -26,6 +26,14 @@ function fakeRepository() {
       calls.learnedCaseIds++
       return [...learned].filter((key) => key.startsWith(`${userId}|${methodSlug}|`)).map((key) => key.split('|')[2]!)
     },
+    async learnedByMethod(userId) {
+      const byMethod = new Map<string, string[]>()
+      for (const key of learned) {
+        const [owner, methodSlug, caseId] = key.split('|')
+        if (owner === userId) byMethod.set(methodSlug!, [...(byMethod.get(methodSlug!) ?? []), caseId!])
+      }
+      return [...byMethod].map(([methodSlug, caseIds]) => ({ methodSlug, count: caseIds.length, caseIds }))
+    },
     async markLearned(userId, methodSlug, caseId) {
       learned.add(`${userId}|${methodSlug}|${caseId}`)
     },
@@ -199,5 +207,37 @@ describe('trainer service', () => {
 
     expect(await service.deleteSolve(USER, 'f'.repeat(24))).toBe(false)
     expect(repo.caseStats.size).toBe(0)
+  })
+})
+
+describe('learned summary', () => {
+  it('groups learned cases per method once and serves the cached summary afterwards', async () => {
+    const { service, repo, redis } = setup()
+    repo.learned.add(`${USER}|pll|aa`)
+    repo.learned.add(`${USER}|pll|ab`)
+    repo.learned.add(`${USER}|oll|o1`)
+
+    const summary = await service.learnedSummary(USER)
+    repo.learned.add(`${USER}|oll|o2`)
+
+    expect(summary.total).toBe(3)
+    expect(summary.methods).toEqual(
+      expect.arrayContaining([
+        { methodSlug: 'pll', count: 2, caseIds: ['aa', 'ab'] },
+        { methodSlug: 'oll', count: 1, caseIds: ['o1'] }
+      ])
+    )
+    expect(await service.learnedSummary(USER)).toEqual(summary)
+    expect(redis.ttls.get(`trainer:learned-summary:${USER}`)).toBe(60 * 60 * 24 * 7)
+  })
+
+  it('is rebuilt after a learned change', async () => {
+    const { service, repo } = setup()
+    await service.learnedSummary(USER)
+
+    await service.setLearned(USER, { methodSlug: 'pll', caseId: 'aa', learned: true })
+    repo.learned.add(`${USER}|pll|aa`)
+
+    expect((await service.learnedSummary(USER)).total).toBe(1)
   })
 })

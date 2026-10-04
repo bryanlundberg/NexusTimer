@@ -1,4 +1,5 @@
 import {
+  type LearnedSummary,
   TRAINER_PAGE_SIZE,
   TRAINER_RECENT_TIMES_WINDOW,
   type TrainerCaseStatsDoc,
@@ -14,6 +15,7 @@ import type { TrainerRepository } from './trainer.repository'
 
 export type TrainerService = {
   learned(userId: string, methodSlug: string): Promise<string[]>
+  learnedSummary(userId: string): Promise<LearnedSummary>
   setLearned(userId: string, input: TrainerLearnedInput): Promise<void>
   solves(userId: string, query: TrainerSolvesQuery): Promise<TrainerSolveItem[]>
   recordSolve(userId: string, input: TrainerSolveInput): Promise<TrainerSolveItem>
@@ -58,6 +60,16 @@ export function createTrainerService({ repository, learnedCache, solvesCache }: 
       const caseIds = await repository.learnedCaseIds(userId, methodSlug)
       await learnedCache.prime(userId, methodSlug, caseIds)
       return caseIds
+    },
+
+    async learnedSummary(userId) {
+      const cached = await learnedCache.getSummary(userId)
+      if (cached) return cached
+
+      const methods = await repository.learnedByMethod(userId)
+      const summary = { total: methods.reduce((sum, method) => sum + method.count, 0), methods }
+      await learnedCache.primeSummary(userId, summary)
+      return summary
     },
 
     async setLearned(userId, { methodSlug, caseId, learned }) {
