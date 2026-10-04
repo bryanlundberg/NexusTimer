@@ -9,7 +9,9 @@ const PRODUCTION_REQUIRED = [
   'AUTH_DISCORD_ID',
   'AUTH_DISCORD_SECRET',
   'RESEND_API_KEY',
-  'BREVO_API_KEY'
+  'BREVO_API_KEY',
+  'MEILISEARCH_HOST',
+  'MEILISEARCH_API_KEY'
 ] as const
 
 const envSchema = z
@@ -27,6 +29,8 @@ const envSchema = z
     AUTH_DISCORD_SECRET: optionalSecret,
     RESEND_API_KEY: optionalSecret,
     BREVO_API_KEY: optionalSecret,
+    MEILISEARCH_HOST: z.string().url().optional(),
+    MEILISEARCH_API_KEY: optionalSecret,
     REALTIME_URL: z.string().url().optional(),
     REALTIME_SECRET: optionalSecret
   })

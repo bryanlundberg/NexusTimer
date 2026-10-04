@@ -30,7 +30,7 @@ describe('parseEnv', () => {
     const production = () => parseEnv({ ...base, NODE_ENV: 'production', EDGE_SECRET: 'e'.repeat(32) })
 
     expect(production).toThrow(
-      /AUTH_GOOGLE_ID.*AUTH_GOOGLE_SECRET.*AUTH_DISCORD_ID.*AUTH_DISCORD_SECRET.*RESEND_API_KEY.*BREVO_API_KEY/
+      /AUTH_GOOGLE_ID.*AUTH_GOOGLE_SECRET.*AUTH_DISCORD_ID.*AUTH_DISCORD_SECRET.*RESEND_API_KEY.*BREVO_API_KEY.*MEILISEARCH_HOST.*MEILISEARCH_API_KEY/
     )
     expect(() => parseEnv(base)).not.toThrow()
   })

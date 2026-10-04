@@ -1,9 +1,7 @@
 import type { Env } from '../src/config/env'
-import { createApp } from '../src/create-app'
+import { type AppDeps, createApp } from '../src/create-app'
 import type { SessionReader } from '../src/http/require-user'
 import type { AuthServices } from '../src/modules/auth/auth.routes'
-import type { HealthChecks } from '../src/modules/health/health.routes'
-import type { LeaderboardsService } from '../src/modules/solves/leaderboards.service'
 
 export const TEST_EDGE_SECRET = 'test-edge-secret-0123456789abcdef'
 
@@ -22,6 +20,8 @@ export function testEnv(overrides: Partial<Env> = {}): Env {
     AUTH_DISCORD_SECRET: undefined,
     RESEND_API_KEY: undefined,
     BREVO_API_KEY: undefined,
+    MEILISEARCH_HOST: undefined,
+    MEILISEARCH_API_KEY: undefined,
     REALTIME_URL: undefined,
     REALTIME_SECRET: undefined,
     ...overrides
@@ -49,20 +49,14 @@ export function testAuthServices(overrides: Partial<AuthServices> = {}): AuthSer
 
 const passing = () => Promise.resolve()
 
-type TestAppDeps = {
-  env?: Env
-  checks?: HealthChecks
-  sessions?: SessionReader
-  auth?: AuthServices
-  leaderboards?: LeaderboardsService
-}
-
-export function buildTestApp({
-  env = testEnv(),
-  checks,
-  sessions = testSessions(),
-  auth = testAuthServices(),
-  leaderboards = { get: unused }
-}: TestAppDeps = {}) {
-  return createApp({ env, checks: checks ?? { mongo: passing, redis: passing }, sessions, auth, leaderboards })
+export function buildTestApp(overrides: Partial<AppDeps> = {}) {
+  return createApp({
+    env: testEnv(),
+    checks: { mongo: passing, redis: passing },
+    sessions: testSessions(),
+    auth: testAuthServices(),
+    leaderboards: { get: unused },
+    search: { search: unused },
+    ...overrides
+  })
 }
