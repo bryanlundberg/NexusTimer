@@ -10,6 +10,7 @@ import { logger, serializeError } from '../lib/logger'
 
 export type RealtimePublisher = {
   toUser(userId: string, event: RealtimeEvent): Promise<void>
+  toUsers(userIds: string[], event: RealtimeEvent): Promise<void>
   toPair(userId: string, otherId: string, type: FriendEventType): Promise<void>
   presence(user: PresenceUser): Promise<void>
 }
@@ -27,6 +28,9 @@ export function createRealtimePublisher(redis: () => Promise<RedisClientType>): 
 
   return {
     toUser,
+    async toUsers(userIds, event) {
+      await Promise.all(userIds.map((userId) => toUser(userId, event)))
+    },
     async toPair(userId, otherId, type) {
       await Promise.all([toUser(userId, { type, userId: otherId }), toUser(otherId, { type, userId })])
     },

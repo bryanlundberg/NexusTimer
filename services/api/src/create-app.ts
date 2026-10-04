@@ -7,6 +7,8 @@ import { requestLogger } from './http/request-logger'
 import { optionalUser, requireUser, type SessionReader } from './http/require-user'
 import type { AppEnv } from './http/types'
 import { authRoutes, type AuthServices } from './modules/auth/auth.routes'
+import { chatsRoutes } from './modules/chats/chats.routes'
+import type { ChatsService } from './modules/chats/chats.service'
 import { healthRoutes, type HealthChecks } from './modules/health/health.routes'
 import { profilesRoutes } from './modules/profiles/profiles.routes'
 import type { ProfilesService } from './modules/profiles/profiles.service'
@@ -40,6 +42,7 @@ export type AppDeps = {
   blocks: BlocksService
   privacy: PrivacyService
   presence: PresenceStore
+  chats: ChatsService
 }
 
 const PUBLIC_PATHS = ['/api/health']
@@ -66,6 +69,7 @@ export function createApp(deps: AppDeps) {
   app.route('/v1/blocks', blocksRoutes(deps.blocks, signedIn))
   app.route('/v1/privacy', privacyRoutes(deps.privacy, signedIn))
   app.route('/v1/presence', presenceRoutes(deps.presence, signedIn))
+  app.route('/v1/chats', chatsRoutes(deps.chats, signedIn))
 
   app.notFound(handleNotFound)
   app.onError(handleError)

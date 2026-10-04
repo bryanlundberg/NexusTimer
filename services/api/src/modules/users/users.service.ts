@@ -23,6 +23,7 @@ export type UsersService = {
   updateProfile(id: string, input: UpdateProfileInput): Promise<PublicProfile | null>
   list(query: UsersListQuery, perPage: number): Promise<{ users: ListedUser[]; total: number }>
   privacy(id: string): Promise<PrivacySettings>
+  privacyMap(ids: string[]): Promise<Map<string, PrivacySettings>>
   updatePrivacy(id: string, input: UpdatePrivacyInput): Promise<PrivacySettings>
   statsSummary(id: string): Promise<UserStatsSummary | null>
   exists(id: string): Promise<boolean>
@@ -99,6 +100,12 @@ export function createUsersService({ repository, profileCache, statsCache, achie
       repository.list({ name, country, page, excludeIds, perPage }),
 
     privacy,
+
+    async privacyMap(ids) {
+      const unique = [...new Set(ids)]
+      const stored = await repository.privacy(unique)
+      return new Map(unique.map((id) => [id, resolvePrivacy(stored.get(id))]))
+    },
 
     async updatePrivacy(id, input) {
       await repository.updatePrivacy(id, input)

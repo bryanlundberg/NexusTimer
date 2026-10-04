@@ -10,6 +10,8 @@ import { createAuthProvider, createSessionReader } from './modules/auth/auth'
 import { createAccountStore } from './modules/auth/auth.accounts'
 import { authRepository } from './modules/auth/auth.repository'
 import { hashPassword } from './modules/auth/password'
+import { chatsRepository } from './modules/chats/chats.repository'
+import { createChatsService } from './modules/chats/chats.service'
 import { createPasswordResetService } from './modules/auth/password-reset.service'
 import { createRegistrationService } from './modules/auth/registration.service'
 import { createProfilesService } from './modules/profiles/profiles.service'
@@ -120,7 +122,8 @@ export function buildApp() {
       realtime
     }),
     privacy: users,
-    presence: createPresenceStore(redis, realtime)
+    presence: createPresenceStore(redis, realtime),
+    chats: createChatsService({ repository: chatsRepository, social, users, realtime })
   })
   return { env, app }
 }

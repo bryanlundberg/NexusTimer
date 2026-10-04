@@ -73,6 +73,23 @@ export function buildTestApp(overrides: Partial<AppDeps> = {}) {
     blocks: { list: unused, block: unused, unblock: unused },
     privacy: { privacy: unused, updatePrivacy: unused },
     presence: { setStatus: unused },
+    chats: {
+      inbox: unused,
+      open: unused,
+      find: unused,
+      findMessage: unused,
+      summary: unused,
+      setMuted: unused,
+      hide: unused,
+      markRead: unused,
+      markDelivered: unused,
+      messages: unused,
+      send: unused,
+      clear: unused,
+      edit: unused,
+      deleteMessage: unused,
+      react: unused
+    },
     ...overrides
   })
 }
