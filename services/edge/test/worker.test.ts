@@ -11,20 +11,24 @@ function stubFetch() {
 }
 
 describe('edge worker', () => {
-  it('sends migrated routes to the api origin', async () => {
+  it('sends every api route to the api origin', async () => {
     const fetchMock = stubFetch()
 
-    await worker.fetch(new Request('https://nexustimer.com/api/health'), env)
+    await worker.fetch(new Request('https://beta.nexustimer.com/api/health'), env)
+    await worker.fetch(new Request('https://beta.nexustimer.com/api/auth/get-session'), env)
 
-    expect(fetchMock.mock.calls[0]?.[0].url).toBe('https://api.example.com/api/health')
+    expect(fetchMock.mock.calls.map(([req]) => req.url)).toEqual([
+      'https://api.example.com/api/health',
+      'https://api.example.com/api/auth/get-session'
+    ])
   })
 
-  it('lets everything else reach the current origin unchanged', async () => {
+  it('answers 404 for anything else without calling out', async () => {
     const fetchMock = stubFetch()
-    const request = new Request('https://nexustimer.com/api/v1/chats') as Parameters<typeof worker.fetch>[0]
 
-    await worker.fetch(request, env)
+    const res = await worker.fetch(new Request('https://beta.nexustimer.com/es/app'), env)
 
-    expect(fetchMock).toHaveBeenCalledWith(request)
+    expect(res.status).toBe(404)
+    expect(fetchMock).not.toHaveBeenCalled()
   })
 })
