@@ -1,7 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import { parseEnv } from '../src/config/env'
 
-const base = { MONGODB_URI: 'mongodb://localhost:27017/test', REDIS_URL: 'redis://localhost:6379' }
+const base = {
+  MONGODB_URI: 'mongodb://localhost:27017/test',
+  REDIS_URL: 'redis://localhost:6379',
+  BETTER_AUTH_SECRET: 'test-better-auth-secret',
+  BETTER_AUTH_URL: 'http://localhost:3000'
+}
 
 describe('parseEnv', () => {
   it('applies defaults', () => {
@@ -9,7 +14,7 @@ describe('parseEnv', () => {
   })
 
   it('names every missing variable', () => {
-    expect(() => parseEnv({})).toThrow(/MONGODB_URI.*REDIS_URL/)
+    expect(() => parseEnv({})).toThrow(/MONGODB_URI.*REDIS_URL.*BETTER_AUTH_SECRET.*BETTER_AUTH_URL/)
   })
 
   it('treats empty values as missing', () => {
@@ -23,5 +28,16 @@ describe('parseEnv', () => {
 
   it('rejects a short edge secret', () => {
     expect(() => parseEnv({ ...base, EDGE_SECRET: 'short' })).toThrow(/EDGE_SECRET/)
+  })
+
+  it('rejects a better-auth url that is not a url', () => {
+    expect(() => parseEnv({ ...base, BETTER_AUTH_URL: 'nexustimer.com' })).toThrow(/BETTER_AUTH_URL/)
+  })
+
+  it('leaves realtime optional, the ticket route answers 503 without it', () => {
+    const env = parseEnv(base)
+
+    expect(env.REALTIME_URL).toBeUndefined()
+    expect(env.REALTIME_SECRET).toBeUndefined()
   })
 })

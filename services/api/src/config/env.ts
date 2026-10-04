@@ -6,7 +6,11 @@ const envSchema = z
     PORT: z.coerce.number().int().positive().default(4000),
     MONGODB_URI: z.string().min(1),
     REDIS_URL: z.string().min(1),
-    EDGE_SECRET: z.string().min(32).optional()
+    EDGE_SECRET: z.string().min(32).optional(),
+    BETTER_AUTH_SECRET: z.string().min(1),
+    BETTER_AUTH_URL: z.string().url(),
+    REALTIME_URL: z.string().url().optional(),
+    REALTIME_SECRET: z.string().min(1).optional()
   })
   .superRefine((env, ctx) => {
     if (env.NODE_ENV === 'production' && !env.EDGE_SECRET) {
