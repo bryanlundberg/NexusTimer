@@ -16,7 +16,9 @@ const PRODUCTION_REQUIRED = [
   'FILES_ACCESS_KEY_ID',
   'FILES_SECRET_ACCESS_KEY',
   'FILES_PUBLIC_BASE_URL',
-  'FILES_REGION'
+  'FILES_REGION',
+  'ROOM_SIGNING_SECRET',
+  'FIREBASE_DATABASE_URL'
 ] as const
 
 const envSchema = z
@@ -39,6 +41,8 @@ const envSchema = z
     REALTIME_URL: z.string().url().optional(),
     REALTIME_SECRET: optionalSecret,
     ADMIN_EMAIL: z.string().email().optional(),
+    ROOM_SIGNING_SECRET: optionalSecret,
+    FIREBASE_DATABASE_URL: z.string().url().optional(),
     GITHUB_APP_ID: optionalSecret,
     GITHUB_APP_PRIVATE_KEY: optionalSecret,
     GITHUB_APP_INSTALLATION_ID: optionalSecret,

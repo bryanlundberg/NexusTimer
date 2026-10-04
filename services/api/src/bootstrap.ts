@@ -25,6 +25,8 @@ import { createPasswordResetService } from './modules/auth/password-reset.servic
 import { createRegistrationService } from './modules/auth/registration.service'
 import { createProfilesService } from './modules/profiles/profiles.service'
 import { createPresenceStore } from './modules/realtime/presence.store'
+import { createRoomPasswords } from './modules/rooms/rooms.passwords'
+import { createRoomsService } from './modules/rooms/rooms.service'
 import { createSearchService } from './modules/search/search.service'
 import { createSharedSolvesCache } from './modules/shared-solves/shared-solves.cache'
 import { createShareQuota } from './modules/shared-solves/shared-solves.quota'
@@ -160,6 +162,10 @@ export function buildApp() {
         repo: env.GITHUB_REPO
       }),
       limits: createSuggestionLimits(redis)
+    }),
+    rooms: createRoomsService({
+      passwords: createRoomPasswords(env.FIREBASE_DATABASE_URL),
+      signingSecret: env.ROOM_SIGNING_SECRET
     })
   })
   return { env, app }

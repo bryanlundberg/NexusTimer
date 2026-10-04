@@ -23,6 +23,8 @@ import type { ProfilesService } from './modules/profiles/profiles.service'
 import { presenceRoutes } from './modules/realtime/presence.routes'
 import type { PresenceStore } from './modules/realtime/presence.store'
 import { realtimeRoutes } from './modules/realtime/realtime.routes'
+import { roomsRoutes } from './modules/rooms/rooms.routes'
+import type { RoomsService } from './modules/rooms/rooms.service'
 import { searchRoutes } from './modules/search/search.routes'
 import type { SearchService } from './modules/search/search.service'
 import { sharedSolvesRoutes } from './modules/shared-solves/shared-solves.routes'
@@ -55,6 +57,7 @@ export type AppDeps = {
   avatars: AvatarsService
   feedback: FeedbackService
   suggestions: SuggestionsService
+  rooms: RoomsService
 }
 
 const PUBLIC_PATHS = ['/api/health']
@@ -86,6 +89,7 @@ export function createApp(deps: AppDeps) {
   app.route('/v1/backups', backupsRoutes(deps.backups, signedIn))
   app.route('/v1/feedback', feedbackRoutes(deps.feedback, signedIn))
   app.route('/v1/algorithms/suggestions', suggestionsRoutes(deps.suggestions))
+  app.route('/v1/rooms', roomsRoutes(deps.rooms))
 
   app.notFound(handleNotFound)
   app.onError(handleError)

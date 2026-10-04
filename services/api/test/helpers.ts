@@ -25,6 +25,8 @@ export function testEnv(overrides: Partial<Env> = {}): Env {
     REALTIME_URL: undefined,
     REALTIME_SECRET: undefined,
     ADMIN_EMAIL: undefined,
+    ROOM_SIGNING_SECRET: undefined,
+    FIREBASE_DATABASE_URL: undefined,
     GITHUB_APP_ID: undefined,
     GITHUB_APP_PRIVATE_KEY: undefined,
     GITHUB_APP_INSTALLATION_ID: undefined,
@@ -106,6 +108,7 @@ export function buildTestApp(overrides: Partial<AppDeps> = {}) {
     avatars: { upload: unused },
     feedback: { submit: unused },
     suggestions: { allow: unused, suggest: unused },
+    rooms: { hashPassword: unused, verifyPassword: unused, authCookie: () => '', isAuthorized: () => false },
     ...overrides
   })
 }
