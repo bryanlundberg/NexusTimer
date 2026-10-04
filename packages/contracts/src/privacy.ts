@@ -1,3 +1,5 @@
+import { z } from 'zod'
+
 export const FRIEND_REQUEST_POLICIES = ['everyone', 'friends_of_friends', 'nobody'] as const
 
 export type FriendRequestPolicy = (typeof FRIEND_REQUEST_POLICIES)[number]
@@ -21,6 +23,19 @@ export const DEFAULT_PRIVACY: PrivacySettings = {
   readReceipts: true,
   typingIndicator: true
 }
+
+export const updatePrivacySchema = z
+  .object({
+    friendRequests: z.enum(FRIEND_REQUEST_POLICIES),
+    statsVisibility: z.enum(STATS_VISIBILITIES),
+    friendRequestEmails: z.boolean(),
+    readReceipts: z.boolean(),
+    typingIndicator: z.boolean()
+  })
+  .partial()
+  .strict()
+
+export type UpdatePrivacyInput = z.infer<typeof updatePrivacySchema>
 
 export const resolvePrivacy = (stored?: Partial<PrivacySettings> | null): PrivacySettings => ({
   friendRequests: stored?.friendRequests ?? DEFAULT_PRIVACY.friendRequests,
