@@ -1,36 +1,29 @@
 import { z } from 'zod'
-import { Layers } from '@/shared/types/enums'
-import { CUBING_METHODS } from '@/shared/const/cubing-methods'
-import { FACE_COLORS, sortFaceColors } from '@/shared/const/face-colors'
-import { MAX_PROFILE_LINKS, PROFILE_LINK_MAX_LENGTH, normalizeProfileLink } from '@/shared/lib/profile-links'
+import {
+  bioSchema,
+  FACE_COLORS,
+  goalSchema,
+  Layers,
+  MAX_PROFILE_LINKS,
+  methodSchema,
+  nameSchema,
+  normalizeProfileLink,
+  PROFILE_LINK_MAX_LENGTH,
+  sortFaceColors
+} from '@nexustimer/contracts'
 
-export const NAME_MIN_LENGTH = 3
-export const NAME_MAX_LENGTH = 35
-export const GOAL_MAX_LENGTH = 30
-export const BIO_MAX_LENGTH = 170
-
-export const nameSchema = z
-  .string()
-  .trim()
-  .min(NAME_MIN_LENGTH, 'Name must be at least 3 characters long')
-  .max(NAME_MAX_LENGTH, 'Name must be at most 35 characters long')
-export const goalSchema = z.string().trim().max(GOAL_MAX_LENGTH)
-export const bioSchema = z.string().trim().max(BIO_MAX_LENGTH)
-export const methodSchema = z.enum(CUBING_METHODS)
-
-export const mainColorsSchema = z.array(z.nativeEnum(Layers)).max(FACE_COLORS.length).transform(sortFaceColors)
-
-export const profileLinksSchema = z
-  .array(
-    z.string().transform((value, ctx) => {
-      const href = normalizeProfileLink(value)
-      if (href) return href
-      ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'Invalid link' })
-      return z.NEVER
-    })
-  )
-  .max(MAX_PROFILE_LINKS)
-  .transform((links) => [...new Set(links)])
+export {
+  BIO_MAX_LENGTH,
+  bioSchema,
+  GOAL_MAX_LENGTH,
+  goalSchema,
+  mainColorsSchema,
+  methodSchema,
+  NAME_MAX_LENGTH,
+  NAME_MIN_LENGTH,
+  nameSchema,
+  profileLinksSchema
+} from '@nexustimer/contracts'
 
 export const accountInfoSchema = z.object({
   pronoun: z.string().optional(),
