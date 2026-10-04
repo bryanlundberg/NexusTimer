@@ -11,7 +11,12 @@ const PRODUCTION_REQUIRED = [
   'RESEND_API_KEY',
   'BREVO_API_KEY',
   'MEILISEARCH_HOST',
-  'MEILISEARCH_API_KEY'
+  'MEILISEARCH_API_KEY',
+  'FILES_BUCKET',
+  'FILES_ACCESS_KEY_ID',
+  'FILES_SECRET_ACCESS_KEY',
+  'FILES_PUBLIC_BASE_URL',
+  'FILES_REGION'
 ] as const
 
 const envSchema = z
@@ -32,7 +37,17 @@ const envSchema = z
     MEILISEARCH_HOST: z.string().url().optional(),
     MEILISEARCH_API_KEY: optionalSecret,
     REALTIME_URL: z.string().url().optional(),
-    REALTIME_SECRET: optionalSecret
+    REALTIME_SECRET: optionalSecret,
+    FILES_BUCKET: optionalSecret,
+    FILES_ACCESS_KEY_ID: optionalSecret,
+    FILES_SECRET_ACCESS_KEY: optionalSecret,
+    FILES_PUBLIC_BASE_URL: z.string().url().optional(),
+    FILES_REGION: optionalSecret,
+    FILES_EMULATOR: z
+      .enum(['true', 'false'])
+      .optional()
+      .transform((value) => value === 'true'),
+    FILES_ENDPOINT: z.string().url().optional()
   })
   .superRefine((env, ctx) => {
     if (env.NODE_ENV !== 'production') return

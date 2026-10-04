@@ -7,6 +7,10 @@ import { requestLogger } from './http/request-logger'
 import { optionalUser, requireUser, type SessionReader } from './http/require-user'
 import type { AppEnv } from './http/types'
 import { authRoutes, type AuthServices } from './modules/auth/auth.routes'
+import { avatarsRoutes } from './modules/avatars/avatars.routes'
+import type { AvatarsService } from './modules/avatars/avatars.service'
+import { backupsRoutes } from './modules/backups/backups.routes'
+import type { BackupsService } from './modules/backups/backups.service'
 import { chatsRoutes } from './modules/chats/chats.routes'
 import type { ChatsService } from './modules/chats/chats.service'
 import { healthRoutes, type HealthChecks } from './modules/health/health.routes'
@@ -43,6 +47,8 @@ export type AppDeps = {
   privacy: PrivacyService
   presence: PresenceStore
   chats: ChatsService
+  backups: BackupsService
+  avatars: AvatarsService
 }
 
 const PUBLIC_PATHS = ['/api/health']
@@ -64,12 +70,14 @@ export function createApp(deps: AppDeps) {
   app.route('/v1/search', searchRoutes(deps.search))
   app.route('/v1/trainer', trainerRoutes(deps.trainer, signedIn))
   app.route('/v1/shared-solves', sharedSolvesRoutes(deps.sharedSolves, signedIn, viewer))
+  app.route('/v1/users', avatarsRoutes(deps.avatars, signedIn))
   app.route('/v1/users', profilesRoutes(deps.profiles, signedIn, viewer))
   app.route('/v1/friends', friendsRoutes(deps.friends, signedIn))
   app.route('/v1/blocks', blocksRoutes(deps.blocks, signedIn))
   app.route('/v1/privacy', privacyRoutes(deps.privacy, signedIn))
   app.route('/v1/presence', presenceRoutes(deps.presence, signedIn))
   app.route('/v1/chats', chatsRoutes(deps.chats, signedIn))
+  app.route('/v1/backups', backupsRoutes(deps.backups, signedIn))
 
   app.notFound(handleNotFound)
   app.onError(handleError)

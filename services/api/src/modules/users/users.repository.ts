@@ -1,5 +1,6 @@
 import type {
   CubingMethod,
+  CurrentBackup,
   FriendUser,
   Layers,
   PrivacySettings,
@@ -38,6 +39,10 @@ export type UsersRepository = {
   findFriendUsers(ids: string[], withProfile: boolean): Promise<FriendUser[]>
   findContact(id: string): Promise<UserContact | null>
   updatePrivacy(id: string, input: UpdatePrivacyInput): Promise<void>
+  findBackup(id: string): Promise<CurrentBackup | null>
+  setBackup(id: string, backup: CurrentBackup | null): Promise<boolean>
+  setImage(id: string, url: string): Promise<boolean>
+  saveStats(id: string, stats: StatsSnapshot): Promise<'saved' | 'stale'>
 }
 
 type RawUser = {
@@ -207,5 +212,36 @@ export const usersRepository: UsersRepository = {
     )
     if (Object.keys($set).length === 0) return
     await UserModel.updateOne({ _id: id }, { $set })
+  },
+
+  async findBackup(id) {
+    const doc = await UserModel.findById(id).select('backup').lean<Pick<RawUser, 'backup'>>()
+    const { url, updatedAt } = doc?.backup ?? {}
+    return url && typeof updatedAt === 'number' ? { url, updatedAt } : null
+  },
+
+  async setBackup(id, backup) {
+    const result = await UserModel.updateOne({ _id: id }, backup ? { $set: { backup } } : { $unset: { backup: 1 } })
+    return result.matchedCount > 0
+  },
+
+  async setImage(id, url) {
+    const result = await UserModel.updateOne({ _id: id }, { $set: { image: url } })
+    return result.matchedCount > 0
+  },
+
+  async saveStats(id, stats) {
+    // An older backup misses the filter and collides on the unique index, so it never replaces a newer summary.
+    try {
+      await UserStatsModel.updateOne(
+        { user: id, backupUpdatedAt: { $lte: stats.backupUpdatedAt } },
+        { $set: stats },
+        { upsert: true }
+      )
+      return 'saved'
+    } catch (error) {
+      if ((error as { code?: number } | null)?.code === 11000) return 'stale'
+      throw error
+    }
   }
 }

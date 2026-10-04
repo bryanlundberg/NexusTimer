@@ -50,6 +50,50 @@ describe('users service', () => {
   })
 })
 
+describe('users service writes', () => {
+  function setup(repository: Partial<UsersRepository>) {
+    const redis = fakeRedis()
+    redis.strings.set('user:profile:u1', '{}')
+    redis.strings.set('user:stats:u1', '{}')
+    const users = createUsersService({
+      repository: repository as UsersRepository,
+      profileCache: createProfileCache(redis.provider),
+      statsCache: createStatsCache(redis.provider),
+      achievements: { grantedKeys: async () => [] }
+    })
+    return { users, redis }
+  }
+
+  const snapshot = { version: USER_STATS_VERSION, backupUpdatedAt: 5, summary: {} as UserStatsSummary }
+
+  it('drops the profile and stats caches when the backup changes', async () => {
+    const { users, redis } = setup({ setBackup: async () => true })
+
+    expect(await users.setBackup('u1', { url: 'https://files.test/b.json', updatedAt: 5 })).toBe(true)
+    expect(redis.strings.has('user:profile:u1')).toBe(false)
+    expect(redis.strings.has('user:stats:u1')).toBe(false)
+  })
+
+  it('drops only the profile cache when the image changes', async () => {
+    const { users, redis } = setup({ setImage: async () => false })
+
+    expect(await users.setImage('u1', 'https://files.test/a.png')).toBe(false)
+    expect(redis.strings.has('user:profile:u1')).toBe(false)
+    expect(redis.strings.has('user:stats:u1')).toBe(true)
+  })
+
+  it('caches stats only when the snapshot was saved', async () => {
+    const saved = setup({ saveStats: async () => 'saved' })
+    const stale = setup({ saveStats: async () => 'stale' })
+
+    await saved.users.saveStats('u1', snapshot)
+    await stale.users.saveStats('u1', snapshot)
+
+    expect(JSON.parse(saved.redis.strings.get('user:stats:u1')!)).toEqual(snapshot)
+    expect(stale.redis.strings.get('user:stats:u1')).toBe('{}')
+  })
+})
+
 describe('buildProfileUpdate', () => {
   it('sets values, unsets cleared ones and skips untouched fields', () => {
     expect(buildProfileUpdate({ name: 'Ana', bio: null, links: [], goal: undefined })).toEqual({

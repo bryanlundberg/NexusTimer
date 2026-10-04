@@ -1,4 +1,5 @@
 import {
+  type CurrentBackup,
   type FriendUser,
   type PrivacySettings,
   type PublicProfile,
@@ -29,6 +30,10 @@ export type UsersService = {
   exists(id: string): Promise<boolean>
   friendUsers(ids: string[], withProfile?: boolean): Promise<Map<string, FriendUser>>
   mailContact(id: string): Promise<MailContact | null>
+  backup(id: string): Promise<CurrentBackup | null>
+  setBackup(id: string, backup: CurrentBackup | null): Promise<boolean>
+  setImage(id: string, url: string): Promise<boolean>
+  saveStats(id: string, stats: StatsSnapshot): Promise<void>
 }
 
 type UsersDeps = {
@@ -134,6 +139,24 @@ export function createUsersService({ repository, profileCache, statsCache, achie
     async mailContact(id) {
       const contact = await repository.findContact(id)
       return contact ? { email: contact.email, privacy: resolvePrivacy(contact.privacy) } : null
+    },
+
+    backup: (id) => repository.findBackup(id),
+
+    async setBackup(id, backup) {
+      const found = await repository.setBackup(id, backup)
+      await Promise.all([profileCache.invalidate(id), statsCache.invalidate(id)])
+      return found
+    },
+
+    async setImage(id, url) {
+      const found = await repository.setImage(id, url)
+      await profileCache.invalidate(id)
+      return found
+    },
+
+    async saveStats(id, stats) {
+      if ((await repository.saveStats(id, stats)) === 'saved') await statsCache.set(id, stats)
     }
   }
 }

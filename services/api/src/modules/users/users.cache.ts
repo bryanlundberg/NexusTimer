@@ -25,6 +25,7 @@ export type ProfileCache = {
 export type StatsCache = {
   get(userId: string): Promise<StatsSnapshot | null>
   set(userId: string, stats: StatsSnapshot): Promise<void>
+  invalidate(userId: string): Promise<void>
 }
 
 async function readJson<T>(redis: RedisProvider, key: string, operation: string): Promise<T | null> {
@@ -80,6 +81,14 @@ export function createProfileCache(redis: RedisProvider): ProfileCache {
 export function createStatsCache(redis: RedisProvider): StatsCache {
   return {
     get: (userId) => readJson<StatsSnapshot>(redis, statsKey(userId), 'stats.get'),
-    set: (userId, stats) => writeJson(redis, statsKey(userId), stats, STATS_TTL_SECONDS, 'stats.set')
+    set: (userId, stats) => writeJson(redis, statsKey(userId), stats, STATS_TTL_SECONDS, 'stats.set'),
+
+    async invalidate(userId) {
+      try {
+        await (await redis()).del(statsKey(userId))
+      } catch (error) {
+        warn('stats.invalidate', error)
+      }
+    }
   }
 }

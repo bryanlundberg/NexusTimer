@@ -26,11 +26,11 @@ describe('parseEnv', () => {
     expect(() => parseEnv({ ...base, NODE_ENV: 'production' })).toThrow(/EDGE_SECRET/)
   })
 
-  it('requires oauth and mail credentials in production only', () => {
+  it('requires oauth, mail, search and storage credentials in production only', () => {
     const production = () => parseEnv({ ...base, NODE_ENV: 'production', EDGE_SECRET: 'e'.repeat(32) })
 
     expect(production).toThrow(
-      /AUTH_GOOGLE_ID.*AUTH_GOOGLE_SECRET.*AUTH_DISCORD_ID.*AUTH_DISCORD_SECRET.*RESEND_API_KEY.*BREVO_API_KEY.*MEILISEARCH_HOST.*MEILISEARCH_API_KEY/
+      /AUTH_GOOGLE_ID.*AUTH_GOOGLE_SECRET.*AUTH_DISCORD_ID.*AUTH_DISCORD_SECRET.*RESEND_API_KEY.*BREVO_API_KEY.*MEILISEARCH_HOST.*MEILISEARCH_API_KEY.*FILES_BUCKET.*FILES_ACCESS_KEY_ID.*FILES_SECRET_ACCESS_KEY.*FILES_PUBLIC_BASE_URL.*FILES_REGION/
     )
     expect(() => parseEnv(base)).not.toThrow()
   })
@@ -48,5 +48,11 @@ describe('parseEnv', () => {
 
     expect(env.REALTIME_URL).toBeUndefined()
     expect(env.REALTIME_SECRET).toBeUndefined()
+  })
+
+  it('reads the storage emulator flag as a boolean', () => {
+    expect(parseEnv(base).FILES_EMULATOR).toBe(false)
+    expect(parseEnv({ ...base, FILES_EMULATOR: 'true' }).FILES_EMULATOR).toBe(true)
+    expect(() => parseEnv({ ...base, FILES_EMULATOR: 'yes' })).toThrow(/FILES_EMULATOR/)
   })
 })

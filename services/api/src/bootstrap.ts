@@ -5,11 +5,14 @@ import { pingMongo, startMongo } from './infra/mongo'
 import { createRealtimePublisher } from './infra/realtime'
 import { getRedis, pingRedis } from './infra/redis'
 import { createSearchEngine } from './infra/search'
+import { createStorage } from './infra/storage'
 import { runInBackground } from './platform/background'
 import { createAuthProvider, createSessionReader } from './modules/auth/auth'
 import { createAccountStore } from './modules/auth/auth.accounts'
 import { authRepository } from './modules/auth/auth.repository'
 import { hashPassword } from './modules/auth/password'
+import { createAvatarsService } from './modules/avatars/avatars.service'
+import { createBackupsService } from './modules/backups/backups.service'
 import { chatsRepository } from './modules/chats/chats.repository'
 import { createChatsService } from './modules/chats/chats.service'
 import { createPasswordResetService } from './modules/auth/password-reset.service'
@@ -48,6 +51,15 @@ export function buildApp() {
   const mail = createMailers({ resend: env.RESEND_API_KEY, brevo: env.BREVO_API_KEY })
   const appUrl = new URL(env.BETTER_AUTH_URL).origin
   const realtime = createRealtimePublisher(redis)
+  const storage = createStorage({
+    bucket: env.FILES_BUCKET,
+    accessKeyId: env.FILES_ACCESS_KEY_ID,
+    secretAccessKey: env.FILES_SECRET_ACCESS_KEY,
+    publicBaseUrl: env.FILES_PUBLIC_BASE_URL,
+    region: env.FILES_REGION,
+    emulator: env.FILES_EMULATOR,
+    endpoint: env.FILES_ENDPOINT
+  })
   const getAuth = createAuthProvider(env, mail)
   const accounts = createAccountStore(getAuth)
   const users = createUsersService({
@@ -123,7 +135,9 @@ export function buildApp() {
     }),
     privacy: users,
     presence: createPresenceStore(redis, realtime),
-    chats: createChatsService({ repository: chatsRepository, social, users, realtime })
+    chats: createChatsService({ repository: chatsRepository, social, users, realtime }),
+    backups: createBackupsService({ storage, users, background: runInBackground }),
+    avatars: createAvatarsService({ storage, users })
   })
   return { env, app }
 }
