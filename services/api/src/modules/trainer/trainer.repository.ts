@@ -170,17 +170,13 @@ export const trainerRepository: TrainerRepository = {
 
   async setMethodTotals(userId, methodSlug, { totalSolves, totalTimeMs, bestSingleMs }) {
     const methodPath = `methods.${methodSlug}`
-    await TrainerStatsModel.updateOne(
-      { user: userId },
-      {
-        $set: {
-          [`${methodPath}.totalSolves`]: totalSolves,
-          [`${methodPath}.totalTimeMs`]: totalTimeMs,
-          [`${methodPath}.bestSingleMs`]: bestSingleMs
-        }
-      },
-      { upsert: true }
-    )
+    const totals = { [`${methodPath}.totalSolves`]: totalSolves, [`${methodPath}.totalTimeMs`]: totalTimeMs }
+    // A stored null would win every later $min (null sorts before numbers), so an empty method drops the field.
+    const update =
+      bestSingleMs === null
+        ? { $set: totals, $unset: { [`${methodPath}.bestSingleMs`]: '' } }
+        : { $set: { ...totals, [`${methodPath}.bestSingleMs`]: bestSingleMs } }
+    await TrainerStatsModel.updateOne({ user: userId }, update, { upsert: true })
   },
 
   async findStats(userId) {

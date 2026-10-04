@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { objectIdSchema } from './common'
 
 export const TRAINER_TARGET_OPTIONS = [1, 2, 3, 4, 5] as const
 export const TRAINER_RECENT_TIMES_WINDOW = 12
@@ -6,8 +7,6 @@ export const TRAINER_PAGE_SIZE = 25
 export const TRAINER_DEFAULT_LIMIT = 12
 
 const TRAINER_TARGETS: ReadonlySet<number> = new Set(TRAINER_TARGET_OPTIONS)
-
-const objectIdSchema = z.string().regex(/^[a-f\d]{24}$/i, 'Invalid ObjectId')
 
 export const trainerSolveInputSchema = z.object({
   methodSlug: z.string().min(1),
