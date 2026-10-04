@@ -17,7 +17,7 @@ const PRODUCTION_REQUIRED = [
 const envSchema = z
   .object({
     NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
-    PORT: z.coerce.number().int().positive().default(4000),
+    PORT: z.coerce.number().int().positive().default(4100),
     MONGODB_URI: z.string().min(1),
     REDIS_URL: z.string().min(1),
     EDGE_SECRET: z.string().min(32).optional(),

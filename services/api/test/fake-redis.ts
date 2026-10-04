@@ -6,10 +6,12 @@ export function fakeRedis() {
   const sets = new Map<string, Set<string>>()
   const lists = new Map<string, string[]>()
   const strings = new Map<string, string>()
+  const hashes = new Map<string, Record<string, string>>()
+  const published: { channel: string; message: string }[] = []
   const ttls = new Map<string, number>()
   const state = { down: false, failNextExec: false }
 
-  const exists = (key: string) => sets.has(key) || lists.has(key) || strings.has(key)
+  const exists = (key: string) => sets.has(key) || lists.has(key) || strings.has(key) || hashes.has(key)
   const asArray = (value: string | string[]) => (Array.isArray(value) ? value : [value])
 
   const commands = {
@@ -58,6 +60,13 @@ export function fakeRedis() {
       strings.set(key, value)
       if (options?.EX) ttls.set(key, options.EX)
     },
+    async hGetAll(key: string) {
+      return { ...(hashes.get(key) ?? {}) }
+    },
+    async publish(channel: string, message: string) {
+      published.push({ channel, message })
+      return 0
+    },
     async incr(key: string) {
       const next = Number(strings.get(key) ?? 0) + 1
       strings.set(key, String(next))
@@ -68,6 +77,7 @@ export function fakeRedis() {
         sets.delete(key)
         lists.delete(key)
         strings.delete(key)
+        hashes.delete(key)
         ttls.delete(key)
       }
     }
@@ -98,5 +108,5 @@ export function fakeRedis() {
   const client = { ...commands, multi } as unknown as RedisClientType
   const provider = () => (state.down ? Promise.reject(new Error('redis down')) : Promise.resolve(client))
 
-  return { provider, state, sets, lists, strings, ttls }
+  return { provider, state, sets, lists, strings, hashes, ttls, published }
 }

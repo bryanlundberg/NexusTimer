@@ -10,7 +10,7 @@ const base = {
 
 describe('parseEnv', () => {
   it('applies defaults', () => {
-    expect(parseEnv(base)).toMatchObject({ NODE_ENV: 'development', PORT: 4000 })
+    expect(parseEnv(base)).toMatchObject({ NODE_ENV: 'development', PORT: 4100 })
   })
 
   it('names every missing variable', () => {
