@@ -3,12 +3,14 @@ import { createApp } from './create-app'
 import { createMailers } from './infra/mail'
 import { pingMongo, startMongo } from './infra/mongo'
 import { getRedis, pingRedis } from './infra/redis'
+import { createSearchEngine } from './infra/search'
 import { createAuthProvider, createSessionReader } from './modules/auth/auth'
 import { createAccountStore } from './modules/auth/auth.accounts'
 import { authRepository } from './modules/auth/auth.repository'
 import { hashPassword } from './modules/auth/password'
 import { createPasswordResetService } from './modules/auth/password-reset.service'
 import { createRegistrationService } from './modules/auth/registration.service'
+import { createSearchService } from './modules/search/search.service'
 import { createLeaderboardCache } from './modules/solves/leaderboards.cache'
 import { createLeaderboardsService } from './modules/solves/leaderboards.service'
 import { solvesRepository } from './modules/solves/solves.repository'
@@ -51,7 +53,8 @@ export function buildApp() {
       solves: solvesRepository,
       users,
       cache: createLeaderboardCache(() => getRedis(env.REDIS_URL))
-    })
+    }),
+    search: createSearchService(createSearchEngine({ host: env.MEILISEARCH_HOST, apiKey: env.MEILISEARCH_API_KEY }))
   })
   return { env, app }
 }
