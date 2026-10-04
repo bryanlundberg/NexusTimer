@@ -1,18 +1,21 @@
 import { describe, expect, it } from 'vitest'
-import { isMigratedApiPath } from '../src/routes'
+import { isApiPath } from '../src/routes'
 
-describe('isMigratedApiPath', () => {
-  it('matches a migrated prefix and its sub paths', () => {
-    expect(isMigratedApiPath('/api/health')).toBe(true)
-    expect(isMigratedApiPath('/api/health/ready')).toBe(true)
+describe('isApiPath', () => {
+  it('matches the api root and everything below it', () => {
+    expect(isApiPath('/api')).toBe(true)
+    expect(isApiPath('/api/health/ready')).toBe(true)
+    expect(isApiPath('/api/auth/get-session')).toBe(true)
+    expect(isApiPath('/api/v1/chats')).toBe(true)
   })
 
   it('does not match on a partial segment', () => {
-    expect(isMigratedApiPath('/api/healthz')).toBe(false)
+    expect(isApiPath('/apis')).toBe(false)
+    expect(isApiPath('/api-docs')).toBe(false)
   })
 
-  it('leaves routes that still live in Next untouched', () => {
-    expect(isMigratedApiPath('/api/v1/chats')).toBe(false)
-    expect(isMigratedApiPath('/api/auth/get-session')).toBe(false)
+  it('leaves pages alone', () => {
+    expect(isApiPath('/')).toBe(false)
+    expect(isApiPath('/es/app')).toBe(false)
   })
 })

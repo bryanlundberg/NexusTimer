@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import { requireUser } from '@/shared/api/require-user'
 import { ok } from '@/shared/api/responses'
 import { createTicket } from '@/shared/lib/realtime/ticket'
-import type { RealtimeTicketResponse } from '@/shared/lib/realtime/events'
+import type { RealtimeTicketResponse } from '@nexustimer/contracts'
 
 export async function POST() {
   const userId = await requireUser()
