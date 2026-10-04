@@ -51,8 +51,6 @@ export type RealtimeClientFrame =
   | { type: 'presence:watch'; ids: string[]; seq: number }
   | { type: 'presence:idle'; idle: boolean }
 
-export type RealtimeTicketResponse = { url: string; ticket: string }
-
 export const userChannel = (userId: string) => `rt:user:${userId}`
 
 export const presenceChannel = (userId: string) => `rt:presence:${userId}`
