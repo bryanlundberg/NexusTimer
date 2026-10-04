@@ -10,10 +10,6 @@ export async function getPrivacyMap(ids: string[]): Promise<Map<string, PrivacyS
   return new Map(unique.map((id) => [id, resolvePrivacy(stored.get(id))]))
 }
 
-export async function getPrivacy(userId: string): Promise<PrivacySettings> {
-  return (await getPrivacyMap([userId])).get(userId)!
-}
-
 export const sharesReadReceipts = (privacy: Map<string, PrivacySettings>, userId: string, otherId: string) =>
   !!privacy.get(userId)?.readReceipts && !!privacy.get(otherId)?.readReceipts
 
