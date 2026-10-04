@@ -3,7 +3,7 @@
 import { motion } from 'motion/react'
 import { useRouter } from '@/shared/config/i18n/navigation'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { SolveServer } from '@/entities/solve/model/types'
+import type { LeaderboardSolve } from '@nexustimer/contracts'
 import formatTime from '@/shared/lib/formatTime'
 import { CountryFlag } from '@/shared/ui/country-flag/CountryFlag'
 import { PODIUM_CHIP, PODIUM_COLOR } from '@/shared/const/podium'
@@ -11,7 +11,7 @@ import { cn } from '@/shared/lib/utils'
 
 const VISUAL_ORDER = [1, 0, 2]
 
-export default function LeaderboardPodium({ solves }: { solves: SolveServer[] }) {
+export default function LeaderboardPodium({ solves }: { solves: LeaderboardSolve[] }) {
   const router = useRouter()
   const top = solves.filter((solve) => solve?.user).slice(0, 3)
   if (top.length < 3) return null
