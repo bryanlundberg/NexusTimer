@@ -11,7 +11,7 @@ export function signInWithProvider(provider: SocialProvider) {
 }
 
 export async function signInAsDevUser() {
-  const { error } = await authClient.$fetch(DEV_LOGIN_PATH, { method: 'POST' })
+  const { error } = await authClient.$fetch(DEV_LOGIN_PATH, { method: 'POST', body: {} })
   if (error) return
   window.location.assign('/app')
 }
