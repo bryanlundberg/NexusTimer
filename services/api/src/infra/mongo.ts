@@ -1,7 +1,9 @@
 import mongoose from 'mongoose'
+import { logger, serializeError } from '../lib/logger'
 
 const MAX_POOL_SIZE = 10
 const SERVER_SELECTION_TIMEOUT_MS = 5000
+const RETRY_DELAY_MS = 5000
 
 let pending: Promise<typeof mongoose> | undefined
 
@@ -15,6 +17,16 @@ export function connectMongo(uri: string) {
       throw error
     })
   return pending
+}
+
+export function startMongo(uri: string) {
+  const attempt = () => {
+    connectMongo(uri).catch((error: unknown) => {
+      logger.error('mongo connection failed', { retryInMs: RETRY_DELAY_MS, error: serializeError(error) })
+      setTimeout(attempt, RETRY_DELAY_MS).unref()
+    })
+  }
+  attempt()
 }
 
 export async function pingMongo(uri: string) {
