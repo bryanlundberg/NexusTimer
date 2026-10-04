@@ -36,6 +36,7 @@ async function logAuthError(error: unknown) {
   }
 }
 
+// Session options are copied in services/api/src/infra/auth.ts; change both together.
 export const auth = betterAuth({
   baseURL: process.env.BETTER_AUTH_URL,
   secret: process.env.BETTER_AUTH_SECRET,
