@@ -22,7 +22,8 @@ const DEV_API_PREFIXES = [
   '/api/v1/chats',
   '/api/v1/backups',
   '/api/v1/feedback',
-  '/api/v1/algorithms'
+  '/api/v1/algorithms',
+  '/api/v1/rooms'
 ]
 
 /** @type {import('next').NextConfig} */
