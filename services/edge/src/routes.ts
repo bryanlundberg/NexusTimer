@@ -1,5 +1,5 @@
-export const MIGRATED_API_PREFIXES = ['/api/health'] as const
+const API_PREFIX = '/api'
 
-export function isMigratedApiPath(pathname: string) {
-  return MIGRATED_API_PREFIXES.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`))
+export function isApiPath(pathname: string) {
+  return pathname === API_PREFIX || pathname.startsWith(`${API_PREFIX}/`)
 }
