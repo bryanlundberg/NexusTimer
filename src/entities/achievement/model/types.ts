@@ -1,3 +1,4 @@
+import type { SolveStats } from '@nexustimer/stats'
 import { UserProfile } from '@/entities/user/model/user'
 
 export type AchievementType = 'computed' | 'granted' | 'tiered'
@@ -64,20 +65,7 @@ export function isTiered(achievement: Achievement): achievement is TieredAchieve
   return achievement.type === 'tiered'
 }
 
-export interface SolveStats {
-  totalValid: number
-  bestByCategory: Map<string, number>
-  countByCategory: Map<string, number>
-  totalTimeSpent: number
-  newYearSolveCount: number
-  replayCount: number
-  max3x3SolvesPerCube: number
-  maxSolvesInOneDay: number
-  longestDateStreak: number
-  longestCleanStreak: number
-  bookmarkCount: number
-  commentCount: number
-}
+export type { SolveStats }
 
 export interface AchievementData {
   cubeCount: number

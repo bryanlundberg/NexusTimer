@@ -24,7 +24,7 @@ const DEV_API_PREFIXES = [
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
   reactCompiler: true,
-  transpilePackages: ['@nexustimer/algorithms', '@nexustimer/contracts'],
+  transpilePackages: ['@nexustimer/algorithms', '@nexustimer/contracts', '@nexustimer/stats'],
   async rewrites() {
     if (process.env.NODE_ENV !== 'development') return []
     return DEV_API_PREFIXES.flatMap((prefix) => [
