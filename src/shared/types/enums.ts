@@ -13,11 +13,4 @@ export enum Sort {
   DATE = 'date'
 }
 
-export enum Layers {
-  YELLOW = 'yellow',
-  WHITE = 'white',
-  GREEN = 'green',
-  BLUE = 'blue',
-  RED = 'red',
-  ORANGE = 'orange'
-}
+export { Layers } from '@nexustimer/contracts'

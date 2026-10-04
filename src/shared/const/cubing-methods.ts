@@ -1,5 +1,6 @@
-export const CUBING_METHODS = ['cfop', 'roux', 'zz', 'petrus', 'mehta', 'beginner'] as const
-export type CubingMethod = (typeof CUBING_METHODS)[number]
+import type { CubingMethod } from '@nexustimer/contracts'
+
+export { CUBING_METHODS, type CubingMethod, isCubingMethod } from '@nexustimer/contracts'
 
 interface MethodSpec {
   name: string | null
@@ -38,8 +39,4 @@ export const METHOD_SPECS: Record<CubingMethod, MethodSpec> = {
     steps: null,
     phases: ['bg-sky-500', 'bg-emerald-500', 'bg-amber-400']
   }
-}
-
-export function isCubingMethod(value: unknown): value is CubingMethod {
-  return typeof value === 'string' && (CUBING_METHODS as readonly string[]).includes(value)
 }
