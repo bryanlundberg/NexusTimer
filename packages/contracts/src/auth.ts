@@ -48,5 +48,4 @@ export type ResendRequest = z.infer<typeof resendRequestSchema>
 export type ForgotPasswordRequest = z.infer<typeof forgotPasswordRequestSchema>
 export type ResetPasswordRequest = z.infer<typeof resetPasswordRequestSchema>
 
-export type AuthOkResponse = { ok: true }
 export type PasswordResetEmailResponse = { ok: true; email: string }

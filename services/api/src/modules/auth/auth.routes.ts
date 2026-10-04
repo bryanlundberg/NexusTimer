@@ -1,6 +1,6 @@
 import {
   type ApiError,
-  type AuthOkResponse,
+  type OkResponse,
   forgotPasswordRequestSchema,
   type PasswordResetEmailResponse,
   registerRequestSchema,
@@ -39,7 +39,7 @@ export function authRoutes({ handler, registration, passwordReset }: AuthService
 
       try {
         await registration.register(body)
-        return created<AuthOkResponse>({ ok: true })
+        return created<OkResponse>({ ok: true })
       } catch (error) {
         return failure('register', error)
       }
@@ -50,7 +50,7 @@ export function authRoutes({ handler, registration, passwordReset }: AuthService
 
       try {
         await registration.confirm(body)
-        return ok<AuthOkResponse>({ ok: true })
+        return ok<OkResponse>({ ok: true })
       } catch (error) {
         return failure('verify-code', error)
       }
@@ -61,7 +61,7 @@ export function authRoutes({ handler, registration, passwordReset }: AuthService
 
       try {
         await registration.resendCode(body.email)
-        return ok<AuthOkResponse>({ ok: true })
+        return ok<OkResponse>({ ok: true })
       } catch (error) {
         return serverError('resend-verification', error)
       }
@@ -75,7 +75,7 @@ export function authRoutes({ handler, registration, passwordReset }: AuthService
       } catch (error) {
         logger.error('handler failed', { scope: 'forgot-password', error: serializeError(error) })
       }
-      return ok<AuthOkResponse>({ ok: true })
+      return ok<OkResponse>({ ok: true })
     })
     .get('/v1/auth/reset-password', async (c) => {
       const oobCode = c.req.query('oobCode')
