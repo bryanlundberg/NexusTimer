@@ -12,12 +12,14 @@ export type AppDeps = {
   checks: HealthChecks
 }
 
+const PUBLIC_PATHS = ['/api/health']
+
 export function createApp({ env, checks }: AppDeps) {
   const app = new Hono<AppEnv>().basePath('/api')
 
   app.use(requestId())
   app.use(requestLogger())
-  app.use(edgeGuard(env.EDGE_SECRET))
+  app.use(edgeGuard(env.EDGE_SECRET, PUBLIC_PATHS))
 
   app.route('/health', healthRoutes(checks))
 
