@@ -4,7 +4,7 @@
   "main": "src/index.ts",
   "compatibility_date": "2026-09-15",
   "workers_dev": false,
-  "routes": [{ "pattern": "nexustimer.com/api/*", "zone_name": "nexustimer.com" }],
+  "routes": [{ "pattern": "beta.nexustimer.com", "custom_domain": true }],
   "vars": {
     "API_ORIGIN": "https://api.nexustimer.com"
   },
