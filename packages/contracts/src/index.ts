@@ -1,4 +1,6 @@
 export * from './auth'
+export * from './backups'
+export * from './chats'
 export * from './common'
 export * from './cube-categories'
 export * from './edge'
