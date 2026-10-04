@@ -1,8 +1,8 @@
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { ReplaySolveDetails } from '@/features/replay-solve-details/ui/ReplaySolveDetails'
-import { SolveServer } from '@/entities/solve/model/types'
+import type { LeaderboardSolve } from '@nexustimer/contracts'
 
-export default function useLeaderboardRow(solve: SolveServer) {
+export default function useLeaderboardRow(solve: LeaderboardSolve) {
   const { open } = useOverlayStore()
 
   const openModal = () => {
