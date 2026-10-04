@@ -2,6 +2,7 @@
 !package.json
 !pnpm-lock.yaml
 !pnpm-workspace.yaml
+!packages/algorithms
 !packages/contracts
 !services/api
 **/node_modules

@@ -13,6 +13,8 @@ import { searchRoutes } from './modules/search/search.routes'
 import type { SearchService } from './modules/search/search.service'
 import { leaderboardsRoutes } from './modules/solves/leaderboards.routes'
 import type { LeaderboardsService } from './modules/solves/leaderboards.service'
+import { trainerRoutes } from './modules/trainer/trainer.routes'
+import type { TrainerService } from './modules/trainer/trainer.service'
 
 export type AppDeps = {
   env: Env
@@ -21,11 +23,12 @@ export type AppDeps = {
   auth: AuthServices
   leaderboards: LeaderboardsService
   search: SearchService
+  trainer: TrainerService
 }
 
 const PUBLIC_PATHS = ['/api/health']
 
-export function createApp({ env, checks, sessions, auth, leaderboards, search }: AppDeps) {
+export function createApp({ env, checks, sessions, auth, leaderboards, search, trainer }: AppDeps) {
   const app = new Hono<AppEnv>().basePath('/api')
   const signedIn = requireUser(sessions)
 
@@ -38,6 +41,7 @@ export function createApp({ env, checks, sessions, auth, leaderboards, search }:
   app.route('/v1/realtime', realtimeRoutes({ url: env.REALTIME_URL, secret: env.REALTIME_SECRET }, signedIn))
   app.route('/v1/leaderboards', leaderboardsRoutes(leaderboards))
   app.route('/v1/search', searchRoutes(search))
+  app.route('/v1/trainer', trainerRoutes(trainer, signedIn))
 
   app.notFound(handleNotFound)
   app.onError(handleError)

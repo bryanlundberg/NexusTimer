@@ -14,6 +14,9 @@ import { createSearchService } from './modules/search/search.service'
 import { createLeaderboardCache } from './modules/solves/leaderboards.cache'
 import { createLeaderboardsService } from './modules/solves/leaderboards.service'
 import { solvesRepository } from './modules/solves/solves.repository'
+import { createLearnedCache, createSolvesCache } from './modules/trainer/trainer.cache'
+import { trainerRepository } from './modules/trainer/trainer.repository'
+import { createTrainerService } from './modules/trainer/trainer.service'
 import { usersRepository } from './modules/users/users.repository'
 import { createUsersService } from './modules/users/users.service'
 
@@ -21,6 +24,7 @@ export function buildApp() {
   const env = getEnv()
   startMongo(env.MONGODB_URI)
 
+  const redis = () => getRedis(env.REDIS_URL)
   const mail = createMailers({ resend: env.RESEND_API_KEY, brevo: env.BREVO_API_KEY })
   const getAuth = createAuthProvider(env, mail)
   const accounts = createAccountStore(getAuth)
@@ -52,9 +56,14 @@ export function buildApp() {
     leaderboards: createLeaderboardsService({
       solves: solvesRepository,
       users,
-      cache: createLeaderboardCache(() => getRedis(env.REDIS_URL))
+      cache: createLeaderboardCache(redis)
     }),
-    search: createSearchService(createSearchEngine({ host: env.MEILISEARCH_HOST, apiKey: env.MEILISEARCH_API_KEY }))
+    search: createSearchService(createSearchEngine({ host: env.MEILISEARCH_HOST, apiKey: env.MEILISEARCH_API_KEY })),
+    trainer: createTrainerService({
+      repository: trainerRepository,
+      learnedCache: createLearnedCache(redis),
+      solvesCache: createSolvesCache(redis)
+    })
   })
   return { env, app }
 }

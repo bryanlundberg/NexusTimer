@@ -1,6 +1,6 @@
 import { buildLearnedMethods } from '@/entities/trainer-learned/lib/buildLearnedMethods'
 
-// Real catalog ids (PLL method): see src/shared/data/algs/pll.ts
+// Real catalog ids (PLL method): see packages/algorithms/src/data/pll.ts
 const PLL_AA = 'ad8a5ce2-3421-4d10-b4bb-7855f5f6fa75'
 const PLL_AB = '45a604e6-e02c-4ea4-8bdb-4f80e9ff0418'
 

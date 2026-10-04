@@ -3,9 +3,11 @@ ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 RUN corepack enable
 WORKDIR /repo
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY packages/algorithms/package.json packages/algorithms/
 COPY packages/contracts/package.json packages/contracts/
 COPY services/api/package.json services/api/
 RUN pnpm install --frozen-lockfile --ignore-scripts --filter @nexustimer/api...
+COPY packages/algorithms packages/algorithms
 COPY packages/contracts packages/contracts
 COPY services/api services/api
 RUN pnpm --filter @nexustimer/api build
