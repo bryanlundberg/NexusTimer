@@ -1,4 +1,4 @@
-import { currentHourlyWindow, HOUR_MS } from '@/shared/lib/hourly-window'
+import { currentHourlyWindow, HOUR_MS } from '@nexustimer/contracts'
 
 const at = (iso: string) => Date.parse(iso)
 
