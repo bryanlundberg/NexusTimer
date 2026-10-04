@@ -1,7 +1,7 @@
 'use client'
 
 import { authClient } from '@/shared/config/auth/auth-client'
-import { DEV_LOGIN_PATH } from '@/shared/config/auth/constants'
+import { DEV_LOGIN_PATH } from '@nexustimer/contracts'
 
 export type SocialProvider = 'google' | 'discord'
 
