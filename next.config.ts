@@ -18,7 +18,9 @@ const DEV_API_PREFIXES = [
   '/api/v1/friends',
   '/api/v1/blocks',
   '/api/v1/privacy',
-  '/api/v1/presence'
+  '/api/v1/presence',
+  '/api/v1/chats',
+  '/api/v1/backups'
 ]
 
 /** @type {import('next').NextConfig} */

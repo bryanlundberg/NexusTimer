@@ -1,3 +1,4 @@
+import { BACKUP_TIMEZONE_HEADER } from '@nexustimer/contracts'
 import { importNexusTimerData, normalizeOldData } from '@/features/manage-backup/lib/importDataFromFile'
 import { toast } from 'sonner'
 import { useSession } from '@/shared/model/useSession'
@@ -36,7 +37,7 @@ export const useSyncBackup = () => {
 
       const blob = await gzipJson(JSON.stringify(cubes))
       const res = await uploadWithProgress('/api/v1/backups', blob, upload.setProgress, {
-        'X-Timezone': Intl.DateTimeFormat().resolvedOptions().timeZone
+        [BACKUP_TIMEZONE_HEADER]: Intl.DateTimeFormat().resolvedOptions().timeZone
       })
       if (!res.ok) throw new Error(`Upload failed with status ${res.status}`)
 

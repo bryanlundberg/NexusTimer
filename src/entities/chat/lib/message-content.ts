@@ -5,24 +5,7 @@ import {
   type SolveCardData
 } from '@/entities/chat/lib/solve-card'
 
-const MAX_BIG_EMOJI = 3
-
-const EMOJI_ONLY =
-  /^(?:\p{Extended_Pictographic}(?:\p{Emoji_Modifier}|️|‍\p{Extended_Pictographic}️?)*|\p{Regional_Indicator}{2})+$/u
-
-const EMOJI_UNIT =
-  /\p{Extended_Pictographic}(?:\p{Emoji_Modifier}|️|‍\p{Extended_Pictographic}️?)*|\p{Regional_Indicator}{2}/gu
-
-export function isBigEmoji(text: string): boolean {
-  const compact = text.replace(/\s+/g, '')
-  if (!compact || !EMOJI_ONLY.test(compact)) return false
-  return (compact.match(EMOJI_UNIT)?.length ?? 0) <= MAX_BIG_EMOJI
-}
-
-export function isSingleEmoji(text: string): boolean {
-  if (!EMOJI_ONLY.test(text)) return false
-  return (text.match(EMOJI_UNIT)?.length ?? 0) === 1
-}
+export { isBigEmoji, isSingleEmoji } from '@nexustimer/contracts'
 
 export type MessageNode =
   | { type: 'text'; value: string }
