@@ -41,7 +41,7 @@ export async function createSuggestionIssue(
       '```',
       ...(body.comment ? ['', '**Comment:**', body.comment] : []),
       '',
-      `**File:** \`src/shared/data/algs/${collection.file?.toLowerCase() ?? ''}\``
+      `**File:** \`packages/algorithms/src/data/${collection.file?.toLowerCase() ?? ''}\``
     ].join('\n')
   })
 }
