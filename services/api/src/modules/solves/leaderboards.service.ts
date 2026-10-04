@@ -21,7 +21,7 @@ export type LeaderboardsService = {
 
 type LeaderboardsDeps = {
   solves: SolvesRepository
-  users: UsersService
+  users: Pick<UsersService, 'publicProfiles'>
   cache: LeaderboardCache
   now?: () => number
 }

@@ -40,7 +40,7 @@ function setup({
       return solves
     }
   }
-  const users: UsersService = {
+  const users: Pick<UsersService, 'publicProfiles'> = {
     async publicProfiles(ids) {
       return new Map([ana].filter((user) => ids.includes(user._id)).map((user) => [user._id, user]))
     }
