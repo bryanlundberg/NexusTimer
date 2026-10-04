@@ -8,6 +8,8 @@ import { optionalUser, requireUser, type SessionReader } from './http/require-us
 import type { AppEnv } from './http/types'
 import { authRoutes, type AuthServices } from './modules/auth/auth.routes'
 import { healthRoutes, type HealthChecks } from './modules/health/health.routes'
+import { profilesRoutes } from './modules/profiles/profiles.routes'
+import type { ProfilesService } from './modules/profiles/profiles.service'
 import { realtimeRoutes } from './modules/realtime/realtime.routes'
 import { searchRoutes } from './modules/search/search.routes'
 import type { SearchService } from './modules/search/search.service'
@@ -27,6 +29,7 @@ export type AppDeps = {
   search: SearchService
   trainer: TrainerService
   sharedSolves: SharedSolvesService
+  profiles: ProfilesService
 }
 
 const PUBLIC_PATHS = ['/api/health']
@@ -48,6 +51,7 @@ export function createApp(deps: AppDeps) {
   app.route('/v1/search', searchRoutes(deps.search))
   app.route('/v1/trainer', trainerRoutes(deps.trainer, signedIn))
   app.route('/v1/shared-solves', sharedSolvesRoutes(deps.sharedSolves, signedIn, viewer))
+  app.route('/v1/users', profilesRoutes(deps.profiles, signedIn, viewer))
 
   app.notFound(handleNotFound)
   app.onError(handleError)
