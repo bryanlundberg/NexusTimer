@@ -20,6 +20,7 @@
     "@vercel/functions": "^3.9.0",
     "bcryptjs": "^3.0.3",
     "better-auth": "^1.7.7",
+    "country-flag-icons": "^1.5.18",
     "hono": "^4.13.0",
     "meilisearch": "^0.60.0",
     "mongodb": "~7.2.0",
