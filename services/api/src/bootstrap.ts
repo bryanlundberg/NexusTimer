@@ -1,5 +1,6 @@
 import { getEnv } from './config/env'
 import { createApp } from './create-app'
+import { createGithub } from './infra/github'
 import { createMailers } from './infra/mail'
 import { pingMongo, startMongo } from './infra/mongo'
 import { createRealtimePublisher } from './infra/realtime'
@@ -7,6 +8,8 @@ import { getRedis, pingRedis } from './infra/redis'
 import { createSearchEngine } from './infra/search'
 import { createStorage } from './infra/storage'
 import { runInBackground } from './platform/background'
+import { createSuggestionLimits } from './modules/algorithms/suggestions.limits'
+import { createSuggestionsService } from './modules/algorithms/suggestions.service'
 import { createAuthProvider, createSessionReader } from './modules/auth/auth'
 import { createAccountStore } from './modules/auth/auth.accounts'
 import { authRepository } from './modules/auth/auth.repository'
@@ -148,6 +151,15 @@ export function buildApp() {
       adminEmail: env.ADMIN_EMAIL,
       log: recordLog,
       background: runInBackground
+    }),
+    suggestions: createSuggestionsService({
+      github: createGithub({
+        appId: env.GITHUB_APP_ID,
+        privateKey: env.GITHUB_APP_PRIVATE_KEY,
+        installationId: env.GITHUB_APP_INSTALLATION_ID,
+        repo: env.GITHUB_REPO
+      }),
+      limits: createSuggestionLimits(redis)
     })
   })
   return { env, app }

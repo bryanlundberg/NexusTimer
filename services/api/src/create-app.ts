@@ -6,6 +6,8 @@ import { requestId } from './http/request-id'
 import { requestLogger } from './http/request-logger'
 import { optionalUser, requireUser, type SessionReader } from './http/require-user'
 import type { AppEnv } from './http/types'
+import { suggestionsRoutes } from './modules/algorithms/suggestions.routes'
+import type { SuggestionsService } from './modules/algorithms/suggestions.service'
 import { authRoutes, type AuthServices } from './modules/auth/auth.routes'
 import { avatarsRoutes } from './modules/avatars/avatars.routes'
 import type { AvatarsService } from './modules/avatars/avatars.service'
@@ -52,6 +54,7 @@ export type AppDeps = {
   backups: BackupsService
   avatars: AvatarsService
   feedback: FeedbackService
+  suggestions: SuggestionsService
 }
 
 const PUBLIC_PATHS = ['/api/health']
@@ -82,6 +85,7 @@ export function createApp(deps: AppDeps) {
   app.route('/v1/chats', chatsRoutes(deps.chats, signedIn))
   app.route('/v1/backups', backupsRoutes(deps.backups, signedIn))
   app.route('/v1/feedback', feedbackRoutes(deps.feedback, signedIn))
+  app.route('/v1/algorithms/suggestions', suggestionsRoutes(deps.suggestions))
 
   app.notFound(handleNotFound)
   app.onError(handleError)

@@ -39,6 +39,13 @@ const envSchema = z
     REALTIME_URL: z.string().url().optional(),
     REALTIME_SECRET: optionalSecret,
     ADMIN_EMAIL: z.string().email().optional(),
+    GITHUB_APP_ID: optionalSecret,
+    GITHUB_APP_PRIVATE_KEY: optionalSecret,
+    GITHUB_APP_INSTALLATION_ID: optionalSecret,
+    GITHUB_REPO: z
+      .string()
+      .regex(/^[\w.-]+\/[\w.-]+$/, 'Expected owner/repo')
+      .default('bryanlundberg/NexusTimer'),
     FILES_BUCKET: optionalSecret,
     FILES_ACCESS_KEY_ID: optionalSecret,
     FILES_SECRET_ACCESS_KEY: optionalSecret,
