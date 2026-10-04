@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@hono/node-server": "^2.1.0",
+    "@nexustimer/algorithms": "workspace:*",
     "@nexustimer/contracts": "workspace:*",
     "@vercel/functions": "^3.9.0",
     "bcryptjs": "^3.0.3",
