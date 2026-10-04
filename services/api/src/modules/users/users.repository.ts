@@ -1,9 +1,11 @@
 import type {
   CubingMethod,
+  FriendUser,
   Layers,
   PrivacySettings,
   PublicProfile,
   PublicUser,
+  UpdatePrivacyInput,
   UserStatsSummary
 } from '@nexustimer/contracts'
 import { Types } from 'mongoose'
@@ -12,6 +14,8 @@ import { UserStatsModel } from './user-stats.model'
 import { UserModel } from './users.model'
 
 const PUBLIC_USER_FIELDS = 'name image country pronoun goal'
+const FRIEND_CARD_FIELDS = 'name image country wcaId'
+const FRIEND_PROFILE_FIELDS = `${FRIEND_CARD_FIELDS} pronoun method bio`
 const PROFILE_PROJECTION = '-email -emailVerified -providers -privacy -__v'
 const LIST_PROJECTION = '-email -emailVerified -providers -__v'
 const NEWEST_BACKUP_FIRST = { 'backup.updatedAt': -1, createdAt: -1 } as const
@@ -20,6 +24,7 @@ export type ProfileUpdate = { $set?: Record<string, unknown>; $unset?: Record<st
 export type ListQuery = { name: string; country: string; excludeIds: string[]; page: number; perPage: number }
 export type ListedUser = { profile: PublicProfile; privacy?: Partial<PrivacySettings> }
 export type StatsSnapshot = { version: number; backupUpdatedAt: number; summary: UserStatsSummary }
+export type UserContact = { email: string | null; privacy?: Partial<PrivacySettings> }
 
 export type UsersRepository = {
   findPublicProfiles(ids: string[]): Promise<PublicUser[]>
@@ -29,6 +34,10 @@ export type UsersRepository = {
   privacy(ids: string[]): Promise<Map<string, Partial<PrivacySettings> | undefined>>
   backupUpdatedAt(id: string): Promise<number | undefined>
   statsSnapshot(id: string): Promise<StatsSnapshot | null>
+  exists(id: string): Promise<boolean>
+  findFriendUsers(ids: string[], withProfile: boolean): Promise<FriendUser[]>
+  findContact(id: string): Promise<UserContact | null>
+  updatePrivacy(id: string, input: UpdatePrivacyInput): Promise<void>
 }
 
 type RawUser = {
@@ -54,6 +63,21 @@ const defined = <T extends object>(fields: T) =>
   Object.fromEntries(Object.entries(fields).filter(([, value]) => value != null)) as {
     [K in keyof T]?: NonNullable<T[K]>
   }
+
+function toFriendUser(doc: RawUser): FriendUser {
+  return {
+    _id: doc._id.toString(),
+    name: doc.name,
+    image: doc.image,
+    ...defined({
+      country: doc.country,
+      wcaId: doc.wcaId,
+      pronoun: doc.pronoun,
+      method: doc.method,
+      bio: doc.bio
+    })
+  }
+}
 
 export function toPublicProfile(doc: RawUser): PublicProfile {
   return {
@@ -150,5 +174,38 @@ export const usersRepository: UsersRepository = {
       .select('version backupUpdatedAt summary')
       .lean<StatsSnapshot>()
     return doc ? { version: doc.version, backupUpdatedAt: doc.backupUpdatedAt, summary: doc.summary } : null
+  },
+
+  async exists(id) {
+    if (!Types.ObjectId.isValid(id)) return false
+    return !!(await UserModel.exists({ _id: id }))
+  },
+
+  async findFriendUsers(ids, withProfile) {
+    const valid = [...new Set(ids)].filter((id) => Types.ObjectId.isValid(id))
+    if (valid.length === 0) return []
+
+    const docs = await UserModel.find({ _id: { $in: valid } })
+      .select(withProfile ? FRIEND_PROFILE_FIELDS : FRIEND_CARD_FIELDS)
+      .lean<RawUser[]>()
+    return docs.map(toFriendUser)
+  },
+
+  async findContact(id) {
+    if (!Types.ObjectId.isValid(id)) return null
+    const doc = await UserModel.findById(id)
+      .select('email privacy')
+      .lean<{ email?: string | null; privacy?: Partial<PrivacySettings> | null }>()
+    return doc ? { email: doc.email || null, privacy: doc.privacy ?? undefined } : null
+  },
+
+  async updatePrivacy(id, input) {
+    const $set = Object.fromEntries(
+      Object.entries(input)
+        .filter(([, value]) => value !== undefined)
+        .map(([key, value]) => [`privacy.${key}`, value])
+    )
+    if (Object.keys($set).length === 0) return
+    await UserModel.updateOne({ _id: id }, { $set })
   }
 }

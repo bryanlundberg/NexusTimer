@@ -1,8 +1,10 @@
 import {
+  type FriendUser,
   type PrivacySettings,
   type PublicProfile,
   type PublicUser,
   resolvePrivacy,
+  type UpdatePrivacyInput,
   type UpdateProfileInput,
   USER_STATS_VERSION,
   type UserProfileResponse,
@@ -13,6 +15,7 @@ import type { ProfileCache, StatsCache } from './users.cache'
 import type { ListedUser, ProfileUpdate, StatsSnapshot, UsersRepository } from './users.repository'
 
 export type UsersListQuery = { name: string; country: string; page: number; excludeIds: string[] }
+export type MailContact = { email: string | null; privacy: PrivacySettings }
 
 export type UsersService = {
   publicProfiles(ids: string[]): Promise<Map<string, PublicUser>>
@@ -20,7 +23,11 @@ export type UsersService = {
   updateProfile(id: string, input: UpdateProfileInput): Promise<PublicProfile | null>
   list(query: UsersListQuery, perPage: number): Promise<{ users: ListedUser[]; total: number }>
   privacy(id: string): Promise<PrivacySettings>
+  updatePrivacy(id: string, input: UpdatePrivacyInput): Promise<PrivacySettings>
   statsSummary(id: string): Promise<UserStatsSummary | null>
+  exists(id: string): Promise<boolean>
+  friendUsers(ids: string[], withProfile?: boolean): Promise<Map<string, FriendUser>>
+  mailContact(id: string): Promise<MailContact | null>
 }
 
 type UsersDeps = {
@@ -50,6 +57,10 @@ const isFresh = (stats: StatsSnapshot | null, backupUpdatedAt: number | undefine
   !!stats && stats.version === USER_STATS_VERSION && stats.backupUpdatedAt === backupUpdatedAt
 
 export function createUsersService({ repository, profileCache, statsCache, achievements }: UsersDeps): UsersService {
+  async function privacy(id: string) {
+    return resolvePrivacy((await repository.privacy([id])).get(id))
+  }
+
   async function currentBackupUpdatedAt(id: string) {
     const cached = await profileCache.get(id)
     if (cached) return cached.backup?.updatedAt
@@ -87,8 +98,11 @@ export function createUsersService({ repository, profileCache, statsCache, achie
     list: ({ name, country, page, excludeIds }, perPage) =>
       repository.list({ name, country, page, excludeIds, perPage }),
 
-    async privacy(id) {
-      return resolvePrivacy((await repository.privacy([id])).get(id))
+    privacy,
+
+    async updatePrivacy(id, input) {
+      await repository.updatePrivacy(id, input)
+      return privacy(id)
     },
 
     async statsSummary(id) {
@@ -100,6 +114,19 @@ export function createUsersService({ repository, profileCache, statsCache, achie
 
       await statsCache.set(id, snapshot)
       return snapshot.summary
+    },
+
+    exists: (id) => repository.exists(id),
+
+    async friendUsers(ids, withProfile = false) {
+      if (ids.length === 0) return new Map()
+      const users = await repository.findFriendUsers(ids, withProfile)
+      return new Map(users.map((user) => [user._id, user]))
+    },
+
+    async mailContact(id) {
+      const contact = await repository.findContact(id)
+      return contact ? { email: contact.email, privacy: resolvePrivacy(contact.privacy) } : null
     }
   }
 }
