@@ -1,4 +1,4 @@
-import { TRAINER_PAGE_SIZE, type TrainerSolveItem } from '@nexustimer/contracts'
+import { type LearnedSummary, TRAINER_PAGE_SIZE, type TrainerSolveItem } from '@nexustimer/contracts'
 import type { RedisClientType } from 'redis'
 import { logger, serializeError } from '../../lib/logger'
 
@@ -19,6 +19,8 @@ export type LearnedCache = {
   get(userId: string, methodSlug: string): Promise<string[] | null>
   prime(userId: string, methodSlug: string, caseIds: string[]): Promise<void>
   setLearned(userId: string, methodSlug: string, caseId: string, learned: boolean): Promise<void>
+  getSummary(userId: string): Promise<LearnedSummary | null>
+  primeSummary(userId: string, summary: LearnedSummary): Promise<void>
   invalidateSummary(userId: string): Promise<void>
 }
 
@@ -80,6 +82,24 @@ export function createLearnedCache(redis: RedisProvider): LearnedCache {
       } catch (error) {
         warn('learned.setLearned', error)
         await invalidate(userId, methodSlug)
+      }
+    },
+
+    async getSummary(userId) {
+      try {
+        const raw = await (await redis()).get(learnedSummaryKey(userId))
+        return raw ? (JSON.parse(raw) as LearnedSummary) : null
+      } catch (error) {
+        warn('learned.getSummary', error)
+        return null
+      }
+    },
+
+    async primeSummary(userId, summary) {
+      try {
+        await (await redis()).set(learnedSummaryKey(userId), JSON.stringify(summary), { EX: TTL_SECONDS })
+      } catch (error) {
+        warn('learned.primeSummary', error)
       }
     },
 
