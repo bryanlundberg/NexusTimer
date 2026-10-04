@@ -29,6 +29,9 @@ importers:
       '@nexustimer/contracts':
         specifier: workspace:*
         version: link:packages/contracts
+      '@nexustimer/stats':
+        specifier: workspace:*
+        version: link:packages/stats
       '@radix-ui/react-alert-dialog':
         specifier: ^1.1.6
         version: 1.1.17(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -329,8 +332,27 @@ importers:
         specifier: 7.0.2
         version: 7.0.2
 
+  packages/stats:
+    dependencies:
+      '@nexustimer/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      dayjs:
+        specifier: ^1.11.21
+        version: 1.11.21
+      es-toolkit:
+        specifier: ^1.42.0
+        version: 1.47.1
+    devDependencies:
+      typescript:
+        specifier: 7.0.2
+        version: 7.0.2
+
   services/api:
     dependencies:
+      '@aws-sdk/client-s3':
+        specifier: ^3.1053.0
+        version: 3.1069.0
       '@hono/node-server':
         specifier: ^2.1.0
         version: 2.1.3(hono@4.13.12)
@@ -340,6 +362,9 @@ importers:
       '@nexustimer/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
+      '@nexustimer/stats':
+        specifier: workspace:*
+        version: link:../../packages/stats
       '@vercel/functions':
         specifier: ^3.9.0
         version: 3.9.11(@aws-sdk/credential-provider-web-identity@3.972.53)(ws@8.21.0)
