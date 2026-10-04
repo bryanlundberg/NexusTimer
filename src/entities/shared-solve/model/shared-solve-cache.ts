@@ -1,10 +1,9 @@
 import { getRedis } from '@/shared/config/redis/redis'
 import type { SolveReplay } from '@/entities/replay/model/types'
-import type { MySharedIds, SharedSolveItem, SharedSolvesPage } from '@/entities/shared-solve/model/types'
+import type { SharedSolveItem } from '@/entities/shared-solve/model/types'
 
 const SLUG_TTL_SECONDS = 60 * 60 * 24 * 30 // 30d
 const MISSING_TTL_SECONDS = 60 * 5 // 5m
-const USER_TTL_SECONDS = 60 * 60 * 24 * 7 // 7d
 
 const MISSING = '__missing__'
 
@@ -58,24 +57,6 @@ export const sharedSolveCache = {
   async primeSlug(slug: string, value: CachedSharedSolve | null): Promise<void> {
     if (value) await writeJson(slugKey(slug), value, SLUG_TTL_SECONDS, 'primeSlug')
     else await writeJson(slugKey(slug), MISSING, MISSING_TTL_SECONDS, 'primeSlug')
-  },
-
-  async getFirstPage(userId: string): Promise<SharedSolvesPage | null> {
-    const cached = await readJson<SharedSolvesPage>(listKey(userId), 'getFirstPage')
-    return cached === MISSING ? null : cached
-  },
-
-  async primeFirstPage(userId: string, page: SharedSolvesPage): Promise<void> {
-    await writeJson(listKey(userId), page, USER_TTL_SECONDS, 'primeFirstPage')
-  },
-
-  async getIds(userId: string): Promise<MySharedIds | null> {
-    const cached = await readJson<MySharedIds>(idsKey(userId), 'getIds')
-    return cached === MISSING ? null : cached
-  },
-
-  async primeIds(userId: string, ids: MySharedIds): Promise<void> {
-    await writeJson(idsKey(userId), ids, USER_TTL_SECONDS, 'primeIds')
   },
 
   async invalidate(userId: string, slugs: string[] = []): Promise<void> {
