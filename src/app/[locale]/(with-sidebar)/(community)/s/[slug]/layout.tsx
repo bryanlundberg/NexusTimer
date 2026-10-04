@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import { cache } from 'react'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import formatTime from '@/shared/lib/formatTime'
-import { isValidSlug } from '@/entities/shared-solve/lib/slug'
+import { isValidSlug } from '@nexustimer/contracts'
 import { getSharedSolveAuthor, getSharedSolveBySlug } from '@/entities/shared-solve/server/shared-solves'
 
 type Props = { params: Promise<{ slug: string }> }
