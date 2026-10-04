@@ -1,4 +1,11 @@
-import type { MySharedIds, SharedSolveDetail, ShareSolveInput } from '@nexustimer/contracts'
+import {
+  isObjectId,
+  type MySharedIds,
+  SHARED_SOLVES_PAGE_SIZE,
+  type SharedSolveDetail,
+  type SharedSolvesPage,
+  type ShareSolveInput
+} from '@nexustimer/contracts'
 import type { SocialService } from '../social/social.service'
 import type { UsersService } from '../users/users.service'
 import type { SharedSolvesCache } from './shared-solves.cache'
@@ -16,14 +23,17 @@ export type SharedSolvesService = {
   share(userId: string, input: ShareSolveInput): Promise<ShareResult>
   detail(slug: string, viewerId: string | null): Promise<SharedSolveDetail | null>
   remove(userId: string, slug: string): Promise<boolean>
+  userPage(userId: string, viewerId: string | null, cursor: string | null): Promise<SharedSolvesPage>
 }
+
+export const EMPTY_SHARED_SOLVES_PAGE: SharedSolvesPage = { items: [], total: 0, nextCursor: null }
 
 type SharedSolvesDeps = {
   repository: SharedSolvesRepository
   cache: SharedSolvesCache
   quota: ShareQuota
-  users: UsersService
-  social: SocialService
+  users: Pick<UsersService, 'publicProfiles'>
+  social: Pick<SocialService, 'blockState'>
   generateSlug?: () => string
 }
 
@@ -119,6 +129,25 @@ export function createSharedSolvesService({
       if (!(await repository.deleteBySlug(userId, slug))) return false
       await cache.invalidate(userId, [slug])
       return true
+    },
+
+    async userPage(userId, viewerId, cursor) {
+      if (await isHidden(userId, viewerId)) return EMPTY_SHARED_SOLVES_PAGE
+
+      const isFirstPage = !isObjectId(cursor)
+      if (isFirstPage) {
+        const cached = await cache.getFirstPage(userId)
+        if (cached) return cached
+      }
+
+      const [{ items, lastId }, total] = await Promise.all([
+        repository.pageForUser(userId, isFirstPage ? null : cursor, SHARED_SOLVES_PAGE_SIZE),
+        isFirstPage ? repository.countForUser(userId) : Promise.resolve(-1)
+      ])
+      const page = { items, total, nextCursor: items.length === SHARED_SOLVES_PAGE_SIZE ? lastId : null }
+
+      if (isFirstPage) await cache.primeFirstPage(userId, page)
+      return page
     }
   }
 }

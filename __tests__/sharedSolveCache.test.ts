@@ -50,18 +50,11 @@ describe('sharedSolveCache', () => {
 
   it('invalidate drops the owner list, ids and the given slugs', async () => {
     await sharedSolveCache.primeSlug('k3Fq9xP2aL', solve)
-    await sharedSolveCache.primeFirstPage('user-1', { items: [solve.item], total: 1, nextCursor: null })
-    await sharedSolveCache.primeIds('user-1', { 'local-1': 'k3Fq9xP2aL' })
+    store.set('shared-solve:list:user-1', '{}')
+    store.set('shared-solve:ids:user-1', '{}')
 
     await sharedSolveCache.invalidate('user-1', ['k3Fq9xP2aL'])
 
-    expect(await sharedSolveCache.getBySlug('k3Fq9xP2aL')).toBeNull()
-    expect(await sharedSolveCache.getFirstPage('user-1')).toBeNull()
-    expect(await sharedSolveCache.getIds('user-1')).toBeNull()
-  })
-
-  it('keeps an empty ids map distinct from a miss', async () => {
-    await sharedSolveCache.primeIds('user-2', {})
-    expect(await sharedSolveCache.getIds('user-2')).toEqual({})
+    expect([...store.keys()]).toEqual([])
   })
 })

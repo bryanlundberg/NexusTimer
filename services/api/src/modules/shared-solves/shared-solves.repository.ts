@@ -5,8 +5,10 @@ import type {
   ShareSolveInput,
   SolveReplayPayload
 } from '@nexustimer/contracts'
-import type { Types } from 'mongoose'
+import { Types } from 'mongoose'
 import { SharedSolveModel } from './shared-solves.model'
+
+const LIST_PROJECTION = '-replay.moves -user -localSolveId'
 
 export type StoredSharedSolve = { ownerId: string; item: SharedSolveItem; replay?: SolveReplayPayload }
 export type InsertResult = 'created' | 'duplicate-slug' | 'duplicate-local-solve'
@@ -17,6 +19,12 @@ export type SharedSolvesRepository = {
   deleteBySlug(userId: string, slug: string): Promise<boolean>
   findBySlug(slug: string): Promise<StoredSharedSolve | null>
   idsByLocalSolve(userId: string, limit: number): Promise<MySharedIds>
+  pageForUser(
+    userId: string,
+    before: string | null,
+    limit: number
+  ): Promise<{ items: SharedSolveItem[]; lastId: string | null }>
+  countForUser(userId: string): Promise<number>
 }
 
 type RawSharedSolve = {
@@ -96,5 +104,22 @@ export const sharedSolvesRepository: SharedSolvesRepository = {
       .limit(limit)
       .lean<{ slug: string; localSolveId: string }[]>()
     return Object.fromEntries(docs.map((doc) => [doc.localSolveId, doc.slug]))
+  },
+
+  async pageForUser(userId, before, limit) {
+    const filter: Record<string, unknown> = { user: new Types.ObjectId(userId) }
+    if (before) filter._id = { $lt: new Types.ObjectId(before) }
+
+    const docs = await SharedSolveModel.find(filter)
+      .select(LIST_PROJECTION)
+      .sort({ _id: -1 })
+      .limit(limit)
+      .lean<RawSharedSolve[]>()
+    const last = docs[docs.length - 1]
+    return { items: docs.map(toSharedSolveItem), lastId: last ? last._id.toString() : null }
+  },
+
+  countForUser(userId) {
+    return SharedSolveModel.countDocuments({ user: userId })
   }
 }

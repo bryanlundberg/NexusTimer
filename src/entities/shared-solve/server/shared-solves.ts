@@ -1,17 +1,9 @@
 import { Types } from 'mongoose'
 import SharedSolve, { type SharedSolveDocument } from '@/entities/shared-solve/model/shared-solve'
 import { sharedSolveCache, type CachedSharedSolve } from '@/entities/shared-solve/model/shared-solve-cache'
-import {
-  SHARED_SOLVES_PAGE_SIZE,
-  type SharedSolveAuthor,
-  type SharedSolveItem,
-  type SharedSolvesPage
-} from '@/entities/shared-solve/model/types'
-import { blockStateOf } from '@/entities/block/server/blocks'
+import type { SharedSolveAuthor, SharedSolveItem } from '@/entities/shared-solve/model/types'
 import { findFriendUsers } from '@/entities/friendship/server/friends'
 import { userProfileCache } from '@/entities/user/model/user-cache'
-
-const LIST_PROJECTION = '-replay.moves -user -localSolveId'
 
 export function toSharedSolveItem(doc: Omit<SharedSolveDocument, 'user' | 'localSolveId'>): SharedSolveItem {
   return {
@@ -51,39 +43,4 @@ export async function getSharedSolveAuthor(ownerId: string): Promise<SharedSolve
   const user = profile ?? (await findFriendUsers([ownerId])).get(ownerId)
   if (!user) return null
   return { _id: ownerId, name: user.name, image: user.image, country: user.country }
-}
-
-export async function listUserSharedSolves(userId: string, cursor?: string | null): Promise<SharedSolvesPage> {
-  const isFirstPage = !cursor || !Types.ObjectId.isValid(cursor)
-  if (isFirstPage) {
-    const cached = await sharedSolveCache.getFirstPage(userId)
-    if (cached) return cached
-  }
-
-  const filter: Record<string, unknown> = { user: new Types.ObjectId(userId) }
-  if (!isFirstPage) filter._id = { $lt: new Types.ObjectId(cursor!) }
-
-  const [docs, total] = await Promise.all([
-    SharedSolve.find(filter)
-      .select(LIST_PROJECTION)
-      .sort({ _id: -1 })
-      .limit(SHARED_SOLVES_PAGE_SIZE)
-      .lean<SharedSolveDocument[]>(),
-    isFirstPage ? SharedSolve.countDocuments({ user: userId }) : Promise.resolve(-1)
-  ])
-
-  const last = docs[docs.length - 1]
-  const page = {
-    items: docs.map(toSharedSolveItem),
-    total,
-    nextCursor: docs.length === SHARED_SOLVES_PAGE_SIZE && last ? last._id.toString() : null
-  }
-
-  if (isFirstPage) await sharedSolveCache.primeFirstPage(userId, page)
-  return page
-}
-
-export async function isHiddenBetween(ownerId: string, viewerId: string | undefined): Promise<boolean> {
-  if (!viewerId || viewerId === ownerId) return false
-  return (await blockStateOf(viewerId, ownerId)) !== 'none'
 }

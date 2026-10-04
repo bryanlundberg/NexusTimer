@@ -1,4 +1,4 @@
-import type { MySharedIds } from '@nexustimer/contracts'
+import type { MySharedIds, SharedSolvesPage } from '@nexustimer/contracts'
 import type { RedisClientType } from 'redis'
 import { logger, serializeError } from '../../lib/logger'
 import type { StoredSharedSolve } from './shared-solves.repository'
@@ -17,6 +17,8 @@ export type SharedSolvesCache = {
   primeSlug(slug: string, value: StoredSharedSolve | null): Promise<void>
   getIds(userId: string): Promise<MySharedIds | null>
   primeIds(userId: string, ids: MySharedIds): Promise<void>
+  getFirstPage(userId: string): Promise<SharedSolvesPage | null>
+  primeFirstPage(userId: string, page: SharedSolvesPage): Promise<void>
   invalidate(userId: string, slugs: string[]): Promise<void>
 }
 
@@ -61,6 +63,15 @@ export function createSharedSolvesCache(redis: () => Promise<RedisClientType>): 
 
     async primeIds(userId, ids) {
       await write(idsKey(userId), JSON.stringify(ids), USER_TTL_SECONDS, 'primeIds')
+    },
+
+    async getFirstPage(userId) {
+      const cached = await read<SharedSolvesPage>(listKey(userId), 'getFirstPage')
+      return cached === MISSING ? null : cached
+    },
+
+    async primeFirstPage(userId, page) {
+      await write(listKey(userId), JSON.stringify(page), USER_TTL_SECONDS, 'primeFirstPage')
     },
 
     async invalidate(userId, slugs) {

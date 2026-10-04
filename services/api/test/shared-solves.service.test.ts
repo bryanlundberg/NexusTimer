@@ -70,6 +70,18 @@ function fakeRepository() {
       const { localSolveId: _, ...stored } = solve
       return stored
     },
+    async pageForUser(userId, before, limit) {
+      const owned = [...solves.entries()]
+        .filter(([, solve]) => solve.ownerId === userId)
+        .map(([id, solve]) => ({ id, item: solve.item }))
+        .sort((a, b) => b.id.localeCompare(a.id))
+        .filter(({ id }) => !before || id < before)
+        .slice(0, limit)
+      return { items: owned.map(({ item }) => item), lastId: owned[owned.length - 1]?.id ?? null }
+    },
+    async countForUser(userId) {
+      return [...solves.values()].filter((solve) => solve.ownerId === userId).length
+    },
     async idsByLocalSolve(userId) {
       calls.idsByLocalSolve++
       return Object.fromEntries(
@@ -209,5 +221,29 @@ describe('shared solves service', () => {
     expect(await service.remove(VIEWER, 'AAAAAAAAAA')).toBe(false)
     expect(await service.remove(OWNER, 'AAAAAAAAAA')).toBe(true)
     expect(await service.detail('AAAAAAAAAA', null)).toBeNull()
+  })
+})
+
+describe('shared solves of a user', () => {
+  it('serves the first page from the cache until the user shares again', async () => {
+    const { service, repo } = setup()
+    await service.share(OWNER, input)
+
+    const first = await service.userPage(OWNER, null, null)
+    repo.solves.clear()
+
+    expect(first).toMatchObject({ total: 1, nextCursor: null, items: [{ slug: 'AAAAAAAAAA' }] })
+    expect(await service.userPage(OWNER, null, null)).toEqual(first)
+
+    await service.share(OWNER, { ...input, localSolveId: 'local-2' })
+    expect((await service.userPage(OWNER, null, null)).items.map((item) => item.slug)).toEqual(['BBBBBBBBBB'])
+  })
+
+  it('answers an empty page to viewers blocked either way', async () => {
+    const { service } = setup({ blocks: 'blocked' })
+    await service.share(OWNER, input)
+
+    expect(await service.userPage(OWNER, VIEWER, null)).toEqual({ items: [], total: 0, nextCursor: null })
+    expect((await service.userPage(OWNER, OWNER, null)).total).toBe(1)
   })
 })
