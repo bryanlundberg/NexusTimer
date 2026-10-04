@@ -1,5 +1,6 @@
 import type { FeedbackResponse } from '@nexustimer/contracts'
 import type { Types } from 'mongoose'
+import { userDocuments } from '../../infra/user-documents'
 import { FeedbackModel } from './feedback.model'
 
 export type NewFeedback = { userId: string; rating: number; comment: string }
@@ -30,3 +31,5 @@ export const feedbackRepository: FeedbackRepository = {
     }
   }
 }
+
+export const feedbackUserData = userDocuments(FeedbackModel, ({ id }) => ({ userId: id }))

@@ -1,3 +1,4 @@
+import { userCollection, userDocuments } from '../../infra/user-documents'
 import { PasswordResetTokenModel, PendingRegistrationModel } from './auth.model'
 
 export type PendingRegistration = {
@@ -55,3 +56,9 @@ export const authRepository: AuthRepository = {
     await PasswordResetTokenModel.deleteOne({ _id: id })
   }
 }
+
+export const passwordResetTokensUserData = userDocuments(PasswordResetTokenModel, ({ id }) => ({ userId: id }))
+export const pendingRegistrationsUserData = userDocuments(PendingRegistrationModel, ({ email }) => ({ email }))
+export const legacyCredentialsUserData = userCollection('usercredentials', 'userId')
+export const legacyEmailVerificationsUserData = userCollection('emailverifications', 'userId')
+export const legacySessionsUserData = userCollection('sessions', 'userId')

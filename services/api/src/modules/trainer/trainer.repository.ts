@@ -6,6 +6,7 @@ import {
   type TrainerSolveItem
 } from '@nexustimer/contracts'
 import { Types } from 'mongoose'
+import { userDocuments } from '../../infra/user-documents'
 import { TrainerLearnedModel, TrainerSolveModel, TrainerStatsModel } from './trainer.model'
 
 export type SolveListFilter = { userId: string; methodSlug: string; caseId?: string; before?: string }
@@ -194,3 +195,7 @@ export const trainerRepository: TrainerRepository = {
     )
   }
 }
+
+export const trainerSolvesUserData = userDocuments(TrainerSolveModel, ({ id }) => ({ user: id }))
+export const trainerLearnedUserData = userDocuments(TrainerLearnedModel, ({ id }) => ({ user: id }))
+export const trainerStatsUserData = userDocuments(TrainerStatsModel, ({ id }) => ({ user: id }))

@@ -1,5 +1,6 @@
 import type { LeaderboardPuzzle, SolveReplayPayload } from '@nexustimer/contracts'
 import type { Types } from 'mongoose'
+import { userDocuments } from '../../infra/user-documents'
 import { SolveModel } from './solves.model'
 
 export type StoredSolve = {
@@ -83,3 +84,5 @@ export const solvesRepository: SolvesRepository = {
     await SolveModel.create({ user: userId, ...solve })
   }
 }
+
+export const solvesUserData = userDocuments(SolveModel, ({ id }) => ({ user: id }))
