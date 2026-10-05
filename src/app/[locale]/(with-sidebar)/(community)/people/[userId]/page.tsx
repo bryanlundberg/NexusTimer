@@ -1,4 +1,5 @@
 'use client'
+import { notFound } from 'next/navigation'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import PeopleSkeleton from '@/shared/ui/skeletons/people-skeleton'
 import { useUser } from '@/entities/user/model/useUser'
@@ -13,6 +14,8 @@ export default function PeopleDetailsPage() {
 
   const { data: user, isLoading: isLoadingUser } = useUser(userId)
   const { stats, isLoading: isLoadingStats } = useUserStats(userId)
+
+  if (user === null) notFound()
 
   return (
     <ScrollArea className={'max-h-dvh overflow-auto'}>
