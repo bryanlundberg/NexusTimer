@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto'
-import { CLIENT_IP_HEADER, DEV_LOGIN_PATH } from '@nexustimer/contracts'
+import { AUTH_COOKIE_PREFIX, CLIENT_IP_HEADER, DEV_LOGIN_PATH } from '@nexustimer/contracts'
 import { betterAuth } from 'better-auth'
 import { mongodbAdapter } from 'better-auth/adapters/mongodb'
 import { isAPIError } from 'better-auth/api'
@@ -67,7 +67,6 @@ function sendWelcomeEmail(mail: Mailers, email: string, name: string) {
   })
 }
 
-// Session options must match src/shared/config/auth/auth.ts while the web still reads sessions itself.
 function createAuth({ env, client, mail }: AuthDeps) {
   return betterAuth({
     baseURL: env.BETTER_AUTH_URL,
@@ -111,7 +110,7 @@ function createAuth({ env, client, mail }: AuthDeps) {
         }
       }
     },
-    advanced: { ipAddress: { ipAddressHeaders: [CLIENT_IP_HEADER] } },
+    advanced: { cookiePrefix: AUTH_COOKIE_PREFIX, ipAddress: { ipAddressHeaders: [CLIENT_IP_HEADER] } },
     onAPIError: { errorURL: '/sign-in', onError: logAuthError },
     plugins: env.NODE_ENV === 'production' ? [] : [devLogin()]
   })

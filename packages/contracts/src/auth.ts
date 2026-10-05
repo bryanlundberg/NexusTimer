@@ -2,6 +2,9 @@ import { z } from 'zod'
 
 export const DEV_LOGIN_PATH = '/dev-login'
 
+export const AUTH_COOKIE_PREFIX = 'better-auth'
+export const SESSION_COOKIE = `${AUTH_COOKIE_PREFIX}.session_token`
+
 export const emailAtom = (msg?: string) => z.string().trim().toLowerCase().email(msg)
 
 export const passwordAtom = (msgs?: { tooShort?: string; tooLong?: string }) =>
