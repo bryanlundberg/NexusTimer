@@ -1,5 +1,4 @@
 'use client'
-import { useParams } from 'next/navigation'
 import useFreeMode from '@/features/free-play-room/model/useFreeMode'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { Separator } from '@/components/ui/separator'
@@ -8,6 +7,7 @@ import { Link, useRouter } from '@/shared/config/i18n/navigation'
 import * as React from 'react'
 import { useCallback, useEffect, useRef, useState, KeyboardEvent } from 'react'
 import { useSession } from '@/shared/model/useSession'
+import { useRouteSegment } from '@/shared/model/useRouteSegment'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import genScramble from '@/shared/lib/timer/genScramble'
 import { Button } from '@/components/ui/button'
@@ -37,7 +37,7 @@ type TabKey = (typeof tabs)[number]['key']
 
 export default function FreePlayRoomPage() {
   const t = useTranslations('Multiplayer')
-  const { roomId } = useParams<{ roomId: string }>() ?? { roomId: null }
+  const roomId = useRouteSegment('/free-play') || null
   const { data: session } = useSession()
   const router = useRouter()
   const alert = useAlert()

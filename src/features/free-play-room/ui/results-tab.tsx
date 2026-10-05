@@ -1,7 +1,7 @@
 'use client'
 
 import formatTime from '@/shared/lib/formatTime'
-import { useParams } from 'next/navigation'
+import { useRouteSegment } from '@/shared/model/useRouteSegment'
 import useFreeMode from '@/features/free-play-room/model/useFreeMode'
 import { useTranslations } from 'next-intl'
 import { motion } from 'motion/react'
@@ -12,7 +12,7 @@ const ROUNDS_TO_SHOW = 5
 export default function ResultsTab() {
   const t = useTranslations('Multiplayer.results-tab')
   const tMultiplayer = useTranslations('Multiplayer')
-  const { roomId } = useParams<{ roomId: string }>() ?? { roomId: '' }
+  const roomId = useRouteSegment('/free-play')
   const { useUsersPresence, useRoomSolves, useRoomCurrentRound } = useFreeMode()
   const onlineUsers = useUsersPresence(roomId?.toString() || '')
   const solves = useRoomSolves(roomId?.toString() || '')
