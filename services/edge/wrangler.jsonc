@@ -8,6 +8,26 @@
   "vars": {
     "API_ORIGIN": "https://api.nexustimer.com"
   },
+  "assets": {
+    "directory": "../../out",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page",
+    "run_worker_first": [
+      "/api",
+      "/api/*",
+      "/",
+      "/en",
+      "/en/*",
+      "/people/*",
+      "/s/*",
+      "/free-play/*",
+      "/*/people/*",
+      "/*/s/*",
+      "/*/free-play/*",
+      "!/_next/*"
+    ]
+  },
   "observability": {
     "enabled": true
   }

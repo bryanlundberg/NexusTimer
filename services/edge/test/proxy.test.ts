@@ -3,7 +3,11 @@ import { describe, expect, it } from 'vitest'
 import type { Env } from '../src/env'
 import { buildApiRequest } from '../src/proxy'
 
-const env: Env = { API_ORIGIN: 'https://api.example.com', EDGE_SECRET: 'edge-secret-0123456789abcdef0123' }
+const env: Env = {
+  API_ORIGIN: 'https://api.example.com',
+  EDGE_SECRET: 'edge-secret-0123456789abcdef0123',
+  ASSETS: { fetch: async () => new Response('asset') } as unknown as Fetcher
+}
 
 describe('buildApiRequest', () => {
   it('targets the api origin keeping path and query', () => {

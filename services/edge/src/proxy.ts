@@ -30,3 +30,10 @@ export function buildApiRequest(request: Request, env: Env): Request {
 export function proxyToApi(request: Request, env: Env) {
   return fetch(buildApiRequest(request, env))
 }
+
+export function apiGet(env: Env, path: string, timeoutMs: number) {
+  return fetch(new URL(path, env.API_ORIGIN), {
+    headers: { [EDGE_SECRET_HEADER]: env.EDGE_SECRET, accept: 'application/json' },
+    signal: AbortSignal.timeout(timeoutMs)
+  })
+}
