@@ -7,6 +7,11 @@ export const localeCookie = {
   sameSite: 'lax'
 } as const
 
+export function saveLocaleCookie(locale: string) {
+  const { name, maxAge, sameSite } = localeCookie
+  document.cookie = `${name}=${locale}; path=/; max-age=${maxAge}; samesite=${sameSite}`
+}
+
 export const routing = defineRouting({
   locales,
   defaultLocale,

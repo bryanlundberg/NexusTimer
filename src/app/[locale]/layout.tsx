@@ -11,6 +11,7 @@ import Script from 'next/script'
 import CookieConsentBanner from '@/components/cookie-consent-banner'
 import { CONSENT_KEY } from '@/shared/lib/analyticsConsent'
 import { OfflineIndicator } from '@/shared/ui/offline-indicator/OfflineIndicator'
+import { LocaleRedirectScript } from '@/shared/ui/locale-redirect/LocaleRedirectScript'
 import { SerwistProvider } from '@serwist/turbopack/react'
 import { OG_IMAGES, siteOpenGraph } from '@/shared/config/seo/open-graph'
 
@@ -100,6 +101,7 @@ export default async function LocaleLayout({ children }: { children: React.React
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
+        <LocaleRedirectScript />
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
