@@ -12,13 +12,12 @@ import CookieConsentBanner from '@/components/cookie-consent-banner'
 import { CONSENT_KEY } from '@/shared/lib/analyticsConsent'
 import { OfflineIndicator } from '@/shared/ui/offline-indicator/OfflineIndicator'
 import { SerwistProvider } from '@serwist/turbopack/react'
+import { OG_IMAGES, siteOpenGraph } from '@/shared/config/seo/open-graph'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const locale = await getLocale()
   const t = await getTranslations('Metadata')
   const ogTitle = t('title')
   const ogDescription = t('description')
-  const url = `https://nexustimer.com`
 
   return {
     title: t('title'),
@@ -40,27 +39,12 @@ export async function generateMetadata(): Promise<Metadata> {
       t('keywords.key14')
     ],
     metadataBase: new URL('https://nexustimer.com'),
-    openGraph: {
-      title: ogTitle,
-      description: ogDescription,
-      url: url,
-      siteName: 'Nexus Timer',
-      locale: locale,
-      type: 'website',
-      images: [
-        {
-          url: '/opengraph-image.png',
-          width: 1200,
-          height: 630,
-          alt: ogTitle
-        }
-      ]
-    },
+    openGraph: await siteOpenGraph(),
     twitter: {
       card: 'summary_large_image',
       title: ogTitle,
       description: ogDescription,
-      images: ['/opengraph-image.png']
+      images: [OG_IMAGES.site]
     },
     formatDetection: {
       telephone: false

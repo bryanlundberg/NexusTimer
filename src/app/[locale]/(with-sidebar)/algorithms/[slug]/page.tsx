@@ -16,6 +16,7 @@ import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
 import { localizedAlternates } from '@/shared/config/i18n/alternates'
 import { localizedPath } from '@/shared/config/i18n/locales'
+import { OG_IMAGES, ogImage } from '@/shared/config/seo/open-graph'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -45,7 +46,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         description,
         siteName: 'Nexus Timer',
         locale: locale,
-        type: 'website'
+        type: 'website',
+        images: [ogImage(OG_IMAGES.algorithms)]
       },
       twitter: {
         card: 'summary_large_image',
