@@ -6,6 +6,8 @@ const host = 'https://nexustimer.com'
 
 const ENGLISH_ONLY = new Set(['/about-us', '/contact-us', '/account-deletion', '/privacy-policy', '/terms-of-service'])
 
+export const dynamic = 'force-static'
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = [
     { path: '/', priority: 1.0, changeFrequency: 'monthly' as const },
