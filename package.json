@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/export-default-locale.mjs",
+    "build": "next build && node scripts/flatten-segment-files.mjs && node scripts/export-default-locale.mjs",
     "start": "next start",
     "test": "vitest run",
     "test:watch": "vitest",
