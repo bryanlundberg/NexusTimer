@@ -4,6 +4,7 @@
 !pnpm-workspace.yaml
 !packages/algorithms
 !packages/contracts
+!packages/stats
 !services/api
 **/node_modules
 **/dist
