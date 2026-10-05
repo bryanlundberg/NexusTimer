@@ -4,14 +4,12 @@ import { getTranslations } from 'next-intl/server'
 import ResetPasswordContent from '@/features/authentication/ui/ResetPasswordContent'
 import AuthBackground from '@/features/authentication/ui/AuthBackground'
 import CubeGrid from '@/features/authentication/ui/CubeGrid'
-import RedirectIfSignedIn from '@/features/authentication/ui/RedirectIfSignedIn'
 
 export default async function ResetPasswordPage() {
   const t = await getTranslations('Index.Auth')
 
   return (
     <div className="relative flex-1 flex items-center justify-center px-4 py-10">
-      <RedirectIfSignedIn />
       <AuthBackground variant="signin" />
 
       <div className="relative w-full max-w-sm flex flex-col items-center gap-6">

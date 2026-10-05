@@ -7,7 +7,6 @@ import OAuthProviders from '@/features/authentication/ui/OAuthProviders'
 import AuthDivider from '@/features/authentication/ui/AuthDivider'
 import AuthScreen from '@/features/authentication/ui/AuthScreen'
 import OAuthErrorMessage from '@/features/authentication/ui/OAuthErrorMessage'
-import RedirectIfSignedIn from '@/features/authentication/ui/RedirectIfSignedIn'
 
 export default async function SignInPage() {
   const t = await getTranslations('Index.Auth')
@@ -30,7 +29,6 @@ export default async function SignInPage() {
         </p>
       }
     >
-      <RedirectIfSignedIn />
       <SignInForm />
       <AuthDivider label={t('or-continue-with')} />
       <OAuthProviders />

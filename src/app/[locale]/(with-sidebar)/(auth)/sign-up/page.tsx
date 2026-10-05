@@ -5,7 +5,6 @@ import SignUpForm from '@/features/authentication/ui/SignUpForm'
 import OAuthProviders from '@/features/authentication/ui/OAuthProviders'
 import AuthDivider from '@/features/authentication/ui/AuthDivider'
 import AuthScreen from '@/features/authentication/ui/AuthScreen'
-import RedirectIfSignedIn from '@/features/authentication/ui/RedirectIfSignedIn'
 
 export default async function SignUpPage() {
   const t = await getTranslations('Index.Auth')
@@ -28,7 +27,6 @@ export default async function SignUpPage() {
         </p>
       }
     >
-      <RedirectIfSignedIn />
       <SignUpForm />
       <AuthDivider label={t('or-continue-with')} />
       <OAuthProviders />
