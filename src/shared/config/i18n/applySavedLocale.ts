@@ -5,7 +5,7 @@ export type SavedLocaleConfig = {
 }
 
 export function applySavedLocale(
-  location: Pick<Location, 'pathname' | 'search' | 'hash' | 'replace'>,
+  location: { pathname: string; search: string; hash: string; replace(url: string): void },
   document: { cookie: string },
   languages: readonly string[],
   config: SavedLocaleConfig
