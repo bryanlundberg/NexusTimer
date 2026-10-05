@@ -84,25 +84,15 @@ describe('edge worker', () => {
     expect(assetPaths()).toEqual([])
   })
 
-  it('serves the english home or redirects to the preferred locale at the root', async () => {
+  it('leaves the language to the page, whatever the locale cookie says', async () => {
     const { call, assetPaths } = setup()
+    const russian = { cookie: 'NEXT_LOCALE=ru', 'accept-language': 'es' }
 
-    const english = await call('/')
-    const spanish = await call('/?ref=x', { cookie: 'NEXT_LOCALE=es' })
+    await call('/', russian)
+    await call('/ja/people/64b7f0c2a1b2c3d4e5f60718', russian)
+    await call('/ja/sign-up', russian)
 
-    expect(await english.text()).toBe('asset:/')
-    expect(spanish.status).toBe(307)
-    expect(spanish.headers.get('location')).toBe('https://beta.nexustimer.com/es?ref=x')
-    expect(assetPaths()).toEqual(['/'])
-  })
-
-  it('redirects default locale prefixes to the unprefixed url', async () => {
-    const { call } = setup()
-
-    const res = await call('/en/leaderboards?puzzle=3x3x3')
-
-    expect(res.status).toBe(307)
-    expect(res.headers.get('location')).toBe('https://beta.nexustimer.com/leaderboards?puzzle=3x3x3')
+    expect(assetPaths()).toEqual(['/', '/ja/people/_', '/ja/sign-up'])
   })
 
   it('serves dynamic pages from their prerendered shell', async () => {
@@ -113,6 +103,25 @@ describe('edge worker', () => {
     await call('/app')
 
     expect(assetPaths()).toEqual(['/people/_', '/es/free-play/_.txt', '/app'])
+  })
+
+  it('redirects on the session cookie before serving the auth pages and the pages that need a session', async () => {
+    const { call, assetPaths } = setup()
+    const secure = { cookie: 'NEXT_LOCALE=es; __Secure-better-auth.session_token=abc.def%3D' }
+    const local = { cookie: 'better-auth.session_token=abc.def' }
+
+    const signedInAuth = await call('/es/sign-in?error=x', secure)
+    const signedOutMember = await call('/friends')
+    const emptyCookie = await call('/messages', { cookie: 'better-auth.session_token=' })
+
+    await call('/sign-up')
+    await call('/es/messages', local)
+
+    expect(signedInAuth.status).toBe(307)
+    expect(signedInAuth.headers.get('location')).toBe('https://beta.nexustimer.com/es/app')
+    expect(signedOutMember.headers.get('location')).toBe('https://beta.nexustimer.com/sign-in')
+    expect(emptyCookie.headers.get('location')).toBe('https://beta.nexustimer.com/sign-in')
+    expect(assetPaths()).toEqual(['/sign-up', '/es/messages'])
   })
 
   it('adds the site headers from _headers to every page it answers', async () => {
@@ -128,7 +137,7 @@ describe('edge worker', () => {
     )
     const { call } = setup()
 
-    const responses = [await call('/'), await call('/en/app'), await call('/people/64b7f0c2a1b2c3d4e5f60718')]
+    const responses = [await call('/'), await call('/friends'), await call('/people/64b7f0c2a1b2c3d4e5f60718')]
 
     expect(SECURITY_HEADERS).toEqual(siteHeaders)
     for (const res of responses) {

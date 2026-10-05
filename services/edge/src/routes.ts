@@ -1,25 +1,31 @@
-import { DEFAULT_LOCALE, DYNAMIC_PAGE_ROUTES, STATIC_ROUTE_PLACEHOLDER } from '@nexustimer/contracts'
+import { DYNAMIC_PAGE_ROUTES, STATIC_ROUTE_PLACEHOLDER } from '@nexustimer/contracts'
 import { splitLocale } from './locale'
 
 const API_PREFIX = '/api'
 const SEGMENT_FILE_PREFIX = '__next.'
 const PAYLOAD_SUFFIX = '.txt'
+const HOME_PATH = '/app'
+const SIGN_IN_PATH = '/sign-in'
+
+export const SIGNED_OUT_PAGES = ['/sign-in', '/sign-up', '/forgot-password', '/reset-password']
+export const SIGNED_IN_PAGES = ['/friends', '/messages']
 
 export function isApiPath(pathname: string) {
   return pathname === API_PREFIX || pathname.startsWith(`${API_PREFIX}/`)
 }
 
 export type PageRoute =
-  | { kind: 'negotiate' }
-  | { kind: 'redirect'; location: string }
+  | { kind: 'gated'; requiresSession: boolean; fallback: string }
   | { kind: 'dynamic'; base: string; id: string; assetPath: string; isDocument: boolean }
   | { kind: 'asset' }
 
 export function resolvePage(pathname: string): PageRoute {
-  if (pathname === '/') return { kind: 'negotiate' }
-
   const { locale, path } = splitLocale(pathname)
-  if (locale === DEFAULT_LOCALE) return { kind: 'redirect', location: path === '/' ? '/' : path }
+  const prefix = locale ? `/${locale}` : ''
+  if (SIGNED_OUT_PAGES.includes(path))
+    return { kind: 'gated', requiresSession: false, fallback: `${prefix}${HOME_PATH}` }
+  if (SIGNED_IN_PAGES.includes(path))
+    return { kind: 'gated', requiresSession: true, fallback: `${prefix}${SIGN_IN_PATH}` }
 
   for (const base of DYNAMIC_PAGE_ROUTES) {
     if (!path.startsWith(`${base}/`)) continue
@@ -32,7 +38,6 @@ export function resolvePage(pathname: string): PageRoute {
     if (id === STATIC_ROUTE_PLACEHOLDER) return { kind: 'asset' }
 
     const suffix = isPayload ? PAYLOAD_SUFFIX : rest.length ? `/${rest.join('/')}` : ''
-    const prefix = locale ? `/${locale}` : ''
     return {
       kind: 'dynamic',
       base,
