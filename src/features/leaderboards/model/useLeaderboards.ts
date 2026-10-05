@@ -1,11 +1,6 @@
 import useSWR from 'swr'
+import type { LeaderboardsResponse } from '@nexustimer/contracts'
 import { fetcher } from '@/shared/lib/fetcher'
-import type { SolveServer } from '@/entities/solve/model/types'
-
-interface LeaderboardsResponse {
-  solves: SolveServer[]
-  nextRefreshAt: string
-}
 
 export const useLeaderboards = (puzzle?: string, smart?: boolean, unique?: boolean) => {
   const params = new URLSearchParams()

@@ -2,12 +2,12 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Link } from '@/shared/config/i18n/navigation'
 import { useLocale } from 'next-intl'
-import type { SolveServer } from '@/entities/solve/model/types'
+import type { LeaderboardSolve } from '@nexustimer/contracts'
 import { CountryFlag } from '@/shared/ui/country-flag/CountryFlag'
 import { getCountryName } from '@/shared/lib/getCountryName'
 
 interface UserCellProps {
-  user: SolveServer['user']
+  user: LeaderboardSolve['user']
 }
 
 export function UserCell({ user }: UserCellProps) {

@@ -4,7 +4,7 @@ import {
   resendRequestSchema,
   resetPasswordRequestSchema,
   verifyCodeRequestSchema
-} from '@/features/authentication/model/api-schemas'
+} from '@nexustimer/contracts'
 
 describe('registerRequestSchema', () => {
   it('accepts a valid payload', () => {

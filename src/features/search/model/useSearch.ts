@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import useSWR from 'swr'
 import { fetcher } from '@/shared/lib/fetcher'
-import type { SearchIndex, SearchResponse } from './types'
+import type { SearchIndex, SearchResponse } from '@nexustimer/contracts'
 
 interface UseSearchOptions {
   limit?: number

@@ -6,7 +6,7 @@ import { Spinner } from '@/components/ui/spinner'
 import { cn } from '@/shared/lib/utils'
 import { cubeColorClass } from '@/shared/const/cube-colors'
 import { useSearch } from '../model/useSearch'
-import type { ProductHit } from '../model/types'
+import type { ProductHit } from '@nexustimer/contracts'
 
 interface ProductSearchInputProps {
   value: string

@@ -1,19 +1,6 @@
-export interface TrainerCaseStatsDoc {
-  totalSolves: number
-  totalTimeMs: number
-  bestSingleMs: number | null
-  lastSolveMs: number | null
-  lastSolveAt: number | null
-  recentTimes: number[]
-}
+import type { TrainerMethodStatsDoc } from '@nexustimer/contracts'
 
-export interface TrainerMethodStatsDoc {
-  totalSolves: number
-  totalTimeMs: number
-  bestSingleMs: number | null
-  targetSeconds?: number
-  cases: Record<string, TrainerCaseStatsDoc>
-}
+export type { TrainerCaseStatsDoc, TrainerMethodStatsDoc } from '@nexustimer/contracts'
 
 export interface TrainerStatsDocument {
   _id: string

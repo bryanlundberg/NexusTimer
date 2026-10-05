@@ -9,7 +9,7 @@ import (
 const (
 	testSecret = "test-secret"
 	testUser   = "64b7f0c2a1b2c3d4e5f60718"
-	// Produced by createTicket(testUser, testSecret, 1700000000000) in src/shared/lib/realtime/ticket.ts
+	// Produced by createTicket(testUser, testSecret, 1700000000000) in services/api/src/modules/realtime/realtime.service.ts
 	nextTicket = "eyJzdWIiOiI2NGI3ZjBjMmExYjJjM2Q0ZTVmNjA3MTgiLCJleHAiOjE3MDAwMDAwNjAwMDB9.M2cwXbr6JI22nKGLGKDUfbamHTE5kcoMafQKbQ8fzoo"
 )
 

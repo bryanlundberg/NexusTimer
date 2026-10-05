@@ -1,7 +1,8 @@
 import type { TimedMove } from 'cube-state-engine'
+import type { LeaderboardPuzzle } from '@nexustimer/contracts'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
-import { sendSolveToServer } from '@/shared/lib/actions'
+import { submitLeaderboardSolve } from '@/features/timer/api/leaderboardSolvesApi'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import genId from '@/shared/lib/genId'
 import { Solve } from '@/entities/solve/model/types'
@@ -29,7 +30,8 @@ export async function saveVirtualSolve({
   if (!selectedCube || !scramble) return
 
   const now = Date.now()
-  const puzzle = selectedCube.category === '2x2' || selectedCube.category === '2x2 Virtual' ? '2x2x2' : '3x3x3'
+  const puzzle: LeaderboardPuzzle =
+    selectedCube.category === '2x2' || selectedCube.category === '2x2 Virtual' ? '2x2x2' : '3x3x3'
   const newSolve: Solve = {
     id: genId(),
     startTime: now - timeMs,
@@ -49,8 +51,8 @@ export async function saveVirtualSolve({
       : {})
   }
 
-  sendSolveToServer({ solve: newSolve, solution, puzzle, smart }).catch((e) => {
-    console.warn('sendSolveToServer error (ignored):', e)
+  submitLeaderboardSolve({ solve: newSolve, solution, puzzle, smart }).catch((e) => {
+    console.warn('submitLeaderboardSolve error (ignored):', e)
   })
 
   const updatedCube = {

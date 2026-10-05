@@ -1,31 +1,9 @@
-import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
-import connectDB from '@/shared/config/mongodb/mongodb'
-import User from '@/entities/user/model/user'
+import { STATIC_ROUTE_PLACEHOLDER } from '@nexustimer/contracts'
 
-type Props = { params: Promise<{ userId: string }> }
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { userId } = await params
-  return {
-    alternates: {
-      canonical: `/people/${userId}`
-    }
-  }
+export function generateStaticParams() {
+  return [{ userId: STATIC_ROUTE_PLACEHOLDER }]
 }
 
-export default async function UserLayout({
-  children,
-  params
-}: {
-  children: React.ReactNode
-  params: Promise<{ userId: string }>
-}) {
-  const { userId } = await params
-  await connectDB()
-  const exists = await User.exists({ _id: userId })
-
-  if (!exists) notFound()
-
-  return <>{children}</>
+export default function UserLayout({ children }: { children: React.ReactNode }) {
+  return children
 }

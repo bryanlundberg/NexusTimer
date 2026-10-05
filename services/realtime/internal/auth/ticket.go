@@ -1,4 +1,4 @@
-// Ticket format mirrors src/shared/lib/realtime/ticket.ts; keep both in sync.
+// Ticket format mirrors services/api/src/modules/realtime/realtime.service.ts; keep both in sync.
 package auth
 
 import (

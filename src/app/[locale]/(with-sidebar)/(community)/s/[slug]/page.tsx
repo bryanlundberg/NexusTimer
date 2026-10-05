@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Link, useRouter } from '@/shared/config/i18n/navigation'
-import { useParams } from 'next/navigation'
 import { useLocale, useTranslations } from 'next-intl'
 import { CalendarIcon, CopyIcon, Layers, Link2Off, RotateCw, Zap } from 'lucide-react'
 import { toast } from 'sonner'
@@ -23,6 +22,7 @@ import dayjs from '@/shared/lib/dayjs'
 import { tryAnalyzeSolution } from '@/shared/lib/tryAnalyzeSolution'
 import { cn } from '@/shared/lib/utils'
 import { useSharedSolve } from '@/entities/shared-solve/model/useSharedSolve'
+import { useRouteSegment } from '@/shared/model/useRouteSegment'
 import { SolveBreakdown } from '@/features/manage-solves/ui/SolveBreakdown'
 import { phaseMarkers } from '@/features/replay-solve-details/model/useReplaySolveDetails'
 import { Stat } from '@/features/replay-solve-details/ui/Stat'
@@ -36,7 +36,7 @@ const RealtimeReplayPlayer = dynamic(
 )
 
 export default function SharedSolvePage() {
-  const { slug } = useParams<{ slug: string }>() ?? { slug: '' }
+  const slug = useRouteSegment('/s')
   const t = useTranslations('Index.SharedSolves')
   const tNav = useTranslations('Index.NavMain')
   const tTooltips = useTranslations('Index.tooltips')

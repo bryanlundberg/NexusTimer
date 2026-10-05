@@ -33,3 +33,9 @@ jobs:
 
       - name: Unit tests
         run: pnpm test
+
+      - name: Typecheck packages and services
+        run: pnpm --filter "./packages/**" --filter "./services/**" run typecheck
+
+      - name: Test packages and services
+        run: pnpm --filter "./packages/**" --filter "./services/**" run --if-present test

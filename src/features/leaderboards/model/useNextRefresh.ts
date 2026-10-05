@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { HOUR_MS } from '@/shared/lib/hourly-window'
+import { HOUR_MS } from '@nexustimer/contracts'
 
 const JITTER_MS = 30_000
 

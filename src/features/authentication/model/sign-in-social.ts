@@ -1,7 +1,7 @@
 'use client'
 
 import { authClient } from '@/shared/config/auth/auth-client'
-import { DEV_LOGIN_PATH } from '@/shared/config/auth/constants'
+import { DEV_LOGIN_PATH } from '@nexustimer/contracts'
 
 export type SocialProvider = 'google' | 'discord'
 
@@ -11,7 +11,7 @@ export function signInWithProvider(provider: SocialProvider) {
 }
 
 export async function signInAsDevUser() {
-  const { error } = await authClient.$fetch(DEV_LOGIN_PATH, { method: 'POST' })
+  const { error } = await authClient.$fetch(DEV_LOGIN_PATH, { method: 'POST', body: {} })
   if (error) return
   window.location.assign('/app')
 }

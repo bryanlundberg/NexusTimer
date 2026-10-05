@@ -4,9 +4,16 @@ import type { NextConfig } from 'next'
 
 const withNextIntl = createNextIntlPlugin('./src/shared/config/i18n/request.ts')
 
+const DEV_API_ORIGIN = process.env.DEV_API_ORIGIN ?? 'http://localhost:4100'
+const isDev = process.env.NODE_ENV === 'development'
+
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
+  ...(isDev
+    ? { rewrites: async () => [{ source: '/api/:path*', destination: `${DEV_API_ORIGIN}/api/:path*` }] }
+    : { output: 'export' as const }),
   reactCompiler: true,
+  transpilePackages: ['@nexustimer/algorithms', '@nexustimer/contracts', '@nexustimer/stats'],
   experimental: {
     globalNotFound: true,
     turbopackFileSystemCacheForDev: true,
@@ -14,43 +21,8 @@ const nextConfig: NextConfig = {
   },
   allowedDevOrigins: ['*.trycloudflare.com'],
   images: {
-    remotePatterns: [
-      {
-        hostname: 'res.cloudinary.com'
-      },
-      {
-        hostname: 'cdn.jsdelivr.net'
-      }
-    ]
-  },
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff'
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY'
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin'
-          },
-          {
-            key: 'Permissions-Policy',
-            value: 'camera=(), geolocation=()'
-          },
-          {
-            key: 'Strict-Transport-Security',
-            value: 'max-age=63072000; includeSubDomains; preload'
-          }
-        ]
-      }
-    ]
+    loader: 'custom',
+    loaderFile: './src/shared/lib/image-loader.ts'
   }
 }
 

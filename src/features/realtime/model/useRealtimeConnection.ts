@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useSession } from '@/shared/model/useSession'
-import type { RealtimeTicketResponse } from '@/shared/lib/realtime/events'
+import type { RealtimeTicketResponse } from '@nexustimer/contracts'
 import {
   emitRealtime,
   setRealtimeSender,

@@ -21,7 +21,9 @@ declare const self: ServiceWorkerGlobalScope
 
 const OFFLINE_URL = '/~offline'
 const PAGES_CACHE = 'pages-documents'
+const PAYLOADS_CACHE = 'pages-payloads'
 const OFFLINE_CACHE = 'pages-offline'
+const PAYLOAD_SUFFIX = '.txt'
 const CORE_PAGES = ['/app', '/solves', '/options', '/cubes', '/transfer-solves']
 
 const isPage = (url: URL) =>
@@ -39,7 +41,7 @@ const pathLocale = (pathname: string): string | undefined => {
   return locales.includes(prefix) ? prefix : undefined
 }
 
-// Same order as the proxy: locale cookie, then browser languages.
+// Same order as applySavedLocale: url prefix, locale cookie, then browser languages.
 const preferredLocale = async (pathname: string) => {
   const prefixed = pathLocale(pathname)
   if (prefixed) return prefixed
@@ -53,7 +55,7 @@ const offlinePage = async (pathname: string) => {
   return (await caches.match(url, { cacheName: OFFLINE_CACHE })) ?? serwist.matchPrecache(OFFLINE_URL)
 }
 
-// Unprefixed pages are only saved when the proxy served them in the default locale.
+// Unprefixed pages are always the default locale.
 const saveOfflinePage = async (pageUrl: string) => {
   const url = localizedPath(pathLocale(new URL(pageUrl).pathname) ?? defaultLocale, OFFLINE_URL)
   const cache = await caches.open(OFFLINE_CACHE)
@@ -71,7 +73,7 @@ const pageCache: SerwistPlugin = {
 
 const pageExpiration = new ExpirationPlugin({ maxEntries: 32 })
 
-// Unprefixed URLs such as the manifest start_url redirect to the saved locale, which only the server knows.
+// An unprefixed URL that was never saved, such as the manifest start_url, opens a saved localized copy.
 const pageFallback: SerwistPlugin = {
   handlerDidError: async ({ request }) => {
     const { pathname } = new URL(request.url)
@@ -111,6 +113,21 @@ const pageWarmups: RuntimeCaching = {
   })
 }
 
+// Static export payloads do not vary with _rsc.
+const pagePayloads: RuntimeCaching = {
+  matcher: ({ request, url, sameOrigin }) =>
+    sameOrigin && request.headers.get('RSC') === '1' && url.pathname.endsWith(PAYLOAD_SUFFIX),
+  method: 'GET',
+  handler: new NetworkFirst({
+    cacheName: PAYLOADS_CACHE,
+    networkTimeoutSeconds: 3,
+    plugins: [
+      { cacheKeyWillBeUsed: async ({ request }) => pageKey(request.url) },
+      new ExpirationPlugin({ maxEntries: 64 })
+    ]
+  })
+}
+
 // Pages are static and carry no user data, so the last known session is what keeps the app signed in offline.
 const authSessionCache: RuntimeCaching = {
   matcher: ({ sameOrigin, url: { pathname } }) => sameOrigin && pathname === '/api/auth/get-session',
@@ -129,7 +146,7 @@ const serwist = new Serwist({
   skipWaiting: true,
   clientsClaim: true,
   navigationPreload: true,
-  runtimeCaching: [authSessionCache, pageNavigations, pageWarmups, ...defaultCache],
+  runtimeCaching: [authSessionCache, pageNavigations, pageWarmups, pagePayloads, ...defaultCache],
   fallbacks: {
     entries: [
       {
@@ -152,11 +169,17 @@ const renewPages = async (event: ExtendableEvent) => {
   const pageLocales = open.length
     ? open.map(({ pathname }) => pathLocale(pathname) ?? defaultLocale)
     : [await preferredLocale('/')]
-  await Promise.all([caches.delete(OFFLINE_CACHE), ...saved.map((key) => cache.delete(key))])
+  await Promise.all([
+    caches.delete(OFFLINE_CACHE),
+    caches.delete(PAYLOADS_CACHE),
+    ...saved.map((key) => cache.delete(key))
+  ])
+  const warm = (url: string, headers?: HeadersInit) =>
+    serwist.handleRequest({ request: new Request(url, { headers, signal: AbortSignal.timeout(5000) }), event })
   await Promise.allSettled(
     [...new Set(pageLocales)]
       .flatMap((locale) => CORE_PAGES.map((page) => localizedPath(locale, page)))
-      .map((url) => serwist.handleRequest({ request: new Request(url, { signal: AbortSignal.timeout(5000) }), event }))
+      .flatMap((url) => [warm(url), warm(`${url}${PAYLOAD_SUFFIX}`, { RSC: '1' })])
   )
 }
 

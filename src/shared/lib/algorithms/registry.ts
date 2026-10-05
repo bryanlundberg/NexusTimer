@@ -1,5 +1,5 @@
 import { AlgorithmCollection, Alg } from '@/features/algorithms-list/model/types'
-import { ALG_BY_ID, COLLECTION_BY_ID, COLLECTIONS_BY_METHOD, ALL_ALGS } from '@/shared/data/algs/index'
+import { ALG_BY_ID, COLLECTION_BY_ID, COLLECTIONS_BY_METHOD, ALL_ALGS } from '@nexustimer/algorithms'
 
 export function findAlgById(id: string): { alg: Alg; collection: AlgorithmCollection } | undefined {
   return ALG_BY_ID.get(id)

@@ -1,0 +1,40 @@
+{
+  "name": "@nexustimer/api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "dev": "tsx watch --env-file-if-exists=.env src/main.ts",
+    "build": "node build.mjs",
+    "start": "node --enable-source-maps --env-file-if-exists=.env dist/main.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1053.0",
+    "@hono/node-server": "^2.1.0",
+    "@nexustimer/algorithms": "workspace:*",
+    "@nexustimer/contracts": "workspace:*",
+    "@nexustimer/stats": "workspace:*",
+    "@vercel/functions": "^3.9.0",
+    "bcryptjs": "^3.0.3",
+    "better-auth": "^1.7.7",
+    "country-flag-icons": "^1.5.18",
+    "hono": "^4.13.0",
+    "meilisearch": "^0.60.0",
+    "mongodb": "~7.2.0",
+    "mongoose": "^9.7.2",
+    "redis": "^5.12.1",
+    "zod": "^3.25.71"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.2",
+    "esbuild": "^0.28.2",
+    "tsx": "^4.20.6",
+    "typescript": "7.0.2",
+    "vitest": "^5.0.0"
+  }
+}

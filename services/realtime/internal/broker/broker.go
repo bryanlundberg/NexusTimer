@@ -14,7 +14,7 @@ import (
 	"github.com/redis/go-redis/v9"
 )
 
-// ChannelPrefix matches userChannel in src/shared/lib/realtime/events.ts.
+// ChannelPrefix matches userChannel in packages/contracts/src/realtime.ts.
 const ChannelPrefix = "rt:user:"
 
 type DeliverFunc func(userID string, payload []byte)

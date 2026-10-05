@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import RedirectIfSignedIn from '@/features/authentication/ui/RedirectIfSignedIn'
 
 export const metadata: Metadata = {
   robots: {
@@ -18,7 +19,9 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         <div className="flex-1 bg-blue-900" />
         <div className="flex-1 bg-green-500" />
       </div>
-      <div className="flex-1 flex">{children}</div>
+      <div className="flex-1 flex">
+        <RedirectIfSignedIn>{children}</RedirectIfSignedIn>
+      </div>
     </div>
   )
 }

@@ -1,32 +1,20 @@
 import type { Metadata } from 'next'
-import { getTranslations } from 'next-intl/server'
+import { STATIC_ROUTE_PLACEHOLDER } from '@nexustimer/contracts'
+import { OG_IMAGES } from '@/shared/config/seo/open-graph'
+import { multiplayerOpenGraph } from '../../multiplayer-metadata'
 
-type Props = {
-  params: Promise<{ roomId: string }>
-}
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { roomId } = await params
-  const t = await getTranslations('Multiplayer.OpenGraph')
-
-  return {
-    title: `Nexus Timer - ${t('room', { roomId })}`,
-    description: t('description', { roomId }),
-    openGraph: {
-      title: `Nexus Timer - ${t('room', { roomId })}`,
-      description: t('description', { roomId }),
-      type: 'website'
-    },
-    alternates: {
-      canonical: `/free-play/${roomId}`
-    },
-    robots: {
-      index: false,
-      follow: false
-    }
+export const metadata: Metadata = {
+  openGraph: multiplayerOpenGraph(OG_IMAGES.freePlayRoom),
+  robots: {
+    index: false,
+    follow: false
   }
 }
 
+export function generateStaticParams() {
+  return [{ roomId: STATIC_ROUTE_PLACEHOLDER }]
+}
+
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>
+  return children
 }

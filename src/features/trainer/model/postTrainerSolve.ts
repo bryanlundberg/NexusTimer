@@ -1,4 +1,4 @@
-import type { TrainerSolveInput } from '@/entities/trainer-solve/model/schema'
+import type { TrainerSolveInput } from '@nexustimer/contracts'
 import { apiPost } from '@/shared/api/client'
 
 export type PostTrainerSolveResponse = {

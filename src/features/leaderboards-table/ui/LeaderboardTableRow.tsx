@@ -12,13 +12,13 @@ import { useSolveAnalysis } from '@/features/leaderboards-table/model/useSolveAn
 import { TimeDisplay } from '@/features/leaderboards-table/ui/TimeDisplay'
 import { UserCell } from '@/features/leaderboards-table/ui/UserCell'
 import { GRID } from '@/features/leaderboards-table/ui/LeaderboardTable'
-import { SolveServer } from '@/entities/solve/model/types'
+import type { LeaderboardSolve } from '@nexustimer/contracts'
 import { useLocale, useTranslations } from 'next-intl'
 import { cn } from '@/shared/lib/utils'
 import { PODIUM_CHIP, PODIUM_COLOR } from '@/shared/const/podium'
 
 interface LeaderboardTableRowProps {
-  solve: SolveServer
+  solve: LeaderboardSolve
   index: number
 }
 

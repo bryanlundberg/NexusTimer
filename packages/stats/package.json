@@ -1,0 +1,21 @@
+{
+  "name": "@nexustimer/stats",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@nexustimer/contracts": "workspace:*",
+    "dayjs": "^1.11.21",
+    "es-toolkit": "^1.42.0"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
+  }
+}

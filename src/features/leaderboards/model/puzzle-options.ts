@@ -1,4 +1,4 @@
-import type { LeaderboardPuzzle } from '@/entities/solve/model/solve'
+import type { LeaderboardPuzzle } from '@nexustimer/contracts'
 
 export interface PuzzleOption {
   value: string

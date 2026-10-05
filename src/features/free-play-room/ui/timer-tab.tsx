@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useSession } from '@/shared/model/useSession'
-import { useParams } from 'next/navigation'
+import { useRouteSegment } from '@/shared/model/useRouteSegment'
 import { useTranslations } from 'next-intl'
 import { AnimatePresence, motion } from 'motion/react'
 import useTimer from '@/features/timer/model/useTimer'
@@ -31,8 +31,7 @@ interface TimerTabProps {
 
 export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabProps) {
   const t = useTranslations('Multiplayer')
-  const { roomId: roomIdParam } = useParams<{ roomId: string }>() ?? { roomId: null }
-  const roomId = roomIdParam?.toString() ?? null
+  const roomId = useRouteSegment('/free-play') || null
 
   const { useRoomScramble, useRoomSolves, useRoomCurrentRound } = useFreeMode()
   const scramble = useRoomScramble(roomId ?? '')

@@ -1,5 +1,7 @@
 packages:
   - '.'
+  - 'services/*'
+  - 'packages/*'
 allowBuilds:
   '@parcel/watcher': true
   '@swc/core': true
@@ -9,6 +11,7 @@ allowBuilds:
   '@firebase/util': false
   protobufjs: false
   esbuild: false
+  workerd: false
 minimumReleaseAgeExclude:
   - cube-state-engine
   - '@rednaxela101/cubing'

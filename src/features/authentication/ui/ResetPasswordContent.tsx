@@ -1,16 +1,14 @@
 'use client'
 
+import { useSearchParams } from 'next/navigation'
 import { Link } from '@/shared/config/i18n/navigation'
 import { useTranslations } from 'next-intl'
 import { useValidateResetToken } from '@/features/authentication/model/hooks/use-validate-reset-token'
 import ResetPasswordForm from '@/features/authentication/ui/ResetPasswordForm'
 
-interface Props {
-  oobCode: string | null
-}
-
-export default function ResetPasswordContent({ oobCode }: Props) {
+export default function ResetPasswordContent() {
   const t = useTranslations('Index.Auth')
+  const oobCode = useSearchParams().get('oobCode')
   const state = useValidateResetToken(oobCode)
 
   if (state.status === 'loading') {

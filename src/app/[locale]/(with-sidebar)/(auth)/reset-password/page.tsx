@@ -1,20 +1,12 @@
-import { Link, redirect } from '@/shared/config/i18n/navigation'
-import { getLocale, getTranslations } from 'next-intl/server'
-import { getSession } from '@/shared/config/auth/session'
+import { Suspense } from 'react'
+import { Link } from '@/shared/config/i18n/navigation'
+import { getTranslations } from 'next-intl/server'
 import ResetPasswordContent from '@/features/authentication/ui/ResetPasswordContent'
 import AuthBackground from '@/features/authentication/ui/AuthBackground'
 import CubeGrid from '@/features/authentication/ui/CubeGrid'
 
-interface Props {
-  searchParams: Promise<{ oobCode?: string }>
-}
-
-export default async function ResetPasswordPage({ searchParams }: Props) {
-  const session = await getSession()
-  if (session?.user) redirect({ href: '/app', locale: await getLocale() })
-
+export default async function ResetPasswordPage() {
   const t = await getTranslations('Index.Auth')
-  const { oobCode } = await searchParams
 
   return (
     <div className="relative flex-1 flex items-center justify-center px-4 py-10">
@@ -29,7 +21,9 @@ export default async function ResetPasswordPage({ searchParams }: Props) {
         </div>
 
         <div className="w-full notch-bl-tr [--nblt:16px] border bg-background/80 backdrop-blur-sm p-6 shadow-sm flex flex-col gap-5">
-          <ResetPasswordContent oobCode={oobCode ?? null} />
+          <Suspense fallback={<p className="text-sm text-muted-foreground text-center">{t('loading')}</p>}>
+            <ResetPasswordContent />
+          </Suspense>
         </div>
 
         <p className="text-sm text-muted-foreground">

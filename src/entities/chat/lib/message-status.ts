@@ -20,14 +20,3 @@ export function mergeReceipts(a: Receipts, b: Partial<Receipts>): Receipts {
   const latest = (x: string | null, y: string | null | undefined) => (!y || (x && x >= y) ? x : y)
   return { deliveredAt: latest(a.deliveredAt, b.deliveredAt), readAt: latest(a.readAt, b.readAt) }
 }
-
-export function toReceipts(
-  conversation: { deliveredAt?: Record<string, Date>; readAt?: Record<string, Date> },
-  memberId: string,
-  showRead = true
-): Receipts {
-  return {
-    deliveredAt: conversation.deliveredAt?.[memberId]?.toISOString() ?? null,
-    readAt: (showRead && conversation.readAt?.[memberId]?.toISOString()) || null
-  }
-}

@@ -1,12 +1,12 @@
 'use client'
 
 import LeaderboardTableRow from '@/features/leaderboards-table/ui/LeaderboardTableRow'
-import { SolveServer } from '@/entities/solve/model/types'
+import type { LeaderboardSolve } from '@nexustimer/contracts'
 import { useTranslations } from 'next-intl'
 import { motion } from 'motion/react'
 
 interface LeaderboardTableProps {
-  solves: SolveServer[]
+  solves: LeaderboardSolve[]
 }
 
 export const GRID =
