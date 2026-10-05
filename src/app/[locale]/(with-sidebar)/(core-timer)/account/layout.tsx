@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { getSession } from '@/shared/config/auth/session'
 import AccountNotAuth from '@/features/account/ui/account-not-auth'
+import RequireSession from '@/features/authentication/ui/RequireSession'
 
 export const metadata: Metadata = {
   robots: {
@@ -10,13 +10,12 @@ export const metadata: Metadata = {
   }
 }
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const session = await getSession()
-  if (!session?.user?.id) return <AccountNotAuth />
-
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ScrollArea className={'max-h-dvh overflow-auto'}>
-      <div className="mx-auto bg-background/90 backdrop-blur-lg pb-5">{children}</div>
-    </ScrollArea>
+    <RequireSession fallback={<AccountNotAuth />}>
+      <ScrollArea className={'max-h-dvh overflow-auto'}>
+        <div className="mx-auto bg-background/90 backdrop-blur-lg pb-5">{children}</div>
+      </ScrollArea>
+    </RequireSession>
   )
 }
