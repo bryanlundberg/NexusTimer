@@ -1,4 +1,4 @@
-import { US, ES, FR, DE, JP, CN, RU, IN, PT, KR, UA, IT, PL, ID, VN, TH, PH } from 'country-flag-icons/react/3x2'
+import { US, ES, FR, DE, JP, CN, RU, IN, PT, KR, UA, IT, PL, ID, VN, TH, PH } from 'country-flag-icons/string/3x2'
 import { locales } from '@/shared/config/i18n/locales'
 
 interface LanguageProp {
@@ -7,22 +7,24 @@ interface LanguageProp {
   flag: React.ReactNode
 }
 
+const flag = (svg: string) => <img src={`data:image/svg+xml,${encodeURIComponent(svg)}`} alt="" className="w-4 h-4" />
+
 export const languages: LanguageProp[] = [
-  { code: 'en', name: 'English', flag: <US className="w-4 h-4" /> },
-  { code: 'es', name: 'Español', flag: <ES className="w-4 h-4" /> },
-  { code: 'fr', name: 'Français', flag: <FR className="w-4 h-4" /> },
-  { code: 'de', name: 'Deutsch', flag: <DE className="w-4 h-4" /> },
-  { code: 'ja', name: '日本語', flag: <JP className="w-4 h-4" /> },
-  { code: 'zh', name: '中文', flag: <CN className="w-4 h-4" /> },
-  { code: 'ru', name: 'Русский', flag: <RU className="w-4 h-4" /> },
-  { code: 'hi', name: 'हिन्दी', flag: <IN className="w-4 h-4" /> },
-  { code: 'pt', name: 'Português', flag: <PT className="w-4 h-4" /> },
-  { code: 'ko', name: '한국어', flag: <KR className="w-4 h-4" /> },
-  { code: 'uk', name: 'Українська', flag: <UA className="w-4 h-4" /> },
-  { code: 'it', name: 'Italiano', flag: <IT className="w-4 h-4" /> },
-  { code: 'pl', name: 'Polski', flag: <PL className="w-4 h-4" /> },
-  { code: 'id', name: 'Bahasa Indonesia', flag: <ID className="w-4 h-4" /> },
-  { code: 'vi', name: 'Tiếng Việt', flag: <VN className="w-4 h-4" /> },
-  { code: 'th', name: 'ไทย', flag: <TH className="w-4 h-4" /> },
-  { code: 'fil', name: 'Filipino', flag: <PH className="w-4 h-4" /> }
+  { code: 'en', name: 'English', flag: flag(US) },
+  { code: 'es', name: 'Español', flag: flag(ES) },
+  { code: 'fr', name: 'Français', flag: flag(FR) },
+  { code: 'de', name: 'Deutsch', flag: flag(DE) },
+  { code: 'ja', name: '日本語', flag: flag(JP) },
+  { code: 'zh', name: '中文', flag: flag(CN) },
+  { code: 'ru', name: 'Русский', flag: flag(RU) },
+  { code: 'hi', name: 'हिन्दी', flag: flag(IN) },
+  { code: 'pt', name: 'Português', flag: flag(PT) },
+  { code: 'ko', name: '한국어', flag: flag(KR) },
+  { code: 'uk', name: 'Українська', flag: flag(UA) },
+  { code: 'it', name: 'Italiano', flag: flag(IT) },
+  { code: 'pl', name: 'Polski', flag: flag(PL) },
+  { code: 'id', name: 'Bahasa Indonesia', flag: flag(ID) },
+  { code: 'vi', name: 'Tiếng Việt', flag: flag(VN) },
+  { code: 'th', name: 'ไทย', flag: flag(TH) },
+  { code: 'fil', name: 'Filipino', flag: flag(PH) }
 ]
