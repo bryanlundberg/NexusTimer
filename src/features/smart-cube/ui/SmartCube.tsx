@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input'
 import type { SmartCubeConnection } from 'smartcube-web-bluetooth'
 import { SmartCubeTimer } from '@/features/smart-cube/ui/SmartCubeTimer'
 import { HowToConnectDialog } from '@/features/smart-cube/ui/HowToConnectDialog'
-import { useSmartCubeStore } from '@/features/smart-cube/model/useSmartCubeStore'
+import { loadSmartCubeModules, useSmartCubeStore } from '@/features/smart-cube/model/useSmartCubeStore'
 
 const MAC_STORAGE_PREFIX = 'nexus-smartcube-mac:'
 const MAC_PATTERN = /^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$/
@@ -58,7 +58,9 @@ export default function SmartCube({ renderConnected, onCancel, cancelLabel }: Sm
   const [macError, setMacError] = useState(false)
 
   useEffect(() => {
-    setSupportsBluetooth(typeof navigator !== 'undefined' && 'bluetooth' in navigator && !!navigator.bluetooth)
+    const supported = typeof navigator !== 'undefined' && 'bluetooth' in navigator && !!navigator.bluetooth
+    setSupportsBluetooth(supported)
+    if (supported) loadSmartCubeModules().catch(() => {})
   }, [])
 
   // Prefill the MAC dialog with any previously stored address for this device.

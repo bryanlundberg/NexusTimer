@@ -1,17 +1,18 @@
 import { create } from 'zustand'
-import {
-  connectSmartCube,
-  type ConnectSmartCubeOptions,
-  type SmartCubeConnection,
-  type SmartCubeEvent
-} from 'smartcube-web-bluetooth'
-import { useSmartSessionStore } from '@/features/smart-cube/model/useSmartSessionStore'
+import type { ConnectSmartCubeOptions, SmartCubeConnection, SmartCubeEvent } from 'smartcube-web-bluetooth'
+import type { useSmartSessionStore as SmartSessionStore } from '@/features/smart-cube/model/useSmartSessionStore'
 
 export type SmartCubeStatus = 'idle' | 'connecting' | 'connected' | 'error'
 export type SmartCubeConnectResult = 'connected' | 'cancelled' | 'error'
 
 type MacAddressProvider = NonNullable<ConnectSmartCubeOptions['macAddressProvider']>
 type Subscription = ReturnType<SmartCubeConnection['events$']['subscribe']>
+
+export const loadSmartCubeModules = () =>
+  Promise.all([import('smartcube-web-bluetooth'), import('@/features/smart-cube/model/useSmartSessionStore')])
+
+let sessionStore: typeof SmartSessionStore | null = null
+const shutdownSession = () => sessionStore?.getState().shutdown()
 
 // Non-reactive module refs. They live for the whole app session so the Bluetooth
 // connection survives client-side navigation (the store never unmounts). The
@@ -60,6 +61,8 @@ export const useSmartCubeStore = create<SmartCubeState>((set, get) => {
 
       set({ status: 'connecting' })
       try {
+        const [{ connectSmartCube }, { useSmartSessionStore }] = await loadSmartCubeModules()
+        sessionStore = useSmartSessionStore
         const connection = await connectSmartCube({ macAddressProvider })
 
         teardownSubscription()
@@ -95,7 +98,7 @@ export const useSmartCubeStore = create<SmartCubeState>((set, get) => {
         macResolver?.(null)
         macResolver = null
         teardownSubscription()
-        useSmartSessionStore.getState().shutdown()
+        shutdownSession()
         get()
           .connection?.disconnect()
           .catch(() => {})
@@ -115,7 +118,7 @@ export const useSmartCubeStore = create<SmartCubeState>((set, get) => {
       macResolver?.(null)
       macResolver = null
       teardownSubscription()
-      useSmartSessionStore.getState().shutdown()
+      shutdownSession()
       get()
         .connection?.disconnect()
         .catch(() => {})
