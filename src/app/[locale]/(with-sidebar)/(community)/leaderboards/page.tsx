@@ -33,7 +33,7 @@ export default function LeaderboardPage() {
   const isRenderingRows = deferredSolves !== solves
 
   return (
-    <ScrollArea ref={scrollRef} className={'max-h-dvh overflow-auto pointer-coarse:overscroll-y-none'}>
+    <ScrollArea ref={scrollRef} className={'max-h-dvh overflow-auto'}>
       <CoreHeader breadcrumbs={[{ label: tNavMain('leaderboards'), href: '/leaderboards' }]} />
       <PullToRefresh scrollerRef={scrollRef} onRefresh={mutate} />
 

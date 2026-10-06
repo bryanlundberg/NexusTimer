@@ -105,7 +105,7 @@ export default function SharedSolvePage() {
   }
 
   return (
-    <ScrollArea ref={scrollRef} className="max-h-dvh overflow-auto pointer-coarse:overscroll-y-none">
+    <ScrollArea ref={scrollRef} className="max-h-dvh overflow-auto">
       <CoreHeader
         breadcrumbs={[
           { label: tNav('people'), href: '/people' },

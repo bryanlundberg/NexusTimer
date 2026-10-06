@@ -30,7 +30,7 @@ export default function PeopleDetailsPage() {
     )
 
   return (
-    <ScrollArea ref={scrollRef} className={'max-h-dvh overflow-auto pointer-coarse:overscroll-y-none'}>
+    <ScrollArea ref={scrollRef} className={'max-h-dvh overflow-auto'}>
       {isLoadingUser || !user ? (
         <PeopleSkeleton />
       ) : (
