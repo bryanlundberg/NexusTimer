@@ -18,7 +18,7 @@ import {
   FreePlayNavIcon
 } from '@/components/ui/nav-icons'
 import { useCubeActions } from '@/features/manage-cubes/model/useCubeActions'
-import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
+import { ALGORITHM_SET_CATALOG } from '@nexustimer/algorithms/sets'
 import { formatBadgeCount } from '@/shared/lib/badge-count'
 import { useFriends } from '@/entities/friendship/model/useFriends'
 import { useInbox } from '@/entities/chat/model/useInbox'
@@ -86,7 +86,7 @@ export function useSidebarNav(): SidebarNavSection[] {
             title: t('AlgorithmsPage.title'),
             url: '/algorithms',
             icon: AlgorithmsNavIcon,
-            items: ALGORITHM_SETS.map((set) => ({
+            items: ALGORITHM_SET_CATALOG.map((set) => ({
               title: set.title.toUpperCase(),
               url: `/algorithms/${set.slug.toLowerCase()}`
             }))
