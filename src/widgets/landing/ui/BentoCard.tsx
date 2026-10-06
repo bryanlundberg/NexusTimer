@@ -1,6 +1,7 @@
 'use client'
 
-import { motion, useReducedMotion } from 'motion/react'
+import { useReducedMotion } from 'motion/react'
+import * as m from 'motion/react-m'
 import { cn } from '@/shared/lib/utils'
 
 export default function BentoCard({
@@ -22,7 +23,7 @@ export default function BentoCard({
 }) {
   const reduce = useReducedMotion()
   return (
-    <motion.div
+    <m.div
       initial={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-8%' }}
@@ -48,6 +49,6 @@ export default function BentoCard({
       <p className="mb-5 mt-2.5 text-sm leading-relaxed text-gray-600 text-pretty">{desc}</p>
 
       <div className="mt-auto border-t border-gray-900/5 pt-5">{visual}</div>
-    </motion.div>
+    </m.div>
   )
 }

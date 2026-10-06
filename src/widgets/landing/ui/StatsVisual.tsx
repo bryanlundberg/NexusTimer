@@ -1,6 +1,7 @@
 'use client'
 
-import { motion, useReducedMotion } from 'motion/react'
+import { useReducedMotion } from 'motion/react'
+import * as m from 'motion/react-m'
 import { TrendingDown } from 'lucide-react'
 
 export default function StatsVisual() {
@@ -95,7 +96,7 @@ export default function StatsVisual() {
         ))}
         {series.map((s) => (
           <g key={s.label}>
-            <motion.path
+            <m.path
               d={s.d}
               fill="none"
               stroke={s.color}
@@ -108,7 +109,7 @@ export default function StatsVisual() {
               viewport={{ once: true }}
               transition={{ duration: 1.6, ease: 'easeInOut', delay: s.delay }}
             />
-            <motion.circle
+            <m.circle
               cx={s.end.x}
               cy={s.end.y}
               r="3.5"
@@ -119,7 +120,7 @@ export default function StatsVisual() {
               viewport={{ once: true }}
               transition={{ delay: s.delay + 1.5, type: 'spring', stiffness: 300, damping: 15 }}
             />
-            <motion.g
+            <m.g
               initial={{ opacity: 0, y: 6 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -180,7 +181,7 @@ export default function StatsVisual() {
                   </text>
                 </>
               )}
-            </motion.g>
+            </m.g>
           </g>
         ))}
       </svg>
@@ -193,7 +194,7 @@ export default function StatsVisual() {
         </div>
         <div className="flex h-9 items-end gap-[3px]">
           {bins.map((h, i) => (
-            <motion.span
+            <m.span
               key={i}
               initial={reduce ? { opacity: 0 } : { scaleY: 0 }}
               whileInView={reduce ? { opacity: 1 } : { scaleY: 1 }}

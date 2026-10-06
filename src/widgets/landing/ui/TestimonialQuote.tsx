@@ -2,7 +2,8 @@
 
 import Image from 'next/image'
 import { Quote } from 'lucide-react'
-import { motion, useReducedMotion } from 'motion/react'
+import { useReducedMotion } from 'motion/react'
+import * as m from 'motion/react-m'
 import { cn } from '@/shared/lib/utils'
 
 export default function TestimonialQuote({
@@ -23,7 +24,7 @@ export default function TestimonialQuote({
   const reduce = useReducedMotion()
 
   return (
-    <motion.figure
+    <m.figure
       initial={reduce ? { opacity: 0 } : { opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-8%' }}
@@ -55,6 +56,6 @@ export default function TestimonialQuote({
           <span className="block truncate text-xs text-gray-600">{role}</span>
         </div>
       </figcaption>
-    </motion.figure>
+    </m.figure>
   )
 }

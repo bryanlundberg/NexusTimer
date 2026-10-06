@@ -1,7 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import { motion, useReducedMotion } from 'motion/react'
+import { useReducedMotion } from 'motion/react'
+import * as m from 'motion/react-m'
 import { Trophy } from 'lucide-react'
 import { cn } from '@/shared/lib/utils'
 
@@ -45,7 +46,7 @@ export default function CompareVisual() {
         {categories.map((row, i) => {
           const best = Math.min(...row.times)
           return (
-            <motion.div
+            <m.div
               key={row.cat}
               initial={reduce ? { opacity: 0 } : { opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -72,7 +73,7 @@ export default function CompareVisual() {
                   </span>
                 )
               })}
-            </motion.div>
+            </m.div>
           )
         })}
       </div>

@@ -1,6 +1,7 @@
 'use client'
 
-import { motion, useReducedMotion } from 'motion/react'
+import { useReducedMotion } from 'motion/react'
+import * as m from 'motion/react-m'
 import { cn } from '@/shared/lib/utils'
 
 export default function AlgorithmsVisual() {
@@ -66,7 +67,7 @@ export default function AlgorithmsVisual() {
       {/* cases */}
       <div className="mt-3 flex flex-col gap-1.5">
         {cases.map((c, ci) => (
-          <motion.div
+          <m.div
             key={c.name}
             initial={reduce ? { opacity: 0 } : { opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -76,7 +77,7 @@ export default function AlgorithmsVisual() {
           >
             <div className="grid shrink-0 grid-cols-3 gap-[3px]">
               {c.face.map((on, i) => (
-                <motion.span
+                <m.span
                   key={i}
                   initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -92,8 +93,8 @@ export default function AlgorithmsVisual() {
                 <span className="font-semibold text-gray-700">{c.name}</span> · {c.alias}
               </p>
               <div className="mt-1 flex flex-wrap gap-1">
-                {c.moves.map((m, i) => (
-                  <motion.span
+                {c.moves.map((move, i) => (
+                  <m.span
                     key={i}
                     initial={reduce ? { opacity: 0 } : { opacity: 0, y: 5 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -101,12 +102,12 @@ export default function AlgorithmsVisual() {
                     transition={{ duration: 0.3, delay: 0.3 + ci * 0.12 + i * 0.05 }}
                     className="notch-br [--nbr:4px] bg-gray-900/[0.05] px-1.5 py-0.5 font-mono text-[10px] font-semibold text-gray-800"
                   >
-                    {m}
-                  </motion.span>
+                    {move}
+                  </m.span>
                 ))}
               </div>
             </div>
-          </motion.div>
+          </m.div>
         ))}
       </div>
     </div>

@@ -5,7 +5,8 @@ import { Link } from '@/shared/config/i18n/navigation'
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { motion, useReducedMotion } from 'motion/react'
+import { useReducedMotion } from 'motion/react'
+import * as m from 'motion/react-m'
 import { STRIP } from '../model/strip'
 
 /**
@@ -28,7 +29,7 @@ export default function LandingOutro({ children }: { children: ReactNode }) {
           style={{ background: 'radial-gradient(58% 52% at 50% 42%, var(--lp-bg-deep) 0%, transparent 72%)' }}
         />
 
-        <motion.div
+        <m.div
           initial={reduce ? { opacity: 0 } : { opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-10%' }}
@@ -87,7 +88,7 @@ export default function LandingOutro({ children }: { children: ReactNode }) {
               {t('hero.social-proof')}
             </Link>
           </div>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* The dark slab. Same block shape, gutter and colour-strip as the hero,

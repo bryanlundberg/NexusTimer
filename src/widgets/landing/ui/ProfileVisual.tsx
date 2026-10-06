@@ -1,7 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import { motion, useReducedMotion } from 'motion/react'
+import { useReducedMotion } from 'motion/react'
+import * as m from 'motion/react-m'
 import { cn } from '@/shared/lib/utils'
 
 export default function ProfileVisual() {
@@ -96,7 +97,7 @@ export default function ProfileVisual() {
           ))}
         </div>
         {rows.map((r, i) => (
-          <motion.div
+          <m.div
             key={r.cat}
             initial={reduce ? { opacity: 0 } : { opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -108,7 +109,7 @@ export default function ProfileVisual() {
             <span className="text-right font-mono text-[11px] font-bold tabular-nums text-gray-900">{r.single}</span>
             <span className="text-right font-mono text-[11px] tabular-nums text-gray-500">{r.ao5}</span>
             <span className="text-right font-mono text-[11px] tabular-nums text-gray-500">{r.ao12}</span>
-          </motion.div>
+          </m.div>
         ))}
       </div>
     </div>

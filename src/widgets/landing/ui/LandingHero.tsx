@@ -4,8 +4,10 @@ import { Link } from '@/shared/config/i18n/navigation'
 import Image from 'next/image'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react'
+import { useScroll, useTransform, useReducedMotion } from 'motion/react'
+import * as m from 'motion/react-m'
 import { useRef } from 'react'
+import { preconnect } from 'react-dom'
 import { Nexi } from '@/shared/ui/nexi'
 import { CubeFace } from './CubeFace'
 import { STRIP } from '../model/strip'
@@ -14,6 +16,7 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
   const t = useTranslations('LandingPage')
   const reduce = useReducedMotion()
   const sectionRef = useRef<HTMLElement>(null)
+  preconnect('https://cdn.jsdelivr.net')
 
   // The hero drifts up and fades as the next section arrives.
   const { scrollYProgress } = useScroll({
@@ -48,7 +51,7 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
           }}
         />
 
-        <motion.div style={{ y, opacity }} className="relative mx-auto w-full max-w-3xl py-24 text-center">
+        <m.div style={{ y, opacity }} className="relative mx-auto w-full max-w-3xl py-24 text-center">
           <p
             className="lp-rise notch-br mb-6 inline-flex items-center gap-2 bg-white/[0.07] py-1.5 pl-3 pr-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-300"
             style={{ animationDelay: '0.05s', '--nbr': '8px' } as React.CSSProperties}
@@ -73,13 +76,13 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
                   letter of this line, and turned by the scroll rather than by a
                   clock. It stays inside the nowrap group so it can never be left
                   stranded on a line of its own. */}
-              <motion.span
+              <m.span
                 aria-hidden
                 className="ml-[0.18em] inline-block w-[0.66em]"
                 style={{ rotate: cubeRotate, verticalAlign: '0.14em' }}
               >
                 <CubeFace className="w-full" />
-              </motion.span>
+              </m.span>
             </span>
           </h1>
 
@@ -137,22 +140,22 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
               {t('hero.social-proof')}
             </Link>
           </div>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: reduce ? 0 : 1.2, duration: 0.6 }}
           className="absolute bottom-7 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-gray-500"
         >
           <span className="text-[10px] uppercase tracking-[0.25em]">{t('hero.scroll')}</span>
-          <motion.span
+          <m.span
             animate={reduce ? undefined : { y: [0, 5, 0] }}
             transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
           >
             <ChevronDown className="h-4 w-4" />
-          </motion.span>
-        </motion.div>
+          </m.span>
+        </m.div>
       </div>
     </section>
   )
