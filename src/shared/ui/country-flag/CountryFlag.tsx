@@ -1,5 +1,4 @@
-import * as React from 'react'
-import * as Flags from 'country-flag-icons/react/3x2'
+import { hasFlag } from 'country-flag-icons'
 import { cn } from '@/shared/lib/utils'
 
 interface CountryFlagProps {
@@ -9,9 +8,16 @@ interface CountryFlagProps {
 }
 
 export function CountryFlag({ code, className }: CountryFlagProps) {
-  const Flag = (Flags as Record<string, React.ComponentType<{ className?: string }> | undefined>)[code.toUpperCase()]
+  const country = code.toUpperCase()
+  if (!hasFlag(country)) return null
 
-  if (!Flag) return null
-
-  return <Flag className={cn('w-4 rounded-[2px]', className)} />
+  return (
+    <img
+      src={`/flags/${country}.svg`}
+      alt=""
+      loading="lazy"
+      decoding="async"
+      className={cn('w-4 aspect-[3/2] rounded-[2px]', className)}
+    />
+  )
 }

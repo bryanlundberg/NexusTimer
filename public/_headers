@@ -8,5 +8,8 @@
 /_next/static/*
   Cache-Control: public, max-age=31536000, immutable
 
+/flags/*
+  Cache-Control: public, max-age=2592000
+
 /serwist/sw.js
   Service-Worker-Allowed: /
