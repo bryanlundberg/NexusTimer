@@ -66,7 +66,7 @@ export default async function LandingFooter() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
             <div>
-              <h4 className="text-xs font-semibold text-gray-300 mb-6 uppercase tracking-[0.15em]">{t('product')}</h4>
+              <h3 className="text-xs font-semibold text-gray-300 mb-6 uppercase tracking-[0.15em]">{t('product')}</h3>
               <ul className="space-y-3">
                 {productLinks.map((link) => (
                   <li key={link.href}>
@@ -79,7 +79,7 @@ export default async function LandingFooter() {
             </div>
 
             <div>
-              <h4 className="text-xs font-semibold text-gray-300 mb-6 uppercase tracking-[0.15em]">{t('company')}</h4>
+              <h3 className="text-xs font-semibold text-gray-300 mb-6 uppercase tracking-[0.15em]">{t('company')}</h3>
               <ul className="space-y-3">
                 {companyLinks.map((link) => (
                   <li key={link.href}>
@@ -98,7 +98,7 @@ export default async function LandingFooter() {
             </div>
 
             <div>
-              <h4 className="text-xs font-semibold text-gray-300 mb-6 uppercase tracking-[0.15em]">{t('community')}</h4>
+              <h3 className="text-xs font-semibold text-gray-300 mb-6 uppercase tracking-[0.15em]">{t('community')}</h3>
               <ul className="space-y-3">
                 {communityLinks.map((link) => (
                   <li key={link.href}>
