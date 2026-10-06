@@ -4,7 +4,7 @@ import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Link, useRouter } from '@/shared/config/i18n/navigation'
 import { useLocale, useTranslations } from 'next-intl'
-import { CalendarIcon, CopyIcon, Layers, Link2Off, RotateCw, Zap } from 'lucide-react'
+import { CalendarIcon, CopyIcon, Layers, Link2Off, RotateCw, Share2, Zap } from 'lucide-react'
 import { toast } from 'sonner'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
@@ -23,10 +23,12 @@ import { tryAnalyzeSolution } from '@/shared/lib/tryAnalyzeSolution'
 import { cn } from '@/shared/lib/utils'
 import { useSharedSolve } from '@/entities/shared-solve/model/useSharedSolve'
 import { useRouteSegment } from '@/shared/model/useRouteSegment'
+import { useIsFinePointer } from '@/shared/model/use-fine-pointer'
 import { SolveBreakdown } from '@/features/manage-solves/ui/SolveBreakdown'
 import { phaseMarkers } from '@/features/replay-solve-details/model/useReplaySolveDetails'
 import { Stat } from '@/features/replay-solve-details/ui/Stat'
 import { useSharedSolveActions } from '@/features/share-solve/model/useSharedSolveActions'
+import { sharedSolveUrl } from '@/features/share-solve/api/sharedSolvesApi'
 import { PeopleTabs } from '@/widgets/people/model/types'
 import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
 
@@ -40,7 +42,9 @@ export default function SharedSolvePage() {
   const t = useTranslations('Index.SharedSolves')
   const tNav = useTranslations('Index.NavMain')
   const tTooltips = useTranslations('Index.tooltips')
+  const tSolves = useTranslations('Index.SolvesPage')
   const locale = useLocale()
+  const isFinePointer = useIsFinePointer()
   const { data: solve, isLoading } = useSharedSolve(slug)
   const { unshare, pending } = useSharedSolveActions()
   const router = useRouter()
@@ -78,6 +82,26 @@ export default function SharedSolvePage() {
     }
   }
 
+  const nativeShare = isFinePointer === false && 'share' in navigator
+
+  const handleShare = async () => {
+    const url = sharedSolveUrl(solve.slug)
+    if (nativeShare) {
+      try {
+        await navigator.share({ title: t('breadcrumb'), url })
+      } catch (error) {
+        if ((error as Error).name !== 'AbortError') toast.error(t('errors.generic'))
+      }
+      return
+    }
+    try {
+      await navigator.clipboard.writeText(url)
+      toast.success(t('link-copied'))
+    } catch {
+      toast.error(t('errors.generic'))
+    }
+  }
+
   return (
     <ScrollArea className="max-h-dvh overflow-auto">
       <CoreHeader
@@ -104,31 +128,44 @@ export default function SharedSolvePage() {
             </div>
           </Link>
 
-          {solve.isOwner && (
-            <DropdownMenu modal={false}>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-9 min-w-9 text-muted-foreground"
-                  aria-label={tTooltips('more-actions')}
-                  data-testid="shared-solve-more-button"
-                >
-                  <QaMoreIcon className="size-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem
-                  data-testid="shared-solve-unshare-button"
-                  disabled={pending}
-                  onSelect={handleUnshare}
-                  className="text-destructive focus:text-destructive"
-                >
-                  <Link2Off className="mr-2 size-3" /> {t('unshare')}
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          )}
+          <div className="flex shrink-0 items-center gap-1">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="h-9 min-w-9 text-muted-foreground"
+              aria-label={nativeShare ? tSolves('share') : t('copy-link')}
+              onClick={handleShare}
+              data-testid="shared-solve-share-button"
+            >
+              <Share2 className="size-4" />
+            </Button>
+
+            {solve.isOwner && (
+              <DropdownMenu modal={false}>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-9 min-w-9 text-muted-foreground"
+                    aria-label={tTooltips('more-actions')}
+                    data-testid="shared-solve-more-button"
+                  >
+                    <QaMoreIcon className="size-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem
+                    data-testid="shared-solve-unshare-button"
+                    disabled={pending}
+                    onSelect={handleUnshare}
+                    className="text-destructive focus:text-destructive"
+                  >
+                    <Link2Off className="mr-2 size-3" /> {t('unshare')}
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
+          </div>
         </div>
 
         <section className="flex flex-col items-center gap-3 text-center">
