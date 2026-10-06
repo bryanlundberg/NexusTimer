@@ -29,6 +29,7 @@ import { SmartCubeIndicatorCompact } from '@/features/smart-cube/ui/SmartCubeInd
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
 import { INDICATOR_SPRING } from '@/shared/lib/motion'
+import { useOverscrollStretch } from '@/shared/model/useOverscrollStretch'
 import { SECTION_ACCENT, SECTION_KEYS, useSidebarNav, type SectionKey } from '@/widgets/sidebar/model/useSidebarNav'
 
 const subscribeNoop = () => () => {}
@@ -50,6 +51,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   const scrollRef = useRef<HTMLDivElement>(null)
   const [showScrollHint, setShowScrollHint] = useState(false)
+
+  useOverscrollStretch(scrollRef, menuRef)
 
   useEffect(() => {
     const updateHash = () => setHash(window.location.hash || '')
@@ -157,7 +160,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent
         ref={scrollRef}
-        className="group-data-[collapsible=icon]:overflow-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="group-data-[collapsible=icon]:overflow-auto pointer-coarse:overscroll-y-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         <div ref={menuRef} className="relative isolate">
           {!isMobile && indicator && (
