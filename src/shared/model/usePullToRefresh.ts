@@ -1,5 +1,6 @@
 import { type RefObject, useEffect, useRef, useState } from 'react'
 import { triggerHaptic } from '@/shared/model/useHaptics'
+import { isScrolledWithin } from '@/shared/lib/isScrolledWithin'
 
 export const PULL_TRIGGER_OFFSET = 64
 const MAX_OFFSET = 96
@@ -14,14 +15,6 @@ export interface PullToRefreshState {
 }
 
 const IDLE: PullToRefreshState = { offset: 0, dragging: false, refreshing: false }
-
-const isScrolled = (from: Node, scroller: HTMLElement) => {
-  for (let el = from instanceof Element ? from : from.parentElement; el; el = el.parentElement) {
-    if (el.scrollTop > 0) return true
-    if (el === scroller) return false
-  }
-  return false
-}
 
 export function usePullToRefresh(scrollerRef: RefObject<HTMLElement | null>, onRefresh: () => unknown) {
   const [state, setState] = useState<PullToRefreshState>(IDLE)
@@ -84,7 +77,7 @@ export function usePullToRefresh(scrollerRef: RefObject<HTMLElement | null>, onR
       startX = event.touches[0].clientX
       startY = event.touches[0].clientY
       locked = false
-      anchorY = isScrolled(node, scroller) ? null : startY
+      anchorY = isScrolledWithin(node, scroller) ? null : startY
     }
 
     const onMove = (event: TouchEvent) => {
@@ -105,7 +98,7 @@ export function usePullToRefresh(scrollerRef: RefObject<HTMLElement | null>, onR
         }
         locked = true
       }
-      if (isScrolled(target, scroller)) {
+      if (isScrolledWithin(target, scroller)) {
         anchorY = null
         if (offset > 0) show(0, false)
         return

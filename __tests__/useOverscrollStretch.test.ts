@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react'
-import { useOverscrollStretch } from '@/shared/model/useOverscrollStretch'
+import { LIGHT_STRETCH, useOverscrollStretch } from '@/shared/model/useOverscrollStretch'
 
 let scroller: HTMLDivElement
 let content: HTMLDivElement
@@ -13,9 +13,9 @@ const setScrollTop = (value: number) => {
   Object.defineProperty(scroller, 'scrollTop', { value, configurable: true })
 }
 
-const touch = (type: string, clientY: number | null, target: Element = item) => {
-  const event = new Event(type, { bubbles: true })
-  Object.defineProperty(event, 'touches', { value: clientY === null ? [] : [{ clientY }] })
+const touch = (type: string, clientY: number | null, target: Element = item, clientX = 0) => {
+  const event = new Event(type, { bubbles: true, cancelable: true })
+  Object.defineProperty(event, 'touches', { value: clientY === null ? [] : [{ clientX, clientY }] })
   target.dispatchEvent(event)
 }
 
@@ -24,7 +24,8 @@ const scale = () => {
   return match ? Number(match[1]) : 1
 }
 
-const mount = () => renderHook(() => useOverscrollStretch({ current: scroller }, { current: content }))
+const mount = (options?: Parameters<typeof useOverscrollStretch>[2]) =>
+  renderHook(() => useOverscrollStretch({ current: scroller }, { current: content }, options))
 
 beforeEach(() => {
   setReducedMotion(false)
@@ -104,6 +105,59 @@ describe('useOverscrollStretch', () => {
 
     expect(content.style.transform).toBe('')
     outside.remove()
+  })
+
+  it('stretches less with a lighter maximum', () => {
+    mount({ maxStretch: LIGHT_STRETCH })
+
+    touch('touchstart', 0)
+    touch('touchmove', 100)
+    touch('touchmove', 5000)
+
+    expect(scale()).toBeGreaterThan(1)
+    expect(scale()).toBeLessThanOrEqual(1 + LIGHT_STRETCH)
+  })
+
+  it('does nothing when disabled', () => {
+    mount({ enabled: false })
+
+    touch('touchstart', 100)
+    touch('touchmove', 300)
+
+    expect(content.style.transform).toBe('')
+  })
+
+  it('lets horizontal swipes through', () => {
+    mount()
+
+    touch('touchstart', 0, item, 0)
+    touch('touchmove', 10, item, 40)
+    touch('touchmove', 300, item, 60)
+
+    expect(content.style.transform).toBe('')
+  })
+
+  it('backs off when another handler claims the drag', () => {
+    mount()
+    item.addEventListener('touchmove', (event) => event.preventDefault())
+
+    touch('touchstart', 100)
+    touch('touchmove', 300)
+
+    expect(content.style.transform).toBe('')
+  })
+
+  it('does not stretch while an inner list under the finger is scrolled', () => {
+    const inner = document.createElement('div')
+    Object.defineProperty(inner, 'scrollTop', { value: 20, configurable: true })
+    inner.append(item)
+    content.append(inner)
+    mount()
+
+    touch('touchstart', 100)
+    touch('touchmove', 300)
+
+    expect(content.style.transform).toBe('')
   })
 
   it('does nothing when the user prefers reduced motion', () => {

@@ -1,5 +1,7 @@
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { useRef, useMemo, useEffect, useLayoutEffect, useState, ReactNode, memo, useCallback } from 'react'
+import { cn } from '@/shared/lib/utils'
+import { LIGHT_STRETCH, useOverscrollStretch } from '@/shared/model/useOverscrollStretch'
 
 const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
@@ -10,6 +12,7 @@ interface VirtualizedGridProps<T> {
   gridGap?: number
   overscan?: number
   className?: string
+  overscrollStretch?: boolean
   renderItem: (item: T, index: number) => ReactNode
   getItemKey: (item: T, index: number) => string
 }
@@ -21,10 +24,12 @@ function VirtualizedGridComponent<T>({
   gridGap = 8,
   overscan = 3,
   className = '',
+  overscrollStretch = false,
   renderItem,
   getItemKey
 }: VirtualizedGridProps<T>) {
   const parentRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
   const [containerWidth, setContainerWidth] = useState(0)
 
   useIsomorphicLayoutEffect(() => {
@@ -80,12 +85,18 @@ function VirtualizedGridComponent<T>({
     overscan
   })
 
+  useOverscrollStretch(parentRef, contentRef, { maxStretch: LIGHT_STRETCH, enabled: overscrollStretch })
+
   const virtualItems = rowVirtualizer.getVirtualItems()
   const totalSize = rowVirtualizer.getTotalSize()
 
   return (
-    <div ref={parentRef} className={`h-full overflow-auto ${className}`}>
+    <div
+      ref={parentRef}
+      className={cn('h-full overflow-auto', overscrollStretch && 'pointer-coarse:overscroll-y-none', className)}
+    >
       <div
+        ref={contentRef}
         style={{
           height: `${totalSize}px`,
           width: '100%',

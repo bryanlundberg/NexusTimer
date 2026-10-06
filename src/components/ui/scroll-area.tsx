@@ -4,15 +4,26 @@ import * as React from 'react'
 import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area'
 
 import { cn } from '@/shared/lib/utils'
+import { LIGHT_STRETCH, useOverscrollStretch } from '@/shared/model/useOverscrollStretch'
 
-function ScrollArea({ className, children, ...props }: React.ComponentProps<typeof ScrollAreaPrimitive.Root>) {
+function ScrollArea({
+  className,
+  children,
+  overscrollStretch = false,
+  ...props
+}: React.ComponentProps<typeof ScrollAreaPrimitive.Root> & { overscrollStretch?: boolean }) {
+  const viewportRef = React.useRef<HTMLDivElement>(null)
+  const contentRef = React.useRef<HTMLDivElement>(null)
+  useOverscrollStretch(viewportRef, contentRef, { maxStretch: LIGHT_STRETCH, enabled: overscrollStretch })
+
   return (
     <ScrollAreaPrimitive.Root data-slot="scroll-area" className={cn('relative', className)} {...props}>
       <ScrollAreaPrimitive.Viewport
+        ref={viewportRef}
         data-slot="scroll-area-viewport"
-        className="focus-visible:ring-ring/50 size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:outline-1 [&>div]:!block [&>div]:!min-w-0"
+        className="focus-visible:ring-ring/50 size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:outline-1 pointer-coarse:overscroll-y-none [&>div]:!block [&>div]:!min-w-0"
       >
-        {children}
+        {overscrollStretch ? <div ref={contentRef}>{children}</div> : children}
       </ScrollAreaPrimitive.Viewport>
       <ScrollBar />
       <ScrollAreaPrimitive.Corner />
