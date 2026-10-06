@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
-import { getLocale } from 'next-intl/server'
+import { getLocale, getMessages } from 'next-intl/server'
 import { localizedAlternates } from '@/shared/config/i18n/alternates'
+import { landingMessages } from '@/shared/config/i18n/messageScopes'
+import { MessagesScope } from '@/shared/ui/messages-scope/MessagesScope'
 import LandingShell from '@/widgets/landing/ui/LandingShell'
 import LandingFooter from '@/widgets/landing/ui/LandingFooter'
 
@@ -12,6 +14,12 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default function Page() {
-  return <LandingShell footer={<LandingFooter />} />
+export default async function Page() {
+  const messages = await getMessages()
+
+  return (
+    <MessagesScope messages={landingMessages(messages)}>
+      <LandingShell footer={<LandingFooter />} />
+    </MessagesScope>
+  )
 }

@@ -4,6 +4,7 @@ import '../globals.css'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages, getTranslations } from 'next-intl/server'
 import { routing } from '@/shared/config/i18n/routing'
+import { shellMessages } from '@/shared/config/i18n/messageScopes'
 import JsonLd from './jsonld'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Metadata, Viewport } from 'next'
@@ -102,12 +103,6 @@ export default async function LocaleLayout({ children }: { children: React.React
     <html lang={locale} suppressHydrationWarning>
       <head>
         <LocaleRedirectScript />
-        <link rel="preconnect" href="https://res.cloudinary.com" />
-        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
-        <link rel="preconnect" href="https://firebaseio.com" />
-        <link rel="dns-prefetch" href="https://firebaseio.com" />
         <JsonLd locale={locale} title={title} description={description} url={url} />
       </head>
       <body className={`font-sans ${spaceGrotesk.variable} ${chakraPetch.variable}`}>
@@ -128,7 +123,7 @@ export default async function LocaleLayout({ children }: { children: React.React
           `}
         </Script>
         <SerwistProvider swUrl="/serwist/sw.js" disable={process.env.NODE_ENV !== 'production'}>
-          <NextIntlClientProvider messages={messages}>
+          <NextIntlClientProvider messages={shellMessages(messages)}>
             <ThemeProvider attribute="class" defaultTheme={'system'} enableSystem disableTransitionOnChange>
               <OfflineIndicator />
               {children}
