@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import RedirectIfSignedIn from '@/features/authentication/ui/RedirectIfSignedIn'
+import { StretchScroller } from '@/shared/ui/stretch-scroller/StretchScroller'
 
 export const metadata: Metadata = {
   robots: {
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-full min-h-0 flex-1 flex-col overflow-y-auto">
+    <StretchScroller className="flex h-full min-h-0 flex-1 flex-col overflow-y-auto">
       <div className="flex w-full h-1 shrink-0">
         <div className="flex-1 bg-white" />
         <div className="flex-1 bg-yellow-500" />
@@ -22,6 +23,6 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       <div className="flex-1 flex">
         <RedirectIfSignedIn>{children}</RedirectIfSignedIn>
       </div>
-    </div>
+    </StretchScroller>
   )
 }

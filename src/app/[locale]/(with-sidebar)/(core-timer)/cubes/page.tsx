@@ -10,7 +10,7 @@ import { useTranslations } from 'next-intl'
 export default function CubesPage() {
   const t = useTranslations('Index.CubesPage')
   return (
-    <ScrollArea className={'flex-1 min-h-0'}>
+    <ScrollArea className={'flex-1 min-h-0'} overscrollStretch>
       <CoreHeader breadcrumbs={[{ label: t('title'), href: '/cubes' }]} />
       <PageBody variant="data" className="px-3 pb-8 flex flex-col w-full min-h-full">
         <CubesPageHeader />

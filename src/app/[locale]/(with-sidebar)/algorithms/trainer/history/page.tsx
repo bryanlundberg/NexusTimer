@@ -19,7 +19,7 @@ export default async function TrainerHistoryPage() {
   const tTrainer = await getTranslations('Index.TrainerPage')
   const t = await getTranslations('Index.TrainerHistoryPage')
   return (
-    <ScrollArea className="max-h-dvh overflow-auto">
+    <ScrollArea className="max-h-dvh overflow-auto" overscrollStretch>
       <CoreHeader
         breadcrumbs={[{ label: tTrainer('breadcrumb'), href: '/algorithms/trainer' }, { label: t('breadcrumb') }]}
         accentStripe

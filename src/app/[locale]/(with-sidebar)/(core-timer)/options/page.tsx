@@ -61,7 +61,7 @@ export default function OptionsPage() {
   }
 
   return (
-    <ScrollArea className={'max-h-dvh overflow-auto'}>
+    <ScrollArea className={'max-h-dvh overflow-auto'} overscrollStretch>
       <CoreHeader breadcrumbs={[{ label: t('SettingsPage.options'), href: '/options' }]} />
       <PageBody variant="hero" className="w-full max-w-6xl mx-auto px-3 sm:px-6 pb-4">
         <div className="flex items-start gap-10">

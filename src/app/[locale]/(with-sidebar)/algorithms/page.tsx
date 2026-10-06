@@ -16,7 +16,7 @@ export default function AlgorithmsMethodsPage() {
   const t = useTranslations('Index.AlgorithmsPage')
 
   return (
-    <ScrollArea className="max-h-dvh overflow-auto">
+    <ScrollArea className="max-h-dvh overflow-auto" overscrollStretch>
       <CoreHeader breadcrumbs={[{ label: t('title'), href: '/algorithms' }]} />
 
       <PageBody variant="data" className="px-4 pb-4 pt-4 md:px-8 md:pb-8 lg:px-12 lg:pb-12">

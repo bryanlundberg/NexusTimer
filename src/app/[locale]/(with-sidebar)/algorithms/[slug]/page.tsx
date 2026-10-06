@@ -146,7 +146,7 @@ export default async function AlgorithmsMethodPage({ params }: Props) {
   }
 
   return (
-    <ScrollArea className="max-h-dvh overflow-auto">
+    <ScrollArea className="max-h-dvh overflow-auto" overscrollStretch>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }} />

@@ -43,6 +43,7 @@ export default function SolvesGrid({ selectedSolves, displaySolves, hasSource = 
     <>
       <div className="flex-1 min-h-0">
         <VirtualizedGrid
+          overscrollStretch
           items={displaySolves}
           cellWidth={isMobile ? 110 : 160}
           cellHeight={isMobile ? 92 : 120}

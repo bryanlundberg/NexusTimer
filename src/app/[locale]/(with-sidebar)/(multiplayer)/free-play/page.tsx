@@ -37,7 +37,7 @@ export default function FreePlayPage() {
   }
 
   return (
-    <ScrollArea className="overflow-auto h-dvh">
+    <ScrollArea className="overflow-auto h-dvh" overscrollStretch>
       <FreePlayHeader />
 
       <div className="max-w-6xl mx-auto px-4 py-8">
