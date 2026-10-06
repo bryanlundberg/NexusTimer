@@ -1,7 +1,6 @@
 import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { cubeCollection } from '@/shared/const/cube-collection'
 import { defaultTimerStatistics } from '@/shared/model/timer/defaultTimerStatistics'
-import genScramble from '@/shared/lib/timer/genScramble'
 import { create } from 'zustand'
 import { DisplayTimerStatistics } from '@/features/deep-statistics/model/types'
 import { Solve } from '@/entities/solve/model/types'
@@ -9,6 +8,13 @@ import { Cube } from '@/entities/cube/model/types'
 import { setStoredSelectedCubeId } from '@/shared/lib/selectedCubeStorage'
 import { CrossSolution } from '@/shared/types/types'
 import { Event } from '@/shared/types/types'
+import { CubeCategory } from '@/shared/const/cube-categories'
+
+type ScrambleGenerator = (category: CubeCategory) => string
+
+let generateScramble: ScrambleGenerator | null = null
+
+const scrambleFor = (cube: Cube | null) => (cube && generateScramble ? generateScramble(cube.category) : null)
 
 type UseTimerStore = {
   cubes: Cube[] | null
@@ -23,6 +29,7 @@ type UseTimerStore = {
   hint: CrossSolution | null
   timerStatistics: DisplayTimerStatistics
   timerMode: TimerMode
+  registerScrambler: (generate: ScrambleGenerator) => void
   setNewScramble: (cube: Cube | null) => void
   setCubes: (cubesDB: Cube[]) => void
   setSelectedCube: (cube: Cube | null) => void
@@ -57,8 +64,13 @@ export const useTimerStore = create<UseTimerStore>((set, get) => ({
     cubeSession: defaultTimerStatistics
   },
   timerMode: TimerMode.NORMAL,
+  registerScrambler: (generate: ScrambleGenerator) => {
+    generateScramble = generate
+    const { selectedCube, scramble } = get()
+    if (selectedCube && !scramble) set({ scramble: scrambleFor(selectedCube) })
+  },
   setNewScramble: (cube: Cube | null) => {
-    set({ scramble: cube ? genScramble(cube.category) : null })
+    set({ scramble: scrambleFor(cube) })
   },
   setCubes: (cubesDB: Cube[]) => {
     set({ cubes: cubesDB })
@@ -146,10 +158,9 @@ export const useTimerStore = create<UseTimerStore>((set, get) => ({
   },
   setTimerMode: (mode: TimerMode) => {
     if (mode === get().timerMode) return
-    const selectedCube = get().selectedCube
     set({
       timerMode: mode,
-      scramble: selectedCube ? genScramble(selectedCube.category) : null
+      scramble: scrambleFor(get().selectedCube)
     })
   },
   reset: () =>

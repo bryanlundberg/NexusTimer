@@ -15,9 +15,11 @@ import TimerSolvesRail from '@/features/timer-solves-rail/ui/TimerSolvesRail'
 import FocusModeExitButton from '@/features/focus-mode/ui/FocusModeExitButton'
 import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
 import { useScreenWakeLock } from '@/shared/model/useScreenWakeLock'
+import genScramble from '@/shared/lib/timer/genScramble'
 
 export default function TimerPage() {
   const resetTimerStore = useTimerStore((state) => state.reset)
+  const registerScrambler = useTimerStore((state) => state.registerScrambler)
   const isFocusMode = useFocusModeStore((state) => state.isFocusMode)
   const exitFocusMode = useFocusModeStore((state) => state.exit)
   const t = useTranslations('Metadata')
@@ -26,6 +28,10 @@ export default function TimerPage() {
   useEffect(() => {
     resetTimerStore()
   }, [])
+
+  useEffect(() => {
+    registerScrambler(genScramble)
+  }, [registerScrambler])
 
   useEffect(() => exitFocusMode, [exitFocusMode])
 
