@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef, useState } from 'react'
+import dynamic from 'next/dynamic'
 import { useTranslations } from 'next-intl'
 import { MoreHorizontal, Pencil, Plus, SmilePlus, Trash2 } from 'lucide-react'
 import { buttonVariants } from '@/components/ui/button'
@@ -15,10 +16,13 @@ import {
   AlertDialogTitle
 } from '@/components/ui/alert-dialog'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
-import { EmojiPicker } from '@/shared/ui/emoji-picker/EmojiPicker'
 import { QUICK_REACTIONS } from '@/entities/chat/lib/reactions'
 import type { DeleteScope } from '@/entities/chat/model/types'
 import { cn } from '@/shared/lib/utils'
+
+const EmojiPicker = dynamic(() => import('@/shared/ui/emoji-picker/EmojiPicker').then((m) => m.EmojiPicker), {
+  ssr: false
+})
 
 interface Props {
   isOwn: boolean

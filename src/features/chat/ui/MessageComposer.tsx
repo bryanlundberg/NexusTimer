@@ -1,14 +1,18 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import dynamic from 'next/dynamic'
 import { useTranslations } from 'next-intl'
 import { Check, Pencil, SendHorizontal, Smile, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
-import { EmojiPicker } from '@/shared/ui/emoji-picker/EmojiPicker'
 import { MAX_MESSAGE_LENGTH } from '@/entities/chat/model/types'
 import { cn } from '@/shared/lib/utils'
+
+const EmojiPicker = dynamic(() => import('@/shared/ui/emoji-picker/EmojiPicker').then((m) => m.EmojiPicker), {
+  ssr: false
+})
 
 export interface ComposerEdit {
   id: string
