@@ -10,24 +10,27 @@ import PeopleEmptyState from '@/widgets/people/ui/PeopleEmptyState'
 import { useTranslations } from 'next-intl'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
+import { PullToRefresh } from '@/shared/ui/pull-to-refresh/PullToRefresh'
 import PeoplePageHeader from '@/widgets/navigation-header/ui/PeoplePageHeader'
 import { useQueryState } from 'nuqs'
 
 export default function PeoplePage() {
   const t = useTranslations('Index.PeoplePage')
+  const scrollRef = React.useRef<HTMLDivElement>(null)
   const [search] = useQueryState('search')
   const [country] = useQueryState('country')
   const [page] = useQueryState('page')
 
-  const { data, isLoading } = useUsers({
+  const { data, isLoading, mutate } = useUsers({
     name: search || undefined,
     country: country || undefined,
     page: Number(page) || 1
   })
 
   return (
-    <ScrollArea className={'max-h-dvh overflow-auto'}>
+    <ScrollArea ref={scrollRef} className={'max-h-dvh overflow-auto pointer-coarse:overscroll-y-none'}>
       <CoreHeader breadcrumbs={[{ label: t('title'), href: '/people' }]} accentStripe />
+      <PullToRefresh scrollerRef={scrollRef} onRefresh={mutate} />
       <PageBody variant="hero" className="px-2 pb-8 flex flex-col w-full max-w-2xl mx-auto">
         <PeoplePageHeader total={data?.docs} showing={data?.events?.length} />
 

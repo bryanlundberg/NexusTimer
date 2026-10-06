@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Link, useRouter } from '@/shared/config/i18n/navigation'
 import { useLocale, useTranslations } from 'next-intl'
@@ -13,6 +13,7 @@ import { QaMoreIcon } from '@/components/ui/quick-action-icons'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
+import { PullToRefresh } from '@/shared/ui/pull-to-refresh/PullToRefresh'
 import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'
 import SharedSolveSkeleton from '@/shared/ui/skeletons/shared-solve-skeleton'
@@ -45,9 +46,10 @@ export default function SharedSolvePage() {
   const tSolves = useTranslations('Index.SolvesPage')
   const locale = useLocale()
   const isFinePointer = useIsFinePointer()
-  const { data: solve, isLoading } = useSharedSolve(slug)
+  const { data: solve, isLoading, mutate } = useSharedSolve(slug)
   const { unshare, pending } = useSharedSolveActions()
   const router = useRouter()
+  const scrollRef = useRef<HTMLDivElement>(null)
 
   const [visualization, setVisualization] = useState<'2D' | '3D'>('2D')
 
@@ -103,7 +105,7 @@ export default function SharedSolvePage() {
   }
 
   return (
-    <ScrollArea className="max-h-dvh overflow-auto">
+    <ScrollArea ref={scrollRef} className="max-h-dvh overflow-auto pointer-coarse:overscroll-y-none">
       <CoreHeader
         breadcrumbs={[
           { label: tNav('people'), href: '/people' },
@@ -112,6 +114,7 @@ export default function SharedSolvePage() {
         ]}
         accentStripe
       />
+      <PullToRefresh scrollerRef={scrollRef} onRefresh={mutate} />
 
       <PageBody variant="hero" className="mx-auto flex w-full max-w-2xl flex-col gap-8 px-4 pb-12">
         <div className="flex items-center justify-between gap-3">

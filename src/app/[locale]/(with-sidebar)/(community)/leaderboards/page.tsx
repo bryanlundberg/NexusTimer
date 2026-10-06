@@ -8,14 +8,16 @@ import LeaderboardPodium from '@/features/leaderboards-table/ui/LeaderboardPodiu
 import LeaderboardHero from '@/features/leaderboards/ui/LeaderboardHero'
 import { LEADERBOARD_PUZZLE_OPTIONS } from '@/features/leaderboards/model/puzzle-options'
 import { LEADERBOARD_VIEWS } from '@/features/leaderboards/model/leaderboard-view'
-import { useDeferredValue, useMemo, useState } from 'react'
+import { useDeferredValue, useMemo, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
+import { PullToRefresh } from '@/shared/ui/pull-to-refresh/PullToRefresh'
 import { parseAsStringLiteral, useQueryState } from 'nuqs'
 
 export default function LeaderboardPage() {
   const tNavMain = useTranslations('Index.NavMain')
+  const scrollRef = useRef<HTMLDivElement>(null)
   const [selected, setSelected] = useState<string>(LEADERBOARD_PUZZLE_OPTIONS[0].value)
   const [view, setView] = useQueryState('view', parseAsStringLiteral(LEADERBOARD_VIEWS).withDefault('persons'))
 
@@ -31,8 +33,9 @@ export default function LeaderboardPage() {
   const isRenderingRows = deferredSolves !== solves
 
   return (
-    <ScrollArea className={'max-h-dvh overflow-auto'}>
+    <ScrollArea ref={scrollRef} className={'max-h-dvh overflow-auto pointer-coarse:overscroll-y-none'}>
       <CoreHeader breadcrumbs={[{ label: tNavMain('leaderboards'), href: '/leaderboards' }]} />
+      <PullToRefresh scrollerRef={scrollRef} onRefresh={mutate} />
 
       <LeaderboardHero
         value={selected}
