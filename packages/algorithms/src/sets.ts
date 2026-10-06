@@ -1,49 +1,10 @@
-import { PBL_ALGS } from './data/pbl'
-import { OCLL_ALGS } from './data/ocll'
-import { OLL_ALGS } from './data/oll'
-import { PLL_ALGS } from './data/pll'
-import { COLL_ALGS } from './data/coll'
-import { BLE_ALGS } from './data/ble'
-import { VLS_ALGS } from './data/vls'
-import { CLS_ALGS } from './data/cls'
-import { WV_ALGS } from './data/vw'
-import { PARITY_444_ALGS } from './data/parity-444'
-import { PARITY_555_ALGS } from './data/parity-555'
-import { L2C_555_ALGS } from './data/l2c-555'
-import { L2E_555_ALGS } from './data/l2e-555'
-import { CLL_ALGS } from './data/cll'
-import { EG_1_ALGS } from './data/eg-1'
-import { EG_2_ALGS } from './data/eg-2'
-import { F2L_ALGS } from './data/f2l'
-import { ADVANCED_F2L_ALGS } from './data/advanced-f2l'
-import { L4E_ALGS } from './data/l4e'
-import { ZBLL_AS_ALGS } from './data/zbll-as'
-import { ZBLL_S_ALGS } from './data/zbll-s'
-import { ZBLL_H_ALGS } from './data/zbll-h'
-import { ZBLL_L_ALGS } from './data/zbll-l'
-import { ZBLL_PI_ALGS } from './data/zbll-pi'
-import { ZBLL_U_ALGS } from './data/zbll-u'
-import { ZBLL_T_ALGS } from './data/zbll-t'
-import { SV_ALGS } from './data/sv'
-import { SQ1CS_ALGS } from './data/sq1cs'
-import { SQ1CO_ALGS } from './data/sq1co'
-import { SQ1EO_ALGS } from './data/sq1eo'
-import { SQ1CP_ALGS } from './data/sq1cp'
-import { SQ1EP_ALGS } from './data/sq1ep'
-import { SQ1_PARITY_ALGS } from './data/sq1parity'
-import { MEGAMINX_EO_ALGS } from './data/megaminx-eo'
-import { MEGAMINX_EP_ALGS } from './data/megaminx-ep'
-import { MEGAMINX_CO_ALGS } from './data/megaminx-co'
-import { MEGAMINX_CP_ALGS } from './data/megaminx-cp'
-
-export const ALGORITHM_SET_DEFINITIONS = [
+export const ALGORITHM_SET_CATALOG = [
   {
     slug: 'pbl',
     goal: 'full',
     title: 'PBL',
     subtitle: 'Permute Both Layers',
     puzzle: '2x2x2',
-    algorithms: PBL_ALGS,
     difficulty: 1,
     virtualization: {
       experimentalStickering: 'full',
@@ -58,7 +19,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     goal: 'oll',
     title: 'OCLL',
     subtitle: 'Orient Corners of the Last Layer',
-    algorithms: OCLL_ALGS,
     difficulty: 1,
     virtualization: {
       experimentalStickering: 'OLL',
@@ -73,7 +33,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'CLL',
     subtitle: 'Corners of the Last Layer',
     puzzle: '2x2x2',
-    algorithms: CLL_ALGS,
     difficulty: 2,
     virtualization: {
       experimentalStickering: 'full',
@@ -87,7 +46,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'EG-1',
     subtitle: 'EG-1 Algorithms',
     puzzle: '2x2x2',
-    algorithms: EG_1_ALGS,
     difficulty: 2,
     virtualization: {
       experimentalStickering: 'full',
@@ -102,7 +60,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'EG-2',
     subtitle: 'EG-2 Algorithms',
     puzzle: '2x2x2',
-    algorithms: EG_2_ALGS,
     difficulty: 2,
     virtualization: {
       experimentalStickering: 'full',
@@ -117,7 +74,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'F2L',
     subtitle: 'First Two Layers',
     puzzle: '3x3x3',
-    algorithms: F2L_ALGS,
     difficulty: 2,
     virtualization: {
       experimentalStickering: 'F2L',
@@ -131,7 +87,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'Advanced F2L',
     subtitle: 'Advanced First Two Layers',
     puzzle: '3x3x3',
-    algorithms: ADVANCED_F2L_ALGS,
     difficulty: 3,
     virtualization: {
       experimentalStickering: 'F2L',
@@ -145,7 +100,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'OLL',
     subtitle: 'Orientation of the Last Layer',
     puzzle: '3x3x3',
-    algorithms: OLL_ALGS,
     difficulty: 1,
     virtualization: {
       experimentalStickering: 'OLL'
@@ -158,7 +112,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'PLL',
     subtitle: 'Permutation of the Last Layer',
     puzzle: '3x3x3',
-    algorithms: PLL_ALGS,
     difficulty: 1,
     virtualization: {
       experimentalStickering: 'PLL'
@@ -171,7 +124,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'COLL',
     subtitle: 'Corners of the Last Layer',
     puzzle: '3x3x3',
-    algorithms: COLL_ALGS,
     difficulty: 2,
     virtualization: {
       experimentalStickering: 'PLL'
@@ -184,7 +136,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'BLE',
     subtitle: "Brooks' Last Edge",
     puzzle: '3x3x3',
-    algorithms: BLE_ALGS,
     difficulty: 2,
     file: 'ble.ts',
     virtualization: {
@@ -197,7 +148,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'VLS',
     subtitle: 'Valk Last Slot',
     puzzle: '3x3x3',
-    algorithms: VLS_ALGS,
     difficulty: 2,
     virtualization: {
       experimentalStickering: 'OLL',
@@ -212,7 +162,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'CLS',
     subtitle: 'Corners and Last Slot',
     puzzle: '3x3x3',
-    algorithms: CLS_ALGS,
     difficulty: 2,
     virtualization: {
       experimentalStickering: 'OLL',
@@ -227,7 +176,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'SV',
     subtitle: 'Summer Variation',
     puzzle: '3x3x3',
-    algorithms: SV_ALGS,
     difficulty: 2,
     virtualization: {
       experimentalStickering: 'OLL',
@@ -242,7 +190,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'WV',
     subtitle: 'Winter Variation',
     puzzle: '3x3x3',
-    algorithms: WV_ALGS,
     difficulty: 2,
     virtualization: {
       experimentalStickering: 'full',
@@ -257,7 +204,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'ZBLL-S',
     subtitle: 'ZBLL Sune',
     puzzle: '3x3x3',
-    algorithms: ZBLL_S_ALGS,
     difficulty: 3,
     virtualization: {
       experimentalStickering: 'PLL'
@@ -270,7 +216,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'ZBLL-AS',
     subtitle: 'ZBLL Antisune',
     puzzle: '3x3x3',
-    algorithms: ZBLL_AS_ALGS,
     difficulty: 3,
     virtualization: {
       experimentalStickering: 'PLL'
@@ -283,7 +228,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'ZBLL-U',
     subtitle: 'ZBLL U',
     puzzle: '3x3x3',
-    algorithms: ZBLL_U_ALGS,
     difficulty: 3,
     virtualization: {
       experimentalStickering: 'PLL'
@@ -296,7 +240,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'ZBLL-T',
     subtitle: 'ZBLL T',
     puzzle: '3x3x3',
-    algorithms: ZBLL_T_ALGS,
     difficulty: 3,
     virtualization: {
       experimentalStickering: 'PLL'
@@ -309,7 +252,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'ZBLL-PI',
     subtitle: 'ZBLL PI',
     puzzle: '3x3x3',
-    algorithms: ZBLL_PI_ALGS,
     difficulty: 3,
     virtualization: {
       experimentalStickering: 'PLL'
@@ -322,7 +264,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'ZBLL-L',
     subtitle: 'ZBLL L',
     puzzle: '3x3x3',
-    algorithms: ZBLL_L_ALGS,
     difficulty: 3,
     virtualization: {
       experimentalStickering: 'PLL'
@@ -335,7 +276,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'ZBLL-H',
     subtitle: 'ZBLL H',
     puzzle: '3x3x3',
-    algorithms: ZBLL_H_ALGS,
     difficulty: 3,
     virtualization: {
       experimentalStickering: 'PLL'
@@ -348,7 +288,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'Parity-4x4',
     subtitle: '4x4 Parity Algorithms',
     puzzle: '4x4x4',
-    algorithms: PARITY_444_ALGS,
     difficulty: 1,
     virtualization: {
       experimentalStickering: 'full',
@@ -364,7 +303,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'Parity-5x5',
     subtitle: '5x5 Parity Algorithms',
     puzzle: '5x5x5',
-    algorithms: PARITY_555_ALGS,
     difficulty: 1,
     virtualization: {
       experimentalStickering: 'full',
@@ -380,7 +318,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'L2C',
     subtitle: 'Last Two Centers (5x5)',
     puzzle: '5x5x5',
-    algorithms: L2C_555_ALGS,
     difficulty: 2,
     virtualization: {
       experimentalStickering: 'centers-only',
@@ -396,7 +333,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'L2E',
     subtitle: 'Last Two Edges (5x5)',
     puzzle: '5x5x5',
-    algorithms: L2E_555_ALGS,
     difficulty: 2,
     virtualization: {
       experimentalStickering: 'L2E',
@@ -412,7 +348,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'L4E',
     subtitle: 'Last 4 Edges (Pyraminx)',
     puzzle: 'pyraminx',
-    algorithms: L4E_ALGS,
     difficulty: 2,
     virtualization: {
       experimentalStickering: 'full',
@@ -429,7 +364,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'CS',
     subtitle: 'Cube Shape',
     puzzle: 'square1',
-    algorithms: SQ1CS_ALGS,
     difficulty: 2,
     virtualization: {
       experimentalStickering: 'full',
@@ -445,7 +379,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'CO',
     subtitle: 'Corner Orientation',
     puzzle: 'square1',
-    algorithms: SQ1CO_ALGS,
     difficulty: 2,
     virtualization: {
       experimentalStickering: 'full',
@@ -461,7 +394,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'EO',
     subtitle: 'Edge Orientation',
     puzzle: 'square1',
-    algorithms: SQ1EO_ALGS,
     difficulty: 2,
     virtualization: {
       experimentalStickering: 'full',
@@ -477,7 +409,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'CP',
     subtitle: 'Corner Permutation',
     puzzle: 'square1',
-    algorithms: SQ1CP_ALGS,
     difficulty: 3,
     virtualization: {
       experimentalStickering: 'full',
@@ -493,7 +424,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'EP',
     subtitle: 'Edge Permutation',
     puzzle: 'square1',
-    algorithms: SQ1EP_ALGS,
     difficulty: 3,
     virtualization: {
       experimentalStickering: 'full',
@@ -509,7 +439,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'Parity-SQ1',
     subtitle: 'Parity',
     puzzle: 'square1',
-    algorithms: SQ1_PARITY_ALGS,
     difficulty: 3,
     virtualization: {
       experimentalStickering: 'full',
@@ -525,7 +454,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'EO',
     subtitle: 'Edge Orientation',
     puzzle: 'megaminx',
-    algorithms: MEGAMINX_EO_ALGS,
     difficulty: 1,
     virtualization: {
       experimentalStickering: 'OLL-EO',
@@ -541,7 +469,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'EP',
     subtitle: 'Edge Permutation',
     puzzle: 'megaminx',
-    algorithms: MEGAMINX_EP_ALGS,
     difficulty: 2,
     virtualization: {
       experimentalStickering: 'PLL-EO',
@@ -557,7 +484,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'CO',
     subtitle: 'Corner Orientation',
     puzzle: 'megaminx',
-    algorithms: MEGAMINX_CO_ALGS,
     difficulty: 2,
     virtualization: {
       experimentalStickering: 'OLL-CO',
@@ -573,7 +499,6 @@ export const ALGORITHM_SET_DEFINITIONS = [
     title: 'CP',
     subtitle: 'Corner Permutation',
     puzzle: 'megaminx',
-    algorithms: MEGAMINX_CP_ALGS,
     difficulty: 3,
     virtualization: {
       experimentalStickering: 'PLL-CP', // TODO: Update cubing.js package with case PLL-CP, now shows default
@@ -585,4 +510,4 @@ export const ALGORITHM_SET_DEFINITIONS = [
   }
 ] as const
 
-export type AlgorithmSetDefinition = (typeof ALGORITHM_SET_DEFINITIONS)[number]
+export type AlgorithmSetSlug = (typeof ALGORITHM_SET_CATALOG)[number]['slug']

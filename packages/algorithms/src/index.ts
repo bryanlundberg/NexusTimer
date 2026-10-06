@@ -1,6 +1,7 @@
-import { ALGORITHM_SET_DEFINITIONS } from './sets'
+import { ALGORITHM_SET_DEFINITIONS } from './definitions'
 
 export * from './data/index'
+export * from './definitions'
 export * from './sets'
 export type * from './types'
 
