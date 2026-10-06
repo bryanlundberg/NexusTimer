@@ -1,5 +1,4 @@
 import { useMemo } from 'react'
-import Image from 'next/image'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 import { ArrowRightIcon } from 'lucide-react'
@@ -8,30 +7,10 @@ import { Cube } from '@/entities/cube/model/types'
 import { useQueryState } from 'nuqs'
 import { STATES } from '@/shared/const/states'
 import { useTransferSolvesStore } from '@/widgets/transfer-solves/model/useTransferSolvesStore'
+import CubeOption from '@/widgets/transfer-solves/ui/CubeOption'
+import FieldLabel from '@/widgets/transfer-solves/ui/FieldLabel'
 import { getCategoryOrder } from '@/shared/const/cube-categories'
-import { cubeCollection } from '@/shared/const/cube-collection'
-import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import { cn } from '@/shared/lib/utils'
-
-function CubeOption({ cube }: { cube: Cube }) {
-  const src = cubeCollection.find((c) => c.name === cube.category)?.src
-  return (
-    <div className="flex w-full items-center gap-2">
-      {src && <Image src={src} alt={`${cube.category} icon`} width={20} height={20} unoptimized className="shrink-0" />}
-      <span className="truncate">{cube.name}</span>
-      <CategoryBadge category={cube.category} className="ms-auto" />
-    </div>
-  )
-}
-
-function FieldLabel({ color, children }: { color: string; children: React.ReactNode }) {
-  return (
-    <span className="flex items-center gap-2 px-0.5 font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-      <span className="size-2 shrink-0 rounded-[2px]" style={{ backgroundColor: color }} aria-hidden />
-      <span className="truncate">{children}</span>
-    </span>
-  )
-}
 
 interface TransferSolvesHeaderProps {
   cubes: Cube[]
