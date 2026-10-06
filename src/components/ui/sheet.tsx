@@ -39,13 +39,15 @@ function SheetContent({
   className,
   children,
   side = 'right',
+  overlayRef,
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Content> & {
   side?: 'top' | 'right' | 'bottom' | 'left'
+  overlayRef?: React.Ref<HTMLDivElement>
 }) {
   return (
     <SheetPortal>
-      <SheetOverlay />
+      <SheetOverlay ref={overlayRef} />
       <SheetPrimitive.Content
         onOpenAutoFocus={(e) => e.preventDefault()}
         data-slot="sheet-content"

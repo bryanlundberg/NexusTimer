@@ -7,6 +7,7 @@ import { cva, VariantProps } from 'class-variance-authority'
 import { PanelRightCloseIcon, PanelRightOpenIcon } from 'lucide-react'
 
 import { useIsMobile } from '@/shared/model/use-mobile'
+import { useSwipeToClose } from '@/shared/model/useSwipeToClose'
 import { cn } from '@/shared/lib/utils'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -148,6 +149,10 @@ function Sidebar({
   collapsible?: 'offcanvas' | 'icon' | 'none'
 }) {
   const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
+  const sheetRef = React.useRef<HTMLDivElement>(null)
+  const overlayRef = React.useRef<HTMLDivElement>(null)
+
+  useSwipeToClose(sheetRef, overlayRef, () => setOpenMobile(false), { side, enabled: isMobile && openMobile })
 
   if (collapsible === 'none') {
     return (
@@ -165,6 +170,8 @@ function Sidebar({
     return (
       <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
         <SheetContent
+          ref={sheetRef}
+          overlayRef={overlayRef}
           data-sidebar="sidebar"
           data-slot="sidebar"
           data-mobile="true"
