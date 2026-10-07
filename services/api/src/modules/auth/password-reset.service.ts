@@ -1,4 +1,4 @@
-import { randomBytes } from 'node:crypto'
+import { createHash, randomBytes } from 'node:crypto'
 import type { ResetPasswordRequest } from '@nexustimer/contracts'
 import type { Mailer } from '../../infra/mail'
 import type { AccountStore } from './auth.accounts'
@@ -25,6 +25,8 @@ type PasswordResetDeps = {
 
 const invalidToken = () => new AuthError('invalid-or-expired-token', 'Invalid or expired reset link')
 
+const hashToken = (oobCode: string) => createHash('sha256').update(oobCode).digest('hex')
+
 export function createPasswordResetService({
   accounts,
   repository,
@@ -34,7 +36,7 @@ export function createPasswordResetService({
   now = Date.now
 }: PasswordResetDeps): PasswordResetService {
   async function findValidToken(oobCode: string) {
-    const token = await repository.findResetToken(oobCode)
+    const token = await repository.findResetToken(hashToken(oobCode))
     if (!token) throw invalidToken()
 
     if (token.expiresAt.getTime() < now()) {
@@ -57,9 +59,10 @@ export function createPasswordResetService({
       if (!existing?.hasCredential) return
 
       const oobCode = randomBytes(32).toString('hex')
+      await repository.deleteUserResetTokens(existing.user.id)
       await repository.createResetToken({
         userId: existing.user.id,
-        oobCode,
+        tokenHash: hashToken(oobCode),
         expiresAt: new Date(now() + PASSWORD_RESET_TTL_MS)
       })
 
@@ -73,11 +76,11 @@ export function createPasswordResetService({
     },
 
     async reset({ oobCode, password }) {
-      const { token, user } = await findValidToken(oobCode)
+      const { user } = await findValidToken(oobCode)
 
       await accounts.updatePassword(user.id, await hashPassword(password))
       await accounts.revokeSessions(user.id)
-      await repository.deleteResetToken(token.id)
+      await repository.deleteUserResetTokens(user.id)
 
       return { email: user.email }
     }
