@@ -18,6 +18,7 @@ export default function ForgotPasswordForm() {
 
   const { request, isLoading } = useForgotPassword()
   const [sentTo, setSentTo] = useState<string | null>(null)
+  const [formError, setFormError] = useState('')
 
   const {
     register,
@@ -29,8 +30,13 @@ export default function ForgotPasswordForm() {
   })
 
   const onSubmit = async (values: ForgotPasswordValues) => {
+    setFormError('')
     const result = await request(values)
-    if (result.ok) setSentTo(values.email)
+    if (!result.ok) {
+      setFormError(result.message)
+      return
+    }
+    setSentTo(values.email)
   }
 
   if (sentTo) {
@@ -55,6 +61,8 @@ export default function ForgotPasswordForm() {
           {...register('email')}
         />
       </AuthFieldGroup>
+
+      {formError && <p className="text-sm text-destructive">{formError}</p>}
 
       <Button type="submit" disabled={isLoading} className="w-full h-10 font-semibold tracking-wide">
         {isLoading ? t('loading') : t('forgot-password-submit')}
