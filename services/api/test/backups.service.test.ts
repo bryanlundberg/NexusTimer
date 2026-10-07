@@ -7,6 +7,9 @@ import { fakeStorage } from './storage-fakes'
 
 const USER = '64b7f0c2a1b2c3d4e5f60718'
 const T0 = Date.UTC(2026, 9, 4, 10, 0, 0)
+const SUFFIX = 'a1b2c3'
+
+const name = (time: string) => `${time}-${SUFFIX}.json`
 
 const solve = (id: string, time: number, startTime: number) => ({
   id,
@@ -32,7 +35,7 @@ const backupJson = JSON.stringify([
   }
 ])
 
-function setup({ userExists = true } = {}) {
+function setup({ userExists = true, fixedSuffix = true } = {}) {
   const { storage, objects } = fakeStorage()
   const state: { backup: CurrentBackup | null; stats: StatsSnapshot[] } = { backup: null, stats: [] }
   const tasks: Promise<unknown>[] = []
@@ -54,7 +57,8 @@ function setup({ userExists = true } = {}) {
     background: (_scope, task) => {
       tasks.push(task().catch((error: unknown) => failures.push(error)))
     },
-    now: () => (clock += 1000)
+    now: () => (clock += 1000),
+    ...(fixedSuffix && { randomSuffix: () => SUFFIX })
   })
 
   const settle = () => Promise.all(tasks.splice(0))
@@ -91,7 +95,7 @@ describe('backups service', () => {
     const result = await service.upload(USER, gzipSync(backupJson), 'America/Mexico_City')
     await settle()
 
-    const key = `backups/${USER}/20261004T100001Z.json`
+    const key = `backups/${USER}/${name('20261004T100001Z')}`
     expect(result).toEqual({ backup: { url: `https://files.test/${key}`, updatedAt: T0 + 1000 } })
     expect(state.backup).toEqual({ url: `https://files.test/${key}`, updatedAt: T0 + 1000 })
     expect(new TextDecoder().decode(objects.get(key)!.body)).toBe(backupJson)
@@ -104,6 +108,20 @@ describe('backups service', () => {
       backupUpdatedAt: T0 + 1000,
       summary: { timezone: 'America/Mexico_City', totalSolves: 2, categories: [{ category: '3x3', count: 2 }] }
     })
+  })
+
+  it('names each backup after its time plus a random suffix nobody can guess', async () => {
+    const { service, objects } = setup({ fixedSuffix: false })
+
+    await service.upload(USER, bytes('[]'), null)
+    await service.upload(USER, bytes('[]'), null)
+
+    const files = [...objects.keys()].map((key) => key.slice(`backups/${USER}/`.length))
+    expect(files).toEqual([
+      expect.stringMatching(/^20261004T100001Z-[0-9a-f]{32}\.json$/),
+      expect.stringMatching(/^20261004T100002Z-[0-9a-f]{32}\.json$/)
+    ])
+    expect(new Set(files.map((file) => file.slice('20261004T100001Z-'.length))).size).toBe(2)
   })
 
   it('keeps the upload when the stats task fails on an unexpected shape', async () => {
@@ -138,7 +156,7 @@ describe('backups service', () => {
 
     const kept = [...objects.keys()].sort()
     expect(kept).toHaveLength(10)
-    expect(kept[0]).toBe(`backups/${USER}/20261004T100003Z.json`)
+    expect(kept[0]).toBe(`backups/${USER}/${name('20261004T100003Z')}`)
   })
 
   it('reports a missing user after the upload and rejects bad payloads before it', async () => {
@@ -158,17 +176,17 @@ describe('backups service', () => {
 
     expect(await service.list(USER)).toEqual([
       {
-        id: '20261004T100002Z.json',
+        id: name('20261004T100002Z'),
         createdAt: T0 + 2000,
         size: 3,
-        url: `https://files.test/backups/${USER}/20261004T100002Z.json`,
+        url: `https://files.test/backups/${USER}/${name('20261004T100002Z')}`,
         isCurrent: true
       },
       {
-        id: '20261004T100001Z.json',
+        id: name('20261004T100001Z'),
         createdAt: T0 + 1000,
         size: 2,
-        url: `https://files.test/backups/${USER}/20261004T100001Z.json`,
+        url: `https://files.test/backups/${USER}/${name('20261004T100001Z')}`,
         isCurrent: false
       }
     ])
@@ -181,7 +199,7 @@ describe('backups service', () => {
     await settle()
     const current = state.backup
 
-    expect(await service.remove(USER, '20261004T100001Z.json')).toEqual({ deleted: '20261004T100001Z.json', current })
+    expect(await service.remove(USER, name('20261004T100001Z'))).toEqual({ deleted: name('20261004T100001Z'), current })
     expect(state.backup).toEqual(current)
   })
 
@@ -191,15 +209,15 @@ describe('backups service', () => {
     await service.upload(USER, bytes('[]'), null)
     await settle()
 
-    const repointed = await service.remove(USER, '20261004T100002Z.json')
-    const cleared = await service.remove(USER, '20261004T100001Z.json')
+    const repointed = await service.remove(USER, name('20261004T100002Z'))
+    const cleared = await service.remove(USER, name('20261004T100001Z'))
 
     expect(repointed?.current).toEqual({
-      url: `https://files.test/backups/${USER}/20261004T100001Z.json`,
+      url: `https://files.test/backups/${USER}/${name('20261004T100001Z')}`,
       updatedAt: T0 + 1000
     })
-    expect(cleared).toEqual({ deleted: '20261004T100001Z.json', current: null })
+    expect(cleared).toEqual({ deleted: name('20261004T100001Z'), current: null })
     expect(state.backup).toBeNull()
-    expect(await service.remove(USER, '20261004T100001Z.json')).toBeNull()
+    expect(await service.remove(USER, name('20261004T100001Z'))).toBeNull()
   })
 })

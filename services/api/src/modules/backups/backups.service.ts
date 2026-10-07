@@ -1,3 +1,4 @@
+import { randomBytes } from 'node:crypto'
 import { gunzipSync } from 'node:zlib'
 import {
   type BackupDeleteResponse,
@@ -31,6 +32,7 @@ type BackupsDeps = {
   users: Pick<UsersService, 'backup' | 'setBackup' | 'saveStats'>
   background: RunInBackground
   now?: () => number
+  randomSuffix?: () => string
 }
 
 const isGzip = (bytes: Uint8Array): boolean => bytes.length >= 2 && bytes[0] === 0x1f && bytes[1] === 0x8b
@@ -63,7 +65,8 @@ export function createBackupsService({
   storage,
   users,
   background,
-  now = () => Date.now()
+  now = () => Date.now(),
+  randomSuffix = () => randomBytes(16).toString('hex')
 }: BackupsDeps): BackupsService {
   async function prune(userId: string) {
     const stale = (await listUserBackups(storage, userId)).slice(MAX_BACKUPS_RETAINED)
@@ -76,7 +79,7 @@ export function createBackupsService({
       if ('error' in decoded) return decoded
 
       const updatedAt = now()
-      const key = newBackupKey(userId, updatedAt)
+      const key = newBackupKey(userId, updatedAt, randomSuffix())
       await storage.upload(key, decoded.json, { contentType: 'application/json', cacheControl: BACKUP_CACHE_CONTROL })
 
       const backup = { url: storage.url(key), updatedAt }

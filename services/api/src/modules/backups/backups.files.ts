@@ -14,8 +14,8 @@ const compactIso = (timestamp: number) =>
     .replace(/[-:]/g, '')
     .replace(/\.\d{3}Z$/, 'Z')
 
-export const newBackupKey = (userId: string, timestamp: number): string =>
-  backupKey(userId, `${compactIso(timestamp)}.json`)
+export const newBackupKey = (userId: string, timestamp: number, suffix: string): string =>
+  backupKey(userId, `${compactIso(timestamp)}-${suffix}.json`)
 
 const parseCompactIso = (name: string): number | null => {
   const match = name.match(/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})Z/)
