@@ -73,14 +73,14 @@ export function NavUser({
           type="button"
           aria-label={user.name}
           data-testid="header-user-menu"
-          className="relative flex h-9 min-w-9 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full px-1 outline-none transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring data-[state=open]:bg-accent pointer-coarse:h-10 pointer-coarse:min-w-10 @3xl/header:justify-start @3xl/header:rounded-lg @3xl/header:pr-2.5 @3xl/header:pl-1"
+          className="btn-notch relative flex h-9 min-w-9 shrink-0 cursor-pointer items-center justify-center gap-2 bg-secondary px-1 outline-none transition-colors hover:bg-secondary/80 focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-ring data-[state=open]:bg-secondary/80 pointer-coarse:h-10 pointer-coarse:min-w-10 @3xl/header:justify-start @3xl/header:pr-2.5 @3xl/header:pl-1"
         >
           <span className="relative shrink-0">
             <Avatar className="size-7 rounded-full">
               <AvatarImage className="object-cover" src={user.avatar} alt="" />
               <AvatarFallback className="rounded-full text-[10px] font-semibold">{initials}</AvatarFallback>
             </Avatar>
-            <span className="pointer-events-none absolute -right-0.5 -bottom-0.5 rounded-full bg-background p-px">
+            <span className="pointer-events-none absolute -right-0.5 -bottom-0.5 rounded-full bg-secondary p-px">
               <PresenceDot state={statusDisplay} className="size-2" />
             </span>
           </span>
