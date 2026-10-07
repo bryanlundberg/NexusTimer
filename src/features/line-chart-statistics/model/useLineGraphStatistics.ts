@@ -12,6 +12,7 @@ import {
   DeepPartial,
   LineSeries
 } from 'lightweight-charts'
+import { escapeHtml } from '@/shared/lib/escapeHtml'
 import formatTime from '@/shared/lib/formatTime'
 import getWorstTime from '@/shared/lib/statistics/getWorstTime'
 import getMean from '@/shared/lib/statistics/getMean'
@@ -384,7 +385,7 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
         tooltip.innerHTML = `
           <div class="flex flex-col gap-1 min-w-36">
             <div class="flex items-center justify-between gap-3">
-              <span class="text-[11px] text-muted-foreground truncate">${cubeName}</span>
+              <span class="text-[11px] text-muted-foreground truncate">${escapeHtml(cubeName)}</span>
               <span class="text-[10px] text-muted-foreground/70 tabular-nums">#${param.time}</span>
             </div>
             <div class="flex items-center gap-2">
