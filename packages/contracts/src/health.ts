@@ -4,7 +4,7 @@ export const healthCheckResultSchema = z.enum(['ok', 'fail'])
 
 export const healthReportSchema = z.object({
   status: z.enum(['ok', 'degraded']),
-  checks: z.record(healthCheckResultSchema).optional()
+  checks: z.record(z.string(), healthCheckResultSchema).optional()
 })
 
 export type HealthCheckResult = z.infer<typeof healthCheckResultSchema>

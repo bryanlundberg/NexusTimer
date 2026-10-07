@@ -19,10 +19,7 @@ const messages: AuthSchemaMessages = {
   passwordsDontMatch: 'PASSWORDS_DONT_MATCH'
 }
 
-function firstIssue(result: {
-  success: false
-  error: { issues: Array<{ message: string; path: (string | number)[] }> }
-}) {
+function firstIssue(result: { success: false; error: { issues: Array<{ message: string; path: PropertyKey[] }> } }) {
   return result.error.issues[0]
 }
 
