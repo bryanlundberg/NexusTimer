@@ -8,7 +8,7 @@ import { cubesDB } from '@/entities/cube/api/indexdb'
 import { onDisconnect, onValue, ref, update } from '@firebase/database'
 import { rtdb } from '@/shared/config/firebase'
 import { useNexusConnectStore } from '@/features/nexus-connect/model/useNexusConnectStore'
-import { UAParser } from 'ua-parser-js'
+import { parseUserAgent } from '@/features/nexus-connect/lib/parseUserAgent'
 
 export default function NXConnect() {
   const selectedCube = useTimerStore((state) => state.selectedCube)
@@ -134,10 +134,7 @@ export default function NXConnect() {
   useEffect(() => {
     if (!nexusConnectId) return
 
-    const parser = new UAParser(navigator.userAgent)
-
-    const os = parser.getOS()
-    const browser = parser.getBrowser()
+    const { os, browser } = parseUserAgent(navigator.userAgent)
 
     const connectionRef = ref(rtdb, 'connect-sessions/' + nexusConnectId)
 
