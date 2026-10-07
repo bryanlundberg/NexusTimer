@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest'
 import type { AvatarsService } from '../src/modules/avatars/avatars.service'
-import { createAvatarsService } from '../src/modules/avatars/avatars.service'
+import { createAvatarsService, detectImageType } from '../src/modules/avatars/avatars.service'
 import type { BackupsService } from '../src/modules/backups/backups.service'
 import { buildTestApp, testSessions } from './helpers'
 import { fakeStorage } from './storage-fakes'
@@ -91,6 +91,31 @@ describe('backups routes', () => {
   })
 })
 
+const PNG = new Uint8Array([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a, 0, 0, 0, 13])
+const JPEG = new Uint8Array([0xff, 0xd8, 0xff, 0xe0, 0, 16])
+const GIF = new TextEncoder().encode('GIF89a\x01\x00')
+const WEBP = new TextEncoder().encode('RIFF\x24\x00\x00\x00WEBPVP8 ')
+const SVG = new TextEncoder().encode('<svg xmlns="http://www.w3.org/2000/svg"><script>alert(1)</script></svg>')
+
+describe('detectImageType', () => {
+  it('reads png, jpeg, gif and webp from their first bytes', () => {
+    expect([PNG, JPEG, GIF, WEBP].map(detectImageType)).toEqual(['image/png', 'image/jpeg', 'image/gif', 'image/webp'])
+  })
+
+  it('rejects svg, html, other riff files and truncated headers', () => {
+    const wave = new TextEncoder().encode('RIFF\x24\x00\x00\x00WAVEfmt ')
+    const html = new TextEncoder().encode('<html><script>alert(1)</script></html>')
+
+    expect([SVG, html, wave, PNG.slice(0, 4), new Uint8Array()].map(detectImageType)).toEqual([
+      null,
+      null,
+      null,
+      null,
+      null
+    ])
+  })
+})
+
 describe('avatar route', () => {
   const form = (file: Blob | string | null, name = 'avatar.webp') => {
     const data = new FormData()
@@ -115,7 +140,18 @@ describe('avatar route', () => {
       { message: 'File too large' }
     ])
     expect(await send(new Blob(['hi'], { type: 'text/plain' }))).toEqual([400, { message: 'Invalid file type' }])
+    expect(await send(new Blob([SVG], { type: 'image/svg+xml' }))).toEqual([400, { message: 'Invalid file type' }])
+    expect(await send(new Blob(['<html>'], { type: 'image/png' }))).toEqual([400, { message: 'Invalid file type' }])
     expect(upload).not.toHaveBeenCalled()
+  })
+
+  it('stores the type read from the bytes, not the one the client declares', async () => {
+    const upload = vi.fn<AvatarsService['upload']>(async () => ({ url: 'u', public_id: 'p' }))
+    const app = appWith({ avatars: { upload } })
+
+    await app.request('/api/v1/users/avatar', post(form(new Blob([PNG], { type: 'image/svg+xml' }), 'a.svg')))
+
+    expect(upload).toHaveBeenCalledWith(USER, { bytes: PNG, type: 'image/png' })
   })
 
   it('stores the image under the user and answers a cache busting url', async () => {
@@ -125,12 +161,12 @@ describe('avatar route', () => {
 
     const res = await appWith({ avatars }).request(
       '/api/v1/users/avatar',
-      post(form(new Blob([new Uint8Array([1, 2, 3])], { type: 'image/webp' })))
+      post(form(new Blob([WEBP], { type: 'image/webp' })))
     )
 
     expect(await res.json()).toEqual({ url: `https://files.test/avatars/${USER}?v=1234`, public_id: `avatars/${USER}` })
     expect(objects.get(`avatars/${USER}`)).toMatchObject({
-      body: new Uint8Array([1, 2, 3]),
+      body: WEBP,
       options: { contentType: 'image/webp' }
     })
     expect(setImage).toHaveBeenCalledWith(USER, `https://files.test/avatars/${USER}?v=1234`)
@@ -151,7 +187,7 @@ describe('avatar route', () => {
 
     const res = await appWith({ avatars }).request(
       '/api/v1/users/avatar',
-      post(form(new Blob([new Uint8Array([1])], { type: 'image/png' })))
+      post(form(new Blob([PNG], { type: 'image/png' })))
     )
     expect(res.status).toBe(404)
   })
