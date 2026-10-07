@@ -1,7 +1,6 @@
 import {
   forgotPasswordRequestSchema,
   registerRequestSchema,
-  resendRequestSchema,
   resetPasswordRequestSchema,
   verifyCodeRequestSchema
 } from '@nexustimer/contracts'
@@ -85,16 +84,6 @@ describe('verifyCodeRequestSchema', () => {
 
   it('rejects when the email is invalid', () => {
     expect(verifyCodeRequestSchema.safeParse({ email: 'nope', code: '123456' }).success).toBe(false)
-  })
-})
-
-describe('resendRequestSchema', () => {
-  it('accepts a valid email', () => {
-    expect(resendRequestSchema.safeParse({ email: 'a@b.co' }).success).toBe(true)
-  })
-
-  it('rejects an invalid email', () => {
-    expect(resendRequestSchema.safeParse({ email: 'not-an-email' }).success).toBe(false)
   })
 })
 

@@ -2,15 +2,12 @@ import { escapeHtml } from '../../lib/escape-html'
 
 export type EmailContent = { subject: string; html: string }
 
-export function verificationEmail({ name, code, isResend }: { name: string; code: string; isResend?: boolean }) {
-  const safeName = escapeHtml(name)
-  const heading = isResend ? `Hey ${safeName}, here's your new code!` : `Hey ${safeName}, welcome to NexusTimer!`
-
+export function verificationEmail({ name, code }: { name: string; code: string }) {
   return {
-    subject: isResend ? 'Your new NexusTimer code' : 'Verify your NexusTimer account',
+    subject: 'Verify your NexusTimer account',
     html: `
     <div style="font-family:sans-serif;max-width:480px;margin:0 auto">
-      <h2>${heading}</h2>
+      <h2>Hey ${escapeHtml(name)}, welcome to NexusTimer!</h2>
       <p>Enter this code to verify your account. It expires in 10 minutes.</p>
       <div style="font-size:2rem;font-weight:bold;letter-spacing:0.3em;padding:16px 0">${escapeHtml(code)}</div>
       <p style="color:#888;font-size:0.85rem">If you didn't request this, you can ignore this email.</p>

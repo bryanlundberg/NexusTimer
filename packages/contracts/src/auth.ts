@@ -32,10 +32,6 @@ export const verifyCodeRequestSchema = z.object({
   code: codeAtom()
 })
 
-export const resendRequestSchema = z.object({
-  email: emailAtom()
-})
-
 export const forgotPasswordRequestSchema = z.object({
   email: emailAtom()
 })
@@ -47,7 +43,6 @@ export const resetPasswordRequestSchema = z.object({
 
 export type RegisterRequest = z.infer<typeof registerRequestSchema>
 export type VerifyCodeRequest = z.infer<typeof verifyCodeRequestSchema>
-export type ResendRequest = z.infer<typeof resendRequestSchema>
 export type ForgotPasswordRequest = z.infer<typeof forgotPasswordRequestSchema>
 export type ResetPasswordRequest = z.infer<typeof resetPasswordRequestSchema>
 

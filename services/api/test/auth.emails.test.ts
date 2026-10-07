@@ -14,9 +14,4 @@ describe('auth emails', () => {
       expect(html).toContain('&lt;a href=&quot;https://evil.test&quot;&gt;')
     }
   })
-
-  it('switches the verification copy for resends', () => {
-    expect(verificationEmail({ name: 'Ana', code: '123456' }).subject).toBe('Verify your NexusTimer account')
-    expect(verificationEmail({ name: 'Ana', code: '123456', isResend: true }).subject).toBe('Your new NexusTimer code')
-  })
 })
