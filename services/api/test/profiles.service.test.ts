@@ -65,6 +65,23 @@ describe('profiles service', () => {
     else expect(profile).toMatchObject({ statsHidden: true, backup: { updatedAt: 1700 } })
   })
 
+  it.each([
+    ['everyone', null],
+    ['everyone', STRANGER],
+    ['friends', FRIEND],
+    ['nobody', STRANGER]
+  ] as const)('hides the backup url with %s visibility from %s', async (visibility, viewer) => {
+    const { service } = setup(visibility)
+
+    expect((await service.profile(OWNER, viewer))?.backup).toEqual({ updatedAt: 1700 })
+  })
+
+  it('gives the backup url to its owner only', async () => {
+    const { service } = setup('nobody')
+
+    expect((await service.profile(OWNER, OWNER))?.backup).toEqual({ url: 'https://cdn/backup.json', updatedAt: 1700 })
+  })
+
   it('answers null for unknown users', async () => {
     expect(await setup().service.profile(STRANGER, null)).toBeNull()
   })
@@ -81,6 +98,11 @@ describe('profiles service', () => {
 
     expect(users.list).toHaveBeenCalledWith({ name: 'ana', country: 'MX', page: 3, excludeIds: ['blocked-id'] }, 25)
     expect(result.events.map((user) => 'statsHidden' in user)).toEqual([false, true, false])
+    expect(result.events.map((user) => user.backup)).toEqual([
+      { updatedAt: 1700 },
+      { updatedAt: 1700 },
+      { url: 'https://cdn/backup.json', updatedAt: 1700 }
+    ])
     expect(result).toMatchObject({ page: 3, pages: 3, docs: 51 })
   })
 

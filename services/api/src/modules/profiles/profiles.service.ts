@@ -34,13 +34,18 @@ type ProfilesDeps = {
   sharedSolves: Pick<SharedSolvesService, 'userPage'>
 }
 
-export function withoutStats<T extends PublicProfile>(profile: T): T & { statsHidden: true } {
+function withoutBackupUrl<T extends PublicProfile>(profile: T): T {
   const { backup, ...rest } = profile
-  return {
-    ...rest,
-    ...(backup ? { backup: { updatedAt: backup.updatedAt } } : {}),
-    statsHidden: true
-  } as T & { statsHidden: true }
+  return { ...rest, ...(backup ? { backup: { updatedAt: backup.updatedAt } } : {}) } as T
+}
+
+export function withoutStats<T extends PublicProfile>(profile: T): T & { statsHidden: true } {
+  return { ...withoutBackupUrl(profile), statsHidden: true }
+}
+
+function forViewer<T extends PublicProfile>(profile: T, viewerId: string | null, statsVisible: boolean) {
+  if (profile._id === viewerId) return profile
+  return statsVisible ? withoutBackupUrl(profile) : withoutStats(profile)
 }
 
 export function createProfilesService({ users, social, trainer, sharedSolves }: ProfilesDeps): ProfilesService {
@@ -61,9 +66,11 @@ export function createProfilesService({ users, social, trainer, sharedSolves }: 
       const { users: listed, total } = await users.list({ name, country, page, excludeIds: hiddenIds }, USERS_PAGE_SIZE)
       const friends = new Set(friendIds)
       const events = listed.map(({ profile, privacy }) =>
-        canViewStats(resolvePrivacy(privacy).statsVisibility, profile._id, viewerId, friends.has(profile._id))
-          ? profile
-          : withoutStats(profile)
+        forViewer(
+          profile,
+          viewerId,
+          canViewStats(resolvePrivacy(privacy).statsVisibility, profile._id, viewerId, friends.has(profile._id))
+        )
       )
 
       return { events, page, pages: Math.ceil(total / USERS_PAGE_SIZE), docs: total }
@@ -72,7 +79,7 @@ export function createProfilesService({ users, social, trainer, sharedSolves }: 
     async profile(id, viewerId) {
       const profile = await users.profile(id)
       if (!profile) return null
-      return (await statsVisibleTo(id, viewerId)) ? profile : withoutStats(profile)
+      return forViewer(profile, viewerId, await statsVisibleTo(id, viewerId))
     },
 
     update: (id, input) => users.updateProfile(id, input),
