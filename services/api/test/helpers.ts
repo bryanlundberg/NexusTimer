@@ -55,11 +55,14 @@ export function testSessions(userId: string | null = null, setCookies: string[] 
 
 const unused = () => Promise.reject(new Error('not used in this test'))
 
+const allowed = () => Promise.resolve(true)
+
 export function testAuthServices(overrides: Partial<AuthServices> = {}): AuthServices {
   return {
     handler: () => Promise.resolve(new Response(null, { status: 204 })),
-    registration: { register: unused, resendCode: unused, confirm: unused },
+    registration: { register: unused, confirm: unused },
     passwordReset: { request: unused, validate: unused, reset: unused },
+    limits: { sendCode: allowed, sendReset: allowed, checkCode: allowed },
     ...overrides
   }
 }

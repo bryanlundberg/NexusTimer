@@ -13,6 +13,7 @@ import { createSuggestionLimits } from './modules/algorithms/suggestions.limits'
 import { createSuggestionsService } from './modules/algorithms/suggestions.service'
 import { createAuthProvider, createSessionReader } from './modules/auth/auth'
 import { createAccountStore } from './modules/auth/auth.accounts'
+import { createAuthLimits } from './modules/auth/auth.limits'
 import {
   authRepository,
   legacyCredentialsUserData,
@@ -133,7 +134,8 @@ export function buildApp() {
         mail: mail.resend,
         hashPassword,
         appUrl
-      })
+      }),
+      limits: createAuthLimits(redis)
     },
     leaderboards: createLeaderboardsService({
       solves: solvesRepository,

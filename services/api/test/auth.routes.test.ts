@@ -96,19 +96,6 @@ describe('POST /api/v1/auth/verify-code', () => {
   })
 })
 
-describe('POST /api/v1/auth/resend-verification', () => {
-  it('sends a new code', async () => {
-    const resendCode = vi.fn(() => Promise.resolve())
-    const app = appWith({ registration: { ...testAuthServices().registration, resendCode } })
-
-    const res = await app.request('/api/v1/auth/resend-verification', json({ email: 'A@b.co' }))
-
-    expect(res.status).toBe(200)
-    expect(await res.json()).toEqual({ ok: true })
-    expect(resendCode).toHaveBeenCalledWith('a@b.co')
-  })
-})
-
 describe('POST /api/v1/auth/forgot-password', () => {
   it('always answers ok so accounts cannot be enumerated', async () => {
     vi.spyOn(console, 'error').mockImplementation(() => {})
@@ -119,6 +106,82 @@ describe('POST /api/v1/auth/forgot-password', () => {
 
     expect(res.status).toBe(200)
     expect(await res.json()).toEqual({ ok: true })
+  })
+})
+
+describe('auth rate limits', () => {
+  const denied = () => Promise.resolve(false)
+  const fromIp = (body: unknown) => {
+    const init = json(body)
+    return { ...init, headers: { ...init.headers, 'x-forwarded-for': '203.0.113.7' } }
+  }
+
+  it('checks the email and client ip before sending a code', async () => {
+    const sendCode = vi.fn(() => Promise.resolve(true))
+    const register = vi.fn(() => Promise.resolve())
+    const app = appWith({
+      registration: { ...testAuthServices().registration, register },
+      limits: { ...testAuthServices().limits, sendCode }
+    })
+
+    await app.request('/api/v1/auth/register', fromIp(validRegistration))
+
+    expect(sendCode).toHaveBeenCalledWith('mateo@example.com', '203.0.113.7')
+    expect(register).toHaveBeenCalled()
+  })
+
+  it('answers 429 without emailing once the code limit is reached', async () => {
+    const register = vi.fn(() => Promise.resolve())
+    const app = appWith({
+      registration: { ...testAuthServices().registration, register },
+      limits: { ...testAuthServices().limits, sendCode: denied }
+    })
+
+    const res = await app.request('/api/v1/auth/register', json(validRegistration))
+
+    expect(res.status).toBe(429)
+    expect(await res.json()).toEqual({ message: 'Too many requests, please try again later' })
+    expect(register).not.toHaveBeenCalled()
+  })
+
+  it('answers 429 without checking the code once the ip limit is reached', async () => {
+    const checkCode = vi.fn(denied)
+    const confirm = vi.fn(() => Promise.resolve())
+    const app = appWith({
+      registration: { ...testAuthServices().registration, confirm },
+      limits: { ...testAuthServices().limits, checkCode }
+    })
+
+    const res = await app.request('/api/v1/auth/verify-code', fromIp({ email: 'a@b.co', code: '123456' }))
+
+    expect(res.status).toBe(429)
+    expect(checkCode).toHaveBeenCalledWith('203.0.113.7')
+    expect(confirm).not.toHaveBeenCalled()
+  })
+
+  it('answers 429 without emailing once the reset limit is reached', async () => {
+    const sendReset = vi.fn(denied)
+    const request = vi.fn(() => Promise.resolve())
+    const app = appWith({
+      passwordReset: { ...testAuthServices().passwordReset, request },
+      limits: { ...testAuthServices().limits, sendReset }
+    })
+
+    const res = await app.request('/api/v1/auth/forgot-password', fromIp({ email: 'A@b.co' }))
+
+    expect(res.status).toBe(429)
+    expect(sendReset).toHaveBeenCalledWith('a@b.co', '203.0.113.7')
+    expect(request).not.toHaveBeenCalled()
+  })
+
+  it('maps too many wrong codes to 429', async () => {
+    const confirm = () => Promise.reject(new AuthError('too-many-attempts', 'Too many attempts, request a new code'))
+    const app = appWith({ registration: { ...testAuthServices().registration, confirm } })
+
+    const res = await app.request('/api/v1/auth/verify-code', json({ email: 'a@b.co', code: '123456' }))
+
+    expect(res.status).toBe(429)
+    expect(await res.json()).toEqual({ message: 'Too many attempts, request a new code' })
   })
 })
 

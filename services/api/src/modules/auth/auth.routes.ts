@@ -4,16 +4,16 @@ import {
   forgotPasswordRequestSchema,
   type PasswordResetEmailResponse,
   registerRequestSchema,
-  resendRequestSchema,
   resetPasswordRequestSchema,
   verifyCodeRequestSchema
 } from '@nexustimer/contracts'
 import { Hono } from 'hono'
-import { badRequest, created, ok, serverError } from '../../http/responses'
+import { badRequest, created, ok, serverError, tooManyRequests } from '../../http/responses'
 import type { AppEnv } from '../../http/types'
 import { parseJson } from '../../http/validation'
 import { logger, serializeError } from '../../lib/logger'
 import { AuthError } from './auth.errors'
+import type { AuthLimits } from './auth.limits'
 import type { PasswordResetService } from './password-reset.service'
 import type { RegistrationService } from './registration.service'
 
@@ -21,7 +21,10 @@ export type AuthServices = {
   handler: (request: Request) => Promise<Response>
   registration: RegistrationService
   passwordReset: PasswordResetService
+  limits: AuthLimits
 }
+
+const SLOW_DOWN = 'Too many requests, please try again later'
 
 function failure(scope: string, error: unknown) {
   if (error instanceof AuthError) {
@@ -30,12 +33,13 @@ function failure(scope: string, error: unknown) {
   return serverError(scope, error)
 }
 
-export function authRoutes({ handler, registration, passwordReset }: AuthServices) {
+export function authRoutes({ handler, registration, passwordReset, limits }: AuthServices) {
   return new Hono<AppEnv>()
     .on(['GET', 'POST'], '/auth/*', (c) => handler(c.req.raw))
     .post('/v1/auth/register', async (c) => {
       const body = await parseJson(c.req.raw, registerRequestSchema)
       if (body instanceof Response) return body
+      if (!(await limits.sendCode(body.email, c.var.clientIp))) return tooManyRequests(SLOW_DOWN)
 
       try {
         await registration.register(body)
@@ -47,6 +51,7 @@ export function authRoutes({ handler, registration, passwordReset }: AuthService
     .post('/v1/auth/verify-code', async (c) => {
       const body = await parseJson(c.req.raw, verifyCodeRequestSchema)
       if (body instanceof Response) return body
+      if (!(await limits.checkCode(c.var.clientIp))) return tooManyRequests(SLOW_DOWN)
 
       try {
         await registration.confirm(body)
@@ -55,20 +60,10 @@ export function authRoutes({ handler, registration, passwordReset }: AuthService
         return failure('verify-code', error)
       }
     })
-    .post('/v1/auth/resend-verification', async (c) => {
-      const body = await parseJson(c.req.raw, resendRequestSchema)
-      if (body instanceof Response) return body
-
-      try {
-        await registration.resendCode(body.email)
-        return ok<OkResponse>({ ok: true })
-      } catch (error) {
-        return serverError('resend-verification', error)
-      }
-    })
     .post('/v1/auth/forgot-password', async (c) => {
       const body = await parseJson(c.req.raw, forgotPasswordRequestSchema)
       if (body instanceof Response) return body
+      if (!(await limits.sendReset(body.email, c.var.clientIp))) return tooManyRequests(SLOW_DOWN)
 
       try {
         await passwordReset.request(body.email)
