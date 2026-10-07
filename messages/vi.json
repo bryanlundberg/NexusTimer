@@ -131,6 +131,8 @@
       "verify-description": "Chúng tôi đã gửi mã 6 chữ số đến {email}",
       "verification-code": "Mã xác minh",
       "verify-button": "Xác minh",
+      "resend-code": "Gửi lại mã",
+      "code-resent": "Chúng tôi đã gửi cho bạn mã mới",
       "back": "Quay lại",
       "forgot-password": "Quên mật khẩu?",
       "forgot-password-title": "Đặt lại mật khẩu",

@@ -147,6 +147,8 @@
       },
       "verification-code": "验证码",
       "verify-button": "验证",
+      "resend-code": "重新发送验证码",
+      "code-resent": "我们已向你发送新的验证码",
       "verify-description": "我们已向 {email} 发送 6 位验证码",
       "verify-title": "请查看你的邮箱",
       "welcome-back": "欢迎回来，魔友",

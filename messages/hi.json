@@ -147,6 +147,8 @@
       },
       "verification-code": "सत्यापन कोड",
       "verify-button": "सत्यापित करें",
+      "resend-code": "कोड फिर से भेजें",
+      "code-resent": "हमने आपको नया कोड भेजा है",
       "verify-description": "हमने {email} पर 6 अंकों का कोड भेजा है",
       "verify-title": "अपना ईमेल देखें",
       "welcome-back": "वापसी पर स्वागत है, क्यूबर",

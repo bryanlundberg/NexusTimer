@@ -114,6 +114,8 @@
       },
       "verification-code": "Código de verificación",
       "verify-button": "Verificar",
+      "resend-code": "Reenviar código",
+      "code-resent": "Te enviamos un código nuevo",
       "verify-description": "Enviamos un código de 6 dígitos a {email}",
       "verify-title": "Revisa tu correo",
       "welcome-back": "Bienvenido de vuelta, cubero",

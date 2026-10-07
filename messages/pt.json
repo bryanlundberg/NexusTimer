@@ -147,6 +147,8 @@
       },
       "verification-code": "Código de verificação",
       "verify-button": "Verificar",
+      "resend-code": "Reenviar código",
+      "code-resent": "Enviamos um novo código para você",
       "verify-description": "Enviamos um código de 6 dígitos para {email}",
       "verify-title": "Verifique seu e-mail",
       "welcome-back": "Bem-vindo de volta, cuber",

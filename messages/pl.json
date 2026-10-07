@@ -131,6 +131,8 @@
       "verify-description": "Wysłaliśmy 6-cyfrowy kod na {email}",
       "verification-code": "Kod weryfikacyjny",
       "verify-button": "Zweryfikuj",
+      "resend-code": "Wyślij kod ponownie",
+      "code-resent": "Wysłaliśmy Ci nowy kod",
       "back": "Wstecz",
       "forgot-password": "Nie pamiętasz hasła?",
       "forgot-password-title": "Zresetuj hasło",

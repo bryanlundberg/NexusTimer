@@ -131,6 +131,8 @@
       "verify-description": "เราส่งรหัส 6 หลักไปยัง {email}",
       "verification-code": "รหัสยืนยัน",
       "verify-button": "ยืนยัน",
+      "resend-code": "ส่งรหัสอีกครั้ง",
+      "code-resent": "เราส่งรหัสใหม่ให้คุณแล้ว",
       "back": "ย้อนกลับ",
       "forgot-password": "ลืมรหัสผ่านใช่ไหม?",
       "forgot-password-title": "รีเซ็ตรหัสผ่านของคุณ",

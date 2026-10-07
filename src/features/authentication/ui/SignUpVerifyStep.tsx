@@ -4,11 +4,12 @@ import { useTranslations } from 'next-intl'
 import VerifyCodeForm from '@/features/authentication/ui/VerifyCodeForm'
 
 interface Props {
+  name: string
   email: string
   password: string
 }
 
-export default function SignUpVerifyStep({ email, password }: Props) {
+export default function SignUpVerifyStep({ name, email, password }: Props) {
   const t = useTranslations('Index.Auth')
 
   return (
@@ -17,7 +18,7 @@ export default function SignUpVerifyStep({ email, password }: Props) {
         <h2 className="text-xl font-bold tracking-tight">{t('verify-title')}</h2>
         <p className="text-sm text-muted-foreground">{t('verify-description', { email })}</p>
       </div>
-      <VerifyCodeForm email={email} password={password} />
+      <VerifyCodeForm name={name} email={email} password={password} />
     </div>
   )
 }

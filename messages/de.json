@@ -147,6 +147,8 @@
       },
       "verification-code": "Bestätigungscode",
       "verify-button": "Bestätigen",
+      "resend-code": "Code erneut senden",
+      "code-resent": "Wir haben dir einen neuen Code gesendet",
       "verify-description": "Wir haben einen 6-stelligen Code an {email} gesendet",
       "verify-title": "Prüfe deine E-Mails",
       "welcome-back": "Willkommen zurück, Cuber",

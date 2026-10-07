@@ -9,7 +9,7 @@ export default function SignUpForm() {
   const [pending, setPending] = useState<SignUpValues | null>(null)
 
   if (pending) {
-    return <SignUpVerifyStep email={pending.email} password={pending.password} />
+    return <SignUpVerifyStep name={pending.name} email={pending.email} password={pending.password} />
   }
   return <SignUpDetailsStep onSuccess={setPending} />
 }

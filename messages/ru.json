@@ -147,6 +147,8 @@
       },
       "verification-code": "Код подтверждения",
       "verify-button": "Подтвердить",
+      "resend-code": "Отправить код ещё раз",
+      "code-resent": "Мы отправили вам новый код",
       "verify-description": "Мы отправили 6-значный код на {email}",
       "verify-title": "Проверьте почту",
       "welcome-back": "С возвращением, кубер",

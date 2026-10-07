@@ -147,6 +147,8 @@
       },
       "verification-code": "인증 코드",
       "verify-button": "확인",
+      "resend-code": "코드 다시 보내기",
+      "code-resent": "새 코드를 보냈습니다",
       "verify-description": "{email}로 6자리 코드를 보냈습니다",
       "verify-title": "이메일을 확인하세요",
       "welcome-back": "다시 오신 것을 환영합니다, 큐버님",

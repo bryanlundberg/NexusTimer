@@ -131,6 +131,8 @@
       "verify-description": "Kami mengirim kode 6 digit ke {email}",
       "verification-code": "Kode verifikasi",
       "verify-button": "Verifikasi",
+      "resend-code": "Kirim ulang kode",
+      "code-resent": "Kami mengirim kode baru untukmu",
       "back": "Kembali",
       "forgot-password": "Lupa kata sandi?",
       "forgot-password-title": "Atur ulang kata sandimu",

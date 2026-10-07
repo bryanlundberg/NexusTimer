@@ -131,6 +131,8 @@
       "verify-description": "Ми надіслали 6-значний код на {email}",
       "verification-code": "Код підтвердження",
       "verify-button": "Підтвердити",
+      "resend-code": "Надіслати код ще раз",
+      "code-resent": "Ми надіслали вам новий код",
       "back": "Назад",
       "forgot-password": "Забули пароль?",
       "forgot-password-title": "Скиньте свій пароль",

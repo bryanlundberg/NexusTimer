@@ -147,6 +147,8 @@
       },
       "verification-code": "Code de vérification",
       "verify-button": "Vérifier",
+      "resend-code": "Renvoyer le code",
+      "code-resent": "Nous t’avons envoyé un nouveau code",
       "verify-description": "Nous avons envoyé un code à 6 chiffres à {email}",
       "verify-title": "Vérifie tes e-mails",
       "welcome-back": "Content de te revoir, cubeur",

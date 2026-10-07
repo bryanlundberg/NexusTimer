@@ -9,24 +9,28 @@ import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { createVerifyCodeSchema, type VerifyCodeValues } from '@/features/authentication/model/schemas'
 import { useAuthSchemaMessages } from '@/features/authentication/model/use-auth-schema-messages'
+import { useCredentialsRegister } from '@/features/authentication/model/hooks/use-credentials-register'
 import { useVerifyCode } from '@/features/authentication/model/hooks/use-verify-code'
 import OtpInput from '@/features/authentication/ui/OtpInput'
 
 const CODE_LENGTH = 6
 
 interface Props {
+  name: string
   email: string
   password: string
 }
 
-export default function VerifyCodeForm({ email, password }: Props) {
+export default function VerifyCodeForm({ name, email, password }: Props) {
   const router = useRouter()
   const t = useTranslations('Index.Auth')
   const messages = useAuthSchemaMessages()
   const schema = useMemo(() => createVerifyCodeSchema(messages), [messages])
 
   const { verify, isLoading } = useVerifyCode()
+  const { register: registerAgain, isLoading: isResending } = useCredentialsRegister()
   const [formError, setFormError] = useState('')
+  const [notice, setNotice] = useState('')
 
   const {
     setValue,
@@ -42,6 +46,7 @@ export default function VerifyCodeForm({ email, password }: Props) {
 
   const onSubmit = async (values: VerifyCodeValues) => {
     setFormError('')
+    setNotice('')
     const result = await verify({ email, password, values })
     if (!result.ok) {
       setFormError(result.message)
@@ -50,6 +55,18 @@ export default function VerifyCodeForm({ email, password }: Props) {
     }
     router.push('/app')
     router.refresh()
+  }
+
+  const onResend = async () => {
+    setFormError('')
+    setNotice('')
+    const result = await registerAgain({ name, email, password })
+    if (!result.ok) {
+      setFormError(result.message)
+      return
+    }
+    setValue('code', '')
+    setNotice(t('code-resent'))
   }
 
   return (
@@ -70,6 +87,7 @@ export default function VerifyCodeForm({ email, password }: Props) {
       </div>
 
       {formError && <p className="text-sm text-destructive text-center">{formError}</p>}
+      {notice && <p className="text-sm text-muted-foreground text-center">{notice}</p>}
 
       <Button
         type="submit"
@@ -78,6 +96,15 @@ export default function VerifyCodeForm({ email, password }: Props) {
       >
         {isLoading ? t('loading') : t('verify-button')}
       </Button>
+
+      <button
+        type="button"
+        onClick={onResend}
+        disabled={isLoading || isResending}
+        className="self-center text-xs text-muted-foreground hover:text-foreground hover:underline disabled:pointer-events-none disabled:opacity-50"
+      >
+        {isResending ? t('loading') : t('resend-code')}
+      </button>
     </form>
   )
 }

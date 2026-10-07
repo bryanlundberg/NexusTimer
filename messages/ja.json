@@ -147,6 +147,8 @@
       },
       "verification-code": "確認コード",
       "verify-button": "確認",
+      "resend-code": "コードを再送信",
+      "code-resent": "新しいコードを送信しました",
       "verify-description": "{email} に6桁のコードを送信しました",
       "verify-title": "メールを確認してください",
       "welcome-back": "おかえりなさい、キューバー",

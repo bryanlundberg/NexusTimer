@@ -131,6 +131,8 @@
       "verify-description": "Nagpadala kami ng 6-digit na code sa {email}",
       "verification-code": "Verification code",
       "verify-button": "I-verify",
+      "resend-code": "Ipadala muli ang code",
+      "code-resent": "Nagpadala kami ng bagong code",
       "back": "Bumalik",
       "forgot-password": "Nakalimutan ang password?",
       "forgot-password-title": "I-reset ang password mo",
