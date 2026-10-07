@@ -137,9 +137,6 @@ importers:
       lucide-react:
         specifier: ^1.41.0
         version: 1.41.0(react@19.2.8)
-      meilisearch:
-        specifier: ^0.60.0
-        version: 0.60.0
       mongoose:
         specifier: ^9.7.2
         version: 9.7.2
