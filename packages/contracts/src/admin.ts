@@ -11,7 +11,7 @@ export const isGrantedAchievementKey = (key: string): key is GrantedAchievementK
   (GRANTED_ACHIEVEMENT_KEYS as readonly string[]).includes(key)
 
 export const grantAchievementSchema = z.object({
-  email: z.string().trim().toLowerCase().email(),
+  email: z.string().trim().toLowerCase().pipe(z.email()),
   key: z.string().trim().min(1)
 })
 
@@ -27,7 +27,7 @@ export type AchievementRarityInput = z.infer<typeof achievementRarityStatsSchema
 
 export const PRODUCTS_INDEX = 'products'
 
-const productDocumentSchema = z.object({ id: z.string().min(1) }).passthrough()
+const productDocumentSchema = z.object({ id: z.string().min(1) }).loose()
 
 export const ingestProductsSchema = z
   .union([z.array(productDocumentSchema), z.object({ documents: z.array(productDocumentSchema) })])
@@ -37,7 +37,7 @@ export const discoveredProductsSchema = z
   .array(
     z.object({
       id: z.string().min(1),
-      url: z.string().url(),
+      url: z.url(),
       collectionSlug: z.string().min(1),
       category: z.enum(CUBE_CATEGORIES)
     })

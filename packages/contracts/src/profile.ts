@@ -43,21 +43,21 @@ export const goalSchema = z.string().trim().max(GOAL_MAX_LENGTH)
 export const bioSchema = z.string().trim().max(BIO_MAX_LENGTH)
 export const methodSchema = z.enum(CUBING_METHODS)
 
-export const mainColorsSchema = z.array(z.nativeEnum(Layers)).max(FACE_COLORS.length).transform(sortFaceColors)
+export const mainColorsSchema = z.array(z.enum(Layers)).max(FACE_COLORS.length).transform(sortFaceColors)
 
 export const profileLinksSchema = z
   .array(
     z.string().transform((value, ctx) => {
       const href = normalizeProfileLink(value)
       if (href) return href
-      ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'Invalid link' })
+      ctx.addIssue({ code: 'custom', message: 'Invalid link' })
       return z.NEVER
     })
   )
   .max(MAX_PROFILE_LINKS)
   .transform((links) => [...new Set(links)])
 
-export const clearable = <T extends z.ZodTypeAny>(schema: T) =>
+export const clearable = <T extends z.ZodType>(schema: T) =>
   z.preprocess((value) => (value === '' ? null : value), schema.nullable()).optional()
 
 export const countryCodeSchema = z.string().length(2).toUpperCase()
@@ -65,7 +65,7 @@ export const countryCodeSchema = z.string().length(2).toUpperCase()
 export const updateProfileSchema = z
   .object({
     name: nameSchema.optional(),
-    image: z.string().url().optional(),
+    image: z.url().optional(),
     bio: clearable(bioSchema),
     pronoun: clearable(z.string().max(PRONOUN_MAX_LENGTH)),
     country: clearable(countryCodeSchema),
