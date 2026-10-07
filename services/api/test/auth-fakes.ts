@@ -65,17 +65,14 @@ export function fakeRepository() {
     async savePendingRegistration(registration) {
       const existing = [...pending.values()].find(({ email }) => email === registration.email)
       const id = existing?.id ?? `pending-${nextId++}`
-      pending.set(id, { id, ...registration })
+      pending.set(id, { id, ...registration, attempts: 0 })
     },
-    async findPendingRegistration(email, code) {
-      return (
-        [...pending.values()].find((entry) => entry.email === email && (code === undefined || entry.code === code)) ??
-        null
-      )
-    },
-    async updatePendingCode(id, code, expiresAt) {
-      const entry = pending.get(id)
-      if (entry) pending.set(id, { ...entry, code, expiresAt })
+    async recordCodeAttempt(email) {
+      const entry = [...pending.values()].find((candidate) => candidate.email === email)
+      if (!entry) return null
+      const updated = { ...entry, attempts: entry.attempts + 1 }
+      pending.set(entry.id, updated)
+      return updated
     },
     async deletePendingRegistration(id) {
       pending.delete(id)
@@ -84,11 +81,14 @@ export function fakeRepository() {
       const id = `token-${nextId++}`
       tokens.set(id, { id, ...token })
     },
-    async findResetToken(oobCode) {
-      return [...tokens.values()].find((token) => token.oobCode === oobCode) ?? null
+    async findResetToken(tokenHash) {
+      return [...tokens.values()].find((token) => token.tokenHash === tokenHash) ?? null
     },
     async deleteResetToken(id) {
       tokens.delete(id)
+    },
+    async deleteUserResetTokens(userId) {
+      for (const [id, token] of tokens) if (token.userId === userId) tokens.delete(id)
     }
   }
 

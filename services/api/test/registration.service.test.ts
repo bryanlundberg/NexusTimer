@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest'
 import { AuthError } from '../src/modules/auth/auth.errors'
-import { createRegistrationService, VERIFICATION_CODE_TTL_MS } from '../src/modules/auth/registration.service'
+import {
+  createRegistrationService,
+  MAX_CODE_ATTEMPTS,
+  VERIFICATION_CODE_TTL_MS
+} from '../src/modules/auth/registration.service'
 import { fakeAccounts, fakeHash, fakeMailer, fakeRepository } from './auth-fakes'
 
 const NOW = 1_700_000_000_000
@@ -50,16 +54,14 @@ describe('registration service', () => {
     await expect(service.register(request)).resolves.toBeUndefined()
   })
 
-  it('resends a fresh code only when a registration is pending', async () => {
+  it('replaces the pending code and emails it again when the user registers again', async () => {
     const { service, repo, mail } = setup()
 
-    await service.resendCode(request.email)
-    expect(mail.sent).toHaveLength(0)
-
     await service.register(request)
-    await service.resendCode(request.email)
+    await service.register(request)
 
-    expect(mail.sent[1]).toMatchObject({ to: request.email, subject: 'Your new NexusTimer code' })
+    expect(repo.pending.size).toBe(1)
+    expect(mail.sent).toHaveLength(2)
     expect(mail.sent[1]?.html).toContain([...repo.pending.values()][0]?.code)
   })
 
@@ -98,6 +100,41 @@ describe('registration service', () => {
 
     expect(error).toBeInstanceOf(AuthError)
     expect(error).toMatchObject({ code: 'invalid-or-expired-code', status: 400 })
+  })
+
+  it('locks the code after five wrong attempts, even for the right code', async () => {
+    const { service, accounts, repo } = setup()
+    accounts.add({ email: request.email, name: 'Mateo', emailVerified: true })
+    await service.register(request)
+    const { code } = [...repo.pending.values()][0]!
+    const wrong = code === '000000' ? '111111' : '000000'
+
+    const failures = []
+    for (let i = 0; i < MAX_CODE_ATTEMPTS; i++) {
+      failures.push(await service.confirm({ email: request.email, code: wrong }).catch((e: unknown) => e))
+    }
+
+    expect(failures.slice(0, -1)).toEqual(
+      Array(MAX_CODE_ATTEMPTS - 1).fill(expect.objectContaining({ code: 'invalid-or-expired-code' }))
+    )
+    expect(failures.at(-1)).toMatchObject({ code: 'too-many-attempts', status: 429 })
+    await expect(service.confirm({ email: request.email, code })).rejects.toMatchObject({ code: 'too-many-attempts' })
+    expect((await accounts.store.findByEmail(request.email))?.hasCredential).toBe(false)
+  })
+
+  it('gives a fresh code and fresh attempts when the user registers again after a lockout', async () => {
+    const { service, accounts, repo } = setup()
+    await service.register(request)
+    for (let i = 0; i < MAX_CODE_ATTEMPTS; i++) {
+      await service.confirm({ email: request.email, code: 'nope00' }).catch(() => {})
+    }
+
+    await service.register(request)
+    const { code, attempts } = [...repo.pending.values()][0]!
+    expect(attempts).toBe(0)
+    await service.confirm({ email: request.email, code })
+
+    expect(await accounts.store.findByEmail(request.email)).toMatchObject({ hasCredential: true })
   })
 
   it('rejects and forgets an expired code', async () => {

@@ -3,6 +3,7 @@ export type AuthErrorCode =
   | 'email-in-use'
   | 'invalid-or-expired-code'
   | 'code-expired'
+  | 'too-many-attempts'
   | 'invalid-or-expired-token'
   | 'internal'
 
@@ -11,6 +12,7 @@ const STATUS_BY_CODE: Record<AuthErrorCode, number> = {
   'email-in-use': 409,
   'invalid-or-expired-code': 400,
   'code-expired': 400,
+  'too-many-attempts': 429,
   'invalid-or-expired-token': 400,
   internal: 500
 }
