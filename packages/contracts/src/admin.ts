@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import * as z from 'zod'
 import { CUBE_CATEGORIES } from './cube-categories'
 
 export const ADMIN_TOKEN_HEADER = 'x-admin-token'

@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import * as z from 'zod'
 import { objectIdSchema } from './common'
 
 export const TRAINER_TARGET_OPTIONS = [1, 2, 3, 4, 5] as const

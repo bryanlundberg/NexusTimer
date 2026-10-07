@@ -1,5 +1,5 @@
 import { parse } from 'papaparse'
-import { z } from 'zod'
+import * as z from 'zod'
 import { Cube } from '@/entities/cube/model/types'
 import { Solve } from '@/entities/solve/model/types'
 import { sortSolvesNewestFirst } from '@/entities/solve/lib/sortSolves'

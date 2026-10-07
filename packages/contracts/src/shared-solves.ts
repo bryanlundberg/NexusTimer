@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import * as z from 'zod'
 import { CUBE_CATEGORIES, type CubeCategory } from './cube-categories'
 import { MAX_SOLVE_TIME_MS, replayInputSchema, SCRAMBLE_MAX_LENGTH, type SolveReplayPayload } from './solves'
 

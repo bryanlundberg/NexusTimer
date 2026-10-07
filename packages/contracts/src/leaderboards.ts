@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import * as z from 'zod'
 import { replayInputSchema, SCRAMBLE_MAX_LENGTH, solveReplaySchema } from './solves'
 import { publicUserSchema } from './users'
 

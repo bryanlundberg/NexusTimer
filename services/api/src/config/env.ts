@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import * as z from 'zod'
 
 const optionalSecret = z.string().min(1).optional()
 

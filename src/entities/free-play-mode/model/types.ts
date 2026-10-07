@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import * as z from 'zod'
 import { CUBE_CATEGORIES } from '@/shared/const/cube-categories'
 import { RoomStatus } from '@/entities/free-play-mode/model/enums'
 

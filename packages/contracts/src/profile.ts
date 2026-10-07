@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import * as z from 'zod'
 import { MAX_PROFILE_LINKS, normalizeProfileLink } from './profile-links'
 
 export enum Layers {

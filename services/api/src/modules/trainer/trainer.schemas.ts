@@ -1,6 +1,6 @@
 import { isAlgorithmCase, isAlgorithmSet } from '@nexustimer/algorithms'
 import { trainerLearnedInputSchema, trainerSolveInputSchema, trainerTargetInputSchema } from '@nexustimer/contracts'
-import { z } from 'zod'
+import * as z from 'zod'
 
 function knownCase({ methodSlug, caseId }: { methodSlug: string; caseId: string }, ctx: z.RefinementCtx) {
   if (!isAlgorithmSet(methodSlug)) {

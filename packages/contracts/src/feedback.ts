@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import * as z from 'zod'
 
 export const feedbackSchema = z.object({
   rating: z.number().int().min(1).max(5),

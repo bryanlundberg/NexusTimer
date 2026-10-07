@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import * as z from 'zod'
 
 const NOTATION_REGEX = /^[A-Za-z0-9'’()\[\]\/+\-, ]+$/
 const HAS_MOVE_REGEX = /[RLUDFBMESrludfbxyz]/

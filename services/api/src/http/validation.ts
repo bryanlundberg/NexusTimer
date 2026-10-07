@@ -1,4 +1,4 @@
-import type { z } from 'zod'
+import type * as z from 'zod'
 import { badRequest } from './responses'
 
 export async function parseJson<S extends z.ZodType>(request: Request, schema: S): Promise<z.infer<S> | Response> {

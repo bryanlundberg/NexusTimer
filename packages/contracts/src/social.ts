@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import * as z from 'zod'
 import { objectIdSchema } from './common'
 
 export type RelationshipStatus = 'none' | 'pending_out' | 'pending_in' | 'friends' | 'blocked'

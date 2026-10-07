@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import * as z from 'zod'
 
 export const hashRoomPasswordSchema = z.object({ password: z.string().min(1) })
 

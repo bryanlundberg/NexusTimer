@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import * as z from 'zod'
 
 export const FRIEND_REQUEST_POLICIES = ['everyone', 'friends_of_friends', 'nobody'] as const
 

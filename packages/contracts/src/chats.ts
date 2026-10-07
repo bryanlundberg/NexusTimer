@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import * as z from 'zod'
 import { objectIdSchema } from './common'
 import type { MessageReaction, RealtimeMessage } from './realtime'
 import type { FriendUser } from './social'
