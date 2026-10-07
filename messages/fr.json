@@ -823,7 +823,6 @@
       "no-backups": "Tu n’as pas encore de sauvegarde.",
       "save-data-action": "Sauvegarder maintenant",
       "load-data-action": "Restaurer les données",
-      "save-data-toast": "Sauvegarde enregistrée",
       "backup-uploading": "Enregistrement de votre sauvegarde",
       "backup-uploading-hint": "Vous pouvez continuer à naviguer. Ne fermez simplement pas l’application avant la fin.",
       "backup-upload-error": "Impossible d’enregistrer la sauvegarde. Réessayez.",

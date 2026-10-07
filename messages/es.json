@@ -755,7 +755,6 @@
       "cloud-sync": "Sincronización en la nube",
       "save-data-action": "Respaldar ahora",
       "load-data-action": "Restaurar datos",
-      "save-data-toast": "Respaldo guardado",
       "backup-uploading": "Guardando tu respaldo",
       "backup-uploading-hint": "Puedes seguir navegando, solo no cierres la app hasta que termine.",
       "backup-upload-error": "No se pudo guardar el respaldo. Inténtalo de nuevo.",

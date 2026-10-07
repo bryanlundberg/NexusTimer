@@ -29,7 +29,7 @@ export const useSyncBackup = () => {
     const upload = useBackupUploadStore.getState()
     if (upload.isUploading) return false
     upload.start()
-    showUploadToast(t('backup-uploading'))
+    showUploadToast(t('backup-uploading'), t('backup-uploading-hint'))
 
     try {
       const cubes = await cubesDB.getAllDatabase()
@@ -43,7 +43,6 @@ export const useSyncBackup = () => {
 
       updateSetting('sync.totalSolves', 0)
       toast.dismiss(UPLOAD_BACKUP_TOAST_ID)
-      toast.success(t('save-data-toast'))
       return true
     } catch (err) {
       console.error(err)
