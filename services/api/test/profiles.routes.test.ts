@@ -91,11 +91,13 @@ describe('profiles routes', () => {
 
     const country = await app.request(`/api/v1/users/${USER}`, patch({ country: 'ZZ' }))
     const extra = await app.request(`/api/v1/users/${USER}`, patch({ email: 'new@mail.test' }))
+    const image = await app.request(`/api/v1/users/${USER}`, patch({ image: 'https://tracker.test/pixel.png' }))
     const body = (await country.json()) as { issues: { path: string[]; message: string }[] }
 
     expect(country.status).toBe(400)
     expect(body.issues).toEqual([expect.objectContaining({ path: ['country'], message: 'Invalid country code' })])
     expect(extra.status).toBe(400)
+    expect(image.status).toBe(400)
     expect(update).not.toHaveBeenCalled()
   })
 

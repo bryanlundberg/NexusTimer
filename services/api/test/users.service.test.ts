@@ -104,9 +104,7 @@ describe('buildProfileUpdate', () => {
   })
 
   it('omits the operator that has nothing to do', () => {
-    expect(buildProfileUpdate({ image: 'https://example.com/a.png' })).toEqual({
-      $set: { image: 'https://example.com/a.png' }
-    })
+    expect(buildProfileUpdate({ goal: 'Sub 10' })).toEqual({ $set: { goal: 'Sub 10' } })
     expect(buildProfileUpdate({ country: null })).toEqual({ $unset: { country: '' } })
     expect(buildProfileUpdate({})).toBeNull()
   })

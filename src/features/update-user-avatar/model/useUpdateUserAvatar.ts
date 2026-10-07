@@ -13,12 +13,7 @@ export function useUpdateUserAvatar() {
     try {
       setIsUploading(true)
       loader.start()
-      const urlImage = await uploadFile(file, `/avatars`, session.user.id)
-      const res = await fetch(`/api/v1/users/${session.user.id}`, {
-        method: 'PATCH',
-        body: JSON.stringify({ image: urlImage.url })
-      })
-      if (!res.ok) throw new Error('PATCH /users failed')
+      await uploadFile(file, `/avatars`, session.user.id)
       toast.success('User image updated successfully')
       await update()
     } catch (e) {

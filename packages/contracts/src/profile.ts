@@ -65,7 +65,6 @@ export const countryCodeSchema = z.string().length(2).toUpperCase()
 export const updateProfileSchema = z
   .object({
     name: nameSchema.optional(),
-    image: z.url().optional(),
     bio: clearable(bioSchema),
     pronoun: clearable(z.string().max(PRONOUN_MAX_LENGTH)),
     country: clearable(countryCodeSchema),
