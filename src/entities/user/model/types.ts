@@ -3,7 +3,7 @@ import z from 'zod'
 export const userSchema = z.object({
   _id: z.string(),
   name: z.string(),
-  email: z.string().email(),
+  email: z.email(),
   image: z.string(),
   pronoun: z.string().optional(),
   country: z.string().optional(),

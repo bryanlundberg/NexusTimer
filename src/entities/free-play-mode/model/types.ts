@@ -4,7 +4,7 @@ import { RoomStatus } from '@/entities/free-play-mode/model/enums'
 
 const roomSchema = z.object({
   roomId: z.string(),
-  status: z.nativeEnum(RoomStatus),
+  status: z.enum(RoomStatus),
   createdAt: z.number(),
   maxRoundTime: z.number(),
   createdBy: z.string(),

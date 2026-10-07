@@ -32,7 +32,7 @@ export const accountInfoSchema = z.object({
   goal: goalSchema.optional(),
   bio: bioSchema.optional(),
   method: methodSchema.or(z.literal('')).optional(),
-  mainColors: z.array(z.nativeEnum(Layers)).max(FACE_COLORS.length).optional(),
+  mainColors: z.array(z.enum(Layers)).max(FACE_COLORS.length).optional(),
   links: z
     .array(
       z.object({

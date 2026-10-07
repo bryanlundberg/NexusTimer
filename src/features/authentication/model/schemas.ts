@@ -51,7 +51,7 @@ export function createResetPasswordSchema(messages: AuthSchemaMessages) {
       confirmPassword: z.string()
     })
     .refine((values) => values.password === values.confirmPassword, {
-      message: messages.passwordsDontMatch,
+      error: messages.passwordsDontMatch,
       path: ['confirmPassword']
     })
 }
