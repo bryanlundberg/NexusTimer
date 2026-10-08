@@ -17,41 +17,49 @@ var (
 	ErrExpired   = errors.New("expired ticket")
 )
 
-type claims struct {
-	Sub string `json:"sub"`
-	Exp int64  `json:"exp"`
+type Identity struct {
+	UserID string
+	Name   string
+	Image  string
 }
 
-func VerifyTicket(ticket string, secret []byte, now time.Time) (string, error) {
+type claims struct {
+	Sub   string `json:"sub"`
+	Exp   int64  `json:"exp"`
+	Name  string `json:"name,omitempty"`
+	Image string `json:"image,omitempty"`
+}
+
+func VerifyTicket(ticket string, secret []byte, now time.Time) (Identity, error) {
 	payload, signature, found := strings.Cut(ticket, ".")
 	if !found || payload == "" || signature == "" {
-		return "", ErrMalformed
+		return Identity{}, ErrMalformed
 	}
 
 	given, err := base64.RawURLEncoding.DecodeString(signature)
 	if err != nil {
-		return "", ErrMalformed
+		return Identity{}, ErrMalformed
 	}
 	if !hmac.Equal(given, sign(payload, secret)) {
-		return "", ErrSignature
+		return Identity{}, ErrSignature
 	}
 
 	raw, err := base64.RawURLEncoding.DecodeString(payload)
 	if err != nil {
-		return "", ErrMalformed
+		return Identity{}, ErrMalformed
 	}
 	var c claims
 	if err := json.Unmarshal(raw, &c); err != nil || c.Sub == "" {
-		return "", ErrMalformed
+		return Identity{}, ErrMalformed
 	}
 	if c.Exp < now.UnixMilli() {
-		return "", ErrExpired
+		return Identity{}, ErrExpired
 	}
-	return c.Sub, nil
+	return Identity{UserID: c.Sub, Name: c.Name, Image: c.Image}, nil
 }
 
-func NewTicket(userID string, secret []byte, expiresAt time.Time) string {
-	raw, _ := json.Marshal(claims{Sub: userID, Exp: expiresAt.UnixMilli()})
+func NewTicket(id Identity, secret []byte, expiresAt time.Time) string {
+	raw, _ := json.Marshal(claims{Sub: id.UserID, Exp: expiresAt.UnixMilli(), Name: id.Name, Image: id.Image})
 	payload := base64.RawURLEncoding.EncodeToString(raw)
 	return payload + "." + base64.RawURLEncoding.EncodeToString(sign(payload, secret))
 }

@@ -62,7 +62,7 @@ func connect(t *testing.T, h *Hub, userID string) *websocket.Conn {
 		if err != nil {
 			return
 		}
-		h.Register(userID, conn)
+		h.Register(Identity{UserID: userID}, conn)
 	}))
 	t.Cleanup(srv.Close)
 
