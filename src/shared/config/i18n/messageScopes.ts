@@ -3,7 +3,7 @@ import type { AbstractIntlMessages } from 'next-intl'
 
 const SHELL = ['Cookies', 'Index.Offline']
 
-const LANDING = ['LandingPage', 'Index.Auth.sign-in', 'Metadata.pages']
+const LANDING = ['LandingPage', 'Metadata.pages']
 
 const SERVER_ONLY = [
   'OpenGraphImage',
