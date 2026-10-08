@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log/slog"
+	"net/http"
 	"os"
 	"os/signal"
 	"sync"
@@ -13,6 +14,7 @@ import (
 	"nexustimer/realtime/internal/broker"
 	"nexustimer/realtime/internal/config"
 	"nexustimer/realtime/internal/hub"
+	"nexustimer/realtime/internal/rooms"
 	"nexustimer/realtime/internal/server"
 )
 
@@ -47,7 +49,23 @@ func run(logger *slog.Logger) error {
 	}
 	defer events.Close()
 
-	connections := hub.New(hub.DefaultOptions(), logger, events, events.Inbound)
+	roomStore, err := rooms.NewRedisStore(cfg.RedisURL)
+	if err != nil {
+		return err
+	}
+	defer roomStore.Close()
+	if cfg.ScramblesURL == "" {
+		logger.Warn("SCRAMBLES_URL is not set, free play rooms will wait for scrambles")
+	}
+	scrambles := rooms.HTTPScrambles{URL: cfg.ScramblesURL, Secret: cfg.Secret, Client: &http.Client{Timeout: 10 * time.Second}}
+	roomManager := rooms.NewManager(rooms.DefaultConfig(), roomStore, scrambles, logger)
+
+	inbound := func(c hub.Conn, payload []byte) {
+		if !roomManager.Inbound(c, payload) {
+			events.Inbound(c, payload)
+		}
+	}
+	connections := hub.New(hub.DefaultOptions(), logger, hub.Observe(events, roomManager), inbound)
 
 	// The lease must exist before the first connection; KeepLease retries if Redis is down.
 	claim, cancelClaim := context.WithTimeout(ctx, 5*time.Second)
@@ -57,6 +75,8 @@ func run(logger *slog.Logger) error {
 	cancelClaim()
 	logger.Info("gateway identity", "instance", events.InstanceID())
 
+	roomManager.Start(ctx)
+
 	var wg sync.WaitGroup
 	wg.Go(func() { events.Run(ctx, connections.Deliver, connections.Broadcast) })
 	wg.Go(func() { events.KeepLease(ctx, connections.Connections) })
@@ -65,5 +85,6 @@ func run(logger *slog.Logger) error {
 
 	stop()
 	wg.Wait()
+	roomManager.Wait()
 	return err
 }
