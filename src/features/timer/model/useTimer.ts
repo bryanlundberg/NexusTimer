@@ -53,6 +53,17 @@ export default function useTimer({
     resetTimer()
   }
 
+  // Picks up an inspection or solve that started before a reload, from how long ago it started.
+  const resumeSolve = (elapsedMs: number) => {
+    if (inspectionId.current) removeInspection()
+    startTimer(elapsedMs)
+  }
+
+  const resumeInspection = (elapsedMs: number) => {
+    mustReleaseAfterInspection.current = false
+    startInspection(elapsedMs)
+  }
+
   // MAIN HOLD CONTROL
   const handleHold = (isReleased: boolean) => {
     if (!selectedCube) return
@@ -123,6 +134,8 @@ export default function useTimer({
   return {
     inspectionTime,
     resetAll,
+    resumeSolve,
+    resumeInspection,
     stopTimer
   }
 }

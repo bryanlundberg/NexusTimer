@@ -13,8 +13,8 @@ export default function useInspection({ setTimerStatus, setSolvingTime, settings
   const inspectionId = useRef<any>(null)
   const [inspectionTime, setInspectionTime] = useState<number>(inspectionDuration / 1000)
 
-  const startInspection = () => {
-    startInspectionTime.current = Date.now() - 1
+  const startInspection = (elapsedMs = 0) => {
+    startInspectionTime.current = Date.now() - 1 - elapsedMs
     setTimerStatus(TimerStatus.INSPECTING)
     let reproduced8 = false
     let reproduced12 = false

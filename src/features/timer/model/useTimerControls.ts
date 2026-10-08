@@ -12,12 +12,12 @@ export default function useTimerControls({ setSolvingTime, setIsSolving, setTime
   const startSolveTime = useRef<number | null>(null)
   const solveTimeId = useRef<any>(null)
 
-  const startTimer = () => {
+  const startTimer = (elapsedMs = 0) => {
     // Set state and references in a single batch to minimize renders
     setIsSolving(true)
     setTimerStatus(TimerStatus.SOLVING)
 
-    startSolveTime.current = performance.now()
+    startSolveTime.current = performance.now() - elapsedMs
 
     const updateTimer = () => {
       if (!startSolveTime.current) return
