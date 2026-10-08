@@ -1,0 +1,10 @@
+{
+  "rules": {
+    "connect-sessions": {
+      "$sessionId": {
+        ".read": true,
+        ".write": true
+      }
+    }
+  }
+}

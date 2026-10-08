@@ -16,9 +16,7 @@ const PRODUCTION_REQUIRED = [
   'FILES_ACCESS_KEY_ID',
   'FILES_SECRET_ACCESS_KEY',
   'FILES_PUBLIC_BASE_URL',
-  'FILES_REGION',
-  'ROOM_SIGNING_SECRET',
-  'FIREBASE_DATABASE_URL'
+  'FILES_REGION'
 ] as const
 
 const envSchema = z
@@ -42,10 +40,8 @@ const envSchema = z
     REALTIME_SECRET: optionalSecret,
     ADMIN_EMAIL: z.email().optional(),
     ADMIN_TOKEN: optionalSecret,
-    ROOM_SIGNING_SECRET: optionalSecret,
     WCA_CLIENT_ID: optionalSecret,
     WCA_CLIENT_SECRET: optionalSecret,
-    FIREBASE_DATABASE_URL: z.url().optional(),
     GITHUB_APP_ID: optionalSecret,
     GITHUB_APP_PRIVATE_KEY: optionalSecret,
     GITHUB_APP_INSTALLATION_ID: optionalSecret,

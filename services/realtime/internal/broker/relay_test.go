@@ -34,6 +34,8 @@ func newFakeConn(userID string) *fakeConn {
 
 func (c *fakeConn) UserID() string { return c.userID }
 func (c *fakeConn) ConnID() string { return c.connID }
+func (c *fakeConn) Name() string   { return c.userID }
+func (c *fakeConn) Image() string  { return "" }
 
 func (c *fakeConn) Send(payload []byte) {
 	c.mu.Lock()

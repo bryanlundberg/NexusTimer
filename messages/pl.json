@@ -1427,7 +1427,6 @@
       "max-round-time-description": "Limit czasu na scramble + inspekcję + układanie",
       "private": "Pokój prywatny",
       "private-description": "Tylko osoby z kodem mogą dołączyć",
-      "room-code": "Kod pokoju",
       "room-code-hint": "Udostępnij ten kod znajomym, aby mogli dołączyć",
       "continue": "Utwórz pokój",
       "creating": "Tworzenie...",
@@ -1448,14 +1447,11 @@
       "solving": "Układanie...",
       "inspecting": "Inspekcja",
       "done": "Gotowe",
-      "idle": "Bezczynny",
-      "ready": "Gotowy",
-      "holding": "Przytrzymanie"
+      "idle": "Bezczynny"
     },
     "already-submitted": "Wysłałeś już ułożenie dla tego scramble'a. Poczekaj na następny!",
     "inspection-on": "Inspekcja włączona",
     "inspection-off": "Inspekcja wyłączona",
-    "previous-round": "Poprzednia runda",
     "current-round": "Bieżąca runda",
     "confirm-solve": {
       "title": "Potwierdź czas ułożenia ({time})",
@@ -1465,7 +1461,8 @@
       "ok": "OK",
       "save-to-cube-label": "Zapisz także na kostce (opcjonalnie)",
       "save-to-cube-none": "Nie zapisuj",
-      "save-to-cube-empty": "Brak dostępnych kostek dla tej konkurencji"
+      "save-to-cube-empty": "Brak dostępnych kostek dla tej konkurencji",
+      "auto-dnf": "Wybierz przed końcem rundy, inaczej zostanie liczony jako DNF ({time})"
     },
     "results-tab": {
       "best": "Najlepszy",
@@ -1473,7 +1470,6 @@
       "updating-live": "Aktualizacja na żywo",
       "cubers": "Cuberzy"
     },
-    "view-profile": "Zobacz profil",
     "anonymous": "Anonimowy",
     "room-card": {
       "players-online": "{count, plural, =0 {Nikt online} other {# online}}"
@@ -1482,10 +1478,23 @@
     "invite-link-copied": "Link z zaproszeniem skopiowany",
     "share-room-text": "Dołącz do mojego pokoju cubingowego na NexusTimer!",
     "invite": "Zaproś",
-    "OpenGraph": {
-      "room": "Pokój {roomId}",
-      "description": "Dołącz do mojego pokoju na NexusTimer, aby rywalizować na żywo! ID: {roomId}"
-    }
+    "leader": "Lider pokoju",
+    "now-leader": "Jesteś teraz liderem pokoju",
+    "kick": "Usuń gracza",
+    "kick-title": "Usunąć gracza {name}?",
+    "kick-description": "Od razu opuści pokój i nie będzie mógł do niego wrócić.",
+    "kick-confirm": "Usuń",
+    "kicked": "Usunięto cię z pokoju",
+    "replaced": "Otworzyłeś ten pokój na innym urządzeniu",
+    "moved": "Dołączyłeś do innego pokoju z innego urządzenia",
+    "play-here": "Graj tutaj",
+    "back-to-lobby": "Wróć do pokoi",
+    "room-closed": "Ten pokój został zamknięty",
+    "room-full": "Ten pokój jest pełny",
+    "update-required": "Zaktualizuj aplikację, aby dołączyć do tego pokoju",
+    "too-many-attempts": "Zbyt wiele błędnych kodów. Spróbuj ponownie za minutę.",
+    "waiting-scramble": "Czekanie na następny scramble...",
+    "action-failed": "Coś poszło nie tak. Spróbuj ponownie."
   },
   "LandingPage": {
     "header": {

@@ -10,6 +10,7 @@ import (
 	"github.com/gorilla/websocket"
 
 	"nexustimer/realtime/internal/auth"
+	"nexustimer/realtime/internal/hub"
 )
 
 var upgrader = websocket.Upgrader{
@@ -25,7 +26,7 @@ func (s *Server) handleWebSocket(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	userID, err := auth.VerifyTicket(r.URL.Query().Get("ticket"), s.cfg.Secret, time.Now())
+	id, err := auth.VerifyTicket(r.URL.Query().Get("ticket"), s.cfg.Secret, time.Now())
 	if err != nil {
 		if !errors.Is(err, auth.ErrExpired) {
 			s.logger.Debug("rejected ticket", "error", err, "remote", r.RemoteAddr)
@@ -38,5 +39,5 @@ func (s *Server) handleWebSocket(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		return
 	}
-	s.hub.Register(userID, conn)
+	s.hub.Register(hub.Identity{UserID: id.UserID, Name: id.Name, Image: id.Image}, conn)
 }

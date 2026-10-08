@@ -1409,7 +1409,6 @@
       "max-round-time-description": "打乱 + 观察 + 还原的时间限制",
       "private": "私人房间",
       "private-description": "只有拥有代码的人才能加入",
-      "room-code": "房间代码",
       "room-code-hint": "将此代码分享给朋友，让他们可以加入",
       "continue": "创建房间",
       "creating": "创建中...",
@@ -1430,14 +1429,11 @@
       "solving": "还原中...",
       "inspecting": "观察中",
       "done": "完成",
-      "idle": "空闲",
-      "ready": "准备就绪",
-      "holding": "按住中"
+      "idle": "空闲"
     },
     "already-submitted": "你已经提交了本次打乱的成绩。请等待下一轮！",
     "inspection-on": "检查已启用",
     "inspection-off": "检查已禁用",
-    "previous-round": "上一轮",
     "current-round": "当前轮次",
     "confirm-solve": {
       "title": "确认成绩 ({time})",
@@ -1447,7 +1443,8 @@
       "ok": "确定",
       "save-to-cube-label": "同时保存到魔方（可选）",
       "save-to-cube-none": "不保存",
-      "save-to-cube-empty": "此项目没有可用的魔方"
+      "save-to-cube-empty": "此项目没有可用的魔方",
+      "auto-dnf": "请在本轮结束前选择，否则计为 DNF（{time}）"
     },
     "results-tab": {
       "best": "最佳",
@@ -1455,7 +1452,6 @@
       "updating-live": "实时更新中",
       "cubers": "魔友"
     },
-    "view-profile": "查看资料",
     "anonymous": "匿名",
     "room-card": {
       "players-online": "{count, plural, =0 {无人在线} other {# 人在线}}"
@@ -1464,10 +1460,23 @@
     "invite-link-copied": "邀请链接已复制",
     "share-room-text": "快来加入我在 NexusTimer 的房间吧！",
     "invite": "邀请",
-    "OpenGraph": {
-      "room": "房间 {roomId}",
-      "description": "加入我在 NexusTimer 的房间一起实时竞技！ID: {roomId}"
-    }
+    "leader": "房主",
+    "now-leader": "你现在是房主了",
+    "kick": "移出玩家",
+    "kick-title": "将 {name} 移出房间？",
+    "kick-description": "对方会立即离开房间，且无法再次加入。",
+    "kick-confirm": "移出",
+    "kicked": "你已被移出房间",
+    "replaced": "你在另一台设备上打开了这个房间",
+    "moved": "你在另一台设备上加入了其他房间",
+    "play-here": "在此处游玩",
+    "back-to-lobby": "返回房间列表",
+    "room-closed": "该房间已关闭",
+    "room-full": "该房间已满",
+    "update-required": "请更新应用以加入该房间",
+    "too-many-attempts": "错误代码次数过多。请一分钟后再试。",
+    "waiting-scramble": "正在等待下一个打乱...",
+    "action-failed": "出了点问题。请重试。"
   },
   "LandingPage": {
     "header": {

@@ -22,6 +22,7 @@
     "bcryptjs": "^3.0.3",
     "better-auth": "^1.7.7",
     "country-flag-icons": "^1.5.18",
+    "cstimer_module": "^0.1.5",
     "hono": "^4.13.0",
     "meilisearch": "^0.60.0",
     "mongodb": "~7.2.0",

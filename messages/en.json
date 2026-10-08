@@ -1427,7 +1427,6 @@
       "max-round-time-description": "Time limit for scramble + inspection + solving",
       "private": "Private room",
       "private-description": "Only people with the code can join",
-      "room-code": "Room code",
       "room-code-hint": "Share this code with your friends so they can join",
       "continue": "Create room",
       "creating": "Creating...",
@@ -1448,14 +1447,11 @@
       "solving": "Solving...",
       "inspecting": "Inspecting",
       "done": "Done",
-      "idle": "Idle",
-      "ready": "Ready",
-      "holding": "Holding"
+      "idle": "Idle"
     },
     "already-submitted": "You have already submitted a solve for this scramble. Wait for the next one!",
     "inspection-on": "Inspection enabled",
     "inspection-off": "Inspection disabled",
-    "previous-round": "Previous round",
     "current-round": "Current round",
     "confirm-solve": {
       "title": "Confirm solve time ({time})",
@@ -1465,7 +1461,8 @@
       "ok": "OK",
       "save-to-cube-label": "Also save to cube (optional)",
       "save-to-cube-none": "Don't save",
-      "save-to-cube-empty": "No cubes available for this event"
+      "save-to-cube-empty": "No cubes available for this event",
+      "auto-dnf": "Choose before the round ends or it counts as DNF ({time})"
     },
     "results-tab": {
       "best": "Best",
@@ -1473,7 +1470,6 @@
       "updating-live": "Updating live",
       "cubers": "Cubers"
     },
-    "view-profile": "View profile",
     "anonymous": "Anonymous",
     "room-card": {
       "players-online": "{count, plural, =0 {Nobody online} other {# online}}"
@@ -1482,10 +1478,23 @@
     "invite-link-copied": "Invite link copied",
     "share-room-text": "Join my cubing room on NexusTimer!",
     "invite": "Invite",
-    "OpenGraph": {
-      "room": "Room {roomId}",
-      "description": "Join my room on NexusTimer to compete live! ID: {roomId}"
-    }
+    "leader": "Room leader",
+    "now-leader": "You are now the room leader",
+    "kick": "Remove a player",
+    "kick-title": "Remove {name}?",
+    "kick-description": "They will leave the room right away and won't be able to come back.",
+    "kick-confirm": "Remove",
+    "kicked": "You were removed from the room",
+    "replaced": "You opened this room on another device",
+    "moved": "You joined another room from another device",
+    "play-here": "Play here",
+    "back-to-lobby": "Back to rooms",
+    "room-closed": "This room was closed",
+    "room-full": "This room is full",
+    "update-required": "Update the app to join this room",
+    "too-many-attempts": "Too many wrong codes. Try again in a minute.",
+    "waiting-scramble": "Waiting for the next scramble...",
+    "action-failed": "Something went wrong. Try again."
   },
   "LandingPage": {
     "header": {

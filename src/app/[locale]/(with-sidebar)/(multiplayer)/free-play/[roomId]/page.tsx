@@ -1,31 +1,36 @@
 'use client'
-import useFreeMode from '@/features/free-play-room/model/useFreeMode'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList } from '@/components/ui/breadcrumb'
 import { Link, useRouter } from '@/shared/config/i18n/navigation'
 import * as React from 'react'
-import { useCallback, useEffect, useRef, useState, KeyboardEvent } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { useSession } from '@/shared/model/useSession'
 import { useRouteSegment } from '@/shared/model/useRouteSegment'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
-import genScramble from '@/shared/lib/timer/genScramble'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { ChartBarIcon, CheckIcon, Clock, EyeIcon, Lock, Plus } from 'lucide-react'
+import { ChartBarIcon, CheckIcon, Clock, EyeIcon, Plus } from 'lucide-react'
 import { AvatarGroup, AvatarGroupTooltip } from '@/components/ui/shadcn-io/avatar-group'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import Image from 'next/image'
 import TimerTab from '@/features/free-play-room/ui/timer-tab'
 import ResultsTab from '@/features/free-play-room/ui/results-tab'
+import RoomCodeGate from '@/features/free-play-room/ui/room-code-gate'
+import RoomTakenOver from '@/features/free-play-room/ui/room-taken-over'
+import RoomCodeChip from '@/features/free-play-room/ui/room-code-chip'
+import RoomPlayersMenu from '@/features/free-play-room/ui/room-players-menu'
 import useAlert from '@/shared/model/useAlert'
 import { useCountdown } from '@/shared/model/useCountdown'
 import { TimerStatus } from '@/features/timer/model/enums'
-import { CubeCategory } from '@/shared/const/cube-categories'
 import { useScreenWakeLock } from '@/shared/model/useScreenWakeLock'
 import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { motion } from 'motion/react'
+import { cn } from '@/shared/lib/utils'
+import { useRoomSession } from '@/features/free-play-room/model/useRoomSession'
+import { useRoomStore } from '@/features/free-play-room/model/useRoomStore'
+import { toLocalTime, toPresence } from '@/features/free-play-room/model/room-view'
+import type { RoomPhase } from '@/features/free-play-room/model/room-state'
 
 const tabs = [
   { key: 'timer', icon: Clock },
@@ -34,72 +39,43 @@ const tabs = [
 
 type TabKey = (typeof tabs)[number]['key']
 
+const LEAVING_PHASES: Partial<Record<RoomPhase, string>> = {
+  'not-found': 'room-not-found',
+  kicked: 'kicked',
+  banned: 'kicked',
+  closed: 'room-closed',
+  full: 'room-full',
+  'upgrade-required': 'update-required'
+}
+
+const GATE_PHASES: RoomPhase[] = ['code-required', 'wrong-code', 'too-many-attempts']
+
 export default function FreePlayRoomPage() {
   const t = useTranslations('Multiplayer')
   const roomId = useRouteSegment('/free-play') || null
   const { data: session } = useSession()
+  const userId = session?.user?.id
   const router = useRouter()
   const alert = useAlert()
-  const {
-    joinRoom,
-    leaveRoom,
-    useUsersPresence,
-    useRoomRoundLimit,
-    useRoomAuthority,
-    useRoomEvent,
-    updateRoomRoundLimit,
-    updateRoomScramble,
-    useRoomCurrentRound,
-    useRoomSolves,
-    incrementRoomRound,
-    useRoomIsPrivate,
-    useRoomCreatedBy,
-    useRoomExists
-  } = useFreeMode()
-  const onlineUsers = useUsersPresence(roomId?.toString() || '')
+  const { join } = useRoomSession(roomId, Boolean(userId))
+
+  const phase = useRoomStore((state) => state.phase)
+  const joinedWithCode = useRoomStore((state) => state.joinedWithCode)
+  const room = useRoomStore((state) => state.room)
+  const clockOffset = useRoomStore((state) => state.clockOffset)
+
   const reset = useTimerStore((state) => state.reset)
   const setSolvingTime = useTimerStore((state) => state.setSolvingTime)
   const isSolving = useTimerStore((state) => state.isSolving)
   const timerStatus = useTimerStore((state) => state.timerStatus)
-  const roundLimit = useRoomRoundLimit(roomId?.toString() || '')
-  const currentRound = useRoomCurrentRound(roomId?.toString() || '')
-  const solves = useRoomSolves(roomId?.toString() || '')
 
   useScreenWakeLock(isSolving || timerStatus === TimerStatus.INSPECTING)
-  const { mmss, isFinished, remainingMs } = useCountdown(roundLimit || 0)
-  const roomAuthority = useRoomAuthority(roomId?.toString() || '')
-  const event = useRoomEvent(roomId?.toString() || '')
-  const maxRoundTime = useFreeMode().useMaxRoundTime(roomId?.toString() || '')
 
-  const { isPrivate, loaded: privateLoaded } = useRoomIsPrivate(roomId?.toString() || '')
-  const { createdBy, loaded: createdByLoaded } = useRoomCreatedBy(roomId?.toString() || '')
-  const { exists: roomExists, loaded: roomExistsLoaded } = useRoomExists(roomId?.toString() || '')
-
-  // 'checking' while we verify the cookie server-side, 'authorized' or 'gate'
-  const [authState, setAuthState] = useState<'checking' | 'authorized' | 'gate'>('checking')
-  const [passwordInput, setPasswordInput] = useState('')
-  const [passwordError, setPasswordError] = useState(false)
-  const [passwordSubmitting, setPasswordSubmitting] = useState(false)
-
-  const isCreator = session?.user?.id !== undefined && session.user.id === createdBy
-  const metaLoaded = privateLoaded && createdByLoaded
-
-  const checkAuth = useCallback(async () => {
-    if (!roomId) return
-    if (!isPrivate || isCreator) {
-      setAuthState('authorized')
-      return
-    }
-    const res = await fetch(`/api/v1/rooms/check-auth?roomId=${roomId}`)
-    const data = await res.json()
-    setAuthState(data.authorized ? 'authorized' : 'gate')
-  }, [roomId, isPrivate, isCreator])
-
-  // Run auth check once room metadata is loaded
-  useEffect(() => {
-    if (!metaLoaded) return
-    checkAuth()
-  }, [metaLoaded, checkAuth])
+  const onlineUsers = useMemo(() => toPresence(room), [room])
+  const deadline = room ? toLocalTime(room.round.deadline, clockOffset) : undefined
+  const { mmss, remainingMs } = useCountdown(deadline)
+  const waitingScramble = room?.round.scramble === null
+  const leaderId = room?.leaderId ?? null
 
   useEffect(() => {
     if (session === undefined) return
@@ -116,64 +92,31 @@ export default function FreePlayRoomPage() {
   }, [session])
 
   useEffect(() => {
-    if (!roomExistsLoaded) return
-    if (roomExists === false) {
-      toast.error(t('room-not-found'))
-      router.push('/free-play')
-    }
-  }, [roomExistsLoaded, roomExists])
+    const message = LEAVING_PHASES[phase]
+    if (!message) return
+    toast.error(t(message))
+    router.push('/free-play')
+  }, [phase])
 
+  const previousLeader = useRef<string | null>(null)
   useEffect(() => {
-    if (!roomId || !session?.user?.id) return
-    if (authState !== 'authorized') return
-
-    joinRoom(roomId.toString(), session.user.id)
-
-    return () => {
-      if (roomId && session?.user?.id) {
-        leaveRoom(roomId.toString(), session.user.id)
-        setSolvingTime(0)
-        reset()
-      }
+    if (leaderId && previousLeader.current && leaderId !== previousLeader.current && leaderId === userId) {
+      toast.success(t('now-leader'))
     }
-  }, [roomId, session?.user?.id, authState])
+    previousLeader.current = leaderId
+  }, [leaderId, userId])
 
-  const handledRoundRef = useRef<number | null>(null)
-  useEffect(() => {
-    if (!roomId || !session?.user?.id) return
-    if (!isFinished) return
-    if (!roomAuthority) return
-    if (session.user.id !== roomAuthority) return
-    if (!event) return
-    if (!maxRoundTime) return
-
-    // If everyone online already solved this round, let useAutoNextRound's 3s
-    // pause own the transition so the last result stays visible. Only the
-    // time-limit path advances early when players are still missing (AFK/slow).
-    const onlineUserIds = Array.isArray(onlineUsers)
-      ? onlineUsers.map((user: any) => user.id)
-      : Object.values(onlineUsers || {}).map((user: any) => user.id)
-    const everyoneSolved =
-      onlineUserIds.length > 0 &&
-      onlineUserIds.every((userId) => {
-        const userSolves = solves[userId]
-        return userSolves && Object.values(userSolves).some((solve: any) => solve.roundIndex === currentRound)
-      })
-    if (everyoneSolved) return
-
-    if (handledRoundRef.current === (roundLimit ?? null)) return
-    handledRoundRef.current = roundLimit ?? null
-
-    const durationMs = maxRoundTime * 1000
-    const newScramble = genScramble(event as CubeCategory)
-    updateRoomScramble(roomId.toString(), newScramble)
-    updateRoomRoundLimit(roomId.toString(), durationMs)
-    incrementRoomRound(roomId.toString(), currentRound + 1)
-  }, [isFinished, roomAuthority, session?.user?.id, roomId, currentRound, solves, onlineUsers])
+  useEffect(
+    () => () => {
+      setSolvingTime(0)
+      reset()
+    },
+    [roomId]
+  )
 
   const [currentTab, setCurrentTab] = React.useState<TabKey>('timer')
 
-  const roundDurationMs = (maxRoundTime ?? 0) * 1000
+  const roundDurationMs = (room?.maxRoundTime ?? 0) * 1000
   const roundProgress =
     remainingMs !== undefined && roundDurationMs > 0 ? Math.min(1, Math.max(0, remainingMs / roundDurationMs)) : 0
   const isRoundEnding = remainingMs !== undefined && remainingMs <= 10_000
@@ -200,102 +143,35 @@ export default function FreePlayRoomPage() {
     }
   }
 
-  const handlePasswordSubmit = async () => {
-    if (passwordInput.length !== 6 || passwordSubmitting) return
-    setPasswordSubmitting(true)
-
-    const res = await fetch('/api/v1/rooms/verify-password', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ roomId, password: passwordInput })
-    })
-    const data = await res.json()
-
-    if (data.success) {
-      setPasswordError(false)
-      setAuthState('authorized')
-    } else {
-      setPasswordError(true)
-      setPasswordInput('')
-    }
-    setPasswordSubmitting(false)
-  }
-
-  const handlePasswordKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') handlePasswordSubmit()
-  }
-
-  // Loading — hide everything until meta is loaded and auth is checked
-  if (!metaLoaded || !roomExistsLoaded || authState === 'checking') {
-    return null
-  }
-
-  // Password gate
-  if (authState === 'gate') {
+  if (GATE_PHASES.includes(phase) || (phase === 'joining' && joinedWithCode)) {
     return (
-      <div className="flex flex-col items-center justify-center h-dvh gap-6 px-4">
-        <div className="flex flex-col items-center gap-2 text-center">
-          <div className="icon-notch size-12 flex items-center justify-center mb-2">
-            <Lock className="size-5 text-muted-foreground" />
-          </div>
-          <h2 className="text-lg font-semibold">{t('join-private-room.title')}</h2>
-          <p className="text-sm text-muted-foreground max-w-xs">{t('join-private-room.description')}</p>
-        </div>
-
-        <div className="w-full max-w-xs space-y-3">
-          <Input
-            autoFocus
-            value={passwordInput}
-            onChange={(e) =>
-              setPasswordInput(
-                e.target.value
-                  .toUpperCase()
-                  .replace(/[^A-Z0-9]/g, '')
-                  .slice(0, 6)
-              )
-            }
-            onKeyDown={handlePasswordKeyDown}
-            placeholder={t('join-private-room.placeholder')}
-            autoComplete="off"
-            autoCorrect="off"
-            autoCapitalize="characters"
-            spellCheck={false}
-            enterKeyHint="go"
-            aria-label={t('join-private-room.title')}
-            aria-invalid={passwordError}
-            aria-describedby={passwordError ? 'room-code-error' : undefined}
-            className="h-12 text-center font-mono text-lg tracking-[0.3em] uppercase"
-            maxLength={6}
-          />
-          {passwordError && (
-            <p
-              id="room-code-error"
-              role="alert"
-              className="text-center text-[13px] font-medium text-destructive sm:text-xs"
-            >
-              {t('join-private-room.wrong-code')}
-            </p>
-          )}
-          <div className="flex gap-2">
-            <Button
-              variant="outline"
-              className="flex-1 pointer-coarse:h-11"
-              onClick={() => router.push('/free-play')}
-              disabled={passwordSubmitting}
-            >
-              {t('join-private-room.cancel')}
-            </Button>
-            <Button
-              className="flex-1 pointer-coarse:h-11"
-              onClick={handlePasswordSubmit}
-              disabled={passwordInput.length !== 6 || passwordSubmitting}
-            >
-              {passwordSubmitting ? t('join-private-room.joining') : t('join-private-room.join')}
-            </Button>
-          </div>
-        </div>
-      </div>
+      <RoomCodeGate
+        error={
+          phase === 'wrong-code'
+            ? t('join-private-room.wrong-code')
+            : phase === 'too-many-attempts'
+              ? t('too-many-attempts')
+              : null
+        }
+        submitting={phase === 'joining'}
+        onSubmit={(code) => join(code)}
+        onCancel={() => router.push('/free-play')}
+      />
     )
+  }
+
+  if (phase === 'replaced' || phase === 'moved') {
+    return (
+      <RoomTakenOver
+        movedToAnotherRoom={phase === 'moved'}
+        onPlayHere={() => join()}
+        onLeave={() => router.push('/free-play')}
+      />
+    )
+  }
+
+  if (phase !== 'joined' || !room || !userId) {
+    return null
   }
 
   return (
@@ -318,8 +194,15 @@ export default function FreePlayRoomPage() {
         {/* Users pill */}
         <div className="flex items-center gap-1 border border-border bg-muted/50 p-1.5">
           <AvatarGroup variant="css">
-            {onlineUsers.map((user, index) => (
-              <Avatar key={user.id ?? index} className="relative size-7">
+            {onlineUsers.map((user) => (
+              <Avatar
+                key={user.id}
+                className={cn(
+                  'relative size-7',
+                  user.id === leaderId && 'ring-2 ring-amber-500',
+                  !user.online && 'opacity-50'
+                )}
+              >
                 {user.image && <AvatarImage className="object-cover" src={user.image} />}
                 <AvatarFallback className="text-[10px]">{user.name?.[0]}</AvatarFallback>
                 {user.status === TimerStatus.SOLVING && (
@@ -346,18 +229,19 @@ export default function FreePlayRoomPage() {
                 )}
                 <AvatarGroupTooltip>
                   <p>{user.name}</p>
+                  {user.id === leaderId && <p className="text-xs text-primary-foreground">{t('leader')}</p>}
                   <p className="text-xs text-primary-foreground">
                     {user.status === TimerStatus.SOLVING && t('status.solving')}
                     {user.status === TimerStatus.INSPECTING && t('status.inspecting')}
                     {user.status === TimerStatus.WAITING_NEXT_ROUND && t('status.done')}
                     {user.status === TimerStatus.IDLE && t('status.idle')}
-                    {user.status === TimerStatus.READY && t('status.ready')}
-                    {user.status === TimerStatus.HOLDING && t('status.holding')}
                   </p>
                 </AvatarGroupTooltip>
               </Avatar>
             ))}
           </AvatarGroup>
+          {userId === leaderId && <RoomPlayersMenu players={onlineUsers} selfId={userId} />}
+          {room.private && room.code && <RoomCodeChip code={room.code} />}
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
@@ -379,20 +263,24 @@ export default function FreePlayRoomPage() {
 
       {/* Countdown */}
       <div className="mx-auto flex w-full max-w-xs flex-col items-center gap-1.5 px-4 pb-3">
-        <motion.div
-          className="text-center text-xs text-muted-foreground"
-          key={mmss}
-          initial={{ opacity: 0.5, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.2 }}
-        >
-          {t('next-round-starts-in')}{' '}
-          <span
-            className={`font-mono font-medium tabular-nums transition-colors ${isRoundEnding ? 'text-destructive' : 'text-foreground'}`}
+        {waitingScramble ? (
+          <div className="text-center text-xs text-muted-foreground">{t('waiting-scramble')}</div>
+        ) : (
+          <motion.div
+            className="text-center text-xs text-muted-foreground"
+            key={mmss}
+            initial={{ opacity: 0.5, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.2 }}
           >
-            {mmss}
-          </span>
-        </motion.div>
+            {t('next-round-starts-in')}{' '}
+            <span
+              className={`font-mono font-medium tabular-nums transition-colors ${isRoundEnding ? 'text-destructive' : 'text-foreground'}`}
+            >
+              {mmss}
+            </span>
+          </motion.div>
+        )}
         <div className="h-1 w-full overflow-hidden bg-muted" aria-hidden>
           <div
             className={`h-full transition-[width,background-color] duration-1000 ease-linear motion-reduce:transition-none ${isRoundEnding ? 'bg-destructive' : 'bg-primary'}`}
@@ -405,7 +293,7 @@ export default function FreePlayRoomPage() {
       <div className="flex-1 min-h-0 overflow-hidden mx-2 md:mx-4">
         <div className="h-full notch-bl-tr [--nblt:16px] border border-border bg-card overflow-hidden">
           <div className={`h-full overflow-y-auto ${currentTab !== 'timer' ? 'hidden' : ''}`}>
-            <TimerTab maxRoundTime={maxRoundTime} event={event} onlineUsers={onlineUsers} />
+            <TimerTab maxRoundTime={room.maxRoundTime} event={room.event} onlineUsers={onlineUsers} />
           </div>
           <div className={`h-full overflow-y-auto ${currentTab !== 'results' ? 'hidden' : ''}`}>
             <ResultsTab />

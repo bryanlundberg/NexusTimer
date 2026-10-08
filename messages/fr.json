@@ -1409,7 +1409,6 @@
       "max-round-time-description": "Limite de temps pour mélange + inspection + résolution",
       "private": "Salle privée",
       "private-description": "Seules les personnes avec le code peuvent rejoindre",
-      "room-code": "Code de la salle",
       "room-code-hint": "Partagez ce code avec vos amis pour qu'ils puissent rejoindre",
       "continue": "Créer la salle",
       "creating": "Création...",
@@ -1430,14 +1429,11 @@
       "solving": "Résolution...",
       "inspecting": "Inspection",
       "done": "Terminé",
-      "idle": "En attente",
-      "ready": "Prêt",
-      "holding": "Maintien"
+      "idle": "En attente"
     },
     "already-submitted": "Vous avez déjà envoyé un temps pour ce mélange.",
     "inspection-on": "Inspection activée",
     "inspection-off": "Inspection désactivée",
-    "previous-round": "Tour précédent",
     "current-round": "Tour actuel",
     "confirm-solve": {
       "title": "Confirmer le temps ({time})",
@@ -1447,7 +1443,8 @@
       "ok": "OK",
       "save-to-cube-label": "Enregistrer aussi dans un cube (facultatif)",
       "save-to-cube-none": "Ne pas enregistrer",
-      "save-to-cube-empty": "Aucun cube disponible pour cet événement"
+      "save-to-cube-empty": "Aucun cube disponible pour cet événement",
+      "auto-dnf": "Choisissez avant la fin du tour, sinon ce sera un DNF ({time})"
     },
     "results-tab": {
       "best": "Meilleur",
@@ -1455,7 +1452,6 @@
       "updating-live": "Mise à jour en direct",
       "cubers": "Cubeurs"
     },
-    "view-profile": "Voir le profil",
     "anonymous": "Anonyme",
     "room-card": {
       "players-online": "{count, plural, =0 {Personne en ligne} other {# en ligne}}"
@@ -1464,10 +1460,23 @@
     "invite-link-copied": "Lien d'invitation copié",
     "share-room-text": "Rejoignez ma salle sur NexusTimer!",
     "invite": "Inviter",
-    "OpenGraph": {
-      "room": "Salle {roomId}",
-      "description": "Rejoignez ma salle sur NexusTimer pour concourir en direct ! ID: {roomId}"
-    }
+    "leader": "Chef de salle",
+    "now-leader": "Vous êtes maintenant le chef de la salle",
+    "kick": "Retirer un joueur",
+    "kick-title": "Retirer {name} ?",
+    "kick-description": "Cette personne quittera la salle immédiatement et ne pourra pas revenir.",
+    "kick-confirm": "Retirer",
+    "kicked": "Vous avez été retiré de la salle",
+    "replaced": "Vous avez ouvert cette salle sur un autre appareil",
+    "moved": "Vous avez rejoint une autre salle depuis un autre appareil",
+    "play-here": "Jouer ici",
+    "back-to-lobby": "Retour aux salles",
+    "room-closed": "Cette salle a été fermée",
+    "room-full": "Cette salle est pleine",
+    "update-required": "Mettez l'application à jour pour rejoindre cette salle",
+    "too-many-attempts": "Trop de codes incorrects. Réessayez dans une minute.",
+    "waiting-scramble": "En attente du prochain mélange...",
+    "action-failed": "Une erreur s'est produite. Veuillez réessayer."
   },
   "LandingPage": {
     "header": {

@@ -1,6 +1,6 @@
 import type { Env } from '../src/config/env'
 import { type AppDeps, createApp } from '../src/create-app'
-import type { SessionReader } from '../src/http/require-user'
+import type { SessionProfile, SessionReader } from '../src/http/require-user'
 import type { AuthServices } from '../src/modules/auth/auth.routes'
 
 export const TEST_EDGE_SECRET = 'test-edge-secret-0123456789abcdef'
@@ -26,10 +26,8 @@ export function testEnv(overrides: Partial<Env> = {}): Env {
     REALTIME_SECRET: undefined,
     ADMIN_EMAIL: undefined,
     ADMIN_TOKEN: undefined,
-    ROOM_SIGNING_SECRET: undefined,
     WCA_CLIENT_ID: undefined,
     WCA_CLIENT_SECRET: undefined,
-    FIREBASE_DATABASE_URL: undefined,
     GITHUB_APP_ID: undefined,
     GITHUB_APP_PRIVATE_KEY: undefined,
     GITHUB_APP_INSTALLATION_ID: undefined,
@@ -45,11 +43,15 @@ export function testEnv(overrides: Partial<Env> = {}): Env {
   }
 }
 
-export function testSessions(userId: string | null = null, setCookies: string[] = []): SessionReader {
+export function testSessions(
+  userId: string | null = null,
+  setCookies: string[] = [],
+  profile?: SessionProfile
+): SessionReader {
   return () => {
     const headers = new Headers()
     for (const cookie of setCookies) headers.append('set-cookie', cookie)
-    return Promise.resolve({ userId, headers })
+    return Promise.resolve({ userId, profile, headers })
   }
 }
 
@@ -139,7 +141,8 @@ export function buildTestApp(overrides: Partial<AppDeps> = {}) {
     avatars: { upload: unused },
     feedback: { submit: unused },
     suggestions: { allow: unused, suggest: unused },
-    rooms: { hashPassword: unused, verifyPassword: unused, authCookie: () => '', isAuthorized: () => false },
+    roomLobby: { list: unused },
+    scrambles: () => [],
     wca: {
       start: () => null,
       link: unused,

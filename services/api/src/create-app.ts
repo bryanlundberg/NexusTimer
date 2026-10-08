@@ -27,8 +27,10 @@ import type { ProductsService } from './modules/products/products.service'
 import { presenceRoutes } from './modules/realtime/presence.routes'
 import type { PresenceStore } from './modules/realtime/presence.store'
 import { realtimeRoutes } from './modules/realtime/realtime.routes'
-import { roomsRoutes } from './modules/rooms/rooms.routes'
-import type { RoomsService } from './modules/rooms/rooms.service'
+import { lobbyRoutes } from './modules/rooms/lobby.routes'
+import type { RoomLobby } from './modules/rooms/lobby.store'
+import { scramblesRoutes } from './modules/rooms/scrambles.routes'
+import type { ScrambleGenerator } from './modules/rooms/scrambles.service'
 import { searchRoutes } from './modules/search/search.routes'
 import type { SearchService } from './modules/search/search.service'
 import { sharedSolvesRoutes } from './modules/shared-solves/shared-solves.routes'
@@ -65,14 +67,15 @@ export type AppDeps = {
   avatars: AvatarsService
   feedback: FeedbackService
   suggestions: SuggestionsService
-  rooms: RoomsService
+  roomLobby: RoomLobby
+  scrambles: ScrambleGenerator
   wca: WcaService
   solves: SolvesService
   admin: AdminService
   products: ProductsService
 }
 
-const PUBLIC_PATHS = ['/api/health']
+const PUBLIC_PATHS = ['/api/health', '/api/internal/scrambles']
 
 export function createApp(deps: AppDeps) {
   const { env, sessions } = deps
@@ -103,7 +106,8 @@ export function createApp(deps: AppDeps) {
   app.route('/v1/backups', backupsRoutes(deps.backups, signedIn))
   app.route('/v1/feedback', feedbackRoutes(deps.feedback, signedIn))
   app.route('/v1/algorithms/suggestions', suggestionsRoutes(deps.suggestions))
-  app.route('/v1/rooms', roomsRoutes(deps.rooms))
+  app.route('/v1/rooms', lobbyRoutes(deps.roomLobby))
+  app.route('/internal', scramblesRoutes(env.REALTIME_SECRET, deps.scrambles))
   app.route('/v1/wca', wcaRoutes(deps.wca, { secureCookies: env.NODE_ENV === 'production' }, signedIn, viewer))
 
   app.notFound(handleNotFound)

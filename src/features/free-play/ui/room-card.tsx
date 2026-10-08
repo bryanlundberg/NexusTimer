@@ -6,28 +6,20 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 import { useCountdown } from '@/shared/model/useCountdown'
 import { useLocale, useTranslations } from 'next-intl'
 import dayjs from '@/shared/lib/dayjs'
+import type { RoomSummary } from '@nexustimer/contracts'
 
 interface RoomCardProps {
-  room: {
-    roomId: string
-    name: string
-    event: string
-    maxRoundTime: number
-    createdAt: string
-    currentRoundTimeLimit?: number
-    presence?: Record<string, any>
-    passwordHash?: string
-  }
+  room: RoomSummary
   onJoinPrivate?: () => void
 }
 
 export default function RoomCard({ room, onJoinPrivate }: RoomCardProps) {
   const t = useTranslations('Multiplayer.room-card')
   const tMultiplayer = useTranslations('Multiplayer')
-  const { mmss, isFinished } = useCountdown(room.currentRoundTimeLimit)
-  const usersPresence = room?.presence ? Object.values(room.presence) : []
+  const { mmss, isFinished } = useCountdown(room.roundDeadline || undefined)
+  const usersPresence = room.players
   const locale = useLocale()
-  const isPrivate = Boolean(room.passwordHash)
+  const isPrivate = room.private
 
   const cardContent = (
     <div className="algo-card-notch p-4 h-full flex flex-col gap-3">
@@ -53,11 +45,11 @@ export default function RoomCard({ room, onJoinPrivate }: RoomCardProps) {
         <div className="flex items-center gap-2">
           <div className="flex -space-x-1.5">
             {usersPresence.length > 0 ? (
-              usersPresence.slice(0, 3).map((user: any, index: number) => (
-                <Tooltip key={user?.userId || index}>
+              usersPresence.slice(0, 3).map((user) => (
+                <Tooltip key={user.userId}>
                   <TooltipTrigger asChild>
                     <Avatar className="size-6 border-2 border-background ring-0">
-                      <AvatarImage className="object-cover" src={user?.image} alt={user?.name || 'User'} />
+                      <AvatarImage className="object-cover" src={user.image ?? undefined} alt={user.name || 'User'} />
                       <AvatarFallback className="text-[9px] bg-muted">
                         {user?.name?.charAt(0)?.toUpperCase() || '?'}
                       </AvatarFallback>
@@ -84,7 +76,7 @@ export default function RoomCard({ room, onJoinPrivate }: RoomCardProps) {
           </span>
         </div>
 
-        {room.currentRoundTimeLimit && !isFinished && (
+        {room.roundDeadline > 0 && !isFinished && (
           <div className="flex items-center gap-1 text-xs text-muted-foreground">
             <Timer className="size-3 animate-pulse motion-reduce:animate-none" />
             <span className="font-mono tabular-nums">{mmss}</span>

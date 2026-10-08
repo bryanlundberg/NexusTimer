@@ -13,6 +13,8 @@ import (
 type client struct {
 	hub    *Hub
 	userID string
+	name   string
+	image  string
 	connID string
 	conn   *websocket.Conn
 
@@ -30,10 +32,12 @@ type client struct {
 	lastRefill time.Time
 }
 
-func newClient(h *Hub, userID string, conn *websocket.Conn) *client {
+func newClient(h *Hub, id Identity, conn *websocket.Conn) *client {
 	c := &client{
 		hub:        h,
-		userID:     userID,
+		userID:     id.UserID,
+		name:       id.Name,
+		image:      id.Image,
 		connID:     newConnID(),
 		conn:       conn,
 		tokens:     float64(h.opts.InboundBurst),
@@ -54,6 +58,10 @@ func newConnID() string {
 func (c *client) UserID() string { return c.userID }
 
 func (c *client) ConnID() string { return c.connID }
+
+func (c *client) Name() string { return c.name }
+
+func (c *client) Image() string { return c.image }
 
 func (c *client) Send(payload []byte) { c.enqueue(payload) }
 

@@ -45,7 +45,7 @@ func dial(srv *httptest.Server, ticket, origin string) (*websocket.Conn, *http.R
 }
 
 func validTicket(userID string) string {
-	return auth.NewTicket(userID, []byte(testSecret), time.Now().Add(time.Minute))
+	return auth.NewTicket(auth.Identity{UserID: userID}, []byte(testSecret), time.Now().Add(time.Minute))
 }
 
 func TestWebSocketRejectsForeignOrigin(t *testing.T) {
@@ -62,7 +62,7 @@ func TestWebSocketRejectsInvalidTicket(t *testing.T) {
 
 	for name, ticket := range map[string]string{
 		"forged":  "forged.sig",
-		"expired": auth.NewTicket("u1", []byte(testSecret), time.Now().Add(-time.Second)),
+		"expired": auth.NewTicket(auth.Identity{UserID: "u1"}, []byte(testSecret), time.Now().Add(-time.Second)),
 		"missing": "",
 	} {
 		t.Run(name, func(t *testing.T) {

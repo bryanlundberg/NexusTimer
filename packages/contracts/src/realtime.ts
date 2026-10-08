@@ -1,4 +1,5 @@
 import * as z from 'zod'
+import type { RoomClientFrame, RoomEvent } from './rooms'
 
 export const realtimeTicketResponseSchema = z.object({
   url: z.string(),
@@ -58,6 +59,7 @@ export type RealtimeEvent =
   | { type: 'typing'; chatId: string; userId: string }
   | { type: 'presence'; users: PresenceUser[]; seq?: number }
   | { type: 'presence:self'; status: PresenceStatus }
+  | RoomEvent
 
 export type FriendEventType = Extract<RealtimeEvent, { type: `friend:${string}` }>['type']
 
@@ -65,6 +67,7 @@ export type RealtimeClientFrame =
   | { type: 'typing'; to: string; chatId: string }
   | { type: 'presence:watch'; ids: string[]; seq: number }
   | { type: 'presence:idle'; idle: boolean }
+  | RoomClientFrame
 
 /** Redis channels the Go gateway subscribes to (services/realtime/internal/broker). */
 export const userChannel = (userId: string) => `rt:user:${userId}`

@@ -14,20 +14,31 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import { Cube } from '@/entities/cube/model/types'
 import { CubeCategory } from '@/shared/const/cube-categories'
+import { useCountdown } from '@/shared/model/useCountdown'
 
 interface ConfirmSolveModalProps {
   isOpen: boolean
   onChoose: (options: { plus2: boolean; dnf: boolean; cubeId: string | null }) => void
   onClose: (open: boolean) => void
   category?: CubeCategory | string
+  time?: number
+  confirmBy?: number
 }
 
 const NONE_VALUE = '__none__'
 const STORAGE_KEY = 'free-play-save-cube'
 
-export default function ConfirmSolveModal({ isOpen, onClose, onChoose, category }: ConfirmSolveModalProps) {
+export default function ConfirmSolveModal({
+  isOpen,
+  onClose,
+  onChoose,
+  category,
+  time,
+  confirmBy
+}: ConfirmSolveModalProps) {
   const t = useTranslations('Multiplayer.confirm-solve')
   const solvingTime = useTimerStore((store) => store.solvingTime)
+  const { mmss, remainingMs } = useCountdown(isOpen ? confirmBy : undefined, { intervalMs: 250 })
   const [cubes, setCubes] = useState<Cube[]>([])
   const [selectedCubeId, setSelectedCubeId] = useState<string>(NONE_VALUE)
 
@@ -69,8 +80,13 @@ export default function ConfirmSolveModal({ isOpen, onClose, onChoose, category 
     >
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>{t('title', { time: formatTime(solvingTime) })}</AlertDialogTitle>
-          <AlertDialogDescription className="mb-4">{t('description')}</AlertDialogDescription>
+          <AlertDialogTitle>{t('title', { time: formatTime(time ?? solvingTime) })}</AlertDialogTitle>
+          <AlertDialogDescription className="mb-4">
+            {t('description')}
+            {remainingMs !== undefined && (
+              <span className="mt-1 block tabular-nums">{t('auto-dnf', { time: mmss })}</span>
+            )}
+          </AlertDialogDescription>
 
           <div className="mb-4 space-y-1.5">
             <label htmlFor="confirm-solve-cube" className="text-[13px] text-muted-foreground sm:text-xs">

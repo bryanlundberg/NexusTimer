@@ -1427,7 +1427,6 @@
       "max-round-time-description": "Batas waktu untuk scramble + inspeksi + solving",
       "private": "Ruang privat",
       "private-description": "Hanya orang dengan kode yang bisa bergabung",
-      "room-code": "Kode ruang",
       "room-code-hint": "Bagikan kode ini ke temanmu agar mereka bisa bergabung",
       "continue": "Buat ruang",
       "creating": "Membuat...",
@@ -1448,14 +1447,11 @@
       "solving": "Solving...",
       "inspecting": "Inspeksi",
       "done": "Selesai",
-      "idle": "Diam",
-      "ready": "Siap",
-      "holding": "Menahan"
+      "idle": "Diam"
     },
     "already-submitted": "Kamu sudah mengirim solve untuk scramble ini. Tunggu yang berikutnya!",
     "inspection-on": "Inspeksi diaktifkan",
     "inspection-off": "Inspeksi dinonaktifkan",
-    "previous-round": "Ronde sebelumnya",
     "current-round": "Ronde saat ini",
     "confirm-solve": {
       "title": "Konfirmasi Waktu Solve ({time})",
@@ -1465,7 +1461,8 @@
       "ok": "OK",
       "save-to-cube-label": "Simpan juga ke kubus (opsional)",
       "save-to-cube-none": "Jangan simpan",
-      "save-to-cube-empty": "Tidak ada kubus tersedia untuk event ini"
+      "save-to-cube-empty": "Tidak ada kubus tersedia untuk event ini",
+      "auto-dnf": "Pilih sebelum ronde berakhir atau akan dihitung DNF ({time})"
     },
     "results-tab": {
       "best": "Terbaik",
@@ -1473,7 +1470,6 @@
       "updating-live": "Memperbarui langsung",
       "cubers": "Cuber"
     },
-    "view-profile": "Lihat Profil",
     "anonymous": "Anonim",
     "room-card": {
       "players-online": "{count, plural, =0 {Tidak ada yang online} other {# online}}"
@@ -1482,10 +1478,23 @@
     "invite-link-copied": "Tautan undangan disalin",
     "share-room-text": "Gabung ke ruang cubing-ku di NexusTimer!",
     "invite": "Undang",
-    "OpenGraph": {
-      "room": "Ruang {roomId}",
-      "description": "Gabung ke ruangku di NexusTimer untuk bertanding langsung! ID: {roomId}"
-    }
+    "leader": "Pemimpin ruang",
+    "now-leader": "Kamu sekarang pemimpin ruang ini",
+    "kick": "Keluarkan pemain",
+    "kick-title": "Keluarkan {name}?",
+    "kick-description": "Dia akan langsung keluar dari ruang dan tidak bisa kembali.",
+    "kick-confirm": "Keluarkan",
+    "kicked": "Kamu dikeluarkan dari ruang",
+    "replaced": "Kamu membuka ruang ini di perangkat lain",
+    "moved": "Kamu bergabung ke ruang lain dari perangkat lain",
+    "play-here": "Main di sini",
+    "back-to-lobby": "Kembali ke daftar ruang",
+    "room-closed": "Ruang ini sudah ditutup",
+    "room-full": "Ruang ini penuh",
+    "update-required": "Perbarui aplikasi untuk bergabung ke ruang ini",
+    "too-many-attempts": "Terlalu banyak kode salah. Coba lagi dalam satu menit.",
+    "waiting-scramble": "Menunggu scramble berikutnya...",
+    "action-failed": "Terjadi kesalahan. Coba lagi."
   },
   "LandingPage": {
     "header": {

@@ -1427,7 +1427,6 @@
       "max-round-time-description": "Limite di tempo per scramble + ispezione + risoluzione",
       "private": "Stanza privata",
       "private-description": "Solo chi ha il codice può entrare",
-      "room-code": "Codice stanza",
       "room-code-hint": "Condividi questo codice con i tuoi amici così possono entrare",
       "continue": "Crea stanza",
       "creating": "Creazione...",
@@ -1448,14 +1447,11 @@
       "solving": "Solving...",
       "inspecting": "Ispezione",
       "done": "Fatto",
-      "idle": "Inattivo",
-      "ready": "Pronto",
-      "holding": "In attesa"
+      "idle": "Inattivo"
     },
     "already-submitted": "Hai già inviato un solve per questo scramble. Aspetta il prossimo!",
     "inspection-on": "Ispezione abilitata",
     "inspection-off": "Ispezione disabilitata",
-    "previous-round": "Round precedente",
     "current-round": "Round attuale",
     "confirm-solve": {
       "title": "Conferma il tempo del solve ({time})",
@@ -1465,7 +1461,8 @@
       "ok": "OK",
       "save-to-cube-label": "Salva anche sul cubo (facoltativo)",
       "save-to-cube-none": "Non salvare",
-      "save-to-cube-empty": "Nessun cubo disponibile per questo evento"
+      "save-to-cube-empty": "Nessun cubo disponibile per questo evento",
+      "auto-dnf": "Scegli prima della fine del round o conterà come DNF ({time})"
     },
     "results-tab": {
       "best": "Migliore",
@@ -1473,7 +1470,6 @@
       "updating-live": "Aggiornamento in tempo reale",
       "cubers": "Cuber"
     },
-    "view-profile": "Vedi profilo",
     "anonymous": "Anonimo",
     "room-card": {
       "players-online": "{count, plural, =0 {Nessuno online} other {# online}}"
@@ -1482,10 +1478,23 @@
     "invite-link-copied": "Link di invito copiato",
     "share-room-text": "Entra nella mia stanza di cubing su NexusTimer!",
     "invite": "Invita",
-    "OpenGraph": {
-      "room": "Stanza {roomId}",
-      "description": "Entra nella mia stanza su NexusTimer per competere dal vivo! ID: {roomId}"
-    }
+    "leader": "Capo della stanza",
+    "now-leader": "Ora sei il capo della stanza",
+    "kick": "Rimuovi un giocatore",
+    "kick-title": "Rimuovere {name}?",
+    "kick-description": "Lascerà subito la stanza e non potrà rientrare.",
+    "kick-confirm": "Rimuovi",
+    "kicked": "Sei stato rimosso dalla stanza",
+    "replaced": "Hai aperto questa stanza su un altro dispositivo",
+    "moved": "Sei entrato in un'altra stanza da un altro dispositivo",
+    "play-here": "Gioca qui",
+    "back-to-lobby": "Torna alle stanze",
+    "room-closed": "Questa stanza è stata chiusa",
+    "room-full": "Questa stanza è piena",
+    "update-required": "Aggiorna l'app per entrare in questa stanza",
+    "too-many-attempts": "Troppi codici errati. Riprova tra un minuto.",
+    "waiting-scramble": "In attesa del prossimo scramble...",
+    "action-failed": "Qualcosa è andato storto. Riprova."
   },
   "LandingPage": {
     "header": {

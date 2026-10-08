@@ -21,6 +21,8 @@ type Config struct {
 	CertDir        string
 	HealthAddr     string
 	AllowedOrigins []string
+	// ScramblesURL is the API endpoint that generates room scrambles; without it rooms wait for one.
+	ScramblesURL string
 }
 
 func Load() (Config, error) {
@@ -32,6 +34,7 @@ func Load() (Config, error) {
 		CertDir:        envOr("AUTOCERT_DIR", defaultCertDir),
 		HealthAddr:     HealthAddr(),
 		AllowedOrigins: splitList(os.Getenv("ALLOWED_ORIGINS")),
+		ScramblesURL:   os.Getenv("SCRAMBLES_URL"),
 	}
 
 	var errs []error

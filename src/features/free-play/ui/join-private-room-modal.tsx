@@ -6,6 +6,9 @@ import { Input } from '@/components/ui/input'
 import { Lock } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import { toast } from 'sonner'
+import { ROOM_CODE_LENGTH, ROOM_PROTOCOL_VERSION } from '@nexustimer/contracts'
+import { nextRid, requestRoom } from '@/features/free-play-room/model/room-requests'
 
 interface JoinPrivateRoomModalProps {
   room: {
@@ -16,33 +19,42 @@ interface JoinPrivateRoomModalProps {
 
 export default function JoinPrivateRoomModal({ room }: JoinPrivateRoomModalProps) {
   const t = useTranslations('Multiplayer.join-private-room')
+  const tMultiplayer = useTranslations('Multiplayer')
   const router = useRouter()
   const close = useOverlayStore((store) => store.close)
   const [code, setCode] = useState('')
-  const [error, setError] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const [isJoining, setIsJoining] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
   const handleJoin = async () => {
-    if (code.length !== 6 || isJoining) return
+    if (code.length !== ROOM_CODE_LENGTH || isJoining) return
     setIsJoining(true)
 
-    const res = await fetch('/api/v1/rooms/verify-password', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ roomId: room.roomId, password: code })
-    })
-    const data = await res.json()
-
-    if (data.success) {
-      close()
-      router.push(`/free-play/${room.roomId}`)
-    } else {
-      setError(true)
-      setCode('')
-      setIsJoining(false)
-      setTimeout(() => inputRef.current?.focus(), 50)
+    try {
+      const reply = await requestRoom({
+        type: 'room:join',
+        rid: nextRid(),
+        roomId: room.roomId,
+        code,
+        protocol: ROOM_PROTOCOL_VERSION
+      })
+      if (reply.type === 'room:snapshot') {
+        close()
+        router.push(`/free-play/${room.roomId}`)
+        return
+      }
+      if (reply.type === 'room:error' && (reply.code === 'wrong-code' || reply.code === 'too-many-attempts')) {
+        setError(reply.code === 'wrong-code' ? t('wrong-code') : tMultiplayer('too-many-attempts'))
+      } else {
+        toast.error(tMultiplayer('action-failed'))
+      }
+    } catch {
+      toast.error(tMultiplayer('action-failed'))
     }
+    setCode('')
+    setIsJoining(false)
+    setTimeout(() => inputRef.current?.focus(), 50)
   }
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -56,7 +68,7 @@ export default function JoinPrivateRoomModal({ room }: JoinPrivateRoomModalProps
         .replace(/[^A-Z0-9]/g, '')
         .slice(0, 6)
     )
-    if (error) setError(false)
+    if (error) setError(null)
   }
 
   return (
@@ -87,7 +99,7 @@ export default function JoinPrivateRoomModal({ room }: JoinPrivateRoomModalProps
             spellCheck={false}
             enterKeyHint="go"
             aria-label={t('title')}
-            aria-invalid={error}
+            aria-invalid={Boolean(error)}
             aria-describedby={error ? 'room-code-error' : undefined}
             className="h-12 text-center font-mono text-lg tracking-[0.3em] uppercase"
             maxLength={6}
@@ -98,7 +110,7 @@ export default function JoinPrivateRoomModal({ room }: JoinPrivateRoomModalProps
               role="alert"
               className="text-center text-[13px] font-medium text-destructive sm:text-xs"
             >
-              {t('wrong-code')}
+              {error}
             </p>
           )}
         </div>
@@ -107,7 +119,11 @@ export default function JoinPrivateRoomModal({ room }: JoinPrivateRoomModalProps
           <Button variant="outline" className="flex-1 pointer-coarse:h-11" onClick={close} disabled={isJoining}>
             {t('cancel')}
           </Button>
-          <Button className="flex-1 pointer-coarse:h-11" onClick={handleJoin} disabled={code.length !== 6 || isJoining}>
+          <Button
+            className="flex-1 pointer-coarse:h-11"
+            onClick={handleJoin}
+            disabled={code.length !== ROOM_CODE_LENGTH || isJoining}
+          >
             {isJoining ? t('joining') : t('join')}
           </Button>
         </div>

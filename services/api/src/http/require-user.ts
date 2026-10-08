@@ -1,14 +1,15 @@
 import type { MiddlewareHandler } from 'hono'
 import { unauthorized } from './responses'
 
-export type SessionLookup = { userId: string | null; headers: Headers }
+export type SessionProfile = { name: string; image: string | null }
+export type SessionLookup = { userId: string | null; profile?: SessionProfile; headers: Headers }
 export type SessionReader = (headers: Headers) => Promise<SessionLookup>
-export type UserEnv = { Variables: { userId: string } }
+export type UserEnv = { Variables: { userId: string; profile: SessionProfile | null } }
 export type ViewerEnv = { Variables: { viewerId: string | null } }
 
 export function requireUser(readSession: SessionReader): MiddlewareHandler<UserEnv> {
   return async (c, next) => {
-    const { userId, headers } = await readSession(c.req.raw.headers)
+    const { userId, profile, headers } = await readSession(c.req.raw.headers)
     const cookies = headers.getSetCookie()
 
     if (!userId) {
@@ -18,6 +19,7 @@ export function requireUser(readSession: SessionReader): MiddlewareHandler<UserE
     }
 
     c.set('userId', userId)
+    c.set('profile', profile ?? null)
     await next()
     for (const cookie of cookies) c.header('set-cookie', cookie, { append: true })
   }

@@ -96,6 +96,7 @@ export function useRealtimeConnection() {
     }
 
     const unsubscribe = subscribeRealtime((event) => {
+      if (event.type === 'realtime:refresh') return socket?.close()
       if (event.type !== 'realtime:stalled' || !socket) return
       if (socket.readyState !== WebSocket.OPEN || Date.now() - openedAt < STALL_GRACE_MS) return
       socket.close()

@@ -1409,7 +1409,6 @@
       "max-round-time-description": "스크램블 + 미리보기 + 솔빙 합산 제한 시간",
       "private": "비공개 방",
       "private-description": "코드를 가진 사람만 참여할 수 있습니다",
-      "room-code": "방 코드",
       "room-code-hint": "이 코드를 친구들과 공유하여 참여할 수 있게 하세요",
       "continue": "방 만들기",
       "creating": "생성 중...",
@@ -1430,14 +1429,11 @@
       "solving": "솔빙 중...",
       "inspecting": "미리보기 중",
       "done": "완료",
-      "idle": "대기",
-      "ready": "준비됨",
-      "holding": "누르고 있음"
+      "idle": "대기"
     },
     "already-submitted": "이미 이 스크램블에 대한 기록을 제출했습니다. 다음을 기다려 주세요!",
     "inspection-on": "인스펙션 활성화됨",
     "inspection-off": "인스펙션 비활성화됨",
-    "previous-round": "이전 라운드",
     "current-round": "현재 라운드",
     "confirm-solve": {
       "title": "기록 확인 ({time})",
@@ -1447,7 +1443,8 @@
       "ok": "확인",
       "save-to-cube-label": "큐브에도 저장 (선택 사항)",
       "save-to-cube-none": "저장하지 않음",
-      "save-to-cube-empty": "이 이벤트에 사용할 수 있는 큐브가 없습니다"
+      "save-to-cube-empty": "이 이벤트에 사용할 수 있는 큐브가 없습니다",
+      "auto-dnf": "라운드가 끝나기 전에 선택하세요. 선택하지 않으면 DNF로 처리됩니다 ({time})"
     },
     "results-tab": {
       "best": "최고",
@@ -1455,7 +1452,6 @@
       "updating-live": "실시간 업데이트 중",
       "cubers": "큐버들"
     },
-    "view-profile": "프로필 보기",
     "anonymous": "익명",
     "room-card": {
       "players-online": "{count, plural, =0 {접속 중인 사람 없음} other {#명 접속 중}}"
@@ -1464,10 +1460,23 @@
     "invite-link-copied": "초대 링크가 복사되었습니다",
     "share-room-text": "NexusTimer 방으로 오세요!",
     "invite": "초대하기",
-    "OpenGraph": {
-      "room": "{roomId}번 방",
-      "description": "NexusTimer 실시간 대결에 참여하세요! ID: {roomId}"
-    }
+    "leader": "방장",
+    "now-leader": "이제 방장이 되었습니다",
+    "kick": "플레이어 내보내기",
+    "kick-title": "{name}님을 내보낼까요?",
+    "kick-description": "바로 방에서 나가게 되며 다시 들어올 수 없습니다.",
+    "kick-confirm": "내보내기",
+    "kicked": "방에서 내보내졌습니다",
+    "replaced": "다른 기기에서 이 방을 열었습니다",
+    "moved": "다른 기기에서 다른 방에 참여했습니다",
+    "play-here": "여기서 플레이",
+    "back-to-lobby": "방 목록으로 돌아가기",
+    "room-closed": "이 방은 닫혔습니다",
+    "room-full": "이 방은 가득 찼습니다",
+    "update-required": "이 방에 참여하려면 앱을 업데이트하세요",
+    "too-many-attempts": "잘못된 코드를 너무 많이 입력했습니다. 1분 후에 다시 시도하세요.",
+    "waiting-scramble": "다음 스크램블을 기다리는 중...",
+    "action-failed": "문제가 발생했습니다. 다시 시도하세요."
   },
   "LandingPage": {
     "header": {

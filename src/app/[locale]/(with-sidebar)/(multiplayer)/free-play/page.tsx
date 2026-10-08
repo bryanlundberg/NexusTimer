@@ -1,9 +1,8 @@
 'use client'
 import dynamic from 'next/dynamic'
 import * as React from 'react'
-import { useMemo } from 'react'
 import { Button } from '@/components/ui/button'
-import useFreeMode from '@/features/free-play-room/model/useFreeMode'
+import { useRoomLobby } from '@/features/free-play/model/useRoomLobby'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import FreePlayHeader from '@/widgets/navigation-header/ui/FreePlayHeader'
 const CreateRoomModal = dynamic(() => import('@/features/free-play/ui/create-room-modal'))
@@ -16,36 +15,35 @@ import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { useSession } from '@/shared/model/useSession'
 import { useRouter } from '@/shared/config/i18n/navigation'
 import useAlert from '@/shared/model/useAlert'
+import type { RoomSummary } from '@nexustimer/contracts'
 
 export default function FreePlayPage() {
   const t = useTranslations('Multiplayer')
   const tAuth = useTranslations('Index.Auth')
-  const { useRooms } = useFreeMode()
-  const rooms = useRooms()
+  const displayRooms = useRoomLobby()
   const open = useOverlayStore((store) => store.open)
   const { status } = useSession()
   const router = useRouter()
   const alert = useAlert()
 
-  const displayRooms = useMemo(
-    () => (rooms ? rooms.filter((room: any) => room?.presence && Object.keys(room.presence).length > 0) : []),
-    [rooms]
-  )
+  const ensureAccount = async () => {
+    if (status !== 'unauthenticated') return true
+    const goToSignIn = await alert({
+      title: t('account-required'),
+      subtitle: t('account-required-description'),
+      confirmText: tAuth('sign-in')
+    })
+    if (goToSignIn) router.push('/sign-in')
+    return false
+  }
 
   const handleCreateRoom = async () => {
-    if (status === 'unauthenticated') {
-      const goToSignIn = await alert({
-        title: t('account-required'),
-        subtitle: t('account-required-description'),
-        confirmText: tAuth('sign-in')
-      })
-      if (goToSignIn) router.push('/sign-in')
-      return
-    }
+    if (!(await ensureAccount())) return
     open({ id: 'create-room', component: <CreateRoomModal /> })
   }
 
-  const handleJoinPrivate = (room: any) => {
+  const handleJoinPrivate = async (room: RoomSummary) => {
+    if (!(await ensureAccount())) return
     open({
       id: 'join-private-room',
       component: <JoinPrivateRoomModal room={{ roomId: room.roomId, name: room.name }} />
@@ -99,17 +97,14 @@ export default function FreePlayPage() {
 
               {displayRooms.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {displayRooms.map((room: any, i: number) => (
+                  {displayRooms.map((room, i) => (
                     <motion.div
                       key={room.roomId}
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.3, delay: i * 0.05 }}
                     >
-                      <RoomCard
-                        room={room}
-                        onJoinPrivate={room.passwordHash ? () => handleJoinPrivate(room) : undefined}
-                      />
+                      <RoomCard room={room} onJoinPrivate={room.private ? () => handleJoinPrivate(room) : undefined} />
                     </motion.div>
                   ))}
                 </div>

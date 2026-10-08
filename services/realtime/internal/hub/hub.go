@@ -34,9 +34,17 @@ func DefaultOptions() Options {
 	}
 }
 
+type Identity struct {
+	UserID string
+	Name   string
+	Image  string
+}
+
 type Conn interface {
 	UserID() string
 	ConnID() string
+	Name() string
+	Image() string
 	Send(payload []byte)
 	Watch(userIDs []string) []string
 	SetIdle(idle bool) bool
@@ -48,6 +56,23 @@ type InboundFunc func(c Conn, payload []byte)
 type Presence interface {
 	Connected(c Conn)
 	Disconnected(userID, connID string)
+}
+
+type observers []Presence
+
+// Observe lets several parts of the gateway follow connections through the hub's single Presence slot.
+func Observe(list ...Presence) Presence { return observers(list) }
+
+func (o observers) Connected(c Conn) {
+	for _, p := range o {
+		p.Connected(c)
+	}
+}
+
+func (o observers) Disconnected(userID, connID string) {
+	for _, p := range o {
+		p.Disconnected(userID, connID)
+	}
 }
 
 type Connection struct {
@@ -84,10 +109,10 @@ func New(opts Options, logger *slog.Logger, presence Presence, onInbound Inbound
 	}
 }
 
-func (h *Hub) Register(userID string, conn *websocket.Conn) {
-	c := newClient(h, userID, conn)
+func (h *Hub) Register(id Identity, conn *websocket.Conn) {
+	c := newClient(h, id, conn)
 	h.add(c)
-	h.watch(c, []string{userID})
+	h.watch(c, []string{id.UserID})
 
 	if h.presence != nil {
 		h.presence.Connected(c)

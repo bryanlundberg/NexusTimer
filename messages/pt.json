@@ -1409,7 +1409,6 @@
       "max-round-time-description": "Limite de tempo para embaralhamento + inspeção + resolução",
       "private": "Sala privada",
       "private-description": "Apenas pessoas com o código podem entrar",
-      "room-code": "Código da sala",
       "room-code-hint": "Compartilhe este código com seus amigos para que possam entrar",
       "continue": "Criar sala",
       "creating": "Criando...",
@@ -1430,14 +1429,11 @@
       "solving": "Resolvendo...",
       "inspecting": "Inspecionando",
       "done": "Concluído",
-      "idle": "Inativo",
-      "ready": "Pronto",
-      "holding": "Segurando"
+      "idle": "Inativo"
     },
     "already-submitted": "Você já enviou um tempo para este embaralhamento.",
     "inspection-on": "Inspeção ativada",
     "inspection-off": "Inspeção desativada",
-    "previous-round": "Rodada anterior",
     "current-round": "Rodada atual",
     "confirm-solve": {
       "title": "Confirmar Tempo ({time})",
@@ -1447,7 +1443,8 @@
       "ok": "OK",
       "save-to-cube-label": "Salvar também em um cubo (opcional)",
       "save-to-cube-none": "Não salvar",
-      "save-to-cube-empty": "Nenhum cubo disponível para este evento"
+      "save-to-cube-empty": "Nenhum cubo disponível para este evento",
+      "auto-dnf": "Escolha antes do fim da rodada ou contará como DNF ({time})"
     },
     "results-tab": {
       "best": "Melhor",
@@ -1455,7 +1452,6 @@
       "updating-live": "Atualizando ao vivo",
       "cubers": "Cubistas"
     },
-    "view-profile": "Ver perfil",
     "anonymous": "Anônimo",
     "room-card": {
       "players-online": "{count, plural, =0 {Ninguém online} other {# online}}"
@@ -1464,10 +1460,23 @@
     "invite-link-copied": "Link de convite copiado",
     "share-room-text": "Junte-se à minha sala no NexusTimer!",
     "invite": "Convidar",
-    "OpenGraph": {
-      "room": "Sala {roomId}",
-      "description": "Junte-se à minha sala no NexusTimer para competir ao vivo! ID: {roomId}"
-    }
+    "leader": "Líder da sala",
+    "now-leader": "Agora você é o líder da sala",
+    "kick": "Remover um jogador",
+    "kick-title": "Remover {name}?",
+    "kick-description": "A pessoa sairá da sala na hora e não poderá voltar.",
+    "kick-confirm": "Remover",
+    "kicked": "Você foi removido da sala",
+    "replaced": "Você abriu esta sala em outro dispositivo",
+    "moved": "Você entrou em outra sala de outro dispositivo",
+    "play-here": "Jogar aqui",
+    "back-to-lobby": "Voltar para as salas",
+    "room-closed": "Esta sala foi fechada",
+    "room-full": "Esta sala está cheia",
+    "update-required": "Atualize o app para entrar nesta sala",
+    "too-many-attempts": "Muitos códigos incorretos. Tente de novo em um minuto.",
+    "waiting-scramble": "Aguardando o próximo embaralhamento...",
+    "action-failed": "Algo deu errado. Tente de novo."
   },
   "LandingPage": {
     "header": {
