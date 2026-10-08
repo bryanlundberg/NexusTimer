@@ -1,7 +1,6 @@
 'use client'
 import useFreeMode from '@/features/free-play-room/model/useFreeMode'
 import { SidebarTrigger } from '@/components/ui/sidebar'
-import { Separator } from '@/components/ui/separator'
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList } from '@/components/ui/breadcrumb'
 import { Link, useRouter } from '@/shared/config/i18n/navigation'
 import * as React from 'react'
@@ -303,9 +302,8 @@ export default function FreePlayRoomPage() {
     <div className="flex flex-col overflow-hidden h-dvh">
       {/* Header */}
       <div className="flex justify-between items-center px-4 pt-4 pb-2">
-        <div className="flex items-center gap-2">
-          <SidebarTrigger className="-ml-1" />
-          <Separator orientation="vertical" className="mr-2 data-[orientation=vertical]:h-4" />
+        <div className="flex items-center gap-3">
+          <SidebarTrigger className="btn-notch btn-notch-alt btn-notch-border size-9 shrink-0 pointer-coarse:size-10 [&_svg]:size-5" />
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
@@ -327,7 +325,7 @@ export default function FreePlayRoomPage() {
                 {user.status === TimerStatus.SOLVING && (
                   <div className="absolute inset-0 w-full h-full">
                     <Image
-                      src="/animated/source.gif"
+                      src="/utils/solving.gif"
                       alt="Solving"
                       width={28}
                       height={28}

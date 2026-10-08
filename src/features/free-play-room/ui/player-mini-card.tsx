@@ -44,7 +44,7 @@ export default function PlayerMiniCard({ name, avatarUrl, status, id }: PlayerMi
         {status === TimerStatus.SOLVING && (
           <div className="absolute inset-0 w-full h-full rounded-full overflow-hidden">
             <Image
-              src="/animated/source.gif"
+              src="/utils/solving.gif"
               alt="Solving"
               width={64}
               height={64}
