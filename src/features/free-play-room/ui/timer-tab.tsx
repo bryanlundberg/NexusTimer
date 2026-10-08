@@ -113,6 +113,15 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
     resetAll()
   }, [scramble, reset, setSolvingTime, setLastSolve, resetAll])
 
+  useEffect(
+    () => () => {
+      setSolvingTime(0)
+      setLastSolve(null)
+      reset()
+    },
+    [reset, setSolvingTime, setLastSolve]
+  )
+
   return (
     <div className="flex h-full" id="touch">
       <div className="relative flex-1 flex flex-col justify-center items-center p-4 md:p-8 bg-background/50">
