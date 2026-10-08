@@ -26,7 +26,6 @@ const loadMotionFeatures = () => import('../model/motionFeatures').then((mod) =>
 
 export default function LandingShell({ footer }: { footer: ReactNode }) {
   const t = useTranslations('LandingPage')
-  const tAuth = useTranslations('Index.Auth')
   const tPages = useTranslations('Metadata.pages')
   const reduce = useReducedMotion()
   const [scrolled, setScrolled] = useState(false)
@@ -108,22 +107,13 @@ export default function LandingShell({ footer }: { footer: ReactNode }) {
                     </Link>
                   ))}
                 </nav>
-                <div className="flex items-center gap-1.5 sm:gap-3">
-                  <Link
-                    href="/sign-in"
-                    prefetch={false}
-                    className="hidden sm:inline-flex md:hidden lg:inline-flex whitespace-nowrap items-center rounded-full px-3 py-2 text-sm font-medium text-gray-600 transition-colors duration-300 hover:text-gray-900"
-                  >
-                    {tAuth('sign-in')}
-                  </Link>
-                  <Link
-                    href="/app"
-                    className="group inline-flex whitespace-nowrap items-center gap-2 rounded-full bg-gray-900 text-white px-4 sm:px-5 py-2 text-sm font-semibold hover:bg-gray-700 transition-all duration-300"
-                  >
-                    {t('header.start-timing')}
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-                  </Link>
-                </div>
+                <Link
+                  href="/app"
+                  className="group inline-flex whitespace-nowrap items-center gap-2 rounded-full bg-primary text-white px-4 sm:px-5 py-2 text-sm font-semibold hover:brightness-110 transition-all duration-300"
+                >
+                  {t('header.start-timing')}
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                </Link>
               </m.div>
             </header>
 

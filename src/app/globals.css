@@ -415,9 +415,9 @@
   --cube-green: oklch(0.74 0.18 150);
   --cube-blue: oklch(0.623 0.214 259.815);
 
-  --primary: oklch(0.7 0.14 182);
-  --primary-foreground: oklch(0.99 0.01 180);
-  --ring: oklch(0.7 0.14 182);
+  --primary: oklch(0.585 0.233 277.117);
+  --primary-foreground: oklch(0.99 0.01 277.117);
+  --ring: oklch(0.585 0.233 277.117);
 
   color-scheme: light;
   background-color: var(--lp-bg);

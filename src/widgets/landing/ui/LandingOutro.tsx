@@ -26,7 +26,10 @@ export default function LandingOutro({ children }: { children: ReactNode }) {
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0"
-          style={{ background: 'radial-gradient(58% 52% at 50% 42%, var(--lp-bg-deep) 0%, transparent 72%)' }}
+          style={{
+            background:
+              'radial-gradient(58% 52% at 50% 42%, color-mix(in oklch, var(--primary) 12%, var(--lp-bg-deep)) 0%, transparent 72%)'
+          }}
         />
 
         <m.div
@@ -44,7 +47,7 @@ export default function LandingOutro({ children }: { children: ReactNode }) {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/app"
-              className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden notch-bl-tr [--nblt:12px] bg-gray-900 px-8 py-4 text-sm font-semibold text-white transition-all duration-300 hover:bg-gray-700"
+              className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden notch-bl-tr [--nblt:12px] bg-primary px-8 py-4 text-sm font-semibold text-white transition-all duration-300 hover:brightness-110"
             >
               <span
                 aria-hidden
