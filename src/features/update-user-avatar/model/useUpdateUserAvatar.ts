@@ -3,6 +3,7 @@ import { useSession } from '@/shared/model/useSession'
 import { useState } from 'react'
 import loader from '@/shared/lib/loader'
 import uploadFile from '@/shared/lib/uploadFile'
+import { refreshRealtime } from '@/features/realtime/model/realtime-bus'
 
 export function useUpdateUserAvatar() {
   const { data: session, update } = useSession()
@@ -16,6 +17,7 @@ export function useUpdateUserAvatar() {
       await uploadFile(file, `/avatars`, session.user.id)
       toast.success('User image updated successfully')
       await update()
+      refreshRealtime()
     } catch (e) {
       toast.error('Error updating user image')
     } finally {

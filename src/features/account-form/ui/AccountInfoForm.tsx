@@ -3,6 +3,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import * as React from 'react'
 import { toast } from 'sonner'
 import { useSession } from '@/shared/model/useSession'
+import { refreshRealtime } from '@/features/realtime/model/realtime-bus'
 import { CountryCombobox } from '@/shared/ui/country-combobox/CountryCombobox'
 import { UserDocument } from '@/entities/user/model/user'
 import { PROFILE_SECTION_IDS } from '@/entities/user/model/profile-completeness'
@@ -113,6 +114,7 @@ export default function AccountInfoForm({ user, mutate, onPreviewChange }: Accou
       reset(savedValues.current)
       await mutate()
       await update()
+      if (saved.name !== session?.user?.name) refreshRealtime()
       toast.success(t('update-success'))
     } catch (error) {
       console.error('Error updating user:', error)
