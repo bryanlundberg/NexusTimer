@@ -10,6 +10,7 @@ export type RealtimeConfig = { url?: string; secret?: string }
 export function realtimeRoutes(config: RealtimeConfig, auth: MiddlewareHandler<UserEnv>) {
   return new Hono<AppEnv>().post('/ticket', auth, (c) => {
     if (!config.url || !config.secret) return serviceUnavailable('Realtime is not configured')
-    return ok<RealtimeTicketResponse>({ url: config.url, ticket: createTicket(c.var.userId, config.secret) })
+    const ticket = createTicket({ userId: c.var.userId, ...c.var.profile }, config.secret)
+    return ok<RealtimeTicketResponse>({ url: config.url, ticket })
   })
 }

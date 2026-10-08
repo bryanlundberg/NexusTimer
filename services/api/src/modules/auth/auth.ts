@@ -135,6 +135,8 @@ export function createSessionReader(getAuth: AuthProvider): SessionReader {
   return async (headers) => {
     const auth = await getAuth()
     const result = await auth.api.getSession({ headers, returnHeaders: true })
-    return { userId: result.response?.user.id ?? null, headers: result.headers }
+    const user = result.response?.user
+    if (!user) return { userId: null, headers: result.headers }
+    return { userId: user.id, profile: { name: user.name, image: user.image ?? null }, headers: result.headers }
   }
 }
