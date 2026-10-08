@@ -1,65 +1,61 @@
 import { useCallback } from 'react'
-import { useSession } from '@/shared/model/useSession'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import genId from '@/shared/lib/genId'
 import { Solve } from '@/entities/solve/model/types'
 import { withPlus2 } from '@/entities/solve/lib/penalty'
-import useFreeMode from '@/features/free-play-room/model/useFreeMode'
+import { setRoomPenalty, submitRoomSolve } from '@/features/free-play-room/model/room-actions'
 
-interface SubmitParams {
+interface Penalty {
   dnf: boolean
   plus2: boolean
-  cubeId: string | null
 }
 
-interface UseFreePlaySolveSubmitArgs {
-  roomId: string | null
+export interface PendingSolve {
+  round: number
+  time: number
   scramble: string
-  currentRound: number
 }
 
-export function useFreePlaySolveSubmit({ roomId, scramble, currentRound }: UseFreePlaySolveSubmitArgs) {
-  const { addUserSolve } = useFreeMode()
-  const { data: session } = useSession()
-  const solvingTime = useTimerStore((store) => store.solvingTime)
-  const selectedCube = useTimerStore((store) => store.selectedCube)
+export function useFreePlaySolveSubmit() {
   const patchCube = useTimerStore((store) => store.patchCube)
   const setSolvingTime = useTimerStore((store) => store.setSolvingTime)
   const setLastSolve = useTimerStore((store) => store.setLastSolve)
 
-  const submit = useCallback(
-    async ({ dnf, plus2, cubeId }: SubmitParams) => {
-      if (!session?.user?.id || !roomId || !solvingTime) return
+  const sendTime = useCallback((round: number): number | null => {
+    const time = useTimerStore.getState().solvingTime
+    if (!time || !submitRoomSolve(round, time)) return null
+    return time
+  }, [])
 
-      const finalTime = withPlus2(solvingTime, plus2)
-
-      await addUserSolve(roomId, session.user.id, {
-        time: finalTime,
-        dnf,
-        plus2,
-        scramble,
-        roundIndex: currentRound
-      })
-
-      // Only for reflect the penalty (+2 / DNF) on the timer display after submitting.
+  // Only reflects the penalty (+2 / DNF) on the timer display.
+  const showResult = useCallback(
+    ({ dnf, plus2 }: Penalty, { time, scramble }: PendingSolve) => {
       const now = Date.now()
       setLastSolve({
         id: genId(),
-        startTime: now - solvingTime,
+        startTime: now - time,
         endTime: now,
         scramble,
         bookmark: false,
-        time: finalTime,
+        time: withPlus2(time, plus2),
         dnf,
         plus2,
         rating: 0,
-        cubeId: cubeId ?? '',
+        cubeId: '',
         comment: '',
         isDeleted: false,
         updatedAt: now
       })
+    },
+    [setLastSolve]
+  )
 
+  const confirm = useCallback(
+    async ({ dnf, plus2, cubeId }: Penalty & { cubeId: string | null }, solve: PendingSolve) => {
+      const { scramble } = solve
+      setRoomPenalty(solve.round, dnf ? 'dnf' : plus2 ? 'plus2' : 'ok')
+      showResult({ dnf, plus2 }, solve)
       if (!cubeId) return
 
       try {
@@ -67,11 +63,11 @@ export function useFreePlaySolveSubmit({ roomId, scramble, currentRound }: UseFr
         const now = Date.now()
         const newSolve: Solve = {
           id: genId(),
-          startTime: now - solvingTime,
+          startTime: now - solve.time,
           endTime: now,
           scramble,
           bookmark: false,
-          time: finalTime,
+          time: withPlus2(solve.time, plus2),
           dnf,
           plus2,
           rating: Math.floor(Math.random() * 20) + (scramble?.length || 0),
@@ -89,17 +85,7 @@ export function useFreePlaySolveSubmit({ roomId, scramble, currentRound }: UseFr
         console.error('Failed to save free-play solve to cube', e)
       }
     },
-    [
-      session?.user?.id,
-      roomId,
-      solvingTime,
-      scramble,
-      currentRound,
-      addUserSolve,
-      selectedCube,
-      patchCube,
-      setLastSolve
-    ]
+    [patchCube, showResult]
   )
 
   const submitManual = useCallback(
@@ -109,5 +95,5 @@ export function useFreePlaySolveSubmit({ roomId, scramble, currentRound }: UseFr
     [setSolvingTime]
   )
 
-  return { submit, submitManual }
+  return { sendTime, confirm, showResult, submitManual }
 }
