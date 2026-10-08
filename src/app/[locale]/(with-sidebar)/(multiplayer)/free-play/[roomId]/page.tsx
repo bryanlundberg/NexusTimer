@@ -325,7 +325,8 @@ export default function FreePlayRoomPage() {
                 {user.status === TimerStatus.SOLVING && (
                   <div className="absolute inset-0 w-full h-full">
                     <Image
-                      src="/utils/solving.gif"
+                      src="/utils/solving.webp"
+                      unoptimized
                       alt="Solving"
                       width={28}
                       height={28}
