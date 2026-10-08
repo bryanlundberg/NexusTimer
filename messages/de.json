@@ -1409,7 +1409,6 @@
       "max-round-time-description": "Zeitlimit für Scramble + Inspektion + Lösung",
       "private": "Privater Raum",
       "private-description": "Nur Personen mit dem Code können beitreten",
-      "room-code": "Raumcode",
       "room-code-hint": "Teile diesen Code mit deinen Freunden, damit sie beitreten können",
       "continue": "Raum erstellen",
       "creating": "Wird erstellt...",
@@ -1430,14 +1429,11 @@
       "solving": "Lösen...",
       "inspecting": "Inspektion",
       "done": "Fertig",
-      "idle": "Warten",
-      "ready": "Bereit",
-      "holding": "Halten"
+      "idle": "Warten"
     },
     "already-submitted": "Du hast für dieses Scramble bereits eine Zeit gesendet.",
     "inspection-on": "Inspektion aktiviert",
     "inspection-off": "Inspektion deaktiviert",
-    "previous-round": "Vorherige Runde",
     "current-round": "Aktuelle Runde",
     "confirm-solve": {
       "title": "Zeit bestätigen ({time})",
@@ -1447,7 +1443,8 @@
       "ok": "OK",
       "save-to-cube-label": "Auch im Würfel speichern (optional)",
       "save-to-cube-none": "Nicht speichern",
-      "save-to-cube-empty": "Keine Würfel für dieses Event verfügbar"
+      "save-to-cube-empty": "Keine Würfel für dieses Event verfügbar",
+      "auto-dnf": "Wähle vor dem Ende der Runde, sonst zählt es als DNF ({time})"
     },
     "results-tab": {
       "best": "Beste",
@@ -1455,7 +1452,6 @@
       "updating-live": "Live-Update",
       "cubers": "Cuber"
     },
-    "view-profile": "Profil ansehen",
     "anonymous": "Anonym",
     "room-card": {
       "players-online": "{count, plural, =0 {Niemand online} other {# online}}"
@@ -1464,10 +1460,23 @@
     "invite-link-copied": "Einladungslink kopiert",
     "share-room-text": "Komm in meinen Raum auf NexusTimer!",
     "invite": "Einladen",
-    "OpenGraph": {
-      "room": "Raum {roomId}",
-      "description": "Komm in meinen Raum auf NexusTimer! ID: {roomId}"
-    }
+    "leader": "Raumleiter",
+    "now-leader": "Du leitest jetzt den Raum",
+    "kick": "Spieler entfernen",
+    "kick-title": "{name} entfernen?",
+    "kick-description": "Die Person verlässt den Raum sofort und kann nicht zurückkehren.",
+    "kick-confirm": "Entfernen",
+    "kicked": "Du wurdest aus dem Raum entfernt",
+    "replaced": "Du hast diesen Raum auf einem anderen Gerät geöffnet",
+    "moved": "Du bist auf einem anderen Gerät einem anderen Raum beigetreten",
+    "play-here": "Hier spielen",
+    "back-to-lobby": "Zurück zu den Räumen",
+    "room-closed": "Dieser Raum wurde geschlossen",
+    "room-full": "Dieser Raum ist voll",
+    "update-required": "Aktualisiere die App, um diesem Raum beizutreten",
+    "too-many-attempts": "Zu viele falsche Codes. Versuche es in einer Minute erneut.",
+    "waiting-scramble": "Warte auf das nächste Scramble...",
+    "action-failed": "Etwas ist schiefgelaufen. Versuche es erneut."
   },
   "LandingPage": {
     "header": {

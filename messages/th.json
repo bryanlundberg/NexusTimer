@@ -1427,7 +1427,6 @@
       "max-round-time-description": "จำกัดเวลาสำหรับ scramble + การตรวจสอบ + การต่อ",
       "private": "ห้องส่วนตัว",
       "private-description": "เฉพาะคนที่มีรหัสเท่านั้นที่เข้าร่วมได้",
-      "room-code": "รหัสห้อง",
       "room-code-hint": "แชร์รหัสนี้กับเพื่อนของคุณเพื่อให้พวกเขาเข้าร่วมได้",
       "continue": "สร้างห้อง",
       "creating": "กำลังสร้าง...",
@@ -1448,14 +1447,11 @@
       "solving": "กำลังต่อ...",
       "inspecting": "กำลังตรวจสอบ",
       "done": "เสร็จ",
-      "idle": "ว่าง",
-      "ready": "พร้อม",
-      "holding": "กำลังกดค้าง"
+      "idle": "ว่าง"
     },
     "already-submitted": "คุณส่งการต่อสำหรับ scramble นี้ไปแล้ว รอรอบถัดไป!",
     "inspection-on": "เปิดการตรวจสอบแล้ว",
     "inspection-off": "ปิดการตรวจสอบแล้ว",
-    "previous-round": "รอบก่อนหน้า",
     "current-round": "รอบปัจจุบัน",
     "confirm-solve": {
       "title": "ยืนยันเวลาการต่อ ({time})",
@@ -1465,7 +1461,8 @@
       "ok": "ตกลง",
       "save-to-cube-label": "บันทึกไปยังลูกบาศก์ด้วย (ไม่บังคับ)",
       "save-to-cube-none": "ไม่บันทึก",
-      "save-to-cube-empty": "ไม่มีลูกบาศก์ที่พร้อมใช้งานสำหรับประเภทนี้"
+      "save-to-cube-empty": "ไม่มีลูกบาศก์ที่พร้อมใช้งานสำหรับประเภทนี้",
+      "auto-dnf": "เลือกก่อนรอบจะจบ ไม่เช่นนั้นจะนับเป็น DNF ({time})"
     },
     "results-tab": {
       "best": "ดีที่สุด",
@@ -1473,7 +1470,6 @@
       "updating-live": "กำลังอัปเดตแบบสด",
       "cubers": "Cuber"
     },
-    "view-profile": "ดูโปรไฟล์",
     "anonymous": "ไม่ระบุชื่อ",
     "room-card": {
       "players-online": "{count, plural, =0 {ไม่มีใครออนไลน์} other {# ออนไลน์}}"
@@ -1482,10 +1478,23 @@
     "invite-link-copied": "คัดลอกลิงก์เชิญแล้ว",
     "share-room-text": "เข้าร่วมห้องคิวบ์ของฉันบน NexusTimer!",
     "invite": "เชิญ",
-    "OpenGraph": {
-      "room": "ห้อง {roomId}",
-      "description": "เข้าร่วมห้องของฉันบน NexusTimer เพื่อแข่งขันแบบสด! ID: {roomId}"
-    }
+    "leader": "หัวหน้าห้อง",
+    "now-leader": "ตอนนี้คุณเป็นหัวหน้าห้องแล้ว",
+    "kick": "นำผู้เล่นออก",
+    "kick-title": "นำ {name} ออกจากห้อง?",
+    "kick-description": "ผู้เล่นจะออกจากห้องทันทีและกลับเข้ามาไม่ได้",
+    "kick-confirm": "นำออก",
+    "kicked": "คุณถูกนำออกจากห้อง",
+    "replaced": "คุณเปิดห้องนี้บนอุปกรณ์อื่น",
+    "moved": "คุณเข้าร่วมห้องอื่นจากอุปกรณ์อื่น",
+    "play-here": "เล่นที่นี่",
+    "back-to-lobby": "กลับไปที่รายการห้อง",
+    "room-closed": "ห้องนี้ถูกปิดแล้ว",
+    "room-full": "ห้องนี้เต็มแล้ว",
+    "update-required": "อัปเดตแอปเพื่อเข้าร่วมห้องนี้",
+    "too-many-attempts": "ใส่รหัสผิดหลายครั้งเกินไป ลองใหม่อีกครั้งในหนึ่งนาที",
+    "waiting-scramble": "กำลังรอ scramble ถัดไป...",
+    "action-failed": "เกิดข้อผิดพลาด ลองใหม่อีกครั้ง"
   },
   "LandingPage": {
     "header": {

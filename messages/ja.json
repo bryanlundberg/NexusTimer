@@ -1409,7 +1409,6 @@
       "max-round-time-description": "スクランブル＋インスペクション＋ソルブの制限時間",
       "private": "プライベートルーム",
       "private-description": "コードを持つ人のみが参加できます",
-      "room-code": "ルームコード",
       "room-code-hint": "このコードを友達と共有して参加してもらいましょう",
       "continue": "部屋を作成",
       "creating": "作成中...",
@@ -1430,14 +1429,11 @@
       "solving": "ソルブ中...",
       "inspecting": "インスペクション中",
       "done": "終了",
-      "idle": "待機中",
-      "ready": "準備完了",
-      "holding": "長押し中"
+      "idle": "待機中"
     },
     "already-submitted": "このスクランブルの記録は送信済みです。次のラウンドを待ってください！",
     "inspection-on": "インスペクション有効",
     "inspection-off": "インスペクション無効",
-    "previous-round": "前のラウンド",
     "current-round": "現在のラウンド",
     "confirm-solve": {
       "title": "タイムの確認 ({time})",
@@ -1447,7 +1443,8 @@
       "ok": "OK",
       "save-to-cube-label": "キューブにも保存する（任意）",
       "save-to-cube-none": "保存しない",
-      "save-to-cube-empty": "このイベントに利用できるキューブがありません"
+      "save-to-cube-empty": "このイベントに利用できるキューブがありません",
+      "auto-dnf": "ラウンド終了までに選んでください。選ばないとDNFになります（{time}）"
     },
     "results-tab": {
       "best": "ベスト",
@@ -1455,7 +1452,6 @@
       "updating-live": "リアルタイム更新中",
       "cubers": "キューバー"
     },
-    "view-profile": "プロフィールを見る",
     "anonymous": "匿名",
     "room-card": {
       "players-online": "{count, plural, =0 {オンラインのユーザーなし} other {# 人オンライン}}"
@@ -1464,10 +1460,23 @@
     "invite-link-copied": "招待リンクをコピーしました",
     "share-room-text": "NexusTimerの部屋に来てください！",
     "invite": "招待",
-    "OpenGraph": {
-      "room": "ルーム {roomId}",
-      "description": "NexusTimerでリアルタイムに対戦しましょう！ ID: {roomId}"
-    }
+    "leader": "部屋のリーダー",
+    "now-leader": "あなたが部屋のリーダーになりました",
+    "kick": "プレイヤーを退出させる",
+    "kick-title": "{name}さんを退出させますか？",
+    "kick-description": "すぐに部屋から退出し、再入室できなくなります。",
+    "kick-confirm": "退出させる",
+    "kicked": "部屋から退出させられました",
+    "replaced": "この部屋を別のデバイスで開きました",
+    "moved": "別のデバイスから別の部屋に参加しました",
+    "play-here": "ここでプレイ",
+    "back-to-lobby": "部屋一覧に戻る",
+    "room-closed": "この部屋は閉じられました",
+    "room-full": "この部屋は満員です",
+    "update-required": "この部屋に参加するにはアプリを更新してください",
+    "too-many-attempts": "コードの入力ミスが多すぎます。1分後にもう一度お試しください。",
+    "waiting-scramble": "次のスクランブルを待っています...",
+    "action-failed": "問題が発生しました。もう一度お試しください。"
   },
   "LandingPage": {
     "header": {

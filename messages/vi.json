@@ -1427,7 +1427,6 @@
       "max-round-time-description": "Giới hạn thời gian cho scramble + quan sát + giải",
       "private": "Phòng riêng tư",
       "private-description": "Chỉ người có mã mới có thể tham gia",
-      "room-code": "Mã phòng",
       "room-code-hint": "Chia sẻ mã này với bạn bè để họ có thể tham gia",
       "continue": "Tạo phòng",
       "creating": "Đang tạo...",
@@ -1448,14 +1447,11 @@
       "solving": "Đang giải...",
       "inspecting": "Đang quan sát",
       "done": "Xong",
-      "idle": "Rảnh",
-      "ready": "Sẵn sàng",
-      "holding": "Đang giữ"
+      "idle": "Rảnh"
     },
     "already-submitted": "Bạn đã gửi một lượt giải cho scramble này rồi. Hãy chờ lượt tiếp theo!",
     "inspection-on": "Đã bật quan sát",
     "inspection-off": "Đã tắt quan sát",
-    "previous-round": "Vòng trước",
     "current-round": "Vòng hiện tại",
     "confirm-solve": {
       "title": "Xác nhận thời gian lượt giải ({time})",
@@ -1465,7 +1461,8 @@
       "ok": "OK",
       "save-to-cube-label": "Cũng lưu vào khối (tùy chọn)",
       "save-to-cube-none": "Không lưu",
-      "save-to-cube-empty": "Không có khối nào khả dụng cho nội dung này"
+      "save-to-cube-empty": "Không có khối nào khả dụng cho nội dung này",
+      "auto-dnf": "Hãy chọn trước khi vòng kết thúc, nếu không sẽ tính là DNF ({time})"
     },
     "results-tab": {
       "best": "Tốt nhất",
@@ -1473,7 +1470,6 @@
       "updating-live": "Đang cập nhật trực tiếp",
       "cubers": "Cuber"
     },
-    "view-profile": "Xem hồ sơ",
     "anonymous": "Ẩn danh",
     "room-card": {
       "players-online": "{count, plural, =0 {Không ai trực tuyến} other {# trực tuyến}}"
@@ -1482,10 +1478,23 @@
     "invite-link-copied": "Đã sao chép liên kết mời",
     "share-room-text": "Tham gia phòng cubing của tôi trên NexusTimer!",
     "invite": "Mời",
-    "OpenGraph": {
-      "room": "Phòng {roomId}",
-      "description": "Tham gia phòng của tôi trên NexusTimer để thi đấu trực tiếp! ID: {roomId}"
-    }
+    "leader": "Trưởng phòng",
+    "now-leader": "Bây giờ bạn là trưởng phòng",
+    "kick": "Mời người chơi ra",
+    "kick-title": "Mời {name} ra khỏi phòng?",
+    "kick-description": "Người này sẽ rời phòng ngay và không thể quay lại.",
+    "kick-confirm": "Mời ra",
+    "kicked": "Bạn đã bị mời ra khỏi phòng",
+    "replaced": "Bạn đã mở phòng này trên thiết bị khác",
+    "moved": "Bạn đã vào phòng khác từ thiết bị khác",
+    "play-here": "Chơi ở đây",
+    "back-to-lobby": "Quay lại danh sách phòng",
+    "room-closed": "Phòng này đã đóng",
+    "room-full": "Phòng này đã đầy",
+    "update-required": "Cập nhật ứng dụng để vào phòng này",
+    "too-many-attempts": "Nhập sai mã quá nhiều lần. Thử lại sau một phút.",
+    "waiting-scramble": "Đang chờ scramble tiếp theo...",
+    "action-failed": "Đã xảy ra lỗi. Thử lại."
   },
   "LandingPage": {
     "header": {

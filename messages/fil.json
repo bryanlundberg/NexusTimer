@@ -1427,7 +1427,6 @@
       "max-round-time-description": "Limitasyon sa oras para sa scramble + inspection + solving",
       "private": "Private room",
       "private-description": "Ang may code lang ang makakasali",
-      "room-code": "Code ng room",
       "room-code-hint": "Ibahagi ang code na ito sa mga kaibigan mo para makasali sila",
       "continue": "Gumawa ng room",
       "creating": "Ginagawa...",
@@ -1448,14 +1447,11 @@
       "solving": "Nagso-solve...",
       "inspecting": "Nag-i-inspect",
       "done": "Tapos na",
-      "idle": "Idle",
-      "ready": "Handa",
-      "holding": "Pinipindot"
+      "idle": "Idle"
     },
     "already-submitted": "Nakapag-submit ka na ng solve para sa scramble na ito. Hintayin ang susunod!",
     "inspection-on": "Naka-enable ang inspection",
     "inspection-off": "Naka-disable ang inspection",
-    "previous-round": "Nakaraang round",
     "current-round": "Kasalukuyang round",
     "confirm-solve": {
       "title": "Kumpirmahin ang Solve Time ({time})",
@@ -1465,7 +1461,8 @@
       "ok": "OK",
       "save-to-cube-label": "I-save din sa cube (opsyonal)",
       "save-to-cube-none": "Huwag i-save",
-      "save-to-cube-empty": "Walang available na cube para sa event na ito"
+      "save-to-cube-empty": "Walang available na cube para sa event na ito",
+      "auto-dnf": "Pumili bago matapos ang round o magiging DNF ito ({time})"
     },
     "results-tab": {
       "best": "Best",
@@ -1473,7 +1470,6 @@
       "updating-live": "Nag-a-update nang live",
       "cubers": "Mga Cuber"
     },
-    "view-profile": "Tingnan ang Profile",
     "anonymous": "Anonymous",
     "room-card": {
       "players-online": "{count, plural, =0 {Walang online} other {# online}}"
@@ -1482,10 +1478,23 @@
     "invite-link-copied": "Nakopya ang invite link",
     "share-room-text": "Sumali sa cubing room ko sa NexusTimer!",
     "invite": "Mag-imbita",
-    "OpenGraph": {
-      "room": "Room {roomId}",
-      "description": "Sumali sa room ko sa NexusTimer para makipagkumpitensya nang live! ID: {roomId}"
-    }
+    "leader": "Lider ng room",
+    "now-leader": "Ikaw na ang lider ng room",
+    "kick": "Mag-alis ng player",
+    "kick-title": "Alisin si {name}?",
+    "kick-description": "Aalis siya agad sa room at hindi na makakabalik.",
+    "kick-confirm": "Alisin",
+    "kicked": "Inalis ka sa room",
+    "replaced": "Binuksan mo ang room na ito sa ibang device",
+    "moved": "Sumali ka sa ibang room mula sa ibang device",
+    "play-here": "Dito maglaro",
+    "back-to-lobby": "Bumalik sa mga room",
+    "room-closed": "Isinara na ang room na ito",
+    "room-full": "Puno na ang room na ito",
+    "update-required": "I-update ang app para makasali sa room na ito",
+    "too-many-attempts": "Masyadong maraming maling code. Subukan ulit pagkalipas ng isang minuto.",
+    "waiting-scramble": "Hinihintay ang susunod na scramble...",
+    "action-failed": "May nangyaring mali. Subukan ulit."
   },
   "LandingPage": {
     "header": {
