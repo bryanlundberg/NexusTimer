@@ -1491,7 +1491,6 @@
       "start-timing": "Simulan ang Pag-time"
     },
     "hero": {
-      "eyebrow": "Higit pa sa isang timer",
       "title-before": "Kung saan nagsasanay, naglalaban at nagkakakonekta ang mga",
       "title-highlight": "speedcuber",
       "subtitle": "Timer, trainer, multiplayer, chat at mga profile na may buong history mo. Lahat sa iisang lugar.",
@@ -1559,9 +1558,7 @@
       "report-bug": "Mag-ulat ng Bug",
       "contribute": "Mag-ambag",
       "language": "Wika",
-      "disclaimer": "Ang NexusTimer ay isang independent na proyekto para sa cubing community.",
-      "copyright": "© {year} NexusTimer",
-      "wca-disclaimer": "Hindi kaugnay ng o inendorso ng World Cube Association."
+      "copyright": "© {year} NexusTimer"
     }
   },
   "Cookies": {

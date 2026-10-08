@@ -113,12 +113,7 @@ export default async function LandingFooter() {
         </div>
 
         <div className="border-t border-white/10 pt-8">
-          <div className="flex flex-col gap-1 text-xs leading-relaxed text-gray-400">
-            <span>{t('disclaimer')}</span>
-            <span>{t('wca-disclaimer')}</span>
-          </div>
-
-          <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex flex-col sm:flex-row items-center gap-4">
               <LandingLanguageSelect label={t('language')} />
             </div>

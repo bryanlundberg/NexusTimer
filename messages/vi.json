@@ -1491,7 +1491,6 @@
       "start-timing": "Bắt đầu bấm giờ"
     },
     "hero": {
-      "eyebrow": "Không chỉ là một đồng hồ",
       "title-before": "Nơi các speedcuber luyện tập, thi đấu và",
       "title-highlight": "kết nối",
       "subtitle": "Đồng hồ, trainer, nhiều người chơi, chat và hồ sơ lưu toàn bộ lịch sử của bạn. Tất cả ở một nơi.",
@@ -1559,9 +1558,7 @@
       "report-bug": "Báo lỗi",
       "contribute": "Đóng góp",
       "language": "Ngôn ngữ",
-      "disclaimer": "NexusTimer là một dự án độc lập dành cho cộng đồng cubing.",
-      "copyright": "© {year} NexusTimer",
-      "wca-disclaimer": "Không liên kết với hoặc được World Cube Association chứng thực."
+      "copyright": "© {year} NexusTimer"
     }
   },
   "Cookies": {

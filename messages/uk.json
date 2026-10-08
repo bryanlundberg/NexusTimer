@@ -1491,7 +1491,6 @@
       "start-timing": "Почати відлік"
     },
     "hero": {
-      "eyebrow": "Набагато більше, ніж таймер",
       "title-before": "Тут спідкубери тренуються, змагаються і",
       "title-highlight": "спілкуються",
       "subtitle": "Таймер, тренажер, мультиплеєр, чат і профілі з усією вашою історією. Усе в одному місці.",
@@ -1559,9 +1558,7 @@
       "report-bug": "Повідомити про помилку",
       "contribute": "Зробити внесок",
       "language": "Мова",
-      "disclaimer": "NexusTimer — це незалежний проєкт для кьюбінг-спільноти.",
-      "copyright": "© {year} NexusTimer",
-      "wca-disclaimer": "Не пов’язаний із World Cube Association і не схвалений нею."
+      "copyright": "© {year} NexusTimer"
     }
   },
   "Cookies": {

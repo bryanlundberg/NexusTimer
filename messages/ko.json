@@ -1473,7 +1473,6 @@
       "start-timing": "타이밍 시작"
     },
     "hero": {
-      "eyebrow": "타이머 그 이상",
       "title-before": "스피드큐버가 연습하고, 겨루고,",
       "title-highlight": "연결되는 곳",
       "subtitle": "타이머, 트레이너, 멀티플레이, 채팅, 그리고 모든 기록을 담은 프로필. 모두 한곳에서.",
@@ -1541,9 +1540,7 @@
       "report-bug": "버그 신고",
       "contribute": "기여하기",
       "language": "언어",
-      "disclaimer": "NexusTimer는 큐빙 커뮤니티를 위한 독립 프로젝트입니다.",
-      "copyright": "© {year} NexusTimer",
-      "wca-disclaimer": "World Cube Association와 제휴하거나 승인받은 관계가 아닙니다."
+      "copyright": "© {year} NexusTimer"
     }
   },
   "Cookies": {

@@ -1491,7 +1491,6 @@
       "start-timing": "เริ่มจับเวลา"
     },
     "hero": {
-      "eyebrow": "มากกว่าแค่ตัวจับเวลา",
       "title-before": "ที่ที่สปีดคิวเบอร์ฝึกซ้อม แข่งขัน และ",
       "title-highlight": "เชื่อมต่อกัน",
       "subtitle": "ตัวจับเวลา เทรนเนอร์ ผู้เล่นหลายคน แชต และโปรไฟล์ที่เก็บประวัติทั้งหมดของคุณ ครบในที่เดียว",
@@ -1559,9 +1558,7 @@
       "report-bug": "รายงานข้อบกพร่อง",
       "contribute": "ร่วมพัฒนา",
       "language": "ภาษา",
-      "disclaimer": "NexusTimer เป็นโครงการอิสระสำหรับชุมชนคิวบ์",
-      "copyright": "© {year} NexusTimer",
-      "wca-disclaimer": "ไม่ได้มีส่วนเกี่ยวข้องกับหรือได้รับการรับรองจาก World Cube Association"
+      "copyright": "© {year} NexusTimer"
     }
   },
   "Cookies": {

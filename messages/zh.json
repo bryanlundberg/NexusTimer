@@ -1473,7 +1473,6 @@
       "start-timing": "开始计时"
     },
     "hero": {
-      "eyebrow": "远不止一个计时器",
       "title-before": "魔方玩家训练、对战、",
       "title-highlight": "相聚的地方",
       "subtitle": "计时器、训练器、多人对战、聊天，以及保存你全部历史的主页。一站搞定。",
@@ -1541,9 +1540,7 @@
       "report-bug": "报告问题",
       "contribute": "参与贡献",
       "language": "语言",
-      "disclaimer": "NexusTimer 是服务于魔方社区的独立项目。",
-      "copyright": "© {year} NexusTimer",
-      "wca-disclaimer": "与世界魔方协会（World Cube Association）无隶属关系，也未获其认可。"
+      "copyright": "© {year} NexusTimer"
     }
   },
   "Cookies": {

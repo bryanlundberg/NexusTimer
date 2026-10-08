@@ -1491,7 +1491,6 @@
       "start-timing": "Mulai Menghitung Waktu"
     },
     "hero": {
-      "eyebrow": "Jauh lebih dari sekadar timer",
       "title-before": "Tempat para speedcuber berlatih, bertanding, dan",
       "title-highlight": "terhubung",
       "subtitle": "Timer, trainer, multiplayer, chat, dan profil dengan seluruh riwayatmu. Semua di satu tempat.",
@@ -1559,9 +1558,7 @@
       "report-bug": "Laporkan Bug",
       "contribute": "Berkontribusi",
       "language": "Bahasa",
-      "disclaimer": "NexusTimer adalah proyek independen untuk komunitas cubing.",
-      "copyright": "© {year} NexusTimer",
-      "wca-disclaimer": "Tidak berafiliasi dengan atau didukung oleh World Cube Association."
+      "copyright": "© {year} NexusTimer"
     }
   },
   "Cookies": {

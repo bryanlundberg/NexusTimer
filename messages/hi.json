@@ -1473,7 +1473,6 @@
       "start-timing": "टाइमिंग शुरू करें"
     },
     "hero": {
-      "eyebrow": "सिर्फ़ टाइमर से कहीं ज़्यादा",
       "title-before": "जहाँ स्पीडक्यूबर्स अभ्यास करते हैं, मुकाबला करते हैं और",
       "title-highlight": "जुड़ते हैं",
       "subtitle": "टाइमर, ट्रेनर, मल्टीप्लेयर, चैट और आपके पूरे इतिहास वाली प्रोफ़ाइल। सब कुछ एक ही जगह।",
@@ -1541,9 +1540,7 @@
       "report-bug": "बग रिपोर्ट करें",
       "contribute": "योगदान करें",
       "language": "भाषा",
-      "disclaimer": "NexusTimer क्यूबिंग कम्युनिटी के लिए एक स्वतंत्र प्रोजेक्ट है।",
-      "copyright": "© {year} NexusTimer",
-      "wca-disclaimer": "World Cube Association से संबद्ध या अनुमोदित नहीं है।"
+      "copyright": "© {year} NexusTimer"
     }
   },
   "Cookies": {

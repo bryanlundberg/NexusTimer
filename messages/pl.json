@@ -1491,7 +1491,6 @@
       "start-timing": "Zacznij mierzyć czas"
     },
     "hero": {
-      "eyebrow": "Dużo więcej niż stoper",
       "title-before": "Miejsce, gdzie speedcuberzy trenują, rywalizują i",
       "title-highlight": "poznają się",
       "subtitle": "Stoper, trener, multiplayer, czat i profile z całą twoją historią. Wszystko w jednym miejscu.",
@@ -1559,9 +1558,7 @@
       "report-bug": "Zgłoś błąd",
       "contribute": "Współtwórz",
       "language": "Język",
-      "disclaimer": "NexusTimer to niezależny projekt dla społeczności cubingowej.",
-      "copyright": "© {year} NexusTimer",
-      "wca-disclaimer": "Niezwiązany z World Cube Association ani przez nią wspierany."
+      "copyright": "© {year} NexusTimer"
     }
   },
   "Cookies": {

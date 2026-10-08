@@ -1491,7 +1491,6 @@
       "start-timing": "Start Timing"
     },
     "hero": {
-      "eyebrow": "Way more than a timer",
       "title-before": "Where speedcubers train, compete and",
       "title-highlight": "connect",
       "subtitle": "Timer, trainer, multiplayer, chat and profiles with your entire history. All in one place.",
@@ -1559,9 +1558,7 @@
       "report-bug": "Report a Bug",
       "contribute": "Contribute",
       "language": "Language",
-      "disclaimer": "NexusTimer is an independent project for the cubing community.",
-      "copyright": "© {year} NexusTimer",
-      "wca-disclaimer": "Not affiliated with or endorsed by the World Cube Association."
+      "copyright": "© {year} NexusTimer"
     }
   },
   "Cookies": {
