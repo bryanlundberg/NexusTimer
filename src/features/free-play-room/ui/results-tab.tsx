@@ -6,8 +6,12 @@ import useFreeMode from '@/features/free-play-room/model/useFreeMode'
 import { useTranslations } from 'next-intl'
 import { motion } from 'motion/react'
 import { PODIUM_CHIP } from '@/shared/const/podium'
+import { calcAoFromWindow } from '@/shared/lib/statistics/getAoTolerance'
 
 const ROUNDS_TO_SHOW = 5
+const AVERAGE_OF = 5
+const MIN_SOLVES_FOR_AVERAGE = 3
+const DNF_AVERAGE = Number.POSITIVE_INFINITY
 
 export default function ResultsTab() {
   const t = useTranslations('Multiplayer.results-tab')
@@ -47,22 +51,17 @@ export default function ResultsTab() {
     const allTimes = validSolves.map((s) => s.time)
     const best = allTimes.length ? Math.min(...allTimes) : null
 
-    // Average of last 5 rounds (relative to totalRounds), missed/DNF rounds count toward denominator
-    const lastFiveCount = Math.min(5, totalRounds)
-    const lastFiveRounds = Array.from({ length: lastFiveCount }, (_, i) => totalRounds - lastFiveCount + 1 + i)
-    const lastFiveTimes = lastFiveRounds.map((r) => {
-      const s = solveByRound[r]
-      if (!s || s.dnf) return null
-      return s.time
-    })
-    const validLastFive = lastFiveTimes.filter((t): t is number => t !== null)
-    const avg = validLastFive.length > 0 ? Math.round(validLastFive.reduce((a, b) => a + b, 0) / lastFiveCount) : null
+    const recentSolves = [...allSolves].sort((a, b) => (b.roundIndex ?? 0) - (a.roundIndex ?? 0)).slice(0, AVERAGE_OF)
+    const avg =
+      recentSolves.length < MIN_SOLVES_FOR_AVERAGE
+        ? null
+        : Math.round(calcAoFromWindow(recentSolves, recentSolves.length)) || DNF_AVERAGE
 
     return { userId, userName, userImage, solveByRound, best, avg }
   })
 
   const byNullableTime = (a: number | null, b: number | null) =>
-    a === null ? (b === null ? 0 : 1) : b === null ? -1 : a - b
+    a === b ? 0 : a === null ? 1 : b === null ? -1 : a - b
   const rankedUsers = [...usersData].sort((a, b) => byNullableTime(a.avg, b.avg) || byNullableTime(a.best, b.best))
 
   const roundWinnerTime = Object.fromEntries(
@@ -149,7 +148,7 @@ export default function ResultsTab() {
                       <div className="font-medium text-sm truncate">{p.userName}</div>
                       <div className="text-xs text-muted-foreground tabular-nums">
                         {t('best')} {p.best != null ? formatTime(p.best) : '-'} · {t('average')}{' '}
-                        {p.avg != null ? formatTime(p.avg) : '-'}
+                        {p.avg === null ? '-' : p.avg === DNF_AVERAGE ? 'DNF' : formatTime(p.avg)}
                       </div>
                     </div>
                   </div>
