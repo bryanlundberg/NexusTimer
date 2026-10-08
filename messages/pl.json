@@ -1431,6 +1431,7 @@
       "room-code-hint": "Udostępnij ten kod znajomym, aby mogli dołączyć",
       "continue": "Utwórz pokój",
       "creating": "Tworzenie...",
+      "error": "Nie udało się utworzyć pokoju. Spróbuj ponownie.",
       "copy-code": "Kopiuj kod",
       "code-copied": "Skopiowano kod"
     },

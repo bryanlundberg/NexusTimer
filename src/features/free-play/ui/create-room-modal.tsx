@@ -15,6 +15,7 @@ import { RoomStatus } from '@/entities/free-play-mode/model/enums'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import { toast } from 'sonner'
 
 const CODE_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
 
@@ -37,6 +38,7 @@ async function hashRoomCode(text: string): Promise<string> {
 
 export default function CreateRoomModal() {
   const t = useTranslations('Multiplayer.create-room')
+  const tMultiplayer = useTranslations('Multiplayer')
   const { data: session } = useSession()
   const router = useRouter()
   const close = useOverlayStore((store) => store.close)
@@ -73,21 +75,33 @@ export default function CreateRoomModal() {
   }
 
   const submitForm = async (data: any) => {
+    const userId = session?.user?.id
+    if (!userId) {
+      toast.error(tMultiplayer('account-required-description'))
+      return
+    }
+
     const roomId = Math.floor(Math.random() * 1000000).toString()
-    await set(ref(rtdb, 'rooms/' + roomId), {
-      roomId,
-      status: RoomStatus.IN_PROGRESS,
-      createdAt: serverTimestamp(),
-      maxRoundTime: parseInt(data.maxRoundTime, 10),
-      createdBy: session?.user?.id || '',
-      authority: session?.user?.id || '',
-      scramble: genScramble(data.event),
-      currentRoundTimeLimit: Number(data.maxRoundTime) * 1000 + Date.now(),
-      currentRound: 1,
-      name: data.name,
-      event: data.event,
-      ...(isPrivate && { passwordHash: await hashRoomCode(roomCode) })
-    })
+    try {
+      await set(ref(rtdb, 'rooms/' + roomId), {
+        roomId,
+        status: RoomStatus.IN_PROGRESS,
+        createdAt: serverTimestamp(),
+        maxRoundTime: parseInt(data.maxRoundTime, 10),
+        createdBy: userId,
+        authority: userId,
+        scramble: genScramble(data.event),
+        currentRoundTimeLimit: Number(data.maxRoundTime) * 1000 + Date.now(),
+        currentRound: 1,
+        name: data.name,
+        event: data.event,
+        ...(isPrivate && { passwordHash: await hashRoomCode(roomCode) })
+      })
+    } catch (error) {
+      console.error('Failed to create free-play room', error)
+      toast.error(t('error'))
+      return
+    }
 
     close()
     router.push(`/free-play/${roomId}`)

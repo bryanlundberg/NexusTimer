@@ -13,19 +13,35 @@ import { useTranslations } from 'next-intl'
 import { motion } from 'motion/react'
 import { Plus, Gamepad2 } from 'lucide-react'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import { useSession } from '@/shared/model/useSession'
+import { useRouter } from '@/shared/config/i18n/navigation'
+import useAlert from '@/shared/model/useAlert'
 
 export default function FreePlayPage() {
   const t = useTranslations('Multiplayer')
+  const tAuth = useTranslations('Index.Auth')
   const { useRooms } = useFreeMode()
   const rooms = useRooms()
   const open = useOverlayStore((store) => store.open)
+  const { status } = useSession()
+  const router = useRouter()
+  const alert = useAlert()
 
   const displayRooms = useMemo(
     () => (rooms ? rooms.filter((room: any) => room?.presence && Object.keys(room.presence).length > 0) : []),
     [rooms]
   )
 
-  const handleCreateRoom = () => {
+  const handleCreateRoom = async () => {
+    if (status === 'unauthenticated') {
+      const goToSignIn = await alert({
+        title: t('account-required'),
+        subtitle: t('account-required-description'),
+        confirmText: tAuth('sign-in')
+      })
+      if (goToSignIn) router.push('/sign-in')
+      return
+    }
     open({ id: 'create-room', component: <CreateRoomModal /> })
   }
 

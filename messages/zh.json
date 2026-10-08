@@ -1413,6 +1413,7 @@
       "room-code-hint": "将此代码分享给朋友，让他们可以加入",
       "continue": "创建房间",
       "creating": "创建中...",
+      "error": "无法创建房间，请重试。",
       "copy-code": "复制代码",
       "code-copied": "已复制代码"
     },

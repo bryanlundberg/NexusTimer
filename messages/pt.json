@@ -1413,6 +1413,7 @@
       "room-code-hint": "Compartilhe este código com seus amigos para que possam entrar",
       "continue": "Criar sala",
       "creating": "Criando...",
+      "error": "Não foi possível criar a sala. Tente novamente.",
       "copy-code": "Copiar código",
       "code-copied": "Código copiado"
     },

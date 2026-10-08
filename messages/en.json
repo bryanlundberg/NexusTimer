@@ -1431,6 +1431,7 @@
       "room-code-hint": "Share this code with your friends so they can join",
       "continue": "Create room",
       "creating": "Creating...",
+      "error": "Could not create the room. Try again.",
       "copy-code": "Copy code",
       "code-copied": "Code copied"
     },

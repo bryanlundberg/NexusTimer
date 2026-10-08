@@ -1431,6 +1431,7 @@
       "room-code-hint": "Ibahagi ang code na ito sa mga kaibigan mo para makasali sila",
       "continue": "Gumawa ng room",
       "creating": "Ginagawa...",
+      "error": "Hindi nagawa ang room. Subukan ulit.",
       "copy-code": "Kopyahin ang code",
       "code-copied": "Nakopya ang code"
     },

@@ -1431,6 +1431,7 @@
       "room-code-hint": "Condividi questo codice con i tuoi amici così possono entrare",
       "continue": "Crea stanza",
       "creating": "Creazione...",
+      "error": "Impossibile creare la stanza. Riprova.",
       "copy-code": "Copia codice",
       "code-copied": "Codice copiato"
     },

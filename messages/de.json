@@ -1413,6 +1413,7 @@
       "room-code-hint": "Teile diesen Code mit deinen Freunden, damit sie beitreten können",
       "continue": "Raum erstellen",
       "creating": "Wird erstellt...",
+      "error": "Der Raum konnte nicht erstellt werden. Versuche es erneut.",
       "copy-code": "Code kopieren",
       "code-copied": "Code kopiert"
     },

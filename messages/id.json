@@ -1431,6 +1431,7 @@
       "room-code-hint": "Bagikan kode ini ke temanmu agar mereka bisa bergabung",
       "continue": "Buat ruang",
       "creating": "Membuat...",
+      "error": "Ruang tidak dapat dibuat. Coba lagi.",
       "copy-code": "Salin kode",
       "code-copied": "Kode disalin"
     },

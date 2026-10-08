@@ -1431,6 +1431,7 @@
       "room-code-hint": "Chia sẻ mã này với bạn bè để họ có thể tham gia",
       "continue": "Tạo phòng",
       "creating": "Đang tạo...",
+      "error": "Không thể tạo phòng. Hãy thử lại.",
       "copy-code": "Sao chép mã",
       "code-copied": "Đã sao chép mã"
     },
