@@ -1,12 +1,13 @@
 'use client'
 
+import { useMemo } from 'react'
 import formatTime from '@/shared/lib/formatTime'
-import { useRouteSegment } from '@/shared/model/useRouteSegment'
-import useFreeMode from '@/features/free-play-room/model/useFreeMode'
 import { useTranslations } from 'next-intl'
 import { motion } from 'motion/react'
 import { PODIUM_CHIP } from '@/shared/const/podium'
 import { calcAoFromWindow } from '@/shared/lib/statistics/getAoTolerance'
+import { useRoomStore } from '@/features/free-play-room/model/useRoomStore'
+import { toPresence, toSolvesByUser } from '@/features/free-play-room/model/room-view'
 
 const ROUNDS_TO_SHOW = 5
 const AVERAGE_OF = 5
@@ -16,11 +17,11 @@ const DNF_AVERAGE = Number.POSITIVE_INFINITY
 export default function ResultsTab() {
   const t = useTranslations('Multiplayer.results-tab')
   const tMultiplayer = useTranslations('Multiplayer')
-  const roomId = useRouteSegment('/free-play')
-  const { useUsersPresence, useRoomSolves, useRoomCurrentRound } = useFreeMode()
-  const onlineUsers = useUsersPresence(roomId?.toString() || '')
-  const solves = useRoomSolves(roomId?.toString() || '')
-  const currentRound = useRoomCurrentRound(roomId?.toString() || '')
+  const room = useRoomStore((state) => state.room)
+  const knownPlayers = useRoomStore((state) => state.knownPlayers)
+  const onlineUsers = useMemo(() => toPresence(room), [room])
+  const solves = useMemo(() => toSolvesByUser(room, knownPlayers), [room, knownPlayers])
+  const currentRound = room?.round.index ?? 1
 
   // Compute the highest round index seen across all solves (for rooms created before round tracking)
   const maxRoundInSolves = Object.values(solves).reduce((max, userSolves) => {
