@@ -2,6 +2,7 @@
   "Index": {
     "SolvesRail": {
       "session": "Phiên",
+      "category": "Hạng mục",
       "cube": "Khối",
       "time": "Thời gian",
       "solves": "{count} lượt giải",

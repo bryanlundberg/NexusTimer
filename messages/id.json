@@ -2,6 +2,7 @@
   "Index": {
     "SolvesRail": {
       "session": "Sesi",
+      "category": "Kategori",
       "cube": "Kubus",
       "time": "Waktu",
       "solves": "{count} solve",

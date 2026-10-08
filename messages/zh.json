@@ -2,6 +2,7 @@
   "Index": {
     "SolvesRail": {
       "session": "当前组",
+      "category": "类别",
       "cube": "魔方",
       "time": "时间",
       "solves": "{count} 次",

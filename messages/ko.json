@@ -2,6 +2,7 @@
   "Index": {
     "SolvesRail": {
       "session": "세션",
+      "category": "카테고리",
       "cube": "큐브",
       "time": "타임",
       "solves": "{count}개 기록",

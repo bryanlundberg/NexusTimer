@@ -2,6 +2,7 @@
   "Index": {
     "SolvesRail": {
       "session": "เซสชัน",
+      "category": "หมวดหมู่",
       "cube": "ลูกบาศก์",
       "time": "เวลา",
       "solves": "{count} ครั้ง",

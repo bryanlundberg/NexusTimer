@@ -23,14 +23,14 @@ import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import SolveDetails from '@/features/manage-solves/ui/SolveDetails'
 import SolvesTrend from '@/shared/ui/solves-trend/SolvesTrend'
 
-type RailTab = 'session' | 'cube'
+type RailTab = 'category' | 'cube'
 
 const GRID_COLS = '1.3rem minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr)'
 const STAT_COLS = '3.5rem minmax(0, 1fr) minmax(0, 1fr)'
 const ROW_HEIGHT = 36
 
 export default function TimerSolvesRail() {
-  const [tab, setTab] = useState<RailTab>('session')
+  const [tab, setTab] = useState<RailTab>('category')
   const isOpen = useTimerRailStore((state) => state.isOpen)
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const cubes = useTimerStore((state) => state.cubes)
@@ -43,7 +43,7 @@ export default function TimerSolvesRail() {
   }
 
   const tabs = [
-    { value: 'session', icon: CubesIcon, label: t('session') },
+    { value: 'category', icon: CubesIcon, label: t('category') },
     { value: 'cube', icon: CubeIcon, label: t('cube') }
   ]
 

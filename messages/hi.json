@@ -2,6 +2,7 @@
   "Index": {
     "SolvesRail": {
       "session": "सत्र",
+      "category": "श्रेणी",
       "cube": "क्यूब",
       "time": "समय",
       "solves": "{count} समाधान",

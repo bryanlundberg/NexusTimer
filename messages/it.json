@@ -2,6 +2,7 @@
   "Index": {
     "SolvesRail": {
       "session": "Sessione",
+      "category": "Categoria",
       "cube": "Cubo",
       "time": "Tempo",
       "solves": "{count} solve",
