@@ -936,13 +936,13 @@
   --cube-notch-border-color: color-mix(in oklab, var(--primary) 25%, var(--border));
 }
 .cube-notch[data-favorite='true'] {
-  --cube-notch-border-color: color-mix(in oklab, #fbbf24 45%, transparent);
-  --cube-notch-fill: color-mix(in oklab, #fbbf24 14%, var(--background));
+  --cube-notch-border-color: color-mix(in oklab, #fbbf24 30%, var(--border));
+  --cube-notch-fill: color-mix(in oklab, #fbbf24 5%, var(--background));
 }
 .cube-notch[data-favorite='true']:hover {
   --cube-notch-border: 2px;
-  --cube-notch-border-color: #fbbf24;
-  --cube-notch-fill: color-mix(in oklab, #fbbf24 20%, var(--background));
+  --cube-notch-border-color: color-mix(in oklab, #fbbf24 70%, var(--border));
+  --cube-notch-fill: color-mix(in oklab, #fbbf24 8%, var(--background));
 }
 
 /* Notched alert boxes (edit / delete modals) — cut bottom-right corner with a

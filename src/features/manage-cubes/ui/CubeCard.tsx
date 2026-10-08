@@ -63,13 +63,6 @@ export function CubeCard({ cube }: CubeCardProps) {
       data-favorite={cube.favorite ? 'true' : undefined}
       className={cn('cube-notch group relative flex flex-col gap-2 p-4 text-card-foreground')}
     >
-      {cube.favorite && (
-        <span
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-amber-400/0 via-amber-400 to-amber-400/0"
-        />
-      )}
-
       {/* Header */}
       <div className="flex justify-between items-start">
         <div className="flex items-center gap-2 min-w-0 flex-1">
