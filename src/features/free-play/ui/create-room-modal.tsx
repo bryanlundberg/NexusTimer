@@ -2,39 +2,18 @@ import { useSession } from '@/shared/model/useSession'
 import { useRouter } from '@/shared/config/i18n/navigation'
 import { Controller, useForm } from 'react-hook-form'
 import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
-import { Globe2, Lock, Copy, Check } from 'lucide-react'
+import { Globe2, Lock } from 'lucide-react'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
 import { Switch } from '@/components/ui/switch'
-import { ref, serverTimestamp, set } from '@firebase/database'
-import { rtdb } from '@/shared/config/firebase'
-import genScramble from '@/shared/lib/timer/genScramble'
-import { RoomStatus } from '@/entities/free-play-mode/model/enums'
 import { useTranslations } from 'next-intl'
+import { createRoomSchema, ROOM_NAME_MAX_LENGTH } from '@nexustimer/contracts'
+import { nextRid, requestRoom } from '@/features/free-play-room/model/room-requests'
 import { useState } from 'react'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { toast } from 'sonner'
-
-const CODE_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
-
-function generateRoomCode() {
-  const length = 6
-  const randomBytes = new Uint8Array(length)
-  crypto.getRandomValues(randomBytes)
-  return Array.from(randomBytes, (byte) => CODE_CHARS[byte % CODE_CHARS.length]).join('')
-}
-
-async function hashRoomCode(text: string): Promise<string> {
-  const res = await fetch('/api/v1/rooms/hash-password', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ password: text })
-  })
-  const { hash } = await res.json()
-  return hash
-}
 
 export default function CreateRoomModal() {
   const t = useTranslations('Multiplayer.create-room')
@@ -43,8 +22,6 @@ export default function CreateRoomModal() {
   const router = useRouter()
   const close = useOverlayStore((store) => store.close)
   const [isPrivate, setIsPrivate] = useState(false)
-  const [roomCode, setRoomCode] = useState('')
-  const [codeCopied, setCodeCopied] = useState(false)
 
   const {
     handleSubmit,
@@ -55,56 +32,38 @@ export default function CreateRoomModal() {
     defaultValues: {
       name: '',
       event: '3x3',
-      maxRoundTime: '60',
-      status: RoomStatus.IDLE
+      maxRoundTime: '60'
     }
   })
 
-  const handlePrivateToggle = (checked: boolean) => {
-    setIsPrivate(checked)
-    if (checked && !roomCode) {
-      setRoomCode(generateRoomCode())
-    }
-  }
-
-  const handleCopyCode = () => {
-    navigator.clipboard.writeText(roomCode).then(() => {
-      setCodeCopied(true)
-      setTimeout(() => setCodeCopied(false), 2000)
-    })
-  }
-
-  const submitForm = async (data: any) => {
-    const userId = session?.user?.id
-    if (!userId) {
+  const submitForm = async (data: { name: string; event: string; maxRoundTime: string }) => {
+    if (!session?.user?.id) {
       toast.error(tMultiplayer('account-required-description'))
       return
     }
 
-    const roomId = Math.floor(Math.random() * 1000000).toString()
-    try {
-      await set(ref(rtdb, 'rooms/' + roomId), {
-        roomId,
-        status: RoomStatus.IN_PROGRESS,
-        createdAt: serverTimestamp(),
-        maxRoundTime: parseInt(data.maxRoundTime, 10),
-        createdBy: userId,
-        authority: userId,
-        scramble: genScramble(data.event),
-        currentRoundTimeLimit: Number(data.maxRoundTime) * 1000 + Date.now(),
-        currentRound: 1,
-        name: data.name,
-        event: data.event,
-        ...(isPrivate && { passwordHash: await hashRoomCode(roomCode) })
-      })
-    } catch (error) {
-      console.error('Failed to create free-play room', error)
+    const input = createRoomSchema.safeParse({
+      name: data.name,
+      event: data.event,
+      maxRoundTime: Number(data.maxRoundTime),
+      private: isPrivate
+    })
+    if (!input.success) {
       toast.error(t('error'))
       return
     }
 
-    close()
-    router.push(`/free-play/${roomId}`)
+    try {
+      const reply = await requestRoom({ type: 'room:create', rid: nextRid(), ...input.data })
+      if (reply.type !== 'room:created') {
+        toast.error(t('error'))
+        return
+      }
+      close()
+      router.push(`/free-play/${reply.roomId}`)
+    } catch {
+      toast.error(t('error'))
+    }
   }
 
   return (
@@ -131,6 +90,7 @@ export default function CreateRoomModal() {
               autoComplete={'off'}
               {...register('name', { required: t('room-name-required') })}
               id="room-name"
+              maxLength={ROOM_NAME_MAX_LENGTH}
               placeholder={t('room-name-placeholder')}
               enterKeyHint="done"
               aria-invalid={!!errors.name}
@@ -167,7 +127,7 @@ export default function CreateRoomModal() {
                       <SelectItem value="Pyraminx">Pyraminx</SelectItem>
                       <SelectItem value="Skewb">Skewb</SelectItem>
                       <SelectItem value="FTO">FTO</SelectItem>
-                      <SelectItem value="square1">Square-1</SelectItem>
+                      <SelectItem value="SQ1">Square-1</SelectItem>
                     </SelectContent>
                   </Select>
                 )}
@@ -216,34 +176,8 @@ export default function CreateRoomModal() {
                 </span>
               </span>
             </span>
-            <Switch id="room-private" checked={isPrivate} onCheckedChange={handlePrivateToggle} />
+            <Switch id="room-private" checked={isPrivate} onCheckedChange={setIsPrivate} />
           </label>
-
-          {/* Room code display */}
-          {isPrivate && (
-            <div className="grid gap-2">
-              <span className="text-sm font-medium">{t('room-code')}</span>
-              <div className="flex items-center gap-2">
-                <div className="field-notch flex h-11 flex-1 items-center px-4">
-                  <span className="relative z-[1] font-mono text-lg font-semibold tracking-[0.3em] select-all">
-                    {roomCode}
-                  </span>
-                </div>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="icon"
-                  aria-label={codeCopied ? t('code-copied') : t('copy-code')}
-                  title={codeCopied ? t('code-copied') : t('copy-code')}
-                  className="size-11 shrink-0"
-                  onClick={handleCopyCode}
-                >
-                  {codeCopied ? <Check className="size-4 text-emerald-500" /> : <Copy className="size-4" />}
-                </Button>
-              </div>
-              <p className="text-[13px] leading-snug text-muted-foreground sm:text-xs">{t('room-code-hint')}</p>
-            </div>
-          )}
         </div>
 
         <DialogFooter className="mt-6 shrink-0">
