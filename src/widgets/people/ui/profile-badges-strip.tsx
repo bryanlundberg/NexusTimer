@@ -3,6 +3,7 @@
 import { ChevronRight } from 'lucide-react'
 import { AchievementItem } from '@/entities/achievement/ui/achievement-item'
 import { UserBadgesResult } from '@/entities/achievement/model/useUserBadges'
+import { pickShowcaseBadges } from '@/entities/achievement/model/showcase-badges'
 import { usePeopleTab } from '@/features/people-tab/model/usePeopleTab'
 import { PeopleTabs } from '@/widgets/people/model/types'
 import { useTranslations } from 'next-intl'
@@ -11,17 +12,19 @@ interface Props {
   badges: UserBadgesResult
 }
 
+const MAX_VISIBLE = 12
+
 export function ProfileBadgesStrip({ badges }: Props) {
   const t = useTranslations('Index.PeoplePage.badges')
   const { set } = usePeopleTab()
-  const special = badges.unlockedFamilies.filter((family) => family.color)
+  const showcase = pickShowcaseBadges(badges.unlockedFamilies, MAX_VISIBLE)
 
-  if (special.length === 0) return null
+  if (showcase.length === 0) return null
 
   return (
-    <div className="flex w-full items-center gap-3 border-b border-border/40 px-4 py-3 md:px-6">
-      <div className="flex min-w-0 flex-1 flex-wrap items-center gap-1.5">
-        {special.map((family) => (
+    <div className="@container flex w-full items-center gap-3 border-b border-border/40 px-4 py-3 md:px-6">
+      <div className="flex min-w-0 flex-1 flex-wrap items-center gap-1.5 @max-lg:[&>:nth-child(n+6)]:hidden @max-3xl:[&>:nth-child(n+9)]:hidden">
+        {showcase.map((family) => (
           <button
             key={family.id}
             type="button"
