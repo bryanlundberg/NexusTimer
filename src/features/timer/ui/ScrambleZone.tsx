@@ -49,7 +49,8 @@ export function ScrambleZone() {
   const isOverflowing = useScrambleOverflow(measureRef, [scramble, selectedCube, scrambleSize])
 
   const sizeClasses = SCRAMBLE_SIZE_CLASSES[scrambleSize]
-  const scrambleText = selectedCube ? scramble : t('HomePage.empty-scramble')
+  const isPreparing = !!selectedCube && scramble === null
+  const scrambleText = !selectedCube ? t('HomePage.empty-scramble') : (scramble ?? t('HomePage.preparing-scramble'))
   const showGuide = guide != null && (guide.corrections.length > 0 || guide.pending.length > 0)
   const visibleGuide = guide != null ? truncateGuide(guide, SCRAMBLE_GUIDE_MAX_MOVES) : null
   const showModalButton = isOverflowing && !!selectedCube && !showGuide && !scrambleReady
@@ -57,6 +58,7 @@ export function ScrambleZone() {
     !isSolving &&
     !isFocusMode &&
     !!selectedCube &&
+    !isPreparing &&
     HINT_CATEGORIES.includes(selectedCube.category as (typeof HINT_CATEGORIES)[number])
   const showVirtualKeyboard = timerMode === TimerMode.VIRTUAL && !isSolving && !isFocusMode && !!selectedCube
   const showFocusModeButton = !isSolving && !isFocusMode && !!selectedCube
@@ -160,6 +162,10 @@ export function ScrambleZone() {
               </DialogHeader>
             </DialogContent>
           </Dialog>
+        ) : isPreparing ? (
+          <p data-testid="scramble-text-zone" role="status" className="text-muted-foreground motion-safe:animate-pulse">
+            {scrambleText}
+          </p>
         ) : (
           <p data-testid="scramble-text-zone">{scrambleText}</p>
         )}
