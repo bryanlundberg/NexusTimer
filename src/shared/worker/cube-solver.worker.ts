@@ -1,24 +1,24 @@
-// <reference lib="webworker" />
-import cubeSolver from 'cube-solver'
+import { loadSolver } from '@nexustimer/cube-solver-rs/web'
+import type { SolverRequest, SolverResponse, SolverTask } from '@/shared/lib/timer/cubeSolverClient'
 
-cubeSolver.initialize('cross')
-cubeSolver.initialize('xcross')
-cubeSolver.initialize('kociemba')
+const scope = self as unknown as DedicatedWorkerGlobalScope
 
-type SolveTask = { scramble: string; type: 'cross' | 'xcross' | 'kociemba' }
+loadSolver().catch(() => {})
 
-type InMsg = {
-  id: number
-  tasks: SolveTask[]
+async function run(task: SolverTask) {
+  const solver = await loadSolver()
+  return task.kind === 'hints'
+    ? solver.crossHints(task.scramble)
+    : solver.transition(task.history, task.setup, task.goal)
 }
 
-type OutMsg = {
-  id: number
-  results: string[]
-}
-
-self.onmessage = (event: MessageEvent<InMsg>) => {
-  const { id, tasks } = event.data
-  const results = tasks.map((task) => cubeSolver.solve(task.scramble, task.type))
-  ;(self as unknown as DedicatedWorkerGlobalScope).postMessage({ id, results } satisfies OutMsg)
+self.onmessage = async (event: MessageEvent<SolverRequest>) => {
+  const { id, task } = event.data
+  let response: SolverResponse = { id, value: null, fatal: false }
+  try {
+    response = { id, value: await run(task), fatal: false }
+  } catch (error) {
+    response = { id, value: null, fatal: error instanceof WebAssembly.RuntimeError }
+  }
+  scope.postMessage(response)
 }
