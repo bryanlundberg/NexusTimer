@@ -17,7 +17,6 @@ type ScrambleSource interface {
 
 var ErrNoScrambleSource = errors.New("SCRAMBLES_URL is not configured")
 
-// HTTPScrambles asks the API, which generates scrambles with cstimer, the same library the web uses.
 type HTTPScrambles struct {
 	URL    string
 	Secret []byte
