@@ -21,16 +21,20 @@ import { buildVizConfig, cleanMoves, formatMs } from '@/features/trainer/lib/tra
 
 const CUBE_SIZE = 3
 
-// engine.state() JSON for a case reached by applying `setup` from solved.
-const caseStateJson = (setup: string): string | null => {
+const stateJson = (moves: string): string | null => {
   try {
     const probe = new CubeEngine('', { size: CUBE_SIZE })
-    if (setup.trim()) probe.applyMoves(setup)
+    if (moves.trim()) probe.applyMoves(moves)
     return JSON.stringify(probe.state())
   } catch {
     return null
   }
 }
+
+const targetAfter = (history: string, setup: string, transition: string | null) =>
+  transition === null
+    ? { scramble: setup, json: stateJson(setup) }
+    : { scramble: transition, json: stateJson(`${history} ${transition}`) }
 
 interface TrainerSmartTimerProps {
   connection: SmartCubeConnection
@@ -108,16 +112,12 @@ export default function TrainerSmartTimer({ connection }: TrainerSmartTimerProps
   useEffect(() => {
     if (!currentCase) return
     let cancelled = false
+    const history = historyRef.current
     const nextSetup = cleanMoves(setup)
-    const json = caseStateJson(nextSetup)
 
-    computeTransition(historyRef.current, nextSetup)
-      .then((t) => {
-        if (!cancelled) setTarget({ scramble: t || nextSetup, json })
-      })
-      .catch(() => {
-        if (!cancelled) setTarget({ scramble: nextSetup, json })
-      })
+    computeTransition(history, nextSetup, goal).then((transition) => {
+      if (!cancelled) setTarget(targetAfter(history, nextSetup, transition))
+    })
     return () => {
       cancelled = true
     }
@@ -130,11 +130,8 @@ export default function TrainerSmartTimer({ connection }: TrainerSmartTimerProps
     }
     resync()
     const nextSetup = cleanMoves(setup)
-    const json = caseStateJson(nextSetup)
-    computeTransition('', nextSetup)
-      .then((t) => setTarget({ scramble: t || nextSetup, json }))
-      .catch(() => setTarget({ scramble: nextSetup, json }))
-  }, [connection, resync, setup])
+    computeTransition('', nextSetup, goal).then((transition) => setTarget(targetAfter('', nextSetup, transition)))
+  }, [connection, resync, setup, goal])
 
   const statusLabel = useMemo(() => {
     switch (phase) {
