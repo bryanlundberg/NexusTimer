@@ -20,6 +20,9 @@ importers:
       '@nexustimer/contracts':
         specifier: workspace:*
         version: link:packages/contracts
+      '@nexustimer/cube-solver-rs':
+        specifier: workspace:*
+        version: link:packages/cube-solver-rs
       '@nexustimer/stats':
         specifier: workspace:*
         version: link:packages/stats
@@ -101,9 +104,6 @@ importers:
       country-flag-icons:
         specifier: ^1.5.18
         version: 1.6.17
-      cube-solver:
-        specifier: ^2.4.1
-        version: 2.4.1
       cube-state-engine:
         specifier: ^1.9.0
         version: 1.9.0
@@ -292,6 +292,24 @@ importers:
       typescript:
         specifier: 7.0.2
         version: 7.0.2
+
+  packages/cube-solver-rs:
+    devDependencies:
+      '@nexustimer/algorithms':
+        specifier: workspace:*
+        version: link:../algorithms
+      '@types/node':
+        specifier: ^24.13.2
+        version: 24.13.2
+      cube-state-engine:
+        specifier: ^1.9.0
+        version: 1.9.0
+      typescript:
+        specifier: 7.0.2
+        version: 7.0.2
+      vitest:
+        specifier: ^5.0.0
+        version: 5.0.0(@types/node@24.13.2)(jsdom@30.0.1(@noble/hashes@2.4.0))(vite@8.0.16(@types/node@24.13.2)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0))
 
   packages/stats:
     dependencies:
@@ -3187,9 +3205,6 @@ packages:
 
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
-
-  cube-solver@2.4.1:
-    resolution: {integrity: sha512-dDaCE0F4y3VTnh/vzvjV5Li154zLQQJ8tVUKEsWvy8g3Fuq4hf3Z0+cNlBiFq6hhrXNHJ6+deRJwQBV2oUzkDg==}
 
   cube-state-engine@1.9.0:
     resolution: {integrity: sha512-eQVdq7M9x2LczNz5hR0ynabIBBg+EDYuieZrsbPSfxIm7tiXhY07AZN8lAyZNIoHZKnIUzBo4Xdqh0vNN2DxNA==}
@@ -7015,8 +7030,6 @@ snapshots:
   css.escape@1.5.1: {}
 
   csstype@3.2.3: {}
-
-  cube-solver@2.4.1: {}
 
   cube-state-engine@1.9.0: {}
 

@@ -269,6 +269,15 @@
       "focus-mode": "Modalità concentrazione",
       "exit-focus-mode": "Esci dalla modalità concentrazione"
     },
+    "CrossHints": {
+      "title": "Suggerimenti per la croce",
+      "orientation": "Esegui lo scramble con il bianco in alto e il verde davanti. Ogni soluzione inizia con la rotazione che porta il suo colore in basso.",
+      "color": "Colore della croce",
+      "cross": "Croce",
+      "solved": "Già risolta",
+      "calculating": "Calcolo in corso…",
+      "moves": "{count, plural, =1 {# mossa} other {# mosse}}"
+    },
     "SolvesPage": {
       "title": "Solve",
       "session": "Sessione",

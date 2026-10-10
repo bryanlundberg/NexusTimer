@@ -262,6 +262,15 @@
       "focus-mode": "집중 모드",
       "exit-focus-mode": "집중 모드 종료"
     },
+    "CrossHints": {
+      "title": "크로스 힌트",
+      "orientation": "흰색을 위, 초록색을 앞으로 두고 스크램블하세요. 각 해법은 해당 색을 아래로 가져오는 회전으로 시작합니다.",
+      "color": "크로스 색상",
+      "cross": "크로스",
+      "solved": "이미 완성됨",
+      "calculating": "계산 중…",
+      "moves": "{count, plural, other {#수}}"
+    },
     "SolvesPage": {
       "title": "기록",
       "session": "세션",

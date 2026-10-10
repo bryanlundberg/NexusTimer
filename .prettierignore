@@ -9,4 +9,4 @@ dist
 messages
 services/realtime
 packages/tnoodle-lib-rs/pkg
-packages/tnoodle-lib-rs/crate
+packages/cube-solver-rs/pkg

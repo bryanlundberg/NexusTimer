@@ -6,7 +6,7 @@ import { DisplayTimerStatistics } from '@/features/deep-statistics/model/types'
 import { Solve } from '@/entities/solve/model/types'
 import { Cube } from '@/entities/cube/model/types'
 import { setStoredSelectedCubeId } from '@/shared/lib/selectedCubeStorage'
-import { CrossSolution } from '@/shared/types/types'
+import { CrossHints } from '@/shared/types/types'
 import { Event } from '@/shared/types/types'
 import { CubeCategory } from '@/shared/const/cube-categories'
 
@@ -26,7 +26,7 @@ type UseTimerStore = {
   isSolving: boolean
   timerStatus: TimerStatus
   zoomInScramble: boolean
-  hint: CrossSolution | null
+  hint: CrossHints | null
   timerStatistics: DisplayTimerStatistics
   timerMode: TimerMode
   registerScrambler: (generate: ScrambleGenerator) => void
@@ -41,7 +41,7 @@ type UseTimerStore = {
   setIsSolving: (isSolving: boolean) => void
   setTimerStatus: (timerStatus: TimerStatus) => void
   setZoomInScramble: (status: boolean) => void
-  setHints: (solutions: CrossSolution) => void
+  setHints: (hints: CrossHints | null) => void
   setTimerStatistics: (stats: DisplayTimerStatistics) => void
   setTimerMode: (mode: TimerMode) => void
   reset: () => void
@@ -151,8 +151,8 @@ export const useTimerStore = create<UseTimerStore>((set, get) => ({
   setZoomInScramble: (status: boolean) => {
     set({ zoomInScramble: status })
   },
-  setHints: (solutions: CrossSolution) => {
-    set({ hint: solutions })
+  setHints: (hints: CrossHints | null) => {
+    set({ hint: hints })
   },
   setTimerStatistics: (stats) => {
     set({ timerStatistics: stats })

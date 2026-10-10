@@ -269,6 +269,15 @@
       "focus-mode": "Focus mode",
       "exit-focus-mode": "Exit focus mode"
     },
+    "CrossHints": {
+      "title": "Cross hints",
+      "orientation": "Scramble with white on top and green in front. Each solution starts with the rotation that brings its color to the bottom.",
+      "color": "Cross color",
+      "cross": "Cross",
+      "solved": "Already solved",
+      "calculating": "Calculating…",
+      "moves": "{count, plural, =1 {# move} other {# moves}}"
+    },
     "SolvesPage": {
       "title": "Solves",
       "session": "Session",

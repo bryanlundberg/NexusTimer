@@ -82,7 +82,7 @@ export const CLS_ALGS: AlgorithmCollection[] = [
     idMethod,
     puzzle,
     group: 'Corner sticker facing front',
-    algs: [{ moves: "U2 I (R U' R' U) (R U' R' U) (R U' R' U) I'", id: '899e6585-69a9-4dd2-ae06-94911e2976c8' }],
+    algs: [{ moves: "U2 l (R U' R' U) (R U' R' U) (R U' R' U) l'", id: '899e6585-69a9-4dd2-ae06-94911e2976c8' }],
     prob: null
   },
   {

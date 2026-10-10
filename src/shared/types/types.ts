@@ -1,11 +1,10 @@
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { PuzzleID } from '@rednaxela101/cubing/twisty'
+import type { CrossHint } from '@nexustimer/cube-solver-rs'
 
-export type CrossSolution = {
-  cross: string[]
-  xcross: string[]
-  fb: string[]
-  eoline: string[]
+export type CrossHints = {
+  scramble: string
+  faces: CrossHint[]
 }
 
 export type Event =

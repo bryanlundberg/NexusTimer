@@ -262,6 +262,15 @@
       "focus-mode": "Mode concentration",
       "exit-focus-mode": "Quitter le mode concentration"
     },
+    "CrossHints": {
+      "title": "Conseils de cross",
+      "orientation": "Mélangez avec le blanc en haut et le vert devant. Chaque solution commence par la rotation qui amène sa couleur en bas.",
+      "color": "Couleur de la cross",
+      "cross": "Cross",
+      "solved": "Déjà résolue",
+      "calculating": "Calcul en cours…",
+      "moves": "{count, plural, =1 {# mouvement} other {# mouvements}}"
+    },
     "SolvesPage": {
       "title": "Temps",
       "session": "Session",
