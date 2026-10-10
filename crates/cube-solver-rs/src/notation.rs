@@ -26,8 +26,9 @@ enum Step {
 fn quarters(suffix: &str) -> Option<usize> {
     match suffix {
         "" => Some(1),
-        "'" => Some(3),
+        "'" | "3" => Some(3),
         "2" | "2'" | "'2" => Some(2),
+        "3'" => Some(1),
         _ => None,
     }
 }
@@ -170,10 +171,12 @@ mod tests {
     fn notation_variants() {
         assert_eq!(state("(R U) R' U'"), state("R U R' U'"));
         assert_eq!(state("R2'"), state("R2"));
+        assert_eq!(state("R3"), state("R'"));
+        assert_eq!(state("R3'"), state("R"));
         assert_eq!(state("R'2"), state("R2"));
         assert_eq!(state("  "), CubieCube::SOLVED);
         assert_eq!(parse("R U 2R"), Err(UnknownMove("2R".into())));
-        assert_eq!(parse("R3"), Err(UnknownMove("R3".into())));
+        assert_eq!(parse("R4"), Err(UnknownMove("R4".into())));
         assert_eq!(parse("rw"), Err(UnknownMove("rw".into())));
         assert_eq!(parse("Q"), Err(UnknownMove("Q".into())));
     }
