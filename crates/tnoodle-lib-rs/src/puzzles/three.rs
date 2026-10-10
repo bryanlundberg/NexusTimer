@@ -1,7 +1,7 @@
 use crate::random::Rng;
-use crate::solve::cube::{CubieCube, invert_moves, moves_to_string};
-use crate::solve::two_phase;
 use crate::wca;
+use cube_core::cube::{CubieCube, invert_moves, moves_to_string};
+use cube_core::two_phase;
 
 const MAX_LENGTH: usize = 21;
 const MIN_DISTANCE: usize = 2;
@@ -68,7 +68,7 @@ pub fn scramble_bld(rng: &mut Rng) -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::solve::cube::MOVE_NAMES;
+    use cube_core::cube::MOVE_NAMES;
 
     fn apply(scramble: &str) -> CubieCube {
         scramble

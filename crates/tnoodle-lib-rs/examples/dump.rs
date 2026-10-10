@@ -7,7 +7,7 @@ use tnoodle_lib_rs::{Puzzle, Rng, oracle_scramble};
 fn main() {
     let mut args = env::args().skip(1);
     let count: usize = args.next().and_then(|arg| arg.parse().ok()).unwrap_or(200);
-    let dir = PathBuf::from(args.next().unwrap_or_else(|| "../oracle/out".to_string()));
+    let dir = PathBuf::from(args.next().unwrap_or_else(|| "oracle/out".to_string()));
     let keys: Vec<String> = args.collect();
     fs::create_dir_all(&dir).unwrap();
 

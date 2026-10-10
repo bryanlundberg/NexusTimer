@@ -12,9 +12,9 @@ use cubes::FullCube;
 use edge3::Edge3;
 use moves::{BX3, DX3, FX1, MOVE2STD, MOVE3STD, UX1, move_tables};
 
-use super::cube::CubieCube;
-use super::two_phase;
 use crate::random::Rng;
+use cube_core::cube::CubieCube;
+use cube_core::two_phase;
 
 const PHASE1_SOLUTIONS: usize = 10000;
 const PHASE2_ATTEMPTS: usize = 500;

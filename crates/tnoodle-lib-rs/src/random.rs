@@ -71,6 +71,12 @@ impl Rng {
     }
 }
 
+impl cube_core::RandomSource for Rng {
+    fn below_usize(&mut self, n: usize) -> usize {
+        Rng::below_usize(self, n)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::Rng;
