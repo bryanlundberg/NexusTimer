@@ -170,8 +170,13 @@ export function useTrainerSmartSession({
     guideStateRef.current = initGuideState()
     targetJsonRef.current = targetStateJson
     processedRef.current = false
-    setGuide(guideFromState(tokensRef.current, guideStateRef.current))
-    setPhase('guiding')
+    let reached = false
+    try {
+      const { engine } = latest.current
+      reached = !!engine && !!targetStateJson && JSON.stringify(engine.state()) === targetStateJson
+    } catch {}
+    setGuide(reached ? { corrections: [], pending: [] } : guideFromState(tokensRef.current, guideStateRef.current))
+    setPhase(reached ? 'ready' : 'guiding')
   }, [targetScramble, targetStateJson])
 
   // Re-align the engine (and the 3D view) to a solved physical cube
