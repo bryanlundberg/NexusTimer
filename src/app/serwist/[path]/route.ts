@@ -10,7 +10,7 @@ export const { dynamic, dynamicParams, revalidate, generateStaticParams, GET } =
   additionalPrecacheEntries: [{ url: '/~offline', revision }],
   // Only what the timer needs offline; the rest of public is cached on first use.
   globPatterns: [
-    '.next/static/**/*.{js,css,html,ico,apng,png,avif,jpg,jpeg,jfif,pjpeg,pjp,gif,svg,webp,json,webmanifest}',
+    '.next/static/**/*.{js,css,html,ico,apng,png,avif,jpg,jpeg,jfif,pjpeg,pjp,gif,svg,webp,json,webmanifest,wasm}',
     'public/{sounds,categories,icons}/**/*',
     'public/vendors/**/*.js'
   ],
