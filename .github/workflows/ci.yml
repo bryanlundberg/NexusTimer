@@ -86,3 +86,29 @@ jobs:
 
       - name: Test
         run: go test -race ./...
+
+  tnoodle-lib-rs:
+    name: TNoodle scrambler crate
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    defaults:
+      run:
+        working-directory: packages/tnoodle-lib-rs/crate
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Toolchain
+        run: rustup toolchain install
+
+      - name: Format
+        run: cargo fmt --check
+
+      - name: Clippy
+        run: |
+          cargo clippy --all-targets --features oracle -- -D warnings
+          cargo clippy --target wasm32-unknown-unknown --lib --release -- -D warnings
+
+      - name: Test
+        run: cargo test
