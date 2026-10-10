@@ -269,6 +269,15 @@
       "focus-mode": "Chế độ tập trung",
       "exit-focus-mode": "Thoát chế độ tập trung"
     },
+    "CrossHints": {
+      "title": "Gợi ý cross",
+      "orientation": "Scramble với mặt trắng ở trên và mặt xanh lá ở trước. Mỗi lời giải bắt đầu bằng phép xoay đưa màu đó xuống dưới.",
+      "color": "Màu cross",
+      "cross": "Cross",
+      "solved": "Đã xong",
+      "calculating": "Đang tính…",
+      "moves": "{count, plural, other {# bước}}"
+    },
     "SolvesPage": {
       "title": "Lượt giải",
       "session": "Phiên",

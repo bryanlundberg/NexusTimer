@@ -262,6 +262,15 @@
       "focus-mode": "Fokusmodus",
       "exit-focus-mode": "Fokusmodus beenden"
     },
+    "CrossHints": {
+      "title": "Cross-Hinweise",
+      "orientation": "Scramble mit Weiß oben und Grün vorne. Jede Lösung beginnt mit der Rotation, die ihre Farbe nach unten bringt.",
+      "color": "Cross-Farbe",
+      "cross": "Cross",
+      "solved": "Bereits gelöst",
+      "calculating": "Wird berechnet…",
+      "moves": "{count, plural, =1 {# Zug} other {# Züge}}"
+    },
     "SolvesPage": {
       "title": "Zeiten",
       "session": "Sitzung",

@@ -232,6 +232,15 @@
       "focus-mode": "Modo concentración",
       "exit-focus-mode": "Salir del modo concentración"
     },
+    "CrossHints": {
+      "title": "Consejos de cruz",
+      "orientation": "Haz el scramble con el blanco arriba y el verde al frente. Cada solución empieza con la rotación que lleva su color abajo.",
+      "color": "Color de la cruz",
+      "cross": "Cruz",
+      "solved": "Ya está resuelta",
+      "calculating": "Calculando…",
+      "moves": "{count, plural, =1 {# movimiento} other {# movimientos}}"
+    },
     "SolvesPage": {
       "title": "Tiempos",
       "session": "Sesión",

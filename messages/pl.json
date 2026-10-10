@@ -269,6 +269,15 @@
       "focus-mode": "Tryb skupienia",
       "exit-focus-mode": "Wyjdź z trybu skupienia"
     },
+    "CrossHints": {
+      "title": "Wskazówki do krzyża",
+      "orientation": "Wykonaj scramble z białym na górze i zielonym z przodu. Każde rozwiązanie zaczyna się od obrotu, który przenosi jego kolor na dół.",
+      "color": "Kolor krzyża",
+      "cross": "Krzyż",
+      "solved": "Już ułożony",
+      "calculating": "Obliczanie…",
+      "moves": "{count, plural, =1 {# ruch} few {# ruchy} other {# ruchów}}"
+    },
     "SolvesPage": {
       "title": "Ułożenia",
       "session": "Sesja",

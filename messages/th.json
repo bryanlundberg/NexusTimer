@@ -269,6 +269,15 @@
       "focus-mode": "โหมดโฟกัส",
       "exit-focus-mode": "ออกจากโหมดโฟกัส"
     },
+    "CrossHints": {
+      "title": "คำใบ้ Cross",
+      "orientation": "ทำ scramble โดยให้สีขาวอยู่ด้านบนและสีเขียวอยู่ด้านหน้า ทุกวิธีแก้จะเริ่มด้วยการหมุนทั้งลูกที่พาสีนั้นไปอยู่ด้านล่าง",
+      "color": "สีของ Cross",
+      "cross": "Cross",
+      "solved": "เสร็จแล้ว",
+      "calculating": "กำลังคำนวณ…",
+      "moves": "{count, plural, other {# ท่า}}"
+    },
     "SolvesPage": {
       "title": "การต่อ",
       "session": "เซสชัน",

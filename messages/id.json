@@ -269,6 +269,15 @@
       "focus-mode": "Mode fokus",
       "exit-focus-mode": "Keluar dari mode fokus"
     },
+    "CrossHints": {
+      "title": "Petunjuk cross",
+      "orientation": "Lakukan scramble dengan putih di atas dan hijau di depan. Setiap solusi diawali rotasi yang membawa warnanya ke bawah.",
+      "color": "Warna cross",
+      "cross": "Cross",
+      "solved": "Sudah selesai",
+      "calculating": "Menghitung…",
+      "moves": "{count, plural, other {# gerakan}}"
+    },
     "SolvesPage": {
       "title": "Solve",
       "session": "Sesi",

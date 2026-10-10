@@ -262,6 +262,15 @@
       "focus-mode": "专注模式",
       "exit-focus-mode": "退出专注模式"
     },
+    "CrossHints": {
+      "title": "十字提示",
+      "orientation": "以白色朝上、绿色朝前进行打乱。每个解法都以把该颜色转到底面的整体转动开始。",
+      "color": "十字颜色",
+      "cross": "十字",
+      "solved": "已完成",
+      "calculating": "计算中…",
+      "moves": "{count, plural, other {# 步}}"
+    },
     "SolvesPage": {
       "title": "还原纪录",
       "session": "当前组",

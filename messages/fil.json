@@ -269,6 +269,15 @@
       "focus-mode": "Focus mode",
       "exit-focus-mode": "Lumabas sa focus mode"
     },
+    "CrossHints": {
+      "title": "Mga hint sa cross",
+      "orientation": "Mag-scramble nang puti sa itaas at berde sa harap. Bawat solusyon ay nagsisimula sa rotation na nagdadala ng kulay nito sa ibaba.",
+      "color": "Kulay ng cross",
+      "cross": "Cross",
+      "solved": "Lutas na",
+      "calculating": "Kinakalkula…",
+      "moves": "{count, plural, other {# galaw}}"
+    },
     "SolvesPage": {
       "title": "Mga Solve",
       "session": "Session",

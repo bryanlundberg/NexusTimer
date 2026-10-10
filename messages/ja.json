@@ -262,6 +262,15 @@
       "focus-mode": "集中モード",
       "exit-focus-mode": "集中モードを終了"
     },
+    "CrossHints": {
+      "title": "クロスのヒント",
+      "orientation": "白を上、緑を前にしてスクランブルしてください。各解法は、その色を下に向ける持ち替えから始まります。",
+      "color": "クロスの色",
+      "cross": "クロス",
+      "solved": "完成済み",
+      "calculating": "計算中…",
+      "moves": "{count, plural, other {#手}}"
+    },
     "SolvesPage": {
       "title": "ソルブ履歴",
       "session": "セッション",
