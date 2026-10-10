@@ -14,7 +14,7 @@ const CENTER_COLOR = { U: 'W', D: 'Y', F: 'G', B: 'B', R: 'R', L: 'O' } as const
 const tokens = (alg: string) => alg.replace(/[()]/g, ' ').split(/\s+/).filter(Boolean)
 
 const invertToken = (token: string) =>
-  token.endsWith("'") ? token.slice(0, -1) : token.includes('2') ? token.replace("'", '') : `${token}'`
+  token.endsWith("'") ? token.slice(0, -1) : token.includes('2') ? token.replace(/'/g, '') : `${token}'`
 
 const invert = (alg: string) => tokens(alg).reverse().map(invertToken).join(' ')
 
