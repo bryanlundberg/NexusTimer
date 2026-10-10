@@ -195,6 +195,7 @@
       "tap-to-start": "길게 눌러 시작",
       "space-to-start": "스페이스를 눌러 시작",
       "empty-scramble": "스크램블을 로드할 큐브를 선택하세요.",
+      "preparing-scramble": "스크램블 준비 중…",
       "show-scramble": "스크램블 보기",
       "congratulations": "축하합니다! {time}",
       "new_best_average": "새로운 최고 평균!",

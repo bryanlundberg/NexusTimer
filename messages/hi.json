@@ -195,6 +195,7 @@
       "tap-to-start": "शुरू करने के लिए दबाए रखें",
       "space-to-start": "शुरू करने के लिए स्पेस दबाए रखें",
       "empty-scramble": "स्क्रैम्बल लोड करने के लिए एक क्यूब चुनें।",
+      "preparing-scramble": "स्क्रैम्बल तैयार हो रहा है…",
       "show-scramble": "स्क्रैम्बल दिखाएं",
       "congratulations": "बधाई हो! {time}",
       "new_best_average": "नया सर्वश्रेष्ठ औसत!",

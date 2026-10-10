@@ -195,6 +195,7 @@
       "tap-to-start": "长按开始",
       "space-to-start": "按住空格开始",
       "empty-scramble": "选择一个魔方以加载打乱公式。",
+      "preparing-scramble": "正在准备打乱公式…",
       "show-scramble": "显示打乱公式",
       "congratulations": "恭喜！ {time}",
       "new_best_average": "新的最佳平均！",

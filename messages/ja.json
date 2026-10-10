@@ -195,6 +195,7 @@
       "tap-to-start": "長押しで開始",
       "space-to-start": "スペースを押し続けて開始",
       "empty-scramble": "キューブを選択してスクランブルを読み込んでください。",
+      "preparing-scramble": "スクランブルを準備中…",
       "show-scramble": "スクランブルを表示",
       "congratulations": "おめでとうございます！ {time}",
       "new_best_average": "ベストアベレージ更新！",

@@ -202,6 +202,7 @@
       "tap-to-start": "Tap and hold to start",
       "space-to-start": "Hold space to start",
       "empty-scramble": "Choose a cube to load a scramble.",
+      "preparing-scramble": "Preparing scramble…",
       "show-scramble": "Show scramble",
       "congratulations": "Congratulations! {time}",
       "new_best_average": "New best average!",
