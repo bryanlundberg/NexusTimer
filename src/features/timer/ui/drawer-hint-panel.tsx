@@ -1,99 +1,53 @@
-import genId from '@/shared/lib/genId'
-import { useTimerStore } from '@/shared/model/timer/useTimerStore'
-import { Cross1Icon } from '@radix-ui/react-icons'
-import Image from 'next/image'
-import { useTheme } from 'next-themes'
+import { useTranslations } from 'next-intl'
+import { Lightbulb } from 'lucide-react'
 import { DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
+import { CROSS_FACE_COLOR, XCROSS_SLOTS } from '@/features/timer/model/const'
+import { useCrossHintStore } from '@/features/timer/model/useCrossHintStore'
+import { CrossHintColorPicker } from '@/features/timer/ui/CrossHintColorPicker'
+import { CrossHintRow } from '@/features/timer/ui/CrossHintRow'
 
 export default function DrawerHintPanel() {
+  const t = useTranslations('Index.CrossHints')
   const hint = useTimerStore((state) => state.hint)
+  const scramble = useTimerStore((state) => state.scramble)
+  const color = useCrossHintStore((state) => state.color)
+  const setColor = useCrossHintStore((state) => state.setColor)
+
+  const faces = hint && hint.scramble === scramble ? hint.faces : null
+  const selected = faces?.find((face) => CROSS_FACE_COLOR[face.face] === color) ?? null
 
   return (
-    <DialogContent className="sm:max-w-[550px]">
+    <DialogContent className="sm:max-w-[560px]">
       <DialogHeader>
-        <DialogTitle className="flex gap-2 items-center">
-          <Cross1Icon className="rotate-45" />
-          Hints: Yellow layer
+        <DialogTitle className="flex items-center gap-2">
+          <Lightbulb className="size-4" />
+          {t('title')}
         </DialogTitle>
-        <DialogDescription className="text-start">White on top - Green facing forward.</DialogDescription>
+        <DialogDescription className="text-start">{t('orientation')}</DialogDescription>
       </DialogHeader>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-        <div>
-          {hint?.cross.map((i) => (
-            <OptimalCrossLayer key={genId()} solution={i} type="cross" />
-          ))}
-        </div>
+      <CrossHintColorPicker faces={faces} value={color} onChange={setColor} />
 
-        <div className="mt-1 md:mt-0">
-          {hint?.xcross.map((i, index) => (
-            <OptimalCrossLayer key={genId()} solution={i} type="xcross" index={index} />
+      {selected ? (
+        <div className="grid gap-0.5">
+          <CrossHintRow icon="cross" label={t('cross')} rotation={selected.rotation} moves={selected.cross} />
+          {XCROSS_SLOTS.map((slot, index) => (
+            <CrossHintRow
+              key={slot.label}
+              icon="xcross"
+              iconClassName={slot.iconClassName}
+              label={slot.label}
+              rotation={selected.rotation}
+              moves={selected.xcross[index]}
+            />
           ))}
         </div>
-      </div>
+      ) : (
+        <p role="status" className="py-6 text-center text-sm text-muted-foreground motion-safe:animate-pulse">
+          {t('calculating')}
+        </p>
+      )}
     </DialogContent>
-  )
-}
-
-function OptimalCrossLayer({
-  solution,
-  type,
-  index = 0
-}: {
-  solution: string
-  type: 'cross' | 'xcross'
-  index?: number
-}) {
-  const { resolvedTheme } = useTheme()
-  const rotation = (() => {
-    switch (index) {
-      case 0:
-        return '-rotate-90'
-      case 1:
-        return '-rotate-180'
-      case 2:
-        return '-rotate-270'
-      case 3:
-        return '-rotate-360'
-      default:
-        return 'rotate-0'
-    }
-  })()
-
-  return (
-    <>
-      <div className="select-text">
-        {type === 'cross' ? (
-          <Image
-            src={'/icons/cross.svg'}
-            alt={''}
-            width={20}
-            height={20}
-            className={`inline mb-1 mr-1`}
-            style={{
-              filter:
-                resolvedTheme === 'light'
-                  ? 'brightness(0) saturate(100%)'
-                  : 'invert(84%) sepia(85%) saturate(743%) hue-rotate(1deg) brightness(103%) contrast(102%)'
-            }}
-          />
-        ) : (
-          <Image
-            src={'/icons/xcross.svg'}
-            alt={''}
-            width={20}
-            height={20}
-            className={`inline mb-1 mr-1 -rotate-90 ${rotation}`}
-            style={{
-              filter:
-                resolvedTheme === 'light'
-                  ? 'brightness(0) saturate(100%)'
-                  : 'invert(84%) sepia(85%) saturate(743%) hue-rotate(1deg) brightness(103%) contrast(102%)'
-            }}
-          />
-        )}{' '}
-        - {solution}
-      </div>
-    </>
   )
 }
