@@ -4,7 +4,7 @@ import messages from '../messages/en.json'
 import { ScrambleZone } from '@/features/timer/ui/ScrambleZone'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 
-vi.mock('@/shared/lib/timer/genSolution', () => ({ default: vi.fn(), prewarmSolver: vi.fn() }))
+vi.mock('@/shared/lib/timer/cubeSolverClient', () => ({ requestCrossHints: vi.fn(), prewarmSolver: vi.fn() }))
 
 beforeAll(() => {
   class NoopObserver {

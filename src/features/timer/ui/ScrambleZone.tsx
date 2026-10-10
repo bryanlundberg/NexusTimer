@@ -16,13 +16,11 @@ import {
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 
 import { cn } from '@/shared/lib/utils'
-import genSolution, { prewarmSolver } from '@/shared/lib/timer/genSolution'
+import { prewarmSolver, requestCrossHints } from '@/shared/lib/timer/cubeSolverClient'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useScrambleGuideStore } from '@/shared/model/timer/useScrambleGuideStore'
 import { truncateGuide, type ScrambleGuideItem } from '@/shared/lib/timer/scrambleGuide'
-import { Layers } from '@/shared/types/enums'
-import { CrossSolution } from '@/shared/types/types'
 
 import DrawerHintPanel from '@/features/timer/ui/drawer-hint-panel'
 import VirtualKeymapEditor from '@/features/timer/ui/VirtualKeymapEditor'
@@ -69,8 +67,10 @@ export function ScrambleZone() {
   }, [showHintButton])
 
   const handleShowHints = () => {
-    if (!selectedCube) return
-    genSolution(selectedCube.category, scramble, Layers.YELLOW).then((res: CrossSolution) => setHints(res))
+    if (!scramble) return
+    requestCrossHints(scramble).then((faces) => {
+      if (faces) setHints({ scramble, faces })
+    })
   }
 
   const renderGuideMove = (
