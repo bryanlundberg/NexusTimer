@@ -10,7 +10,7 @@ import { CrossSolution } from '@/shared/types/types'
 import { Event } from '@/shared/types/types'
 import { CubeCategory } from '@/shared/const/cube-categories'
 
-type ScrambleGenerator = (category: CubeCategory) => string
+type ScrambleGenerator = (category: CubeCategory) => string | null
 
 let generateScramble: ScrambleGenerator | null = null
 
@@ -70,7 +70,8 @@ export const useTimerStore = create<UseTimerStore>((set, get) => ({
     if (selectedCube && !scramble) set({ scramble: scrambleFor(selectedCube) })
   },
   setNewScramble: (cube: Cube | null) => {
-    set({ scramble: scrambleFor(cube) })
+    const scramble = scrambleFor(cube)
+    if (scramble !== get().scramble) set({ scramble })
   },
   setCubes: (cubesDB: Cube[]) => {
     set({ cubes: cubesDB })

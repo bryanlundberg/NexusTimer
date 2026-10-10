@@ -202,6 +202,7 @@
       "tap-to-start": "แตะค้างเพื่อเริ่ม",
       "space-to-start": "กดค้าง Space เพื่อเริ่ม",
       "empty-scramble": "เลือกลูกบาศก์เพื่อโหลด scramble",
+      "preparing-scramble": "กำลังเตรียม scramble…",
       "show-scramble": "แสดง scramble",
       "congratulations": "ยินดีด้วย! {time}",
       "new_best_average": "ค่าเฉลี่ยที่ดีที่สุดใหม่!",

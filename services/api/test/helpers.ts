@@ -142,7 +142,7 @@ export function buildTestApp(overrides: Partial<AppDeps> = {}) {
     feedback: { submit: unused },
     suggestions: { allow: unused, suggest: unused },
     roomLobby: { list: unused },
-    scrambles: () => [],
+    scrambles: async () => [],
     wca: {
       start: () => null,
       link: unused,

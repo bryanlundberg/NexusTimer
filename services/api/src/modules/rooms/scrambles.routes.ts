@@ -12,7 +12,6 @@ function bearerMatches(header: string | undefined, secret: string) {
   return provided.length === expected.length && timingSafeEqual(provided, expected)
 }
 
-/** Called by the realtime gateway straight on the API origin, so it skips the edge guard and checks the realtime secret. */
 export function scramblesRoutes(secret: string | undefined, generate: ScrambleGenerator) {
   return new Hono<AppEnv>().post('/scrambles', async (c) => {
     if (!secret) return serviceUnavailable('Realtime is not configured')
@@ -22,7 +21,7 @@ export function scramblesRoutes(secret: string | undefined, generate: ScrambleGe
     if (body instanceof Response) return body
 
     try {
-      return ok<InternalScramblesResponse>({ scrambles: generate(body.event, body.count) })
+      return ok<InternalScramblesResponse>({ scrambles: await generate(body.event, body.count) })
     } catch (error) {
       return serverError('internal/scrambles:POST', error)
     }

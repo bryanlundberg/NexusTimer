@@ -195,6 +195,7 @@
       "tap-to-start": "Maintiens pour démarrer",
       "space-to-start": "Maintiens Espace pour démarrer",
       "empty-scramble": "Choisissez un cube pour charger un mélange.",
+      "preparing-scramble": "Préparation du mélange…",
       "show-scramble": "Afficher le mélange",
       "congratulations": "Félicitations ! {time}",
       "new_best_average": "Nouvelle meilleure moyenne !",

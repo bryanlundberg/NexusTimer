@@ -23,6 +23,9 @@ importers:
       '@nexustimer/stats':
         specifier: workspace:*
         version: link:packages/stats
+      '@nexustimer/tnoodle-lib-rs':
+        specifier: workspace:*
+        version: link:packages/tnoodle-lib-rs
       '@radix-ui/react-alert-dialog':
         specifier: ^1.1.6
         version: 1.1.17(@types/react-dom@19.2.7(@types/react@19.2.18))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -98,9 +101,6 @@ importers:
       country-flag-icons:
         specifier: ^1.5.18
         version: 1.6.17
-      cstimer_module:
-        specifier: ^0.1.5
-        version: 0.1.5
       cube-solver:
         specifier: ^2.4.1
         version: 2.4.1
@@ -309,6 +309,19 @@ importers:
         specifier: 7.0.2
         version: 7.0.2
 
+  packages/tnoodle-lib-rs:
+    dependencies:
+      '@nexustimer/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+    devDependencies:
+      typescript:
+        specifier: 7.0.2
+        version: 7.0.2
+      vitest:
+        specifier: ^5.0.0
+        version: 5.0.0(@types/node@24.13.2)(jsdom@30.0.1(@noble/hashes@2.4.0))(vite@8.0.16(@types/node@24.13.2)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0))
+
   services/api:
     dependencies:
       '@aws-sdk/client-s3':
@@ -326,6 +339,9 @@ importers:
       '@nexustimer/stats':
         specifier: workspace:*
         version: link:../../packages/stats
+      '@nexustimer/tnoodle-lib-rs':
+        specifier: workspace:*
+        version: link:../../packages/tnoodle-lib-rs
       bcryptjs:
         specifier: ^3.0.3
         version: 3.0.3
@@ -335,9 +351,6 @@ importers:
       country-flag-icons:
         specifier: ^1.5.18
         version: 1.6.17
-      cstimer_module:
-        specifier: ^0.1.5
-        version: 0.1.5
       hono:
         specifier: ^4.13.0
         version: 4.13.12
@@ -3174,9 +3187,6 @@ packages:
 
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
-
-  cstimer_module@0.1.5:
-    resolution: {integrity: sha512-5vAYZEnMOjk6iExR9b8eY6XzDpJoKP4HKCD0FhBKpNIzQoxj3foGEVjmQCZsgFU3nuAewTlP6ULcZxvqFyCDJg==}
 
   cube-solver@2.4.1:
     resolution: {integrity: sha512-dDaCE0F4y3VTnh/vzvjV5Li154zLQQJ8tVUKEsWvy8g3Fuq4hf3Z0+cNlBiFq6hhrXNHJ6+deRJwQBV2oUzkDg==}
@@ -7005,8 +7015,6 @@ snapshots:
   css.escape@1.5.1: {}
 
   csstype@3.2.3: {}
-
-  cstimer_module@0.1.5: {}
 
   cube-solver@2.4.1: {}
 

@@ -1,8 +1,8 @@
 import { build } from 'esbuild'
 
 await build({
-  entryPoints: ['src/main.ts'],
-  outfile: 'dist/main.js',
+  entryPoints: { main: 'src/main.ts', 'scrambles.worker': 'src/modules/rooms/scrambles.worker.ts' },
+  outdir: 'dist',
   bundle: true,
   platform: 'node',
   format: 'esm',

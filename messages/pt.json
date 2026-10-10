@@ -195,6 +195,7 @@
       "tap-to-start": "Toque e segure para iniciar",
       "space-to-start": "Segure espaço para iniciar",
       "empty-scramble": "Escolha um cubo para carregar um embaralhamento.",
+      "preparing-scramble": "Preparando embaralhamento…",
       "show-scramble": "Mostrar embaralhamento",
       "congratulations": "Parabéns! {time}",
       "new_best_average": "Nova melhor média!",

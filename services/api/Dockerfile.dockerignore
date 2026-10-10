@@ -5,8 +5,11 @@
 !packages/algorithms
 !packages/contracts
 !packages/stats
+!packages/tnoodle-lib-rs
 !services/api
 **/node_modules
 **/dist
 **/.env
 **/.env.*
+packages/tnoodle-lib-rs/crate
+packages/tnoodle-lib-rs/oracle

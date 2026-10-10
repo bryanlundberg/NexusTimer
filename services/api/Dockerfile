@@ -6,11 +6,13 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY packages/algorithms/package.json packages/algorithms/
 COPY packages/contracts/package.json packages/contracts/
 COPY packages/stats/package.json packages/stats/
+COPY packages/tnoodle-lib-rs/package.json packages/tnoodle-lib-rs/
 COPY services/api/package.json services/api/
 RUN pnpm install --frozen-lockfile --ignore-scripts --filter @nexustimer/api...
 COPY packages/algorithms packages/algorithms
 COPY packages/contracts packages/contracts
 COPY packages/stats packages/stats
+COPY packages/tnoodle-lib-rs packages/tnoodle-lib-rs
 COPY services/api services/api
 RUN pnpm --filter @nexustimer/api build
 

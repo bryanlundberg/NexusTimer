@@ -202,6 +202,7 @@
       "tap-to-start": "Pindutin nang matagal para magsimula",
       "space-to-start": "Pindutin nang matagal ang space para magsimula",
       "empty-scramble": "Pumili ng cube para mag-load ng scramble.",
+      "preparing-scramble": "Inihahanda ang scramble…",
       "show-scramble": "Ipakita ang scramble",
       "congratulations": "Binabati kita! {time}",
       "new_best_average": "Bagong best average!",

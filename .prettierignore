@@ -8,3 +8,5 @@ dist
 .idea
 messages
 services/realtime
+packages/tnoodle-lib-rs/pkg
+packages/tnoodle-lib-rs/crate
