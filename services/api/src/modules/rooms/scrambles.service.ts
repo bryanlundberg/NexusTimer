@@ -1,38 +1,68 @@
+import { Worker } from 'node:worker_threads'
 import type { FreePlayEvent } from '@nexustimer/contracts'
-import cstimer from 'cstimer_module'
+import { loadEngine, PUZZLE_BY_CATEGORY } from '@nexustimer/tnoodle-lib-rs/node'
+import type { ScrambleJob, ScrambleReply } from './scrambles.worker'
 
-/** Copied from src/shared/lib/timer/genScramble.ts so free play rooms scramble exactly like the timer. */
-const CSTIMER_SCRAMBLE: Record<FreePlayEvent, { type: string; length?: number }> = {
-  '2x2': { type: '222so' },
-  '3x3': { type: '333' },
-  '4x4': { type: '444wca' },
-  '5x5': { type: '555wca', length: 60 },
-  '6x6': { type: '666wca', length: 80 },
-  '7x7': { type: '777wca', length: 100 },
-  '3x3 OH': { type: '333' },
-  Clock: { type: 'clkwca' },
-  Megaminx: { type: 'mgmp', length: 70 },
-  Pyraminx: { type: 'pyrso' },
-  Skewb: { type: 'skbso' },
-  FTO: { type: 'ftoso' },
-  SQ1: { type: 'sqrs' }
-}
-
-/**
- * Random-state 4x4 and FTO take 120 to 250 ms each and block the event loop, so they are generated one per
- * request; the gateway keeps asking until its buffer is full.
- */
 const SLOW_EVENTS: ReadonlySet<FreePlayEvent> = new Set(['4x4', 'FTO'])
 
-export type ScrambleGenerator = (event: FreePlayEvent, count: number) => string[]
+const WORKER_URL = new URL(
+  import.meta.url.endsWith('.ts') ? './scrambles.worker.ts' : './scrambles.worker.js',
+  import.meta.url
+)
 
-export const generateScrambles: ScrambleGenerator = (event, count) => {
-  const { type, length = 0 } = CSTIMER_SCRAMBLE[event]
-  const total = SLOW_EVENTS.has(event) ? 1 : count
-  const scrambles: string[] = []
-  for (let i = 0; i < total; i++) {
-    const scramble = String(cstimer.getScramble(type, length) ?? '').trim()
-    if (scramble) scrambles.push(scramble)
+export type ScrambleGenerator = (event: FreePlayEvent, count: number) => Promise<string[]>
+
+export type SlowScrambler = (event: FreePlayEvent) => Promise<string>
+
+type Job = { resolve: (scramble: string) => void; reject: (error: unknown) => void }
+
+export function createWorkerScrambler(url: URL): SlowScrambler {
+  let current: { worker: Worker; jobs: Map<number, Job> } | null = null
+  let nextId = 0
+
+  const spawn = () => {
+    const worker = new Worker(url)
+    const jobs = new Map<number, Job>()
+    const retire = (error: unknown) => {
+      if (current?.worker === worker) current = null
+      for (const job of jobs.values()) job.reject(error)
+      jobs.clear()
+    }
+    worker.on('message', ({ id, scramble }: ScrambleReply) => {
+      jobs.get(id)?.resolve(scramble)
+      jobs.delete(id)
+      if (jobs.size === 0) worker.unref()
+    })
+    worker.on('error', retire)
+    worker.on('exit', (code) => retire(new Error(`scramble worker exited with code ${code}`)))
+    return { worker, jobs }
   }
-  return scrambles
+
+  return (event) =>
+    new Promise((resolve, reject) => {
+      current ??= spawn()
+      const id = nextId++
+      current.jobs.set(id, { resolve, reject })
+      current.worker.ref()
+      current.worker.postMessage({ id, event } satisfies ScrambleJob)
+    })
 }
+
+export function createScrambleGenerator(slow: SlowScrambler): ScrambleGenerator {
+  return async (event, count) => {
+    if (SLOW_EVENTS.has(event)) {
+      const scramble = await slow(event)
+      return scramble ? [scramble] : []
+    }
+    const engine = loadEngine()
+    const puzzle = PUZZLE_BY_CATEGORY[event]
+    const scrambles: string[] = []
+    for (let i = 0; i < count; i++) {
+      const scramble = engine.scramble(puzzle).trim()
+      if (scramble) scrambles.push(scramble)
+    }
+    return scrambles
+  }
+}
+
+export const generateScrambles = createScrambleGenerator(createWorkerScrambler(WORKER_URL))
