@@ -13,7 +13,12 @@ const nextConfig: NextConfig = {
     ? { rewrites: async () => [{ source: '/api/:path*', destination: `${DEV_API_ORIGIN}/api/:path*` }] }
     : { output: 'export' as const }),
   reactCompiler: true,
-  transpilePackages: ['@nexustimer/algorithms', '@nexustimer/contracts', '@nexustimer/stats'],
+  transpilePackages: [
+    '@nexustimer/algorithms',
+    '@nexustimer/contracts',
+    '@nexustimer/stats',
+    '@nexustimer/tnoodle-lib-rs'
+  ],
   experimental: {
     globalNotFound: true,
     turbopackFileSystemCacheForDev: true,

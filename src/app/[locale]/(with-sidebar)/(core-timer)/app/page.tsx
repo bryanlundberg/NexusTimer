@@ -15,7 +15,8 @@ import TimerSolvesRail from '@/features/timer-solves-rail/ui/TimerSolvesRail'
 import FocusModeExitButton from '@/features/focus-mode/ui/FocusModeExitButton'
 import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
 import { useScreenWakeLock } from '@/shared/model/useScreenWakeLock'
-import genScramble from '@/shared/lib/timer/genScramble'
+import { onScrambleReady, takeScramble } from '@/shared/lib/timer/scramblePool'
+import { TimerStatus } from '@/features/timer/model/enums'
 
 export default function TimerPage() {
   const resetTimerStore = useTimerStore((state) => state.reset)
@@ -30,7 +31,11 @@ export default function TimerPage() {
   }, [])
 
   useEffect(() => {
-    registerScrambler(genScramble)
+    registerScrambler(takeScramble)
+    return onScrambleReady(() => {
+      const { selectedCube, scramble, timerStatus, setNewScramble } = useTimerStore.getState()
+      if (selectedCube && scramble === null && timerStatus === TimerStatus.IDLE) setNewScramble(selectedCube)
+    })
   }, [registerScrambler])
 
   useEffect(() => exitFocusMode, [exitFocusMode])
