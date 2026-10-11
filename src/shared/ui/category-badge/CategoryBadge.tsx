@@ -12,7 +12,7 @@ export function CategoryBadge({ category, className }: CategoryBadgeProps) {
     <Badge
       variant="outline"
       className={cn(
-        'badge-notch h-5 gap-1.5 border-border/60 bg-muted/40 px-1.5 py-0',
+        'h-5 gap-1.5 border-border/60 bg-muted/40 px-1.5 py-0',
         'font-mono text-[10px] font-medium tracking-wide text-muted-foreground',
         className
       )}

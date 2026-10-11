@@ -407,9 +407,8 @@ export function CubeCategoryTile({
   return (
     <span
       title={title ?? category}
-      data-tone="muted"
       className={cn(
-        'icon-notch inline-flex size-9 shrink-0 items-center justify-center text-muted-foreground',
+        'border border-border/45 bg-foreground/3 inline-flex size-9 shrink-0 items-center justify-center text-muted-foreground',
         className
       )}
     >
