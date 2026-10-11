@@ -4,7 +4,7 @@ import { cn } from '@/shared/lib/utils'
 
 function Textarea({ className, ...props }: React.ComponentProps<'textarea'>) {
   return (
-    <div data-slot="textarea-wrapper" className="field-notch flex w-full">
+    <div data-slot="textarea-wrapper" className="field flex w-full">
       <textarea
         data-slot="textarea"
         className={cn(

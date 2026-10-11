@@ -112,7 +112,6 @@ export default function SharedSolvePage() {
           { label: solve.author.name, href: profileHref },
           { label: t('breadcrumb'), href: `/s/${solve.slug}` }
         ]}
-        accentStripe
       />
       <PullToRefresh scrollerRef={scrollRef} onRefresh={mutate} />
 
@@ -216,7 +215,7 @@ export default function SharedSolvePage() {
           </div>
           {!replay && (
             <>
-              <div className="notch-bl-tr [--nblt:12px] bg-muted/40 p-3">
+              <div className="notch-br bg-muted/40 p-3">
                 <ScrambleDisplay
                   show
                   scramble={solve.scramble}

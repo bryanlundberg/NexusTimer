@@ -25,7 +25,7 @@ export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
 
   return (
     <motion.div
-      className={`grid ${GRID} items-center gap-x-4 px-3 py-3 border-b border-border/40 last:border-b-0 hover:bg-muted/20 border-l-2 border-l-transparent hover:border-l-primary transition-colors duration-150`}
+      className={`grid ${GRID} items-center gap-x-4 px-3 py-3 border-b border-border/40 last:border-b-0 hover:bg-muted/40 transition-colors duration-150`}
       variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
       transition={{ duration: 0.25, ease: 'easeOut' }}
     >
@@ -63,23 +63,23 @@ export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
           {totalSolves > 0 ? (
             <>
               {successCount > 0 && (
-                <span className="h-full bg-green-500" style={{ width: `${(successCount / totalSolves) * 100}%` }} />
+                <span className="h-full bg-success" style={{ width: `${(successCount / totalSolves) * 100}%` }} />
               )}
               {plus2Count > 0 && (
-                <span className="h-full bg-yellow-500" style={{ width: `${(plus2Count / totalSolves) * 100}%` }} />
+                <span className="h-full bg-warning" style={{ width: `${(plus2Count / totalSolves) * 100}%` }} />
               )}
               {dnfCount > 0 && (
-                <span className="h-full bg-red-500" style={{ width: `${(dnfCount / totalSolves) * 100}%` }} />
+                <span className="h-full bg-destructive" style={{ width: `${(dnfCount / totalSolves) * 100}%` }} />
               )}
             </>
           ) : null}
         </div>
         <div className="flex items-center gap-2">
-          <span className="size-1.5 bg-green-500 shrink-0" />
+          <span className="size-1.5 bg-success shrink-0" />
           <span className="text-[10px] tabular-nums text-muted-foreground">{successCount}</span>
-          <span className="size-1.5 bg-yellow-500 shrink-0" />
+          <span className="size-1.5 bg-warning shrink-0" />
           <span className="text-[10px] tabular-nums text-muted-foreground">{plus2Count}</span>
-          <span className="size-1.5 bg-red-500 shrink-0" />
+          <span className="size-1.5 bg-destructive shrink-0" />
           <span className="text-[10px] tabular-nums text-muted-foreground">{dnfCount}</span>
         </div>
       </div>

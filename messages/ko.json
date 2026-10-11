@@ -14,44 +14,9 @@
       "show": "기록 표시",
       "hide": "기록 숨기기"
     },
-    "OnboardingTour": {
-      "skip": "가이드 종료",
-      "welcome": {
-        "title": "Nexus Timer에 오신 것을 환영합니다!",
-        "content": "NXTimer는 통계를 큐브별로 정리해 저장합니다. 시작하기 전에 가장 가까이 있는 큐브를 등록하세요. 20초면 됩니다!",
-        "cta": "네, 안내해 주세요",
-        "dismiss": "아니요, 괜찮아요"
-      },
-      "select": {
-        "title": "큐브 선택",
-        "content": "큐브 선택기를 열어 타이밍을 잴 큐브를 추가하세요."
-      },
-      "create": {
-        "title": "큐브 등록",
-        "content": "첫 컬렉션을 만들어 이 큐브의 기록과 통계를 추적하기 시작하세요."
-      }
-    },
-    "sidebar-rotating-text": {
-      "text1": "솔빙 준비되셨나요?",
-      "text2": "기록을 경신하세요",
-      "text3": "스피드큐빙 시간",
-      "text4": "큐브를 시작합시다!",
-      "text5": "한계를 뛰어넘으세요",
-      "text6": "자신의 기록을 깨보세요",
-      "text7": "프로처럼 큐빙하세요",
-      "text8": "한 번 더 솔빙",
-      "text9": "PB를 향하여",
-      "text10": "계속 큐빙하세요!",
-      "text11": "큐브를 마스터하세요",
-      "text12": "모든 순간이 중요합니다",
-      "text13": "자신에게 도전하세요",
-      "text14": "시간을 이기세요",
-      "text15": "더 빠르게 큐빙하세요",
-      "text16": "연습이 완벽을 만듭니다",
-      "text17": "한 걸음 더 가까이",
-      "text18": "집중해서 솔빙하세요",
-      "text19": "매일 발전하세요",
-      "text20": "빛날 시간입니다"
+    "CubesIntro": {
+      "content": "큐브마다 등록하고 마음껏 바꿔 가며 사용하세요. 카테고리 기록은 하나의 흐름으로 이어지고, 큐브별 평균도 언제든 확인할 수 있어요.",
+      "cta": "알겠어요"
     },
     "others": {
       "suggestions": "제안"
@@ -162,6 +127,7 @@
     "SyncProgress": {
       "tooltip": "Auto-sync in {count} solves",
       "tooltip-last": "Your next solve will create a new restore point",
+      "row": "{count, plural, one {Backup in # solve} other {Backup in # solves}}",
       "modal-title": "Automatic backup",
       "modal-description": "NexusTimer automatically creates a new restore point with your cubes and solves.",
       "modal-remaining": "{count} solves left until the next restore point",
@@ -195,6 +161,7 @@
       "tap-to-start": "길게 눌러 시작",
       "space-to-start": "스페이스를 눌러 시작",
       "empty-scramble": "스크램블을 로드할 큐브를 선택하세요.",
+      "quick-start-other": "다른 큐브",
       "preparing-scramble": "스크램블 준비 중…",
       "show-scramble": "스크램블 보기",
       "congratulations": "축하합니다! {time}",
@@ -515,7 +482,6 @@
         "new-pb": "새 PB",
         "pb-broken": "{days, plural, =0 {오늘 달성} other {# 일 전 달성}}"
       },
-      "directory-label": "사람들 · 디렉토리",
       "find-cubers": "큐버 검색.",
       "showing-members": "전체 <b>{total}</b>명 중 <b>{showing}</b>명 표시",
       "search": "검색",
@@ -692,8 +658,7 @@
       "save-data": "백업 생성",
       "download-data": "백업 복원",
       "log-out": "로그아웃",
-      "activity-solves": "풀이",
-      "activity-calendar": "활동 캘린더",
+      "streak-days": "{count, plural, other {일 연속}}",
       "trainer": "트레이너",
       "training": "트레이닝",
       "toggle-section": "{title} 표시/숨기기",

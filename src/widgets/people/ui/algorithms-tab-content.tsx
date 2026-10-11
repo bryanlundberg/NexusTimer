@@ -49,7 +49,7 @@ export default function AlgorithmsTabContent({ methods }: { methods?: LearnedMet
             {selected.cases.map((item) => (
               <div
                 key={item.id}
-                className="notch-tl-br [--ntlbr:10px] border border-border/70 bg-background p-2 transition-colors hover:border-primary"
+                className="notch-br-sm border border-border/70 bg-background p-2 transition-colors hover:border-primary"
               >
                 <PeopleCaseVisual set={selected.set} item={item} />
               </div>

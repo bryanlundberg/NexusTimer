@@ -23,14 +23,12 @@ export default function FloatButton() {
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.97 }}
       transition={{ duration: 0.2 }}
-      className="notch-bl-tr [--nblt:12px] fixed bottom-5 right-5 z-40 inline-flex h-11 items-center gap-2 bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-lg cursor-pointer"
+      className="btn-notch fixed bottom-5 right-5 z-40 inline-flex h-11 items-center gap-2 bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-lg cursor-pointer"
     >
       <GitCompareIcon className="size-4.5" strokeWidth={2} />
       <span>{t('compare')}</span>
       {users.length > 0 && (
-        <span className="badge-notch bg-primary-foreground/20 px-1.5 py-0.5 text-xs font-bold tabular-nums">
-          {users.length}
-        </span>
+        <span className="bg-primary-foreground/20 px-1.5 py-0.5 text-xs font-bold tabular-nums">{users.length}</span>
       )}
     </motion.button>
   )

@@ -14,44 +14,9 @@
       "show": "Afficher les temps",
       "hide": "Masquer les temps"
     },
-    "OnboardingTour": {
-      "skip": "Quitter le guide",
-      "welcome": {
-        "title": "Bienvenue sur Nexus Timer !",
-        "content": "NXTimer classe vos statistiques par cube. Avant de commencer, enregistrez celui qui est le plus proche de vous. Ça prend 20 secondes !",
-        "cta": "Oui, guidez-moi",
-        "dismiss": "Non, merci"
-      },
-      "select": {
-        "title": "Choisissez votre cube",
-        "content": "Ouvrez le sélecteur de cubes pour ajouter le cube que vous allez chronométrer."
-      },
-      "create": {
-        "title": "Enregistrez votre cube",
-        "content": "Créez votre première collection pour commencer à suivre les temps et statistiques de ce cube."
-      }
-    },
-    "sidebar-rotating-text": {
-      "text1": "Prêt à résoudre ?",
-      "text2": "Battez votre record",
-      "text3": "L'heure du speedcubing",
-      "text4": "Cubons ensemble !",
-      "text5": "Repoussez vos limites",
-      "text6": "Battez votre propre temps",
-      "text7": "Cuber comme un pro",
-      "text8": "Encore une résolution",
-      "text9": "Visez le PB",
-      "text10": "Continuez à cuber !",
-      "text11": "Maîtrisez le cube",
-      "text12": "Chaque seconde compte",
-      "text13": "Relevez le défi",
-      "text14": "Battez le chrono",
-      "text15": "Cubez plus vite",
-      "text16": "La pratique rend parfait",
-      "text17": "Un pas de plus",
-      "text18": "Concentrez-vous et résolvez",
-      "text19": "Améliorez-vous chaque jour",
-      "text20": "C'est votre moment"
+    "CubesIntro": {
+      "content": "Enregistrez chaque cube et passez de l'un à l'autre en toute confiance : chaque catégorie reste une seule séquence, et vous saurez toujours votre moyenne avec chaque cube.",
+      "cta": "Compris"
     },
     "others": {
       "suggestions": "Suggestions"
@@ -162,6 +127,7 @@
     "SyncProgress": {
       "tooltip": "Auto-sync in {count} solves",
       "tooltip-last": "Your next solve will create a new restore point",
+      "row": "{count, plural, one {Backup in # solve} other {Backup in # solves}}",
       "modal-title": "Automatic backup",
       "modal-description": "NexusTimer automatically creates a new restore point with your cubes and solves.",
       "modal-remaining": "{count} solves left until the next restore point",
@@ -195,6 +161,7 @@
       "tap-to-start": "Maintiens pour démarrer",
       "space-to-start": "Maintiens Espace pour démarrer",
       "empty-scramble": "Choisissez un cube pour charger un mélange.",
+      "quick-start-other": "Autre cube",
       "preparing-scramble": "Préparation du mélange…",
       "show-scramble": "Afficher le mélange",
       "congratulations": "Félicitations ! {time}",
@@ -515,7 +482,6 @@
         "new-pb": "NOUVEAU PB",
         "pb-broken": "{days, plural, =0 {battu aujourd'hui} one {battu il y a # jour} other {battu il y a # jours}}"
       },
-      "directory-label": "Personnes · annuaire",
       "find-cubers": "Chercher des cubers.",
       "showing-members": "Affichage de <b>{showing}</b> sur <b>{total}</b> membres",
       "search": "Chercher",
@@ -692,8 +658,7 @@
       "save-data": "Créer une sauvegarde",
       "download-data": "Restaurer une sauvegarde",
       "log-out": "Déconnexion",
-      "activity-solves": "résolutions",
-      "activity-calendar": "Calendrier d'activité",
+      "streak-days": "{count, plural, one {jour d’affilée} other {jours d’affilée}}",
       "trainer": "Entraîneur",
       "training": "Entraînement",
       "toggle-section": "Afficher ou masquer {title}",

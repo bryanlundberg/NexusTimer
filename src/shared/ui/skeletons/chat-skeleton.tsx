@@ -12,7 +12,7 @@ export function InboxListSkeleton({ rows = 6, compact = false }: { rows?: number
           key={i}
           className={cn(
             'flex items-center gap-3 border-b border-b-border/40 px-3',
-            compact ? 'py-2.5 last:border-b-0' : 'border-l-2 border-l-transparent py-3'
+            compact ? 'py-2.5 last:border-b-0' : 'py-3'
           )}
         >
           <Skeleton className="size-10 shrink-0 rounded-lg" />

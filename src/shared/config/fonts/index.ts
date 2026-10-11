@@ -3,7 +3,8 @@ import { Space_Grotesk, Chakra_Petch } from 'next/font/google'
 export const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-space-grotesk',
-  display: 'swap'
+  display: 'swap',
+  preload: false
 })
 
 export const chakraPetch = Chakra_Petch({

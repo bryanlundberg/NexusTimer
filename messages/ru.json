@@ -14,44 +14,9 @@
       "show": "Показать сборки",
       "hide": "Скрыть сборки"
     },
-    "OnboardingTour": {
-      "skip": "Выйти из гида",
-      "welcome": {
-        "title": "Добро пожаловать в Nexus Timer!",
-        "content": "NXTimer хранит вашу статистику по каждому кубу отдельно. Прежде чем начать, зарегистрируйте тот, что ближе всего к вам. Это займёт 20 секунд!",
-        "cta": "Да, покажите",
-        "dismiss": "Нет, спасибо"
-      },
-      "select": {
-        "title": "Выберите куб",
-        "content": "Откройте выбор кубов, чтобы добавить куб, который будете засекать."
-      },
-      "create": {
-        "title": "Зарегистрируйте свой куб",
-        "content": "Создайте свою первую коллекцию, чтобы начать отслеживать время и статистику этого куба."
-      }
-    },
-    "sidebar-rotating-text": {
-      "text1": "Готовы к сборке?",
-      "text2": "Побей свой рекорд",
-      "text3": "Время спидкубинга",
-      "text4": "Давай кубить!",
-      "text5": "Раздвигай границы",
-      "text6": "Побей свое время",
-      "text7": "Куби как профи",
-      "text8": "Еще одна сборка",
-      "text9": "Иди за PB",
-      "text10": "Продолжай кубить!",
-      "text11": "Стань мастером куба",
-      "text12": "Каждая секунда на счету",
-      "text13": "Брось себе вызов",
-      "text14": "Победи время",
-      "text15": "Куби быстрее",
-      "text16": "Практика ведет к совершенству",
-      "text17": "На шаг ближе",
-      "text18": "Сосредоточься и собери",
-      "text19": "Улучшайся каждый день",
-      "text20": "Время сиять"
+    "CubesIntro": {
+      "content": "Регистрируйте каждый куб и спокойно переключайтесь между ними: каждая категория остаётся одной последовательностью, а среднее для каждого куба всегда под рукой.",
+      "cta": "Понятно"
     },
     "others": {
       "suggestions": "Предложения"
@@ -162,6 +127,7 @@
     "SyncProgress": {
       "tooltip": "Auto-sync in {count} solves",
       "tooltip-last": "Your next solve will create a new restore point",
+      "row": "{count, plural, one {Backup in # solve} other {Backup in # solves}}",
       "modal-title": "Automatic backup",
       "modal-description": "NexusTimer automatically creates a new restore point with your cubes and solves.",
       "modal-remaining": "{count} solves left until the next restore point",
@@ -195,6 +161,7 @@
       "tap-to-start": "Удерживайте для старта",
       "space-to-start": "Удерживайте пробел для старта",
       "empty-scramble": "Выберите куб, чтобы загрузить скрамбл.",
+      "quick-start-other": "Другой кубик",
       "preparing-scramble": "Готовим скрамбл…",
       "show-scramble": "Показать скрамбл",
       "congratulations": "Поздравляем! {time}",
@@ -515,7 +482,6 @@
         "new-pb": "НОВЫЙ PB",
         "pb-broken": "{days, plural, =0 {поставлен сегодня} one {поставлен # день назад} few {поставлен # дня назад} many {поставлен # дней назад} other {поставлен # дней назад}}"
       },
-      "directory-label": "Пользователи · каталог",
       "find-cubers": "Найти кубистов.",
       "showing-members": "Показано <b>{showing}</b> из <b>{total}</b> участников",
       "search": "Поиск",
@@ -692,8 +658,7 @@
       "save-data": "Создать резервную копию",
       "download-data": "Восстановить из резервной копии",
       "log-out": "Выйти",
-      "activity-solves": "сборки",
-      "activity-calendar": "Календарь активности",
+      "streak-days": "{count, plural, one {день подряд} few {дня подряд} many {дней подряд} other {дня подряд}}",
       "trainer": "Тренажёр",
       "training": "Тренировка",
       "toggle-section": "Показать или скрыть {title}",

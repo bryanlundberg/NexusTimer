@@ -21,44 +21,9 @@
       "retry": "Subukan ulit",
       "back": "Bumalik sa timer"
     },
-    "OnboardingTour": {
-      "skip": "Lumabas sa gabay",
-      "welcome": {
-        "title": "Maligayang pagdating sa Nexus Timer!",
-        "content": "Inaayos ng NXTimer ang iyong mga estadistika ayon sa cube. Bago magsimula, irehistro ang pinakamalapit sa iyo. 20 segundo lang ito!",
-        "cta": "Oo, gabayan mo ako",
-        "dismiss": "Hindi na, salamat"
-      },
-      "select": {
-        "title": "Piliin ang iyong cube",
-        "content": "Buksan ang cube selector para idagdag ang cube na iyong ita-time."
-      },
-      "create": {
-        "title": "Irehistro ang iyong cube",
-        "content": "Gumawa ng iyong unang koleksyon para simulang subaybayan ang mga oras at estadistika ng cube na ito."
-      }
-    },
-    "sidebar-rotating-text": {
-      "text1": "Handa nang mag-solve?",
-      "text2": "Talunin ang record mo",
-      "text3": "Oras na ng speedcubing",
-      "text4": "Tara, mag-cube!",
-      "text5": "Itulak ang iyong limitasyon",
-      "text6": "Talunin ang sariling oras mo",
-      "text7": "Mag-cube na parang pro",
-      "text8": "Isa pang solve",
-      "text9": "Habulin ang PB",
-      "text10": "Tuloy lang sa pag-cube!",
-      "text11": "Bihasain ang cube",
-      "text12": "Mahalaga ang bawat segundo",
-      "text13": "Hamunin ang sarili",
-      "text14": "Talunin ang orasan",
-      "text15": "Mag-cube nang mas mabilis",
-      "text16": "Ang practice ang susi sa galing",
-      "text17": "Isang hakbang na ang layo",
-      "text18": "Mag-focus at mag-solve",
-      "text19": "Umangat araw-araw",
-      "text20": "Oras na para magningning"
+    "CubesIntro": {
+      "content": "Irehistro ang bawat cube at magpalipat-lipat sa kanila nang may kumpiyansa: nananatiling iisang sequence ang bawat kategorya, at lagi mong malalaman ang average mo sa bawat cube.",
+      "cta": "Sige"
     },
     "others": {
       "suggestions": "Mga Mungkahi"
@@ -169,6 +134,7 @@
     "SyncProgress": {
       "tooltip": "Auto-sync in {count} solves",
       "tooltip-last": "Your next solve will create a new restore point",
+      "row": "{count, plural, one {Backup in # solve} other {Backup in # solves}}",
       "modal-title": "Automatic backup",
       "modal-description": "NexusTimer automatically creates a new restore point with your cubes and solves.",
       "modal-remaining": "{count} solves left until the next restore point",
@@ -202,6 +168,7 @@
       "tap-to-start": "Pindutin nang matagal para magsimula",
       "space-to-start": "Pindutin nang matagal ang space para magsimula",
       "empty-scramble": "Pumili ng cube para mag-load ng scramble.",
+      "quick-start-other": "Ibang cube",
       "preparing-scramble": "Inihahanda ang scramble…",
       "show-scramble": "Ipakita ang scramble",
       "congratulations": "Binabati kita! {time}",
@@ -531,7 +498,6 @@
         "new-pb": "BAGONG PB",
         "pb-broken": "{days, plural, =0 {natalo ngayong araw} other {natalo # araw na ang nakalipas}}"
       },
-      "directory-label": "Mga Tao · direktoryo",
       "find-cubers": "Mag-browse ng mga cuber.",
       "showing-members": "Ipinapakita ang <b>{showing}</b> sa <b>{total}</b> na miyembro",
       "search": "Maghanap",
@@ -701,8 +667,7 @@
       "save-data": "Gumawa ng backup",
       "download-data": "I-restore ang backup",
       "log-out": "Mag-log out",
-      "activity-solves": "solves",
-      "activity-calendar": "Kalendaryo ng aktibidad",
+      "streak-days": "{count, plural, other {araw na sunod-sunod}}",
       "toggle-section": "Ipakita o itago ang {title}",
       "toggle-sidebar": "Ipakita o itago ang sidebar"
     },

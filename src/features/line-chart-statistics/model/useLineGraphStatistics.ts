@@ -364,9 +364,9 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
         const ao12Value = ao12Map.get(param.time as number)
 
         const flagBadge = solve.dnf
-          ? `<span class="badge-notch px-1.5 py-0.5 text-[10px] font-semibold bg-red-500/15 text-red-500">DNF</span>`
+          ? `<span class="px-1.5 py-0.5 text-[10px] font-semibold bg-destructive/15 text-destructive">DNF</span>`
           : solve.plus2
-            ? `<span class="badge-notch px-1.5 py-0.5 text-[10px] font-semibold bg-yellow-500/15 text-yellow-500">+2</span>`
+            ? `<span class="px-1.5 py-0.5 text-[10px] font-semibold bg-warning/15 text-warning">+2</span>`
             : ''
 
         const row = (color: string, label: string, value: string) => `

@@ -14,44 +14,9 @@
       "show": "समाधान दिखाएँ",
       "hide": "समाधान छिपाएँ"
     },
-    "OnboardingTour": {
-      "skip": "गाइड से बाहर निकलें",
-      "welcome": {
-        "title": "Nexus Timer में आपका स्वागत है!",
-        "content": "NXTimer आपके आँकड़े क्यूब के अनुसार व्यवस्थित रखता है। शुरू करने से पहले, अपने सबसे पास वाले क्यूब को रजिस्टर करें। इसमें सिर्फ 20 सेकंड लगते हैं!",
-        "cta": "हाँ, मुझे गाइड करें",
-        "dismiss": "नहीं, धन्यवाद"
-      },
-      "select": {
-        "title": "अपना क्यूब चुनें",
-        "content": "जिस क्यूब का समय मापना है उसे जोड़ने के लिए क्यूब सिलेक्टर खोलें।"
-      },
-      "create": {
-        "title": "अपना क्यूब रजिस्टर करें",
-        "content": "इस क्यूब के समय और आँकड़े ट्रैक करना शुरू करने के लिए अपना पहला कलेक्शन बनाएं।"
-      }
-    },
-    "sidebar-rotating-text": {
-      "text1": "क्या आप हल करने के लिए तैयार हैं?",
-      "text2": "अपना रिकॉर्ड तोड़ें",
-      "text3": "स्पीडक्यूबिंग का समय",
-      "text4": "चलो क्यूबिंग करें!",
-      "text5": "अपनी सीमाओं को आगे बढ़ाएं",
-      "text6": "अपना खुद का समय तोड़ें",
-      "text7": "प्रो की तरह क्यूब करें",
-      "text8": "एक और समाधान",
-      "text9": "PB के लिए जाएं",
-      "text10": "क्यूबिंग करते रहें!",
-      "text11": "क्यूब में महारत हासिल करें",
-      "text12": "हर सेकंड मायने रखता है",
-      "text13": "खुद को चुनौती दें",
-      "text14": "घड़ी को हराएं",
-      "text15": "तेजी से क्यूब करें",
-      "text16": "अभ्यास परिपूर्ण बनाता है",
-      "text17": "एक कदम और करीब",
-      "text18": "ध्यान केंद्रित करें और हल करें",
-      "text19": "हर दिन सुधार करें",
-      "text20": "चमकने का समय"
+    "CubesIntro": {
+      "content": "हर क्यूब को रजिस्टर करें और बेझिझक उनके बीच बदलें: हर कैटेगरी एक ही क्रम में बनी रहती है, और आप हमेशा जानेंगे कि हर क्यूब के साथ आपका औसत कितना है।",
+      "cta": "ठीक है"
     },
     "others": {
       "suggestions": "सुझाव"
@@ -162,6 +127,7 @@
     "SyncProgress": {
       "tooltip": "Auto-sync in {count} solves",
       "tooltip-last": "Your next solve will create a new restore point",
+      "row": "{count, plural, one {Backup in # solve} other {Backup in # solves}}",
       "modal-title": "Automatic backup",
       "modal-description": "NexusTimer automatically creates a new restore point with your cubes and solves.",
       "modal-remaining": "{count} solves left until the next restore point",
@@ -195,6 +161,7 @@
       "tap-to-start": "शुरू करने के लिए दबाए रखें",
       "space-to-start": "शुरू करने के लिए स्पेस दबाए रखें",
       "empty-scramble": "स्क्रैम्बल लोड करने के लिए एक क्यूब चुनें।",
+      "quick-start-other": "दूसरा क्यूब",
       "preparing-scramble": "स्क्रैम्बल तैयार हो रहा है…",
       "show-scramble": "स्क्रैम्बल दिखाएं",
       "congratulations": "बधाई हो! {time}",
@@ -515,7 +482,6 @@
         "new-pb": "नया PB",
         "pb-broken": "{days, plural, =0 {आज बनाया} one {# दिन पहले बनाया} other {# दिन पहले बनाया}}"
       },
-      "directory-label": "लोग · निर्देशिका",
       "find-cubers": "क्यूबर खोजें।",
       "showing-members": "<b>{total}</b> में से <b>{showing}</b> सदस्य दिखाए जा रहे हैं",
       "search": "खोजें",
@@ -692,8 +658,7 @@
       "save-data": "बैकअप बनाएं",
       "download-data": "बैकअप पुनर्स्थापित करें",
       "log-out": "लॉग आउट",
-      "activity-solves": "सॉल्व",
-      "activity-calendar": "गतिविधि कैलेंडर",
+      "streak-days": "{count, plural, other {दिन लगातार}}",
       "trainer": "ट्रेनर",
       "training": "ट्रेनिंग",
       "toggle-section": "{title} दिखाएँ या छिपाएँ",

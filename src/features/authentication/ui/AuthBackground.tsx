@@ -37,16 +37,6 @@ export default function AuthBackground({ variant }: Props) {
         }}
       />
 
-      {/* Dotted grid */}
-      <svg className="absolute inset-0 h-full w-full opacity-[0.08] dark:opacity-[0.12]" aria-hidden>
-        <defs>
-          <pattern id={`dots-${variant}`} width="32" height="32" patternUnits="userSpaceOnUse">
-            <circle cx="2" cy="2" r="1.2" fill="currentColor" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill={`url(#dots-${variant})`} />
-      </svg>
-
       {/* Floating WCA squares */}
       {shapes.map((s, i) => (
         <div

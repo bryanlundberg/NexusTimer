@@ -133,7 +133,7 @@ export function MessageComposer({
               size="icon"
               disabled={disabled}
               aria-label={t('emoji')}
-              className={cn('btn-notch shrink-0 text-muted-foreground', compact && 'size-9')}
+              className={cn('shrink-0 text-muted-foreground', compact && 'size-9')}
             >
               <Smile className="size-4" />
             </Button>
@@ -174,7 +174,7 @@ export function MessageComposer({
           size="icon"
           disabled={!canSend}
           aria-label={t(editing ? 'save' : 'send')}
-          className={cn('btn-notch btn-notch-alt shrink-0', compact && 'size-9')}
+          className={cn('btn-notch shrink-0', compact && 'size-9')}
         >
           {editing ? <Check className="size-4" /> : <SendHorizontal className="size-4" />}
         </Button>

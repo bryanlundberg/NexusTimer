@@ -41,9 +41,14 @@ export function CompareUserButton({ user, className }: { user: UserProfile; clas
 
       <Button
         ref={buttonRef}
-        variant={isAdded ? 'secondary' : 'outline'}
+        variant="ghost"
         size="sm"
-        className={cn('gap-1.5 pointer-coarse:h-10', className)}
+        aria-pressed={isAdded}
+        className={cn(
+          'gap-1.5 pointer-coarse:h-10',
+          isAdded && 'bg-primary/15 text-foreground hover:bg-primary/20 dark:hover:bg-primary/20',
+          className
+        )}
         onClick={handleClick}
       >
         {isAdded ? (

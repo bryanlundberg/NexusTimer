@@ -110,16 +110,16 @@ export function UserListRow({ user, presence, meta, actions, stackActions = fals
     <div
       ref={rootRef}
       className={cn(
-        'flex gap-3 px-3 py-3 border-b border-border/40 last:border-b-0 border-l-2 border-l-transparent',
-        'hover:bg-muted/20 hover:border-l-primary transition-colors duration-150',
+        'flex gap-3 px-3 py-3 border-b border-border/40 last:border-b-0',
+        'hover:bg-muted/40 transition-colors duration-150',
         stackActions ? 'flex-col sm:flex-row sm:items-center' : 'items-center'
       )}
     >
       <Link href={`/people/${user._id}`} className="flex items-center gap-3 min-w-0 flex-1">
         <div ref={avatarRef} className="relative shrink-0">
-          <Avatar className="size-9 rounded-lg">
+          <Avatar className="size-9 rounded-full">
             <AvatarImage className="object-cover" src={user.image} alt={user.name} />
-            <AvatarFallback className="rounded-lg text-xs font-bold">
+            <AvatarFallback className="rounded-full text-xs font-bold">
               {user.name.substring(0, 2).toUpperCase()}
             </AvatarFallback>
           </Avatar>

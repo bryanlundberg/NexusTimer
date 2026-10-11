@@ -6,7 +6,6 @@ import { useTranslations } from 'next-intl'
 import { Check, Send, UserMinus, UserPlus, Users, X } from 'lucide-react'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Tabs, TabsContent } from '@/components/ui/tabs'
-import { cn } from '@/shared/lib/utils'
 import { Skeleton } from '@/components/ui/skeleton'
 import ScrollableUnderlineTabs from '@/shared/ui/animated-tabs/ScrollableUnderlineTabs'
 import { useFriends } from '@/entities/friendship/model/useFriends'
@@ -92,7 +91,7 @@ export function FriendsPanel() {
           label: (
             <span className="inline-flex items-center gap-1.5">
               {labels[value]}
-              <span className="inline-flex items-center justify-center min-w-[1.125rem] h-[1.125rem] px-1 rounded-full bg-muted text-[10px] font-semibold tabular-nums leading-none text-muted-foreground transition-colors group-data-[state=active]:bg-primary/10 group-data-[state=active]:text-primary">
+              <span className="inline-flex items-center justify-center min-w-[1.125rem] h-[1.125rem] px-1 bg-muted text-[10px] font-semibold tabular-nums leading-none text-muted-foreground transition-colors group-data-[state=active]:bg-primary/15 group-data-[state=active]:text-foreground">
                 {counts[value]}
               </span>
             </span>
@@ -105,10 +104,7 @@ export function FriendsPanel() {
       <TabsContent value={FriendsTabs.FRIENDS}>
         {data.friends.length === 0 ? (
           <EmptyTable message={t('empty')}>
-            <Link
-              href="/people"
-              className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), 'btn-notch btn-notch-border')}
-            >
+            <Link href="/people" className={buttonVariants({ variant: 'outline', size: 'sm' })}>
               {t('find-cubers')}
             </Link>
           </EmptyTable>

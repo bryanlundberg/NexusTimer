@@ -151,7 +151,7 @@ export function RealtimeReplayPlayer({ replay, markers = [], size = 232, tempoSc
               type="button"
               aria-label={isPlaying ? 'Pause' : 'Play'}
               onClick={toggle}
-              className="notch-4 [--n4:7px] mx-1 inline-flex size-11 items-center justify-center bg-primary text-primary-foreground shadow-sm transition-transform hover:bg-primary/90 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              className="btn-notch mx-1 inline-flex size-11 items-center justify-center bg-primary text-primary-foreground shadow-sm transition-transform hover:bg-primary/90 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               {isPlaying ? (
                 <Pause className="size-5 fill-current" />

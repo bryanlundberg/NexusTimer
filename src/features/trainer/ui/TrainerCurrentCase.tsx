@@ -5,6 +5,8 @@ import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
 import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import type { ReactNode } from 'react'
 import { cn } from '@/shared/lib/utils'
+import AlgorithmNotation from '@/shared/ui/algorithm-notation/AlgorithmNotation'
+import DigitCells from '@/shared/ui/digit-cells/DigitCells'
 
 interface TrainerCurrentCaseProps {
   caseGroup: string
@@ -62,7 +64,7 @@ export default function TrainerCurrentCase({
       aria-label={isLearned ? t('actions.markedAsLearned') : t('actions.markAsLearned')}
       title={isLearned ? t('actions.markedAsLearned') : t('actions.markAsLearned')}
       className={cn(
-        'btn-notch size-9',
+        'size-9',
         isLearned ? 'bg-primary/10 text-primary hover:bg-primary/15 hover:text-primary' : 'text-muted-foreground'
       )}
     >
@@ -77,7 +79,7 @@ export default function TrainerCurrentCase({
       onClick={onSkip}
       aria-label={t('actions.skip')}
       title={t('actions.skip')}
-      className="btn-notch size-9 text-muted-foreground"
+      className="size-9 text-muted-foreground"
     >
       <SkipForward className="size-4" />
     </Button>
@@ -99,7 +101,7 @@ export default function TrainerCurrentCase({
 
             {showViz && (
               <div className="relative">
-                <div className="algo-panel-notch [--ap-notch:10px] size-32 sm:size-36 p-2.5 flex items-center justify-center overflow-hidden">
+                <div className="algo-panel-notch size-32 sm:size-36 p-2.5 flex items-center justify-center overflow-hidden">
                   <AlgorithmRender config={vizConfig} width="100%" height="100%" className="size-full" />
                 </div>
 
@@ -112,25 +114,31 @@ export default function TrainerCurrentCase({
             )}
 
             {setup && (
-              <code className="max-w-2xl px-4 text-center font-mono text-sm sm:text-base tracking-wide text-muted-foreground break-words">
-                {setup}
-              </code>
+              <AlgorithmNotation
+                alg={setup}
+                triggers={false}
+                className="max-w-2xl px-4 text-center text-sm sm:text-base text-muted-foreground"
+              />
             )}
 
             <div
               className={cn(
-                'flex items-baseline tabular-nums tracking-tight leading-none transition-colors font-normal',
+                'flex items-baseline whitespace-nowrap tabular-nums leading-none transition-colors font-display font-normal',
                 timeColorClass
               )}
             >
-              <span className="text-7xl sm:text-8xl md:text-9xl">{intPart}</span>
-              <span className="text-5xl sm:text-6xl md:text-7xl opacity-40">{decPart}</span>
+              <span className="text-7xl sm:text-8xl md:text-9xl">
+                <DigitCells text={intPart} />
+              </span>
+              <span className="text-5xl sm:text-6xl md:text-7xl opacity-40">
+                <DigitCells text={decPart} />
+              </span>
             </div>
           </>
         )}
       </div>
 
-      <div className="algo-panel-notch [--ap-notch:12px] flex items-center justify-between gap-4 px-4 py-2.5">
+      <div className="algo-panel-notch flex items-center justify-between gap-4 px-4 py-2.5">
         <div className="flex items-center gap-6 min-w-0">
           <BarStat label={t('stats.best')} value={best ?? '--'} />
           <BarStat label="ao5" value={ao5 ?? '--'} />
@@ -145,7 +153,7 @@ export default function TrainerCurrentCase({
               onClick={onUndoLast}
               aria-label={t('actions.undoLast')}
               title={lastSolveTime ? `${t('actions.undoLast')} · ${lastSolveTime}` : t('actions.undoLast')}
-              className="btn-notch size-9 text-muted-foreground"
+              className="size-9 text-muted-foreground"
             >
               <Undo2 className="size-4" />
             </Button>
@@ -170,7 +178,7 @@ function BarStat({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col gap-0.5 min-w-0">
       <span className="text-[9px] uppercase tracking-wider text-muted-foreground">{label}</span>
-      <span className="text-sm font-mono font-semibold tabular-nums truncate">{value}</span>
+      <span className="text-sm font-display font-semibold tabular-nums truncate">{value}</span>
     </div>
   )
 }

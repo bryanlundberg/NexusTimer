@@ -21,44 +21,9 @@
       "retry": "Спробувати ще раз",
       "back": "Повернутися до таймера"
     },
-    "OnboardingTour": {
-      "skip": "Вийти з гіда",
-      "welcome": {
-        "title": "Ласкаво просимо до Nexus Timer!",
-        "content": "NXTimer впорядковує вашу статистику за кубом. Перш ніж почати, зареєструйте той, що найближче до вас. Це займе 20 секунд!",
-        "cta": "Так, покажіть",
-        "dismiss": "Ні, дякую"
-      },
-      "select": {
-        "title": "Виберіть свій куб",
-        "content": "Відкрийте вибір кубів, щоб додати куб, який ви будете засікати."
-      },
-      "create": {
-        "title": "Зареєструйте свій куб",
-        "content": "Створіть свою першу колекцію, щоб почати відстежувати час і статистику цього куба."
-      }
-    },
-    "sidebar-rotating-text": {
-      "text1": "Готові до складання?",
-      "text2": "Побий свій рекорд",
-      "text3": "Час спідкубінгу",
-      "text4": "Складаймо куб!",
-      "text5": "Випробуй свої межі",
-      "text6": "Побий власний час",
-      "text7": "Складай як профі",
-      "text8": "Ще одна спроба",
-      "text9": "Йди на PB",
-      "text10": "Складай далі!",
-      "text11": "Опануй куб",
-      "text12": "Кожна секунда має значення",
-      "text13": "Кинь собі виклик",
-      "text14": "Випереди годинник",
-      "text15": "Складай швидше",
-      "text16": "Практика веде до досконалості",
-      "text17": "На крок ближче",
-      "text18": "Зосередься і склади",
-      "text19": "Покращуйся щодня",
-      "text20": "Час сяяти"
+    "CubesIntro": {
+      "content": "Реєструйте кожен кубик і спокійно перемикайтеся між ними: кожна категорія лишається однією послідовністю, а середнє для кожного кубика завжди під рукою.",
+      "cta": "Зрозуміло"
     },
     "others": {
       "suggestions": "Пропозиції"
@@ -169,6 +134,7 @@
     "SyncProgress": {
       "tooltip": "Auto-sync in {count} solves",
       "tooltip-last": "Your next solve will create a new restore point",
+      "row": "{count, plural, one {Backup in # solve} other {Backup in # solves}}",
       "modal-title": "Automatic backup",
       "modal-description": "NexusTimer automatically creates a new restore point with your cubes and solves.",
       "modal-remaining": "{count} solves left until the next restore point",
@@ -202,6 +168,7 @@
       "tap-to-start": "Утримуйте, щоб почати",
       "space-to-start": "Утримуйте пробіл, щоб почати",
       "empty-scramble": "Виберіть куб, щоб завантажити скрамбл.",
+      "quick-start-other": "Інший кубик",
       "preparing-scramble": "Готуємо скрамбл…",
       "show-scramble": "Показати скрамбл",
       "congratulations": "Вітаємо! {time}",
@@ -522,7 +489,6 @@
         "new-pb": "НОВИЙ PB",
         "pb-broken": "{days, plural, =0 {побито сьогодні} one {побито # день тому} few {побито # дні тому} many {побито # днів тому} other {побито # дня тому}}"
       },
-      "directory-label": "Люди · каталог",
       "find-cubers": "Перегляд кьюберів.",
       "showing-members": "Показано <b>{showing}</b> з <b>{total}</b> учасників",
       "search": "Пошук",
@@ -701,8 +667,7 @@
       "save-data": "Створити резервну копію",
       "download-data": "Відновити резервну копію",
       "log-out": "Вийти",
-      "activity-solves": "збірки",
-      "activity-calendar": "Календар активності",
+      "streak-days": "{count, plural, one {день поспіль} few {дні поспіль} many {днів поспіль} other {дня поспіль}}",
       "toggle-section": "Показати або приховати {title}",
       "toggle-sidebar": "Показати або приховати бічну панель"
     },

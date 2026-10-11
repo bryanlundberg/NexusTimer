@@ -29,13 +29,13 @@ export default function BentoCard({
       viewport={{ once: true, margin: '-8%' }}
       transition={{ duration: 0.55, delay, ease: [0.16, 1, 0.3, 1] }}
       className={cn(
-        'relative flex flex-col overflow-hidden notch-bl-tr [--nblt:20px] border border-gray-900/10 bg-gray-900/[0.03] p-6',
+        'relative flex flex-col overflow-hidden notch-br border border-gray-900/10 bg-gray-900/[0.03] p-6',
         className
       )}
     >
       <div className="flex items-center gap-3">
         <span
-          className="flex size-8 shrink-0 items-center justify-center notch-br [--nbr:7px]"
+          className="flex size-8 shrink-0 items-center justify-center"
           style={{
             backgroundColor: `color-mix(in oklch, ${accent} 15%, transparent)`,
             color: accent,

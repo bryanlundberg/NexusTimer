@@ -51,7 +51,7 @@ export default function MethodThumbnail({ set, size = DEFAULT_SIZE }: { set: ALG
   return (
     <div
       ref={containerRef}
-      className="badge-notch flex shrink-0 items-center justify-center overflow-hidden border border-border/70 bg-primary/[0.07] p-1.5 transition-colors duration-200 group-hover:border-primary/40 group-hover:bg-primary/[0.12]"
+      className="flex shrink-0 items-center justify-center overflow-hidden border border-border/70 bg-primary/[0.07] p-1.5 transition-colors duration-200 group-hover:border-primary/40 group-hover:bg-primary/[0.12]"
       style={{ width: size, height: size }}
     >
       {inView && firstMoves ? (

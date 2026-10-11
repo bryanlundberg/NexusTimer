@@ -7,6 +7,7 @@ import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { Badge } from '@/components/ui/badge'
 import { buildAlgorithmReplay } from '@/features/solve-replay/lib/buildAlgorithmReplay'
 import { useTranslations } from 'next-intl'
+import AlgorithmNotation from '@/shared/ui/algorithm-notation/AlgorithmNotation'
 
 const RealtimeReplayPlayer = dynamic(
   () => import('@/features/solve-replay/ui/RealtimeReplayPlayer').then((m) => m.RealtimeReplayPlayer),
@@ -30,7 +31,7 @@ export default function AlgorithmModal() {
     <DialogContent className="flex max-h-[80dvh] flex-col items-center gap-5 overflow-y-auto p-5 sm:max-w-sm">
       <div className="flex flex-col items-center gap-2">
         <DialogTitle className="text-lg font-semibold">{metadata.name}</DialogTitle>
-        <Badge variant="outline" className="badge-notch text-xs">
+        <Badge variant="outline" className="text-xs">
           {cube}
         </Badge>
       </div>
@@ -38,11 +39,11 @@ export default function AlgorithmModal() {
 
       <RealtimeReplayPlayer replay={replay} size={260} tempoScale={TEMPO_SCALE} />
 
-      <div className="notch-bl-tr [--nblt:14px] w-full border border-border bg-muted/60 p-3 sm:p-4 text-center text-foreground">
+      <div className="notch-br w-full border border-border bg-muted/60 p-3 sm:p-4 text-center text-foreground">
         <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider block mb-1.5">
           {t('algorithm-label')}
         </span>
-        <code className="text-sm sm:text-base font-mono break-all">{alg}</code>
+        <AlgorithmNotation alg={alg} className="text-sm sm:text-base" />
       </div>
     </DialogContent>
   )

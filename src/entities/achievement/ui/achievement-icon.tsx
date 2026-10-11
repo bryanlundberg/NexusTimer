@@ -45,8 +45,6 @@ export const AchievementIcon = React.forwardRef<HTMLDivElement, AchievementIconP
       {/* inner rim for depth */}
       <span aria-hidden className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-white/20" />
 
-      {achievement.type === 'granted' && !locked && <span aria-hidden className="badge-beam" />}
-
       <Image
         src={`/achievements/${achievement.icon}`}
         unoptimized

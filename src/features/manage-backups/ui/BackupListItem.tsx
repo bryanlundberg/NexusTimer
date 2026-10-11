@@ -34,7 +34,7 @@ export default function BackupListItem({
         <span className="flex min-w-0 items-center gap-2">
           <span className="truncate text-[15px] leading-snug sm:text-sm">{created.format('LLL')}</span>
           {isLatest && (
-            <span className="badge-notch shrink-0 bg-primary/15 px-1.5 py-0.5 text-[11px] font-medium leading-none">
+            <span className="shrink-0 bg-primary/15 px-1.5 py-0.5 text-[11px] font-medium leading-none">
               {t('SettingsPage.backup-current')}
             </span>
           )}

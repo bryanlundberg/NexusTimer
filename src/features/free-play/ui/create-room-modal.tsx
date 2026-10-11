@@ -165,7 +165,7 @@ export default function CreateRoomModal() {
           {/* Private room toggle */}
           <label
             htmlFor="room-private"
-            className="panel-notch-bl-tr flex cursor-pointer select-none items-center justify-between gap-4 p-4 [-webkit-tap-highlight-color:transparent]"
+            className="panel-notch flex cursor-pointer select-none items-center justify-between gap-4 p-4 [-webkit-tap-highlight-color:transparent]"
           >
             <span className="flex items-center gap-3">
               <Lock className="size-4 shrink-0 text-muted-foreground" />

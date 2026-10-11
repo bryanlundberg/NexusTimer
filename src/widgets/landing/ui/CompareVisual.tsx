@@ -52,7 +52,7 @@ export default function CompareVisual() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.12 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className={`${COLS} notch-br [--nbr:8px] border border-gray-900/8 bg-white/70 py-2 pl-2.5 pr-1`}
+              className={`${COLS} border border-gray-900/8 bg-white/70 py-2 pl-2.5 pr-1`}
             >
               <span className="flex items-center gap-1.5">
                 <span className="size-2 shrink-0 rounded-[3px]" style={{ backgroundColor: row.color }} />

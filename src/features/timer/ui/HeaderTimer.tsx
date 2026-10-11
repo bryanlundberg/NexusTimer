@@ -13,24 +13,18 @@ import NewRecordBadge from '@/features/timer/ui/NewRecordBadge'
 import RecordRipple from '@/features/timer/ui/RecordRipple'
 import TimerRailToggle from '@/features/timer-solves-rail/ui/TimerRailToggle'
 import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
+import { useSolveMoment } from '@/features/timer/model/useSolveMoment'
 
 export default function HeaderTimer() {
   const isSolving = useTimerStore((store) => store.isSolving)
   const timerStatus = useTimerStore((store) => store.timerStatus)
-  const lastSolve = useTimerStore((store) => store.lastSolve)
-  const timerStatistics = useTimerStore((store) => store.timerStatistics)
   const settings = useSettingsStore((store) => store.settings)
   const isFocusMode = useFocusModeStore((store) => store.isFocusMode)
   const height = useWindowHeight()
+  const { lastSolve, isPersonalBest, improvement } = useSolveMoment()
 
   const isHidden = isSolving || timerStatus !== TimerStatus.IDLE
   const showScramble = !isFocusMode || settings.features.focusModeScramble
-  const isPersonalBest =
-    !isFocusMode &&
-    lastSolve != null &&
-    !lastSolve.dnf &&
-    lastSolve.time <= timerStatistics.global.best &&
-    settings.alerts.bestTime
 
   return (
     <>
@@ -46,16 +40,19 @@ export default function HeaderTimer() {
         {!isFocusMode && (
           <div className={'flex items-center gap-2 mb-2 w-full'}>
             <MainCubeSelector />
-            <ButtonNextScramble />
             <ButtonSelectMode />
+            <ButtonNextScramble />
             <TimerRailToggle />
           </div>
         )}
 
         {showScramble && <ScrambleZone />}
-        {isPersonalBest && (
-          <div className={cn('flex justify-center mt-10', height <= SCRAMBLE_HEIGHT && 'mt-5')} id="touch">
-            <NewRecordBadge time={lastSolve.time} />
+        {isPersonalBest && lastSolve && (
+          <div
+            className={cn('flex justify-center mt-10', height <= SCRAMBLE_HEIGHT && 'mt-5', isHidden && 'invisible')}
+            id="touch"
+          >
+            <NewRecordBadge key={lastSolve.id} solve={lastSolve} improvement={improvement} />
           </div>
         )}
       </div>

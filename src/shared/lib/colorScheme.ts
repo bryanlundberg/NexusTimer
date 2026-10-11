@@ -40,7 +40,7 @@ const relativeLuminance = ({ l, c, h }: Oklch): number => {
   )
 }
 
-const contrastRatio = (a: Oklch, b: Oklch): number => {
+export const contrastRatio = (a: Oklch, b: Oklch): number => {
   const [hi, lo] = [relativeLuminance(a), relativeLuminance(b)].sort((x, y) => y - x)
   return (hi + 0.05) / (lo + 0.05)
 }
@@ -85,12 +85,12 @@ type PaletteSpec = {
 
 /**
  * Chromatic themes tint their chrome in proportion to how saturated the accent is,
- * so a vivid violet gets richer surfaces than a muted teal. A flat constant washed
- * the dark surfaces out: dark `card` fell from 0.05 to 0.0126 chroma on violet.
- * Dark needs the larger factor because low lightness hides chroma.
+ * so a vivid violet gets richer surfaces than a muted teal. Dark is capped near
+ * 0.025 background chroma: at 0.05 the surface took the accent's hue and the
+ * primary lost its pull against it.
  */
 const accentTint = (chroma: number, mode: ColorSchemeMode): number =>
-  mode === 'dark' ? Math.min(chroma * 6, 1.19) : Math.min(chroma * 2.5, 0.55)
+  mode === 'dark' ? Math.min(chroma * 3, 0.6) : Math.min(chroma * 2.5, 0.55)
 
 const chromatic = (light: Oklch, dark: Oklch): PaletteSpec => ({ accent: { light, dark } })
 
@@ -135,13 +135,12 @@ const GREY_CHROMA = 0.046
 /** `f` is chroma as a fraction of GREY_CHROMA. */
 type Step = { l: number; f: number; a?: number }
 
-type StepKey = 'base' | 'raised' | 'faint' | 'subtle' | 'line' | 'input' | 'text' | 'strongText' | 'mutedText'
+type StepKey = 'base' | 'raised' | 'subtle' | 'line' | 'input' | 'text' | 'strongText' | 'mutedText'
 
 const RAMPS: Record<ColorSchemeMode, Record<StepKey, Step>> = {
   light: {
     base: { l: 1, f: 0 },
     raised: { l: 1, f: 0 },
-    faint: { l: 0.985, f: 0.07 },
     subtle: { l: 0.968, f: 0.15 },
     line: { l: 0.925, f: 0.28 },
     input: { l: 0.925, f: 0.28 },
@@ -152,7 +151,6 @@ const RAMPS: Record<ColorSchemeMode, Record<StepKey, Step>> = {
   dark: {
     base: { l: 0.141, f: 0.91 },
     raised: { l: 0.209, f: 0.91 },
-    faint: { l: 0.209, f: 0.91 },
     subtle: { l: 0.279, f: 0.89 },
     // Translucent so one value works over both background and card.
     line: { l: 1, f: 0, a: 0.1 },
@@ -167,6 +165,26 @@ const RAMPS: Record<ColorSchemeMode, Record<StepKey, Step>> = {
 const DESTRUCTIVE: Record<ColorSchemeMode, Oklch> = {
   light: ok(0.577, 0.245, 27.325),
   dark: ok(0.704, 0.191, 22.216)
+}
+
+const GAIN: Record<ColorSchemeMode, Oklch> = {
+  light: ok(0.508, 0.118, 165.612),
+  dark: ok(0.765, 0.177, 163.223)
+}
+
+/**
+ * Fixed across themes like DESTRUCTIVE. Light takes darker shades because the dark
+ * ones fall under 3:1 on white.
+ */
+const ROLES: Record<string, Record<ColorSchemeMode, Oklch>> = {
+  record: { light: ok(0.555, 0.163, 48.998), dark: ok(0.828, 0.189, 84.429) },
+  faster: GAIN,
+  slower: DESTRUCTIVE,
+  success: GAIN,
+  warning: { light: ok(0.554, 0.135, 66.442), dark: ok(0.852, 0.199, 91.936) },
+  'timer-holding': { light: ok(0.592, 0.249, 0.584), dark: ok(0.592, 0.249, 0.584) },
+  'timer-ready': { light: ok(0.596, 0.145, 163.225), dark: ok(0.765, 0.177, 163.223) },
+  'timer-inspect': { light: ok(0.646, 0.222, 41.116), dark: ok(0.705, 0.213, 47.604) }
 }
 
 /** Lightness alternates so neighbouring series stay separable without relying on hue. */
@@ -215,6 +233,7 @@ export const buildColorScheme = (color: Colors, mode: ColorSchemeMode): Record<s
     'accent-foreground': onSurface,
     destructive: toCss(DESTRUCTIVE[mode]),
     'destructive-foreground': toCss(readableOn(DESTRUCTIVE[mode])),
+    ...Object.fromEntries(Object.entries(ROLES).map(([role, value]) => [role, toCss(value[mode])])),
     border: line,
     input: grey(ramp.input),
     ring: accentCss,
@@ -223,11 +242,11 @@ export const buildColorScheme = (color: Colors, mode: ColorSchemeMode): Record<s
     'chart-3': chart3,
     'chart-4': chart4,
     'chart-5': chart5,
-    sidebar: grey(ramp.faint),
+    sidebar: grey(ramp.base),
     'sidebar-foreground': text,
     'sidebar-primary': accentCss,
     'sidebar-primary-foreground': onAccent,
-    'sidebar-accent': surface,
+    'sidebar-accent': mode === 'dark' ? grey(ramp.raised) : surface,
     'sidebar-accent-foreground': onSurface,
     'sidebar-border': line,
     'sidebar-ring': accentCss

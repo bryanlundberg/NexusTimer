@@ -73,7 +73,7 @@ export default function AlgorithmsVisual() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.15 + ci * 0.12, ease: [0.16, 1, 0.3, 1] }}
-            className="flex items-center gap-3 notch-br [--nbr:7px] border border-gray-900/8 bg-white/70 px-2 py-1.5"
+            className="flex items-center gap-3 border border-gray-900/8 bg-white/70 px-2 py-1.5"
           >
             <div className="grid shrink-0 grid-cols-3 gap-[3px]">
               {c.face.map((on, i) => (
@@ -100,7 +100,7 @@ export default function AlgorithmsVisual() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.3, delay: 0.3 + ci * 0.12 + i * 0.05 }}
-                    className="notch-br [--nbr:4px] bg-gray-900/[0.05] px-1.5 py-0.5 font-mono text-[10px] font-semibold text-gray-800"
+                    className="bg-gray-900/[0.05] px-1.5 py-0.5 font-mono text-[10px] font-semibold text-gray-800"
                   >
                     {move}
                   </m.span>

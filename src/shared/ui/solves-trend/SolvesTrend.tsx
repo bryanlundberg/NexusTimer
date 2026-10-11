@@ -63,7 +63,7 @@ export default function SolvesTrend({ solves, bestTime, className }: SolvesTrend
               bar.dnf
                 ? 'bg-destructive/20'
                 : bar.isBest
-                  ? 'bg-amber-500'
+                  ? 'bg-record'
                   : bar.isLatest
                     ? 'bg-primary'
                     : 'bg-muted-foreground/30'

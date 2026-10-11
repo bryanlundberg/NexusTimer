@@ -23,9 +23,9 @@ function StatCard({
   accent: string
 }) {
   return (
-    <div className={cn('flex flex-col gap-1 border-l-2 pl-3 py-0.5', accent)}>
+    <div className="flex flex-col gap-1 py-0.5">
       <span className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-        <Icon className="size-3" />
+        <Icon className={cn('size-3', accent)} />
         {label}
       </span>
       <span className="text-xl font-semibold tabular-nums leading-none">{value}</span>
@@ -44,27 +44,27 @@ export default function SmartStatCards({ stats }: SmartStatCardsProps) {
         label={t('smart-avg-tps')}
         value={stats.avgTps > 0 ? formatTps(stats.avgTps) : '—'}
         sub={t('smart-per-solve')}
-        accent="border-cube-blue/70"
+        accent="text-cube-blue"
       />
       <StatCard
         icon={MousePointerClick}
         label={t('smart-avg-moves')}
         value={stats.avgMoves > 0 ? stats.avgMoves.toFixed(1) : '—'}
         sub={t('smart-per-solve')}
-        accent="border-cube-yellow/70"
+        accent="text-cube-yellow"
       />
       <StatCard
         icon={PauseCircle}
         label={t('smart-avg-pauses')}
         value={stats.avgPauses > 0 ? stats.avgPauses.toFixed(1) : '—'}
         sub={t('smart-per-solve')}
-        accent="border-cube-green/70"
+        accent="text-cube-green"
       />
       <StatCard
         icon={Workflow}
         label={t('smart-method')}
         value={stats.method && stats.method !== 'unknown' ? stats.method : '—'}
-        accent="border-cube-orange/70"
+        accent="text-cube-orange"
       />
     </div>
   )

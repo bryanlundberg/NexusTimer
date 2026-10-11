@@ -41,7 +41,7 @@ export default function TrainerCasePaceChart({ ranked, puzzle, vizDefaults }: Tr
         const vizConfig = vizByCaseId.get(r.algCase.id)
         return (
           <div key={r.algCase.id} className="flex items-center gap-2" title={r.algCase.name}>
-            <div className="chip-notch-sm size-7 overflow-hidden bg-muted/30 flex items-center justify-center shrink-0">
+            <div className="size-7 overflow-hidden bg-muted/30 flex items-center justify-center shrink-0">
               {vizConfig ? <AlgorithmRender config={vizConfig} width={28} height={28} /> : null}
             </div>
             <div className="flex-1 min-w-0">

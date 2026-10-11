@@ -194,7 +194,10 @@ export default function PhaseLayersLineChart({ series, phases }: PhaseLayersLine
         </h3>
         <div className="flex flex-wrap items-center gap-1.5">
           {legend.map(({ phase, avg }) => (
-            <span key={phase.key} className="legend-notch flex items-center gap-1.5 px-2.5 py-1 text-[11px]">
+            <span
+              key={phase.key}
+              className="border border-border/55 bg-muted/40 flex items-center gap-1.5 px-2.5 py-1 text-[11px]"
+            >
               <span className="inline-block size-2" style={{ background: phase.color }} />
               <span className="font-medium text-muted-foreground">{phase.label}</span>
               <span className="text-muted-foreground/60 tabular-nums">{Math.round((avg / legendTotal) * 100)}%</span>

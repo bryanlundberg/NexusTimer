@@ -58,7 +58,7 @@ export default function TrainerSolveHistoryTable({
 
   if (solves.length === 0) {
     return (
-      <div className="algo-panel-notch [--ap-notch:12px] px-3 py-8 text-center">
+      <div className="algo-panel-notch px-3 py-8 text-center">
         <p className="text-xs text-muted-foreground">{isLoading ? t('loading') : (emptyLabel ?? t('empty'))}</p>
       </div>
     )
@@ -66,7 +66,7 @@ export default function TrainerSolveHistoryTable({
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="algo-panel-notch [--ap-notch:12px] overflow-hidden">
+      <div className="algo-panel-notch overflow-hidden">
         <div
           className={cn(
             'grid items-center gap-x-4 px-3 py-2 border-b border-border/60',
@@ -107,7 +107,7 @@ export default function TrainerSolveHistoryTable({
                 )}
               >
                 {showCase && (
-                  <div className="chip-notch-sm size-6 overflow-hidden bg-muted/30 flex items-center justify-center">
+                  <div className="size-6 overflow-hidden bg-muted/30 flex items-center justify-center">
                     {vizConfig ? <AlgorithmRender config={vizConfig} width={24} height={24} /> : null}
                   </div>
                 )}

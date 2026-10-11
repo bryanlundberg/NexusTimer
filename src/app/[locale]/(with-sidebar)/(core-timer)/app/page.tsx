@@ -10,7 +10,6 @@ import TimerWidgets from '@/features/timer/ui/TimerWidgets'
 import ScrambleModal from '@/features/timer/ui/ScrambleModal'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
-import OnboardingTour from '@/features/onboarding-tour/ui/OnboardingTour'
 import TimerSolvesRail from '@/features/timer-solves-rail/ui/TimerSolvesRail'
 import FocusModeExitButton from '@/features/focus-mode/ui/FocusModeExitButton'
 import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
@@ -58,7 +57,6 @@ export default function TimerPage() {
         {!isFocusMode && <TimerSolvesRail />}
       </div>
       <ScrambleModal />
-      {!isFocusMode && <OnboardingTour />}
     </div>
   )
 }

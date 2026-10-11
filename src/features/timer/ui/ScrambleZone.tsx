@@ -183,7 +183,7 @@ export function ScrambleZone() {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="[&>svg]:transition-all [&>svg]:duration-300 [&:hover>svg]:text-yellow-400 [&:hover>svg]:drop-shadow-[0_0_6px_rgba(250,204,21,0.4)]"
+                      className="size-9 pointer-coarse:size-10 [&>svg]:transition-all [&>svg]:duration-300 [&:hover>svg]:text-record"
                       onClick={handleShowHints}
                     >
                       <Lightbulb />
@@ -204,7 +204,7 @@ export function ScrambleZone() {
               <Dialog>
                 <TooltipTrigger asChild>
                   <DialogTrigger asChild>
-                    <Button variant="ghost" size="icon">
+                    <Button variant="ghost" size="icon" className="size-9 pointer-coarse:size-10">
                       <Keyboard />
                     </Button>
                   </DialogTrigger>

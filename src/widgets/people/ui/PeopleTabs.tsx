@@ -113,7 +113,7 @@ export function PeopleTabs({ user, stats, isLoadingStats = false }: PeopleTabsPr
                   <span className="inline-flex items-center gap-1.5">
                     {labels[tab]}
                     {showCount(tab) && (
-                      <span className="inline-flex items-center justify-center min-w-[1.125rem] h-[1.125rem] px-1 rounded-full bg-muted text-[10px] font-semibold tabular-nums leading-none text-muted-foreground transition-colors group-data-[state=active]:bg-primary/10 group-data-[state=active]:text-primary">
+                      <span className="inline-flex items-center justify-center min-w-[1.125rem] h-[1.125rem] px-1 bg-muted text-[10px] font-semibold tabular-nums leading-none text-muted-foreground transition-colors group-data-[state=active]:bg-primary/15 group-data-[state=active]:text-foreground">
                         {countOf(tab)}
                       </span>
                     )}

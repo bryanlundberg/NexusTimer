@@ -5,6 +5,7 @@ import { useSmartCubeStore } from '@/features/smart-cube/model/useSmartCubeStore
 import Timer from '@/features/timer/ui/Timer'
 import ManualMode from '@/features/timer/ui/ManualMode'
 import { TimerMode } from '@/features/timer/model/enums'
+import TimerQuickStart from '@/features/timer/ui/TimerQuickStart'
 
 const Stackmat = dynamic(() => import('@/features/timer/ui/stackmat'), { ssr: false })
 const TimerVirtual = dynamic(() => import('@/features/timer/ui/TimerVirtual'), { ssr: false })
@@ -14,6 +15,7 @@ const SmartCube = dynamic(() => import('@/features/smart-cube/ui/SmartCube'), { 
 export function MainTimer() {
   const timerMode = useTimerStore((store) => store.timerMode)
   const event = useTimerStore((store) => store.event)
+  const hasNoCubes = useTimerStore((store) => store.cubes?.length === 0)
   const smartConnected = useSmartCubeStore((store) => store.status === 'connected')
   const disconnectSmart = useSmartCubeStore((store) => store.disconnect)
 
@@ -21,6 +23,8 @@ export function MainTimer() {
   useEffect(() => {
     if (event !== '333' && smartConnected) disconnectSmart()
   }, [event, smartConnected, disconnectSmart])
+
+  if (hasNoCubes) return <TimerQuickStart />
 
   return (
     <>

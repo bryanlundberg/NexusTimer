@@ -10,7 +10,7 @@ interface Props {
 export function ChatEmptyState({ icon: Icon, title, description, action }: Props) {
   return (
     <div className="m-auto flex max-w-xs flex-col items-center gap-4 p-8 text-center">
-      <span className="icon-notch flex size-14 items-center justify-center text-muted-foreground">
+      <span className="border bg-foreground/8 flex size-14 items-center justify-center text-muted-foreground">
         <Icon className="size-6" />
       </span>
 

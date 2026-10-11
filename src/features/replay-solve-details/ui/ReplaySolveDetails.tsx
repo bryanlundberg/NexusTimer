@@ -51,7 +51,7 @@ export function ReplaySolveDetails() {
               icon={<Clock className="size-3" />}
               label={t('time')}
               value={formatTime(metadata.time)}
-              className="notch-bl [--nbl:10px]"
+              className="notch-br-sm"
             />
             <Stat
               icon={<RotateCw className="size-3" />}
@@ -59,12 +59,7 @@ export function ReplaySolveDetails() {
               value={moveCount ?? '—'}
               className="rounded-none"
             />
-            <Stat
-              icon={<Zap className="size-3" />}
-              label={t('tps')}
-              value={tps ?? '—'}
-              className="notch-br [--nbr:10px]"
-            />
+            <Stat icon={<Zap className="size-3" />} label={t('tps')} value={tps ?? '—'} className="notch-br-sm" />
           </div>
           {hasReplay && <RealtimeReplayPlayer replay={replay!} markers={markers} />}
         </TabsContent>

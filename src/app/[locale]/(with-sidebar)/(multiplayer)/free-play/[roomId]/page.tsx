@@ -179,7 +179,7 @@ export default function FreePlayRoomPage() {
       {/* Header */}
       <div className="flex justify-between items-center px-4 pt-4 pb-2">
         <div className="flex items-center gap-3">
-          <SidebarTrigger className="btn-notch btn-notch-alt btn-notch-border size-9 shrink-0 pointer-coarse:size-10 [&_svg]:size-5" />
+          <SidebarTrigger className="size-9 shrink-0 border bg-background pointer-coarse:size-10 [&_svg]:size-5" />
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
@@ -199,7 +199,7 @@ export default function FreePlayRoomPage() {
                 key={user.id}
                 className={cn(
                   'relative size-7',
-                  user.id === leaderId && 'ring-2 ring-amber-500',
+                  user.id === leaderId && 'ring-2 ring-record',
                   !user.online && 'opacity-50'
                 )}
               >
@@ -223,8 +223,8 @@ export default function FreePlayRoomPage() {
                   </div>
                 )}
                 {user.status === TimerStatus.WAITING_NEXT_ROUND && (
-                  <div className="absolute inset-0 w-full h-full bg-emerald-500/20 rounded-full flex items-center justify-center">
-                    <CheckIcon className="size-3 text-emerald-600" />
+                  <div className="absolute inset-0 w-full h-full bg-success/20 rounded-full flex items-center justify-center">
+                    <CheckIcon className="size-3 text-success" />
                   </div>
                 )}
                 <AvatarGroupTooltip>
@@ -291,7 +291,7 @@ export default function FreePlayRoomPage() {
 
       {/* Tab content */}
       <div className="flex-1 min-h-0 overflow-hidden mx-2 md:mx-4">
-        <div className="h-full notch-bl-tr [--nblt:16px] border border-border bg-card overflow-hidden">
+        <div className="h-full notch-br border border-border bg-card overflow-hidden">
           <div className={`h-full overflow-y-auto ${currentTab !== 'timer' ? 'hidden' : ''}`}>
             <TimerTab maxRoundTime={room.maxRoundTime} event={room.event} onlineUsers={onlineUsers} />
           </div>
@@ -303,7 +303,7 @@ export default function FreePlayRoomPage() {
 
       {/* Tab bar */}
       <div className="px-3 pt-3 pb-4 md:pb-3">
-        <div role="tablist" className="chip-notch relative flex items-center bg-muted/60 p-1 md:max-w-xs md:mx-auto">
+        <div role="tablist" className="relative flex items-center bg-muted/60 p-1 md:max-w-xs md:mx-auto">
           {tabs.map((tab) => {
             const isActive = currentTab === tab.key
             const Icon = tab.icon
@@ -319,7 +319,7 @@ export default function FreePlayRoomPage() {
                 {isActive && (
                   <motion.div
                     layoutId="active-tab"
-                    className="chip-notch absolute inset-0 bg-background"
+                    className="absolute inset-0 bg-background"
                     transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                   />
                 )}

@@ -21,44 +21,9 @@
       "retry": "Coba lagi",
       "back": "Kembali ke timer"
     },
-    "OnboardingTour": {
-      "skip": "Keluar dari panduan",
-      "welcome": {
-        "title": "Selamat datang di Nexus Timer!",
-        "content": "NXTimer menyimpan statistikmu berdasarkan cube. Sebelum mulai, daftarkan cube yang paling dekat denganmu. Hanya butuh 20 detik!",
-        "cta": "Ya, pandu saya",
-        "dismiss": "Lain kali"
-      },
-      "select": {
-        "title": "Pilih cube-mu",
-        "content": "Buka pemilih cube untuk menambahkan cube yang akan kamu hitung waktunya."
-      },
-      "create": {
-        "title": "Daftarkan cube-mu",
-        "content": "Buat koleksi pertamamu untuk mulai melacak waktu dan statistik cube ini."
-      }
-    },
-    "sidebar-rotating-text": {
-      "text1": "Siap menyelesaikan?",
-      "text2": "Pecahkan rekormu",
-      "text3": "Waktunya speedcubing",
-      "text4": "Ayo cubing!",
-      "text5": "Dorong batasmu",
-      "text6": "Kalahkan waktumu sendiri",
-      "text7": "Cubing seperti pro",
-      "text8": "Satu solve lagi",
-      "text9": "Kejar PB",
-      "text10": "Terus cubing!",
-      "text11": "Kuasai kubusnya",
-      "text12": "Setiap detik berarti",
-      "text13": "Tantang dirimu",
-      "text14": "Kalahkan waktunya",
-      "text15": "Cubing lebih cepat",
-      "text16": "Latihan membuat sempurna",
-      "text17": "Selangkah lebih dekat",
-      "text18": "Fokus dan selesaikan",
-      "text19": "Berkembang setiap hari",
-      "text20": "Waktunya bersinar"
+    "CubesIntro": {
+      "content": "Daftarkan setiap cube dan berpindah di antaranya dengan tenang: setiap kategori tetap menjadi satu urutan, dan kamu selalu tahu rata-ratamu dengan setiap cube.",
+      "cta": "Mengerti"
     },
     "others": {
       "suggestions": "Saran"
@@ -169,6 +134,7 @@
     "SyncProgress": {
       "tooltip": "Auto-sync in {count} solves",
       "tooltip-last": "Your next solve will create a new restore point",
+      "row": "{count, plural, one {Backup in # solve} other {Backup in # solves}}",
       "modal-title": "Automatic backup",
       "modal-description": "NexusTimer automatically creates a new restore point with your cubes and solves.",
       "modal-remaining": "{count} solves left until the next restore point",
@@ -202,6 +168,7 @@
       "tap-to-start": "Tahan untuk mulai",
       "space-to-start": "Tahan spasi untuk mulai",
       "empty-scramble": "Pilih kubus untuk memuat scramble.",
+      "quick-start-other": "Kubus lain",
       "preparing-scramble": "Menyiapkan scramble…",
       "show-scramble": "Tampilkan scramble",
       "congratulations": "Selamat! {time}",
@@ -531,7 +498,6 @@
         "new-pb": "PB BARU",
         "pb-broken": "{days, plural, =0 {dipecahkan hari ini} other {dipecahkan # hari lalu}}"
       },
-      "directory-label": "Orang · direktori",
       "find-cubers": "Jelajahi para cuber.",
       "showing-members": "Menampilkan <b>{showing}</b> dari <b>{total}</b> anggota",
       "search": "Cari",
@@ -701,8 +667,7 @@
       "save-data": "Buat cadangan",
       "download-data": "Pulihkan cadangan",
       "log-out": "Keluar",
-      "activity-solves": "solve",
-      "activity-calendar": "Kalender aktivitas",
+      "streak-days": "{count, plural, other {hari berturut-turut}}",
       "toggle-section": "Tampilkan atau sembunyikan {title}",
       "toggle-sidebar": "Tampilkan atau sembunyikan sidebar"
     },

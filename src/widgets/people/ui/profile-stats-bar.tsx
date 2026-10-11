@@ -3,7 +3,6 @@
 import { useMemo } from 'react'
 import { Cube } from '@/entities/cube/model/types'
 import { Solve } from '@/entities/solve/model/types'
-import { cn } from '@/shared/lib/utils'
 import { formatDurationClock } from '@/shared/lib/formatDuration'
 import { useLocale, useTranslations } from 'next-intl'
 
@@ -11,14 +10,13 @@ interface StatItemProps {
   label: string
   value: string
   sub?: string
-  highlight?: boolean
 }
 
-function StatItem({ label, value, sub, highlight }: StatItemProps) {
+function StatItem({ label, value, sub }: StatItemProps) {
   return (
     <div className="flex flex-col gap-0.5 px-4 py-3 flex-1 min-w-0">
       <p className="text-[10px] font-semibold tracking-widest text-muted-foreground uppercase">{label}</p>
-      <p className={cn('text-2xl font-black tabular-nums leading-none', highlight && 'text-emerald-500')}>{value}</p>
+      <p className="text-2xl font-black tabular-nums leading-none">{value}</p>
       {sub && <p className="text-xs text-muted-foreground">{sub}</p>}
     </div>
   )

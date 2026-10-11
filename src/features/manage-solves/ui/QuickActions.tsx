@@ -254,7 +254,7 @@ export default function QuickActions({
               }}
               className={cn(
                 'px-3 py-1.5 transition-colors',
-                isOk ? 'bg-emerald-500/15 text-emerald-500' : 'text-muted-foreground hover:bg-muted'
+                isOk ? 'bg-success/15 text-success' : 'text-muted-foreground hover:bg-muted'
               )}
             >
               OK
@@ -299,7 +299,7 @@ export default function QuickActions({
                   size="sm"
                   className={cn(
                     'h-9 min-w-9 sm:h-8 sm:min-w-0',
-                    solve?.bookmark ? 'text-yellow-400 hover:text-yellow-400' : 'text-muted-foreground'
+                    solve?.bookmark ? 'text-record hover:text-record' : 'text-muted-foreground'
                   )}
                   onPointerDown={handleToggleBookmark}
                 >
@@ -408,7 +408,7 @@ export default function QuickActions({
               size="sm"
               className={cn(
                 'gap-1.5 h-12 min-w-12 sm:h-8 sm:min-w-0',
-                solve?.bookmark ? 'text-yellow-400 hover:text-yellow-400' : 'text-muted-foreground'
+                solve?.bookmark ? 'text-record hover:text-record' : 'text-muted-foreground'
               )}
               onPointerDown={handleToggleBookmark}
             >

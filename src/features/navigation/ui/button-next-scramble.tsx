@@ -23,7 +23,7 @@ export default function ButtonNextScramble() {
           <TooltipTrigger asChild disabled={selectedCube === null}>
             <Button
               variant={'ghost'}
-              className="py-0 px-3"
+              className="size-9 pointer-coarse:size-10"
               onClick={handleClick}
               onMouseEnter={() => iconRef.current?.startAnimation()}
               onMouseLeave={() => iconRef.current?.stopAnimation()}

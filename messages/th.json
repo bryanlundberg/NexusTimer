@@ -21,44 +21,9 @@
       "retry": "ลองอีกครั้ง",
       "back": "กลับไปที่ตัวจับเวลา"
     },
-    "OnboardingTour": {
-      "skip": "ออกจากคู่มือ",
-      "welcome": {
-        "title": "ยินดีต้อนรับสู่ Nexus Timer!",
-        "content": "NXTimer จัดเก็บสถิติของคุณแยกตามคิวบ์ ก่อนเริ่มต้น ให้ลงทะเบียนคิวบ์ที่อยู่ใกล้คุณที่สุด ใช้เวลาเพียง 20 วินาที!",
-        "cta": "ใช่ แนะนำเลย",
-        "dismiss": "ไม่เป็นไร ขอบคุณ"
-      },
-      "select": {
-        "title": "เลือกคิวบ์ของคุณ",
-        "content": "เปิดตัวเลือกคิวบ์เพื่อเพิ่มคิวบ์ที่คุณจะจับเวลา"
-      },
-      "create": {
-        "title": "ลงทะเบียนคิวบ์ของคุณ",
-        "content": "สร้างคอลเลกชันแรกของคุณเพื่อเริ่มบันทึกเวลาและสถิติของคิวบ์นี้"
-      }
-    },
-    "sidebar-rotating-text": {
-      "text1": "พร้อมต่อหรือยัง?",
-      "text2": "ทำลายสถิติของคุณ",
-      "text3": "ถึงเวลา speedcubing",
-      "text4": "มาเล่นคิวบ์กัน!",
-      "text5": "ก้าวข้ามขีดจำกัด",
-      "text6": "ทำลายเวลาของตัวเอง",
-      "text7": "เล่นคิวบ์แบบโปร",
-      "text8": "อีกหนึ่งครั้ง",
-      "text9": "ลุยทำ PB",
-      "text10": "เล่นคิวบ์ต่อไป!",
-      "text11": "พิชิตลูกบาศก์",
-      "text12": "ทุกวินาทีมีค่า",
-      "text13": "ท้าทายตัวเอง",
-      "text14": "เอาชนะเวลา",
-      "text15": "ต่อให้เร็วขึ้น",
-      "text16": "ฝึกฝนทำให้เก่ง",
-      "text17": "เข้าใกล้อีกก้าว",
-      "text18": "ตั้งสมาธิแล้วต่อ",
-      "text19": "พัฒนาทุกวัน",
-      "text20": "ถึงเวลาเปล่งประกาย"
+    "CubesIntro": {
+      "content": "ลงทะเบียนคิวบ์แต่ละลูกแล้วสลับใช้ได้อย่างมั่นใจ ทุกหมวดหมู่ยังคงเป็นลำดับเดียวกัน และคุณจะรู้ค่าเฉลี่ยของคิวบ์แต่ละลูกเสมอ",
+      "cta": "เข้าใจแล้ว"
     },
     "others": {
       "suggestions": "ข้อเสนอแนะ"
@@ -169,6 +134,7 @@
     "SyncProgress": {
       "tooltip": "Auto-sync in {count} solves",
       "tooltip-last": "Your next solve will create a new restore point",
+      "row": "{count, plural, one {Backup in # solve} other {Backup in # solves}}",
       "modal-title": "Automatic backup",
       "modal-description": "NexusTimer automatically creates a new restore point with your cubes and solves.",
       "modal-remaining": "{count} solves left until the next restore point",
@@ -202,6 +168,7 @@
       "tap-to-start": "แตะค้างเพื่อเริ่ม",
       "space-to-start": "กดค้าง Space เพื่อเริ่ม",
       "empty-scramble": "เลือกลูกบาศก์เพื่อโหลด scramble",
+      "quick-start-other": "ลูกบาศก์อื่น",
       "preparing-scramble": "กำลังเตรียม scramble…",
       "show-scramble": "แสดง scramble",
       "congratulations": "ยินดีด้วย! {time}",
@@ -531,7 +498,6 @@
         "new-pb": "PB ใหม่",
         "pb-broken": "{days, plural, =0 {ทำลายวันนี้} other {ทำลายเมื่อ # วันก่อน}}"
       },
-      "directory-label": "ผู้คน · ไดเรกทอรี",
       "find-cubers": "เรียกดู cuber",
       "showing-members": "กำลังแสดง <b>{showing}</b> จาก <b>{total}</b> สมาชิก",
       "search": "ค้นหา",
@@ -701,8 +667,7 @@
       "save-data": "สร้างข้อมูลสำรอง",
       "download-data": "กู้คืนข้อมูลสำรอง",
       "log-out": "ออกจากระบบ",
-      "activity-solves": "การไข",
-      "activity-calendar": "ปฏิทินกิจกรรม",
+      "streak-days": "{count, plural, other {วันติดต่อกัน}}",
       "toggle-section": "แสดงหรือซ่อน {title}",
       "toggle-sidebar": "แสดงหรือซ่อนแถบด้านข้าง"
     },

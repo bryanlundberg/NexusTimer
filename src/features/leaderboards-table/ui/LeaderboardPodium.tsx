@@ -30,7 +30,7 @@ export default function LeaderboardPodium({ solves }: { solves: LeaderboardSolve
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.08 * order, ease: [0.16, 1, 0.3, 1] }}
             className={cn(
-              'algo-card-notch group flex min-w-0 cursor-pointer flex-col items-center gap-1.5 px-2 pb-3 text-center sm:gap-2',
+              'item-card group flex min-w-0 cursor-pointer flex-col items-center gap-1.5 px-2 pb-3 text-center sm:gap-2',
               isFirst ? 'pt-5 sm:pt-7' : 'pt-3 sm:pt-4'
             )}
           >
@@ -41,7 +41,7 @@ export default function LeaderboardPodium({ solves }: { solves: LeaderboardSolve
             />
             <span
               className={cn(
-                'chip-notch chip-notch-sm flex size-6 items-center justify-center font-display text-[11px] font-bold',
+                'flex size-6 items-center justify-center font-display text-[11px] font-bold',
                 PODIUM_CHIP[place]
               )}
             >
@@ -66,7 +66,7 @@ export default function LeaderboardPodium({ solves }: { solves: LeaderboardSolve
             <span
               className={cn(
                 'font-mono font-bold tabular-nums leading-none',
-                isFirst ? 'text-base text-amber-700 sm:text-xl dark:text-amber-400' : 'text-sm sm:text-base'
+                isFirst ? 'text-base text-record sm:text-xl' : 'text-sm sm:text-base'
               )}
             >
               {formatTime(solve.time)}

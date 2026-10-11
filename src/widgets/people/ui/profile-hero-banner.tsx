@@ -36,12 +36,12 @@ export function ProfileHeroBanner({ user, level, actions, children }: Props) {
       <div className="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-start">
         <div className="flex flex-col items-center gap-4 min-w-0 w-full sm:w-auto sm:flex-row">
           <div className="relative shrink-0 self-center sm:self-auto">
-            <Avatar className="size-28 md:size-32 rounded-full shadow-xl ring-2 ring-border/40">
+            <Avatar className="size-28 md:size-32 rounded-full ring-2 ring-border/40">
               <AvatarImage className="object-cover" src={user.image} alt={user.name} />
               <AvatarFallback>{user.name.substring(0, 2).toUpperCase()}</AvatarFallback>
             </Avatar>
             {level > 0 && (
-              <span className="absolute -bottom-2 left-1 bg-destructive text-destructive-foreground text-[10px] font-bold px-1.5 py-0.5 rounded leading-none">
+              <span className="absolute -bottom-2 left-1 bg-primary text-primary-foreground text-[10px] font-bold px-1.5 py-0.5 leading-none">
                 LV.{level}
               </span>
             )}
@@ -55,7 +55,7 @@ export function ProfileHeroBanner({ user, level, actions, children }: Props) {
           <div className="flex flex-col items-center gap-1.5 min-w-0 w-full text-center sm:w-auto sm:items-start sm:text-left">
             {user.goal && (
               <div className="flex items-center gap-2 flex-wrap">
-                <Badge variant="default" className="badge-notch text-[10px] font-bold uppercase px-1.5 py-0 h-4">
+                <Badge variant="default" className="text-[10px] font-bold uppercase px-1.5 py-0 h-4">
                   {user.goal}
                 </Badge>
               </div>

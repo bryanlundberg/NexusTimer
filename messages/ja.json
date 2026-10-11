@@ -14,44 +14,9 @@
       "show": "ソルブを表示",
       "hide": "ソルブを非表示"
     },
-    "OnboardingTour": {
-      "skip": "ガイドを終了",
-      "welcome": {
-        "title": "Nexus Timer へようこそ！",
-        "content": "NXTimer は統計をキューブごとに記録します。始める前に、一番近くにあるキューブを登録しましょう。20秒で完了します！",
-        "cta": "はい、案内して",
-        "dismiss": "いいえ、結構です"
-      },
-      "select": {
-        "title": "キューブを選ぶ",
-        "content": "キューブセレクターを開いて、計測するキューブを追加します。"
-      },
-      "create": {
-        "title": "キューブを登録",
-        "content": "最初のコレクションを作成して、このキューブのタイムと統計の記録を始めましょう。"
-      }
-    },
-    "sidebar-rotating-text": {
-      "text1": "ソルブの準備はいいですか？",
-      "text2": "自己ベストを更新しよう",
-      "text3": "スピードキュービングの時間",
-      "text4": "レッツ・キューブ！",
-      "text5": "限界を超えろ",
-      "text6": "自分のタイムを塗り替えよう",
-      "text7": "プロのように回そう",
-      "text8": "あともう一回ソルブ",
-      "text9": "PBを狙え",
-      "text10": "キューブを回し続けよう！",
-      "text11": "キューブを極める",
-      "text12": "一秒一秒が勝負",
-      "text13": "自分に挑戦しよう",
-      "text14": "時計に勝て",
-      "text15": "もっと速く回そう",
-      "text16": "継続は力なり",
-      "text17": "一歩一歩前へ",
-      "text18": "集中してソルブ",
-      "text19": "日々進化しよう",
-      "text20": "輝く時間です"
+    "CubesIntro": {
+      "content": "キューブごとに登録して、気兼ねなく切り替えましょう。カテゴリーの記録はひとつの流れのまま続き、キューブごとの平均もいつでもわかります。",
+      "cta": "わかりました"
     },
     "others": {
       "suggestions": "提案"
@@ -162,6 +127,7 @@
     "SyncProgress": {
       "tooltip": "Auto-sync in {count} solves",
       "tooltip-last": "Your next solve will create a new restore point",
+      "row": "{count, plural, one {Backup in # solve} other {Backup in # solves}}",
       "modal-title": "Automatic backup",
       "modal-description": "NexusTimer automatically creates a new restore point with your cubes and solves.",
       "modal-remaining": "{count} solves left until the next restore point",
@@ -195,6 +161,7 @@
       "tap-to-start": "長押しで開始",
       "space-to-start": "スペースを押し続けて開始",
       "empty-scramble": "キューブを選択してスクランブルを読み込んでください。",
+      "quick-start-other": "他のキューブ",
       "preparing-scramble": "スクランブルを準備中…",
       "show-scramble": "スクランブルを表示",
       "congratulations": "おめでとうございます！ {time}",
@@ -515,7 +482,6 @@
         "new-pb": "新 PB",
         "pb-broken": "{days, plural, =0 {本日達成} other {# 日前達成}}"
       },
-      "directory-label": "ユーザー · ディレクトリ",
       "find-cubers": "キューバーを探す。",
       "showing-members": "<b>{total}</b>人中 <b>{showing}</b>人を表示中",
       "search": "検索",
@@ -692,8 +658,7 @@
       "save-data": "バックアップを作成",
       "download-data": "バックアップを復元",
       "log-out": "ログアウト",
-      "activity-solves": "解き",
-      "activity-calendar": "アクティビティカレンダー",
+      "streak-days": "{count, plural, other {日連続}}",
       "trainer": "トレーナー",
       "training": "トレーニング",
       "toggle-section": "{title}の表示を切り替え",

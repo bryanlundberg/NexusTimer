@@ -37,12 +37,12 @@ export default function CompareUsersListModal() {
         <DialogTitle className="flex items-center gap-2">
           {t('title')}
           {users.length > 0 && (
-            <span className="badge-notch bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground tabular-nums">
+            <span className="bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground tabular-nums">
               {users.length}
             </span>
           )}
         </DialogTitle>
-        <DialogDescription className={users.length > 0 && !canCompare ? 'text-amber-600 dark:text-amber-400' : ''}>
+        <DialogDescription className={users.length > 0 && !canCompare ? 'text-warning' : ''}>
           {users.length === 0 ? t('empty-hint') : canCompare ? t('ready') : t('need-two')}
         </DialogDescription>
       </DialogHeader>

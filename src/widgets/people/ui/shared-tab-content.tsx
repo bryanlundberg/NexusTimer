@@ -2,7 +2,6 @@ import { useLocale, useTranslations } from 'next-intl'
 import { Link } from '@/shared/config/i18n/navigation'
 import { Loader2 } from 'lucide-react'
 import { Button, buttonVariants } from '@/components/ui/button'
-import { cn } from '@/shared/lib/utils'
 import dayjs from '@/shared/lib/dayjs'
 import { TabTableSkeleton } from '@/shared/ui/skeletons/people-skeleton'
 import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
@@ -39,7 +38,7 @@ export default function SharedTabContent({ user, isCurrentUser, shared }: Props)
     return (
       <div className="flex flex-col items-center gap-3 py-16 text-center">
         <p className="max-w-sm text-sm text-muted-foreground">{t('empty-own')}</p>
-        <Link href="/solves" className={cn(buttonVariants({ variant: 'outline', size: 'sm' }), 'btn-notch')}>
+        <Link href="/solves" className={buttonVariants({ variant: 'outline', size: 'sm' })}>
           {t('go-to-solves')}
         </Link>
       </div>

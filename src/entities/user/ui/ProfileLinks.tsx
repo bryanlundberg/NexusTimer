@@ -29,7 +29,7 @@ export function ProfileLinks({ links, className }: ProfileLinksProps) {
               data-brand
               style={{ '--brand': platform ? PLATFORM_ACCENTS[platform] : 'var(--primary)' } as CSSProperties}
               className={cn(
-                'btn-notch btn-notch-border relative inline-flex h-9 items-center justify-center gap-2 text-sm font-medium outline-none transition-colors duration-(--dur-fast) [&_svg]:transition-transform [&_svg]:duration-150 hover:[&_svg]:scale-110 focus-visible:[&_svg]:scale-110 motion-reduce:[&_svg]:transition-none',
+                'relative inline-flex h-9 border bg-background hover:border-(--brand) hover:bg-[color-mix(in_oklab,var(--brand)_10%,var(--background))] focus-visible:border-(--brand) focus-visible:bg-[color-mix(in_oklab,var(--brand)_10%,var(--background))] items-center justify-center gap-2 text-sm font-medium outline-none transition-colors duration-(--dur-fast) [&_svg]:transition-transform [&_svg]:duration-150 hover:[&_svg]:scale-110 focus-visible:[&_svg]:scale-110 motion-reduce:[&_svg]:transition-none',
                 platform
                   ? 'w-9 text-foreground'
                   : 'max-w-52 px-3 text-muted-foreground hover:text-(--brand) focus-visible:text-(--brand)'

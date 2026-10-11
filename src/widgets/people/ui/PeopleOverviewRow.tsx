@@ -37,7 +37,7 @@ export default function PeopleOverviewRow({ stats }: PeopleOverviewRowProps) {
       <motion.div
         onClick={() => setIsOpen((prev) => !prev)}
         aria-expanded={isOpen}
-        className={`grid ${GRID} items-center gap-x-4 px-3 py-3 cursor-pointer hover:bg-muted/20 border-l-2 border-l-transparent hover:border-l-primary transition-colors duration-150`}
+        className={`grid ${GRID} items-center gap-x-4 px-3 py-3 cursor-pointer hover:bg-muted/40 transition-colors duration-150`}
         variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
       >
@@ -57,7 +57,7 @@ export default function PeopleOverviewRow({ stats }: PeopleOverviewRowProps) {
         <span className="text-sm font-bold tabular-nums">{count.toLocaleString(locale)}</span>
 
         {/* Expand indicator */}
-        <div className="flex items-center justify-center size-6 rounded-md text-muted-foreground">
+        <div className="flex items-center justify-center size-6 text-muted-foreground">
           <ChevronDown className={`size-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
         </div>
       </motion.div>

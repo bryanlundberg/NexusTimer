@@ -47,7 +47,7 @@ export default function LandingOutro({ children }: { children: ReactNode }) {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/app"
-              className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden notch-bl-tr [--nblt:12px] bg-primary px-8 py-4 text-sm font-semibold text-white transition-all duration-300 hover:brightness-110"
+              className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden btn-notch bg-primary px-8 py-4 text-sm font-semibold text-white transition-all duration-300 hover:brightness-110"
             >
               <span
                 aria-hidden
@@ -67,7 +67,7 @@ export default function LandingOutro({ children }: { children: ReactNode }) {
             </Link>
             <Link
               href="/options?redirect=import"
-              className="notch-tl-br inline-flex items-center justify-center border border-gray-900/15 bg-white/60 px-7 py-4 text-sm font-medium text-gray-700 transition-all duration-300 [--ntlbr:12px] hover:border-gray-900/30 hover:bg-white hover:text-gray-900"
+              className="inline-flex items-center justify-center border border-gray-900/15 bg-white/60 px-7 py-4 text-sm font-medium text-gray-700 transition-all duration-300 hover:border-gray-900/30 hover:bg-white hover:text-gray-900"
             >
               {t('cta.secondary')}
             </Link>

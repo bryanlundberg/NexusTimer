@@ -22,20 +22,20 @@ export default function RoomCard({ room, onJoinPrivate }: RoomCardProps) {
   const isPrivate = room.private
 
   const cardContent = (
-    <div className="algo-card-notch p-4 h-full flex flex-col gap-3">
+    <div className="item-card p-4 h-full flex flex-col gap-3">
       {/* Header row */}
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-1.5 min-w-0">
           {usersPresence.length > 0 && (
             <span className="relative flex size-2 shrink-0" aria-hidden>
-              <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:hidden" />
-              <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-75 motion-reduce:hidden" />
+              <span className="relative inline-flex size-2 rounded-full bg-success" />
             </span>
           )}
           {isPrivate && <Lock className="size-3 text-muted-foreground shrink-0" />}
           <h3 className="text-sm font-semibold truncate transition-colors group-hover:text-primary">{room.name}</h3>
         </div>
-        <span className="badge-notch flex-shrink-0 bg-muted px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+        <span className="flex-shrink-0 bg-muted px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
           {room.event}
         </span>
       </div>

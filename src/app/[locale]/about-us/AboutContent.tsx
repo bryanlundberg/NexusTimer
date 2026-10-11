@@ -158,7 +158,7 @@ export default function AboutContent() {
                 const Icon = MISSION_ICONS[item.icon]
                 return (
                   <Reveal key={item.title} delay={i * 0.1}>
-                    <div className="h-full notch-tl-br [--ntlbr:16px] border border-gray-900/10 bg-gray-900/[0.03] p-6">
+                    <div className="h-full notch-br border border-gray-900/10 bg-gray-900/[0.03] p-6">
                       <Icon className="h-5 w-5 text-primary mb-4" aria-hidden />
                       <h3 className="font-semibold text-gray-900 mb-2">{item.title}</h3>
                       <p className="text-sm text-gray-600 leading-relaxed text-pretty">{item.text}</p>
@@ -182,7 +182,7 @@ export default function AboutContent() {
               <div className="flex flex-wrap items-center justify-center gap-4">
                 <Link
                   href="/app"
-                  className="group relative inline-flex items-center justify-center gap-2 overflow-hidden notch-bl-tr [--nblt:12px] bg-gray-900 px-7 py-3.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-gray-700"
+                  className="group relative inline-flex items-center justify-center gap-2 overflow-hidden btn-notch bg-gray-900 px-7 py-3.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-gray-700"
                 >
                   {CTA.app}
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -191,7 +191,7 @@ export default function AboutContent() {
                   href={DISCORD_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center notch-tl-br [--ntlbr:12px] border border-gray-900/15 px-6 py-3.5 text-sm font-medium text-gray-700 transition-colors duration-300 hover:border-gray-900/40 hover:text-gray-900"
+                  className="inline-flex items-center justify-center border border-gray-900/15 px-6 py-3.5 text-sm font-medium text-gray-700 transition-colors duration-300 hover:border-gray-900/40 hover:text-gray-900"
                 >
                   {CTA.discord}
                 </Link>
@@ -199,7 +199,7 @@ export default function AboutContent() {
                   href={REPO_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center notch-tl-br [--ntlbr:12px] border border-gray-900/15 px-6 py-3.5 text-sm font-medium text-gray-700 transition-colors duration-300 hover:border-gray-900/40 hover:text-gray-900"
+                  className="inline-flex items-center justify-center border border-gray-900/15 px-6 py-3.5 text-sm font-medium text-gray-700 transition-colors duration-300 hover:border-gray-900/40 hover:text-gray-900"
                 >
                   {CTA.github}
                 </Link>

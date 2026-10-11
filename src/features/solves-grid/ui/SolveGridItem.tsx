@@ -59,7 +59,7 @@ export default function SolveGridItem({ index, orderedSolves, solve, isRecord = 
       data-record={isRecord ? 'true' : undefined}
       style={{ WebkitTouchCallout: 'none' }}
       className={cn(
-        'solve-notch relative grow flex flex-col items-center justify-center w-full h-full text-center transition duration-200 cursor-pointer p-2 sm:p-3 select-none active:translate-y-0 active:scale-100'
+        'item-card relative grow flex flex-col items-center justify-center w-full h-full text-center transition duration-200 cursor-pointer p-2 sm:p-3 select-none active:scale-100'
       )}
     >
       {item.bookmark && (
@@ -67,7 +67,7 @@ export default function SolveGridItem({ index, orderedSolves, solve, isRecord = 
           className="pointer-events-none absolute left-0 top-0 size-5 overflow-hidden"
           data-testid={`bookmark-icon-${index}`}
         >
-          <div className="absolute left-0 top-0 size-0 border-r-[20px] border-t-[20px] border-r-transparent border-t-yellow-500" />
+          <div className="absolute left-0 top-0 size-0 border-r-[20px] border-t-[20px] border-r-transparent border-t-record" />
           <Star className="absolute left-[2px] top-[2px] size-2 fill-white text-white" />
         </div>
       )}
@@ -75,7 +75,7 @@ export default function SolveGridItem({ index, orderedSolves, solve, isRecord = 
       {selectionMode ? (
         <div
           className={cn(
-            'absolute top-1 right-1 sm:top-2 sm:right-2 flex size-4 items-center justify-center rounded-[3px] border transition-colors',
+            'absolute top-1 right-1 sm:top-2 sm:right-2 flex size-4 items-center justify-center border transition-colors',
             selected ? 'border-primary bg-primary text-primary-foreground' : 'border-muted-foreground/40'
           )}
           data-testid={`solve-select-indicator-${index}`}
@@ -95,22 +95,13 @@ export default function SolveGridItem({ index, orderedSolves, solve, isRecord = 
           </span>
         ) : (
           <>
-            <span
-              className={cn('text-base sm:text-2xl font-semibold', isRecord && 'text-amber-700 dark:text-amber-400')}
-            >
-              {integerPart}
-            </span>
-            <span
-              className={cn(
-                'text-xs sm:text-base',
-                isRecord ? 'text-amber-700/70 dark:text-amber-400/70' : 'text-muted-foreground'
-              )}
-            >
+            <span className={cn('text-base sm:text-2xl font-semibold', isRecord && 'text-record')}>{integerPart}</span>
+            <span className={cn('text-xs sm:text-base', isRecord ? 'text-record/70' : 'text-muted-foreground')}>
               .{decimalPart}
             </span>
             {item.plus2 ? (
               <span
-                className="badge-notch ms-1 sm:ms-2 text-[10px] sm:text-xs font-bold px-1.5 py-0.5 bg-destructive/15 text-destructive"
+                className="ms-1 sm:ms-2 text-[10px] sm:text-xs font-bold px-1.5 py-0.5 bg-destructive/15 text-destructive"
                 data-testid={`plus-two-icon-${index}`}
               >
                 +2
@@ -127,7 +118,7 @@ export default function SolveGridItem({ index, orderedSolves, solve, isRecord = 
       </div>
 
       <div className="absolute left-1 bottom-1 sm:left-2 sm:bottom-2 flex items-center gap-2 text-xs text-muted-foreground">
-        {isRecord && <Trophy aria-hidden className="size-3 sm:size-3.5 text-amber-500" />}
+        {isRecord && <Trophy aria-hidden className="size-3 sm:size-3.5 text-record" />}
         {item.comment && (
           <span className="flex items-center gap-1" data-testid={`comment-icon-${index}`}>
             <QaCommentIcon className="size-3 sm:size-3.5" />

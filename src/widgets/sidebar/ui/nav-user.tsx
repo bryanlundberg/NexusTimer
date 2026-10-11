@@ -2,7 +2,6 @@
 
 import {
   ArrowRightLeft,
-  ChevronDown,
   ChevronRight,
   Globe,
   HardDriveDownload,
@@ -28,6 +27,9 @@ import { PresenceDot } from '@/features/presence/ui/PresenceDot'
 import { resolvePresenceDisplay, usePresence } from '@/features/presence/model/usePresence'
 import type { PresenceDisplay, PresenceStatus } from '@/features/presence/model/usePresence'
 import { cn } from '@/shared/lib/utils'
+import { useBackupProgress } from '@/shared/model/backup/useBackupProgress'
+import { NavUserAvatar } from '@/widgets/sidebar/ui/nav-user-avatar'
+import { NavUserBackupRow } from '@/widgets/sidebar/ui/nav-user-backup-row'
 
 const PRESENCE_OPTIONS: { value: PresenceStatus; display: PresenceDisplay }[] = [
   { value: 'online', display: 'online' },
@@ -50,6 +52,8 @@ export function NavUser({
   const { handleResetDeviceData } = useLogout()
   const t = useTranslations('Index')
   const tp = useTranslations('Index.Presence')
+  const tSync = useTranslations('Index.SyncProgress')
+  const { percent, remaining, isLast } = useBackupProgress()
   const { status, setStatus } = usePresenceStatus()
   const statusDisplay = resolvePresenceDisplay(usePresence(user.id))
   const initials = user.name.substring(0, 2).toUpperCase()
@@ -71,31 +75,24 @@ export function NavUser({
       <DropdownMenuTrigger asChild>
         <button
           type="button"
-          aria-label={user.name}
+          aria-label={`${user.name}. ${isLast ? tSync('tooltip-last') : tSync('tooltip', { count: remaining })}`}
           data-testid="header-user-menu"
-          className="btn-notch relative flex h-9 min-w-9 shrink-0 cursor-pointer items-center justify-center gap-2 bg-secondary px-1 outline-none transition-colors hover:bg-secondary/80 focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-ring data-[state=open]:bg-secondary/80 pointer-coarse:h-10 pointer-coarse:min-w-10 @3xl/header:justify-start @3xl/header:pr-2.5 @3xl/header:pl-1"
+          className="group relative flex shrink-0 cursor-pointer items-center justify-center rounded-full outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
         >
-          <span className="relative shrink-0">
-            <Avatar className="size-7 rounded-full">
-              <AvatarImage className="object-cover" src={user.avatar} alt="" />
-              <AvatarFallback className="rounded-full text-[10px] font-semibold">{initials}</AvatarFallback>
-            </Avatar>
-            <span className="pointer-events-none absolute -right-0.5 -bottom-0.5 rounded-full bg-secondary p-px">
-              <PresenceDot state={statusDisplay} className="size-2" />
-            </span>
-          </span>
-          <span className="hidden max-w-44 min-w-0 flex-col text-left leading-tight @3xl/header:flex">
-            <span className="truncate text-[13px] font-medium">{user.name}</span>
-            {user.email && <span className="truncate text-[11px] text-muted-foreground">{user.email}</span>}
-          </span>
-          <ChevronDown aria-hidden className="hidden size-3.5 shrink-0 text-muted-foreground @3xl/header:block" />
+          <NavUserAvatar
+            image={user.avatar}
+            initials={initials}
+            presence={statusDisplay}
+            percent={percent}
+            isLast={isLast}
+          />
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-64" innerClassName="p-px" side={'bottom'} align="end" sideOffset={8}>
         {/* Identity header */}
         <DropdownMenuItem
           onClick={() => router.push('/account')}
-          className="group relative m-0 cursor-pointer gap-3 rounded-none bg-gradient-to-br from-primary/10 via-transparent to-transparent px-3 py-3"
+          className="group relative m-0 cursor-pointer gap-3 rounded-none px-3 py-3"
         >
           <div className="relative shrink-0">
             <Avatar className="size-10 rounded-full shadow-sm ring-1 ring-border/60">
@@ -113,6 +110,8 @@ export function NavUser({
           <ChevronRight className="size-4 shrink-0 text-muted-foreground opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100 group-focus:translate-x-0.5 group-focus:opacity-100" />
         </DropdownMenuItem>
 
+        <NavUserBackupRow percent={percent} remaining={remaining} isLast={isLast} />
+
         {/* Presence picker */}
         <div className="flex items-center justify-between gap-2 border-y border-primary/20 bg-muted/40 px-3 py-2">
           <span className="truncate text-xs font-medium uppercase tracking-wider text-muted-foreground">
@@ -128,7 +127,7 @@ export function NavUser({
                 aria-pressed={status === value}
                 onClick={() => setStatus(value)}
                 className={cn(
-                  'chip-notch chip-notch-sm flex size-7 cursor-pointer items-center justify-center transition-colors',
+                  'flex size-7 cursor-pointer items-center justify-center transition-colors',
                   status === value ? 'bg-primary/20' : 'hover:bg-accent'
                 )}
               >
@@ -146,7 +145,7 @@ export function NavUser({
               onClick={() => router.push(href)}
               className="cursor-pointer gap-2.5 rounded-none px-3 py-1.5"
             >
-              <span className="chip-notch chip-notch-sm flex size-6 shrink-0 items-center justify-center bg-muted">
+              <span className="flex size-6 shrink-0 items-center justify-center bg-muted">
                 <Icon className="size-3.5" />
               </span>
               {label}
@@ -161,7 +160,7 @@ export function NavUser({
               onClick={() => router.push(href)}
               className="cursor-pointer gap-2.5 rounded-none px-3 py-1.5"
             >
-              <span className="chip-notch chip-notch-sm flex size-6 shrink-0 items-center justify-center bg-muted">
+              <span className="flex size-6 shrink-0 items-center justify-center bg-muted">
                 <Icon className="size-3.5" />
               </span>
               {label}
@@ -176,7 +175,7 @@ export function NavUser({
             onClick={handleResetDeviceData}
             className="cursor-pointer gap-2.5 rounded-none px-3 py-1.5"
           >
-            <span className="chip-notch chip-notch-sm flex size-6 shrink-0 items-center justify-center bg-destructive/10">
+            <span className="flex size-6 shrink-0 items-center justify-center bg-destructive/10">
               <LogOut className="size-3.5 text-destructive" />
             </span>
             {t('NavMain.log-out')}

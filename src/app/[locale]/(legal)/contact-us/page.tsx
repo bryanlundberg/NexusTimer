@@ -47,7 +47,7 @@ export default function ContactUsPage() {
       />
 
       <div className="mx-auto max-w-3xl">
-        <div className="notch-tl-br [--ntlbr:16px] border border-gray-900/10 bg-gray-900/[0.03] p-8 text-center">
+        <div className="notch-br border border-gray-900/10 bg-gray-900/[0.03] p-8 text-center">
           <Mail className="mx-auto h-6 w-6 text-primary mb-4" aria-hidden />
           <p className="text-sm text-gray-600 mb-3">Write to us at</p>
           <a
@@ -70,7 +70,7 @@ export default function ContactUsPage() {
           {ELSEWHERE.map((item) => (
             <div
               key={item.title}
-              className="flex h-full flex-col notch-tl-br [--ntlbr:14px] border border-gray-900/10 bg-gray-900/[0.02] p-5"
+              className="flex h-full flex-col notch-br border border-gray-900/10 bg-gray-900/[0.02] p-5"
             >
               <item.icon className="h-5 w-5 text-primary mb-3" aria-hidden />
               <h3 className="font-semibold text-gray-900 mb-1.5">{item.title}</h3>

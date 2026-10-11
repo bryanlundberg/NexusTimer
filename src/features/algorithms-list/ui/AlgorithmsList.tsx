@@ -89,7 +89,7 @@ export const AlgorithmsList = ({ algorithms, virtualization, puzzle, methodSlug 
                   key={group}
                   asChild
                   variant={active ? 'default' : 'outline'}
-                  className="badge-notch cursor-pointer transition-colors select-none text-[11px] sm:text-xs px-2 py-0.5 whitespace-normal break-all max-w-full focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-ring pointer-coarse:px-3 pointer-coarse:py-2 pointer-coarse:text-[13px]"
+                  className="cursor-pointer transition-colors select-none text-[11px] sm:text-xs px-2 py-0.5 whitespace-normal break-all max-w-full pointer-coarse:px-3 pointer-coarse:py-2 pointer-coarse:text-[13px]"
                 >
                   <button type="button" aria-pressed={active} onClick={() => handleChooseGroup(group)}>
                     <span className="min-w-0 break-all">{group}</span>

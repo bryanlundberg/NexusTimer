@@ -65,7 +65,7 @@ export default function TransferSolvesHeader({ cubes }: TransferSolvesHeaderProp
         <div className={'flex items-center justify-center py-1 md:py-0'}>
           <span
             className={cn(
-              'chip-notch chip-notch-sm flex size-9 items-center justify-center transition-colors duration-300',
+              'flex size-9 items-center justify-center transition-colors duration-300',
               isReady ? 'bg-primary/15 text-primary' : 'bg-muted text-muted-foreground'
             )}
           >

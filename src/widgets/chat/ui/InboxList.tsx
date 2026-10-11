@@ -30,10 +30,7 @@ export function InboxList({ activeChatId }: { activeChatId: string | null }) {
         title={t('empty')}
         description={t('empty-hint')}
         action={
-          <Link
-            href="/friends"
-            className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), 'btn-notch btn-notch-border gap-1.5')}
-          >
+          <Link href="/friends" className={cn(buttonVariants({ variant: 'outline', size: 'sm' }), 'gap-1.5')}>
             <Users className="size-4" />
             {t('go-to-friends')}
           </Link>
@@ -54,8 +51,8 @@ export function InboxList({ activeChatId }: { activeChatId: string | null }) {
             onClick={() => setActiveChat(thread._id)}
             aria-current={isActive || undefined}
             className={cn(
-              'flex w-full items-center gap-3 border-b border-l-2 border-b-border/40 border-l-transparent px-3 py-3 text-left transition-colors duration-150 hover:bg-muted/20',
-              isActive && 'border-l-primary bg-muted/30'
+              'flex w-full items-center gap-3 border-b border-b-border/40 px-3 py-3 text-left transition-colors duration-150 hover:bg-muted/40',
+              isActive && 'bg-primary/10 hover:bg-primary/15'
             )}
           >
             <ThreadPreview thread={thread} myId={session?.user?.id} isTyping={typingChats.has(thread._id)} />

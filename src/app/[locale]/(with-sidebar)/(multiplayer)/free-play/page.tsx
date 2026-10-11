@@ -15,6 +15,7 @@ import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { useSession } from '@/shared/model/useSession'
 import { useRouter } from '@/shared/config/i18n/navigation'
 import useAlert from '@/shared/model/useAlert'
+import { PageHeader } from '@/shared/ui/page-header/PageHeader'
 import type { RoomSummary } from '@nexustimer/contracts'
 
 export default function FreePlayPage() {
@@ -62,25 +63,28 @@ export default function FreePlayPage() {
           transition={{ duration: 0.4, ease: 'easeOut' }}
           className="mb-12"
         >
-          {displayRooms.length > 0 && (
-            <div className="mb-4 flex items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground tabular-nums">
-                <span className="relative flex size-2">
-                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:hidden" />
-                  <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+          <PageHeader
+            title={t('title')}
+            description={t('description')}
+            className="mb-0"
+            meta={
+              displayRooms.length > 0 && (
+                <span className="inline-flex items-center gap-1.5 tabular-nums">
+                  <span className="relative flex size-2">
+                    <span className="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-75 motion-reduce:hidden" />
+                    <span className="relative inline-flex size-2 rounded-full bg-success" />
+                  </span>
+                  {t('active-rooms-count', { count: displayRooms.length })}
                 </span>
-                {t('active-rooms-count', { count: displayRooms.length })}
-              </span>
-            </div>
-          )}
-
-          <h1 className="font-display text-3xl font-bold tracking-tight lg:text-4xl mb-2">{t('title')}</h1>
-          <p className="text-muted-foreground max-w-lg mb-6">{t('description')}</p>
-
-          <Button size="default" className="gap-2 pointer-coarse:h-11" onClick={handleCreateRoom}>
-            <Plus className="size-4" />
-            {t('new-room')}
-          </Button>
+              )
+            }
+            actions={
+              <Button size="default" className="gap-2 pointer-coarse:h-11" onClick={handleCreateRoom}>
+                <Plus className="size-4" />
+                {t('new-room')}
+              </Button>
+            }
+          />
         </motion.div>
 
         {/* Rooms Section */}
@@ -113,7 +117,7 @@ export default function FreePlayPage() {
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: 0.2 }}
-                  className="flex flex-col items-center justify-center py-16 px-6 notch-bl-tr [--nblt:16px] border border-dashed border-muted-foreground/20"
+                  className="flex flex-col items-center justify-center py-16 px-6 notch-br border border-dashed border-muted-foreground/20"
                 >
                   <Gamepad2 className="size-10 text-muted-foreground/30 mb-4" />
                   <h3 className="text-base font-semibold mb-1">{t('no-active-rooms')}</h3>
@@ -147,7 +151,7 @@ export default function FreePlayPage() {
                   ).map(([step, color], i) => (
                     <li key={step} className="relative flex gap-3 items-start">
                       <span
-                        className="chip-notch chip-notch-sm flex size-6 shrink-0 items-center justify-center font-display text-[11px] font-bold"
+                        className="flex size-6 shrink-0 items-center justify-center font-display text-[11px] font-bold"
                         style={{
                           backgroundColor: `color-mix(in oklch, ${color} 18%, var(--background))`,
                           color: `color-mix(in oklch, ${color} 65%, var(--foreground))`

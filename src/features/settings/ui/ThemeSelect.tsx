@@ -8,7 +8,7 @@ import { ThemeToggleButton, useThemeTransition } from '@/components/ui/shadcn-io
 function ThemePreviewLight({ selected }: { selected: boolean }) {
   return (
     <div
-      className={`relative w-28 h-20 sm:w-36 sm:h-24 notch-bl-tr [--nblt:14px] overflow-hidden cursor-pointer transition-all duration-200 ${
+      className={`relative w-28 h-20 sm:w-36 sm:h-24 notch-br overflow-hidden cursor-pointer transition-all duration-200 ${
         selected ? 'border-2 border-primary scale-[1.02]' : 'border border-neutral-300 hover:border-neutral-400'
       }`}
     >
@@ -42,7 +42,7 @@ function ThemePreviewLight({ selected }: { selected: boolean }) {
 function ThemePreviewDark({ selected }: { selected: boolean }) {
   return (
     <div
-      className={`relative w-28 h-20 sm:w-36 sm:h-24 notch-bl-tr [--nblt:14px] overflow-hidden cursor-pointer transition-all duration-200 ${
+      className={`relative w-28 h-20 sm:w-36 sm:h-24 notch-br overflow-hidden cursor-pointer transition-all duration-200 ${
         selected ? 'border-2 border-primary scale-[1.02]' : 'border border-neutral-700 hover:border-neutral-600'
       }`}
     >

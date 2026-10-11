@@ -22,6 +22,8 @@ import { useEffect } from 'react'
 import { Nexi } from '@/shared/ui/nexi'
 import { ProductSearchInput } from '@/features/search/ui/ProductSearchInput'
 import { CubeCategoryIcon } from '@/shared/ui/cube-category-icon/CubeCategoryIcon'
+import CubesIntro from '@/features/cubes-intro/ui/CubesIntro'
+import { useCubesIntroStore } from '@/features/cubes-intro/model/useCubesIntroStore'
 
 export default function CreateCollectionForm() {
   const t = useTranslations('Index')
@@ -30,6 +32,8 @@ export default function CreateCollectionForm() {
   const setNewScramble = useTimerStore((state) => state.setNewScramble)
   const close = useOverlayStore((state) => state.close)
   const activeOverlay = useOverlayStore((state) => state.activeOverlay)
+  const introSeen = useCubesIntroStore((state) => state.seen)
+  const markIntroSeen = useCubesIntroStore((state) => state.markSeen)
 
   const {
     handleSubmit,
@@ -53,6 +57,7 @@ export default function CreateCollectionForm() {
       patchCubes([newCube])
       setSelectedCube(newCube)
       setNewScramble(newCube)
+      markIntroSeen()
       close()
     } catch (err) {
       console.log(err)
@@ -70,7 +75,7 @@ export default function CreateCollectionForm() {
     >
       <DialogHeader className="shrink-0">
         <DialogTitle className="flex items-center gap-3">
-          <Nexi state="idle" size={38} />
+          <Nexi state={introSeen ? 'idle' : 'hello'} size={38} />
           <span className="my-auto">{t('Cubes-modal.new-collection')}</span>
         </DialogTitle>
         <DialogDescription>{t('CubesPage.new-collection-description')}</DialogDescription>
@@ -78,6 +83,7 @@ export default function CreateCollectionForm() {
 
       <div className="-mx-2 min-h-0 flex-1 overflow-x-hidden overflow-y-auto px-2">
         <div className="space-y-5 py-1">
+          <CubesIntro />
           <div className="space-y-2">
             <Label htmlFor="name">{t('Cubes-modal.name')}</Label>
             <ProductSearchInput

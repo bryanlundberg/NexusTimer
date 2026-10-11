@@ -35,7 +35,7 @@ export function ChatWindow({ chatId, minimized }: DockWindow) {
     <section
       aria-label={peer?.name}
       className={cn(
-        'notch-bl-tr pointer-events-auto flex w-80 flex-col overflow-hidden border border-b-0 border-border bg-background shadow-2xl transition-[height] duration-200 [--nblt:14px]',
+        'pointer-events-auto flex w-80 flex-col overflow-hidden border border-b-0 border-border bg-background shadow-2xl transition-[height] duration-200',
         minimized ? 'h-14' : 'h-[30rem]'
       )}
     >

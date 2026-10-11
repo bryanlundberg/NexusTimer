@@ -92,7 +92,7 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
           >
             <Link
               href="/app"
-              className="group notch-bl-tr inline-flex items-center justify-center gap-2.5 bg-primary px-8 py-4 text-sm font-semibold text-white transition-all duration-300 [--nblt:12px] hover:brightness-110"
+              className="group btn-notch inline-flex items-center justify-center gap-2.5 bg-primary px-8 py-4 text-sm font-semibold text-white transition-all duration-300 hover:brightness-110"
             >
               <span className="flex h-6 w-6 items-center justify-center">
                 <Nexi
@@ -106,7 +106,7 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
             </Link>
             <Link
               href="/algorithms"
-              className="notch-tl-br inline-flex items-center justify-center border border-white/15 bg-white/5 px-7 py-4 text-sm font-medium text-gray-200 transition-colors duration-300 [--ntlbr:12px] hover:border-white/30 hover:bg-white/10 hover:text-white"
+              className="inline-flex items-center justify-center border border-white/15 bg-white/5 px-7 py-4 text-sm font-medium text-gray-200 transition-colors duration-300 hover:border-white/30 hover:bg-white/10 hover:text-white"
             >
               {t('hero.cta-secondary')}
             </Link>

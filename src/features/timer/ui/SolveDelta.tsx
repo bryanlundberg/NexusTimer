@@ -30,11 +30,7 @@ export default function SolveDelta({ className }: { className?: string }) {
   if (delta === null || !lastSolve) return null
 
   const tone =
-    delta < 0
-      ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400'
-      : delta > 0
-        ? 'bg-destructive/10 text-destructive'
-        : 'bg-muted text-muted-foreground'
+    delta < 0 ? 'bg-faster/10 text-faster' : delta > 0 ? 'bg-slower/10 text-slower' : 'bg-muted text-muted-foreground'
 
   return (
     <motion.div
@@ -42,11 +38,7 @@ export default function SolveDelta({ className }: { className?: string }) {
       initial={{ opacity: 0, y: 4 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.2 }}
-      className={cn(
-        'chip-notch w-fit px-2.5 py-1 font-mono text-xs font-semibold tabular-nums sm:text-sm',
-        tone,
-        className
-      )}
+      className={cn('w-fit px-2.5 py-1 font-mono text-xs font-semibold tabular-nums sm:text-sm', tone, className)}
       data-testid="solve-delta"
     >
       ({delta < 0 ? '−' : '+'}

@@ -16,6 +16,7 @@ export default function FocusModeToggle() {
         <Button
           variant="ghost"
           size="icon"
+          className="size-9 pointer-coarse:size-10"
           onClick={enter}
           aria-label={t('focus-mode')}
           data-testid="focus-mode-toggle"

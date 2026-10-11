@@ -14,7 +14,7 @@ export default function RoomTakenOver({ movedToAnotherRoom, onPlayHere, onLeave 
   return (
     <div className="flex h-dvh flex-col items-center justify-center gap-6 px-4">
       <div className="flex flex-col items-center gap-2 text-center">
-        <div className="icon-notch mb-2 flex size-12 items-center justify-center">
+        <div className="border bg-foreground/8 mb-2 flex size-12 items-center justify-center">
           <MonitorSmartphone className="size-5 text-muted-foreground" />
         </div>
         <h2 className="max-w-xs text-lg font-semibold">{movedToAnotherRoom ? t('moved') : t('replaced')}</h2>

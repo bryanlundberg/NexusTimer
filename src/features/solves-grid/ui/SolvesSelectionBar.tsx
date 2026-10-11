@@ -116,7 +116,7 @@ export default function SolvesSelectionBar({ allIds }: SolvesSelectionBarProps) 
           if (e.propertyName === 'translate' && !selectionMode) setShouldRender(false)
         }}
         className={cn(
-          'notch-bl pointer-events-auto mx-auto flex max-w-2xl items-center gap-1 sm:gap-2 bg-foreground p-2 text-background shadow-xl transition-[translate,opacity]',
+          'notch-br pointer-events-auto mx-auto flex max-w-2xl items-center gap-1 sm:gap-2 bg-foreground p-2 text-background shadow-xl transition-[translate,opacity]',
           visible
             ? 'translate-y-0 opacity-100 duration-400 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]'
             : 'translate-y-[calc(100%+16px)] opacity-0 duration-200 ease-in'
@@ -151,7 +151,7 @@ export default function SolvesSelectionBar({ allIds }: SolvesSelectionBarProps) 
         <Button
           variant="ghost"
           size="sm"
-          className="shrink-0 gap-1.5 pointer-coarse:h-10 text-red-500 hover:bg-red-500/15 hover:text-red-500 dark:hover:bg-red-500/15"
+          className="shrink-0 gap-1.5 pointer-coarse:h-10 text-destructive hover:bg-destructive/15 hover:text-destructive dark:hover:bg-destructive/15"
           disabled={count === 0}
           onClick={() => setConfirmOpen(true)}
           data-testid="bulk-delete-button"

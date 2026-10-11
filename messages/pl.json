@@ -21,44 +21,9 @@
       "retry": "Spróbuj ponownie",
       "back": "Wróć do timera"
     },
-    "OnboardingTour": {
-      "skip": "Zakończ przewodnik",
-      "welcome": {
-        "title": "Witaj w Nexus Timer!",
-        "content": "NXTimer porządkuje Twoje statystyki według kostki. Zanim zaczniesz, zarejestruj tę, którą masz najbliżej. Zajmie to 20 sekund!",
-        "cta": "Tak, poprowadź mnie",
-        "dismiss": "Nie, dziękuję"
-      },
-      "select": {
-        "title": "Wybierz swoją kostkę",
-        "content": "Otwórz selektor kostek, aby dodać kostkę, którą będziesz mierzyć."
-      },
-      "create": {
-        "title": "Zarejestruj swoją kostkę",
-        "content": "Utwórz swoją pierwszą kolekcję, aby zacząć śledzić czasy i statystyki tej kostki."
-      }
-    },
-    "sidebar-rotating-text": {
-      "text1": "Gotowy na układanie?",
-      "text2": "Pobij swój rekord",
-      "text3": "Czas na speedcubing",
-      "text4": "Układamy!",
-      "text5": "Przekraczaj swoje granice",
-      "text6": "Pobij swój czas",
-      "text7": "Układaj jak profesjonalista",
-      "text8": "Jeszcze jedno ułożenie",
-      "text9": "Celuj w PB",
-      "text10": "Układaj dalej!",
-      "text11": "Opanuj kostkę",
-      "text12": "Każda sekunda się liczy",
-      "text13": "Rzuć sobie wyzwanie",
-      "text14": "Pokonaj zegar",
-      "text15": "Układaj szybciej",
-      "text16": "Trening czyni mistrza",
-      "text17": "Krok bliżej celu",
-      "text18": "Skup się i układaj",
-      "text19": "Poprawiaj się każdego dnia",
-      "text20": "Czas zabłysnąć"
+    "CubesIntro": {
+      "content": "Zarejestruj każdą kostkę i zmieniaj je bez obaw: każda kategoria pozostaje jedną sekwencją, a Ty zawsze wiesz, jaką średnią masz z każdą kostką.",
+      "cta": "Rozumiem"
     },
     "others": {
       "suggestions": "Sugestie"
@@ -169,6 +134,7 @@
     "SyncProgress": {
       "tooltip": "Auto-sync in {count} solves",
       "tooltip-last": "Your next solve will create a new restore point",
+      "row": "{count, plural, one {Backup in # solve} other {Backup in # solves}}",
       "modal-title": "Automatic backup",
       "modal-description": "NexusTimer automatically creates a new restore point with your cubes and solves.",
       "modal-remaining": "{count} solves left until the next restore point",
@@ -202,6 +168,7 @@
       "tap-to-start": "Przytrzymaj, aby zacząć",
       "space-to-start": "Przytrzymaj spację, aby zacząć",
       "empty-scramble": "Wybierz kostkę, aby załadować scramble.",
+      "quick-start-other": "Inna kostka",
       "preparing-scramble": "Przygotowywanie scramble…",
       "show-scramble": "Pokaż scramble",
       "congratulations": "Gratulacje! {time}",
@@ -531,7 +498,6 @@
         "new-pb": "NOWY PB",
         "pb-broken": "{days, plural, =0 {pobity dzisiaj} one {pobity # dzień temu} few {pobity # dni temu} other {pobity # dni temu}}"
       },
-      "directory-label": "Ludzie · katalog",
       "find-cubers": "Przeglądaj cuberów.",
       "showing-members": "Wyświetlanie <b>{showing}</b> z <b>{total}</b> członków",
       "search": "Szukaj",
@@ -701,8 +667,7 @@
       "save-data": "Utwórz kopię zapasową",
       "download-data": "Przywróć kopię zapasową",
       "log-out": "Wyloguj się",
-      "activity-solves": "ułożenia",
-      "activity-calendar": "Kalendarz aktywności",
+      "streak-days": "{count, plural, one {dzień z rzędu} few {dni z rzędu} many {dni z rzędu} other {dnia z rzędu}}",
       "toggle-section": "Pokaż lub ukryj {title}",
       "toggle-sidebar": "Pokaż lub ukryj pasek boczny"
     },

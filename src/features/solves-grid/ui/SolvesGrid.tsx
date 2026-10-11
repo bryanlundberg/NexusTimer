@@ -66,9 +66,7 @@ export default function SolvesGrid({ solves }: SolvesGridProps) {
             <span className="text-muted-foreground/50">·</span>
             <span>
               {t('HomePage.best')}{' '}
-              <span className="font-semibold tabular-nums text-amber-700 dark:text-amber-400">
-                {formatTime(summary.best)}
-              </span>
+              <span className="font-semibold tabular-nums text-record">{formatTime(summary.best)}</span>
             </span>
           </>
         )}

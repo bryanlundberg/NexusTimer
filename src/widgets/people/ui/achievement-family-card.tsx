@@ -9,7 +9,7 @@ export function AchievementFamilyCard({ family }: { family: BadgeFamily }) {
   return (
     <div
       className={cn(
-        'notch-bl-tr [--nblt:12px] flex items-center gap-3 border border-border/40 bg-card/40 p-3 transition-colors',
+        'notch-br flex items-center gap-3 border border-border/40 bg-card/40 p-3 transition-colors',
         locked ? 'opacity-60' : 'hover:border-primary'
       )}
     >

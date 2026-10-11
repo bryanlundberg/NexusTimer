@@ -13,19 +13,19 @@ export function SmartCubeIndicator() {
   if (!connected) return null
 
   return (
-    <div className="flex items-center gap-2 rounded-md border bg-black px-3 py-2 text-xs font-medium">
+    <div className="flex items-center gap-2 border bg-background/60 px-3 py-2 text-xs font-medium">
       <span className="relative flex size-2 shrink-0">
-        <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-500 opacity-60" />
-        <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+        <span className="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-60" />
+        <span className="relative inline-flex size-2 rounded-full bg-success" />
       </span>
       <Bluetooth className="size-4 shrink-0 text-primary" />
-      <span className="min-w-0 flex-1 truncate text-white">{deviceName ?? 'Smart Cube'}</span>
+      <span className="min-w-0 flex-1 truncate text-foreground">{deviceName ?? 'Smart Cube'}</span>
       <button
         type="button"
         onClick={disconnect}
         aria-label={t('disconnect')}
         title={t('disconnect')}
-        className="inline-flex size-5 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+        className="inline-flex size-5 shrink-0 items-center justify-center text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
       >
         <X className="size-3.5" />
       </button>
