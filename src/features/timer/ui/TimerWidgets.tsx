@@ -38,7 +38,7 @@ export default function TimerWidgets() {
       <div
         data-testid="best-average-alert"
         className={cn(
-          'chip-notch flex items-center gap-1.5 w-fit px-2.5 py-1 text-xs sm:text-sm font-medium bg-amber-500/15 text-amber-700 dark:text-amber-400',
+          'flex items-center gap-1.5 w-fit px-2.5 py-1 text-xs sm:text-sm font-medium bg-amber-500/15 text-amber-700 dark:text-amber-400',
           compactAlert
         )}
       >
@@ -57,7 +57,7 @@ export default function TimerWidgets() {
       <div
         data-testid="worst-time-alert"
         className={cn(
-          'chip-notch w-fit px-2.5 py-1 text-xs sm:text-sm font-medium bg-destructive/10 text-destructive',
+          'w-fit px-2.5 py-1 text-xs sm:text-sm font-medium bg-destructive/10 text-destructive',
           compactAlert
         )}
       >

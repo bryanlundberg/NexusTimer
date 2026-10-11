@@ -42,11 +42,7 @@ export default function SolveDelta({ className }: { className?: string }) {
       initial={{ opacity: 0, y: 4 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.2 }}
-      className={cn(
-        'chip-notch w-fit px-2.5 py-1 font-mono text-xs font-semibold tabular-nums sm:text-sm',
-        tone,
-        className
-      )}
+      className={cn('w-fit px-2.5 py-1 font-mono text-xs font-semibold tabular-nums sm:text-sm', tone, className)}
       data-testid="solve-delta"
     >
       ({delta < 0 ? '−' : '+'}
