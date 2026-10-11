@@ -24,7 +24,7 @@ export function BlockUserMenu({ userId, name }: Props) {
         <DropdownMenuTrigger asChild>
           <Button
             size="icon"
-            variant="outline"
+            variant="ghost"
             className="size-9 pointer-coarse:size-10"
             aria-label={t('more-actions')}
             disabled={pendingId === userId}

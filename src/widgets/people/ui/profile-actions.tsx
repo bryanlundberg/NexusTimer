@@ -28,7 +28,7 @@ export function ProfileActions({ user, isCurrentUser, status, canRequest, classN
     <div className={cn('flex flex-wrap items-center gap-2', className)}>
       {isCurrentUser && (
         <Button
-          variant="secondary"
+          variant="ghost"
           size="sm"
           className="gap-1.5 pointer-coarse:h-10"
           onClick={() => router.push('/account')}
@@ -37,7 +37,7 @@ export function ProfileActions({ user, isCurrentUser, status, canRequest, classN
           {t('edit-profile')}
         </Button>
       )}
-      {status === 'friends' && <MessageLink userId={user._id} showLabel />}
+      {status === 'friends' && <MessageLink userId={user._id} variant="ghost" showLabel />}
       {status && status !== 'pending_in' && (
         <FriendButton userId={user._id} name={user.name} status={status} canRequest={canRequest} />
       )}

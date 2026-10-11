@@ -50,7 +50,7 @@ export function FriendButton({ userId, name, status, canRequest = true }: Props)
           <div className="flex items-center gap-2">
             <Button
               size="sm"
-              variant="outline"
+              variant="ghost"
               className="flex-1 gap-1.5 pointer-coarse:h-10"
               disabled={busy}
               onClick={() => setConfirming(true)}
@@ -84,7 +84,7 @@ export function FriendButton({ userId, name, status, canRequest = true }: Props)
     return (
       <Button
         size="sm"
-        variant="secondary"
+        variant="ghost"
         className="gap-1.5 pointer-coarse:h-10"
         disabled={busy}
         onClick={() => unblock(userId)}
@@ -97,7 +97,7 @@ export function FriendButton({ userId, name, status, canRequest = true }: Props)
 
   if (status === 'none' && !canRequest) {
     return (
-      <Button size="sm" variant="secondary" className="gap-1.5 pointer-coarse:h-10" disabled>
+      <Button size="sm" variant="ghost" className="gap-1.5 pointer-coarse:h-10" disabled>
         <UserLock className="size-4" />
         {t('requests-closed-label')}
       </Button>
@@ -120,7 +120,7 @@ export function FriendButton({ userId, name, status, canRequest = true }: Props)
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button size="sm" variant="secondary" className="gap-1.5 pointer-coarse:h-10" disabled={busy}>
+          <Button size="sm" variant="ghost" className="gap-1.5 border border-input pointer-coarse:h-10" disabled={busy}>
             {isFriend ? <UserCheck className="size-4" /> : <Clock className="size-4" />}
             <span>{isFriend ? t('title') : t('request-sent')}</span>
             <ChevronDown className="size-3.5 opacity-60" />
