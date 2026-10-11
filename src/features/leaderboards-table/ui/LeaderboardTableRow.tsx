@@ -15,7 +15,7 @@ import { GRID } from '@/features/leaderboards-table/ui/LeaderboardTable'
 import type { LeaderboardSolve } from '@nexustimer/contracts'
 import { useLocale, useTranslations } from 'next-intl'
 import { cn } from '@/shared/lib/utils'
-import { PODIUM_CHIP, PODIUM_COLOR } from '@/shared/const/podium'
+import { PODIUM_CHIP } from '@/shared/const/podium'
 
 interface LeaderboardTableRowProps {
   solve: LeaderboardSolve
@@ -31,7 +31,6 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
   if (!solve?.user) return null
 
   const rank = index + 1
-  const podiumColor = PODIUM_COLOR[index]
   const hasReplay = Boolean(solve.replay?.moves?.length)
   const tps = analysis?.tps != null ? formatTps(analysis.tps) : null
   const moveCount = analysis ? analysis.moves.length : null
@@ -42,18 +41,16 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
       onClick={hasReplay ? openModal : undefined}
       variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
       transition={{ duration: 0.2, ease: 'easeOut' }}
-      style={podiumColor ? { borderLeftColor: podiumColor } : undefined}
       className={cn(
-        `grid ${GRID} items-center gap-x-4 px-3 py-2.5 border-b border-border/40 last:border-b-0 border-l-2 border-l-transparent transition-colors duration-150`,
+        `grid ${GRID} items-center gap-x-4 px-3 py-2.5 border-b border-border/40 last:border-b-0 transition-colors duration-150`,
         rank === 1 && 'bg-amber-500/[0.04]',
-        hasReplay && 'hover:bg-muted/20 cursor-pointer',
-        hasReplay && rank > 3 && 'hover:border-l-primary'
+        hasReplay && 'hover:bg-muted/40 cursor-pointer'
       )}
     >
       {rank <= 3 ? (
         <span
           className={cn(
-            'chip-notch chip-notch-sm flex size-6 items-center justify-center justify-self-end font-display text-[11px] font-bold select-none',
+            'flex size-6 items-center justify-center justify-self-end font-display text-[11px] font-bold select-none',
             PODIUM_CHIP[index]
           )}
         >

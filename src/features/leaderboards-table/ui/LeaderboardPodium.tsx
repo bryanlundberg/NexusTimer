@@ -41,7 +41,7 @@ export default function LeaderboardPodium({ solves }: { solves: LeaderboardSolve
             />
             <span
               className={cn(
-                'chip-notch chip-notch-sm flex size-6 items-center justify-center font-display text-[11px] font-bold',
+                'flex size-6 items-center justify-center font-display text-[11px] font-bold',
                 PODIUM_CHIP[place]
               )}
             >
