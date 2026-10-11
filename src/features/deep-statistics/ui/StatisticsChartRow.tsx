@@ -19,7 +19,7 @@ export default function StatisticsChartRow({ row, columns, isLoading, activeGrou
       className={cn(
         ROW_GRID,
         'group rounded-none px-1 transition-colors',
-        row.highlight ? 'bg-amber-500/[0.07] hover:bg-amber-500/10' : 'hover:bg-muted/40'
+        row.highlight ? 'bg-record/[0.07] hover:bg-record/10' : 'hover:bg-muted/40'
       )}
     >
       {/* Metric label */}
@@ -28,13 +28,13 @@ export default function StatisticsChartRow({ row, columns, isLoading, activeGrou
           aria-hidden
           className={cn(
             'hidden size-3.5 shrink-0 transition-colors sm:block',
-            row.highlight ? 'text-amber-500' : 'text-muted-foreground/60 group-hover:text-primary'
+            row.highlight ? 'text-record' : 'text-muted-foreground/60 group-hover:text-primary'
           )}
         />
         <span
           className={cn(
             'truncate text-xs font-medium sm:text-sm',
-            row.highlight ? 'font-semibold text-amber-700 dark:text-amber-400' : 'text-foreground'
+            row.highlight ? 'font-semibold text-record' : 'text-foreground'
           )}
         >
           {row.label}
