@@ -843,37 +843,12 @@
 }
 
 .auth-flow {
-  --flow-cut: 12px;
-  --flow-cut-inner: calc(var(--flow-cut) - 0.586px);
   --flow-border: var(--border);
-  --flow-shape: polygon(
-    0 0,
-    100% 0,
-    100% calc(100% - var(--flow-cut)),
-    calc(100% - var(--flow-cut)) 100%,
-    0 100%
-  );
-  --flow-shape-inner: polygon(
-    0 0,
-    100% 0,
-    100% calc(100% - var(--flow-cut-inner)),
-    calc(100% - var(--flow-cut-inner)) 100%,
-    0 100%
-  );
   position: relative;
   isolation: isolate;
-  background-color: var(--flow-border);
-  clip-path: var(--flow-shape);
-  transition: background-color 250ms var(--ease-solve);
-}
-.auth-flow::before {
-  content: '';
-  position: absolute;
-  inset: 1px;
-  z-index: -1;
+  border: 1px solid var(--flow-border);
   background-color: var(--card);
-  clip-path: var(--flow-shape-inner);
-  pointer-events: none;
+  transition: border-color 250ms var(--ease-solve);
 }
 .auth-flow:focus-within {
   --flow-border: color-mix(in oklab, var(--primary) 40%, var(--border));
@@ -901,21 +876,12 @@
   color: var(--destructive);
 }
 .auth-flow-highlight {
-  --hl-cut: 8px;
   position: absolute;
   top: 0;
   left: 4px;
   right: 4px;
   height: 0;
   background-color: color-mix(in oklab, var(--primary) 9%, transparent);
-  clip-path: polygon(
-    0 0,
-    calc(100% - var(--hl-cut)) 0,
-    100% var(--hl-cut),
-    100% 100%,
-    var(--hl-cut) 100%,
-    0 calc(100% - var(--hl-cut))
-  );
   opacity: 0;
   pointer-events: none;
   transition:
