@@ -17,7 +17,7 @@ export default function TimerRailToggle() {
           <Button
             data-testid="timer-rail-toggle"
             variant="ghost"
-            className="hidden md:inline-flex py-0 px-3 ms-auto"
+            className="hidden size-9 pointer-coarse:size-10 md:inline-flex ms-auto"
             onClick={toggle}
             aria-pressed={isOpen}
             aria-label={isOpen ? t('hide') : t('show')}
