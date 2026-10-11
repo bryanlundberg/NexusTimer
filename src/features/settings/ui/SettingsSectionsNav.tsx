@@ -29,15 +29,10 @@ export default function SettingsSectionsNav({ observeKey }: SettingsSectionsNavP
             aria-current={isActive ? 'true' : undefined}
             style={{ '--nav-accent': color } as React.CSSProperties}
             className={cn(
-              'nav-notch flex items-center gap-2.5 pl-2 pr-3 py-2 text-sm text-left transition-colors',
+              'nav-item flex items-center gap-2.5 px-3 py-2 text-sm text-left transition-colors',
               isActive ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground'
             )}
           >
-            <span
-              className="h-4 w-0.5 shrink-0 transition-colors"
-              style={{ backgroundColor: isActive ? color : 'transparent' }}
-              aria-hidden
-            />
             <Icon className="size-4 shrink-0 transition-colors" style={isActive ? { color } : undefined} />
             <span className="truncate">{t(titleKey)}</span>
           </button>

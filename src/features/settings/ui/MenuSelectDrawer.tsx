@@ -76,7 +76,7 @@ export default function MenuSelectDrawer({
                 }}
                 className={cn(
                   'flex min-h-13 w-full items-center justify-between gap-3 border-b border-border/40 px-5 text-left text-base transition-colors [-webkit-tap-highlight-color:transparent] active:bg-muted/50',
-                  selected && 'bg-primary/10 font-medium shadow-[inset_2px_0_0_var(--primary)]'
+                  selected && 'bg-primary/10 font-medium'
                 )}
               >
                 <span className="flex min-w-0 items-center gap-3">{option.label}</span>

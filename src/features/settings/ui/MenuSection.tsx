@@ -43,7 +43,7 @@ export function MenuSection({
               } as React.CSSProperties)
             : undefined
         }
-        className={cn('panel-notch-bl-tr', separators && SEPARATORS)}
+        className={cn('panel-notch', separators && SEPARATORS)}
       >
         {children}
       </div>
