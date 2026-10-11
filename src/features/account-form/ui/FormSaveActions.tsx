@@ -51,7 +51,7 @@ export function FormSaveActions({ isDirty, isValid, isSubmitting, onDiscard, onS
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 16 }}
           transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-          className="panel-notch-bl-tr flex items-center gap-2 py-2 pr-2 pl-4"
+          className="panel-notch flex items-center gap-2 py-2 pr-2 pl-4"
         >
           <span
             role="status"
