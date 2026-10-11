@@ -64,7 +64,7 @@ export function ProfileCompletenessBar({ user }: { user: UserDocument }) {
           <li key={key}>
             <Link
               href={href}
-              className="badge-notch inline-flex h-6 items-center gap-1 bg-muted px-2 text-[11px] font-medium text-muted-foreground outline-none transition-colors hover:bg-primary/15 hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50"
+              className="inline-flex h-6 items-center gap-1 bg-muted px-2 text-[11px] font-medium text-muted-foreground outline-none transition-colors hover:bg-primary/15 hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50"
             >
               <Plus className="size-3" aria-hidden />
               {labels[key]}

@@ -138,7 +138,7 @@ export default function ProfileHero({
             )}
           </h1>
           {isPreview && (
-            <span className="badge-notch inline-flex h-5 shrink-0 items-center gap-1 bg-primary/15 px-1.5 text-[10px] font-bold uppercase tracking-wider text-primary animate-in fade-in zoom-in-95 duration-150">
+            <span className="inline-flex h-5 shrink-0 items-center gap-1 bg-primary/15 px-1.5 text-[10px] font-bold uppercase tracking-wider text-primary animate-in fade-in zoom-in-95 duration-150">
               <Eye className="size-3" aria-hidden />
               {tAccount('preview')}
             </span>
