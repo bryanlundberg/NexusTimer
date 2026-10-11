@@ -37,10 +37,7 @@ export default function MethodsExplorer() {
               asChild
               variant={active ? 'default' : 'outline'}
               className={cn(
-                'badge-notch cursor-pointer select-none gap-1.5 px-2 py-0.5 text-[11px] transition-colors sm:text-xs pointer-coarse:px-3 pointer-coarse:py-2 pointer-coarse:text-[13px]',
-                // badge-notch clips with clip-path, which would swallow the default
-                // focus ring, so draw the focus indicator inside the box instead.
-                'focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-ring',
+                'cursor-pointer select-none gap-1.5 px-2 py-0.5 text-[11px] transition-colors sm:text-xs pointer-coarse:px-3 pointer-coarse:py-2 pointer-coarse:text-[13px]',
                 active ? 'hover:bg-primary/90' : 'hover:border-primary/40 hover:bg-primary/10'
               )}
             >

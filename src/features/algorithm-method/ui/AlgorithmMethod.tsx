@@ -21,7 +21,7 @@ function AlgorithmMethod({ set }: { set: ALGORITHM_SET }) {
 
   return (
     <Link href={`/algorithms/${slug}`} className="group focus:outline-none rounded-none">
-      <div className="algo-card-notch [--ac-notch:16px] flex h-full flex-col gap-5 p-5 text-card-foreground">
+      <div className="algo-card-notch flex h-full flex-col gap-5 p-5 text-card-foreground">
         <div className="flex items-start gap-4">
           <MethodThumbnail set={set} />
 
