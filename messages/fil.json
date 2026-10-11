@@ -519,7 +519,6 @@
         "new-pb": "BAGONG PB",
         "pb-broken": "{days, plural, =0 {natalo ngayong araw} other {natalo # araw na ang nakalipas}}"
       },
-      "directory-label": "Mga Tao · direktoryo",
       "find-cubers": "Mag-browse ng mga cuber.",
       "showing-members": "Ipinapakita ang <b>{showing}</b> sa <b>{total}</b> na miyembro",
       "search": "Maghanap",

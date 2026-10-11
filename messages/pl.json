@@ -519,7 +519,6 @@
         "new-pb": "NOWY PB",
         "pb-broken": "{days, plural, =0 {pobity dzisiaj} one {pobity # dzień temu} few {pobity # dni temu} other {pobity # dni temu}}"
       },
-      "directory-label": "Ludzie · katalog",
       "find-cubers": "Przeglądaj cuberów.",
       "showing-members": "Wyświetlanie <b>{showing}</b> z <b>{total}</b> członków",
       "search": "Szukaj",

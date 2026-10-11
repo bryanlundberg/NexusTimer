@@ -519,7 +519,6 @@
         "new-pb": "NEW PB",
         "pb-broken": "{days, plural, =0 {broken today} one {broken # day ago} other {broken # days ago}}"
       },
-      "directory-label": "People · directory",
       "find-cubers": "Browse cubers.",
       "showing-members": "Showing <b>{showing}</b> of <b>{total}</b> members",
       "search": "Search",

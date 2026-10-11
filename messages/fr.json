@@ -503,7 +503,6 @@
         "new-pb": "NOUVEAU PB",
         "pb-broken": "{days, plural, =0 {battu aujourd'hui} one {battu il y a # jour} other {battu il y a # jours}}"
       },
-      "directory-label": "Personnes · annuaire",
       "find-cubers": "Chercher des cubers.",
       "showing-members": "Affichage de <b>{showing}</b> sur <b>{total}</b> membres",
       "search": "Chercher",

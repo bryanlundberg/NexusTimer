@@ -519,7 +519,6 @@
         "new-pb": "PB BARU",
         "pb-broken": "{days, plural, =0 {dipecahkan hari ini} other {dipecahkan # hari lalu}}"
       },
-      "directory-label": "Orang · direktori",
       "find-cubers": "Jelajahi para cuber.",
       "showing-members": "Menampilkan <b>{showing}</b> dari <b>{total}</b> anggota",
       "search": "Cari",

@@ -519,7 +519,6 @@
         "new-pb": "PB MỚI",
         "pb-broken": "{days, plural, =0 {phá hôm nay} other {phá # ngày trước}}"
       },
-      "directory-label": "Mọi người · danh bạ",
       "find-cubers": "Duyệt các cuber.",
       "showing-members": "Đang hiển thị <b>{showing}</b> trong <b>{total}</b> thành viên",
       "search": "Tìm kiếm",

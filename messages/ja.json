@@ -503,7 +503,6 @@
         "new-pb": "新 PB",
         "pb-broken": "{days, plural, =0 {本日達成} other {# 日前達成}}"
       },
-      "directory-label": "ユーザー · ディレクトリ",
       "find-cubers": "キューバーを探す。",
       "showing-members": "<b>{total}</b>人中 <b>{showing}</b>人を表示中",
       "search": "検索",
