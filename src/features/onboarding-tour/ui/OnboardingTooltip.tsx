@@ -70,7 +70,7 @@ export default function OnboardingTooltip({
               </Button>
             )}
             {showPrimary && (
-              <Button {...primaryProps} size="sm" className="tour-cta font-display tracking-wide">
+              <Button {...primaryProps} size="sm" className="font-display tracking-wide">
                 {locale.next ?? 'Next'}
               </Button>
             )}
