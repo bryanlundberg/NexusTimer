@@ -115,7 +115,7 @@ export function CubeCard({ cube }: CubeCardProps) {
             key={stat.label}
             className={cn(
               'flex min-w-0 flex-col gap-0.5 px-2 py-1.5',
-              stat.isRecord ? 'bg-amber-500/10' : 'bg-foreground/[0.04]'
+              stat.isRecord ? 'bg-record/10' : 'bg-foreground/[0.04]'
             )}
           >
             <span className="truncate font-display text-[9px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
@@ -124,7 +124,7 @@ export function CubeCard({ cube }: CubeCardProps) {
             <span
               className={cn(
                 'truncate text-sm font-semibold tabular-nums leading-tight',
-                stat.isRecord ? 'text-amber-700 dark:text-amber-400' : 'text-foreground'
+                stat.isRecord ? 'text-record' : 'text-foreground'
               )}
             >
               {stat.value}
