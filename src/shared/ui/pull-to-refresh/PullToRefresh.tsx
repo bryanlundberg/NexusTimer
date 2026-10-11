@@ -22,7 +22,7 @@ export function PullToRefresh({ scrollerRef, onRefresh }: PullToRefreshProps) {
     <div aria-hidden className="pointer-events-none relative z-40 h-0">
       <div
         className={cn(
-          'btn-notch btn-notch-border absolute top-0 left-1/2 isolate grid size-10 place-items-center',
+          'absolute top-0 left-1/2 isolate grid size-10 place-items-center border bg-background',
           !dragging && 'transition-[transform,opacity] duration-300 ease-out'
         )}
         style={
