@@ -11,6 +11,7 @@ import { FlyingAvatar } from '@/features/compare-users/ui/FlyingAvatar'
 import { UserListRow } from '@/entities/user/ui/UserListRow'
 import { usePresenceInView } from '@/features/presence/model/usePresenceInView'
 import { useSession } from '@/shared/model/useSession'
+import { cn } from '@/shared/lib/utils'
 
 export default function UserCard({ user }: { user: UserDocument }) {
   const t = useTranslations('Index.PeoplePage.user-card')
@@ -53,9 +54,12 @@ export default function UserCard({ user }: { user: UserDocument }) {
             onClick={handleCompareClick}
             aria-label={t('compare')}
             aria-pressed={isAdded}
-            variant={isAdded ? 'secondary' : 'outline'}
+            variant="ghost"
             size="sm"
-            className="h-8 gap-1.5 text-xs pointer-coarse:h-10 pointer-coarse:min-w-10"
+            className={cn(
+              'h-8 gap-1.5 text-xs pointer-coarse:h-10 pointer-coarse:min-w-10',
+              isAdded && 'bg-primary/15 text-foreground hover:bg-primary/20 dark:hover:bg-primary/20'
+            )}
           >
             {isAdded ? (
               <CheckCircle2 className="size-3.5 text-primary animate-in zoom-in duration-300" />
