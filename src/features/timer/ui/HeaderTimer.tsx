@@ -40,8 +40,8 @@ export default function HeaderTimer() {
         {!isFocusMode && (
           <div className={'flex items-center gap-2 mb-2 w-full'}>
             <MainCubeSelector />
-            <ButtonNextScramble />
             <ButtonSelectMode />
+            <ButtonNextScramble />
             <TimerRailToggle />
           </div>
         )}
