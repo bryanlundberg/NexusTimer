@@ -5,7 +5,7 @@ export function CoreHeaderSkeleton() {
   return (
     <div className="w-full">
       <div className="h-12 border-b px-2 flex items-center gap-2">
-        <Skeleton className="size-8 rounded-md shrink-0" />
+        <Skeleton className="size-8 shrink-0" />
         <div className="h-4 w-px bg-border shrink-0" />
         <Skeleton className="h-3.5 w-16" />
         <span className="text-border/60">/</span>
@@ -35,7 +35,7 @@ export function BadgesStripSkeleton() {
     <div className="w-full px-4 md:px-6 py-3 flex items-center gap-3 border-b border-border/40">
       <div className="flex items-center gap-1.5 min-w-0 flex-1 overflow-hidden">
         {Array.from({ length: 8 }).map((_, i) => (
-          <Skeleton key={i} className="size-8 rounded-lg shrink-0" />
+          <Skeleton key={i} className="size-8 rounded-full shrink-0" />
         ))}
       </div>
       <Skeleton className="h-3.5 w-14 shrink-0" />
@@ -53,8 +53,8 @@ export function TabsNavSkeleton() {
         <Skeleton className="hidden sm:block h-4 w-24 shrink-0" />
       </div>
       <div className="flex items-center gap-2 shrink-0">
-        <Skeleton className="h-8 w-9 sm:w-24 rounded-md" />
-        <Skeleton className="h-8 w-9 sm:w-24 rounded-md" />
+        <Skeleton className="h-8 w-9 sm:w-24" />
+        <Skeleton className="h-8 w-9 sm:w-24" />
       </div>
     </div>
   )
@@ -73,7 +73,7 @@ export function TabTableSkeleton() {
       </div>
       {Array.from({ length: 6 }).map((_, i) => (
         <div key={i} className="flex items-center gap-4 px-3 py-3 border-b border-border/40 last:border-b-0">
-          <Skeleton className="size-9 rounded-lg shrink-0" />
+          <Skeleton className="size-9 shrink-0" />
           <div className="flex flex-col gap-1.5 flex-1 min-w-0">
             <Skeleton className="h-3.5 w-32 max-w-full" />
             <Skeleton className="h-3 w-16" />

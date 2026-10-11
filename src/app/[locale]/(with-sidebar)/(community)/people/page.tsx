@@ -41,14 +41,14 @@ export default function PeoplePage() {
               .fill(0)
               .map((_, i) => (
                 <div key={i} className="flex items-center gap-3 px-3 py-3 border-b border-border/40 last:border-b-0">
-                  <Skeleton className="size-9 rounded-lg shrink-0" />
+                  <Skeleton className="size-9 rounded-full shrink-0" />
                   <div className="flex flex-col gap-1.5 min-w-0 flex-1">
                     <Skeleton className="h-3.5 w-32" />
                     <Skeleton className="h-3 w-48" />
                     <Skeleton className="h-3 w-40" />
                     <Skeleton className="h-2.5 w-28" />
                   </div>
-                  <Skeleton className="h-8 w-8 sm:w-24 rounded-md shrink-0" />
+                  <Skeleton className="h-8 w-8 sm:w-24 shrink-0" />
                 </div>
               ))}
 
