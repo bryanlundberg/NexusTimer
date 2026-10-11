@@ -100,7 +100,7 @@ export function ProductSearchInput({
   return (
     <div ref={containerRef} className="relative">
       {/* Field */}
-      <div className={cn('field-notch flex items-center gap-2 px-2.5 transition-colors duration-150')}>
+      <div className={cn('field flex items-center gap-2 px-2.5 transition-colors duration-150')}>
         <Search
           className={cn('size-4 shrink-0 transition-colors', focused ? 'text-primary' : 'text-muted-foreground')}
         />
@@ -142,7 +142,7 @@ export function ProductSearchInput({
 
       {/* Dropdown */}
       {showDropdown && (
-        <div className="gaming-panel absolute z-50 mt-1.5 w-full">
+        <div className="menu-panel absolute z-50 mt-1.5 w-full">
           <ul id={listboxId} role="listbox" className="max-h-72 w-full overflow-y-auto overflow-x-hidden p-1">
             {isLoading && hits.length === 0 && (
               <li className="text-muted-foreground flex items-center gap-2 px-2 py-1.5 text-xs">
@@ -163,9 +163,7 @@ export function ProductSearchInput({
                 }}
                 className={cn(
                   'flex cursor-pointer items-center gap-2.5 rounded-none px-2 py-1.5 transition-colors',
-                  index === highlight
-                    ? 'bg-primary/15 text-foreground shadow-[inset_2px_0_0_var(--primary)]'
-                    : 'hover:bg-primary/10'
+                  index === highlight ? 'bg-primary/15 text-foreground' : 'hover:bg-primary/10'
                 )}
               >
                 <div className="bg-muted/40 flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-md border">
