@@ -19,7 +19,6 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 import { LogInIcon, SmilePlus } from 'lucide-react'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import FeedbackModal from '@/features/feedback/ui/FeedbackModal'
-import SyncProgress from '@/shared/ui/core-header/ui/SyncProgress'
 import { MessagesMenu } from '@/widgets/chat/ui/MessagesMenu'
 import { cn } from '@/shared/lib/utils'
 
@@ -50,7 +49,7 @@ export default function CoreHeader({ breadcrumbs, actions }: CoreHeaderProps) {
     <div className="w-full sticky top-0 z-50" data-testid="core-header">
       <div className="@container/header h-14 border-b px-3 flex justify-between items-center gap-2 bg-background/60 backdrop-blur-md">
         <div className="flex items-center gap-3 min-w-0">
-          <SidebarTrigger className="size-9 shrink-0 border bg-background pointer-coarse:size-10 [&_svg]:size-5" />
+          <SidebarTrigger className="size-9 shrink-0 pointer-coarse:size-10 [&_svg]:size-5" />
           <Breadcrumb className="min-w-0">
             <BreadcrumbList className="flex-nowrap gap-1.5 sm:gap-2">
               {breadcrumbs.map((crumb, index) => {
@@ -96,14 +95,13 @@ export default function CoreHeader({ breadcrumbs, actions }: CoreHeaderProps) {
             <Skeleton className="h-9 w-24 rounded-none" />
           ) : session?.user ? (
             <>
-              <SyncProgress />
               <MessagesMenu />
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-9 min-w-9 gap-1.5 border bg-background px-2 pointer-coarse:h-10 pointer-coarse:min-w-10 sm:px-3"
+                    className="h-9 min-w-9 gap-1.5 px-2 pointer-coarse:h-10 pointer-coarse:min-w-10 sm:px-3"
                     onClick={handleOpenFeedback}
                     aria-label={tHeader('give-feedback')}
                     data-testid="header-feedback-button"
