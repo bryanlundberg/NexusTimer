@@ -114,7 +114,7 @@ export function CubeCard({ cube }: CubeCardProps) {
           <div
             key={stat.label}
             className={cn(
-              'chip-notch chip-notch-sm flex min-w-0 flex-col gap-0.5 px-2 py-1.5',
+              'flex min-w-0 flex-col gap-0.5 px-2 py-1.5',
               stat.isRecord ? 'bg-amber-500/10' : 'bg-foreground/[0.04]'
             )}
           >

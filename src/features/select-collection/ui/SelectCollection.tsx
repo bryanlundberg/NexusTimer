@@ -114,7 +114,7 @@ export default function SelectCollection() {
         <div className="flex h-[70dvh] max-h-112 min-w-0 flex-col overflow-hidden sm:h-104 sm:max-h-none">
           {/* Search + category filter */}
           <div className="flex items-center gap-2 border-b p-2">
-            <div className="field-notch group flex flex-1 items-center gap-2 px-3">
+            <div className="field group flex flex-1 items-center gap-2 px-3">
               <Search className="size-4 shrink-0 text-muted-foreground transition-colors group-focus-within:text-primary" />
               <input
                 value={query}
