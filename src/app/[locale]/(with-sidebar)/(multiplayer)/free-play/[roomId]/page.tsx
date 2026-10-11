@@ -199,7 +199,7 @@ export default function FreePlayRoomPage() {
                 key={user.id}
                 className={cn(
                   'relative size-7',
-                  user.id === leaderId && 'ring-2 ring-amber-500',
+                  user.id === leaderId && 'ring-2 ring-record',
                   !user.online && 'opacity-50'
                 )}
               >
@@ -223,8 +223,8 @@ export default function FreePlayRoomPage() {
                   </div>
                 )}
                 {user.status === TimerStatus.WAITING_NEXT_ROUND && (
-                  <div className="absolute inset-0 w-full h-full bg-emerald-500/20 rounded-full flex items-center justify-center">
-                    <CheckIcon className="size-3 text-emerald-600" />
+                  <div className="absolute inset-0 w-full h-full bg-success/20 rounded-full flex items-center justify-center">
+                    <CheckIcon className="size-3 text-success" />
                   </div>
                 )}
                 <AvatarGroupTooltip>

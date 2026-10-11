@@ -92,8 +92,8 @@ export default function ResultsTab() {
         transition={{ delay: 0.3 }}
       >
         <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75" />
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-success" />
         </span>
         {t('updating-live')}
       </motion.div>
@@ -167,7 +167,7 @@ export default function ResultsTab() {
                               : dnf
                                 ? 'text-destructive'
                                 : isRoundWinner
-                                  ? 'font-semibold text-amber-700 dark:text-amber-400'
+                                  ? 'font-semibold text-record'
                                   : ''
                           }`}
                         >

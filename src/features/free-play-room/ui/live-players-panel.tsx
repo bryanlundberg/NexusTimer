@@ -52,7 +52,7 @@ function PlayerCard({
       colorClass = 'text-destructive'
     } else {
       timeText = formatTime(solve.time) + (solve.plus2 ? '+' : '')
-      colorClass = 'text-emerald-500'
+      colorClass = 'text-success'
     }
   } else {
     timeText = '-'
@@ -82,7 +82,7 @@ function PlayerCard({
         <div className="flex items-center gap-1">
           <span className="text-xs font-medium truncate leading-tight">{user.name ?? '?'}</span>
           {wins > 0 && (
-            <span className="flex items-center gap-0.5 text-amber-600 dark:text-amber-400 shrink-0">
+            <span className="flex items-center gap-0.5 text-record shrink-0">
               <Trophy className="size-2.5" />
               <span className="text-[10px] font-bold leading-none">{wins}</span>
             </span>

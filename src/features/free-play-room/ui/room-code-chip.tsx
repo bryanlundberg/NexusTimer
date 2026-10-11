@@ -24,7 +24,7 @@ export default function RoomCodeChip({ code }: { code: string }) {
           className="flex h-7 shrink-0 items-center gap-1.5 px-2 font-mono text-xs font-semibold tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground pointer-coarse:h-10"
         >
           {code}
-          {copied ? <Check className="size-3 text-emerald-500" /> : <Copy className="size-3" />}
+          {copied ? <Check className="size-3 text-success" /> : <Copy className="size-3" />}
         </button>
       </TooltipTrigger>
       <TooltipContent side="bottom" sideOffset={8}>
