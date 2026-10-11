@@ -66,7 +66,7 @@ export default function LeaderboardPodium({ solves }: { solves: LeaderboardSolve
             <span
               className={cn(
                 'font-mono font-bold tabular-nums leading-none',
-                isFirst ? 'text-base text-amber-700 sm:text-xl dark:text-amber-400' : 'text-sm sm:text-base'
+                isFirst ? 'text-base text-record sm:text-xl' : 'text-sm sm:text-base'
               )}
             >
               {formatTime(solve.time)}

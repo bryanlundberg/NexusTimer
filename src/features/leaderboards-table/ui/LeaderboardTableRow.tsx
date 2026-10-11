@@ -43,7 +43,7 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
       transition={{ duration: 0.2, ease: 'easeOut' }}
       className={cn(
         `grid ${GRID} items-center gap-x-4 px-3 py-2.5 border-b border-border/40 last:border-b-0 transition-colors duration-150`,
-        rank === 1 && 'bg-amber-500/[0.04]',
+        rank === 1 && 'bg-record/[0.04]',
         hasReplay && 'hover:bg-muted/40 cursor-pointer'
       )}
     >

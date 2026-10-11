@@ -4,16 +4,9 @@ export function TimeDisplay({ value, isRecord = false }: { value: string; isReco
   const [main, decimal] = value.includes('.') ? value.split('.') : [value, null]
   return (
     <div className="flex items-baseline gap-0.5">
-      <span className={cn('text-sm font-bold tabular-nums', isRecord && 'text-amber-700 dark:text-amber-400')}>
-        {main}
-      </span>
+      <span className={cn('text-sm font-bold tabular-nums', isRecord && 'text-record')}>{main}</span>
       {decimal && (
-        <span
-          className={cn(
-            'text-xs tabular-nums',
-            isRecord ? 'text-amber-700/70 dark:text-amber-400/70' : 'text-muted-foreground'
-          )}
-        >
+        <span className={cn('text-xs tabular-nums', isRecord ? 'text-record/70' : 'text-muted-foreground')}>
           .{decimal}
         </span>
       )}
