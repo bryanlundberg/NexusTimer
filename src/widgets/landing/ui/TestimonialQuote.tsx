@@ -30,7 +30,7 @@ export default function TestimonialQuote({
       viewport={{ once: true, margin: '-8%' }}
       transition={{ duration: 0.55, delay, ease: [0.16, 1, 0.3, 1] }}
       className={cn(
-        'flex h-full flex-col notch-tl-br [--ntlbr:18px] border border-gray-900/10 bg-white/55 backdrop-blur-sm',
+        'flex h-full flex-col notch-br border border-gray-900/10 bg-white/55 backdrop-blur-sm',
         lead ? 'p-7 md:p-10' : 'p-6 md:p-7'
       )}
     >
