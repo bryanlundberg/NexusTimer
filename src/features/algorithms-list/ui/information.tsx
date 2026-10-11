@@ -20,7 +20,7 @@ export default function Information({ title, description, algorithmCount, action
           {description && <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">{description}</p>}
         </div>
         {algorithmCount !== undefined && (
-          <div className="icon-notch hidden size-16 shrink-0 flex-col items-center justify-center gap-1 text-center sm:flex">
+          <div className="border bg-foreground/8 hidden size-16 shrink-0 flex-col items-center justify-center gap-1 text-center sm:flex">
             <span className="font-display text-xl font-bold leading-none tabular-nums">{algorithmCount}</span>
             <span className="font-display text-[9px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
               {t('algs-unit')}
