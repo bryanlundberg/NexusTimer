@@ -118,6 +118,14 @@
   --color-border: var(--border);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-record: var(--record);
+  --color-faster: var(--faster);
+  --color-slower: var(--slower);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-timer-holding: var(--timer-holding);
+  --color-timer-ready: var(--timer-ready);
+  --color-timer-inspect: var(--timer-inspect);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
@@ -169,6 +177,14 @@
   --accent-foreground: oklch(0.21 0.023 277.117);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.9949 0.0147 27.325);
+  --record: oklch(0.555 0.163 48.998);
+  --faster: oklch(0.508 0.118 165.612);
+  --slower: oklch(0.577 0.245 27.325);
+  --success: oklch(0.508 0.118 165.612);
+  --warning: oklch(0.554 0.135 66.442);
+  --timer-holding: oklch(0.592 0.249 0.584);
+  --timer-ready: oklch(0.596 0.145 163.225);
+  --timer-inspect: oklch(0.646 0.222 41.116);
   --border: oklch(0.925 0.0071 277.117);
   --input: oklch(0.925 0.0071 277.117);
   --ring: oklch(0.585 0.233 277.117);
@@ -188,22 +204,30 @@
 }
 
 .dark {
-  --background: oklch(0.141 0.0498 276.966);
-  --foreground: oklch(0.985 0.0038 276.966);
-  --card: oklch(0.209 0.0498 276.966);
-  --card-foreground: oklch(0.985 0.0038 276.966);
-  --popover: oklch(0.209 0.0498 276.966);
-  --popover-foreground: oklch(0.985 0.0038 276.966);
+  --background: oklch(0.141 0.0251 276.966);
+  --foreground: oklch(0.985 0.0019 276.966);
+  --card: oklch(0.209 0.0251 276.966);
+  --card-foreground: oklch(0.985 0.0019 276.966);
+  --popover: oklch(0.209 0.0251 276.966);
+  --popover-foreground: oklch(0.985 0.0019 276.966);
   --primary: oklch(0.511 0.262 276.966);
   --primary-foreground: oklch(0.8883 0.0157 276.966);
-  --secondary: oklch(0.279 0.0487 276.966);
-  --secondary-foreground: oklch(0.985 0.0038 276.966);
-  --muted: oklch(0.279 0.0487 276.966);
-  --muted-foreground: oklch(0.708 0.0476 276.966);
-  --accent: oklch(0.279 0.0487 276.966);
-  --accent-foreground: oklch(0.985 0.0038 276.966);
+  --secondary: oklch(0.279 0.0246 276.966);
+  --secondary-foreground: oklch(0.985 0.0019 276.966);
+  --muted: oklch(0.279 0.0246 276.966);
+  --muted-foreground: oklch(0.708 0.024 276.966);
+  --accent: oklch(0.279 0.0246 276.966);
+  --accent-foreground: oklch(0.985 0.0019 276.966);
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.3161 0.0764 22.216);
+  --record: oklch(0.828 0.189 84.429);
+  --faster: oklch(0.765 0.177 163.223);
+  --slower: oklch(0.704 0.191 22.216);
+  --success: oklch(0.765 0.177 163.223);
+  --warning: oklch(0.852 0.199 91.936);
+  --timer-holding: oklch(0.592 0.249 0.584);
+  --timer-ready: oklch(0.765 0.177 163.223);
+  --timer-inspect: oklch(0.705 0.213 47.604);
   --border: oklch(1 0 276.966 / 10%);
   --input: oklch(1 0 276.966 / 15%);
   --ring: oklch(0.511 0.262 276.966);
@@ -212,12 +236,12 @@
   --chart-3: oklch(0.65 0.16 60.966);
   --chart-4: oklch(0.8 0.14 132.966);
   --chart-5: oklch(0.69 0.19 204.966);
-  --sidebar: oklch(0.209 0.0498 276.966);
-  --sidebar-foreground: oklch(0.985 0.0038 276.966);
+  --sidebar: oklch(0.209 0.0251 276.966);
+  --sidebar-foreground: oklch(0.985 0.0019 276.966);
   --sidebar-primary: oklch(0.511 0.262 276.966);
   --sidebar-primary-foreground: oklch(0.8883 0.0157 276.966);
-  --sidebar-accent: oklch(0.279 0.0487 276.966);
-  --sidebar-accent-foreground: oklch(0.985 0.0038 276.966);
+  --sidebar-accent: oklch(0.279 0.0246 276.966);
+  --sidebar-accent-foreground: oklch(0.985 0.0019 276.966);
   --sidebar-border: oklch(1 0 276.966 / 10%);
   --sidebar-ring: oklch(0.511 0.262 276.966);
 }
@@ -572,12 +596,12 @@
   --notch-border-color: var(--primary);
 }
 .solve-notch[data-record='true'] {
-  --notch-border-color: color-mix(in oklab, #f59e0b 55%, transparent);
-  --notch-fill: color-mix(in oklab, #f59e0b 9%, var(--background));
+  --notch-border-color: color-mix(in oklab, var(--record) 55%, transparent);
+  --notch-fill: color-mix(in oklab, var(--record) 9%, var(--background));
 }
 .solve-notch[data-record='true']:hover {
   --notch-border: 2px;
-  --notch-border-color: #f59e0b;
+  --notch-border-color: var(--record);
 }
 .solve-notch[data-selected='true'] {
   --notch-border: 2px;
@@ -626,13 +650,13 @@
   --cube-notch-border-color: color-mix(in oklab, var(--primary) 25%, var(--border));
 }
 .cube-notch[data-favorite='true'] {
-  --cube-notch-border-color: color-mix(in oklab, #fbbf24 30%, var(--border));
-  --cube-notch-fill: color-mix(in oklab, #fbbf24 5%, var(--background));
+  --cube-notch-border-color: color-mix(in oklab, var(--record) 30%, var(--border));
+  --cube-notch-fill: color-mix(in oklab, var(--record) 5%, var(--background));
 }
 .cube-notch[data-favorite='true']:hover {
   --cube-notch-border: 2px;
-  --cube-notch-border-color: color-mix(in oklab, #fbbf24 70%, var(--border));
-  --cube-notch-fill: color-mix(in oklab, #fbbf24 8%, var(--background));
+  --cube-notch-border-color: color-mix(in oklab, var(--record) 70%, var(--border));
+  --cube-notch-fill: color-mix(in oklab, var(--record) 8%, var(--background));
 }
 
 /* Notched alert boxes (edit / delete modals) — cut bottom-right corner with a
@@ -641,7 +665,7 @@
   --alert-notch: 12px;
   --alert-notch-border: 1.5px;
   --alert-notch-border-color: var(--border);
-  --alert-notch-fill: #000;
+  --alert-notch-fill: var(--card);
   --alert-notch-shape: polygon(
     0 0,
     100% 0,
@@ -666,10 +690,10 @@
   pointer-events: none;
 }
 .alert-notch[data-tone='warning'] {
-  --alert-notch-border-color: color-mix(in oklab, #eab308 70%, transparent);
+  --alert-notch-border-color: color-mix(in oklab, var(--warning) 70%, transparent);
 }
 .alert-notch[data-tone='danger'] {
-  --alert-notch-border-color: color-mix(in oklab, #ef4444 70%, transparent);
+  --alert-notch-border-color: color-mix(in oklab, var(--destructive) 70%, transparent);
 }
 
 /* Notched category tiles cut-corner picker cells with a
