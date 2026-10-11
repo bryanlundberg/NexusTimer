@@ -35,7 +35,7 @@ export default function RoomCard({ room, onJoinPrivate }: RoomCardProps) {
           {isPrivate && <Lock className="size-3 text-muted-foreground shrink-0" />}
           <h3 className="text-sm font-semibold truncate transition-colors group-hover:text-primary">{room.name}</h3>
         </div>
-        <span className="badge-notch flex-shrink-0 bg-muted px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+        <span className="flex-shrink-0 bg-muted px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
           {room.event}
         </span>
       </div>

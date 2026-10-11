@@ -113,7 +113,7 @@ export default function FreePlayPage() {
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: 0.2 }}
-                  className="flex flex-col items-center justify-center py-16 px-6 notch-bl-tr [--nblt:16px] border border-dashed border-muted-foreground/20"
+                  className="flex flex-col items-center justify-center py-16 px-6 notch-br border border-dashed border-muted-foreground/20"
                 >
                   <Gamepad2 className="size-10 text-muted-foreground/30 mb-4" />
                   <h3 className="text-base font-semibold mb-1">{t('no-active-rooms')}</h3>
@@ -147,7 +147,7 @@ export default function FreePlayPage() {
                   ).map(([step, color], i) => (
                     <li key={step} className="relative flex gap-3 items-start">
                       <span
-                        className="chip-notch chip-notch-sm flex size-6 shrink-0 items-center justify-center font-display text-[11px] font-bold"
+                        className="flex size-6 shrink-0 items-center justify-center font-display text-[11px] font-bold"
                         style={{
                           backgroundColor: `color-mix(in oklch, ${color} 18%, var(--background))`,
                           color: `color-mix(in oklch, ${color} 65%, var(--foreground))`
