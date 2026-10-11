@@ -40,10 +40,7 @@ export default function PeoplePage() {
             Array(5)
               .fill(0)
               .map((_, i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-3 px-3 py-3 border-b border-border/40 last:border-b-0 border-l-2 border-l-transparent"
-                >
+                <div key={i} className="flex items-center gap-3 px-3 py-3 border-b border-border/40 last:border-b-0">
                   <Skeleton className="size-9 rounded-lg shrink-0" />
                   <div className="flex flex-col gap-1.5 min-w-0 flex-1">
                     <Skeleton className="h-3.5 w-32" />

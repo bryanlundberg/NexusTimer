@@ -110,8 +110,8 @@ export function UserListRow({ user, presence, meta, actions, stackActions = fals
     <div
       ref={rootRef}
       className={cn(
-        'flex gap-3 px-3 py-3 border-b border-border/40 last:border-b-0 border-l-2 border-l-transparent',
-        'hover:bg-muted/20 hover:border-l-primary transition-colors duration-150',
+        'flex gap-3 px-3 py-3 border-b border-border/40 last:border-b-0',
+        'hover:bg-muted/40 transition-colors duration-150',
         stackActions ? 'flex-col sm:flex-row sm:items-center' : 'items-center'
       )}
     >
