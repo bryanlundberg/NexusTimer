@@ -8,6 +8,8 @@ import { cn } from '@/shared/lib/utils'
 import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { Solve } from '@/entities/solve/model/types'
 import { SolvingTimeDecimals, SolvingTimeInteger } from '@/features/timer/ui/SolvingTimeText'
+import DigitCells from '@/shared/ui/digit-cells/DigitCells'
+import { useTimerFit } from '@/features/timer/model/useTimerFit'
 
 interface DisplayTimeProps extends Omit<HTMLMotionProps<'div'>, 'ref'> {
   className?: string
@@ -29,6 +31,20 @@ const timerStatusClasses = {
   WAITING_NEXT_ROUND: 'inherit'
 }
 
+const FIT_TEXT = 'text-[length:calc(var(--t)*var(--timer-fit,1))] leading-none'
+const MAIN_SIZE = {
+  short: '[--t:3.75rem] sm:[--t:6rem] md:[--t:8rem]',
+  tall: '[--t:4.5rem] sm:[--t:8rem] md:[--t:11rem] lg:[--t:16rem]'
+}
+const DECIMAL_SIZE = {
+  short: '[--t:2.25rem] sm:[--t:3.75rem] md:[--t:4.5rem]',
+  tall: '[--t:3rem] sm:[--t:4.5rem] md:[--t:6rem] lg:[--t:10rem]'
+}
+const PENALTY_SIZE = {
+  short: '[--t:1.5rem] sm:[--t:2.25rem]',
+  tall: '[--t:1.875rem] sm:[--t:3rem] lg:[--t:3.75rem]'
+}
+
 export default function DisplayTime({
   className,
   isSolving,
@@ -44,11 +60,13 @@ export default function DisplayTime({
   const timerMode = useTimerStore((store) => store.timerMode)
   const settings = useSettingsStore((store) => store.settings)
   const height = useWindowHeight()
+  const fitRef = useTimerFit()
+  const size = height < 700 ? 'short' : 'tall'
 
   return (
     <>
       <motion.div
-        className={`${timerStatusClasses[timerStatus]}`}
+        className={cn('w-full', timerStatusClasses[timerStatus])}
         initial={{ opacity: 0 }}
         animate={{
           opacity: 1,
@@ -86,7 +104,8 @@ export default function DisplayTime({
               id={'touch'}
             >
               <motion.div
-                className="flex items-baseline justify-center"
+                ref={fitRef}
+                className="flex items-baseline justify-center whitespace-nowrap"
                 animate={{
                   scale: timerStatus === TimerStatus.HOLDING ? 0.95 : 1,
                   transition: { type: 'spring', stiffness: 500, damping: 30 }
@@ -98,28 +117,18 @@ export default function DisplayTime({
                   timerStatus === TimerStatus.HOLDING ||
                   timerStatus === TimerStatus.READY) ? (
                   <motion.div
-                    className={cn(
-                      'font-normal',
-                      height < 700
-                        ? 'text-6xl sm:text-8xl md:text-9xl'
-                        : 'text-7xl sm:text-9xl md:text-[11rem] lg:text-[16rem]'
-                    )}
+                    className={cn('font-display font-normal', FIT_TEXT, MAIN_SIZE[size])}
                     initial={{ scale: 1.2 }}
                     animate={{ scale: 1 }}
                     transition={{ type: 'spring', stiffness: 300 }}
                     id={'touch'}
                   >
-                    {Math.trunc(inspectionTime)}
+                    <DigitCells text={String(Math.trunc(inspectionTime))} />
                   </motion.div>
                 ) : (
                   <>
                     <motion.div
-                      className={cn(
-                        'font-normal',
-                        height < 700
-                          ? 'text-6xl sm:text-8xl md:text-9xl'
-                          : 'text-7xl sm:text-9xl md:text-[11rem] lg:text-[16rem]'
-                      )}
+                      className={cn('font-display font-normal', FIT_TEXT, MAIN_SIZE[size])}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.2 }}
@@ -128,12 +137,7 @@ export default function DisplayTime({
                       <SolvingTimeInteger />
                     </motion.div>
                     <motion.div
-                      className={cn(
-                        'font-normal',
-                        height < 700
-                          ? 'text-4xl sm:text-6xl md:text-7xl'
-                          : 'text-5xl sm:text-7xl md:text-8xl lg:text-[10rem]'
-                      )}
+                      className={cn('font-display font-normal', FIT_TEXT, DECIMAL_SIZE[size])}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.3, delay: 0.1 }}
@@ -143,10 +147,7 @@ export default function DisplayTime({
                     </motion.div>
                     {lastSolve?.plus2 && !isSolving && (
                       <motion.span
-                        className={cn(
-                          'text-destructive font-normal',
-                          height < 700 ? 'text-2xl sm:text-4xl' : 'text-3xl sm:text-5xl lg:text-6xl'
-                        )}
+                        className={cn('text-destructive font-display font-normal', FIT_TEXT, PENALTY_SIZE[size])}
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: 0.2 }}
