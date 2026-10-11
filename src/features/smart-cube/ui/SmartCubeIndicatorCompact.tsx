@@ -21,7 +21,7 @@ export function SmartCubeIndicatorCompact() {
           className="relative mx-auto flex size-8 items-center justify-center text-primary"
         >
           <Bluetooth className="size-4" />
-          <span className="absolute top-1 right-1 size-2 rounded-full bg-emerald-500 ring-2 ring-sidebar" />
+          <span className="absolute top-1 right-1 size-2 rounded-full bg-success ring-2 ring-sidebar" />
         </span>
       </TooltipTrigger>
       <TooltipContent side="right">{label}</TooltipContent>

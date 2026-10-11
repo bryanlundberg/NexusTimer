@@ -15,8 +15,8 @@ export function SmartCubeIndicator() {
   return (
     <div className="flex items-center gap-2 rounded-md border bg-black px-3 py-2 text-xs font-medium">
       <span className="relative flex size-2 shrink-0">
-        <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-500 opacity-60" />
-        <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+        <span className="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-60" />
+        <span className="relative inline-flex size-2 rounded-full bg-success" />
       </span>
       <Bluetooth className="size-4 shrink-0 text-primary" />
       <span className="min-w-0 flex-1 truncate text-white">{deviceName ?? 'Smart Cube'}</span>
