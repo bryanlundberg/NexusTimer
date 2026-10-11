@@ -117,9 +117,9 @@ export function UserListRow({ user, presence, meta, actions, stackActions = fals
     >
       <Link href={`/people/${user._id}`} className="flex items-center gap-3 min-w-0 flex-1">
         <div ref={avatarRef} className="relative shrink-0">
-          <Avatar className="size-9 rounded-lg">
+          <Avatar className="size-9 rounded-full">
             <AvatarImage className="object-cover" src={user.image} alt={user.name} />
-            <AvatarFallback className="rounded-lg text-xs font-bold">
+            <AvatarFallback className="rounded-full text-xs font-bold">
               {user.name.substring(0, 2).toUpperCase()}
             </AvatarFallback>
           </Avatar>
