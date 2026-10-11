@@ -28,8 +28,8 @@ export default function RoomCard({ room, onJoinPrivate }: RoomCardProps) {
         <div className="flex items-center gap-1.5 min-w-0">
           {usersPresence.length > 0 && (
             <span className="relative flex size-2 shrink-0" aria-hidden>
-              <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:hidden" />
-              <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-75 motion-reduce:hidden" />
+              <span className="relative inline-flex size-2 rounded-full bg-success" />
             </span>
           )}
           {isPrivate && <Lock className="size-3 text-muted-foreground shrink-0" />}

@@ -66,8 +66,8 @@ export default function FreePlayPage() {
             <div className="mb-4 flex items-center gap-2">
               <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground tabular-nums">
                 <span className="relative flex size-2">
-                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:hidden" />
-                  <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-75 motion-reduce:hidden" />
+                  <span className="relative inline-flex size-2 rounded-full bg-success" />
                 </span>
                 {t('active-rooms-count', { count: displayRooms.length })}
               </span>
