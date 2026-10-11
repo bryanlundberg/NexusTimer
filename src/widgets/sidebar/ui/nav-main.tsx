@@ -105,20 +105,13 @@ export function NavMain({ items, label, accent }: { items: SidebarNavItem[]; lab
                   isActive={itemActive}
                   data-active-item={itemActive ? 'true' : undefined}
                   className={cn(
-                    'nav-notch transition-[width,height,padding,color] text-sidebar-foreground/75 hover:text-sidebar-foreground data-[active=true]:text-sidebar-foreground group-data-[collapsible=icon]:[&>svg]:opacity-90',
+                    'nav-item transition-[width,height,padding,color] text-sidebar-foreground/75 hover:text-sidebar-foreground data-[active=true]:text-sidebar-foreground group-data-[collapsible=icon]:[&>svg]:opacity-90',
                     accent && '[&>svg]:text-(--nav-accent)',
                     isMobile && 'h-10'
                   )}
                 >
                   <Link href={item.url} onClick={handleNavClick}>
                     <LinkPendingHint className={SIDEBAR_HINT_CLASS} />
-                    {accent && itemActive && (
-                      <span
-                        aria-hidden
-                        className="absolute left-0 top-1/2 h-4 w-0.5 -translate-y-1/2 md:hidden group-data-[collapsible=icon]:hidden"
-                        style={{ backgroundColor: 'var(--nav-accent)' }}
-                      />
-                    )}
                     <item.icon />
                     <span className="motion-safe:transition-transform motion-safe:duration-200 motion-safe:ease-(--ease-snap) motion-safe:group-hover/menu-item:translate-x-0.5">
                       {item.title}
@@ -164,18 +157,11 @@ export function NavMain({ items, label, accent }: { items: SidebarNavItem[]; lab
                           const subIsActive = isPathActive(subItem.url)
                           return (
                             <SidebarMenuSubItem key={subItem.url}>
-                              {accent && subIsActive && (
-                                <span
-                                  aria-hidden
-                                  className="absolute top-1/2 -left-[11.5px] h-3.5 w-0.5 -translate-y-1/2"
-                                  style={{ backgroundColor: 'var(--nav-accent)' }}
-                                />
-                              )}
                               <SidebarMenuSubButton
                                 asChild
                                 isActive={subIsActive}
                                 className={cn(
-                                  'nav-notch text-sidebar-foreground/70 hover:text-sidebar-foreground data-[active=true]:text-sidebar-foreground',
+                                  'nav-item text-sidebar-foreground/70 hover:text-sidebar-foreground data-[active=true]:text-sidebar-foreground',
                                   isMobile && 'h-9'
                                 )}
                               >
