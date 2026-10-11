@@ -183,7 +183,7 @@ export function ScrambleZone() {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="[&>svg]:transition-all [&>svg]:duration-300 [&:hover>svg]:text-yellow-400 [&:hover>svg]:drop-shadow-[0_0_6px_rgba(250,204,21,0.4)]"
+                      className="[&>svg]:transition-all [&>svg]:duration-300 [&:hover>svg]:text-yellow-400"
                       onClick={handleShowHints}
                     >
                       <Lightbulb />
