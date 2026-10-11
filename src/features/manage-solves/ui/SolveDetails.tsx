@@ -68,7 +68,7 @@ export default function SolveDetails() {
               {solve?.dnf ? 'DNF' : formatTime(totalMs)}
               {solve?.plus2 && !solve?.dnf && <span className="text-destructive text-base align-top">+</span>}
             </DialogTitle>
-            <Badge variant="secondary" className="badge-notch text-[10px]">
+            <Badge variant="secondary" className="text-[10px]">
               {selectedCube?.category || t('solve-details.unknown-category')}
             </Badge>
           </div>
@@ -89,7 +89,7 @@ export default function SolveDetails() {
         {analysis && (
           <div className="px-4 pb-3 sm:px-5 flex flex-col gap-3">
             <div className="grid grid-cols-3 gap-2">
-              <div className="notch-bl [--nbl:10px] flex flex-col items-center gap-1 bg-muted/40 py-2.5">
+              <div className="notch-br-sm flex flex-col items-center gap-1 bg-muted/40 py-2.5">
                 <span className="flex items-center gap-1 text-[10px] text-muted-foreground">
                   <RotateCw className="size-3" /> Moves
                 </span>
@@ -101,7 +101,7 @@ export default function SolveDetails() {
                 </span>
                 <span className="font-mono text-sm font-semibold tabular-nums">{tps ?? '—'}</span>
               </div>
-              <div className="notch-br [--nbr:8px] flex flex-col items-center gap-1 bg-muted/40 py-2.5">
+              <div className="notch-br-sm flex flex-col items-center gap-1 bg-muted/40 py-2.5">
                 <span className="flex items-center gap-1 text-[10px] text-muted-foreground">
                   <Layers className="size-3" /> Method
                 </span>
@@ -136,7 +136,7 @@ export default function SolveDetails() {
             </p>
           )}
           <div className="flex flex-col items-center gap-2.5">
-            <div data-vaul-no-drag className="notch-bl-tr [--nblt:12px] bg-muted/40 p-2">
+            <div data-vaul-no-drag className="notch-br bg-muted/40 p-2">
               <ScrambleDisplay
                 show={true}
                 scramble={solve?.scramble || ''}
