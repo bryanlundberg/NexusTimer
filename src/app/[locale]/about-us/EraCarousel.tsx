@@ -45,7 +45,7 @@ export default function EraCarousel({ images, ratio, label, accent }: EraCarouse
       className="group relative w-full outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
     >
       <div
-        className="relative w-full overflow-hidden notch-bl-tr [--nblt:18px] border border-gray-900/10 bg-gray-900/[0.04]"
+        className="relative w-full overflow-hidden notch-br border border-gray-900/10 bg-gray-900/[0.04]"
         style={{ aspectRatio: ratio }}
       >
         {images.map((src, i) => (
