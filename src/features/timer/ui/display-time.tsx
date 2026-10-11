@@ -20,6 +20,7 @@ interface DisplayTimeProps extends Omit<HTMLMotionProps<'div'>, 'ref'> {
   inspectionTime: number
   inspectionRequired: boolean
   hideWhileSolving: boolean
+  isRecord?: boolean
 }
 
 const timerStatusClasses = {
@@ -54,6 +55,7 @@ export default function DisplayTime({
   inspectionTime,
   inspectionRequired,
   hideWhileSolving,
+  isRecord = false,
   ...rest
 }: DisplayTimeProps) {
   const t = useTranslations('Index.HomePage')
@@ -62,11 +64,12 @@ export default function DisplayTime({
   const height = useWindowHeight()
   const fitRef = useTimerFit()
   const size = height < 700 ? 'short' : 'tall'
+  const showRecord = isRecord && timerStatus === TimerStatus.IDLE
 
   return (
     <>
       <motion.div
-        className={cn('w-full', timerStatusClasses[timerStatus])}
+        className={cn('w-full', showRecord ? 'text-record' : timerStatusClasses[timerStatus])}
         initial={{ opacity: 0 }}
         animate={{
           opacity: 1,

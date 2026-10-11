@@ -11,6 +11,7 @@ import { useIsMobile } from '@/shared/model/use-mobile'
 import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { useNexusConnectStore } from '@/features/nexus-connect/model/useNexusConnectStore'
 import ConnectQRInline from '@/features/nexus-connect/ui/ConnectQRInline'
+import { useSolveMoment } from '@/features/timer/model/useSolveMoment'
 export default function Timer({ children }: { children?: ReactNode }) {
   const settings = useSettingsStore((store) => store.settings)
   const selectedCube = useTimerStore((store) => store.selectedCube)
@@ -42,6 +43,7 @@ export default function Timer({ children }: { children?: ReactNode }) {
   })
 
   const isMobile = useIsMobile()
+  const { isPersonalBest } = useSolveMoment()
 
   const isBestTime = timerStatistics.global.best === lastSolve?.time && !isSolving && settings.sounds.newPersonalBest
 
@@ -64,6 +66,7 @@ export default function Timer({ children }: { children?: ReactNode }) {
             inspectionTime={inspectionTime}
             hideWhileSolving={settings.features.hideWhileSolving}
             inspectionRequired={settings.timer.inspection}
+            isRecord={isPersonalBest}
           />
         ))}
       {lastSolve && settings.features.quickActionButtons && timerStatus === TimerStatus.IDLE && (
