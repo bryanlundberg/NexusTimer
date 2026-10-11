@@ -41,7 +41,7 @@ export function SmartCubeTimer({ connection, secondaryActions }: SmartCubeTimerP
       <div ref={containerRef} className="rounded-md overflow-hidden" />
 
       {phase === 'inspecting' && inspectionTime != null ? (
-        <div className="text-5xl sm:text-7xl tabular-nums font-semibold text-orange-500">
+        <div className="text-5xl sm:text-7xl tabular-nums font-semibold text-timer-inspect">
           {Math.max(0, Math.trunc(inspectionTime))}
         </div>
       ) : (
