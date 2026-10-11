@@ -68,7 +68,7 @@ export function SidebarActivity() {
   }, [cubes, locale])
 
   return (
-    <div className="notch-bl-tr [--nblt:12px] border bg-background/40 p-3">
+    <div className="notch-br border bg-background/40 p-3">
       <button
         type="button"
         onClick={toggle}
