@@ -27,6 +27,16 @@ const writeClipboard = async (text: string) => {
   }
 }
 
+const shareNatively = async (url: string) => {
+  if (typeof navigator.share !== 'function') return false
+  try {
+    await navigator.share({ url })
+    return true
+  } catch (error) {
+    return error instanceof DOMException && error.name === 'AbortError'
+  }
+}
+
 export function useSharedSolveActions() {
   const t = useTranslations('Index.SharedSolves')
   const { mutate } = useSWRConfig()
@@ -79,10 +89,13 @@ export function useSharedSolveActions() {
     else toast.error(t('errors.generic'))
   }
 
-  const share = (solve: Solve, puzzle: CubeCategory) =>
+  const share = (solve: Solve, puzzle: CubeCategory, { native = false }: { native?: boolean } = {}) =>
     run(async () => {
       const slug = await shareSolve(toShareInput(solve, puzzle))
-      await revalidate(slug)
+      const revalidating = revalidate(slug)
+      const shared = native && (await shareNatively(sharedSolveUrl(slug)))
+      await revalidating
+      if (shared) return slug
       const copied = await writeClipboard(sharedSolveUrl(slug))
       showLinkToast(slug, t(copied ? 'link-created-copied' : 'link-created'), copied)
       return slug
