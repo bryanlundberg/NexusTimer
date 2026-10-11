@@ -26,19 +26,19 @@ export default function SolveTransferCard({ solve, isSelected, onToggle }: Solve
       aria-pressed={isSelected}
       data-selected={isSelected ? 'true' : undefined}
       className={cn(
-        'solve-notch relative grow flex items-center justify-center font-medium text-center transition duration-200 cursor-pointer w-full h-full p-2 sm:p-3 select-none active:translate-y-0 active:scale-100'
+        'solve-notch relative grow flex items-center justify-center font-medium text-center transition duration-200 cursor-pointer w-full h-full p-2 sm:p-3 select-none active:scale-100'
       )}
     >
       <div className={cn('flex items-end gap-1 tabular-nums transition-opacity', solve.dnf && 'opacity-60')}>
         <span className="text-base sm:text-2xl font-semibold">{integerPart}</span>
         <span className="text-xs sm:text-base text-muted-foreground">.{decimalPart}</span>
         {solve.plus2 && (
-          <span className="badge-notch ms-1 sm:ms-2 text-[10px] sm:text-xs font-bold px-1.5 py-0.5 bg-destructive/15 text-destructive">
+          <span className="ms-1 sm:ms-2 text-[10px] sm:text-xs font-bold px-1.5 py-0.5 bg-destructive/15 text-destructive">
             +2
           </span>
         )}
         {solve.dnf && (
-          <span className="badge-notch ms-1 text-[10px] sm:text-xs font-bold px-1.5 py-0.5 bg-destructive/15 text-destructive">
+          <span className="ms-1 text-[10px] sm:text-xs font-bold px-1.5 py-0.5 bg-destructive/15 text-destructive">
             DNF
           </span>
         )}
