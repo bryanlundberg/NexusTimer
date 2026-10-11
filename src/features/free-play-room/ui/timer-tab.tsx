@@ -201,6 +201,7 @@ export default function TimerTab({ event, onlineUsers }: TimerTabProps) {
           ) : (
             <motion.div
               key="display"
+              className="w-full"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
