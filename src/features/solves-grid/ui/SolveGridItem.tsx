@@ -59,7 +59,7 @@ export default function SolveGridItem({ index, orderedSolves, solve, isRecord = 
       data-record={isRecord ? 'true' : undefined}
       style={{ WebkitTouchCallout: 'none' }}
       className={cn(
-        'solve-notch relative grow flex flex-col items-center justify-center w-full h-full text-center transition duration-200 cursor-pointer p-2 sm:p-3 select-none active:translate-y-0 active:scale-100'
+        'solve-notch relative grow flex flex-col items-center justify-center w-full h-full text-center transition duration-200 cursor-pointer p-2 sm:p-3 select-none active:scale-100'
       )}
     >
       {item.bookmark && (
@@ -110,7 +110,7 @@ export default function SolveGridItem({ index, orderedSolves, solve, isRecord = 
             </span>
             {item.plus2 ? (
               <span
-                className="badge-notch ms-1 sm:ms-2 text-[10px] sm:text-xs font-bold px-1.5 py-0.5 bg-destructive/15 text-destructive"
+                className="ms-1 sm:ms-2 text-[10px] sm:text-xs font-bold px-1.5 py-0.5 bg-destructive/15 text-destructive"
                 data-testid={`plus-two-icon-${index}`}
               >
                 +2
