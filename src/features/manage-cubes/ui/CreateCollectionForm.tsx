@@ -172,7 +172,7 @@ export default function CreateCollectionForm() {
             onClick={handleSubmit(handleSubmitNewCollection)}
             data-testid="drawer-accept-button"
           >
-            {t('Inputs.create')}
+            {t('Cubes-modal.register')}
           </Button>
         </div>
       </DialogFooter>
