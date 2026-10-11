@@ -134,7 +134,7 @@ export default function EditCollectionForm() {
               )}
             />
             <p className="flex items-start gap-1.5 text-[13px] leading-snug text-muted-foreground sm:text-xs">
-              <TriangleAlert aria-hidden className="mt-0.5 size-3.5 shrink-0 text-amber-500" />
+              <TriangleAlert aria-hidden className="mt-0.5 size-3.5 shrink-0 text-warning" />
               {t('Cubes-modal.danger-msg')}
             </p>
           </div>
