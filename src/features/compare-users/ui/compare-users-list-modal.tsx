@@ -42,7 +42,7 @@ export default function CompareUsersListModal() {
             </span>
           )}
         </DialogTitle>
-        <DialogDescription className={users.length > 0 && !canCompare ? 'text-amber-600 dark:text-amber-400' : ''}>
+        <DialogDescription className={users.length > 0 && !canCompare ? 'text-warning' : ''}>
           {users.length === 0 ? t('empty-hint') : canCompare ? t('ready') : t('need-two')}
         </DialogDescription>
       </DialogHeader>
