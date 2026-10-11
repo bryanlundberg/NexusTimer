@@ -124,7 +124,7 @@ export default function ResultsTab() {
               <motion.li
                 key={p.userId}
                 layout="position"
-                className="px-4 py-3 border-b border-border/40 last:border-b-0 border-l-2 border-l-transparent transition-colors hover:bg-muted/20 hover:border-l-primary"
+                className="px-4 py-3 border-b border-border/40 last:border-b-0 transition-colors hover:bg-muted/40"
                 initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.25, delay: 0.05 * i }}
@@ -132,7 +132,7 @@ export default function ResultsTab() {
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3 min-w-0">
                     <span
-                      className={`chip-notch chip-notch-sm flex size-6 shrink-0 items-center justify-center font-display text-[11px] font-bold tabular-nums ${
+                      className={`flex size-6 shrink-0 items-center justify-center font-display text-[11px] font-bold tabular-nums ${
                         podium ?? 'text-muted-foreground'
                       }`}
                     >

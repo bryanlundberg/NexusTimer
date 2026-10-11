@@ -29,7 +29,7 @@ export default function RoomCodeGate({ error, submitting, onSubmit, onCancel }: 
   return (
     <div className="flex flex-col items-center justify-center h-dvh gap-6 px-4">
       <div className="flex flex-col items-center gap-2 text-center">
-        <div className="icon-notch size-12 flex items-center justify-center mb-2">
+        <div className="border bg-foreground/8 size-12 flex items-center justify-center mb-2">
           <Lock className="size-5 text-muted-foreground" />
         </div>
         <h2 className="text-lg font-semibold">{t('join-private-room.title')}</h2>
