@@ -238,14 +238,14 @@ export default function TrainerExperience() {
 
   const timeColorClass =
     timerStatus === TimerStatus.HOLDING
-      ? 'text-red-500'
+      ? 'text-timer-holding'
       : timerStatus === TimerStatus.READY
-        ? 'text-green-500'
+        ? 'text-timer-ready'
         : 'text-foreground'
 
   const stageOverlayClass =
     timerStatus === TimerStatus.HOLDING
-      ? 'bg-red-500/10'
+      ? 'bg-timer-holding/10'
       : timerStatus === TimerStatus.READY
         ? 'bg-primary/10'
         : 'bg-transparent'
@@ -372,8 +372,7 @@ function MiniSparkline({ solves, targetMs }: { solves: { _id: string; timeMs: nu
         const vis = visibilityClass(distanceFromNewest)
         const ratio = (s.timeMs - min) / range
         const heightPct = Math.max(20, Math.round(ratio * 80 + 20))
-        const colorClass =
-          s.timeMs <= targetMs ? 'bg-emerald-500' : s.timeMs <= targetMs * 1.25 ? 'bg-amber-500' : 'bg-red-500'
+        const colorClass = s.timeMs <= targetMs ? 'bg-faster' : s.timeMs <= targetMs * 1.25 ? 'bg-warning' : 'bg-slower'
         return <div key={s._id} className={cn('w-1 rounded-sm', colorClass, vis)} style={{ height: `${heightPct}%` }} />
       })}
     </div>

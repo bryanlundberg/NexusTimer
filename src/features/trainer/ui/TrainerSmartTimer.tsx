@@ -146,7 +146,8 @@ export default function TrainerSmartTimer({ connection }: TrainerSmartTimerProps
     }
   }, [phase, t])
 
-  const timeColorClass = phase === 'ready' ? 'text-green-500' : phase === 'solved' ? 'text-primary' : 'text-foreground'
+  const timeColorClass =
+    phase === 'ready' ? 'text-timer-ready' : phase === 'solved' ? 'text-primary' : 'text-foreground'
 
   return (
     <div className="grow flex flex-col items-center justify-center gap-3 w-full px-2">
@@ -163,7 +164,7 @@ export default function TrainerSmartTimer({ connection }: TrainerSmartTimerProps
           className={cn(
             'inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium',
             phase === 'ready'
-              ? 'bg-green-500/15 text-green-600'
+              ? 'bg-timer-ready/15 text-timer-ready'
               : phase === 'solving'
                 ? 'bg-primary/15 text-primary'
                 : 'bg-muted text-muted-foreground'
@@ -172,7 +173,7 @@ export default function TrainerSmartTimer({ connection }: TrainerSmartTimerProps
           <span
             className={cn(
               'size-1.5 rounded-full',
-              phase === 'ready' ? 'bg-green-500' : phase === 'solving' ? 'bg-primary' : 'bg-muted-foreground/50'
+              phase === 'ready' ? 'bg-timer-ready' : phase === 'solving' ? 'bg-primary' : 'bg-muted-foreground/50'
             )}
           />
           {statusLabel}
