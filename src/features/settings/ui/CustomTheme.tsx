@@ -54,7 +54,7 @@ export default function CustomTheme() {
       {backgroundImage ? (
         <div
           onClick={openFilePicker}
-          className="relative w-28 h-20 sm:w-36 sm:h-24 notch-bl-tr [--nblt:14px] overflow-hidden cursor-pointer transition-all duration-200 border-2 border-primary scale-[1.02]"
+          className="relative w-28 h-20 sm:w-36 sm:h-24 notch-br overflow-hidden cursor-pointer transition-all duration-200 border-2 border-primary scale-[1.02]"
           style={{
             backgroundImage: `url(${backgroundImage})`,
             backgroundPosition: 'center',
@@ -77,7 +77,7 @@ export default function CustomTheme() {
       ) : (
         <div
           onClick={openFilePicker}
-          className="w-28 h-20 sm:w-36 sm:h-24 notch-bl-tr [--nblt:14px] overflow-hidden cursor-pointer transition-all duration-200 border border-dashed border-neutral-400 hover:border-primary text-muted-foreground hover:text-foreground flex items-center justify-center"
+          className="w-28 h-20 sm:w-36 sm:h-24 notch-br overflow-hidden cursor-pointer transition-all duration-200 border border-dashed border-neutral-400 hover:border-primary text-muted-foreground hover:text-foreground flex items-center justify-center"
         >
           <ImageIcon className="w-6 h-6" />
         </div>
