@@ -144,12 +144,12 @@ export default function ButtonSelectMode() {
                 onClick={mode.value === TimerMode.NEXUS_CONNECT ? handleNexusConnectClick : undefined}
                 className={cn(
                   'group/mode flex cursor-pointer items-start gap-3 rounded-none px-3 py-2 transition-colors [&>span]:hidden',
-                  isActive && 'bg-primary/10 shadow-[inset_2px_0_0_var(--primary)]'
+                  isActive && 'bg-primary/10'
                 )}
               >
                 <div
                   className={cn(
-                    'chip-notch flex size-9 shrink-0 items-center justify-center transition-colors',
+                    'flex size-9 shrink-0 items-center justify-center transition-colors',
                     isActive
                       ? 'bg-primary/20 text-primary'
                       : 'bg-muted/60 text-muted-foreground group-focus/mode:bg-muted'
