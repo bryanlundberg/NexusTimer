@@ -269,7 +269,7 @@ export default function TrainerExperience() {
               aria-label={t('smart.smartCube')}
               title={t('smart.smartCube')}
               className={cn(
-                'btn-notch size-9 shrink-0',
+                'size-9 shrink-0',
                 smartMode
                   ? 'bg-primary/10 text-primary hover:bg-primary/15 hover:text-primary'
                   : 'text-muted-foreground'
@@ -289,7 +289,7 @@ export default function TrainerExperience() {
             onClick={handleOpenSettings}
             aria-label={tSettings('title')}
             title={tSettings('title')}
-            className="btn-notch size-9 shrink-0 text-muted-foreground"
+            className="size-9 shrink-0 text-muted-foreground"
           >
             <SettingsIcon className="size-4" />
           </Button>
