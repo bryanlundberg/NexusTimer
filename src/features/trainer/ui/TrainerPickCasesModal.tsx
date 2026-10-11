@@ -174,7 +174,7 @@ export default function TrainerPickCasesModal({
                   </button>
                   <Badge
                     variant={allSelected ? 'default' : 'outline'}
-                    className="badge-notch text-[10px] font-normal cursor-pointer"
+                    className="text-[10px] font-normal cursor-pointer"
                     onClick={() => toggleGroup(groupName)}
                   >
                     {selectedCount} / {items.length}
