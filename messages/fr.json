@@ -14,22 +14,9 @@
       "show": "Afficher les temps",
       "hide": "Masquer les temps"
     },
-    "OnboardingTour": {
-      "skip": "Quitter le guide",
-      "welcome": {
-        "title": "Bienvenue sur Nexus Timer !",
-        "content": "NXTimer classe vos statistiques par cube. Avant de commencer, enregistrez celui qui est le plus proche de vous. Ça prend 20 secondes !",
-        "cta": "Oui, guidez-moi",
-        "dismiss": "Non, merci"
-      },
-      "select": {
-        "title": "Choisissez votre cube",
-        "content": "Ouvrez le sélecteur de cubes pour ajouter le cube que vous allez chronométrer."
-      },
-      "create": {
-        "title": "Enregistrez votre cube",
-        "content": "Créez votre première collection pour commencer à suivre les temps et statistiques de ce cube."
-      }
+    "CubesIntro": {
+      "content": "Enregistrez chaque cube et passez de l'un à l'autre en toute confiance : chaque catégorie reste une seule séquence, et vous saurez toujours votre moyenne avec chaque cube.",
+      "cta": "Compris"
     },
     "sidebar-rotating-text": {
       "text1": "Prêt à résoudre ?",
@@ -195,6 +182,7 @@
       "tap-to-start": "Maintiens pour démarrer",
       "space-to-start": "Maintiens Espace pour démarrer",
       "empty-scramble": "Choisissez un cube pour charger un mélange.",
+      "quick-start-other": "Autre cube",
       "preparing-scramble": "Préparation du mélange…",
       "show-scramble": "Afficher le mélange",
       "congratulations": "Félicitations ! {time}",

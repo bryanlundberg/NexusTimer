@@ -21,22 +21,9 @@
       "retry": "Try again",
       "back": "Back to timer"
     },
-    "OnboardingTour": {
-      "skip": "Exit guide",
-      "welcome": {
-        "title": "Welcome to Nexus Timer!",
-        "content": "NXTimer keeps your statistics ordered by cube. Before getting started, register the one nearest you. It takes 20 seconds!",
-        "cta": "Yes, guide me",
-        "dismiss": "No, thanks"
-      },
-      "select": {
-        "title": "Pick your cube",
-        "content": "Open the cube selector to add the cube you'll be timing."
-      },
-      "create": {
-        "title": "Register your cube",
-        "content": "Create your first collection to start tracking this cube's times and stats."
-      }
+    "CubesIntro": {
+      "content": "Register each cube and switch between them with confidence: every category stays one single sequence, and you will always know your average with each cube.",
+      "cta": "Got it"
     },
     "sidebar-rotating-text": {
       "text1": "Ready to solve?",
@@ -202,6 +189,7 @@
       "tap-to-start": "Tap and hold to start",
       "space-to-start": "Hold space to start",
       "empty-scramble": "Choose a cube to load a scramble.",
+      "quick-start-other": "Other cube",
       "preparing-scramble": "Preparing scramble…",
       "show-scramble": "Show scramble",
       "congratulations": "Congratulations! {time}",

@@ -21,22 +21,9 @@
       "retry": "Spróbuj ponownie",
       "back": "Wróć do timera"
     },
-    "OnboardingTour": {
-      "skip": "Zakończ przewodnik",
-      "welcome": {
-        "title": "Witaj w Nexus Timer!",
-        "content": "NXTimer porządkuje Twoje statystyki według kostki. Zanim zaczniesz, zarejestruj tę, którą masz najbliżej. Zajmie to 20 sekund!",
-        "cta": "Tak, poprowadź mnie",
-        "dismiss": "Nie, dziękuję"
-      },
-      "select": {
-        "title": "Wybierz swoją kostkę",
-        "content": "Otwórz selektor kostek, aby dodać kostkę, którą będziesz mierzyć."
-      },
-      "create": {
-        "title": "Zarejestruj swoją kostkę",
-        "content": "Utwórz swoją pierwszą kolekcję, aby zacząć śledzić czasy i statystyki tej kostki."
-      }
+    "CubesIntro": {
+      "content": "Zarejestruj każdą kostkę i zmieniaj je bez obaw: każda kategoria pozostaje jedną sekwencją, a Ty zawsze wiesz, jaką średnią masz z każdą kostką.",
+      "cta": "Rozumiem"
     },
     "sidebar-rotating-text": {
       "text1": "Gotowy na układanie?",
@@ -202,6 +189,7 @@
       "tap-to-start": "Przytrzymaj, aby zacząć",
       "space-to-start": "Przytrzymaj spację, aby zacząć",
       "empty-scramble": "Wybierz kostkę, aby załadować scramble.",
+      "quick-start-other": "Inna kostka",
       "preparing-scramble": "Przygotowywanie scramble…",
       "show-scramble": "Pokaż scramble",
       "congratulations": "Gratulacje! {time}",

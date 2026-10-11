@@ -21,22 +21,9 @@
       "retry": "Thử lại",
       "back": "Quay lại bộ đếm giờ"
     },
-    "OnboardingTour": {
-      "skip": "Thoát hướng dẫn",
-      "welcome": {
-        "title": "Chào mừng đến với Nexus Timer!",
-        "content": "NXTimer sắp xếp thống kê của bạn theo từng cube. Trước khi bắt đầu, hãy đăng ký cube gần bạn nhất. Chỉ mất 20 giây!",
-        "cta": "Có, hướng dẫn tôi",
-        "dismiss": "Không, cảm ơn"
-      },
-      "select": {
-        "title": "Chọn cube của bạn",
-        "content": "Mở bộ chọn cube để thêm cube bạn sẽ bấm giờ."
-      },
-      "create": {
-        "title": "Đăng ký cube của bạn",
-        "content": "Tạo bộ sưu tập đầu tiên của bạn để bắt đầu theo dõi thời gian và thống kê của cube này."
-      }
+    "CubesIntro": {
+      "content": "Hãy đăng ký từng cube và yên tâm chuyển đổi giữa chúng: mỗi hạng mục vẫn là một chuỗi duy nhất, và bạn luôn biết trung bình của mình với từng cube.",
+      "cta": "Đã hiểu"
     },
     "sidebar-rotating-text": {
       "text1": "Sẵn sàng giải chưa?",
@@ -202,6 +189,7 @@
       "tap-to-start": "Chạm và giữ để bắt đầu",
       "space-to-start": "Giữ phím cách để bắt đầu",
       "empty-scramble": "Chọn một khối để tải scramble.",
+      "quick-start-other": "Khối khác",
       "preparing-scramble": "Đang chuẩn bị scramble…",
       "show-scramble": "Hiện scramble",
       "congratulations": "Chúc mừng! {time}",

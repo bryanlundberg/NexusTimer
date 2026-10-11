@@ -14,22 +14,9 @@
       "show": "기록 표시",
       "hide": "기록 숨기기"
     },
-    "OnboardingTour": {
-      "skip": "가이드 종료",
-      "welcome": {
-        "title": "Nexus Timer에 오신 것을 환영합니다!",
-        "content": "NXTimer는 통계를 큐브별로 정리해 저장합니다. 시작하기 전에 가장 가까이 있는 큐브를 등록하세요. 20초면 됩니다!",
-        "cta": "네, 안내해 주세요",
-        "dismiss": "아니요, 괜찮아요"
-      },
-      "select": {
-        "title": "큐브 선택",
-        "content": "큐브 선택기를 열어 타이밍을 잴 큐브를 추가하세요."
-      },
-      "create": {
-        "title": "큐브 등록",
-        "content": "첫 컬렉션을 만들어 이 큐브의 기록과 통계를 추적하기 시작하세요."
-      }
+    "CubesIntro": {
+      "content": "큐브마다 등록하고 마음껏 바꿔 가며 사용하세요. 카테고리 기록은 하나의 흐름으로 이어지고, 큐브별 평균도 언제든 확인할 수 있어요.",
+      "cta": "알겠어요"
     },
     "sidebar-rotating-text": {
       "text1": "솔빙 준비되셨나요?",
@@ -195,6 +182,7 @@
       "tap-to-start": "길게 눌러 시작",
       "space-to-start": "스페이스를 눌러 시작",
       "empty-scramble": "스크램블을 로드할 큐브를 선택하세요.",
+      "quick-start-other": "다른 큐브",
       "preparing-scramble": "스크램블 준비 중…",
       "show-scramble": "스크램블 보기",
       "congratulations": "축하합니다! {time}",

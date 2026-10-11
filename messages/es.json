@@ -21,22 +21,9 @@
       "retry": "Reintentar",
       "back": "Volver al cronómetro"
     },
-    "OnboardingTour": {
-      "skip": "Salir de la guía",
-      "welcome": {
-        "title": "¡Bienvenido a Nexus Timer!",
-        "content": "NXTimer guarda tus estadísticas ordenadas por cubo. Antes de empezar, registra el que tengas más cerca. ¡Toma 20 segundos!",
-        "cta": "Sí, guíame",
-        "dismiss": "Ahora no"
-      },
-      "select": {
-        "title": "Elige tu cubo",
-        "content": "Abre el selector de cubos para añadir el que vas a cronometrar."
-      },
-      "create": {
-        "title": "Registra tu cubo",
-        "content": "Crea tu primera colección para empezar a guardar los tiempos y estadísticas de este cubo."
-      }
+    "CubesIntro": {
+      "content": "Registra cada cubo y cambia entre ellos con confianza: cada categoría sigue siendo una sola secuencia, y siempre sabrás cuánto promedias con cada cubo.",
+      "cta": "Entendido"
     },
     "sidebar-rotating-text": {
       "text1": "¿Listo para resolver?",
@@ -165,6 +152,7 @@
       "tap-to-start": "Mantén pulsado para empezar",
       "space-to-start": "Mantén espacio para empezar",
       "empty-scramble": "Elige un cubo para cargar un scramble.",
+      "quick-start-other": "Otro cubo",
       "preparing-scramble": "Preparando scramble…",
       "show-scramble": "Mostrar scramble",
       "congratulations": "¡Felicidades! {time}",

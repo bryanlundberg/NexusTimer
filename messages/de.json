@@ -14,22 +14,9 @@
       "show": "Zeiten anzeigen",
       "hide": "Zeiten ausblenden"
     },
-    "OnboardingTour": {
-      "skip": "Anleitung verlassen",
-      "welcome": {
-        "title": "Willkommen bei Nexus Timer!",
-        "content": "NXTimer sortiert deine Statistiken nach Würfel. Bevor du loslegst, registriere den Würfel, der dir am nächsten ist. Es dauert nur 20 Sekunden!",
-        "cta": "Ja, zeig es mir",
-        "dismiss": "Nein, danke"
-      },
-      "select": {
-        "title": "Wähle deinen Würfel",
-        "content": "Öffne die Würfelauswahl, um den Würfel hinzuzufügen, den du timen möchtest."
-      },
-      "create": {
-        "title": "Registriere deinen Würfel",
-        "content": "Erstelle deine erste Sammlung, um Zeiten und Statistiken für diesen Würfel zu erfassen."
-      }
+    "CubesIntro": {
+      "content": "Registriere jeden Würfel und wechsle bedenkenlos zwischen ihnen: Jede Kategorie bleibt eine einzige Abfolge, und du weißt immer, welchen Schnitt du mit jedem Würfel hast.",
+      "cta": "Verstanden"
     },
     "sidebar-rotating-text": {
       "text1": "Bereit zum Lösen?",
@@ -195,6 +182,7 @@
       "tap-to-start": "Halten zum Starten",
       "space-to-start": "Leertaste halten zum Starten",
       "empty-scramble": "Wähle einen Würfel, um ein Scramble zu laden.",
+      "quick-start-other": "Anderer Würfel",
       "preparing-scramble": "Scramble wird vorbereitet…",
       "show-scramble": "Scramble anzeigen",
       "congratulations": "Herzlichen Glückwunsch! {time}",

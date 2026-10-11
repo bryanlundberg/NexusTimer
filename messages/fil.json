@@ -21,22 +21,9 @@
       "retry": "Subukan ulit",
       "back": "Bumalik sa timer"
     },
-    "OnboardingTour": {
-      "skip": "Lumabas sa gabay",
-      "welcome": {
-        "title": "Maligayang pagdating sa Nexus Timer!",
-        "content": "Inaayos ng NXTimer ang iyong mga estadistika ayon sa cube. Bago magsimula, irehistro ang pinakamalapit sa iyo. 20 segundo lang ito!",
-        "cta": "Oo, gabayan mo ako",
-        "dismiss": "Hindi na, salamat"
-      },
-      "select": {
-        "title": "Piliin ang iyong cube",
-        "content": "Buksan ang cube selector para idagdag ang cube na iyong ita-time."
-      },
-      "create": {
-        "title": "Irehistro ang iyong cube",
-        "content": "Gumawa ng iyong unang koleksyon para simulang subaybayan ang mga oras at estadistika ng cube na ito."
-      }
+    "CubesIntro": {
+      "content": "Irehistro ang bawat cube at magpalipat-lipat sa kanila nang may kumpiyansa: nananatiling iisang sequence ang bawat kategorya, at lagi mong malalaman ang average mo sa bawat cube.",
+      "cta": "Sige"
     },
     "sidebar-rotating-text": {
       "text1": "Handa nang mag-solve?",
@@ -202,6 +189,7 @@
       "tap-to-start": "Pindutin nang matagal para magsimula",
       "space-to-start": "Pindutin nang matagal ang space para magsimula",
       "empty-scramble": "Pumili ng cube para mag-load ng scramble.",
+      "quick-start-other": "Ibang cube",
       "preparing-scramble": "Inihahanda ang scramble…",
       "show-scramble": "Ipakita ang scramble",
       "congratulations": "Binabati kita! {time}",

@@ -14,22 +14,9 @@
       "show": "ソルブを表示",
       "hide": "ソルブを非表示"
     },
-    "OnboardingTour": {
-      "skip": "ガイドを終了",
-      "welcome": {
-        "title": "Nexus Timer へようこそ！",
-        "content": "NXTimer は統計をキューブごとに記録します。始める前に、一番近くにあるキューブを登録しましょう。20秒で完了します！",
-        "cta": "はい、案内して",
-        "dismiss": "いいえ、結構です"
-      },
-      "select": {
-        "title": "キューブを選ぶ",
-        "content": "キューブセレクターを開いて、計測するキューブを追加します。"
-      },
-      "create": {
-        "title": "キューブを登録",
-        "content": "最初のコレクションを作成して、このキューブのタイムと統計の記録を始めましょう。"
-      }
+    "CubesIntro": {
+      "content": "キューブごとに登録して、気兼ねなく切り替えましょう。カテゴリーの記録はひとつの流れのまま続き、キューブごとの平均もいつでもわかります。",
+      "cta": "わかりました"
     },
     "sidebar-rotating-text": {
       "text1": "ソルブの準備はいいですか？",
@@ -195,6 +182,7 @@
       "tap-to-start": "長押しで開始",
       "space-to-start": "スペースを押し続けて開始",
       "empty-scramble": "キューブを選択してスクランブルを読み込んでください。",
+      "quick-start-other": "他のキューブ",
       "preparing-scramble": "スクランブルを準備中…",
       "show-scramble": "スクランブルを表示",
       "congratulations": "おめでとうございます！ {time}",

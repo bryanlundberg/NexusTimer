@@ -14,22 +14,9 @@
       "show": "Mostrar tempos",
       "hide": "Ocultar tempos"
     },
-    "OnboardingTour": {
-      "skip": "Sair do guia",
-      "welcome": {
-        "title": "Bem-vindo ao Nexus Timer!",
-        "content": "O NXTimer organiza suas estatísticas por cubo. Antes de começar, registre o que estiver mais perto de você. Leva 20 segundos!",
-        "cta": "Sim, me guie",
-        "dismiss": "Agora não"
-      },
-      "select": {
-        "title": "Escolha seu cubo",
-        "content": "Abra o seletor de cubos para adicionar o cubo que você vai cronometrar."
-      },
-      "create": {
-        "title": "Registre seu cubo",
-        "content": "Crie sua primeira coleção para começar a acompanhar os tempos e estatísticas deste cubo."
-      }
+    "CubesIntro": {
+      "content": "Registre cada cubo e troque entre eles com confiança: cada categoria continua sendo uma única sequência, e você sempre saberá sua média com cada cubo.",
+      "cta": "Entendi"
     },
     "sidebar-rotating-text": {
       "text1": "Pronto para resolver?",
@@ -195,6 +182,7 @@
       "tap-to-start": "Toque e segure para iniciar",
       "space-to-start": "Segure espaço para iniciar",
       "empty-scramble": "Escolha um cubo para carregar um embaralhamento.",
+      "quick-start-other": "Outro cubo",
       "preparing-scramble": "Preparando embaralhamento…",
       "show-scramble": "Mostrar embaralhamento",
       "congratulations": "Parabéns! {time}",
