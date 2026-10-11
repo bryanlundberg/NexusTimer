@@ -61,7 +61,7 @@ export default function StatsVisual() {
     <div className="flex flex-col">
       <div className="mb-2 flex items-center justify-between">
         <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-500">Ao100 trend</span>
-        <span className="inline-flex items-center gap-1 notch-br [--nbr:4px] bg-[var(--cube-green)]/15 px-1.5 py-0.5 font-mono text-[10px] font-bold text-[var(--cube-green)]">
+        <span className="inline-flex items-center gap-1 bg-[var(--cube-green)]/15 px-1.5 py-0.5 font-mono text-[10px] font-bold text-[var(--cube-green)]">
           <TrendingDown className="size-3" aria-hidden />
           1.42s
         </span>

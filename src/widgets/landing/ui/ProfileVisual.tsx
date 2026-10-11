@@ -36,7 +36,7 @@ export default function ProfileVisual() {
           <span className="absolute -bottom-0.5 -right-0.5 size-2.5 rounded-full border-2 border-white bg-[var(--cube-green)]" />
         </div>
         <div className="min-w-0">
-          <span className="inline-block notch-br [--nbr:4px] bg-gray-900 px-1.5 text-[8px] font-bold uppercase leading-tight text-white">
+          <span className="inline-block bg-gray-900 px-1.5 text-[8px] font-bold uppercase leading-tight text-white">
             sub-7
           </span>
           <p className="mt-0.5 text-base font-black leading-none tracking-tight text-gray-900">redsito</p>
@@ -103,7 +103,7 @@ export default function ProfileVisual() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.15 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="grid grid-cols-[minmax(0,1.3fr)_repeat(3,minmax(0,1fr))] items-center notch-br [--nbr:7px] border border-gray-900/8 bg-white/70 px-2 py-1.5"
+            className="grid grid-cols-[minmax(0,1.3fr)_repeat(3,minmax(0,1fr))] items-center border border-gray-900/8 bg-white/70 px-2 py-1.5"
           >
             <span className="text-[11px] font-semibold text-gray-800">{r.cat}</span>
             <span className="text-right font-mono text-[11px] font-bold tabular-nums text-gray-900">{r.single}</span>
