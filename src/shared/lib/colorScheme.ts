@@ -135,13 +135,12 @@ const GREY_CHROMA = 0.046
 /** `f` is chroma as a fraction of GREY_CHROMA. */
 type Step = { l: number; f: number; a?: number }
 
-type StepKey = 'base' | 'raised' | 'faint' | 'subtle' | 'line' | 'input' | 'text' | 'strongText' | 'mutedText'
+type StepKey = 'base' | 'raised' | 'subtle' | 'line' | 'input' | 'text' | 'strongText' | 'mutedText'
 
 const RAMPS: Record<ColorSchemeMode, Record<StepKey, Step>> = {
   light: {
     base: { l: 1, f: 0 },
     raised: { l: 1, f: 0 },
-    faint: { l: 0.985, f: 0.07 },
     subtle: { l: 0.968, f: 0.15 },
     line: { l: 0.925, f: 0.28 },
     input: { l: 0.925, f: 0.28 },
@@ -152,7 +151,6 @@ const RAMPS: Record<ColorSchemeMode, Record<StepKey, Step>> = {
   dark: {
     base: { l: 0.141, f: 0.91 },
     raised: { l: 0.209, f: 0.91 },
-    faint: { l: 0.209, f: 0.91 },
     subtle: { l: 0.279, f: 0.89 },
     // Translucent so one value works over both background and card.
     line: { l: 1, f: 0, a: 0.1 },
@@ -244,11 +242,11 @@ export const buildColorScheme = (color: Colors, mode: ColorSchemeMode): Record<s
     'chart-3': chart3,
     'chart-4': chart4,
     'chart-5': chart5,
-    sidebar: grey(ramp.faint),
+    sidebar: grey(ramp.base),
     'sidebar-foreground': text,
     'sidebar-primary': accentCss,
     'sidebar-primary-foreground': onAccent,
-    'sidebar-accent': surface,
+    'sidebar-accent': mode === 'dark' ? grey(ramp.raised) : surface,
     'sidebar-accent-foreground': onSurface,
     'sidebar-border': line,
     'sidebar-ring': accentCss

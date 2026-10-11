@@ -71,20 +71,9 @@
   }
 }
 
-.sidebar-ambient {
-  background-color: var(--sidebar-ambient);
-  -webkit-mask-image: radial-gradient(130% 100% at 0% 0%, #000, transparent 70%);
-  mask-image: radial-gradient(130% 100% at 0% 0%, #000, transparent 70%);
-  opacity: 0.08;
-  transition: background-color 500ms var(--ease-solve);
-}
-.dark .sidebar-ambient {
-  opacity: 0.12;
-}
 @media (prefers-reduced-motion: reduce) {
   .nav-item::before,
-  .nav-indicator,
-  .sidebar-ambient {
+  .nav-indicator {
     transition: none;
   }
 }
@@ -193,7 +182,7 @@
   --chart-3: oklch(0.6 0.16 61.117);
   --chart-4: oklch(0.75 0.14 133.117);
   --chart-5: oklch(0.64 0.19 205.117);
-  --sidebar: oklch(0.985 0.0018 277.117);
+  --sidebar: oklch(1 0 277.117);
   --sidebar-foreground: oklch(0.145 0.023 277.117);
   --sidebar-primary: oklch(0.585 0.233 277.117);
   --sidebar-primary-foreground: oklch(0 0.08 277.117);
@@ -236,11 +225,11 @@
   --chart-3: oklch(0.65 0.16 60.966);
   --chart-4: oklch(0.8 0.14 132.966);
   --chart-5: oklch(0.69 0.19 204.966);
-  --sidebar: oklch(0.209 0.0251 276.966);
+  --sidebar: oklch(0.141 0.0251 276.966);
   --sidebar-foreground: oklch(0.985 0.0019 276.966);
   --sidebar-primary: oklch(0.511 0.262 276.966);
   --sidebar-primary-foreground: oklch(0.8883 0.0157 276.966);
-  --sidebar-accent: oklch(0.279 0.0246 276.966);
+  --sidebar-accent: oklch(0.209 0.0251 276.966);
   --sidebar-accent-foreground: oklch(0.985 0.0019 276.966);
   --sidebar-border: oklch(1 0 276.966 / 10%);
   --sidebar-ring: oklch(0.511 0.262 276.966);
