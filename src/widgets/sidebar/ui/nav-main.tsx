@@ -61,16 +61,7 @@ export function NavMain({ items, label, accent }: { items: SidebarNavItem[]; lab
     >
       {label && (
         <SidebarGroupLabel className="gap-2 font-display text-[10px] font-semibold uppercase tracking-[0.14em]">
-          {accent && (
-            <span
-              aria-hidden
-              className="size-2 shrink-0 rounded-[2px] transition-shadow duration-300"
-              style={{
-                backgroundColor: 'var(--nav-accent)',
-                boxShadow: sectionActive ? '0 0 0 3px color-mix(in oklch, var(--nav-accent) 22%, transparent)' : 'none'
-              }}
-            />
-          )}
+          {accent && <span aria-hidden className="size-2 shrink-0" style={{ backgroundColor: 'var(--nav-accent)' }} />}
           <span
             className={cn(
               'truncate transition-colors duration-300',
@@ -81,13 +72,12 @@ export function NavMain({ items, label, accent }: { items: SidebarNavItem[]; lab
           </span>
           <span
             aria-hidden
-            className="h-px min-w-4 flex-1"
+            className="h-px min-w-4 flex-1 transition-colors duration-300"
             style={{
-              background: `linear-gradient(to right, ${
+              backgroundColor:
                 sectionActive && accent
                   ? 'color-mix(in oklch, var(--nav-accent) 45%, transparent)'
                   : 'var(--sidebar-border)'
-              }, transparent)`
             }}
           />
         </SidebarGroupLabel>
@@ -106,19 +96,17 @@ export function NavMain({ items, label, accent }: { items: SidebarNavItem[]; lab
                   data-active-item={itemActive ? 'true' : undefined}
                   className={cn(
                     'nav-item transition-[width,height,padding,color] text-sidebar-foreground/75 hover:text-sidebar-foreground data-[active=true]:text-sidebar-foreground group-data-[collapsible=icon]:[&>svg]:opacity-90',
-                    accent && '[&>svg]:text-(--nav-accent)',
+                    accent && 'data-[active=true]:[&>svg]:text-(--nav-accent)',
                     isMobile && 'h-10'
                   )}
                 >
                   <Link href={item.url} onClick={handleNavClick}>
                     <LinkPendingHint className={SIDEBAR_HINT_CLASS} />
                     <item.icon />
-                    <span className="motion-safe:transition-transform motion-safe:duration-200 motion-safe:ease-(--ease-snap) motion-safe:group-hover/menu-item:translate-x-0.5">
-                      {item.title}
-                    </span>
+                    <span>{item.title}</span>
                     {item.badge && (
                       <>
-                        <span className="ml-auto rounded-full bg-cube-red px-1.5 py-0.5 text-[10px] font-semibold leading-none text-white group-data-[collapsible=icon]:hidden">
+                        <span className="ml-auto bg-cube-red px-1.5 py-0.5 text-[10px] font-semibold leading-none text-white group-data-[collapsible=icon]:hidden">
                           {item.badge}
                         </span>
                         <span
@@ -131,7 +119,6 @@ export function NavMain({ items, label, accent }: { items: SidebarNavItem[]; lab
                 </SidebarMenuButton>
                 {item.action && !item.items?.length ? (
                   <SidebarMenuAction
-                    className="motion-safe:[&>svg]:transition-transform motion-safe:[&>svg]:duration-200 motion-safe:[&>svg]:ease-(--ease-snap) hover:[&>svg]:rotate-90"
                     onClick={(e) => {
                       e.preventDefault()
                       e.stopPropagation()
