@@ -30,11 +30,7 @@ export default function SolveDelta({ className }: { className?: string }) {
   if (delta === null || !lastSolve) return null
 
   const tone =
-    delta < 0
-      ? 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400'
-      : delta > 0
-        ? 'bg-destructive/10 text-destructive'
-        : 'bg-muted text-muted-foreground'
+    delta < 0 ? 'bg-faster/10 text-faster' : delta > 0 ? 'bg-slower/10 text-slower' : 'bg-muted text-muted-foreground'
 
   return (
     <motion.div
