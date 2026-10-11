@@ -66,7 +66,7 @@ function NumberStepper({
     'relative z-[1] flex w-11 shrink-0 cursor-pointer items-center justify-center text-muted-foreground outline-none transition-colors [-webkit-tap-highlight-color:transparent] hover:text-foreground focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-ring active:text-primary disabled:pointer-events-none disabled:opacity-30 sm:w-9 [&_svg]:size-4 [&_svg]:transition-transform active:[&_svg]:scale-75'
 
   return (
-    <div data-slot="number-stepper" className={cn('field-notch flex h-11 w-40 shrink-0 sm:h-9 sm:w-36', className)}>
+    <div data-slot="number-stepper" className={cn('field flex h-11 w-40 shrink-0 sm:h-9 sm:w-36', className)}>
       <button
         type="button"
         aria-label={decrementLabel}
