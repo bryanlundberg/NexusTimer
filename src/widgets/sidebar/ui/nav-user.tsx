@@ -73,7 +73,7 @@ export function NavUser({
           type="button"
           aria-label={user.name}
           data-testid="header-user-menu"
-          className="btn-notch relative flex h-9 min-w-9 shrink-0 cursor-pointer items-center justify-center gap-2 bg-secondary px-1 outline-none transition-colors hover:bg-secondary/80 focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-ring data-[state=open]:bg-secondary/80 pointer-coarse:h-10 pointer-coarse:min-w-10 @3xl/header:justify-start @3xl/header:pr-2.5 @3xl/header:pl-1"
+          className="relative flex h-9 min-w-9 shrink-0 cursor-pointer items-center justify-center gap-2 bg-secondary px-1 outline-none transition-colors hover:bg-secondary/80 focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-ring data-[state=open]:bg-secondary/80 pointer-coarse:h-10 pointer-coarse:min-w-10 @3xl/header:justify-start @3xl/header:pr-2.5 @3xl/header:pl-1"
         >
           <span className="relative shrink-0">
             <Avatar className="size-7 rounded-full">
@@ -128,7 +128,7 @@ export function NavUser({
                 aria-pressed={status === value}
                 onClick={() => setStatus(value)}
                 className={cn(
-                  'chip-notch chip-notch-sm flex size-7 cursor-pointer items-center justify-center transition-colors',
+                  'flex size-7 cursor-pointer items-center justify-center transition-colors',
                   status === value ? 'bg-primary/20' : 'hover:bg-accent'
                 )}
               >
@@ -146,7 +146,7 @@ export function NavUser({
               onClick={() => router.push(href)}
               className="cursor-pointer gap-2.5 rounded-none px-3 py-1.5"
             >
-              <span className="chip-notch chip-notch-sm flex size-6 shrink-0 items-center justify-center bg-muted">
+              <span className="flex size-6 shrink-0 items-center justify-center bg-muted">
                 <Icon className="size-3.5" />
               </span>
               {label}
@@ -161,7 +161,7 @@ export function NavUser({
               onClick={() => router.push(href)}
               className="cursor-pointer gap-2.5 rounded-none px-3 py-1.5"
             >
-              <span className="chip-notch chip-notch-sm flex size-6 shrink-0 items-center justify-center bg-muted">
+              <span className="flex size-6 shrink-0 items-center justify-center bg-muted">
                 <Icon className="size-3.5" />
               </span>
               {label}
@@ -176,7 +176,7 @@ export function NavUser({
             onClick={handleResetDeviceData}
             className="cursor-pointer gap-2.5 rounded-none px-3 py-1.5"
           >
-            <span className="chip-notch chip-notch-sm flex size-6 shrink-0 items-center justify-center bg-destructive/10">
+            <span className="flex size-6 shrink-0 items-center justify-center bg-destructive/10">
               <LogOut className="size-3.5 text-destructive" />
             </span>
             {t('NavMain.log-out')}
