@@ -163,7 +163,7 @@ export default function TimerSolvesRail() {
               <span
                 className={cn(
                   'text-right font-mono text-xs tabular-nums',
-                  stat.isRecord ? 'font-semibold text-amber-700 dark:text-amber-400' : 'text-muted-foreground'
+                  stat.isRecord ? 'font-semibold text-record' : 'text-muted-foreground'
                 )}
               >
                 {stat.actual}
@@ -228,7 +228,7 @@ export default function TimerSolvesRail() {
                         className={cn(
                           'text-right font-mono text-sm font-semibold tabular-nums',
                           row.dnf && 'text-destructive',
-                          row.isBest && 'text-amber-700 dark:text-amber-400'
+                          row.isBest && 'text-record'
                         )}
                       >
                         {row.time}
@@ -238,7 +238,7 @@ export default function TimerSolvesRail() {
                       <span
                         className={cn(
                           'text-right font-mono text-xs tabular-nums',
-                          row.isBestAo5 ? 'font-semibold text-amber-700 dark:text-amber-400' : 'text-muted-foreground'
+                          row.isBestAo5 ? 'font-semibold text-record' : 'text-muted-foreground'
                         )}
                       >
                         {row.ao5}
@@ -247,7 +247,7 @@ export default function TimerSolvesRail() {
                       <span
                         className={cn(
                           'text-right font-mono text-xs tabular-nums',
-                          row.isBestAo12 ? 'font-semibold text-amber-700 dark:text-amber-400' : 'text-muted-foreground'
+                          row.isBestAo12 ? 'font-semibold text-record' : 'text-muted-foreground'
                         )}
                       >
                         {row.ao12}
