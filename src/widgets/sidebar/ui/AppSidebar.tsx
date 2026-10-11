@@ -94,17 +94,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader className={'relative mt-2'}>
         <SidebarMenu>
           <SidebarMenuItem>
-            <Link
-              href={'/app'}
-              className={`sidebar-glitch flex items-center gap-2`}
-              onClick={() => isMobile && setOpenMobile(false)}
-            >
-              <div className="flex aspect-square size-8 items-center justify-center notch-tl-br [--ntlbr:8px] bg-sidebar-primary text-sidebar-primary-foreground">
+            <Link href={'/app'} className="flex items-center gap-2" onClick={() => isMobile && setOpenMobile(false)}>
+              <div className="flex aspect-square size-8 items-center justify-center notch-bl-tr [--notch-cut:8px] bg-sidebar-primary text-sidebar-primary-foreground">
                 <Image src={'/logo.png'} alt={'logo'} width={32} height={32} className={`p-1.5 invert size-8`} />
               </div>
               {open || openMobile ? (
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="sidebar-glitch-text truncate font-brand text-base font-bold tracking-tight">
+                  <span className="truncate font-brand text-base font-bold tracking-tight">
                     <span className="text-foreground">NEXUSTIMER</span>
                     <span className="text-muted-foreground">.COM</span>
                   </span>
@@ -174,13 +170,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               initial={false}
               animate={{ x: indicator.left, y: indicator.top }}
               transition={INDICATOR_SPRING}
-            >
-              <span
-                aria-hidden
-                className="absolute top-1/2 left-0 h-4 w-0.5 -translate-y-1/2 transition-colors duration-300 group-data-[collapsible=icon]:hidden"
-                style={{ backgroundColor: activeAccent }}
-              />
-            </motion.div>
+            />
           )}
           {sections.map((section) => (
             <NavMain key={section.key} items={section.items} label={section.label} accent={section.accent} />
@@ -208,7 +198,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <button
               type="button"
               onClick={install}
-              className="notch-bl-tr [--nblt:9px] group flex items-center gap-2 border bg-background/60 px-3 py-2 text-xs font-medium cursor-pointer transition-colors hover:border-primary hover:bg-accent"
+              className="group flex items-center gap-2 border bg-background/60 px-3 py-2 text-xs font-medium cursor-pointer transition-colors hover:border-primary hover:bg-accent"
             >
               <MonitorDown className="size-4 text-primary transition-transform group-hover:translate-y-0.5" />
               <span>{t('NavMain.install-app')}</span>
@@ -221,7 +211,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="chip-notch chip-notch-sm flex size-7 items-center justify-center text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-foreground"
+                className="flex size-7 items-center justify-center text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-foreground"
               >
                 <GithubIcon size={16} />
               </a>
@@ -230,7 +220,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Discord"
-                className="chip-notch chip-notch-sm flex size-7 items-center justify-center text-muted-foreground transition-colors hover:bg-[#5865F2]/12 hover:text-[#5865F2]"
+                className="flex size-7 items-center justify-center text-muted-foreground transition-colors hover:bg-[#5865F2]/12 hover:text-[#5865F2]"
               >
                 <DiscordIcon size={16} />
               </a>
