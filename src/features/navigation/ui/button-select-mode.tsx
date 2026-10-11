@@ -1,5 +1,4 @@
 'use client'
-import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -104,20 +103,18 @@ export default function ButtonSelectMode() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
+        <button
+          type="button"
           data-testid={'button-select-mode'}
-          variant="ghost"
-          className="group py-0 px-3 gap-2"
+          className="field field-hover group inline-flex h-9 shrink-0 cursor-pointer items-center gap-2 px-3 text-sm outline-none pointer-coarse:h-10 disabled:cursor-not-allowed disabled:opacity-50 [&_svg]:shrink-0"
           disabled={!selectedCube}
           onMouseEnter={() => iconRef.current?.startAnimation()}
           onMouseLeave={() => iconRef.current?.stopAnimation()}
         >
-          <LayoutDashboardIcon ref={iconRef} />
-          <span className="hidden md:inline-block max-w-28 truncate text-sm font-medium">
-            {t(`HomePage.modes.${activeMode.tKey}`)}
-          </span>
-          <ChevronDown className="hidden md:block size-3.5 opacity-60 transition-transform duration-200 group-data-[state=open]:rotate-180" />
-        </Button>
+          <LayoutDashboardIcon ref={iconRef} size={16} />
+          <span className="hidden max-w-28 truncate md:inline-block">{t(`HomePage.modes.${activeMode.tKey}`)}</span>
+          <ChevronDown className="size-4 opacity-50 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+        </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-72" innerClassName="p-px">
         <div className="px-3 pt-2.5 pb-2">
