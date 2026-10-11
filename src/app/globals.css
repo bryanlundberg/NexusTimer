@@ -12,149 +12,33 @@
   }
 }
 
-@keyframes badge-beam-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.badge-beam {
-  --badge-beam-color: rgba(255, 255, 255, 0.9);
-  position: absolute;
-  inset: -3px;
-  border-radius: 9999px;
-  pointer-events: none;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    transparent 270deg,
-    var(--badge-beam-color) 325deg,
-    color-mix(in srgb, var(--badge-beam-color), white 35%) 340deg,
-    transparent 360deg
-  );
-  -webkit-mask-image: radial-gradient(closest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
-  mask-image: radial-gradient(closest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
-  opacity: 0.45;
-  animation: badge-beam-spin 4.5s linear infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .badge-beam {
-    animation: none;
-    display: none;
-  }
-}
-
-@keyframes header-signin-beam {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.header-signin {
-  position: relative;
-  isolation: isolate;
-  background-color: var(--primary);
-}
-
-.header-signin::before {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  inset: -60%;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    transparent 250deg,
-    rgba(255, 255, 255, 0.8) 320deg,
-    rgba(255, 255, 255, 0.25) 345deg,
-    transparent 360deg
-  );
-  animation: header-signin-beam 4s linear infinite;
-  pointer-events: none;
-}
-
-.header-signin::after {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  inset: 1.5px;
-  border-radius: 6.5px;
-  background: var(--primary);
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .header-signin::before {
-    animation: none;
-    display: none;
-  }
-}
-
-@keyframes sidebar-glitch {
-  0% { text-shadow: none; }
-  15% { text-shadow: -3px 0 rgba(255, 45, 85, 0.9), 3px 0 rgba(0, 225, 255, 0.9); }
-  30% { text-shadow: 3px 0 rgba(255, 45, 85, 0.85), -3px 0 rgba(0, 225, 255, 0.85); }
-  45% { text-shadow: -2px 0 rgba(255, 45, 85, 0.8), 2px 0 rgba(0, 225, 255, 0.8); }
-  60% { text-shadow: 2px 0 rgba(255, 45, 85, 0.7), -2px 0 rgba(0, 225, 255, 0.7); }
-  80% { text-shadow: -1px 0 rgba(255, 45, 85, 0.5), 1px 0 rgba(0, 225, 255, 0.5); }
-  100% { text-shadow: none; }
-}
-
-.sidebar-glitch-text {
-  will-change: text-shadow;
-}
-
-.sidebar-glitch:hover .sidebar-glitch-text {
-  animation: sidebar-glitch 0.2s steps(2, end) 2;
-  overflow: visible;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .sidebar-glitch:hover .sidebar-glitch-text {
-    animation: none;
-  }
-}
-
-.nav-notch,
-.nav-indicator {
-  --nav-cut: 6px;
-  --nav-shape: polygon(
-    0 0,
-    calc(100% - var(--nav-cut)) 0,
-    100% var(--nav-cut),
-    100% 100%,
-    var(--nav-cut) 100%,
-    0 calc(100% - var(--nav-cut))
-  );
-}
-.nav-notch {
+.nav-item {
   --nav-fill: transparent;
   position: relative;
   isolation: isolate;
   background-color: transparent;
 }
-.nav-notch::before {
+.nav-item::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: -1;
   background-color: var(--nav-fill);
-  clip-path: var(--nav-shape);
   pointer-events: none;
   transition: background-color 150ms var(--ease-solve);
 }
-.nav-notch:hover {
+.nav-item:hover {
   --nav-fill: var(--sidebar-accent);
 }
-.nav-notch[data-active='true'] {
+.nav-item[data-active='true'] {
   --nav-fill: color-mix(in oklch, var(--nav-accent, var(--sidebar-primary)) 14%, var(--sidebar-accent));
 }
 @media (min-width: 768px) {
-  .nav-notch[data-active-item='true'] {
+  .nav-item[data-active-item='true'] {
     --nav-fill: transparent;
   }
 }
 .nav-indicator {
-  clip-path: var(--nav-shape);
   transition: background-color 300ms var(--ease-solve);
 }
 
@@ -198,7 +82,7 @@
   opacity: 0.12;
 }
 @media (prefers-reduced-motion: reduce) {
-  .nav-notch::before,
+  .nav-item::before,
   .nav-indicator,
   .sidebar-ambient {
     transition: none;
@@ -255,9 +139,7 @@
 :root {
   --radius: 0.45rem;
 
-  --font-space-grotesk: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
-  --font-chakra: 'Chakra Petch', ui-sans-serif, system-ui, sans-serif;  --font-saira: 'Saira', ui-sans-serif, system-ui, sans-serif;
-  --font-mono-numeric: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-chakra: 'Chakra Petch', ui-sans-serif, system-ui, sans-serif;
   --cube-white: oklch(0.97 0 0);
   --cube-yellow: oklch(0.86 0.17 95);
   --cube-red: oklch(0.635 0.23 26);
@@ -525,17 +407,16 @@
 }
 
 .tour-notch {
-  --tn-cut: 16px;
+  --tn-cut: 12px;
   --tn-border: 1px;
   --tn-border-color: color-mix(in oklab, var(--primary) 22%, var(--border));
   --tn-fill: var(--popover);
   --tn-shape: polygon(
     0 0,
-    calc(100% - var(--tn-cut)) 0,
-    100% var(--tn-cut),
-    100% 100%,
-    var(--tn-cut) 100%,
-    0 calc(100% - var(--tn-cut))
+    100% 0,
+    100% calc(100% - var(--tn-cut)),
+    calc(100% - var(--tn-cut)) 100%,
+    0 100%
   );
   position: relative;
   isolation: isolate;
@@ -544,8 +425,7 @@
   box-shadow: none !important;
   background-color: var(--tn-border-color) !important;
   clip-path: var(--tn-shape);
-  filter: drop-shadow(0 18px 38px color-mix(in oklab, var(--foreground) 22%, transparent))
-    drop-shadow(0 0 18px color-mix(in oklab, var(--primary) 16%, transparent));
+  filter: drop-shadow(0 4px 8px rgb(0 0 0 / 0.25));
 }
 .tour-notch::before {
   content: '';
@@ -553,93 +433,36 @@
   inset: var(--tn-border);
   z-index: -1;
   background-color: var(--tn-fill);
-  background-image:
-    radial-gradient(70% 60% at 6% 0%, color-mix(in oklab, var(--primary) 10%, transparent), transparent 70%),
-    radial-gradient(60% 55% at 100% 100%, color-mix(in oklab, var(--primary) 7%, transparent), transparent 72%);
   clip-path: var(--tn-shape);
   pointer-events: none;
 }
 
-.tour-cta {
-  filter: drop-shadow(0 6px 14px color-mix(in oklab, var(--primary) 32%, transparent));
+@layer components {
+  .menu-panel {
+    border: 1px solid var(--border);
+    background-color: var(--popover);
+    box-shadow: 0 4px 8px rgb(0 0 0 / 0.2);
+  }
 }
 
-/* dropdown / popover panel: angular cut corners, primary-tinted
-   border traced on the cuts, and a soft primary glow shadow. */
-.gaming-panel {
-  --gp-cut: 10px;
-  --gp-shape: polygon(
-    0 0,
-    calc(100% - var(--gp-cut)) 0,
-    100% var(--gp-cut),
-    100% 100%,
-    var(--gp-cut) 100%,
-    0 calc(100% - var(--gp-cut))
-  );
-  position: relative;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background-color: color-mix(in oklab, var(--primary) 55%, var(--border)) !important;
-  clip-path: var(--gp-shape);
-  filter: drop-shadow(0 10px 22px color-mix(in oklab, var(--primary) 20%, transparent));
-}
-.gaming-panel::before {
-  content: '';
-  position: absolute;
-  inset: 1px;
-  z-index: -1;
-  background-color: var(--popover);
-  clip-path: var(--gp-shape);
-  pointer-events: none;
-}
-
-/* Sonner toasts. Drawn with a background gradient instead of clip-path because
-   sonner hangs its hover-gap and swipe hit areas off ::before/::after outside
-   the toast box, and clipping would cut them off. One 45deg gradient cuts both
-   corners; the 1px ramp keeps the diagonal antialiased like clip-path. */
-[data-sonner-toast].toast-notch[data-styled='true'] {
-  --t-cut: 12px;
-  --t-border-w: 1px;
-  --t-fill-cut: calc((var(--t-cut) - 0.586 * var(--t-border-w)) * 0.7071);
-  --t-border-cut: calc(var(--t-cut) * 0.7071);
-  --t-border: color-mix(in oklab, var(--primary) 35%, var(--border));
-  --t-fill: var(--popover);
-  border: var(--t-border-w) solid transparent;
+[data-sonner-toast].toast-panel[data-styled='true'] {
   border-radius: 0;
-  box-shadow: none;
-  background:
-    linear-gradient(
-        45deg,
-        transparent calc(var(--t-fill-cut) - 0.5px),
-        var(--t-fill) calc(var(--t-fill-cut) + 0.5px) calc(100% - var(--t-fill-cut) - 0.5px),
-        transparent calc(100% - var(--t-fill-cut) + 0.5px)
-      )
-      padding-box,
-    linear-gradient(
-        45deg,
-        transparent calc(var(--t-border-cut) - 0.5px),
-        var(--t-border) calc(var(--t-border-cut) + 0.5px) calc(100% - var(--t-border-cut) - 0.5px),
-        transparent calc(100% - var(--t-border-cut) + 0.5px)
-      )
-      border-box;
-  filter: drop-shadow(0 8px 20px color-mix(in oklab, var(--foreground) 14%, transparent));
 }
-[data-sonner-toast].toast-notch[data-styled='true'] [data-description] {
+[data-sonner-toast].toast-panel[data-styled='true'] [data-description] {
   color: var(--muted-foreground);
 }
-[data-sonner-toast].toast-notch[data-styled='true'][data-type='error'] {
-  --t-border: color-mix(in oklab, var(--destructive) 60%, var(--border));
+[data-sonner-toast].toast-panel[data-styled='true'][data-type='error'] {
+  border-color: color-mix(in oklab, var(--destructive) 60%, var(--border));
 }
-[data-sonner-toast].toast-notch[data-styled='true'] [data-button] {
+[data-sonner-toast].toast-panel[data-styled='true'] [data-button] {
   height: 26px;
   border-radius: 0;
-  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
 }
-[data-sonner-toast].toast-notch[data-styled='true'] [data-button][data-action] {
+[data-sonner-toast].toast-panel[data-styled='true'] [data-button][data-action] {
   background: var(--primary);
   color: var(--primary-foreground);
 }
-[data-sonner-toast].toast-notch[data-styled='true'] [data-button][data-cancel] {
+[data-sonner-toast].toast-panel[data-styled='true'] [data-button][data-cancel] {
   background: var(--secondary);
   color: var(--secondary-foreground);
 }
@@ -672,97 +495,37 @@
   }
 }
 
-.field-notch {
-  --f-cut: 9px;
-  --f-border-w: 1px;
-  /* Same correction as .btn-notch: the fill is inset by --f-border-w on every side,
-     so an uncompensated cut lands (2 - sqrt2) * --f-border-w too far out and the
-     diagonals read ~41% thicker than the straight edges. */
-  --f-cut-inner: calc(var(--f-cut) - 0.586 * var(--f-border-w));
-  --f-shape: polygon(
-    0 0,
-    calc(100% - var(--f-cut)) 0,
-    100% var(--f-cut),
-    100% 100%,
-    var(--f-cut) 100%,
-    0 calc(100% - var(--f-cut))
-  );
-  --f-shape-inner: polygon(
-    0 0,
-    calc(100% - var(--f-cut-inner)) 0,
-    100% var(--f-cut-inner),
-    100% 100%,
-    var(--f-cut-inner) 100%,
-    0 calc(100% - var(--f-cut-inner))
-  );
-  --f-border: var(--input);
-  --f-fill: var(--background);
-  position: relative;
-  isolation: isolate;
-  border: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  background-color: var(--f-border) !important;
-  clip-path: var(--f-shape);
-}
-.field-notch::before {
-  content: '';
-  position: absolute;
-  inset: var(--f-border-w);
-  z-index: -1;
-  background-color: var(--f-fill);
-  clip-path: var(--f-shape-inner, var(--f-shape));
-  pointer-events: none;
-}
-.field-notch:focus-within {
-  --f-border: var(--primary);
-}
-.field-notch:has([aria-invalid='true']),
-.field-notch[aria-invalid='true'] {
-  --f-border: var(--destructive);
-}
-
-/* For field-notch elements that behave like buttons rather than text inputs.
-   The visible surface is the ::before fill, so the ghost hover has to move
-   --f-fill; hover:bg-* would only repaint the border layer underneath. */
-.field-notch-hover::before {
-  transition: background-color var(--dur-fast) var(--ease-solve);
-}
-.field-notch-hover:hover {
-  --f-fill: var(--accent);
-}
-.dark .field-notch-hover:hover {
-  --f-fill: color-mix(in oklab, var(--accent) 50%, var(--background));
-}
-
-/* Mirrored cut: top-left & bottom-right cut, top-right & bottom-left sharp. */
-.field-notch-alt {
-  --f-shape: polygon(
-    var(--f-cut) 0,
-    100% 0,
-    100% calc(100% - var(--f-cut)),
-    calc(100% - var(--f-cut)) 100%,
-    0 100%,
-    0 var(--f-cut)
-  );
-  --f-shape-inner: polygon(
-    var(--f-cut-inner) 0,
-    100% 0,
-    100% calc(100% - var(--f-cut-inner)),
-    calc(100% - var(--f-cut-inner)) 100%,
-    0 100%,
-    0 var(--f-cut-inner)
-  );
+@layer components {
+  .field {
+    position: relative;
+    border: 1px solid var(--input);
+    background-color: var(--background);
+    transition:
+      border-color var(--dur-fast) var(--ease-solve),
+      background-color var(--dur-fast) var(--ease-solve),
+      box-shadow var(--dur-fast) var(--ease-solve);
+  }
+  .field:focus-within {
+    border-color: var(--primary);
+  }
+  .field:is(:focus-visible, :has(:focus-visible)) {
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
+  }
+  .field:has([aria-invalid='true']),
+  .field[aria-invalid='true'] {
+    border-color: var(--destructive);
+  }
+  .field-hover:hover {
+    background-color: var(--accent);
+  }
+  .dark .field-hover:hover {
+    background-color: color-mix(in oklab, var(--accent) 50%, var(--background));
+  }
 }
 
 /* Angular buttons: top-left & bottom-right sharp, top-right & bottom-left cut */
 .btn-notch {
   --btn-cut: 9px;
-  --btn-border-w: 1px;
-  /* The fill sits in a box inset by --btn-border-w on every side, so its cut lands
-     (2 - sqrt2) * --btn-border-w too far out and the diagonals would read ~41%
-     thicker than the straight edges. Pulling the inner cut back evens the stroke. */
-  --btn-cut-inner: calc(var(--btn-cut) - 0.586 * var(--btn-border-w));
   --btn-shape: polygon(
     0 0,
     calc(100% - var(--btn-cut)) 0,
@@ -771,86 +534,13 @@
     var(--btn-cut) 100%,
     0 calc(100% - var(--btn-cut))
   );
-  --btn-shape-inner: polygon(
-    0 0,
-    calc(100% - var(--btn-cut-inner)) 0,
-    100% var(--btn-cut-inner),
-    100% 100%,
-    var(--btn-cut-inner) 100%,
-    0 calc(100% - var(--btn-cut-inner))
-  );
   border-radius: 0 !important;
   clip-path: var(--btn-shape);
 }
 
-/* Mirrored cut: top-left & bottom-right cut, top-right & bottom-left sharp. */
-.btn-notch-alt {
-  --btn-shape: polygon(
-    var(--btn-cut) 0,
-    100% 0,
-    100% calc(100% - var(--btn-cut)),
-    calc(100% - var(--btn-cut)) 100%,
-    0 100%,
-    0 var(--btn-cut)
-  );
-  --btn-shape-inner: polygon(
-    var(--btn-cut-inner) 0,
-    100% 0,
-    100% calc(100% - var(--btn-cut-inner)),
-    calc(100% - var(--btn-cut-inner)) 100%,
-    0 100%,
-    0 var(--btn-cut-inner)
-  );
-}
-
-/* Bordered variant: the element is filled with the border color and an inset
-   ::after (--btn-shape-inner) provides the fill, leaving a --btn-border-w
-   stroke that traces the cut corners at the same thickness. */
-.btn-notch-border {
-  --btn-border-color: var(--border);
-  --btn-fill: var(--background);
-  border: 0 !important;
-  background-color: var(--btn-border-color) !important;
-}
-.btn-notch-border::after {
-  content: '';
-  position: absolute;
-  inset: var(--btn-border-w, 1px);
-  z-index: -1;
-  background-color: var(--btn-fill);
-  clip-path: var(--btn-shape-inner, var(--btn-shape));
-  pointer-events: none;
-}
-.btn-notch-border:hover {
-  --btn-fill: var(--accent);
-}
-.btn-notch-border[data-brand]:hover,
-.btn-notch-border[data-brand]:focus-visible {
-  --btn-border-color: var(--brand);
-  --btn-fill: color-mix(in oklab, var(--brand) 10%, var(--background));
-}
-
-/* Small angular chips: icon tiles inside dropdown panels and menus. Same cut
-   language as .btn-notch, scaled down so it reads on 24-36px squares. */
-.chip-notch {
-  --chip-cut: 7px;
-  border-radius: 0 !important;
-  clip-path: polygon(
-    0 0,
-    calc(100% - var(--chip-cut)) 0,
-    100% var(--chip-cut),
-    100% 100%,
-    var(--chip-cut) 100%,
-    0 calc(100% - var(--chip-cut))
-  );
-}
-.chip-notch-sm {
-  --chip-cut: 5px;
-}
-
 /* Notched (cut-corner) cards for the solves grid */
 .solve-notch {
-  --notch: 14px;
+  --notch: 12px;
   --notch-border: 1px;
   --notch-border-color: var(--border);
   --notch-fill: var(--background);
@@ -898,7 +588,7 @@
 /* Notched cards for the cubes dashboard, same clutch language as
    the solves grid, tuned for larger cards and richer favorite/active states. */
 .cube-notch {
-  --cube-notch: 20px;
+  --cube-notch: 14px;
   --cube-notch-border: 1px;
   --cube-notch-border-color: var(--border);
   --cube-notch-fill: color-mix(in oklab, var(--card) 50%, var(--background));
@@ -948,7 +638,7 @@
 /* Notched alert boxes (edit / delete modals) — cut bottom-right corner with a
    toned border. */
 .alert-notch {
-  --alert-notch: 14px;
+  --alert-notch: 12px;
   --alert-notch-border: 1.5px;
   --alert-notch-border-color: var(--border);
   --alert-notch-fill: #000;
@@ -982,56 +672,10 @@
   --alert-notch-border-color: color-mix(in oklab, #ef4444 70%, transparent);
 }
 
-/* Notched square badge for status icons, replaces the round background. */
-.icon-notch {
-  --icon-notch: 9px;
-  --icon-notch-border: 1px;
-  --icon-notch-border-color: var(--border);
-  --icon-notch-fill: color-mix(in oklab, var(--foreground) 8%, var(--background));
-  --icon-notch-shape: polygon(
-    0 0,
-    100% 0,
-    100% calc(100% - var(--icon-notch)),
-    calc(100% - var(--icon-notch)) 100%,
-    0 100%
-  );
-  position: relative;
-  isolation: isolate;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background-color: var(--icon-notch-border-color) !important;
-  clip-path: var(--icon-notch-shape);
-}
-.icon-notch::before {
-  content: '';
-  position: absolute;
-  inset: var(--icon-notch-border);
-  z-index: -1;
-  background-color: var(--icon-notch-fill);
-  clip-path: var(--icon-notch-shape);
-  pointer-events: none;
-}
-.icon-notch[data-tone='muted'] {
-  --icon-notch-border-color: color-mix(in oklab, var(--border) 45%, transparent);
-  --icon-notch-fill: color-mix(in oklab, var(--foreground) 3%, var(--background));
-}
-.icon-notch[data-tone='warning'] {
-  --icon-notch-border-color: color-mix(in oklab, #eab308 55%, transparent);
-  --icon-notch-fill: color-mix(in oklab, #eab308 12%, var(--background));
-}
-.icon-notch[data-tone='danger'] {
-  --icon-notch-border-color: color-mix(in oklab, #ef4444 55%, transparent);
-  --icon-notch-fill: color-mix(in oklab, #ef4444 12%, var(--background));
-}
-.icon-notch[data-tone='success'] {
-  --icon-notch-border-color: color-mix(in oklab, #22c55e 55%, transparent);
-  --icon-notch-fill: color-mix(in oklab, #22c55e 12%, var(--background));
-}
-
 /* Notched category tiles cut-corner picker cells with a
    traced border and a distinct selected state. */
 .category-notch {
-  --cat-notch: 11px;
+  --cat-notch: 8px;
   --cat-border: 1px;
   --cat-border-color: var(--border);
   --cat-fill: color-mix(in oklab, var(--card) 45%, var(--background));
@@ -1070,48 +714,6 @@
   --cat-fill: color-mix(in oklab, var(--primary) 11%, var(--background));
 }
 
-/* Notched rows for the cube selector list */
-.select-item-notch {
-  --si-notch: 12px;
-  --si-border: 0px;
-  --si-border-color: transparent;
-  --si-fill: transparent;
-  --si-shape: polygon(
-    0 0,
-    100% 0,
-    100% calc(100% - var(--si-notch)),
-    calc(100% - var(--si-notch)) 100%,
-    0 100%
-  );
-  position: relative;
-  isolation: isolate;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background-color: var(--si-border-color) !important;
-  clip-path: var(--si-shape);
-}
-.select-item-notch::before {
-  content: '';
-  position: absolute;
-  inset: var(--si-border);
-  z-index: -1;
-  background-color: var(--si-fill);
-  clip-path: var(--si-shape);
-  pointer-events: none;
-  transition: background-color 150ms ease;
-}
-.select-item-notch:hover {
-  --si-fill: var(--muted);
-}
-.select-item-notch[data-selected='true'] {
-  --si-border: 1.5px;
-  --si-border-color: color-mix(in oklab, var(--primary) 55%, transparent);
-  --si-fill: color-mix(in oklab, var(--primary) 18%, var(--background));
-}
-.select-item-notch[data-selected='true']:hover {
-  --si-fill: color-mix(in oklab, var(--primary) 22%, var(--background));
-}
-
 /* Algorithm method cards */
 .algo-card-notch {
   --ac-notch: 12px;
@@ -1131,9 +733,7 @@
   border-radius: 0 !important;
   background-color: var(--ac-border-color) !important;
   clip-path: var(--ac-shape);
-  transition:
-    background-color 200ms ease,
-    filter 200ms ease;
+  transition: background-color 200ms ease;
 }
 .algo-card-notch::before {
   content: '';
@@ -1150,13 +750,12 @@
   --ac-border: 2px;
   --ac-border-color: var(--primary);
   --ac-fill: color-mix(in oklab, var(--primary) 9%, var(--background));
-  filter: drop-shadow(0 0 12px color-mix(in oklab, var(--primary) 40%, transparent));
 }
 
 /* Shared surface panel — cut bottom-right corner with a traced border. Used by the
    algorithm list and the trainer stage. */
 .algo-panel-notch {
-  --ap-notch: 14px;
+  --ap-notch: 12px;
   --ap-border: 1px;
   --ap-border-color: var(--border);
   --ap-fill: color-mix(in oklab, var(--card) 30%, var(--background));
@@ -1184,18 +783,17 @@
   pointer-events: none;
 }
 
-.panel-notch-bl-tr {
-  --pn-notch: 14px;
+.panel-notch {
+  --pn-notch: 12px;
   --pn-border: 1px;
   --pn-border-color: var(--border);
   --pn-fill: color-mix(in oklab, var(--card) 30%, var(--background));
   --pn-shape: polygon(
     0 0,
-    calc(100% - var(--pn-notch)) 0,
-    100% var(--pn-notch),
-    100% 100%,
-    var(--pn-notch) 100%,
-    0 calc(100% - var(--pn-notch))
+    100% 0,
+    100% calc(100% - var(--pn-notch)),
+    calc(100% - var(--pn-notch)) 100%,
+    0 100%
   );
   position: relative;
   isolation: isolate;
@@ -1204,7 +802,7 @@
   background-color: var(--pn-border-color) !important;
   clip-path: var(--pn-shape);
 }
-.panel-notch-bl-tr::before {
+.panel-notch::before {
   content: '';
   position: absolute;
   inset: var(--pn-border);
@@ -1220,94 +818,57 @@
   clip-path: polygon(5px 0, 100% 0, calc(100% - 5px) 100%, 0 100%);
 }
 
-/* Small cut-corner badges. */
-.badge-notch {
-  border-radius: 0 !important;
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%);
-}
 
-/* Single cut on the bottom-left corner */
-.notch-bl {
-  --nbl: 10px;
-  border-radius: 0 !important;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, var(--nbl) 100%, 0 calc(100% - var(--nbl)));
-}
-
-/* Very subtle abstract texture behind modal content */
-.modal-texture {
-  background-image:
-    radial-gradient(65% 55% at 12% 4%, color-mix(in oklab, var(--primary) 4%, transparent), transparent 70%),
-    radial-gradient(60% 55% at 90% 98%, color-mix(in oklab, var(--primary) 2.5%, transparent), transparent 72%);
-}
-
-/* Cut on all four corners */
-.notch-4 {
-  --n4: 8px;
-  border-radius: 0 !important;
-  clip-path: polygon(
-    var(--n4) 0,
-    calc(100% - var(--n4)) 0,
-    100% var(--n4),
-    100% calc(100% - var(--n4)),
-    calc(100% - var(--n4)) 100%,
-    var(--n4) 100%,
-    0 calc(100% - var(--n4)),
-    0 var(--n4)
-  );
-}
-
-/* Notched timer stat cards (overview/statistics) */
 @media (min-width: 768px) {
   .stat-notch {
     border-radius: 0 !important;
-    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
-  }
-  .stat-notch-r {
-    border-radius: 0 !important;
-    clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%);
   }
 }
 
-/* Single cut on the bottom-right corner */
-.notch-br {
-  --nbr: 12px;
-  border-radius: 0 !important;
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--nbr)), calc(100% - var(--nbr)) 100%, 0 100%);
-}
-
-/* Single cut on the top-left corner */
-.notch-tl {
-  --ntl: 12px;
-  border-radius: 0 !important;
-  clip-path: polygon(var(--ntl) 0, 100% 0, 100% 100%, 0 100%, 0 var(--ntl));
-}
-
-/* Cut on top-left and bottom-right corners. */
-.notch-tl-br {
-  --ntlbr: 12px;
-  border-radius: 0 !important;
-  clip-path: polygon(
-    var(--ntlbr) 0,
-    100% 0,
-    100% calc(100% - var(--ntlbr)),
-    calc(100% - var(--ntlbr)) 100%,
-    0 100%,
-    0 var(--ntlbr)
-  );
-}
-
-/* Cut on bottom-left and top-right corners. */
-.notch-bl-tr {
-  --nblt: 10px;
-  border-radius: 0 !important;
-  clip-path: polygon(
-    0 0,
-    calc(100% - var(--nblt)) 0,
-    100% var(--nblt),
-    100% 100%,
-    var(--nblt) 100%,
-    0 calc(100% - var(--nblt))
-  );
+@layer components {
+  .notch-br {
+    --notch-cut: 12px;
+  }
+  .notch-br-sm {
+    --notch-cut: 8px;
+  }
+  .notch-bl-tr {
+    --notch-cut: 14px;
+  }
+  @supports (corner-shape: bevel) {
+    :is(.notch-br, .notch-br-sm) {
+      border-radius: 0 0 var(--notch-cut) 0;
+      corner-shape: bevel;
+    }
+    .notch-bl-tr {
+      border-radius: 0 var(--notch-cut) 0 var(--notch-cut);
+      corner-shape: bevel;
+    }
+  }
+  @supports not (corner-shape: bevel) {
+    :is(.notch-br, .notch-br-sm) {
+      border-radius: 0;
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        100% calc(100% - var(--notch-cut)),
+        calc(100% - var(--notch-cut)) 100%,
+        0 100%
+      );
+    }
+    .notch-bl-tr {
+      border-radius: 0;
+      clip-path: polygon(
+        0 0,
+        calc(100% - var(--notch-cut)) 0,
+        100% var(--notch-cut),
+        100% 100%,
+        var(--notch-cut) 100%,
+        0 calc(100% - var(--notch-cut))
+      );
+    }
+  }
 }
 
 .auth-rise {
@@ -1322,24 +883,22 @@
 }
 
 .auth-flow {
-  --flow-cut: 14px;
+  --flow-cut: 12px;
   --flow-cut-inner: calc(var(--flow-cut) - 0.586px);
   --flow-border: var(--border);
   --flow-shape: polygon(
     0 0,
-    calc(100% - var(--flow-cut)) 0,
-    100% var(--flow-cut),
-    100% 100%,
-    var(--flow-cut) 100%,
-    0 calc(100% - var(--flow-cut))
+    100% 0,
+    100% calc(100% - var(--flow-cut)),
+    calc(100% - var(--flow-cut)) 100%,
+    0 100%
   );
   --flow-shape-inner: polygon(
     0 0,
-    calc(100% - var(--flow-cut-inner)) 0,
-    100% var(--flow-cut-inner),
-    100% 100%,
-    var(--flow-cut-inner) 100%,
-    0 calc(100% - var(--flow-cut-inner))
+    100% 0,
+    100% calc(100% - var(--flow-cut-inner)),
+    calc(100% - var(--flow-cut-inner)) 100%,
+    0 100%
   );
   position: relative;
   isolation: isolate;
@@ -1421,31 +980,37 @@
   }
 }
 
-.legend-notch {
-  --lg-notch: 7px;
-  --lg-border: 1px;
-  --lg-border-color: color-mix(in oklab, var(--border) 55%, transparent);
-  --lg-fill: color-mix(in oklab, var(--muted) 40%, var(--background));
-  --lg-shape: polygon(
-    0 0,
-    100% 0,
-    100% calc(100% - var(--lg-notch)),
-    calc(100% - var(--lg-notch)) 100%,
-    0 100%
-  );
-  position: relative;
-  isolation: isolate;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background-color: var(--lg-border-color) !important;
-  clip-path: var(--lg-shape);
+@supports (corner-shape: bevel) {
+  :is(a, button, [role='button']).btn-notch {
+    clip-path: none;
+    border-radius: 0 var(--btn-cut) 0 var(--btn-cut) !important;
+    corner-shape: bevel;
+    isolation: isolate;
+    overflow: clip;
+  }
 }
-.legend-notch::before {
-  content: '';
-  position: absolute;
-  inset: var(--lg-border);
-  z-index: -1;
-  background-color: var(--lg-fill);
-  clip-path: var(--lg-shape);
-  pointer-events: none;
+
+@supports not (corner-shape: bevel) {
+  :is(a, button, [role='button']).btn-notch:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: -2px;
+  }
+}
+
+:is(a, button, [role='button']):is(.notch-bl-tr, .notch-br, .notch-br-sm):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -2px;
+}
+
+.solve-notch:focus-visible {
+  --notch-border: 2px;
+  --notch-border-color: currentColor;
+}
+.algo-card-notch:focus-visible {
+  --ac-border: 2px;
+  --ac-border-color: currentColor;
+}
+.category-notch:focus-visible {
+  --cat-border: 2px;
+  --cat-border-color: currentColor;
 }
