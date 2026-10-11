@@ -16,7 +16,6 @@ export function UserHeader({ user }: Props) {
         { label: t('people'), href: '/people' },
         { label: user.name, href: `/people/${user._id}` }
       ]}
-      accentStripe
     />
   )
 }

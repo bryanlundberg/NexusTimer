@@ -112,7 +112,6 @@ export default function SharedSolvePage() {
           { label: solve.author.name, href: profileHref },
           { label: t('breadcrumb'), href: `/s/${solve.slug}` }
         ]}
-        accentStripe
       />
       <PullToRefresh scrollerRef={scrollRef} onRefresh={mutate} />
 

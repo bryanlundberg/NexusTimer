@@ -31,10 +31,9 @@ export interface BreadcrumbEntry {
 interface CoreHeaderProps {
   breadcrumbs: BreadcrumbEntry[]
   actions?: React.ReactNode
-  accentStripe?: boolean
 }
 
-export default function CoreHeader({ breadcrumbs, actions, accentStripe = false }: CoreHeaderProps) {
+export default function CoreHeader({ breadcrumbs, actions }: CoreHeaderProps) {
   const { data: session, status } = useSession()
   const open = useOverlayStore((store) => store.open)
   const tAuth = useTranslations('Index.Auth')
@@ -138,16 +137,6 @@ export default function CoreHeader({ breadcrumbs, actions, accentStripe = false 
           )}
         </div>
       </div>
-      {accentStripe && (
-        <div className="flex w-full h-0.75" aria-hidden>
-          <div className="flex-1 bg-cube-white" />
-          <div className="flex-1 bg-cube-yellow" />
-          <div className="flex-1 bg-cube-red" />
-          <div className="flex-1 bg-cube-orange" />
-          <div className="flex-1 bg-cube-blue" />
-          <div className="flex-1 bg-cube-green" />
-        </div>
-      )}
     </div>
   )
 }

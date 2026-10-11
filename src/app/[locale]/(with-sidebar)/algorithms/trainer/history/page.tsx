@@ -22,7 +22,6 @@ export default async function TrainerHistoryPage() {
     <ScrollArea className="max-h-dvh overflow-auto" overscrollStretch>
       <CoreHeader
         breadcrumbs={[{ label: tTrainer('breadcrumb'), href: '/algorithms/trainer' }, { label: t('breadcrumb') }]}
-        accentStripe
       />
 
       <PageBody variant="data">

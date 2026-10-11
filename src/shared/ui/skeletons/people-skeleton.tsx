@@ -1,6 +1,6 @@
 import { Skeleton } from '@/components/ui/skeleton'
 
-/** Matches CoreHeader: sticky 12-height bar + accent stripe. */
+/** Matches CoreHeader: sticky 12-height bar. */
 export function CoreHeaderSkeleton() {
   return (
     <div className="w-full">
@@ -10,14 +10,6 @@ export function CoreHeaderSkeleton() {
         <Skeleton className="h-3.5 w-16" />
         <span className="text-border/60">/</span>
         <Skeleton className="h-3.5 w-28" />
-      </div>
-      <div className="flex w-full h-0.75" aria-hidden>
-        <div className="flex-1 bg-cube-white" />
-        <div className="flex-1 bg-cube-yellow" />
-        <div className="flex-1 bg-cube-red" />
-        <div className="flex-1 bg-cube-orange" />
-        <div className="flex-1 bg-cube-blue" />
-        <div className="flex-1 bg-cube-green" />
       </div>
     </div>
   )

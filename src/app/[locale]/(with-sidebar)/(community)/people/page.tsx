@@ -29,7 +29,7 @@ export default function PeoplePage() {
 
   return (
     <ScrollArea ref={scrollRef} className={'max-h-dvh overflow-auto'}>
-      <CoreHeader breadcrumbs={[{ label: t('title'), href: '/people' }]} accentStripe />
+      <CoreHeader breadcrumbs={[{ label: t('title'), href: '/people' }]} />
       <PullToRefresh scrollerRef={scrollRef} onRefresh={mutate} />
       <PageBody variant="hero" className="px-2 pb-8 flex flex-col w-full max-w-2xl mx-auto">
         <PeoplePageHeader total={data?.docs} showing={data?.events?.length} />

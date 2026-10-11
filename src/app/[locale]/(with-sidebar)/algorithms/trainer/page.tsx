@@ -14,10 +14,7 @@ export default async function TrainerPage() {
   const t = await getTranslations('Index.TrainerPage')
   return (
     <div className="min-h-dvh flex flex-col">
-      <CoreHeader
-        breadcrumbs={[{ label: tAlgs('title'), href: '/algorithms' }, { label: t('breadcrumb') }]}
-        accentStripe
-      />
+      <CoreHeader breadcrumbs={[{ label: tAlgs('title'), href: '/algorithms' }, { label: t('breadcrumb') }]} />
 
       <PageBody variant="data" className="flex-1 flex flex-col pt-0">
         <TrainerExperience />
