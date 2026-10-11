@@ -122,7 +122,7 @@ export default function CompareUsersModal() {
               onClick={handleAddMore}
               className="group flex cursor-pointer flex-col items-center gap-3 outline-none"
             >
-              <div className="notch-bl-tr flex size-16 items-center justify-center border-4 border-dashed border-muted-foreground/30 transition-all duration-300 [--nblt:14px] group-hover:border-primary/50 group-hover:bg-primary/5 group-focus-visible:border-primary sm:size-24 sm:[--nblt:18px]">
+              <div className="flex size-16 items-center justify-center border-4 border-dashed border-muted-foreground/30 transition-all duration-300 group-hover:border-primary/50 group-hover:bg-primary/5 group-focus-visible:border-primary sm:size-24">
                 <PlusIcon
                   className="size-8 text-muted-foreground/50 transition-colors group-hover:text-primary sm:size-10"
                   strokeWidth={1.5}
