@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge'
 import { cn } from '@/shared/lib/utils'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
+import AlgorithmNotation from '@/shared/ui/algorithm-notation/AlgorithmNotation'
 import { applyYellowOrientation } from '@/shared/lib/algorithms/vizConfig'
 import AlgorithmModal from '@/features/algorithms-list/ui/algorithm-modal'
 import ActionButton from '@/features/algorithms-list/ui/action-button'
@@ -69,9 +70,7 @@ export default function AlgorithmCard({
   }
 
   return (
-    <div
-      className={cn('transition-colors', isLearned && 'bg-primary/5 shadow-[inset_2px_0_0_var(--primary)]', className)}
-    >
+    <div className={cn('transition-colors', isLearned && 'bg-primary/5', className)}>
       <div
         className={cn(
           'flex items-start gap-2 px-2 py-2 transition-colors sm:gap-3 sm:px-3 sm:py-2.5',
@@ -91,7 +90,7 @@ export default function AlgorithmCard({
       >
         <div
           className={cn(
-            'badge-notch flex size-24 shrink-0 items-center justify-center overflow-hidden bg-muted/40 p-1.5 sm:size-36 sm:p-2.5',
+            'flex size-24 shrink-0 items-center justify-center overflow-hidden bg-muted/40 p-1.5 sm:size-36 sm:p-2.5',
             isLearned && 'ring-1 ring-primary/40'
           )}
         >
@@ -101,16 +100,18 @@ export default function AlgorithmCard({
         <div className="flex flex-1 min-w-0 flex-col gap-0.5">
           <div className="flex min-w-0 items-center gap-2">
             <h3 className="truncate text-sm font-medium">{algorithm.name}</h3>
-            <Badge variant="outline" className="badge-notch shrink-0 text-[10px] font-normal">
+            <Badge variant="outline" className="shrink-0 text-[10px] font-normal">
               {algorithm.group}
             </Badge>
             {canExpand && (
               <span className="shrink-0 text-[10px] tabular-nums text-muted-foreground">+{alternatives.length}</span>
             )}
           </div>
-          <code className="block min-w-0 break-all font-mono leading-relaxed text-muted-foreground">
-            {primary?.moves ?? '--'}
-          </code>
+          {primary?.moves ? (
+            <AlgorithmNotation alg={primary.moves} className="block min-w-0 text-foreground" />
+          ) : (
+            <span className="text-muted-foreground">--</span>
+          )}
         </div>
 
         <div className="flex shrink-0 items-center gap-1 self-center">
