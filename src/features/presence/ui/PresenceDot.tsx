@@ -15,9 +15,9 @@ const SHAPES: Record<PresenceView, string> = {
 }
 
 const COLORS: Record<PresenceView, string> = {
-  online: 'text-emerald-500',
-  away: 'text-amber-400',
-  busy: 'text-red-500',
+  online: 'text-success',
+  away: 'text-warning',
+  busy: 'text-destructive',
   offline: 'text-zinc-400 dark:text-zinc-500',
   unknown: 'text-zinc-300/70 dark:text-zinc-700'
 }
