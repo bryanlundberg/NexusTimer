@@ -33,7 +33,7 @@ export default function SolvesViewOptionsButton() {
         <Button
           variant={'outline'}
           size={'icon'}
-          className={'btn-notch btn-notch-alt btn-notch-border relative size-9 pointer-coarse:size-10'}
+          className={'relative size-9 pointer-coarse:size-10'}
           aria-label={t('SolvesPage.view-options')}
         >
           <SlidersHorizontal />
@@ -85,7 +85,6 @@ export default function SolvesViewOptionsButton() {
         <DropdownMenuSeparator />
         <DropdownMenuLabel>{t('SolvesPage.show')}</DropdownMenuLabel>
         <DropdownMenuCheckboxItem
-          highlight="rounded"
           checked={enabled.ok}
           onCheckedChange={() => toggle('ok')}
           onSelect={(e) => e.preventDefault()}
@@ -93,7 +92,6 @@ export default function SolvesViewOptionsButton() {
           OK
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem
-          highlight="rounded"
           checked={enabled.plus2}
           onCheckedChange={() => toggle('plus2')}
           onSelect={(e) => e.preventDefault()}
@@ -101,7 +99,6 @@ export default function SolvesViewOptionsButton() {
           +2
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem
-          highlight="rounded"
           checked={enabled.dnf}
           onCheckedChange={() => toggle('dnf')}
           onSelect={(e) => e.preventDefault()}

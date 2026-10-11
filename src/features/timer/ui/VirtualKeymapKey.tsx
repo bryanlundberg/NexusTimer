@@ -55,7 +55,6 @@ function VirtualKeymapKey({ code, label, move, isPressed, onSelect }: VirtualKey
               {group.moves.map((option) => (
                 <DropdownMenuItem
                   key={option.move}
-                  highlight="rounded"
                   onSelect={() => onSelect(code, option.move)}
                   className={cn(
                     'justify-center px-1 py-1.5 text-xs font-medium',
@@ -70,12 +69,7 @@ function VirtualKeymapKey({ code, label, move, isPressed, onSelect }: VirtualKey
         ))}
 
         <DropdownMenuSeparator />
-        <DropdownMenuItem
-          variant="destructive"
-          highlight="rounded"
-          disabled={!move}
-          onSelect={() => onSelect(code, null)}
-        >
+        <DropdownMenuItem variant="destructive" disabled={!move} onSelect={() => onSelect(code, null)}>
           Clear key
         </DropdownMenuItem>
       </DropdownMenuContent>
