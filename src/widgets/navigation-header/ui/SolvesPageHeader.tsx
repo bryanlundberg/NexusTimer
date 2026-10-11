@@ -18,10 +18,7 @@ export default function SolvesPageHeader() {
       <div className="flex flex-col gap-2 @2xl:flex-row @2xl:items-center">
         <div className="flex items-center gap-2 @2xl:contents">
           <div className="flex min-w-0 flex-1 items-center @2xl:order-1 @2xl:flex-none">
-            <SolvesTabSwitcher
-              className="w-full @2xl:w-auto"
-              listClassName="[&_[data-slot=tabs-trigger]]:grow @2xl:[&_[data-slot=tabs-trigger]]:grow-0"
-            />
+            <SolvesTabSwitcher className="w-full @2xl:w-auto [&>button]:flex-1 [&>button]:justify-center @2xl:[&>button]:flex-none" />
           </div>
           {isSession && (
             <div className="flex shrink-0 items-center @2xl:order-3">
