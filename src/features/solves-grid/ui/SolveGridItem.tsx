@@ -59,7 +59,7 @@ export default function SolveGridItem({ index, orderedSolves, solve, isRecord = 
       data-record={isRecord ? 'true' : undefined}
       style={{ WebkitTouchCallout: 'none' }}
       className={cn(
-        'solve-notch relative grow flex flex-col items-center justify-center w-full h-full text-center transition duration-200 cursor-pointer p-2 sm:p-3 select-none active:scale-100'
+        'item-card relative grow flex flex-col items-center justify-center w-full h-full text-center transition duration-200 cursor-pointer p-2 sm:p-3 select-none active:scale-100'
       )}
     >
       {item.bookmark && (
@@ -67,7 +67,7 @@ export default function SolveGridItem({ index, orderedSolves, solve, isRecord = 
           className="pointer-events-none absolute left-0 top-0 size-5 overflow-hidden"
           data-testid={`bookmark-icon-${index}`}
         >
-          <div className="absolute left-0 top-0 size-0 border-r-[20px] border-t-[20px] border-r-transparent border-t-yellow-500" />
+          <div className="absolute left-0 top-0 size-0 border-r-[20px] border-t-[20px] border-r-transparent border-t-record" />
           <Star className="absolute left-[2px] top-[2px] size-2 fill-white text-white" />
         </div>
       )}
@@ -75,7 +75,7 @@ export default function SolveGridItem({ index, orderedSolves, solve, isRecord = 
       {selectionMode ? (
         <div
           className={cn(
-            'absolute top-1 right-1 sm:top-2 sm:right-2 flex size-4 items-center justify-center rounded-[3px] border transition-colors',
+            'absolute top-1 right-1 sm:top-2 sm:right-2 flex size-4 items-center justify-center border transition-colors',
             selected ? 'border-primary bg-primary text-primary-foreground' : 'border-muted-foreground/40'
           )}
           data-testid={`solve-select-indicator-${index}`}

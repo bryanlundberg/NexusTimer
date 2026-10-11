@@ -26,7 +26,7 @@ export default function SolveTransferCard({ solve, isSelected, onToggle }: Solve
       aria-pressed={isSelected}
       data-selected={isSelected ? 'true' : undefined}
       className={cn(
-        'solve-notch relative grow flex items-center justify-center font-medium text-center transition duration-200 cursor-pointer w-full h-full p-2 sm:p-3 select-none active:scale-100'
+        'item-card relative grow flex items-center justify-center font-medium text-center transition duration-200 cursor-pointer w-full h-full p-2 sm:p-3 select-none active:scale-100'
       )}
     >
       <div className={cn('flex items-end gap-1 tabular-nums transition-opacity', solve.dnf && 'opacity-60')}>

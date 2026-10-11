@@ -498,101 +498,56 @@
   clip-path: var(--btn-shape);
 }
 
-/* Notched (cut-corner) cards for the solves grid */
-.solve-notch {
-  --notch: 12px;
-  --notch-border: 1px;
-  --notch-border-color: var(--border);
-  --notch-fill: var(--background);
-  --notch-shape: polygon(
+.item-card {
+  --card-cut: 12px;
+  --card-border: 1px;
+  --card-border-color: var(--border);
+  --card-fill: color-mix(in oklab, var(--card) 50%, var(--background));
+  --card-shape: polygon(
     0 0,
     100% 0,
-    100% calc(100% - var(--notch)),
-    calc(100% - var(--notch)) 100%,
-    0 100%
-  );
-  position: relative;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background-color: var(--notch-border-color) !important;
-  clip-path: var(--notch-shape);
-}
-.solve-notch::before {
-  content: '';
-  position: absolute;
-  inset: var(--notch-border);
-  z-index: -1;
-  background-color: var(--notch-fill);
-  clip-path: var(--notch-shape);
-  pointer-events: none;
-  transition: background-color 200ms ease;
-}
-.solve-notch:hover {
-  --notch-border: 2px;
-  --notch-border-color: var(--primary);
-}
-.solve-notch[data-record='true'] {
-  --notch-border-color: color-mix(in oklab, var(--record) 55%, transparent);
-  --notch-fill: color-mix(in oklab, var(--record) 9%, var(--background));
-}
-.solve-notch[data-record='true']:hover {
-  --notch-border: 2px;
-  --notch-border-color: var(--record);
-}
-.solve-notch[data-selected='true'] {
-  --notch-border: 2px;
-  --notch-border-color: var(--primary);
-  --notch-fill: color-mix(in oklab, var(--primary) 12%, var(--background));
-}
-
-/* Notched cards for the cubes dashboard, same clutch language as
-   the solves grid, tuned for larger cards and richer favorite/active states. */
-.cube-notch {
-  --cube-notch: 14px;
-  --cube-notch-border: 1px;
-  --cube-notch-border-color: var(--border);
-  --cube-notch-fill: color-mix(in oklab, var(--card) 50%, var(--background));
-  --cube-notch-shape: polygon(
-    0 0,
-    100% 0,
-    100% calc(100% - var(--cube-notch)),
-    calc(100% - var(--cube-notch)) 100%,
+    100% calc(100% - var(--card-cut)),
+    calc(100% - var(--card-cut)) 100%,
     0 100%
   );
   position: relative;
   isolation: isolate;
   border: 0 !important;
   border-radius: 0 !important;
-  background-color: var(--cube-notch-border-color) !important;
-  clip-path: var(--cube-notch-shape);
+  background-color: var(--card-border-color) !important;
+  clip-path: var(--card-shape);
   transition: background-color 200ms ease;
 }
-.cube-notch::before {
+.item-card::before {
   content: '';
   position: absolute;
-  inset: var(--cube-notch-border);
+  inset: var(--card-border);
   z-index: -1;
-  background-color: var(--cube-notch-fill);
-  clip-path: var(--cube-notch-shape);
+  background-color: var(--card-fill);
+  clip-path: var(--card-shape);
   pointer-events: none;
   transition: background-color 200ms ease;
 }
-.cube-notch:hover {
-  --cube-notch-border: 2px;
-  --cube-notch-border-color: var(--primary);
-  --cube-notch-fill: color-mix(in oklab, var(--card) 80%, var(--background));
+.item-card:hover {
+  --card-border-color: color-mix(in oklab, var(--primary) 55%, var(--border));
+  --card-fill: color-mix(in oklab, var(--card) 80%, var(--background));
 }
-.cube-notch[data-active='true'] {
-  --cube-notch-border-color: color-mix(in oklab, var(--primary) 25%, var(--border));
+.item-card[data-active='true'] {
+  --card-border-color: color-mix(in oklab, var(--primary) 30%, var(--border));
 }
-.cube-notch[data-favorite='true'] {
-  --cube-notch-border-color: color-mix(in oklab, var(--record) 30%, var(--border));
-  --cube-notch-fill: color-mix(in oklab, var(--record) 5%, var(--background));
+.item-card:is([data-record='true'], [data-favorite='true']) {
+  --card-border-color: color-mix(in oklab, var(--record) 45%, var(--border));
+  --card-fill: color-mix(in oklab, var(--record) 7%, var(--background));
 }
-.cube-notch[data-favorite='true']:hover {
-  --cube-notch-border: 2px;
-  --cube-notch-border-color: color-mix(in oklab, var(--record) 70%, var(--border));
-  --cube-notch-fill: color-mix(in oklab, var(--record) 8%, var(--background));
+.item-card:is([data-record='true'], [data-favorite='true']):hover {
+  --card-border-color: color-mix(in oklab, var(--record) 75%, var(--border));
+  --card-fill: color-mix(in oklab, var(--record) 10%, var(--background));
+}
+.item-card[data-selected='true'],
+.item-card[data-selected='true']:hover {
+  --card-border: 2px;
+  --card-border-color: var(--primary);
+  --card-fill: color-mix(in oklab, var(--primary) 12%, var(--background));
 }
 
 /* Notched alert boxes (edit / delete modals) — cut bottom-right corner with a
@@ -672,44 +627,6 @@
   --cat-border: 1.5px;
   --cat-border-color: color-mix(in oklab, var(--primary) 75%, var(--border));
   --cat-fill: color-mix(in oklab, var(--primary) 11%, var(--background));
-}
-
-/* Algorithm method cards */
-.algo-card-notch {
-  --ac-notch: 12px;
-  --ac-border: 1px;
-  --ac-border-color: var(--border);
-  --ac-fill: color-mix(in oklab, var(--card) 55%, var(--background));
-  --ac-shape: polygon(
-    0 0,
-    100% 0,
-    100% calc(100% - var(--ac-notch)),
-    calc(100% - var(--ac-notch)) 100%,
-    0 100%
-  );
-  position: relative;
-  isolation: isolate;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background-color: var(--ac-border-color) !important;
-  clip-path: var(--ac-shape);
-  transition: background-color 200ms ease;
-}
-.algo-card-notch::before {
-  content: '';
-  position: absolute;
-  inset: var(--ac-border);
-  z-index: -1;
-  background-color: var(--ac-fill);
-  clip-path: var(--ac-shape);
-  pointer-events: none;
-  transition: background-color 200ms ease;
-}
-.algo-card-notch:hover,
-.group:hover .algo-card-notch {
-  --ac-border: 2px;
-  --ac-border-color: var(--primary);
-  --ac-fill: color-mix(in oklab, var(--primary) 9%, var(--background));
 }
 
 /* Shared surface panel — cut bottom-right corner with a traced border. Used by the
@@ -928,13 +845,9 @@
   outline-offset: -2px;
 }
 
-.solve-notch:focus-visible {
-  --notch-border: 2px;
-  --notch-border-color: currentColor;
-}
-.algo-card-notch:focus-visible {
-  --ac-border: 2px;
-  --ac-border-color: currentColor;
+.item-card:focus-visible {
+  --card-border: 2px;
+  --card-border-color: currentColor;
 }
 .category-notch:focus-visible {
   --cat-border: 2px;

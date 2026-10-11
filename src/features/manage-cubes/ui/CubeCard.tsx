@@ -1,4 +1,3 @@
-import { IconButton } from '@/components/ui/shadcn-io/icon-button'
 import { Clock, Star } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
@@ -61,7 +60,7 @@ export function CubeCard({ cube }: CubeCardProps) {
       key={cube.id}
       data-active={isActive ? 'true' : undefined}
       data-favorite={cube.favorite ? 'true' : undefined}
-      className={cn('cube-notch group relative flex flex-col gap-2 p-4 text-card-foreground')}
+      className={cn('item-card group relative flex flex-col gap-2 p-4 text-card-foreground')}
     >
       {/* Header */}
       <div className="flex justify-between items-start">
@@ -73,21 +72,19 @@ export function CubeCard({ cube }: CubeCardProps) {
           >
             {cube.name}
           </h3>
-          {isActive && (
-            <span className="relative flex h-2 w-2 shrink-0">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
-            </span>
-          )}
+          {isActive && <span aria-hidden className="size-1.5 shrink-0 bg-primary" />}
         </div>
-        <IconButton
+        <Button
+          variant="ghost"
+          size="icon"
+          className="size-8 pointer-coarse:size-10"
           data-testid={`favorite-cube-button-${cube.name}`}
-          icon={Star}
-          active={cube.favorite}
-          color={[251, 191, 36]}
+          aria-label={t('CubesPage.favorite')}
+          aria-pressed={cube.favorite}
           onClick={handleFavorite}
-          size="sm"
-        />
+        >
+          <Star className={cn('size-4', cube.favorite ? 'fill-record text-record' : 'text-muted-foreground')} />
+        </Button>
       </div>
 
       <div className="flex items-center gap-2">
