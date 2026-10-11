@@ -57,7 +57,7 @@ export default function PeopleOverviewRow({ stats }: PeopleOverviewRowProps) {
         <span className="text-sm font-bold tabular-nums">{count.toLocaleString(locale)}</span>
 
         {/* Expand indicator */}
-        <div className="flex items-center justify-center size-6 rounded-md text-muted-foreground">
+        <div className="flex items-center justify-center size-6 text-muted-foreground">
           <ChevronDown className={`size-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
         </div>
       </motion.div>
