@@ -18,6 +18,11 @@
       "content": "キューブごとに登録して、気兼ねなく切り替えましょう。カテゴリーの記録はひとつの流れのまま続き、キューブごとの平均もいつでもわかります。",
       "cta": "わかりました"
     },
+    "BackupTips": {
+      "label": "ヒント：",
+      "sync-order": "気楽にどうぞ。端末間で順番を気にする必要はありません。好きなときに、好きな端末からバックアップしてください。Nexus Timer はデータを自動でまとめて整理できるくらい賢いんです。",
+      "cta": "わかりました"
+    },
     "others": {
       "suggestions": "提案"
     },
@@ -276,7 +281,7 @@
         "select-cube": "キューブを選択して開始してください！"
       },
       "dropdown": {
-        "transfer-collection": "コレクションを移動",
+        "transfer-collection": "別のキューブに移動",
         "move-to-history": "アーカイブへ移動"
       },
       "empty-solves": "履歴がまだありません！",
@@ -348,8 +353,8 @@
       "status": "ステータス",
       "using": "使用中",
       "idle": "待機中",
-      "new-collection": "新規コレクション",
-      "new-collection-description": "キューブを整理するための新しいコレクションを作成します。",
+      "new-collection": "キューブを登録",
+      "new-collection-description": "名前とカテゴリーを決めると、タイムの記録を始められます。",
       "restore-account-data": "アカウントデータを復元",
       "restore-account-data-description": "バックアップからデータを復元します。",
       "import-from-other-timers": "他のタイマーからインポート",
@@ -364,31 +369,32 @@
       "session-solves": "セッションのソルブ",
       "historical-solves": "過去のソルブ",
       "active-count": "{count, plural, other {# 個アクティブ}}",
-      "collections-count": "{count, plural, other {# コレクション}}",
-      "empty-description": "最初のコレクションを作成するか、他のタイマーからデータを取り込みましょう。Nexi は初めてのソルブを待っています。",
-      "empty-title": "コレクションはまだありません",
+      "collections-count": "{count, plural, other {# 個のキューブ}}",
+      "empty-description": "最初のキューブを登録するか、他のタイマーからデータを取り込みましょう。Nexi は初めてのソルブを待っています。",
+      "empty-title": "登録したキューブはまだありません",
       "total-solves-count": "{count, plural, other {# ソルブ}}"
     },
     "Cubes-modal": {
-      "delete-collection": "コレクションを削除",
-      "delete-collection-description": "このコレクションとすべてのタイム、記録、設定が削除されます。",
-      "edit-collection": "コレクションを編集",
+      "delete-collection": "キューブを削除",
+      "delete-collection-description": "このキューブとすべてのタイム、記録、設定が削除されます。",
+      "edit-collection": "キューブを編集",
       "danger-msg": "カテゴリを変更すると、そのカテゴリに関連付けられたタイムも変更されます。",
       "name": "名前",
       "category": "カテゴリ",
       "select-an-option": "オプションを選択",
-      "new-collection": "新規コレクション",
+      "new-collection": "キューブを登録",
+      "register": "登録",
       "current-selection": "現在の選択：",
       "delete-confirmation-check": "「{name}」とそのすべてのタイムが完全に削除されることを理解しています。",
       "name-placeholder": "例: X-Man Tornado V3 M"
     },
     "Errors": {
-      "repeated-name": "そのコレクション名はすでに存在します。",
-      "collection-edit-failed": "コレクションの編集に失敗しました",
+      "repeated-name": "その名前のキューブはすでにあります。",
+      "collection-edit-failed": "キューブの編集に失敗しました",
       "required-field": "必須項目です",
-      "collection-deleted": "コレクションを削除しました",
-      "collection-delete-failed": "コレクションの削除に失敗しました",
-      "permanent-delete-warning": "このコレクションは完全に削除されます。"
+      "collection-deleted": "キューブを削除しました",
+      "collection-delete-failed": "キューブの削除に失敗しました",
+      "permanent-delete-warning": "このキューブは完全に削除されます。"
     },
     "Inputs": {
       "delete": "削除",
@@ -399,7 +405,7 @@
       "create": "作成",
       "cancel": "キャンセル",
       "none": "なし",
-      "collections": "コレクション",
+      "collections": "キューブ",
       "empty": "空",
       "back": "戻る",
       "no-results": "結果が見つかりません",
@@ -687,7 +693,7 @@
       "unknown-category": "不明",
       "move-to-history": "アーカイブへ移動",
       "move-to-session": "セッションへ移動",
-      "transfer-collection": "コレクションを移動",
+      "transfer-collection": "別のキューブに移動",
       "delete-confirm-title": "このソルブを削除しますか？",
       "delete-confirm-desc": "この操作は取り消せません。",
       "watch-replay": "リプレイを見る",
@@ -812,8 +818,8 @@
       "backup-history": "履歴"
     },
     "TransferSolvesPage": {
-      "no-source-title": "Did you record a solve with the wrong cube?",
-      "no-source-description": "Here you can transfer it to the correct collection.",
+      "no-source-title": "違うキューブでソルブを記録しましたか？",
+      "no-source-description": "ここで正しいキューブに移動できます。",
       "title": "タイムを移動",
       "collection-origin": "移動元",
       "collection-destination": "移動先",

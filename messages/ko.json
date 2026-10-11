@@ -18,6 +18,11 @@
       "content": "큐브마다 등록하고 마음껏 바꿔 가며 사용하세요. 카테고리 기록은 하나의 흐름으로 이어지고, 큐브별 평균도 언제든 확인할 수 있어요.",
       "cta": "알겠어요"
     },
+    "BackupTips": {
+      "label": "프로 팁:",
+      "sync-order": "편하게 하세요. 기기 간에 순서를 지킬 필요가 없어요. 원할 때 원하는 기기에서 백업하세요. Nexus Timer는 데이터를 합치고 정리할 만큼 똑똑해요.",
+      "cta": "알겠어요"
+    },
     "others": {
       "suggestions": "제안"
     },
@@ -276,7 +281,7 @@
         "select-cube": "큐브를 먼저 선택하고 시작하세요!"
       },
       "dropdown": {
-        "transfer-collection": "컬렉션 이동",
+        "transfer-collection": "다른 큐브로 이동",
         "move-to-history": "기록실로 이동"
       },
       "empty-solves": "아직 기록이 없습니다!",
@@ -348,8 +353,8 @@
       "status": "상태",
       "using": "사용 중",
       "idle": "대기 중",
-      "new-collection": "새 컬렉션",
-      "new-collection-description": "큐브를 정리하기 위해 새 컬렉션을 만듭니다.",
+      "new-collection": "큐브 등록",
+      "new-collection-description": "이름과 카테고리를 정하고 기록을 저장해 보세요.",
       "restore-account-data": "계정 데이터 복원",
       "restore-account-data-description": "계정 백업에서 데이터를 복원합니다.",
       "import-from-other-timers": "다른 타이머에서 가져오기",
@@ -364,31 +369,32 @@
       "session-solves": "세션 기록",
       "historical-solves": "과거 기록",
       "active-count": "{count, plural, other {#개 활성}}",
-      "collections-count": "{count, plural, other {#개 컬렉션}}",
-      "empty-description": "첫 컬렉션을 만들거나 다른 타이머에서 데이터를 가져오세요. Nexi가 첫 솔브를 기다리고 있습니다.",
-      "empty-title": "아직 컬렉션이 없습니다",
+      "collections-count": "{count, plural, other {#개 큐브}}",
+      "empty-description": "첫 큐브를 등록하거나 다른 타이머에서 데이터를 가져오세요. Nexi가 첫 솔브를 기다리고 있습니다.",
+      "empty-title": "아직 등록한 큐브가 없습니다",
       "total-solves-count": "{count, plural, other {#개 솔브}}"
     },
     "Cubes-modal": {
-      "delete-collection": "컬렉션 삭제",
-      "delete-collection-description": "이 컬렉션과 관련된 모든 기록 및 설정이 삭제됩니다.",
-      "edit-collection": "컬렉션 수정",
+      "delete-collection": "큐브 삭제",
+      "delete-collection-description": "이 큐브와 관련된 모든 기록 및 설정이 삭제됩니다.",
+      "edit-collection": "큐브 수정",
       "danger-msg": "카테고리를 변경하면 해당 카테고리와 연동된 기록들도 변경됩니다.",
       "name": "이름",
       "category": "카테고리",
       "select-an-option": "옵션 선택",
-      "new-collection": "새 컬렉션",
+      "new-collection": "큐브 등록",
+      "register": "등록",
       "current-selection": "현재 선택:",
-      "delete-confirmation-check": "\"{name}\" 컬렉션과 모든 기록이 영구적으로 삭제된다는 것을 이해합니다.",
+      "delete-confirmation-check": "\"{name}\" 큐브와 모든 기록이 영구적으로 삭제된다는 것을 이해합니다.",
       "name-placeholder": "예: X-Man Tornado V3 M"
     },
     "Errors": {
-      "repeated-name": "이미 존재하는 컬렉션 이름입니다.",
-      "collection-edit-failed": "컬렉션 수정 실패",
+      "repeated-name": "이미 같은 이름의 큐브가 있습니다.",
+      "collection-edit-failed": "큐브 수정 실패",
       "required-field": "필수 필드",
-      "collection-deleted": "컬렉션이 삭제되었습니다",
-      "collection-delete-failed": "컬렉션 삭제 실패",
-      "permanent-delete-warning": "이 컬렉션은 영구적으로 삭제됩니다."
+      "collection-deleted": "큐브가 삭제되었습니다",
+      "collection-delete-failed": "큐브 삭제 실패",
+      "permanent-delete-warning": "이 큐브는 영구적으로 삭제됩니다."
     },
     "Inputs": {
       "delete": "삭제",
@@ -399,7 +405,7 @@
       "create": "생성",
       "cancel": "취소",
       "none": "없음",
-      "collections": "컬렉션",
+      "collections": "큐브",
       "empty": "비어 있음",
       "back": "뒤로",
       "no-results": "결과 없음",
@@ -687,7 +693,7 @@
       "unknown-category": "알 수 없음",
       "move-to-history": "기록실로 이동",
       "move-to-session": "세션으로 이동",
-      "transfer-collection": "컬렉션 이동",
+      "transfer-collection": "다른 큐브로 이동",
       "delete-confirm-title": "이 솔브를 삭제하시겠습니까?",
       "delete-confirm-desc": "이 작업은 되돌릴 수 없습니다.",
       "watch-replay": "리플레이 보기",
@@ -812,11 +818,11 @@
       "backup-history": "기록"
     },
     "TransferSolvesPage": {
-      "no-source-title": "Did you record a solve with the wrong cube?",
-      "no-source-description": "Here you can transfer it to the correct collection.",
+      "no-source-title": "다른 큐브로 솔브를 기록했나요?",
+      "no-source-description": "여기서 올바른 큐브로 옮길 수 있습니다.",
       "title": "기록 이동",
-      "collection-origin": "원본 컬렉션",
-      "collection-destination": "대상 컬렉션",
+      "collection-origin": "원본 큐브",
+      "collection-destination": "대상 큐브",
       "transfer": "이동",
       "transferring": "이동 중...",
       "solves-selected": "기록: ({count}개 선택됨)",

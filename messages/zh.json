@@ -18,6 +18,11 @@
       "content": "为每个魔方单独登记，放心地随时切换：每个项目的成绩始终是一条连续的序列，你也总能知道自己用每个魔方的平均成绩。",
       "cta": "知道了"
     },
+    "BackupTips": {
+      "label": "小贴士：",
+      "sync-order": "放轻松，设备之间不需要遵循任何顺序。随时随地想备份就备份：Nexus Timer 足够聪明，会自动合并并整理你的数据。",
+      "cta": "知道了"
+    },
     "others": {
       "suggestions": "建议"
     },
@@ -276,7 +281,7 @@
         "select-cube": "开始前先选择一个魔方！"
       },
       "dropdown": {
-        "transfer-collection": "转移收藏",
+        "transfer-collection": "转移到其他魔方",
         "move-to-history": "移至历史记录"
       },
       "empty-solves": "这里还没有内容！",
@@ -348,8 +353,8 @@
       "status": "状态",
       "using": "正在使用",
       "idle": "闲置中",
-      "new-collection": "新系列",
-      "new-collection-description": "创建一个新系列来组织你的魔方。",
+      "new-collection": "添加魔方",
+      "new-collection-description": "设置名称和项目，开始记录它的成绩。",
       "restore-account-data": "恢复账户数据",
       "restore-account-data-description": "从账户备份中恢复你的数据。",
       "import-from-other-timers": "从其他计时器导入",
@@ -364,31 +369,32 @@
       "session-solves": "当前组还原",
       "historical-solves": "历史还原",
       "active-count": "{count, plural, other {# 个活跃}}",
-      "collections-count": "{count, plural, other {# 个收藏集}}",
-      "empty-description": "创建你的第一个收藏集，或从其他计时器导入数据。Nexi 已准备好迎接你的第一次复原。",
-      "empty-title": "还没有收藏集",
+      "collections-count": "{count, plural, other {# 个魔方}}",
+      "empty-description": "添加你的第一个魔方，或从其他计时器导入数据。Nexi 已准备好迎接你的第一次复原。",
+      "empty-title": "还没有魔方",
       "total-solves-count": "{count, plural, other {# 次复原}}"
     },
     "Cubes-modal": {
-      "delete-collection": "删除系列",
-      "delete-collection-description": "此魔方系列及其所有还原纪录、成绩和设置都将被删除。",
-      "edit-collection": "编辑系列",
-      "danger-msg": "修改系列类别也会改变与该类别关联的还原纪录。",
+      "delete-collection": "删除魔方",
+      "delete-collection-description": "此魔方及其所有还原纪录、成绩和设置都将被删除。",
+      "edit-collection": "编辑魔方",
+      "danger-msg": "修改类别也会改变这个魔方的所有还原纪录。",
       "name": "名称",
       "category": "类别",
       "select-an-option": "选择一个选项",
-      "new-collection": "新系列",
+      "new-collection": "添加魔方",
+      "register": "添加",
       "current-selection": "当前选择：",
       "delete-confirmation-check": "我了解\"{name}\"及其所有还原纪录将被永久删除。",
       "name-placeholder": "例如 X-Man Tornado V3 M"
     },
     "Errors": {
-      "repeated-name": "该系列名称已存在。",
-      "collection-edit-failed": "魔方系列编辑失败",
+      "repeated-name": "已经有同名的魔方了。",
+      "collection-edit-failed": "魔方编辑失败",
       "required-field": "必填字段",
-      "collection-deleted": "系列删除成功",
-      "collection-delete-failed": "系列删除失败",
-      "permanent-delete-warning": "这将永久删除该系列。"
+      "collection-deleted": "魔方删除成功",
+      "collection-delete-failed": "魔方删除失败",
+      "permanent-delete-warning": "这将永久删除该魔方。"
     },
     "Inputs": {
       "delete": "删除",
@@ -399,7 +405,7 @@
       "create": "创建",
       "cancel": "取消",
       "none": "无",
-      "collections": "系列",
+      "collections": "魔方",
       "empty": "空白",
       "back": "返回",
       "no-results": "未找到结果",
@@ -687,7 +693,7 @@
       "unknown-category": "未知类别",
       "move-to-history": "移至历史记录",
       "move-to-session": "移至当前组",
-      "transfer-collection": "转移收藏",
+      "transfer-collection": "转移到其他魔方",
       "delete-confirm-title": "删除此还原？",
       "delete-confirm-desc": "此操作无法撤销。",
       "watch-replay": "观看回放",
@@ -812,11 +818,11 @@
       "backup-history": "历史记录"
     },
     "TransferSolvesPage": {
-      "no-source-title": "Did you record a solve with the wrong cube?",
-      "no-source-description": "Here you can transfer it to the correct collection.",
+      "no-source-title": "用错魔方记录了成绩？",
+      "no-source-description": "你可以在这里把它转移到正确的魔方。",
       "title": "转移还原纪录",
-      "collection-origin": "来源系列",
-      "collection-destination": "目标系列",
+      "collection-origin": "来源魔方",
+      "collection-destination": "目标魔方",
       "transfer": "转移",
       "transferring": "转移中...",
       "solves-selected": "记录：（已选 {count} 个）",

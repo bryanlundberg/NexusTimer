@@ -25,6 +25,11 @@
       "content": "Registra ogni cubo e passa dall'uno all'altro senza pensieri: ogni categoria resta un'unica sequenza, e saprai sempre la tua media con ciascun cubo.",
       "cta": "Capito"
     },
+    "BackupTips": {
+      "label": "Consiglio da pro:",
+      "sync-order": "Rilassati, non serve seguire nessun ordine tra dispositivi. Fai il backup quando e dove vuoi: Nexus Timer è abbastanza intelligente da unire e ordinare i tuoi dati.",
+      "cta": "Capito"
+    },
     "others": {
       "suggestions": "Suggerimenti"
     },
@@ -283,7 +288,7 @@
         "select-cube": "Inizia selezionando un cubo!"
       },
       "dropdown": {
-        "transfer-collection": "Trasferisci collezione",
+        "transfer-collection": "Trasferisci a un altro cubo",
         "move-to-history": "Sposta nella cronologia"
       },
       "empty-solves": "Ancora niente qui!",
@@ -349,16 +354,16 @@
     "CubesPage": {
       "title": "Cubi",
       "no-cubes-for-display": "Nessun cubo da mostrare.",
-      "empty-title": "Ancora nessuna collezione",
-      "empty-description": "Crea la tua prima collezione o importa i dati da un altro timer. Nexi è pronto per il tuo primo solve.",
+      "empty-title": "Ancora nessun cubo registrato",
+      "empty-description": "Registra il tuo primo cubo o importa i dati da un altro timer. Nexi è pronto per il tuo primo solve.",
       "favorite": "Preferito",
       "category": "Categoria",
       "solves": "Solve",
       "status": "Stato",
       "using": "In uso",
       "idle": "Inattivo",
-      "new-collection": "Nuova collezione",
-      "new-collection-description": "Crea una nuova collezione per organizzare i tuoi cubi.",
+      "new-collection": "Registra cubo",
+      "new-collection-description": "Dagli un nome e una categoria per iniziare a salvare i suoi tempi.",
       "restore-account-data": "Ripristina dati account",
       "restore-account-data-description": "Ripristina i tuoi dati dai backup del tuo account.",
       "import-from-other-timers": "Importa da altri timer",
@@ -372,30 +377,31 @@
       "utilize-cube": "Usa `{name}`",
       "session-solves": "Solve di sessione",
       "historical-solves": "Solve storici",
-      "collections-count": "{count, plural, =1 {# collezione} other {# collezioni}}",
+      "collections-count": "{count, plural, =1 {# cubo} other {# cubi}}",
       "active-count": "{count, plural, =1 {# attivo} other {# attivi}}",
       "total-solves-count": "{count, plural, =1 {# solve} other {# solve}}"
     },
     "Cubes-modal": {
-      "delete-collection": "Elimina collezione",
-      "delete-collection-description": "Questa collezione di cubi verrà eliminata, insieme a tutti i suoi solve, record e impostazioni.",
-      "edit-collection": "Modifica collezione",
-      "danger-msg": "Modificare la categoria della collezione cambia anche i solve associati a quella categoria.",
+      "delete-collection": "Elimina cubo",
+      "delete-collection-description": "Questo cubo verrà eliminato, insieme a tutti i suoi solve, record e impostazioni.",
+      "edit-collection": "Modifica cubo",
+      "danger-msg": "Modificare la categoria cambia anche tutti i solve di questo cubo.",
       "name": "Nome",
       "category": "Categoria",
       "select-an-option": "Seleziona un'opzione",
-      "new-collection": "Nuova collezione",
+      "new-collection": "Registra cubo",
+      "register": "Registra",
       "current-selection": "Selezione attuale:",
       "delete-confirmation-check": "Capisco che \"{name}\" e tutti i suoi solve verranno eliminati definitivamente.",
       "name-placeholder": "es. X-Man Tornado V3 M"
     },
     "Errors": {
-      "repeated-name": "Questo nome di collezione esiste già.",
-      "collection-edit-failed": "Impossibile modificare la collezione di cubi",
+      "repeated-name": "Hai già un cubo con questo nome.",
+      "collection-edit-failed": "Impossibile modificare il cubo",
       "required-field": "Campo obbligatorio",
-      "collection-deleted": "Collezione eliminata con successo",
-      "collection-delete-failed": "Impossibile eliminare la collezione",
-      "permanent-delete-warning": "Questa azione eliminerà definitivamente la collezione."
+      "collection-deleted": "Cubo eliminato con successo",
+      "collection-delete-failed": "Impossibile eliminare il cubo",
+      "permanent-delete-warning": "Questa azione eliminerà definitivamente il cubo."
     },
     "Inputs": {
       "delete": "Elimina",
@@ -406,7 +412,7 @@
       "create": "Crea",
       "cancel": "Annulla",
       "none": "Nessuno",
-      "collections": "Collezioni",
+      "collections": "Cubi",
       "empty": "Vuoto",
       "back": "Indietro",
       "no-results": "Nessun risultato trovato",
@@ -694,7 +700,7 @@
       "unknown-category": "Sconosciuta",
       "move-to-history": "Sposta nella cronologia",
       "move-to-session": "Sposta nella sessione",
-      "transfer-collection": "Trasferisci collezione",
+      "transfer-collection": "Trasferisci a un altro cubo",
       "watch-replay": "Guarda il replay",
       "delete-confirm-title": "Eliminare questo solve?",
       "delete-confirm-desc": "Questa azione non può essere annullata.",
@@ -819,11 +825,11 @@
       "backup-history": "Cronologia"
     },
     "TransferSolvesPage": {
-      "no-source-title": "Did you record a solve with the wrong cube?",
-      "no-source-description": "Here you can transfer it to the correct collection.",
+      "no-source-title": "Hai registrato un solve con il cubo sbagliato?",
+      "no-source-description": "Qui puoi trasferirlo al cubo giusto.",
       "title": "Trasferisci solve",
-      "collection-origin": "Collezione di origine",
-      "collection-destination": "Collezione di destinazione",
+      "collection-origin": "Cubo di origine",
+      "collection-destination": "Cubo di destinazione",
       "transfer": "Trasferisci",
       "transferring": "Trasferimento...",
       "solves-selected": "Solve: ({count} selezionati)",

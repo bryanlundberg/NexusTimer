@@ -25,6 +25,11 @@
       "content": "Daftarkan setiap cube dan berpindah di antaranya dengan tenang: setiap kategori tetap menjadi satu urutan, dan kamu selalu tahu rata-ratamu dengan setiap cube.",
       "cta": "Mengerti"
     },
+    "BackupTips": {
+      "label": "Tips pro:",
+      "sync-order": "Santai saja, tidak perlu mengikuti urutan apa pun antar perangkat. Cadangkan kapan pun dan dari mana pun kamu mau: Nexus Timer cukup pintar untuk menggabungkan dan mengurutkan datamu.",
+      "cta": "Mengerti"
+    },
     "others": {
       "suggestions": "Saran"
     },
@@ -283,7 +288,7 @@
         "select-cube": "Mulai dengan memilih kubus!"
       },
       "dropdown": {
-        "transfer-collection": "Transfer Koleksi",
+        "transfer-collection": "Pindahkan ke cube lain",
         "move-to-history": "Pindahkan ke Riwayat"
       },
       "empty-solves": "Belum ada apa-apa di sini!",
@@ -349,16 +354,16 @@
     "CubesPage": {
       "title": "Kubus",
       "no-cubes-for-display": "Tidak ada kubus untuk ditampilkan.",
-      "empty-title": "Belum ada koleksi",
-      "empty-description": "Buat koleksi pertamamu atau bawa data dari timer lain. Nexi siap untuk solve pertamamu.",
+      "empty-title": "Belum ada cube",
+      "empty-description": "Tambahkan cube pertamamu atau bawa data dari timer lain. Nexi siap untuk solve pertamamu.",
       "favorite": "Favorit",
       "category": "Kategori",
       "solves": "Solve",
       "status": "Status",
       "using": "Digunakan",
       "idle": "Diam",
-      "new-collection": "Koleksi baru",
-      "new-collection-description": "Buat koleksi baru untuk mengatur kubusmu.",
+      "new-collection": "Tambah cube",
+      "new-collection-description": "Beri nama dan kategori untuk mulai menyimpan waktunya.",
       "restore-account-data": "Pulihkan Data Akun",
       "restore-account-data-description": "Pulihkan datamu dari cadangan akunmu.",
       "import-from-other-timers": "Impor dari Timer Lain",
@@ -372,30 +377,31 @@
       "utilize-cube": "Gunakan `{name}`",
       "session-solves": "Solve sesi",
       "historical-solves": "Solve riwayat",
-      "collections-count": "{count, plural, other {# koleksi}}",
+      "collections-count": "{count, plural, other {# cube}}",
       "active-count": "{count, plural, other {# aktif}}",
       "total-solves-count": "{count, plural, other {# solve}}"
     },
     "Cubes-modal": {
-      "delete-collection": "Hapus koleksi",
-      "delete-collection-description": "Koleksi kubus ini akan dihapus, beserta semua solve, rekor, dan pengaturannya.",
-      "edit-collection": "Edit koleksi",
-      "danger-msg": "Mengubah kategori koleksi juga mengubah solve yang terkait dengan kategori tersebut.",
+      "delete-collection": "Hapus cube",
+      "delete-collection-description": "Cube ini akan dihapus, beserta semua solve, rekor, dan pengaturannya.",
+      "edit-collection": "Edit cube",
+      "danger-msg": "Mengubah kategori juga mengubah semua solve cube ini.",
       "name": "Nama",
       "category": "Kategori",
       "select-an-option": "Pilih opsi",
-      "new-collection": "Koleksi baru",
+      "new-collection": "Tambah cube",
+      "register": "Tambah",
       "current-selection": "Pilihan saat ini:",
       "delete-confirmation-check": "Saya mengerti bahwa \"{name}\" dan semua solve-nya akan dihapus secara permanen.",
       "name-placeholder": "mis. X-Man Tornado V3 M"
     },
     "Errors": {
-      "repeated-name": "Nama koleksi itu sudah ada.",
-      "collection-edit-failed": "Gagal mengedit koleksi kubus",
+      "repeated-name": "Kamu sudah punya cube dengan nama itu.",
+      "collection-edit-failed": "Gagal mengedit cube",
       "required-field": "Kolom wajib diisi",
-      "collection-deleted": "Koleksi berhasil dihapus",
-      "collection-delete-failed": "Gagal menghapus koleksi",
-      "permanent-delete-warning": "Ini akan menghapus koleksi secara permanen."
+      "collection-deleted": "Cube berhasil dihapus",
+      "collection-delete-failed": "Gagal menghapus cube",
+      "permanent-delete-warning": "Ini akan menghapus cube secara permanen."
     },
     "Inputs": {
       "delete": "Hapus",
@@ -406,7 +412,7 @@
       "create": "Buat",
       "cancel": "Batal",
       "none": "Tidak ada",
-      "collections": "Koleksi",
+      "collections": "Cube",
       "empty": "Kosong",
       "back": "Kembali",
       "no-results": "Tidak ada hasil ditemukan",
@@ -694,7 +700,7 @@
       "unknown-category": "Tidak diketahui",
       "move-to-history": "Pindahkan ke Riwayat",
       "move-to-session": "Pindahkan ke Sesi",
-      "transfer-collection": "Transfer Koleksi",
+      "transfer-collection": "Pindahkan ke cube lain",
       "watch-replay": "Tonton putar ulang",
       "delete-confirm-title": "Hapus solve ini?",
       "delete-confirm-desc": "Tindakan ini tidak dapat dibatalkan.",
@@ -819,11 +825,11 @@
       "backup-history": "Riwayat"
     },
     "TransferSolvesPage": {
-      "no-source-title": "Did you record a solve with the wrong cube?",
-      "no-source-description": "Here you can transfer it to the correct collection.",
+      "no-source-title": "Mencatat solve dengan cube yang salah?",
+      "no-source-description": "Di sini kamu bisa memindahkannya ke cube yang benar.",
       "title": "Transfer Solve",
-      "collection-origin": "Koleksi Asal",
-      "collection-destination": "Koleksi Tujuan",
+      "collection-origin": "Cube Asal",
+      "collection-destination": "Cube Tujuan",
       "transfer": "Transfer",
       "transferring": "Mentransfer...",
       "solves-selected": "Solve: ({count} dipilih)",

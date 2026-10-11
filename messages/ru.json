@@ -18,6 +18,11 @@
       "content": "Регистрируйте каждый куб и спокойно переключайтесь между ними: каждая категория остаётся одной последовательностью, а среднее для каждого куба всегда под рукой.",
       "cta": "Понятно"
     },
+    "BackupTips": {
+      "label": "Совет:",
+      "sync-order": "Не переживайте, между устройствами не нужно соблюдать никакой порядок. Делайте копию когда и где удобно: Nexus Timer достаточно умён, чтобы объединить и упорядочить ваши данные.",
+      "cta": "Понятно"
+    },
     "others": {
       "suggestions": "Предложения"
     },
@@ -276,7 +281,7 @@
         "select-cube": "Начните с выбора куба!"
       },
       "dropdown": {
-        "transfer-collection": "Перенести в коллекцию",
+        "transfer-collection": "Сменить куб",
         "move-to-history": "В историю"
       },
       "empty-solves": "Здесь пока ничего нет!",
@@ -348,8 +353,8 @@
       "status": "Статус",
       "using": "Используется",
       "idle": "Ожидание",
-      "new-collection": "Новая коллекция",
-      "new-collection-description": "Создайте коллекцию для организации ваших кубов.",
+      "new-collection": "Добавить куб",
+      "new-collection-description": "Задайте название и категорию, чтобы начать сохранять его результаты.",
       "restore-account-data": "Восстановить данные",
       "restore-account-data-description": "Восстановить данные из облачного бэкапа.",
       "import-from-other-timers": "Импорт из других таймеров",
@@ -363,32 +368,33 @@
       "utilize-cube": "Использовать `{name}`",
       "session-solves": "Сборки сессии",
       "historical-solves": "История сборок",
-      "active-count": "{count, plural, one {# активная} few {# активные} many {# активных} other {# активные}}",
-      "collections-count": "{count, plural, one {# коллекция} few {# коллекции} many {# коллекций} other {# коллекции}}",
-      "empty-description": "Создай первую коллекцию или перенеси данные из другого таймера. Nexi готов к твоей первой сборке.",
-      "empty-title": "Пока нет коллекций",
+      "active-count": "{count, plural, one {# активный} few {# активных} many {# активных} other {# активного}}",
+      "collections-count": "{count, plural, one {# куб} few {# куба} many {# кубов} other {# куба}}",
+      "empty-description": "Добавь первый куб или перенеси данные из другого таймера. Nexi готов к твоей первой сборке.",
+      "empty-title": "Пока нет кубов",
       "total-solves-count": "{count, plural, one {# сборка} few {# сборки} many {# сборок} other {# сборки}}"
     },
     "Cubes-modal": {
-      "delete-collection": "Удалить коллекцию",
-      "delete-collection-description": "Коллекция будет удалена вместе со всеми сборками, рекордами и настройками.",
-      "edit-collection": "Изменить коллекцию",
+      "delete-collection": "Удалить куб",
+      "delete-collection-description": "Куб будет удалён вместе со всеми сборками, рекордами и настройками.",
+      "edit-collection": "Изменить куб",
       "danger-msg": "Изменение категории также изменит категорию связанных сборок.",
       "name": "Имя",
       "category": "Категория",
       "select-an-option": "Выберите вариант",
-      "new-collection": "Новая коллекция",
+      "new-collection": "Добавить куб",
+      "register": "Добавить",
       "current-selection": "Текущий выбор:",
-      "delete-confirmation-check": "Я понимаю, что «{name}» и все её сборки будут удалены навсегда.",
+      "delete-confirmation-check": "Я понимаю, что «{name}» и все его сборки будут удалены навсегда.",
       "name-placeholder": "например, X-Man Tornado V3 M"
     },
     "Errors": {
-      "repeated-name": "Коллекция с таким именем уже существует.",
-      "collection-edit-failed": "Не удалось изменить коллекцию",
+      "repeated-name": "У вас уже есть куб с таким названием.",
+      "collection-edit-failed": "Не удалось изменить куб",
       "required-field": "Обязательное поле",
-      "collection-deleted": "Коллекция успешно удалена",
-      "collection-delete-failed": "Не удалось удалить коллекцию",
-      "permanent-delete-warning": "Это навсегда удалит коллекцию."
+      "collection-deleted": "Куб успешно удалён",
+      "collection-delete-failed": "Не удалось удалить куб",
+      "permanent-delete-warning": "Это навсегда удалит куб."
     },
     "Inputs": {
       "delete": "Удалить",
@@ -399,7 +405,7 @@
       "create": "Создать",
       "cancel": "Отмена",
       "none": "Нет",
-      "collections": "Коллекции",
+      "collections": "Кубы",
       "empty": "Пусто",
       "back": "Назад",
       "no-results": "Ничего не найдено",
@@ -687,7 +693,7 @@
       "unknown-category": "Неизвестно",
       "move-to-history": "В историю",
       "move-to-session": "В сессию",
-      "transfer-collection": "Сменить коллекцию",
+      "transfer-collection": "Сменить куб",
       "delete-confirm-title": "Удалить это решение?",
       "delete-confirm-desc": "Это действие нельзя отменить.",
       "watch-replay": "Смотреть повтор",
@@ -812,8 +818,8 @@
       "backup-history": "История"
     },
     "TransferSolvesPage": {
-      "no-source-title": "Did you record a solve with the wrong cube?",
-      "no-source-description": "Here you can transfer it to the correct collection.",
+      "no-source-title": "Записали сборку не тем кубом?",
+      "no-source-description": "Здесь можно перенести её в нужный куб.",
       "title": "Перенос сборок",
       "collection-origin": "Откуда",
       "collection-destination": "Куда",

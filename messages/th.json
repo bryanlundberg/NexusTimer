@@ -25,6 +25,11 @@
       "content": "ลงทะเบียนคิวบ์แต่ละลูกแล้วสลับใช้ได้อย่างมั่นใจ ทุกหมวดหมู่ยังคงเป็นลำดับเดียวกัน และคุณจะรู้ค่าเฉลี่ยของคิวบ์แต่ละลูกเสมอ",
       "cta": "เข้าใจแล้ว"
     },
+    "BackupTips": {
+      "label": "เคล็ดลับ:",
+      "sync-order": "สบาย ๆ ได้เลย ไม่ต้องเรียงลำดับอะไรระหว่างอุปกรณ์ สำรองข้อมูลได้ทุกเมื่อและจากที่ไหนก็ได้ Nexus Timer ฉลาดพอที่จะรวมและจัดเรียงข้อมูลให้คุณเอง",
+      "cta": "เข้าใจแล้ว"
+    },
     "others": {
       "suggestions": "ข้อเสนอแนะ"
     },
@@ -283,7 +288,7 @@
         "select-cube": "เริ่มต้นด้วยการเลือกลูกบาศก์!"
       },
       "dropdown": {
-        "transfer-collection": "โอนคอลเลกชัน",
+        "transfer-collection": "โอนไปยังคิวบ์อื่น",
         "move-to-history": "ย้ายไปประวัติ"
       },
       "empty-solves": "ยังไม่มีอะไรที่นี่!",
@@ -349,16 +354,16 @@
     "CubesPage": {
       "title": "ลูกบาศก์",
       "no-cubes-for-display": "ไม่มีลูกบาศก์ให้แสดง",
-      "empty-title": "ยังไม่มีคอลเลกชัน",
-      "empty-description": "สร้างคอลเลกชันแรกของคุณหรือนำข้อมูลจากตัวจับเวลาอื่นมา Nexi พร้อมสำหรับการต่อครั้งแรกของคุณแล้ว",
+      "empty-title": "ยังไม่มีคิวบ์",
+      "empty-description": "เพิ่มคิวบ์ลูกแรกของคุณหรือนำข้อมูลจากตัวจับเวลาอื่นมา Nexi พร้อมสำหรับการต่อครั้งแรกของคุณแล้ว",
       "favorite": "รายการโปรด",
       "category": "หมวดหมู่",
       "solves": "การต่อ",
       "status": "สถานะ",
       "using": "กำลังใช้",
       "idle": "ว่าง",
-      "new-collection": "คอลเลกชันใหม่",
-      "new-collection-description": "สร้างคอลเลกชันใหม่เพื่อจัดระเบียบลูกบาศก์ของคุณ",
+      "new-collection": "เพิ่มคิวบ์",
+      "new-collection-description": "ตั้งชื่อและเลือกหมวดหมู่เพื่อเริ่มบันทึกเวลาของคิวบ์นี้",
       "restore-account-data": "กู้คืนข้อมูลบัญชี",
       "restore-account-data-description": "กู้คืนข้อมูลของคุณจากการสำรองข้อมูลบัญชีของคุณ",
       "import-from-other-timers": "นำเข้าจากตัวจับเวลาอื่น",
@@ -372,30 +377,31 @@
       "utilize-cube": "ใช้งาน `{name}`",
       "session-solves": "การต่อในเซสชัน",
       "historical-solves": "การต่อในประวัติ",
-      "collections-count": "{count, plural, other {# คอลเลกชัน}}",
+      "collections-count": "{count, plural, other {# คิวบ์}}",
       "active-count": "{count, plural, other {# ที่ใช้งานอยู่}}",
       "total-solves-count": "{count, plural, other {# การต่อ}}"
     },
     "Cubes-modal": {
-      "delete-collection": "ลบคอลเลกชัน",
-      "delete-collection-description": "คอลเลกชันลูกบาศก์นี้จะถูกลบ พร้อมกับการต่อ สถิติ และการตั้งค่าทั้งหมด",
-      "edit-collection": "แก้ไขคอลเลกชัน",
-      "danger-msg": "การเปลี่ยนหมวดหมู่ของคอลเลกชันจะเปลี่ยนการต่อที่เกี่ยวข้องกับหมวดหมู่นั้นด้วย",
+      "delete-collection": "ลบคิวบ์",
+      "delete-collection-description": "คิวบ์นี้จะถูกลบ พร้อมกับการต่อ สถิติ และการตั้งค่าทั้งหมด",
+      "edit-collection": "แก้ไขคิวบ์",
+      "danger-msg": "การเปลี่ยนหมวดหมู่จะเปลี่ยนการต่อทั้งหมดของคิวบ์นี้ด้วย",
       "name": "ชื่อ",
       "category": "หมวดหมู่",
       "select-an-option": "เลือกตัวเลือก",
-      "new-collection": "คอลเลกชันใหม่",
+      "new-collection": "เพิ่มคิวบ์",
+      "register": "เพิ่ม",
       "current-selection": "ที่เลือกอยู่ในปัจจุบัน:",
       "delete-confirmation-check": "ฉันเข้าใจว่า \"{name}\" และการต่อทั้งหมดจะถูกลบอย่างถาวร",
       "name-placeholder": "เช่น X-Man Tornado V3 M"
     },
     "Errors": {
-      "repeated-name": "ชื่อคอลเลกชันนั้นมีอยู่แล้ว",
-      "collection-edit-failed": "แก้ไขคอลเลกชันลูกบาศก์ไม่สำเร็จ",
+      "repeated-name": "คุณมีคิวบ์ชื่อนี้อยู่แล้ว",
+      "collection-edit-failed": "แก้ไขคิวบ์ไม่สำเร็จ",
       "required-field": "ช่องที่จำเป็น",
-      "collection-deleted": "ลบคอลเลกชันสำเร็จ",
-      "collection-delete-failed": "ลบคอลเลกชันไม่สำเร็จ",
-      "permanent-delete-warning": "การกระทำนี้จะลบคอลเลกชันอย่างถาวร"
+      "collection-deleted": "ลบคิวบ์สำเร็จ",
+      "collection-delete-failed": "ลบคิวบ์ไม่สำเร็จ",
+      "permanent-delete-warning": "การกระทำนี้จะลบคิวบ์อย่างถาวร"
     },
     "Inputs": {
       "delete": "ลบ",
@@ -406,7 +412,7 @@
       "create": "สร้าง",
       "cancel": "ยกเลิก",
       "none": "ไม่มี",
-      "collections": "คอลเลกชัน",
+      "collections": "คิวบ์",
       "empty": "ว่างเปล่า",
       "back": "ย้อนกลับ",
       "no-results": "ไม่พบผลลัพธ์",
@@ -694,7 +700,7 @@
       "unknown-category": "ไม่ทราบ",
       "move-to-history": "ย้ายไปประวัติ",
       "move-to-session": "ย้ายไปเซสชัน",
-      "transfer-collection": "โอนคอลเลกชัน",
+      "transfer-collection": "โอนไปยังคิวบ์อื่น",
       "watch-replay": "ดูรีเพลย์",
       "delete-confirm-title": "ลบโซลฟ์นี้?",
       "delete-confirm-desc": "การกระทำนี้ไม่สามารถยกเลิกได้",
@@ -819,11 +825,11 @@
       "backup-history": "ประวัติ"
     },
     "TransferSolvesPage": {
-      "no-source-title": "Did you record a solve with the wrong cube?",
-      "no-source-description": "Here you can transfer it to the correct collection.",
+      "no-source-title": "บันทึกการต่อด้วยคิวบ์ผิดลูกใช่ไหม?",
+      "no-source-description": "คุณสามารถโอนไปยังคิวบ์ที่ถูกต้องได้ที่นี่",
       "title": "โอนการต่อ",
-      "collection-origin": "คอลเลกชันต้นทาง",
-      "collection-destination": "คอลเลกชันปลายทาง",
+      "collection-origin": "คิวบ์ต้นทาง",
+      "collection-destination": "คิวบ์ปลายทาง",
       "transfer": "โอน",
       "transferring": "กำลังโอน...",
       "solves-selected": "การต่อ: (เลือกแล้ว {count})",

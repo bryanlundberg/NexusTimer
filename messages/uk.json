@@ -25,6 +25,11 @@
       "content": "Реєструйте кожен кубик і спокійно перемикайтеся між ними: кожна категорія лишається однією послідовністю, а середнє для кожного кубика завжди під рукою.",
       "cta": "Зрозуміло"
     },
+    "BackupTips": {
+      "label": "Порада:",
+      "sync-order": "Не хвилюйтеся, між пристроями не потрібно дотримуватися жодного порядку. Робіть копію коли й де зручно: Nexus Timer достатньо розумний, щоб об’єднати й упорядкувати ваші дані.",
+      "cta": "Зрозуміло"
+    },
     "others": {
       "suggestions": "Пропозиції"
     },
@@ -283,7 +288,7 @@
         "select-cube": "Почніть із вибору куба!"
       },
       "dropdown": {
-        "transfer-collection": "Перенести колекцію",
+        "transfer-collection": "Перенести на інший кубик",
         "move-to-history": "Перемістити в історію"
       },
       "empty-solves": "Тут поки порожньо!",
@@ -355,8 +360,8 @@
       "status": "Статус",
       "using": "Активний",
       "idle": "Неактивний",
-      "new-collection": "Нова колекція",
-      "new-collection-description": "Створіть нову колекцію, щоб упорядкувати свої куби.",
+      "new-collection": "Додати кубик",
+      "new-collection-description": "Задайте назву й категорію, щоб почати зберігати його результати.",
       "restore-account-data": "Відновити дані облікового запису",
       "restore-account-data-description": "Відновіть свої дані з резервних копій облікового запису.",
       "import-from-other-timers": "Імпорт з інших таймерів",
@@ -370,32 +375,33 @@
       "utilize-cube": "Використати `{name}`",
       "session-solves": "Спроби сесії",
       "historical-solves": "Історичні спроби",
-      "active-count": "{count, plural, one {# активна} few {# активні} many {# активних} other {# активні}}",
-      "collections-count": "{count, plural, one {# колекція} few {# колекції} many {# колекцій} other {# колекції}}",
-      "empty-description": "Створи свою першу колекцію або перенеси дані з іншого таймера. Nexi готовий до твоєї першої збірки.",
-      "empty-title": "Ще немає колекцій",
+      "active-count": "{count, plural, one {# активний} few {# активні} many {# активних} other {# активного}}",
+      "collections-count": "{count, plural, one {# кубик} few {# кубики} many {# кубиків} other {# кубика}}",
+      "empty-description": "Додай свій перший кубик або перенеси дані з іншого таймера. Nexi готовий до твоєї першої збірки.",
+      "empty-title": "Ще немає кубиків",
       "total-solves-count": "{count, plural, one {# збірка} few {# збірки} many {# збірок} other {# збірки}}"
     },
     "Cubes-modal": {
-      "delete-collection": "Видалити колекцію",
-      "delete-collection-description": "Цю колекцію кубів буде видалено разом з усіма її спробами, рекордами та налаштуваннями.",
-      "edit-collection": "Редагувати колекцію",
-      "danger-msg": "Зміна категорії колекції також змінює спроби, пов'язані з цією категорією.",
+      "delete-collection": "Видалити кубик",
+      "delete-collection-description": "Цей кубик буде видалено разом з усіма його спробами, рекордами та налаштуваннями.",
+      "edit-collection": "Редагувати кубик",
+      "danger-msg": "Зміна категорії також змінює всі спроби цього кубика.",
       "name": "Назва",
       "category": "Категорія",
       "select-an-option": "Виберіть варіант",
-      "new-collection": "Нова колекція",
+      "new-collection": "Додати кубик",
+      "register": "Додати",
       "current-selection": "Поточний вибір:",
-      "delete-confirmation-check": "Я розумію, що «{name}» та всі її спроби буде видалено назавжди.",
+      "delete-confirmation-check": "Я розумію, що «{name}» та всі його спроби буде видалено назавжди.",
       "name-placeholder": "наприклад, X-Man Tornado V3 M"
     },
     "Errors": {
-      "repeated-name": "Колекція з такою назвою вже існує.",
-      "collection-edit-failed": "Не вдалося відредагувати колекцію кубів",
+      "repeated-name": "У вас уже є кубик з такою назвою.",
+      "collection-edit-failed": "Не вдалося відредагувати кубик",
       "required-field": "Обов'язкове поле",
-      "collection-deleted": "Колекцію успішно видалено",
-      "collection-delete-failed": "Не вдалося видалити колекцію",
-      "permanent-delete-warning": "Це назавжди видалить колекцію."
+      "collection-deleted": "Кубик успішно видалено",
+      "collection-delete-failed": "Не вдалося видалити кубик",
+      "permanent-delete-warning": "Це назавжди видалить кубик."
     },
     "Inputs": {
       "delete": "Видалити",
@@ -406,7 +412,7 @@
       "create": "Створити",
       "cancel": "Скасувати",
       "none": "Немає",
-      "collections": "Колекції",
+      "collections": "Кубики",
       "empty": "Порожньо",
       "back": "Назад",
       "no-results": "Нічого не знайдено",
@@ -694,7 +700,7 @@
       "unknown-category": "Невідома",
       "move-to-history": "Перемістити в історію",
       "move-to-session": "Перемістити в сесію",
-      "transfer-collection": "Перенести колекцію",
+      "transfer-collection": "Перенести на інший кубик",
       "delete-confirm-title": "Видалити цей розв'язок?",
       "delete-confirm-desc": "Цю дію не можна скасувати.",
       "watch-replay": "Дивитися повтор",
@@ -819,11 +825,11 @@
       "backup-history": "Історія"
     },
     "TransferSolvesPage": {
-      "no-source-title": "Did you record a solve with the wrong cube?",
-      "no-source-description": "Here you can transfer it to the correct collection.",
+      "no-source-title": "Записали спробу не тим кубиком?",
+      "no-source-description": "Тут можна перенести її на правильний кубик.",
       "title": "Перенесення спроб",
-      "collection-origin": "Колекція-джерело",
-      "collection-destination": "Колекція-призначення",
+      "collection-origin": "Кубик-джерело",
+      "collection-destination": "Кубик-призначення",
       "transfer": "Перенести",
       "transferring": "Перенесення...",
       "solves-selected": "Спроби: (обрано {count})",

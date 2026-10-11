@@ -25,6 +25,11 @@
       "content": "Zarejestruj każdą kostkę i zmieniaj je bez obaw: każda kategoria pozostaje jedną sekwencją, a Ty zawsze wiesz, jaką średnią masz z każdą kostką.",
       "cta": "Rozumiem"
     },
+    "BackupTips": {
+      "label": "Porada:",
+      "sync-order": "Spokojnie, nie musisz trzymać się żadnej kolejności między urządzeniami. Rób kopię, kiedy i gdzie chcesz: Nexus Timer jest na tyle sprytny, że sam połączy i uporządkuje Twoje dane.",
+      "cta": "Rozumiem"
+    },
     "others": {
       "suggestions": "Sugestie"
     },
@@ -283,7 +288,7 @@
         "select-cube": "Zacznij od wybrania kostki!"
       },
       "dropdown": {
-        "transfer-collection": "Przenieś kolekcję",
+        "transfer-collection": "Przenieś do innej kostki",
         "move-to-history": "Przenieś do historii"
       },
       "empty-solves": "Jeszcze nic tu nie ma!",
@@ -349,16 +354,16 @@
     "CubesPage": {
       "title": "Kostki",
       "no-cubes-for-display": "Brak kostek do wyświetlenia.",
-      "empty-title": "Brak kolekcji",
-      "empty-description": "Utwórz swoją pierwszą kolekcję lub zaimportuj dane z innego stopera. Nexi jest gotowy na Twoje pierwsze ułożenie.",
+      "empty-title": "Brak kostek",
+      "empty-description": "Dodaj swoją pierwszą kostkę lub zaimportuj dane z innego stopera. Nexi jest gotowy na Twoje pierwsze ułożenie.",
       "favorite": "Ulubione",
       "category": "Kategoria",
       "solves": "Ułożenia",
       "status": "Status",
       "using": "W użyciu",
       "idle": "Bezczynna",
-      "new-collection": "Nowa kolekcja",
-      "new-collection-description": "Utwórz nową kolekcję, aby uporządkować swoje kostki.",
+      "new-collection": "Dodaj kostkę",
+      "new-collection-description": "Nadaj jej nazwę i kategorię, aby zacząć zapisywać jej czasy.",
       "restore-account-data": "Przywróć dane konta",
       "restore-account-data-description": "Przywróć swoje dane z kopii zapasowych konta.",
       "import-from-other-timers": "Importuj z innych stoperów",
@@ -372,30 +377,31 @@
       "utilize-cube": "Użyj `{name}`",
       "session-solves": "Ułożenia sesyjne",
       "historical-solves": "Ułożenia historyczne",
-      "collections-count": "{count, plural, =1 {# kolekcja} few {# kolekcje} other {# kolekcji}}",
+      "collections-count": "{count, plural, =1 {# kostka} few {# kostki} other {# kostek}}",
       "active-count": "{count, plural, =1 {# aktywna} few {# aktywne} other {# aktywnych}}",
       "total-solves-count": "{count, plural, =1 {# ułożenie} few {# ułożenia} other {# ułożeń}}"
     },
     "Cubes-modal": {
-      "delete-collection": "Usuń kolekcję",
-      "delete-collection-description": "Ta kolekcja kostek zostanie usunięta wraz ze wszystkimi ułożeniami, rekordami i ustawieniami.",
-      "edit-collection": "Edytuj kolekcję",
-      "danger-msg": "Zmiana kategorii kolekcji zmienia również ułożenia powiązane z tą kategorią.",
+      "delete-collection": "Usuń kostkę",
+      "delete-collection-description": "Ta kostka zostanie usunięta wraz ze wszystkimi ułożeniami, rekordami i ustawieniami.",
+      "edit-collection": "Edytuj kostkę",
+      "danger-msg": "Zmiana kategorii zmienia również wszystkie ułożenia tej kostki.",
       "name": "Nazwa",
       "category": "Kategoria",
       "select-an-option": "Wybierz opcję",
-      "new-collection": "Nowa kolekcja",
+      "new-collection": "Dodaj kostkę",
+      "register": "Dodaj",
       "current-selection": "Bieżący wybór:",
-      "delete-confirmation-check": "Rozumiem, że \"{name}\" i wszystkie jego ułożenia zostaną trwale usunięte.",
+      "delete-confirmation-check": "Rozumiem, że \"{name}\" i wszystkie jej ułożenia zostaną trwale usunięte.",
       "name-placeholder": "np. X-Man Tornado V3 M"
     },
     "Errors": {
-      "repeated-name": "Taka nazwa kolekcji już istnieje.",
-      "collection-edit-failed": "Nie udało się edytować kolekcji kostek",
+      "repeated-name": "Masz już kostkę o tej nazwie.",
+      "collection-edit-failed": "Nie udało się edytować kostki",
       "required-field": "Pole wymagane",
-      "collection-deleted": "Kolekcja usunięta pomyślnie",
-      "collection-delete-failed": "Nie udało się usunąć kolekcji",
-      "permanent-delete-warning": "Spowoduje to trwałe usunięcie kolekcji."
+      "collection-deleted": "Kostka usunięta pomyślnie",
+      "collection-delete-failed": "Nie udało się usunąć kostki",
+      "permanent-delete-warning": "Spowoduje to trwałe usunięcie kostki."
     },
     "Inputs": {
       "delete": "Usuń",
@@ -406,7 +412,7 @@
       "create": "Utwórz",
       "cancel": "Anuluj",
       "none": "Brak",
-      "collections": "Kolekcje",
+      "collections": "Kostki",
       "empty": "Pusto",
       "back": "Wstecz",
       "no-results": "Nie znaleziono wyników",
@@ -694,7 +700,7 @@
       "unknown-category": "Nieznana",
       "move-to-history": "Przenieś do historii",
       "move-to-session": "Przenieś do sesji",
-      "transfer-collection": "Przenieś kolekcję",
+      "transfer-collection": "Przenieś do innej kostki",
       "watch-replay": "Obejrzyj powtórkę",
       "delete-confirm-title": "Usunąć ten solve?",
       "delete-confirm-desc": "Tej akcji nie można cofnąć.",
@@ -819,11 +825,11 @@
       "backup-history": "Historia"
     },
     "TransferSolvesPage": {
-      "no-source-title": "Did you record a solve with the wrong cube?",
-      "no-source-description": "Here you can transfer it to the correct collection.",
+      "no-source-title": "Zapisano ułożenie na złej kostce?",
+      "no-source-description": "Tutaj możesz przenieść je do właściwej kostki.",
       "title": "Przenoszenie ułożeń",
-      "collection-origin": "Kolekcja źródłowa",
-      "collection-destination": "Kolekcja docelowa",
+      "collection-origin": "Kostka źródłowa",
+      "collection-destination": "Kostka docelowa",
       "transfer": "Przenieś",
       "transferring": "Przenoszenie...",
       "solves-selected": "Ułożenia: (zaznaczono {count})",

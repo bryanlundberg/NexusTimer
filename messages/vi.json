@@ -25,6 +25,11 @@
       "content": "Hãy đăng ký từng cube và yên tâm chuyển đổi giữa chúng: mỗi hạng mục vẫn là một chuỗi duy nhất, và bạn luôn biết trung bình của mình với từng cube.",
       "cta": "Đã hiểu"
     },
+    "BackupTips": {
+      "label": "Mẹo hay:",
+      "sync-order": "Cứ thoải mái, không cần giữ thứ tự nào giữa các thiết bị. Sao lưu bất cứ khi nào và ở đâu bạn muốn: Nexus Timer đủ thông minh để tự gộp và sắp xếp dữ liệu của bạn.",
+      "cta": "Đã hiểu"
+    },
     "others": {
       "suggestions": "Gợi ý"
     },
@@ -283,7 +288,7 @@
         "select-cube": "Hãy bắt đầu bằng cách chọn một khối!"
       },
       "dropdown": {
-        "transfer-collection": "Chuyển bộ sưu tập",
+        "transfer-collection": "Chuyển sang cube khác",
         "move-to-history": "Chuyển vào lịch sử"
       },
       "empty-solves": "Chưa có gì ở đây!",
@@ -349,16 +354,16 @@
     "CubesPage": {
       "title": "Khối",
       "no-cubes-for-display": "Không có khối nào để hiển thị.",
-      "empty-title": "Chưa có bộ sưu tập nào",
-      "empty-description": "Tạo bộ sưu tập đầu tiên hoặc mang dữ liệu từ đồng hồ khác sang. Nexi đã sẵn sàng cho lượt giải đầu tiên của bạn.",
+      "empty-title": "Chưa có cube nào",
+      "empty-description": "Thêm cube đầu tiên hoặc mang dữ liệu từ đồng hồ khác sang. Nexi đã sẵn sàng cho lượt giải đầu tiên của bạn.",
       "favorite": "Yêu thích",
       "category": "Hạng mục",
       "solves": "Lượt giải",
       "status": "Trạng thái",
       "using": "Đang dùng",
       "idle": "Rảnh",
-      "new-collection": "Bộ sưu tập mới",
-      "new-collection-description": "Tạo bộ sưu tập mới để sắp xếp các khối của bạn.",
+      "new-collection": "Thêm cube",
+      "new-collection-description": "Đặt tên và chọn hạng mục để bắt đầu lưu thời gian của cube này.",
       "restore-account-data": "Khôi phục dữ liệu tài khoản",
       "restore-account-data-description": "Khôi phục dữ liệu của bạn từ các bản sao lưu tài khoản.",
       "import-from-other-timers": "Nhập từ đồng hồ khác",
@@ -372,30 +377,31 @@
       "utilize-cube": "Sử dụng `{name}`",
       "session-solves": "Lượt giải phiên",
       "historical-solves": "Lượt giải lịch sử",
-      "collections-count": "{count, plural, other {# bộ sưu tập}}",
+      "collections-count": "{count, plural, other {# cube}}",
       "active-count": "{count, plural, other {# đang hoạt động}}",
       "total-solves-count": "{count, plural, other {# lượt giải}}"
     },
     "Cubes-modal": {
-      "delete-collection": "Xóa bộ sưu tập",
-      "delete-collection-description": "Bộ sưu tập khối này sẽ bị xóa, cùng với tất cả lượt giải, kỷ lục và cài đặt của nó.",
-      "edit-collection": "Chỉnh sửa bộ sưu tập",
-      "danger-msg": "Thay đổi hạng mục của bộ sưu tập cũng thay đổi các lượt giải liên quan đến hạng mục đó.",
+      "delete-collection": "Xóa cube",
+      "delete-collection-description": "Cube này sẽ bị xóa, cùng với tất cả lượt giải, kỷ lục và cài đặt của nó.",
+      "edit-collection": "Chỉnh sửa cube",
+      "danger-msg": "Thay đổi hạng mục cũng thay đổi tất cả lượt giải của cube này.",
       "name": "Tên",
       "category": "Hạng mục",
       "select-an-option": "Chọn một tùy chọn",
-      "new-collection": "Bộ sưu tập mới",
+      "new-collection": "Thêm cube",
+      "register": "Thêm",
       "current-selection": "Lựa chọn hiện tại:",
       "delete-confirmation-check": "Tôi hiểu rằng \"{name}\" và tất cả lượt giải của nó sẽ bị xóa vĩnh viễn.",
       "name-placeholder": "VD: X-Man Tornado V3 M"
     },
     "Errors": {
-      "repeated-name": "Tên bộ sưu tập đó đã tồn tại.",
-      "collection-edit-failed": "Không thể chỉnh sửa bộ sưu tập khối",
+      "repeated-name": "Bạn đã có một cube trùng tên.",
+      "collection-edit-failed": "Không thể chỉnh sửa cube",
       "required-field": "Trường bắt buộc",
-      "collection-deleted": "Đã xóa bộ sưu tập thành công",
-      "collection-delete-failed": "Không thể xóa bộ sưu tập",
-      "permanent-delete-warning": "Thao tác này sẽ xóa vĩnh viễn bộ sưu tập."
+      "collection-deleted": "Đã xóa cube thành công",
+      "collection-delete-failed": "Không thể xóa cube",
+      "permanent-delete-warning": "Thao tác này sẽ xóa vĩnh viễn cube."
     },
     "Inputs": {
       "delete": "Xóa",
@@ -406,7 +412,7 @@
       "create": "Tạo",
       "cancel": "Hủy",
       "none": "Không có",
-      "collections": "Bộ sưu tập",
+      "collections": "Cube",
       "empty": "Trống",
       "back": "Quay lại",
       "no-results": "Không tìm thấy kết quả",
@@ -694,7 +700,7 @@
       "unknown-category": "Không xác định",
       "move-to-history": "Chuyển vào lịch sử",
       "move-to-session": "Chuyển đến phiên",
-      "transfer-collection": "Chuyển bộ sưu tập",
+      "transfer-collection": "Chuyển sang cube khác",
       "watch-replay": "Xem phát lại",
       "delete-confirm-title": "Xóa solve này?",
       "delete-confirm-desc": "Hành động này không thể hoàn tác.",
@@ -819,11 +825,11 @@
       "backup-history": "Lịch sử"
     },
     "TransferSolvesPage": {
-      "no-source-title": "Did you record a solve with the wrong cube?",
-      "no-source-description": "Here you can transfer it to the correct collection.",
+      "no-source-title": "Bạn đã ghi lượt giải bằng nhầm cube?",
+      "no-source-description": "Tại đây bạn có thể chuyển nó sang đúng cube.",
       "title": "Chuyển lượt giải",
-      "collection-origin": "Bộ sưu tập nguồn",
-      "collection-destination": "Bộ sưu tập đích",
+      "collection-origin": "Cube nguồn",
+      "collection-destination": "Cube đích",
       "transfer": "Chuyển",
       "transferring": "Đang chuyển...",
       "solves-selected": "Lượt giải: (đã chọn {count})",

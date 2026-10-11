@@ -25,6 +25,11 @@
       "content": "Register each cube and switch between them with confidence: every category stays one single sequence, and you will always know your average with each cube.",
       "cta": "Got it"
     },
+    "BackupTips": {
+      "label": "Pro tip:",
+      "sync-order": "Relax, there's no order to keep between devices. Back up whenever and wherever you like: Nexus Timer is smart enough to merge and sort your data on its own.",
+      "cta": "Got it"
+    },
     "others": {
       "suggestions": "Suggestions"
     },
@@ -283,7 +288,7 @@
         "select-cube": "Start by selecting a cube!"
       },
       "dropdown": {
-        "transfer-collection": "Transfer Collection",
+        "transfer-collection": "Transfer to another cube",
         "move-to-history": "Move to History"
       },
       "empty-solves": "Nothing here yet!",
@@ -349,16 +354,16 @@
     "CubesPage": {
       "title": "Cubes",
       "no-cubes-for-display": "No cubes for display.",
-      "empty-title": "No collections yet",
-      "empty-description": "Create your first collection or bring data from another timer. Nexi is ready for your first solve.",
+      "empty-title": "No cubes yet",
+      "empty-description": "Add your first cube or bring data from another timer. Nexi is ready for your first solve.",
       "favorite": "Favorite",
       "category": "Category",
       "solves": "Solves",
       "status": "Status",
       "using": "Using",
       "idle": "Idle",
-      "new-collection": "New collection",
-      "new-collection-description": "Create a new collection to organize your cubes.",
+      "new-collection": "Add cube",
+      "new-collection-description": "Give it a name and a category to start saving its times.",
       "restore-account-data": "Restore Account Data",
       "restore-account-data-description": "Restore your data from your account backups.",
       "import-from-other-timers": "Import from Other Timers",
@@ -372,30 +377,31 @@
       "utilize-cube": "Utilize `{name}`",
       "session-solves": "Session solves",
       "historical-solves": "Historical solves",
-      "collections-count": "{count, plural, =1 {# collection} other {# collections}}",
+      "collections-count": "{count, plural, =1 {# cube} other {# cubes}}",
       "active-count": "{count, plural, =1 {# active} other {# active}}",
       "total-solves-count": "{count, plural, =1 {# solve} other {# solves}}"
     },
     "Cubes-modal": {
-      "delete-collection": "Delete collection",
-      "delete-collection-description": "This collection and all of its solves, records and settings will be deleted.",
-      "edit-collection": "Edit collection",
-      "danger-msg": "Changing the category also applies to all of this collection's solves.",
+      "delete-collection": "Delete cube",
+      "delete-collection-description": "This cube and all of its solves, records and settings will be deleted.",
+      "edit-collection": "Edit cube",
+      "danger-msg": "Changing the category also applies to all of this cube's solves.",
       "name": "Name",
       "category": "Category",
       "select-an-option": "Select an option",
-      "new-collection": "New collection",
+      "new-collection": "Add cube",
+      "register": "Add",
       "current-selection": "Current selection:",
       "delete-confirmation-check": "I understand that \"{name}\" and all of its solves will be permanently deleted.",
       "name-placeholder": "e.g. X-Man Tornado V3 M"
     },
     "Errors": {
-      "repeated-name": "That collection name already exists.",
-      "collection-edit-failed": "Couldn't save the collection. Try again.",
+      "repeated-name": "You already have a cube with that name.",
+      "collection-edit-failed": "Couldn't save the cube. Try again.",
       "required-field": "Required field",
-      "collection-deleted": "Collection deleted",
-      "collection-delete-failed": "Couldn't delete the collection. Try again.",
-      "permanent-delete-warning": "This will permanently delete the collection."
+      "collection-deleted": "Cube deleted",
+      "collection-delete-failed": "Couldn't delete the cube. Try again.",
+      "permanent-delete-warning": "This will permanently delete the cube."
     },
     "Inputs": {
       "delete": "Delete",
@@ -406,7 +412,7 @@
       "create": "Create",
       "cancel": "Cancel",
       "none": "None",
-      "collections": "Collections",
+      "collections": "Cubes",
       "empty": "Empty",
       "back": "Back",
       "no-results": "No results found",
@@ -684,7 +690,7 @@
       "unknown-category": "Unknown",
       "move-to-history": "Move to History",
       "move-to-session": "Move to Session",
-      "transfer-collection": "Transfer Collection",
+      "transfer-collection": "Transfer to another cube",
       "watch-replay": "Watch replay",
       "delete-confirm-title": "Delete this solve?",
       "delete-confirm-desc": "This action cannot be undone.",
@@ -810,10 +816,10 @@
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",
-      "no-source-description": "Here you can transfer it to the correct collection.",
+      "no-source-description": "Here you can transfer it to the correct cube.",
       "title": "Transfer Solves",
-      "collection-origin": "Collection Origin",
-      "collection-destination": "Collection Destination",
+      "collection-origin": "Source cube",
+      "collection-destination": "Destination cube",
       "transfer": "Transfer",
       "transferring": "Transferring...",
       "solves-selected": "Solves: ({count} selected)",

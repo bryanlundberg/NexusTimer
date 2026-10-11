@@ -18,6 +18,11 @@
       "content": "Registriere jeden Würfel und wechsle bedenkenlos zwischen ihnen: Jede Kategorie bleibt eine einzige Abfolge, und du weißt immer, welchen Schnitt du mit jedem Würfel hast.",
       "cta": "Verstanden"
     },
+    "BackupTips": {
+      "label": "Profi-Tipp:",
+      "sync-order": "Ganz entspannt: Zwischen deinen Geräten musst du auf keine Reihenfolge achten. Sichere, wann und wo du willst. Nexus Timer ist schlau genug, deine Daten zusammenzuführen und zu sortieren.",
+      "cta": "Verstanden"
+    },
     "others": {
       "suggestions": "Vorschläge"
     },
@@ -276,7 +281,7 @@
         "select-cube": "Wähle zuerst einen Würfel aus!"
       },
       "dropdown": {
-        "transfer-collection": "Sammlung übertragen",
+        "transfer-collection": "Auf anderen Würfel übertragen",
         "move-to-history": "In Verlauf verschieben"
       },
       "empty-solves": "Hier ist noch nichts!",
@@ -348,8 +353,8 @@
       "status": "Status",
       "using": "In Gebrauch",
       "idle": "Inaktiv",
-      "new-collection": "Neue Sammlung",
-      "new-collection-description": "Erstelle eine neue Sammlung, um deine Würfel zu organisieren.",
+      "new-collection": "Würfel hinzufügen",
+      "new-collection-description": "Gib ihm einen Namen und eine Kategorie, um seine Zeiten zu speichern.",
       "restore-account-data": "Kontodaten wiederherstellen",
       "restore-account-data-description": "Stelle Daten aus deinen Konto-Backups wieder her.",
       "import-from-other-timers": "Von anderen Timern importieren",
@@ -364,31 +369,32 @@
       "session-solves": "Sitzungszeiten",
       "historical-solves": "Verlaufszeiten",
       "active-count": "{count, plural, =1 {# aktiv} other {# aktiv}}",
-      "collections-count": "{count, plural, =1 {# Sammlung} other {# Sammlungen}}",
-      "empty-description": "Erstelle deine erste Sammlung oder importiere Daten aus einem anderen Timer. Nexi ist bereit für deinen ersten Solve.",
-      "empty-title": "Noch keine Sammlungen",
+      "collections-count": "{count, plural, =1 {# Würfel} other {# Würfel}}",
+      "empty-description": "Füge deinen ersten Würfel hinzu oder importiere Daten aus einem anderen Timer. Nexi ist bereit für deinen ersten Solve.",
+      "empty-title": "Noch keine Würfel",
       "total-solves-count": "{count, plural, =1 {# Solve} other {# Solves}}"
     },
     "Cubes-modal": {
-      "delete-collection": "Sammlung löschen",
-      "delete-collection-description": "Diese Sammlung wird mit allen Zeiten, Rekorden und Einstellungen gelöscht.",
-      "edit-collection": "Sammlung bearbeiten",
+      "delete-collection": "Würfel löschen",
+      "delete-collection-description": "Dieser Würfel wird mit allen Zeiten, Rekorden und Einstellungen gelöscht.",
+      "edit-collection": "Würfel bearbeiten",
       "danger-msg": "Das Ändern der Kategorie ändert auch die zugehörigen Zeiten.",
       "name": "Name",
       "category": "Kategorie",
       "select-an-option": "Option wählen",
-      "new-collection": "Neue Sammlung",
+      "new-collection": "Würfel hinzufügen",
+      "register": "Hinzufügen",
       "current-selection": "Aktuelle Auswahl:",
       "delete-confirmation-check": "Ich verstehe, dass \"{name}\" und alle zugehörigen Zeiten dauerhaft gelöscht werden.",
       "name-placeholder": "z. B. X-Man Tornado V3 M"
     },
     "Errors": {
-      "repeated-name": "Dieser Sammlungsname existiert bereits.",
-      "collection-edit-failed": "Bearbeiten der Sammlung fehlgeschlagen",
+      "repeated-name": "Du hast schon einen Würfel mit diesem Namen.",
+      "collection-edit-failed": "Bearbeiten des Würfels fehlgeschlagen",
       "required-field": "Pflichtfeld",
-      "collection-deleted": "Sammlung erfolgreich gelöscht",
-      "collection-delete-failed": "Löschen der Sammlung fehlgeschlagen",
-      "permanent-delete-warning": "Dies wird die Sammlung dauerhaft löschen."
+      "collection-deleted": "Würfel erfolgreich gelöscht",
+      "collection-delete-failed": "Löschen des Würfels fehlgeschlagen",
+      "permanent-delete-warning": "Dies wird den Würfel dauerhaft löschen."
     },
     "Inputs": {
       "delete": "Löschen",
@@ -399,7 +405,7 @@
       "create": "Erstellen",
       "cancel": "Abbrechen",
       "none": "Keine",
-      "collections": "Sammlungen",
+      "collections": "Würfel",
       "empty": "Leer",
       "back": "Zurück",
       "no-results": "Keine Ergebnisse gefunden",
@@ -687,7 +693,7 @@
       "unknown-category": "Unbekannt",
       "move-to-history": "In Verlauf verschieben",
       "move-to-session": "In Sitzung verschieben",
-      "transfer-collection": "Sammlung übertragen",
+      "transfer-collection": "Auf anderen Würfel übertragen",
       "delete-confirm-title": "Diesen Solve löschen?",
       "delete-confirm-desc": "Diese Aktion kann nicht rückgängig gemacht werden.",
       "watch-replay": "Replay ansehen",
@@ -812,8 +818,8 @@
       "backup-history": "Verlauf"
     },
     "TransferSolvesPage": {
-      "no-source-title": "Did you record a solve with the wrong cube?",
-      "no-source-description": "Here you can transfer it to the correct collection.",
+      "no-source-title": "Hast du einen Solve mit dem falschen Würfel aufgenommen?",
+      "no-source-description": "Hier kannst du ihn auf den richtigen Würfel übertragen.",
       "title": "Zeiten übertragen",
       "collection-origin": "Ursprung",
       "collection-destination": "Ziel",

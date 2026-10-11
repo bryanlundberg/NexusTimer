@@ -25,6 +25,11 @@
       "content": "Registra cada cubo y cambia entre ellos con confianza: cada categoría sigue siendo una sola secuencia, y siempre sabrás cuánto promedias con cada cubo.",
       "cta": "Entendido"
     },
+    "BackupTips": {
+      "label": "Pro tip:",
+      "sync-order": "Relájate, no hace falta seguir ningún orden entre dispositivos. Respalda cuando quieras y desde donde quieras: Nexus Timer es lo suficientemente inteligente para juntar y ordenar tus datos.",
+      "cta": "Entendido"
+    },
     "leaderboard-solve-details": {
       "user-solution": "Reconstrucción",
       "time": "Tiempo",
@@ -226,7 +231,7 @@
         "select-cube": "¡Comienza seleccionando un cubo!"
       },
       "dropdown": {
-        "transfer-collection": "Transferir colección",
+        "transfer-collection": "Transferir a otro cubo",
         "move-to-history": "Mover al historial"
       },
       "dialogs": {
@@ -314,8 +319,8 @@
       "session-solves": "Tiempos de la sesión",
       "title": "Cubos",
       "no-cubes-for-display": "No hay cubos para mostrar.",
-      "empty-title": "Aún no tienes colecciones",
-      "empty-description": "Crea tu primera colección o importa datos de otro timer. Nexi te espera para tu primer solve.",
+      "empty-title": "Aún no tienes cubos registrados",
+      "empty-description": "Registra tu primer cubo o importa datos de otro timer. Nexi te espera para tu primer solve.",
       "favorite": "Favorito",
       "category": "Categoría",
       "solves": "Tiempos",
@@ -323,8 +328,8 @@
       "using": "En uso",
       "idle": "Inactivo",
       "name": "Nombre",
-      "new-collection": "Nueva colección",
-      "new-collection-description": "Crea una nueva colección para organizar tus cubos.",
+      "new-collection": "Registrar cubo",
+      "new-collection-description": "Ponle nombre y categoría para empezar a guardar sus tiempos.",
       "restore-account-data": "Restaurar datos de la cuenta",
       "restore-account-data-description": "Restaura tus datos desde los respaldos de tu cuenta.",
       "import-from-other-timers": "Importar de otros cronómetros",
@@ -335,19 +340,20 @@
       "total": "total",
       "utilize": "Usar",
       "utilize-cube": "Usar `{name}`",
-      "collections-count": "{count, plural, =1 {# colección} other {# colecciones}}",
-      "active-count": "{count, plural, =1 {# activa} other {# activas}}",
+      "collections-count": "{count, plural, =1 {# cubo} other {# cubos}}",
+      "active-count": "{count, plural, =1 {# activo} other {# activos}}",
       "total-solves-count": "{count, plural, =1 {# tiempo} other {# tiempos}}"
     },
     "Cubes-modal": {
       "category": "Categoría",
       "current-selection": "Selección actual:",
-      "danger-msg": "Cambiar la categoría también afecta a todos los tiempos de esta colección.",
-      "delete-collection": "Eliminar colección",
-      "delete-collection-description": "Se eliminará esta colección junto con todos sus tiempos, récords y ajustes.",
-      "edit-collection": "Editar colección",
+      "danger-msg": "Cambiar la categoría también afecta a todos los tiempos de este cubo.",
+      "delete-collection": "Eliminar cubo",
+      "delete-collection-description": "Se eliminará este cubo junto con todos sus tiempos, récords y ajustes.",
+      "edit-collection": "Editar cubo",
       "name": "Nombre",
-      "new-collection": "Nueva colección",
+      "new-collection": "Registrar cubo",
+      "register": "Registrar",
       "select-an-option": "Selecciona una opción",
       "delete-confirmation-check": "Entiendo que \"{name}\" y todos sus tiempos se eliminarán para siempre.",
       "name-placeholder": "Ej. X-Man Tornado V3 M"
@@ -362,7 +368,7 @@
       "move": "Mover",
       "none": "Ninguno",
       "empty": "Vacío",
-      "collections": "Colecciones",
+      "collections": "Cubos",
       "back": "Atrás",
       "no-results": "No se encontraron resultados",
       "search": "Buscar...",
@@ -661,12 +667,12 @@
       "welcome": "Bienvenido:"
     },
     "Errors": {
-      "repeated-name": "Esa colección de nombres ya existe.",
-      "collection-edit-failed": "No se pudo guardar la colección. Inténtalo de nuevo.",
+      "repeated-name": "Ya tienes un cubo con ese nombre.",
+      "collection-edit-failed": "No se pudo guardar el cubo. Inténtalo de nuevo.",
       "required-field": "Campo requerido",
-      "collection-deleted": "Colección eliminada",
-      "collection-delete-failed": "No se pudo eliminar la colección. Inténtalo de nuevo.",
-      "permanent-delete-warning": "Esto eliminará permanentemente la colección."
+      "collection-deleted": "Cubo eliminado",
+      "collection-delete-failed": "No se pudo eliminar el cubo. Inténtalo de nuevo.",
+      "permanent-delete-warning": "Esto eliminará permanentemente el cubo."
     },
     "tooltips": {
       "bookmark": "Marcador",
@@ -681,7 +687,7 @@
       "unknown-category": "Desconocido",
       "move-to-history": "Mover al Historial",
       "move-to-session": "Mover a la Sesión",
-      "transfer-collection": "Transferir Colección",
+      "transfer-collection": "Transferir a otro cubo",
       "watch-replay": "Ver repetición",
       "delete-confirm-title": "¿Eliminar este tiempo?",
       "delete-confirm-desc": "Esta acción no se puede deshacer.",
@@ -783,9 +789,9 @@
     },
     "TransferSolvesPage": {
       "no-source-title": "¿Hiciste alguna resolución con el cubo equivocado?",
-      "no-source-description": "Aquí puedes transferirlo a la colección correcta.",
-      "collection-destination": "Colección de destino",
-      "collection-origin": "Colección de origen",
+      "no-source-description": "Aquí puedes transferirlo al cubo correcto.",
+      "collection-destination": "Cubo de destino",
+      "collection-origin": "Cubo de origen",
       "cubes-unavailable": "Los datos de los cubos no están disponibles",
       "deselect-all": "Deseleccionar todo",
       "empty-vault": "Tu historial de tiempos está vacío.",

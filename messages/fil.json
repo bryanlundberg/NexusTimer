@@ -25,6 +25,11 @@
       "content": "Irehistro ang bawat cube at magpalipat-lipat sa kanila nang may kumpiyansa: nananatiling iisang sequence ang bawat kategorya, at lagi mong malalaman ang average mo sa bawat cube.",
       "cta": "Sige"
     },
+    "BackupTips": {
+      "label": "Pro tip:",
+      "sync-order": "Relax lang, hindi mo kailangang sundin ang anumang pagkakasunod-sunod sa pagitan ng mga device. Mag-backup kahit kailan at kahit saan: sapat ang talino ng Nexus Timer para pagsamahin at ayusin ang data mo.",
+      "cta": "Sige"
+    },
     "others": {
       "suggestions": "Mga Mungkahi"
     },
@@ -283,7 +288,7 @@
         "select-cube": "Magsimula sa pagpili ng cube!"
       },
       "dropdown": {
-        "transfer-collection": "Ilipat ang Collection",
+        "transfer-collection": "Ilipat sa ibang cube",
         "move-to-history": "Ilipat sa History"
       },
       "empty-solves": "Wala pa rito!",
@@ -349,16 +354,16 @@
     "CubesPage": {
       "title": "Mga Cube",
       "no-cubes-for-display": "Walang cube na maipapakita.",
-      "empty-title": "Wala pang collection",
-      "empty-description": "Gumawa ng unang collection mo o magdala ng data mula sa ibang timer. Handa na si Nexi para sa unang solve mo.",
+      "empty-title": "Wala pang cube",
+      "empty-description": "Magdagdag ng una mong cube o magdala ng data mula sa ibang timer. Handa na si Nexi para sa unang solve mo.",
       "favorite": "Paborito",
       "category": "Kategorya",
       "solves": "Mga Solve",
       "status": "Status",
       "using": "Ginagamit",
       "idle": "Idle",
-      "new-collection": "Bagong collection",
-      "new-collection-description": "Gumawa ng bagong collection para ayusin ang mga cube mo.",
+      "new-collection": "Magdagdag ng cube",
+      "new-collection-description": "Bigyan ito ng pangalan at kategorya para masimulang i-save ang mga oras nito.",
       "restore-account-data": "I-restore ang Account Data",
       "restore-account-data-description": "I-restore ang data mo mula sa mga backup ng account mo.",
       "import-from-other-timers": "Mag-import mula sa Ibang Timer",
@@ -372,30 +377,31 @@
       "utilize-cube": "Gamitin ang `{name}`",
       "session-solves": "Session solves",
       "historical-solves": "Historical solves",
-      "collections-count": "{count, plural, other {# collection}}",
+      "collections-count": "{count, plural, other {# cube}}",
       "active-count": "{count, plural, other {# active}}",
       "total-solves-count": "{count, plural, other {# solve}}"
     },
     "Cubes-modal": {
-      "delete-collection": "Burahin ang collection",
-      "delete-collection-description": "Mabubura ang cube collection na ito, kasama ang lahat ng solves, records, at settings nito.",
-      "edit-collection": "I-edit ang collection",
-      "danger-msg": "Ang pagbabago ng kategorya ng collection ay nagbabago rin sa mga solve na nauugnay sa kategoryang iyon.",
+      "delete-collection": "Burahin ang cube",
+      "delete-collection-description": "Mabubura ang cube na ito, kasama ang lahat ng solves, records, at settings nito.",
+      "edit-collection": "I-edit ang cube",
+      "danger-msg": "Ang pagbabago ng kategorya ay nagbabago rin sa lahat ng solve ng cube na ito.",
       "name": "Pangalan",
       "category": "Kategorya",
       "select-an-option": "Pumili ng opsyon",
-      "new-collection": "Bagong collection",
+      "new-collection": "Magdagdag ng cube",
+      "register": "Idagdag",
       "current-selection": "Kasalukuyang napili:",
       "delete-confirmation-check": "Nauunawaan ko na ang \"{name}\" at lahat ng solves nito ay permanenteng mabubura.",
       "name-placeholder": "hal. X-Man Tornado V3 M"
     },
     "Errors": {
-      "repeated-name": "May ganyang pangalan na ng collection.",
-      "collection-edit-failed": "Nabigo sa pag-edit ng cube collection",
+      "repeated-name": "May cube ka nang ganyang pangalan.",
+      "collection-edit-failed": "Nabigo sa pag-edit ng cube",
       "required-field": "Kinakailangang field",
-      "collection-deleted": "Matagumpay na nabura ang collection",
-      "collection-delete-failed": "Nabigo sa pagbura ng collection",
-      "permanent-delete-warning": "Permanenteng buburahin nito ang collection."
+      "collection-deleted": "Matagumpay na nabura ang cube",
+      "collection-delete-failed": "Nabigo sa pagbura ng cube",
+      "permanent-delete-warning": "Permanenteng buburahin nito ang cube."
     },
     "Inputs": {
       "delete": "Burahin",
@@ -406,7 +412,7 @@
       "create": "Gumawa",
       "cancel": "Kanselahin",
       "none": "Wala",
-      "collections": "Mga Collection",
+      "collections": "Mga Cube",
       "empty": "Walang laman",
       "back": "Bumalik",
       "no-results": "Walang nahanap na resulta",
@@ -694,7 +700,7 @@
       "unknown-category": "Hindi Alam",
       "move-to-history": "Ilipat sa History",
       "move-to-session": "Ilipat sa Session",
-      "transfer-collection": "Ilipat ang Collection",
+      "transfer-collection": "Ilipat sa ibang cube",
       "watch-replay": "Panoorin ang replay",
       "delete-confirm-title": "Burahin ang solve na ito?",
       "delete-confirm-desc": "Hindi na maibabalik ang aksyong ito.",
@@ -819,11 +825,11 @@
       "backup-history": "Kasaysayan"
     },
     "TransferSolvesPage": {
-      "no-source-title": "Did you record a solve with the wrong cube?",
-      "no-source-description": "Here you can transfer it to the correct collection.",
+      "no-source-title": "Nag-record ka ba ng solve sa maling cube?",
+      "no-source-description": "Dito mo ito maililipat sa tamang cube.",
       "title": "Ilipat ang mga Solve",
-      "collection-origin": "Pinagmulang Collection",
-      "collection-destination": "Patutunguhang Collection",
+      "collection-origin": "Pinagmulang Cube",
+      "collection-destination": "Patutunguhang Cube",
       "transfer": "Ilipat",
       "transferring": "Inililipat...",
       "solves-selected": "Mga Solve: ({count} ang napili)",

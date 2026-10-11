@@ -18,6 +18,11 @@
       "content": "हर क्यूब को रजिस्टर करें और बेझिझक उनके बीच बदलें: हर कैटेगरी एक ही क्रम में बनी रहती है, और आप हमेशा जानेंगे कि हर क्यूब के साथ आपका औसत कितना है।",
       "cta": "ठीक है"
     },
+    "BackupTips": {
+      "label": "प्रो टिप:",
+      "sync-order": "निश्चिंत रहें, डिवाइसों के बीच कोई क्रम रखने की ज़रूरत नहीं है। जब चाहें, जहाँ से चाहें बैकअप लें: Nexus Timer इतना स्मार्ट है कि आपका डेटा खुद जोड़कर व्यवस्थित कर देता है।",
+      "cta": "ठीक है"
+    },
     "others": {
       "suggestions": "सुझाव"
     },
@@ -276,7 +281,7 @@
         "select-cube": "क्यूब चुनकर शुरुआत करें!"
       },
       "dropdown": {
-        "transfer-collection": "संग्रह स्थानांतरित करें",
+        "transfer-collection": "दूसरे क्यूब में ले जाएँ",
         "move-to-history": "इतिहास में ले जाएं"
       },
       "empty-solves": "यहाँ अभी कुछ नहीं है!",
@@ -348,8 +353,8 @@
       "status": "स्थिति",
       "using": "उपयोग में",
       "idle": "निष्क्रिय",
-      "new-collection": "नया संग्रह",
-      "new-collection-description": "अपने क्यूब्स को व्यवस्थित करने के लिए एक नया संग्रह बनाएं।",
+      "new-collection": "क्यूब जोड़ें",
+      "new-collection-description": "इसके समय सहेजना शुरू करने के लिए इसे नाम और कैटेगरी दें।",
       "restore-account-data": "खाता डेटा पुनर्स्थापित करें",
       "restore-account-data-description": "अपने खाता बैकअप से अपना डेटा पुनर्स्थापित करें।",
       "import-from-other-timers": "अन्य टाइमर से आयात करें",
@@ -364,31 +369,32 @@
       "session-solves": "सत्र समाधान",
       "historical-solves": "ऐतिहासिक समाधान",
       "active-count": "{count, plural, =1 {# सक्रिय} other {# सक्रिय}}",
-      "collections-count": "{count, plural, =1 {# संग्रह} other {# संग्रह}}",
-      "empty-description": "अपना पहला संग्रह बनाएँ या किसी अन्य टाइमर से डेटा लाएँ। Nexi आपके पहले सॉल्व के लिए तैयार है।",
-      "empty-title": "अभी तक कोई संग्रह नहीं",
+      "collections-count": "{count, plural, =1 {# क्यूब} other {# क्यूब}}",
+      "empty-description": "अपना पहला क्यूब जोड़ें या किसी अन्य टाइमर से डेटा लाएँ। Nexi आपके पहले सॉल्व के लिए तैयार है।",
+      "empty-title": "अभी तक कोई क्यूब नहीं",
       "total-solves-count": "{count, plural, =1 {# सॉल्व} other {# सॉल्व}}"
     },
     "Cubes-modal": {
-      "delete-collection": "संग्रह हटाएं",
-      "delete-collection-description": "यह क्यूब संग्रह, इसके सभी समाधानों, रिकॉर्डों और सेटिंग्स के साथ हटा दिया जाएगा।",
-      "edit-collection": "संग्रह संपादित करें",
-      "danger-msg": "संग्रह श्रेणी को संशोधित करने से उस श्रेणी से जुड़े समाधान भी बदल जाते हैं।",
+      "delete-collection": "क्यूब हटाएं",
+      "delete-collection-description": "यह क्यूब, इसके सभी समाधानों, रिकॉर्डों और सेटिंग्स के साथ हटा दिया जाएगा।",
+      "edit-collection": "क्यूब संपादित करें",
+      "danger-msg": "श्रेणी बदलने से इस क्यूब के सभी समाधान भी बदल जाते हैं।",
       "name": "नाम",
       "category": "श्रेणी",
       "select-an-option": "एक विकल्प चुनें",
-      "new-collection": "नया संग्रह",
+      "new-collection": "क्यूब जोड़ें",
+      "register": "जोड़ें",
       "current-selection": "वर्तमान चयन:",
       "delete-confirmation-check": "मैं समझता/समझती हूँ कि \"{name}\" और इसके सभी समाधान स्थायी रूप से हटा दिए जाएँगे।",
       "name-placeholder": "जैसे X-Man Tornado V3 M"
     },
     "Errors": {
-      "repeated-name": "वह संग्रह नाम पहले से मौजूद है।",
-      "collection-edit-failed": "क्यूब संग्रह संपादित करने में विफल",
+      "repeated-name": "इस नाम का क्यूब पहले से मौजूद है।",
+      "collection-edit-failed": "क्यूब संपादित करने में विफल",
       "required-field": "आवश्यक फ़ील्ड",
-      "collection-deleted": "संग्रह सफलतापूर्वक हटा दिया गया",
-      "collection-delete-failed": "संग्रह हटाने में विफल",
-      "permanent-delete-warning": "यह संग्रह को स्थायी रूप से हटा देगा।"
+      "collection-deleted": "क्यूब सफलतापूर्वक हटा दिया गया",
+      "collection-delete-failed": "क्यूब हटाने में विफल",
+      "permanent-delete-warning": "यह क्यूब को स्थायी रूप से हटा देगा।"
     },
     "Inputs": {
       "delete": "हटाएं",
@@ -399,7 +405,7 @@
       "create": "बनाएं",
       "cancel": "रद्द करें",
       "none": "कोई नहीं",
-      "collections": "संग्रह",
+      "collections": "क्यूब",
       "empty": "खाली",
       "back": "पीछे",
       "no-results": "कोई परिणाम नहीं मिला",
@@ -687,7 +693,7 @@
       "unknown-category": "अज्ञात",
       "move-to-history": "इतिहास में ले जाएं",
       "move-to-session": "सत्र में ले जाएं",
-      "transfer-collection": "संग्रह स्थानांतरित करें",
+      "transfer-collection": "दूसरे क्यूब में ले जाएँ",
       "delete-confirm-title": "इस सॉल्व को हटाएँ?",
       "delete-confirm-desc": "इस क्रिया को पूर्ववत नहीं किया जा सकता।",
       "watch-replay": "रीप्ले देखें",
@@ -812,11 +818,11 @@
       "backup-history": "इतिहास"
     },
     "TransferSolvesPage": {
-      "no-source-title": "Did you record a solve with the wrong cube?",
-      "no-source-description": "Here you can transfer it to the correct collection.",
+      "no-source-title": "क्या आपने गलत क्यूब से सॉल्व रिकॉर्ड किया?",
+      "no-source-description": "यहाँ आप इसे सही क्यूब में ले जा सकते हैं।",
       "title": "समाधान स्थानांतरित करें",
-      "collection-origin": "संग्रह स्रोत",
-      "collection-destination": "संग्रह गंतव्य",
+      "collection-origin": "स्रोत क्यूब",
+      "collection-destination": "गंतव्य क्यूब",
       "transfer": "स्थानांतरित करें",
       "transferring": "स्थानांतरित हो रहा है...",
       "solves-selected": "समाधान: ({count} चयनित)",
