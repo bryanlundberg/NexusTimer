@@ -4,7 +4,7 @@ import { cn } from '@/shared/lib/utils'
 
 function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
   return (
-    <div data-slot="input-wrapper" className="field-notch flex w-full">
+    <div data-slot="input-wrapper" className="field flex w-full">
       <input
         type={type}
         data-slot="input"
