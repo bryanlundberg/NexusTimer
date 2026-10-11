@@ -15,6 +15,7 @@ import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { useSession } from '@/shared/model/useSession'
 import { useRouter } from '@/shared/config/i18n/navigation'
 import useAlert from '@/shared/model/useAlert'
+import { PageHeader } from '@/shared/ui/page-header/PageHeader'
 import type { RoomSummary } from '@nexustimer/contracts'
 
 export default function FreePlayPage() {
@@ -62,25 +63,28 @@ export default function FreePlayPage() {
           transition={{ duration: 0.4, ease: 'easeOut' }}
           className="mb-12"
         >
-          {displayRooms.length > 0 && (
-            <div className="mb-4 flex items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground tabular-nums">
-                <span className="relative flex size-2">
-                  <span className="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-75 motion-reduce:hidden" />
-                  <span className="relative inline-flex size-2 rounded-full bg-success" />
+          <PageHeader
+            title={t('title')}
+            description={t('description')}
+            className="mb-0"
+            meta={
+              displayRooms.length > 0 && (
+                <span className="inline-flex items-center gap-1.5 tabular-nums">
+                  <span className="relative flex size-2">
+                    <span className="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-75 motion-reduce:hidden" />
+                    <span className="relative inline-flex size-2 rounded-full bg-success" />
+                  </span>
+                  {t('active-rooms-count', { count: displayRooms.length })}
                 </span>
-                {t('active-rooms-count', { count: displayRooms.length })}
-              </span>
-            </div>
-          )}
-
-          <h1 className="font-display text-3xl font-bold tracking-tight lg:text-4xl mb-2">{t('title')}</h1>
-          <p className="text-muted-foreground max-w-lg mb-6">{t('description')}</p>
-
-          <Button size="default" className="gap-2 pointer-coarse:h-11" onClick={handleCreateRoom}>
-            <Plus className="size-4" />
-            {t('new-room')}
-          </Button>
+              )
+            }
+            actions={
+              <Button size="default" className="gap-2 pointer-coarse:h-11" onClick={handleCreateRoom}>
+                <Plus className="size-4" />
+                {t('new-room')}
+              </Button>
+            }
+          />
         </motion.div>
 
         {/* Rooms Section */}
