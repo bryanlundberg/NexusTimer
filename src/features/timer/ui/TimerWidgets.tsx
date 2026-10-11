@@ -38,11 +38,11 @@ export default function TimerWidgets() {
       <div
         data-testid="best-average-alert"
         className={cn(
-          'flex items-center gap-1.5 w-fit px-2.5 py-1 text-xs sm:text-sm font-medium bg-amber-500/15 text-amber-700 dark:text-amber-400',
+          'flex items-center gap-1.5 w-fit px-2.5 py-1 text-xs sm:text-sm font-medium bg-record/15 text-record',
           compactAlert
         )}
       >
-        <Trophy aria-hidden className="size-3.5 shrink-0 text-amber-500" />
+        <Trophy aria-hidden className="size-3.5 shrink-0 text-record" />
         <span>
           {t('new_best_average')} <span className="font-mono font-semibold">{newBestAverages.join(' · ')}</span>
         </span>
