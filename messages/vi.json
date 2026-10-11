@@ -134,6 +134,7 @@
     "SyncProgress": {
       "tooltip": "Auto-sync in {count} solves",
       "tooltip-last": "Your next solve will create a new restore point",
+      "row": "{count, plural, one {Backup in # solve} other {Backup in # solves}}",
       "modal-title": "Automatic backup",
       "modal-description": "NexusTimer automatically creates a new restore point with your cubes and solves.",
       "modal-remaining": "{count} solves left until the next restore point",

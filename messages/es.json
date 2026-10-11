@@ -97,6 +97,7 @@
     "SyncProgress": {
       "tooltip": "Sincronización automática en {count} solves",
       "tooltip-last": "El próximo solve creará un nuevo punto de restauración",
+      "row": "{count, plural, one {Respaldo en # solve} other {Respaldo en # solves}}",
       "modal-title": "Respaldo automático",
       "modal-description": "NexusTimer crea automáticamente un nuevo punto de restauración con tus cubos y solves.",
       "modal-remaining": "{count} solves para el próximo punto de restauración",
