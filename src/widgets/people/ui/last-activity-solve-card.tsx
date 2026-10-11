@@ -64,8 +64,8 @@ export function LastActivitySolveCard({ solve, index }: LastActivitySolveCardPro
               <span className="text-3xl font-black font-mono tracking-tighter tabular-nums">
                 {formatTime(solve.time)}
               </span>
-              {solve.dnf && <span className="text-xs font-bold text-red-500">DNF</span>}
-              {solve.plus2 && <span className="text-xs font-bold text-yellow-500">+2</span>}
+              {solve.dnf && <span className="text-xs font-bold text-destructive">DNF</span>}
+              {solve.plus2 && <span className="text-xs font-bold text-warning">+2</span>}
             </div>
           </div>
 
