@@ -36,7 +36,7 @@ export function FriendButton({ userId, name, status, canRequest = true }: Props)
   if (status === 'pending_in') {
     return (
       <>
-        <div className="panel-notch-bl-tr flex w-full flex-col gap-3 p-3.5 sm:w-auto sm:max-w-xs">
+        <div className="panel-notch flex w-full flex-col gap-3 p-3.5 sm:w-auto sm:max-w-xs">
           <div className="flex items-center gap-2.5">
             <UserRoundPlus className="size-5 shrink-0" />
             <div className="flex min-w-0 flex-col gap-1">
@@ -51,7 +51,7 @@ export function FriendButton({ userId, name, status, canRequest = true }: Props)
             <Button
               size="sm"
               variant="outline"
-              className="btn-notch btn-notch-border flex-1 gap-1.5 pointer-coarse:h-10"
+              className="flex-1 gap-1.5 pointer-coarse:h-10"
               disabled={busy}
               onClick={() => setConfirming(true)}
             >

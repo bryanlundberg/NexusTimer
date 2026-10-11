@@ -6,7 +6,6 @@ import { useTranslations } from 'next-intl'
 import { Check, Send, UserMinus, UserPlus, Users, X } from 'lucide-react'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Tabs, TabsContent } from '@/components/ui/tabs'
-import { cn } from '@/shared/lib/utils'
 import { Skeleton } from '@/components/ui/skeleton'
 import ScrollableUnderlineTabs from '@/shared/ui/animated-tabs/ScrollableUnderlineTabs'
 import { useFriends } from '@/entities/friendship/model/useFriends'
@@ -105,10 +104,7 @@ export function FriendsPanel() {
       <TabsContent value={FriendsTabs.FRIENDS}>
         {data.friends.length === 0 ? (
           <EmptyTable message={t('empty')}>
-            <Link
-              href="/people"
-              className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), 'btn-notch btn-notch-border')}
-            >
+            <Link href="/people" className={buttonVariants({ variant: 'outline', size: 'sm' })}>
               {t('find-cubers')}
             </Link>
           </EmptyTable>
