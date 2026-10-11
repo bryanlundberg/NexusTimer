@@ -15,6 +15,7 @@ import dayjs from '@/shared/lib/dayjs'
 import { cn } from '@/shared/lib/utils'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
+import BackupTips from '@/features/backup-tips/ui/BackupTips'
 
 export default function AccountSavePage() {
   const t = useTranslations('Index')
@@ -61,6 +62,8 @@ export default function AccountSavePage() {
         <p className="px-4 text-[15px] leading-snug text-muted-foreground sm:text-sm">
           {t('SettingsPage.save-data-description')}
         </p>
+
+        <BackupTips />
 
         <MenuSection title={t('SettingsPage.backup-device-section')} footer={t('SettingsPage.save-data-warning')}>
           <MenuRow label={t('SettingsPage.backup-cubes')}>
