@@ -18,28 +18,6 @@
       "content": "Registre cada cubo e troque entre eles com confiança: cada categoria continua sendo uma única sequência, e você sempre saberá sua média com cada cubo.",
       "cta": "Entendi"
     },
-    "sidebar-rotating-text": {
-      "text1": "Pronto para resolver?",
-      "text2": "Quebre o seu recorde",
-      "text3": "Hora do speedcubing",
-      "text4": "Vamos cubar!",
-      "text5": "Empurre seus limites",
-      "text6": "Quebre o seu próprio tempo",
-      "text7": "Cube como um pro",
-      "text8": "Mais uma resolução",
-      "text9": "Vá pelo PB",
-      "text10": "Continue cubando!",
-      "text11": "Domine o cubo",
-      "text12": "Cada segundo conta",
-      "text13": "Desafie-se",
-      "text14": "Vença o relógio",
-      "text15": "Cube mais rápido",
-      "text16": "A prática leva à perfeição",
-      "text17": "Um passo mais perto",
-      "text18": "Foque e resolva",
-      "text19": "Melhore a cada dia",
-      "text20": "Hora de brilhar"
-    },
     "others": {
       "suggestions": "Sugestões"
     },
@@ -679,8 +657,7 @@
       "save-data": "Criar backup",
       "download-data": "Restaurar backup",
       "log-out": "Sair",
-      "activity-solves": "soluções",
-      "activity-calendar": "Calendário de atividade",
+      "streak-days": "{count, plural, one {dia seguido} other {dias seguidos}}",
       "trainer": "Treinador",
       "training": "Treinamento",
       "toggle-section": "Mostrar ou ocultar {title}",

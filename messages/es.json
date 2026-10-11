@@ -25,28 +25,6 @@
       "content": "Registra cada cubo y cambia entre ellos con confianza: cada categoría sigue siendo una sola secuencia, y siempre sabrás cuánto promedias con cada cubo.",
       "cta": "Entendido"
     },
-    "sidebar-rotating-text": {
-      "text1": "¿Listo para resolver?",
-      "text2": "Rompe tu récord",
-      "text3": "Hora de speedcubing",
-      "text4": "¡Vamos a cubear!",
-      "text5": "Empuja tus límites",
-      "text6": "Rompe tu propio tiempo",
-      "text7": "Cúbea como un pro",
-      "text8": "Una resolución más",
-      "text9": "Ve por el PB",
-      "text10": "¡Sigue cubeando!",
-      "text11": "Domina el cubo",
-      "text12": "Cada segundo cuenta",
-      "text13": "Desafíate a ti mismo",
-      "text14": "Vence al reloj",
-      "text15": "Cúbea más rápido",
-      "text16": "La práctica hace al maestro",
-      "text17": "Un paso más cerca",
-      "text18": "Concéntrate y resuelve",
-      "text19": "Mejora cada día",
-      "text20": "Es hora de brillar"
-    },
     "leaderboard-solve-details": {
       "user-solution": "Reconstrucción",
       "time": "Tiempo",
@@ -962,8 +940,7 @@
       "save-data": "Crear copia de seguridad",
       "download-data": "Restaurar copia de seguridad",
       "log-out": "Cerrar sesión",
-      "activity-solves": "soluciones",
-      "activity-calendar": "Calendario de actividad",
+      "streak-days": "{count, plural, one {día seguido} other {días seguidos}}",
       "toggle-section": "Mostrar u ocultar {title}",
       "toggle-sidebar": "Mostrar u ocultar la barra lateral"
     },

@@ -18,28 +18,6 @@
       "content": "Enregistrez chaque cube et passez de l'un à l'autre en toute confiance : chaque catégorie reste une seule séquence, et vous saurez toujours votre moyenne avec chaque cube.",
       "cta": "Compris"
     },
-    "sidebar-rotating-text": {
-      "text1": "Prêt à résoudre ?",
-      "text2": "Battez votre record",
-      "text3": "L'heure du speedcubing",
-      "text4": "Cubons ensemble !",
-      "text5": "Repoussez vos limites",
-      "text6": "Battez votre propre temps",
-      "text7": "Cuber comme un pro",
-      "text8": "Encore une résolution",
-      "text9": "Visez le PB",
-      "text10": "Continuez à cuber !",
-      "text11": "Maîtrisez le cube",
-      "text12": "Chaque seconde compte",
-      "text13": "Relevez le défi",
-      "text14": "Battez le chrono",
-      "text15": "Cubez plus vite",
-      "text16": "La pratique rend parfait",
-      "text17": "Un pas de plus",
-      "text18": "Concentrez-vous et résolvez",
-      "text19": "Améliorez-vous chaque jour",
-      "text20": "C'est votre moment"
-    },
     "others": {
       "suggestions": "Suggestions"
     },
@@ -679,8 +657,7 @@
       "save-data": "Créer une sauvegarde",
       "download-data": "Restaurer une sauvegarde",
       "log-out": "Déconnexion",
-      "activity-solves": "résolutions",
-      "activity-calendar": "Calendrier d'activité",
+      "streak-days": "{count, plural, one {jour d’affilée} other {jours d’affilée}}",
       "trainer": "Entraîneur",
       "training": "Entraînement",
       "toggle-section": "Afficher ou masquer {title}",

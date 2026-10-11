@@ -25,28 +25,6 @@
       "content": "Daftarkan setiap cube dan berpindah di antaranya dengan tenang: setiap kategori tetap menjadi satu urutan, dan kamu selalu tahu rata-ratamu dengan setiap cube.",
       "cta": "Mengerti"
     },
-    "sidebar-rotating-text": {
-      "text1": "Siap menyelesaikan?",
-      "text2": "Pecahkan rekormu",
-      "text3": "Waktunya speedcubing",
-      "text4": "Ayo cubing!",
-      "text5": "Dorong batasmu",
-      "text6": "Kalahkan waktumu sendiri",
-      "text7": "Cubing seperti pro",
-      "text8": "Satu solve lagi",
-      "text9": "Kejar PB",
-      "text10": "Terus cubing!",
-      "text11": "Kuasai kubusnya",
-      "text12": "Setiap detik berarti",
-      "text13": "Tantang dirimu",
-      "text14": "Kalahkan waktunya",
-      "text15": "Cubing lebih cepat",
-      "text16": "Latihan membuat sempurna",
-      "text17": "Selangkah lebih dekat",
-      "text18": "Fokus dan selesaikan",
-      "text19": "Berkembang setiap hari",
-      "text20": "Waktunya bersinar"
-    },
     "others": {
       "suggestions": "Saran"
     },
@@ -688,8 +666,7 @@
       "save-data": "Buat cadangan",
       "download-data": "Pulihkan cadangan",
       "log-out": "Keluar",
-      "activity-solves": "solve",
-      "activity-calendar": "Kalender aktivitas",
+      "streak-days": "{count, plural, other {hari berturut-turut}}",
       "toggle-section": "Tampilkan atau sembunyikan {title}",
       "toggle-sidebar": "Tampilkan atau sembunyikan sidebar"
     },

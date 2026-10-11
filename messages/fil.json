@@ -25,28 +25,6 @@
       "content": "Irehistro ang bawat cube at magpalipat-lipat sa kanila nang may kumpiyansa: nananatiling iisang sequence ang bawat kategorya, at lagi mong malalaman ang average mo sa bawat cube.",
       "cta": "Sige"
     },
-    "sidebar-rotating-text": {
-      "text1": "Handa nang mag-solve?",
-      "text2": "Talunin ang record mo",
-      "text3": "Oras na ng speedcubing",
-      "text4": "Tara, mag-cube!",
-      "text5": "Itulak ang iyong limitasyon",
-      "text6": "Talunin ang sariling oras mo",
-      "text7": "Mag-cube na parang pro",
-      "text8": "Isa pang solve",
-      "text9": "Habulin ang PB",
-      "text10": "Tuloy lang sa pag-cube!",
-      "text11": "Bihasain ang cube",
-      "text12": "Mahalaga ang bawat segundo",
-      "text13": "Hamunin ang sarili",
-      "text14": "Talunin ang orasan",
-      "text15": "Mag-cube nang mas mabilis",
-      "text16": "Ang practice ang susi sa galing",
-      "text17": "Isang hakbang na ang layo",
-      "text18": "Mag-focus at mag-solve",
-      "text19": "Umangat araw-araw",
-      "text20": "Oras na para magningning"
-    },
     "others": {
       "suggestions": "Mga Mungkahi"
     },
@@ -688,8 +666,7 @@
       "save-data": "Gumawa ng backup",
       "download-data": "I-restore ang backup",
       "log-out": "Mag-log out",
-      "activity-solves": "solves",
-      "activity-calendar": "Kalendaryo ng aktibidad",
+      "streak-days": "{count, plural, other {araw na sunod-sunod}}",
       "toggle-section": "Ipakita o itago ang {title}",
       "toggle-sidebar": "Ipakita o itago ang sidebar"
     },

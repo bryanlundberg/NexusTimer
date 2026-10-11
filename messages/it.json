@@ -25,28 +25,6 @@
       "content": "Registra ogni cubo e passa dall'uno all'altro senza pensieri: ogni categoria resta un'unica sequenza, e saprai sempre la tua media con ciascun cubo.",
       "cta": "Capito"
     },
-    "sidebar-rotating-text": {
-      "text1": "Pronto a risolvere?",
-      "text2": "Batti il tuo record",
-      "text3": "È ora di speedcubing",
-      "text4": "Si cuba!",
-      "text5": "Spingi i tuoi limiti",
-      "text6": "Supera il tuo tempo",
-      "text7": "Cuba da professionista",
-      "text8": "Ancora un solve",
-      "text9": "Punta al PB",
-      "text10": "Continua a cubare!",
-      "text11": "Domina il cubo",
-      "text12": "Ogni secondo conta",
-      "text13": "Mettiti alla prova",
-      "text14": "Batti il cronometro",
-      "text15": "Cuba più veloce",
-      "text16": "La pratica rende perfetti",
-      "text17": "Un passo più vicino",
-      "text18": "Concentrati e risolvi",
-      "text19": "Migliora ogni giorno",
-      "text20": "È il tuo momento"
-    },
     "others": {
       "suggestions": "Suggerimenti"
     },
@@ -688,8 +666,7 @@
       "save-data": "Crea backup",
       "download-data": "Ripristina backup",
       "log-out": "Esci",
-      "activity-solves": "soluzioni",
-      "activity-calendar": "Calendario attività",
+      "streak-days": "{count, plural, one {giorno di fila} other {giorni di fila}}",
       "toggle-section": "Mostra o nascondi {title}",
       "toggle-sidebar": "Mostra o nascondi la barra laterale"
     },

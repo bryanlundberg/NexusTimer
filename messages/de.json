@@ -18,28 +18,6 @@
       "content": "Registriere jeden Würfel und wechsle bedenkenlos zwischen ihnen: Jede Kategorie bleibt eine einzige Abfolge, und du weißt immer, welchen Schnitt du mit jedem Würfel hast.",
       "cta": "Verstanden"
     },
-    "sidebar-rotating-text": {
-      "text1": "Bereit zum Lösen?",
-      "text2": "Brich deinen Rekord",
-      "text3": "Speedcubing Zeit",
-      "text4": "Lass uns cuben!",
-      "text5": "Geh an deine Grenzen",
-      "text6": "Brich deine eigene Bestzeit",
-      "text7": "Cube wie ein Profi",
-      "text8": "Noch ein Solve",
-      "text9": "Hol dir die PB",
-      "text10": "Cube weiter!",
-      "text11": "Meistere den Würfel",
-      "text12": "Jede Sekunde zählt",
-      "text13": "Fordere dich selbst heraus",
-      "text14": "Schlag die Uhr",
-      "text15": "Cube schneller",
-      "text16": "Übung macht den Meister",
-      "text17": "Einen Schritt näher",
-      "text18": "Konzentrieren und Lösen",
-      "text19": "Werde jeden Tag besser",
-      "text20": "Zeit zu glänzen"
-    },
     "others": {
       "suggestions": "Vorschläge"
     },
@@ -679,8 +657,7 @@
       "save-data": "Backup erstellen",
       "download-data": "Backup wiederherstellen",
       "log-out": "Abmelden",
-      "activity-solves": "Lösungen",
-      "activity-calendar": "Aktivitätskalender",
+      "streak-days": "{count, plural, one {Tag in Folge} other {Tage in Folge}}",
       "trainer": "Trainer",
       "training": "Training",
       "toggle-section": "{title} ein- oder ausblenden",

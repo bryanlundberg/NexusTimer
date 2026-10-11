@@ -25,28 +25,6 @@
       "content": "Zarejestruj każdą kostkę i zmieniaj je bez obaw: każda kategoria pozostaje jedną sekwencją, a Ty zawsze wiesz, jaką średnią masz z każdą kostką.",
       "cta": "Rozumiem"
     },
-    "sidebar-rotating-text": {
-      "text1": "Gotowy na układanie?",
-      "text2": "Pobij swój rekord",
-      "text3": "Czas na speedcubing",
-      "text4": "Układamy!",
-      "text5": "Przekraczaj swoje granice",
-      "text6": "Pobij swój czas",
-      "text7": "Układaj jak profesjonalista",
-      "text8": "Jeszcze jedno ułożenie",
-      "text9": "Celuj w PB",
-      "text10": "Układaj dalej!",
-      "text11": "Opanuj kostkę",
-      "text12": "Każda sekunda się liczy",
-      "text13": "Rzuć sobie wyzwanie",
-      "text14": "Pokonaj zegar",
-      "text15": "Układaj szybciej",
-      "text16": "Trening czyni mistrza",
-      "text17": "Krok bliżej celu",
-      "text18": "Skup się i układaj",
-      "text19": "Poprawiaj się każdego dnia",
-      "text20": "Czas zabłysnąć"
-    },
     "others": {
       "suggestions": "Sugestie"
     },
@@ -688,8 +666,7 @@
       "save-data": "Utwórz kopię zapasową",
       "download-data": "Przywróć kopię zapasową",
       "log-out": "Wyloguj się",
-      "activity-solves": "ułożenia",
-      "activity-calendar": "Kalendarz aktywności",
+      "streak-days": "{count, plural, one {dzień z rzędu} few {dni z rzędu} many {dni z rzędu} other {dnia z rzędu}}",
       "toggle-section": "Pokaż lub ukryj {title}",
       "toggle-sidebar": "Pokaż lub ukryj pasek boczny"
     },

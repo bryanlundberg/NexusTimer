@@ -25,28 +25,6 @@
       "content": "Register each cube and switch between them with confidence: every category stays one single sequence, and you will always know your average with each cube.",
       "cta": "Got it"
     },
-    "sidebar-rotating-text": {
-      "text1": "Ready to solve?",
-      "text2": "Break your record",
-      "text3": "Speedcubing time",
-      "text4": "Let's cube!",
-      "text5": "Push your limits",
-      "text6": "Break your own time",
-      "text7": "Cube like a pro",
-      "text8": "One more solve",
-      "text9": "Go for the PB",
-      "text10": "Keep cubing!",
-      "text11": "Master the cube",
-      "text12": "Every second counts",
-      "text13": "Challenge yourself",
-      "text14": "Beat the clock",
-      "text15": "Cube faster",
-      "text16": "Practice makes perfect",
-      "text17": "One step closer",
-      "text18": "Focus and solve",
-      "text19": "Improve every day",
-      "text20": "Time to shine"
-    },
     "others": {
       "suggestions": "Suggestions"
     },
@@ -688,8 +666,7 @@
       "save-data": "Create Backup",
       "download-data": "Restore Backup",
       "log-out": "Sign Out",
-      "activity-solves": "solves",
-      "activity-calendar": "Activity calendar",
+      "streak-days": "{count, plural, one {day in a row} other {days in a row}}",
       "toggle-section": "Show or hide {title}",
       "toggle-sidebar": "Show or hide sidebar"
     },

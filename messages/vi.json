@@ -25,28 +25,6 @@
       "content": "Hãy đăng ký từng cube và yên tâm chuyển đổi giữa chúng: mỗi hạng mục vẫn là một chuỗi duy nhất, và bạn luôn biết trung bình của mình với từng cube.",
       "cta": "Đã hiểu"
     },
-    "sidebar-rotating-text": {
-      "text1": "Sẵn sàng giải chưa?",
-      "text2": "Phá kỷ lục của bạn",
-      "text3": "Giờ speedcubing",
-      "text4": "Cùng xoay nào!",
-      "text5": "Vượt qua giới hạn",
-      "text6": "Phá thời gian của chính bạn",
-      "text7": "Xoay như pro",
-      "text8": "Thêm một lượt giải",
-      "text9": "Hướng tới PB",
-      "text10": "Tiếp tục xoay nào!",
-      "text11": "Làm chủ khối Rubik",
-      "text12": "Từng giây đều quan trọng",
-      "text13": "Thử thách bản thân",
-      "text14": "Đánh bại đồng hồ",
-      "text15": "Xoay nhanh hơn",
-      "text16": "Có công mài sắt có ngày nên kim",
-      "text17": "Tiến gần hơn một bước",
-      "text18": "Tập trung và giải",
-      "text19": "Tiến bộ mỗi ngày",
-      "text20": "Đến lúc tỏa sáng"
-    },
     "others": {
       "suggestions": "Gợi ý"
     },
@@ -688,8 +666,7 @@
       "save-data": "Tạo bản sao lưu",
       "download-data": "Khôi phục bản sao lưu",
       "log-out": "Đăng xuất",
-      "activity-solves": "lượt giải",
-      "activity-calendar": "Lịch hoạt động",
+      "streak-days": "{count, plural, other {ngày liên tiếp}}",
       "toggle-section": "Hiện hoặc ẩn {title}",
       "toggle-sidebar": "Hiện hoặc ẩn thanh bên"
     },

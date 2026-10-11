@@ -18,28 +18,6 @@
       "content": "为每个魔方单独登记，放心地随时切换：每个项目的成绩始终是一条连续的序列，你也总能知道自己用每个魔方的平均成绩。",
       "cta": "知道了"
     },
-    "sidebar-rotating-text": {
-      "text1": "准备好还原了吗？",
-      "text2": "打破你的纪录",
-      "text3": "速拧时间到",
-      "text4": "让我们开始魔方吧！",
-      "text5": "挑战你的极限",
-      "text6": "刷新你的最快时间",
-      "text7": "像专业人士一样还原",
-      "text8": "再来一次还原",
-      "text9": "冲击 PB",
-      "text10": "继续拧魔方！",
-      "text11": "掌控魔方",
-      "text12": "每一秒都很关键",
-      "text13": "挑战自我",
-      "text14": "战胜时钟",
-      "text15": "还原得更快",
-      "text16": "熟能生巧",
-      "text17": "更进一步",
-      "text18": "专注还原",
-      "text19": "每天都在进步",
-      "text20": "大放异彩的时间到了"
-    },
     "others": {
       "suggestions": "建议"
     },
@@ -679,8 +657,7 @@
       "save-data": "创建备份",
       "download-data": "恢复备份",
       "log-out": "退出登录",
-      "activity-solves": "次还原",
-      "activity-calendar": "活动日历",
+      "streak-days": "{count, plural, other {天不间断}}",
       "trainer": "训练器",
       "training": "训练",
       "toggle-section": "显示或隐藏{title}",
