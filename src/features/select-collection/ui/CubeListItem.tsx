@@ -45,7 +45,7 @@ export function CubeListItem({
       </div>
 
       <div className="flex shrink-0 items-center gap-2">
-        {cube.favorite && <Star className="size-3.5 fill-yellow-500 text-yellow-500" />}
+        {cube.favorite && <Star className="size-3.5 fill-record text-record" />}
       </div>
     </button>
   )
