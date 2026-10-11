@@ -7,6 +7,7 @@ import { useQueryState } from 'nuqs'
 import { CountryCombobox } from '@/shared/ui/country-combobox/CountryCombobox'
 import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
 import { usePeopleSearch } from '@/widgets/navigation-header/model/usePeopleSearch'
+import { PageHeader } from '@/shared/ui/page-header/PageHeader'
 
 interface PeoplePageHeaderProps {
   total?: number
@@ -27,36 +28,32 @@ export default function PeoplePageHeader({ total, showing }: PeoplePageHeaderPro
 
   return (
     <div className="flex flex-col justify-between gap-4 mb-4">
-      {/* Left: titles + count */}
-      <div className="flex flex-col gap-1">
-        <span className="flex items-center gap-2 font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-          <span className="size-2 shrink-0 rounded-[2px] bg-cube-orange" aria-hidden />
-          {t('directory-label')}
-        </span>
-        <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-none">
-          {t('find-cubers')}
-        </h2>
-        {total !== undefined && showing !== undefined && (
-          <span className="text-xs text-muted-foreground mt-0.5">
-            {t.rich('showing-members', {
-              showing,
-              total,
-              b: (chunks) => <span className="font-semibold text-foreground">{chunks}</span>
-            })}
-            {basketCount > 0 && (
-              <>
-                {' · '}
-                {t.rich('compare-basket', {
-                  count: basketCount,
-                  b: (chunks) => <span className="font-semibold text-primary">{chunks}</span>
-                })}
-              </>
-            )}
-          </span>
-        )}
-      </div>
+      <PageHeader
+        title={t('find-cubers')}
+        className="mb-0"
+        meta={
+          total !== undefined &&
+          showing !== undefined && (
+            <>
+              {t.rich('showing-members', {
+                showing,
+                total,
+                b: (chunks) => <span className="font-semibold text-foreground">{chunks}</span>
+              })}
+              {basketCount > 0 && (
+                <>
+                  {' · '}
+                  {t.rich('compare-basket', {
+                    count: basketCount,
+                    b: (chunks) => <span className="font-semibold text-primary">{chunks}</span>
+                  })}
+                </>
+              )}
+            </>
+          )
+        }
+      />
 
-      {/* Right: search + basket */}
       <div className="flex flex-col gap-1.5 w-full sm:w-auto">
         <div className="flex flex-col gap-2 sm:flex-row">
           <div className="relative group flex-1 sm:flex-none">
