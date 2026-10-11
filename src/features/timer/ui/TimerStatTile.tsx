@@ -21,7 +21,8 @@ export default function TimerStatTile({ label, value, testId, side, isRecord = f
       }}
       className={cn(
         'font-medium transition-colors md:flex md:min-w-24 md:flex-col md:justify-center md:gap-1 md:px-3 md:py-2 md:text-left',
-        side === 'left' ? 'stat-notch' : 'stat-notch-r text-right',
+        'stat-notch',
+        side === 'right' && 'text-right',
         isRecord ? 'text-amber-700 md:bg-amber-500/15 dark:text-amber-400' : 'md:bg-primary/[0.08]'
       )}
     >
@@ -37,7 +38,7 @@ export default function TimerStatTile({ label, value, testId, side, isRecord = f
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.18 }}
         className={cn(
-          'inline-block font-mono tabular-nums md:text-lg md:font-semibold md:leading-none',
+          'inline-block font-display tabular-nums md:text-lg md:font-semibold md:leading-none',
           isEmpty ? 'md:text-muted-foreground/50' : !isRecord && 'md:text-foreground'
         )}
       >
