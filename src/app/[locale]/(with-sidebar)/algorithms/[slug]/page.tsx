@@ -6,7 +6,6 @@ import { AlgorithmsList } from '@/features/algorithms-list/ui/AlgorithmsList'
 import Suggestions from '@/shared/ui/suggestions/suggestions'
 import SuggestAlgorithmButton from '@/features/suggest-algorithm/ui/SuggestAlgorithmButton'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import Information from '@/features/algorithms-list/ui/information'
 import SetGuide from '@/features/algorithms-list/ui/set-guide'
 import TrainerCTA from '@/features/algorithms-list/ui/trainer-cta'
 import { ALGORITHMS_GITHUB_URL } from '@/shared/const/algorithms-github-url'
@@ -14,6 +13,7 @@ import { cubeCollection } from '@/shared/const/cube-collection'
 import { getLocale, getTranslations } from 'next-intl/server'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
+import { PageHeader } from '@/shared/ui/page-header/PageHeader'
 import { localizedAlternates } from '@/shared/config/i18n/alternates'
 import { localizedPath } from '@/shared/config/i18n/locales'
 import { OG_IMAGES, ogImage } from '@/shared/config/seo/open-graph'
@@ -161,10 +161,10 @@ export default async function AlgorithmsMethodPage({ params }: Props) {
         variant="hero"
         className="px-3 pb-3 sm:px-4 sm:pb-4 md:px-8 md:pb-8 lg:px-12 lg:pb-12 max-w-4xl mx-auto"
       >
-        <Information
+        <PageHeader
           title={`${collection.title} - ${t('title')}`}
           description={t(`descriptions.${collection.slug}`)}
-          algorithmCount={collection.algorithms.length}
+          meta={`${collection.algorithms.length} ${t('algs-unit')}`}
           actions={<TrainerCTA methodSlug={collection.slug} />}
         />
         <AlgorithmsList
