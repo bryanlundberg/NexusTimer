@@ -45,7 +45,6 @@ export default function MainCubeSelector() {
           !selectedCube && 'text-muted-foreground'
         )}
         onClick={handleOpenSelector}
-        data-tour="onboarding-cube-selector"
       >
         <span className="flex min-w-0 items-center gap-2">
           {selectedCubeData ? (

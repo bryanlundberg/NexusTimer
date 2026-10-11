@@ -408,59 +408,6 @@
   }
 }
 
-@keyframes onboarding-pulse {
-  0%,
-  100% {
-    filter: drop-shadow(0 0 2px color-mix(in oklab, var(--primary) 85%, transparent))
-      drop-shadow(0 0 7px color-mix(in oklab, var(--primary) 35%, transparent));
-  }
-  50% {
-    filter: drop-shadow(0 0 4px var(--primary))
-      drop-shadow(0 0 16px color-mix(in oklab, var(--primary) 60%, transparent));
-  }
-}
-.onboarding-pulse {
-  animation: onboarding-pulse 1.4s ease-in-out infinite;
-  will-change: filter;
-}
-@media (prefers-reduced-motion: reduce) {
-  .onboarding-pulse {
-    animation: none;
-    filter: drop-shadow(0 0 3px var(--primary));
-  }
-}
-
-.tour-notch {
-  --tn-cut: 12px;
-  --tn-border: 1px;
-  --tn-border-color: color-mix(in oklab, var(--primary) 22%, var(--border));
-  --tn-fill: var(--popover);
-  --tn-shape: polygon(
-    0 0,
-    100% 0,
-    100% calc(100% - var(--tn-cut)),
-    calc(100% - var(--tn-cut)) 100%,
-    0 100%
-  );
-  position: relative;
-  isolation: isolate;
-  border: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  background-color: var(--tn-border-color) !important;
-  clip-path: var(--tn-shape);
-  filter: drop-shadow(0 4px 8px rgb(0 0 0 / 0.25));
-}
-.tour-notch::before {
-  content: '';
-  position: absolute;
-  inset: var(--tn-border);
-  z-index: -1;
-  background-color: var(--tn-fill);
-  clip-path: var(--tn-shape);
-  pointer-events: none;
-}
-
 @layer components {
   .menu-panel {
     border: 1px solid var(--border);

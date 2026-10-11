@@ -1,5 +1,4 @@
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
-import { useOnboardingStore } from '@/features/onboarding-tour/model/useOnboardingStore'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog'
 import { CUBE_CATEGORIES, CubeCategory } from '@/shared/const/cube-categories'
@@ -17,12 +16,9 @@ import { CubeListItem } from '@/features/select-collection/ui/CubeListItem'
 
 type Filter = CubeCategory | 'all'
 
-const ONBOARDING_TARGET = 'onboarding-create-collection'
-
 export default function SelectCollection() {
   const close = useOverlayStore((state) => state.close)
   const isOpen = useOverlayStore((state) => state.isOpen)
-  const lockSelectClose = useOnboardingStore((state) => state.lockSelectClose)
   const cubes = useTimerStore((state) => state.cubes)
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const t = useTranslations('Index')
@@ -97,11 +93,7 @@ export default function SelectCollection() {
   return (
     <Dialog
       open={isOpen}
-      dismissible={!lockSelectClose}
       onOpenChange={(open) => {
-        // During the onboarding tour, force the user to click the "create
-        // collection" button — ignore outside-click/ESC dismissals.
-        if (!open && lockSelectClose) return
         if (!open) close()
       }}
     >
@@ -182,12 +174,7 @@ export default function SelectCollection() {
 
           {/* Create collection (fixed footer) */}
           <div className="border-t p-2">
-            <Button
-              variant="secondary"
-              onClick={handleCreate}
-              data-tour={ONBOARDING_TARGET}
-              className="w-full justify-center gap-2"
-            >
+            <Button variant="secondary" onClick={handleCreate} className="w-full justify-center gap-2">
               <PlusIcon className="size-4" />
               {t('CubesPage.new-collection')}
             </Button>
