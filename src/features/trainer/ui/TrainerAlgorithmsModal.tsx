@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl'
 import { DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import type { Alg } from '@/features/algorithms-list/model/types'
+import AlgorithmNotation from '@/shared/ui/algorithm-notation/AlgorithmNotation'
 
 export default function TrainerAlgorithmsModal() {
   const t = useTranslations('Index.TrainerPage.algorithmsModal')
@@ -29,7 +30,7 @@ export default function TrainerAlgorithmsModal() {
               {alg.label && (
                 <span className="text-[10px] uppercase tracking-wider text-muted-foreground">{alg.label}</span>
               )}
-              <code className="text-sm font-mono break-all">{alg.moves}</code>
+              <AlgorithmNotation alg={alg.moves} className="text-sm" />
             </div>
           </li>
         ))}
