@@ -38,11 +38,7 @@ export function MessageLink({ userId, variant = 'outline', showLabel = false, cl
       onClick={() => void open()}
       disabled={busy}
       aria-label={t('message')}
-      className={cn(
-        buttonVariants({ variant, size: 'sm' }),
-        'btn-notch btn-notch-border gap-1.5 pointer-coarse:h-10',
-        className
-      )}
+      className={cn(buttonVariants({ variant, size: 'sm' }), 'gap-1.5 pointer-coarse:h-10', className)}
     >
       <MessageCircle className="size-4" />
       <span className={cn(!showLabel && 'hidden sm:inline')}>{t('message')}</span>

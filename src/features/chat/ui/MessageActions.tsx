@@ -146,10 +146,7 @@ export function MessageActions({ isOwn, canEdit, canReact, canDeleteForEveryone,
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>{t('cancel')}</AlertDialogCancel>
-            <AlertDialogAction
-              className={cn(buttonVariants({ variant: 'secondary' }), 'btn-notch')}
-              onClick={() => remove('me')}
-            >
+            <AlertDialogAction className={buttonVariants({ variant: 'secondary' })} onClick={() => remove('me')}>
               {t('delete-for-me')}
             </AlertDialogAction>
             {canDeleteForEveryone && (
