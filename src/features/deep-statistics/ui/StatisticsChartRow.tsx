@@ -19,9 +19,7 @@ export default function StatisticsChartRow({ row, columns, isLoading, activeGrou
       className={cn(
         ROW_GRID,
         'group rounded-none px-1 transition-colors',
-        row.highlight
-          ? 'bg-amber-500/[0.07] shadow-[inset_2px_0_0_var(--color-amber-500)] hover:bg-amber-500/10'
-          : 'hover:bg-primary/5 hover:shadow-[inset_2px_0_0_var(--primary)]'
+        row.highlight ? 'bg-amber-500/[0.07] hover:bg-amber-500/10' : 'hover:bg-muted/40'
       )}
     >
       {/* Metric label */}
