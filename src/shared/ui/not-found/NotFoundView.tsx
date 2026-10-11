@@ -32,7 +32,7 @@ export function NotFoundView() {
             4
           </span>
           <Nexi
-            state="empty"
+            state="oops"
             size={150}
             style={{ filter: 'drop-shadow(0 14px 30px color-mix(in oklch, var(--primary) 45%, transparent))' }}
           />
