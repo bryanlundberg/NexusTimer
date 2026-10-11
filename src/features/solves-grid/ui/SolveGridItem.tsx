@@ -95,17 +95,8 @@ export default function SolveGridItem({ index, orderedSolves, solve, isRecord = 
           </span>
         ) : (
           <>
-            <span
-              className={cn('text-base sm:text-2xl font-semibold', isRecord && 'text-amber-700 dark:text-amber-400')}
-            >
-              {integerPart}
-            </span>
-            <span
-              className={cn(
-                'text-xs sm:text-base',
-                isRecord ? 'text-amber-700/70 dark:text-amber-400/70' : 'text-muted-foreground'
-              )}
-            >
+            <span className={cn('text-base sm:text-2xl font-semibold', isRecord && 'text-record')}>{integerPart}</span>
+            <span className={cn('text-xs sm:text-base', isRecord ? 'text-record/70' : 'text-muted-foreground')}>
               .{decimalPart}
             </span>
             {item.plus2 ? (
@@ -127,7 +118,7 @@ export default function SolveGridItem({ index, orderedSolves, solve, isRecord = 
       </div>
 
       <div className="absolute left-1 bottom-1 sm:left-2 sm:bottom-2 flex items-center gap-2 text-xs text-muted-foreground">
-        {isRecord && <Trophy aria-hidden className="size-3 sm:size-3.5 text-amber-500" />}
+        {isRecord && <Trophy aria-hidden className="size-3 sm:size-3.5 text-record" />}
         {item.comment && (
           <span className="flex items-center gap-1" data-testid={`comment-icon-${index}`}>
             <QaCommentIcon className="size-3 sm:size-3.5" />
