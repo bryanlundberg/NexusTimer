@@ -43,7 +43,7 @@ export default function Segmented<T extends string>({
       role="radiogroup"
       aria-label={props['aria-label']}
       className={cn(
-        'inline-flex w-fit shrink-0 items-center gap-1 p-1 rounded-none border border-border/60 bg-background/60',
+        'inline-flex w-fit shrink-0 items-stretch rounded-none border border-input bg-background',
         className
       )}
     >
@@ -70,25 +70,26 @@ export default function Segmented<T extends string>({
               }
             }}
             className={cn(
-              'relative flex shrink-0 items-center gap-2 px-2.5 py-1.5 rounded-none text-xs font-semibold outline-none transition-colors duration-[var(--dur-fast)] ease-[var(--ease-solve)] cursor-pointer [-webkit-tap-highlight-color:transparent] focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-ring pointer-coarse:py-2.5 pointer-coarse:text-[13px]',
+              'relative flex shrink-0 items-center gap-2 px-3 py-[7px] rounded-none text-sm font-medium outline-none transition-colors duration-[var(--dur-fast)] ease-[var(--ease-solve)] cursor-pointer [-webkit-tap-highlight-color:transparent] focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-ring pointer-coarse:py-[9px]',
               active ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
             )}
           >
             {active && (
               <motion.span
                 layoutId={layoutId}
-                className="absolute inset-0 rounded-none bg-primary/15 ring-1 ring-primary/40 shadow-sm"
+                className="absolute inset-0 bg-primary/20"
                 transition={INDICATOR_SPRING}
               />
             )}
             {option.icon && (
-              <motion.span
-                className="relative inline-flex shrink-0"
-                animate={{ opacity: active ? 1 : 0.6, rotate: active ? [0, -8, 8, 0] : 0 }}
-                transition={{ duration: 0.4, ease: 'easeOut' }}
+              <span
+                className={cn(
+                  'relative inline-flex shrink-0 transition-opacity',
+                  active ? 'opacity-100' : 'opacity-60'
+                )}
               >
                 {option.icon}
-              </motion.span>
+              </span>
             )}
             {option.sublabel ? (
               <span className="relative flex flex-col items-start leading-tight">
