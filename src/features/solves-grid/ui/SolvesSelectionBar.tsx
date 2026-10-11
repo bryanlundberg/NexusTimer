@@ -151,7 +151,7 @@ export default function SolvesSelectionBar({ allIds }: SolvesSelectionBarProps) 
         <Button
           variant="ghost"
           size="sm"
-          className="shrink-0 gap-1.5 pointer-coarse:h-10 text-red-500 hover:bg-red-500/15 hover:text-red-500 dark:hover:bg-red-500/15"
+          className="shrink-0 gap-1.5 pointer-coarse:h-10 text-destructive hover:bg-destructive/15 hover:text-destructive dark:hover:bg-destructive/15"
           disabled={count === 0}
           onClick={() => setConfirmOpen(true)}
           data-testid="bulk-delete-button"
