@@ -75,6 +75,22 @@ const readableOn = (bg: Oklch): Oklch => {
   return candidate(pass)
 }
 
+const GRAPHIC_TARGET = 3.1
+
+const visibleOn = (color: Oklch, surface: Oklch): Oklch => {
+  if (contrastRatio(color, surface) >= GRAPHIC_TARGET) return color
+
+  const at = (l: number): Oklch => ok(l, color.c, color.h)
+  let pass = surface.l > color.l ? 0 : 1
+  let fail = color.l
+  for (let i = 0; i < 20; i++) {
+    const mid = (pass + fail) / 2
+    if (contrastRatio(at(mid), surface) >= GRAPHIC_TARGET) pass = mid
+    else fail = mid
+  }
+  return at(pass)
+}
+
 type PaletteSpec = {
   accent: Record<ColorSchemeMode, Oklch>
   /** Defaults to a whisper of the accent hue. */
@@ -206,7 +222,9 @@ export const buildColorScheme = (color: Colors, mode: ColorSchemeMode): Record<s
   const { hue, tint } = spec.neutral ?? { hue: accent.h, tint: accentTint(accent.c, mode) }
   const ramp = RAMPS[mode]
 
-  const grey = (step: Step): string => toCss(ok(step.l, GREY_CHROMA * step.f * tint, hue), step.a)
+  const tone = (step: Step): Oklch => ok(step.l, GREY_CHROMA * step.f * tint, hue)
+  const grey = (step: Step): string => toCss(tone(step), step.a)
+  const sidebarAccent = mode === 'dark' ? ramp.raised : ramp.subtle
 
   const onAccent = toCss(readableOn(accent))
   const accentCss = toCss(accent)
@@ -246,8 +264,9 @@ export const buildColorScheme = (color: Colors, mode: ColorSchemeMode): Record<s
     'sidebar-foreground': text,
     'sidebar-primary': accentCss,
     'sidebar-primary-foreground': onAccent,
-    'sidebar-accent': mode === 'dark' ? grey(ramp.raised) : surface,
+    'sidebar-accent': grey(sidebarAccent),
     'sidebar-accent-foreground': onSurface,
+    'sidebar-mark': toCss(visibleOn(accent, tone(sidebarAccent))),
     'sidebar-border': line,
     'sidebar-ring': accentCss
   }
