@@ -1,12 +1,15 @@
+import Image from 'next/image'
 import { Link } from '@/shared/config/i18n/navigation'
-import { ArrowLeft, ArrowRight, Code2, Gift, ShieldOff } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Code2, Gem, Gift, ShieldCheck } from 'lucide-react'
 import { Reveal } from '@/shared/ui/reveal/Reveal'
 import { CubeGridTexture } from '@/shared/ui/cube-grid-texture/CubeGridTexture'
 import { Nexi } from '@/shared/ui/nexi'
-import EraCarousel from './EraCarousel'
-import { ABOUT, CTA, DISCORD_URL, ERAS, MISSION, REPO_URL, STATS } from './content'
+import TeamSection from './TeamSection'
+import LibrariesSection from './LibrariesSection'
+import GrowthSection from './GrowthSection'
+import { ABOUT, CTA, DISCORD_URL, MOTIVATION, ORIGIN, REPO_URL, STATS } from './content'
 
-const MISSION_ICONS = { gift: Gift, code: Code2, shield: ShieldOff } as const
+const MOTIVATION_ICONS = { code: Code2, gift: Gift, shield: ShieldCheck, quality: Gem } as const
 
 export default function AboutContent() {
   return (
@@ -26,8 +29,7 @@ export default function AboutContent() {
       </header>
 
       <main>
-        {/* Hero */}
-        <section className="relative overflow-hidden px-6 pt-12 pb-12 md:pt-20 md:pb-16">
+        <section className="relative overflow-hidden px-6 pt-12 pb-16 md:pt-20 md:pb-24">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 -z-10 text-gray-900"
@@ -56,12 +58,11 @@ export default function AboutContent() {
           </div>
         </section>
 
-        {/* Stats */}
         <section className="px-6 pb-20 md:pb-28">
           <Reveal className="mx-auto grid max-w-5xl grid-cols-2 gap-px border border-gray-900/10 bg-gray-900/10 md:grid-cols-4">
             {STATS.map((stat) => (
               <div key={stat.label} className="bg-[var(--lp-bg)] px-4 py-6 text-center md:py-8">
-                <p className="font-display text-2xl md:text-4xl font-bold tabular-nums tracking-[-0.02em] text-gray-900">
+                <p className="font-display text-2xl md:text-4xl font-bold tracking-[-0.02em] text-gray-900">
                   {stat.value}
                 </p>
                 <p className="mt-2 text-[11px] uppercase tracking-[0.2em] text-gray-500">{stat.label}</p>
@@ -70,92 +71,52 @@ export default function AboutContent() {
           </Reveal>
         </section>
 
-        {/* Timeline */}
-        <section className="lp-cv relative px-6 pb-8">
-          <div className="mx-auto max-w-5xl">
-            <Reveal className="flex items-center gap-2.5 mb-12 text-sm font-medium text-primary">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-              {ABOUT.timelineLabel}
-            </Reveal>
+        <section className="lp-cv relative px-6 pb-20 md:pb-28">
+          <Reveal className="mx-auto grid max-w-5xl gap-10 md:grid-cols-2 md:items-center md:gap-14">
+            <div>
+              <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-4">{ORIGIN.label}</p>
+              <h2 className="font-display text-balance text-3xl md:text-4xl font-bold tracking-[-0.02em] text-gray-900 mb-6">
+                {ORIGIN.title}
+              </h2>
+              <div className="space-y-4">
+                {ORIGIN.paragraphs.map((paragraph) => (
+                  <p key={paragraph} className="text-sm md:text-base text-gray-600 leading-relaxed text-pretty">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            </div>
 
-            <ol className="relative border-l border-gray-900/10 pl-6 md:pl-10">
-              {ERAS.map((era, index) => (
-                <li key={era.title} className="relative pb-20 md:pb-24 last:pb-0">
-                  <span
-                    aria-hidden
-                    className="absolute -left-[calc(1.5rem+5px)] top-2 h-2.5 w-2.5 rounded-[3px] md:-left-[calc(2.5rem+5px)]"
-                    style={{ backgroundColor: era.accent }}
-                  />
-
-                  <Reveal className={era.images.length > 0 ? 'grid gap-8 md:grid-cols-2 md:items-center' : 'max-w-2xl'}>
-                    <div>
-                      <div className="mb-3 flex items-baseline gap-3">
-                        <span className="font-display text-3xl md:text-4xl font-bold tabular-nums text-gray-900">
-                          {era.year}
-                        </span>
-                        <span className="text-xs uppercase tracking-[0.2em] text-gray-500">{era.date}</span>
-                      </div>
-                      <h2 className="font-display text-xl md:text-2xl font-bold tracking-[-0.01em] text-gray-900 mb-3">
-                        {era.title}
-                      </h2>
-                      <div className="space-y-4">
-                        {era.paragraphs.map((paragraph) => (
-                          <p key={paragraph} className="text-sm md:text-base text-gray-600 leading-relaxed text-pretty">
-                            {paragraph}
-                          </p>
-                        ))}
-                      </div>
-                      <ul className="mt-6 flex flex-wrap gap-2">
-                        {era.highlights.map((highlight) => (
-                          <li
-                            key={highlight}
-                            className="inline-flex items-center gap-2 border border-gray-900/10 bg-gray-900/[0.03] px-2.5 py-1 text-xs font-medium text-gray-700"
-                          >
-                            <span
-                              aria-hidden
-                              className="h-1.5 w-1.5 rounded-[2px]"
-                              style={{ backgroundColor: era.accent }}
-                            />
-                            {highlight}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {era.images.length > 0 && (
-                      <div className={index % 2 === 1 ? 'md:order-first' : undefined}>
-                        <EraCarousel
-                          images={era.images}
-                          ratio={era.ratio}
-                          label={`${era.year} ${era.title}`}
-                          accent={era.accent}
-                        />
-                      </div>
-                    )}
-                  </Reveal>
-                </li>
-              ))}
-            </ol>
-          </div>
+            <div className="overflow-hidden notch-br border border-gray-900/10 bg-gray-900/[0.04]">
+              <Image
+                src={ORIGIN.image.src}
+                alt={ORIGIN.image.alt}
+                width={ORIGIN.image.width}
+                height={ORIGIN.image.height}
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="block h-auto w-full"
+              />
+            </div>
+          </Reveal>
         </section>
 
-        {/* Mission */}
         <section className="lp-cv relative overflow-hidden px-6 py-20 md:py-28">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 -z-10 bg-linear-to-b from-transparent via-(--lp-bg-deep) to-transparent"
           />
           <div className="mx-auto max-w-5xl">
-            <Reveal className="text-center mb-14">
-              <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-4">{MISSION.label}</p>
-              <h2 className="font-display text-3xl md:text-5xl font-bold tracking-[-0.02em] text-gray-900">
-                {MISSION.title}
+            <Reveal className="mx-auto mb-14 max-w-3xl text-center">
+              <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-4">{MOTIVATION.label}</p>
+              <h2 className="font-display text-balance text-3xl md:text-5xl font-bold tracking-[-0.02em] text-gray-900 mb-6">
+                {MOTIVATION.title}
               </h2>
+              <p className="text-base md:text-lg text-gray-600 leading-relaxed text-pretty">{MOTIVATION.intro}</p>
             </Reveal>
 
-            <div className="grid gap-6 md:grid-cols-3">
-              {MISSION.items.map((item, i) => {
-                const Icon = MISSION_ICONS[item.icon]
+            <div className="grid gap-6 md:grid-cols-2">
+              {MOTIVATION.items.map((item, i) => {
+                const Icon = MOTIVATION_ICONS[item.icon]
                 return (
                   <Reveal key={item.title} delay={i * 0.1}>
                     <div className="h-full notch-br border border-gray-900/10 bg-gray-900/[0.03] p-6">
@@ -170,8 +131,13 @@ export default function AboutContent() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="relative px-6 pb-24">
+        <TeamSection />
+
+        <LibrariesSection />
+
+        <GrowthSection />
+
+        <section className="relative px-6 pt-8 pb-24">
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
               <h2 className="font-display text-2xl md:text-4xl font-bold tracking-[-0.02em] text-gray-900 mb-4">
