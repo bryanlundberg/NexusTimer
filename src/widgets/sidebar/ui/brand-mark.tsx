@@ -1,6 +1,6 @@
 export function BrandMark() {
   return (
-    <div className="flex aspect-square size-8 items-center justify-center notch-bl-tr [--notch-cut:8px] border border-sidebar-border bg-sidebar-accent">
+    <div className="flex aspect-square size-8 items-center justify-center notch-bl-tr [--notch-cut:8px] bg-sidebar-accent">
       <svg viewBox="0 0 512 512" className="size-5" role="img" aria-label="NexusTimer">
         <path className="fill-sidebar-mark" d="M200 79L262 41L443 147L443 228Z" />
         <path
