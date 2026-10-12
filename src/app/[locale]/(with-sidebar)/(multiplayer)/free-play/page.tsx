@@ -8,6 +8,7 @@ import FreePlayHeader from '@/widgets/navigation-header/ui/FreePlayHeader'
 const CreateRoomModal = dynamic(() => import('@/features/free-play/ui/create-room-modal'))
 const JoinPrivateRoomModal = dynamic(() => import('@/features/free-play/ui/join-private-room-modal'))
 import RoomCard from '@/features/free-play/ui/room-card'
+import SignInToPlay from '@/features/free-play/ui/sign-in-to-play'
 import { useTranslations } from 'next-intl'
 import { motion } from 'motion/react'
 import { Plus, Gamepad2 } from 'lucide-react'
@@ -90,43 +91,50 @@ export default function FreePlayPage() {
         {/* Rooms Section */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2">
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3, delay: 0.15 }}>
-              <div className="flex items-center gap-2 mb-5">
-                <span className="size-2 shrink-0 rounded-[2px] bg-cube-red" aria-hidden />
-                <h2 className="font-display text-xs font-semibold uppercase tracking-[0.14em] text-foreground/80">
-                  {t('available-rooms')}
-                </h2>
-                <span aria-hidden className="h-px min-w-4 flex-1 bg-gradient-to-r from-border to-transparent" />
-              </div>
-
-              {displayRooms.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  {displayRooms.map((room, i) => (
-                    <motion.div
-                      key={room.roomId}
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: i * 0.05 }}
-                    >
-                      <RoomCard room={room} onJoinPrivate={room.private ? () => handleJoinPrivate(room) : undefined} />
-                    </motion.div>
-                  ))}
+            {status === 'authenticated' ? (
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3, delay: 0.15 }}>
+                <div className="flex items-center gap-2 mb-5">
+                  <span className="size-2 shrink-0 rounded-[2px] bg-cube-red" aria-hidden />
+                  <h2 className="font-display text-xs font-semibold uppercase tracking-[0.14em] text-foreground/80">
+                    {t('available-rooms')}
+                  </h2>
+                  <span aria-hidden className="h-px min-w-4 flex-1 bg-gradient-to-r from-border to-transparent" />
                 </div>
-              ) : (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: 0.2 }}
-                  className="flex flex-col items-center justify-center py-16 px-6 notch-br border border-dashed border-muted-foreground/20"
-                >
-                  <Gamepad2 className="size-10 text-muted-foreground/30 mb-4" />
-                  <h3 className="text-base font-semibold mb-1">{t('no-active-rooms')}</h3>
-                  <p className="text-sm text-muted-foreground text-center max-w-xs">
-                    {t('no-active-rooms-description')}
-                  </p>
-                </motion.div>
-              )}
-            </motion.div>
+
+                {displayRooms.length > 0 ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {displayRooms.map((room, i) => (
+                      <motion.div
+                        key={room.roomId}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3, delay: i * 0.05 }}
+                      >
+                        <RoomCard
+                          room={room}
+                          onJoinPrivate={room.private ? () => handleJoinPrivate(room) : undefined}
+                        />
+                      </motion.div>
+                    ))}
+                  </div>
+                ) : (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: 0.2 }}
+                    className="flex flex-col items-center justify-center py-16 px-6 notch-br border border-dashed border-muted-foreground/20"
+                  >
+                    <Gamepad2 className="size-10 text-muted-foreground/30 mb-4" />
+                    <h3 className="text-base font-semibold mb-1">{t('no-active-rooms')}</h3>
+                    <p className="text-sm text-muted-foreground text-center max-w-xs">
+                      {t('no-active-rooms-description')}
+                    </p>
+                  </motion.div>
+                )}
+              </motion.div>
+            ) : (
+              status === 'unauthenticated' && <SignInToPlay />
+            )}
           </div>
 
           {/* Sidebar */}
