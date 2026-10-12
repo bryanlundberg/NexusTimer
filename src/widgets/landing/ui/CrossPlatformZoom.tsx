@@ -18,39 +18,20 @@ export default function CrossPlatformZoom() {
           <p className="text-gray-600 text-base max-w-xl mx-auto">{t('cross-platform.subtitle')}</p>
         </div>
 
-        <div className="relative mx-auto w-full max-w-4xl px-6">
-          <Reveal>
-            <div className="relative overflow-hidden rounded-xl border border-gray-900/10 shadow-2xl shadow-black/10 ring-1 ring-gray-900/5">
-              <div className="bg-neutral-900 h-8 flex items-center px-4 gap-2 border-b border-white/5">
-                <div className="flex gap-1.5">
-                  <div className="w-2.5 h-2.5 rounded-full bg-[var(--cube-red)]" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[var(--cube-yellow)]" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[var(--cube-green)]" />
-                </div>
-                <div className="mx-auto rounded-md bg-neutral-100 px-16 py-0.5 text-[10px] text-gray-500">
-                  nexustimer.com
-                </div>
-              </div>
+        <Reveal className="mx-auto w-full max-w-5xl px-6">
+          <div className="rounded-[14px] bg-neutral-950 p-1.5 shadow-[0_40px_80px_-32px_rgba(0,0,0,0.45)] ring-1 ring-gray-900/20 md:rounded-[22px] md:p-2.5">
+            <div className="overflow-hidden rounded-[9px] ring-1 ring-white/10 md:rounded-[14px]">
               <Image
-                src="/landing/desk1.webp"
+                src="/landing/desk2.webp"
                 alt="NexusTimer desktop view"
-                width={1200}
-                height={750}
-                className="w-full"
+                width={2558}
+                height={1331}
+                sizes="(min-width: 1024px) 976px, 100vw"
+                className="block h-auto w-full"
               />
             </div>
-          </Reveal>
-
-          <div className="absolute -right-2 md:-right-6 -bottom-6 md:-bottom-10 z-20 w-24 md:w-40 drop-shadow-2xl">
-            <Image
-              src="/landing/cellphone2.webp"
-              alt="NexusTimer mobile view"
-              width={300}
-              height={600}
-              className="w-full"
-            />
           </div>
-        </div>
+        </Reveal>
 
         <Reveal delay={0.15} className="mt-16 md:mt-20 flex flex-col items-center gap-3 px-6 text-center">
           <p className="text-sm text-gray-500">{t('cross-platform.android-note')}</p>
