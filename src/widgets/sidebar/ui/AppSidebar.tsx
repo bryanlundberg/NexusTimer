@@ -17,11 +17,11 @@ import {
 import GithubIcon from '@/components/ui/github-icon'
 import DiscordIcon from '@/components/ui/discord-icon'
 import { usePwaInstall } from '@/shared/model/usePwaInstall'
-import Image from 'next/image'
 import { Link, usePathname } from '@/shared/config/i18n/navigation'
 import { useTranslations } from 'next-intl'
 import { NavMain } from '@/widgets/sidebar/ui/nav-main'
 import { SidebarStreak } from '@/widgets/sidebar/ui/sidebar-streak'
+import { BrandMark } from '@/widgets/sidebar/ui/brand-mark'
 import { SmartCubeIndicator } from '@/features/smart-cube/ui/SmartCubeIndicator'
 import { SmartCubeIndicatorCompact } from '@/features/smart-cube/ui/SmartCubeIndicatorCompact'
 import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
@@ -73,9 +73,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <Link href={'/app'} className="flex items-center gap-2" onClick={() => isMobile && setOpenMobile(false)}>
-              <div className="flex aspect-square size-8 items-center justify-center notch-bl-tr [--notch-cut:8px] bg-sidebar-primary text-sidebar-primary-foreground">
-                <Image src={'/logo.png'} alt={'logo'} width={32} height={32} className={`p-1.5 invert size-8`} />
-              </div>
+              <BrandMark />
               {open || openMobile ? (
                 <span className="min-w-0 flex-1 truncate font-brand text-base leading-tight font-bold tracking-tight">
                   <span className="text-foreground">NEXUSTIMER</span>
