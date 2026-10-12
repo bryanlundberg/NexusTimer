@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { Check, ChevronDown, Globe } from 'lucide-react'
+import { ChevronDown, Globe } from 'lucide-react'
 import { languages } from '@/shared/const/languages'
 import { useSwitchLocale } from '@/shared/config/i18n/useSwitchLocale'
 
@@ -42,7 +42,7 @@ export default function LandingLanguageSelect({ label }: { label: string }) {
         aria-label={label}
         disabled={isPending}
         onClick={() => setOpen((value) => !value)}
-        className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs text-gray-300 transition-colors duration-300 hover:border-white/30 hover:text-white disabled:opacity-60"
+        className="field field-hover inline-flex h-9 items-center gap-2 px-3 text-xs text-muted-foreground hover:text-foreground disabled:opacity-60 pointer-coarse:h-10"
       >
         <Globe className="size-3.5" aria-hidden />
         <span>{current.name}</span>
@@ -53,7 +53,7 @@ export default function LandingLanguageSelect({ label }: { label: string }) {
         <ul
           role="listbox"
           aria-label={label}
-          className="absolute bottom-full left-0 z-50 mb-2 max-h-64 w-52 overflow-y-auto rounded-xl border border-white/15 bg-neutral-900/95 p-1 shadow-2xl backdrop-blur-md"
+          className="menu-panel absolute bottom-full left-0 z-50 mb-2 max-h-64 w-52 overflow-y-auto p-1"
         >
           {languages.map((item) => (
             <li key={item.code}>
@@ -62,11 +62,14 @@ export default function LandingLanguageSelect({ label }: { label: string }) {
                 role="option"
                 aria-selected={item.code === locale}
                 onClick={() => handleSelect(item.code)}
-                className="flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-left text-xs text-gray-300 transition-colors duration-200 hover:bg-white/10 hover:text-white"
+                className={`flex w-full items-center gap-2 px-2.5 py-1.5 text-left text-xs transition-colors duration-200 ${
+                  item.code === locale
+                    ? 'bg-primary/15 text-foreground'
+                    : 'text-muted-foreground hover:bg-muted/40 hover:text-foreground'
+                }`}
               >
                 {item.flag}
                 <span className="flex-1 truncate">{item.name}</span>
-                {item.code === locale && <Check className="size-3.5 shrink-0" aria-hidden />}
               </button>
             </li>
           ))}
