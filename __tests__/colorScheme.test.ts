@@ -53,4 +53,19 @@ describe('buildColorScheme roles', () => {
       }
     }
   )
+
+  it.each(THEMES.flatMap((theme) => MODES.map((mode) => [theme, mode] as const)))(
+    'keeps the sidebar mark visible on %s %s',
+    (theme, mode) => {
+      const scheme = buildColorScheme(theme, mode)
+      const mark = parse(scheme['sidebar-mark'])
+
+      for (const surface of [scheme['sidebar-accent'], scheme.sidebar].map(parse)) {
+        expect(contrastRatio(mark, surface)).toBeGreaterThanOrEqual(3)
+      }
+      expect(
+        contrastRatio(parse(scheme['sidebar-foreground']), parse(scheme['sidebar-accent']))
+      ).toBeGreaterThanOrEqual(4.5)
+    }
+  )
 })
