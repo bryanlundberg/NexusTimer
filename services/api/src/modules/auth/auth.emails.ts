@@ -1,18 +1,37 @@
 import { escapeHtml } from '../../lib/escape-html'
+import {
+  BODY_FONT,
+  DISPLAY_FONT,
+  EMAIL_COLORS,
+  SITE_URL,
+  emailButton,
+  emailCode,
+  emailNote,
+  emailPanel,
+  emailText,
+  renderEmail
+} from '../../lib/email-layout'
 
 export type EmailContent = { subject: string; html: string }
 
 export function verificationEmail({ name, code }: { name: string; code: string }) {
+  const safeCode = escapeHtml(code)
+
   return {
     subject: 'Verify your NexusTimer account',
-    html: `
-    <div style="font-family:sans-serif;max-width:480px;margin:0 auto">
-      <h2>Hey ${escapeHtml(name)}, welcome to NexusTimer!</h2>
-      <p>Enter this code to verify your account. It expires in 10 minutes.</p>
-      <div style="font-size:2rem;font-weight:bold;letter-spacing:0.3em;padding:16px 0">${escapeHtml(code)}</div>
-      <p style="color:#888;font-size:0.85rem">If you didn't request this, you can ignore this email.</p>
-    </div>
-  `
+    html: renderEmail({
+      title: 'Verify your NexusTimer account',
+      preheader: `${safeCode} is your verification code. It expires in 10 minutes.`,
+      eyebrow: 'Account verification',
+      heading: 'Confirm your email address',
+      body: [
+        emailText(`Hi ${escapeHtml(name)}, enter this code in NexusTimer to finish creating your account.`),
+        emailCode(safeCode),
+        emailNote('The code expires in 10 minutes.')
+      ].join(''),
+      footnote:
+        "You received this email because this address was used to sign up for NexusTimer. If that wasn't you, ignore it and no account will be created."
+    })
   } satisfies EmailContent
 }
 
@@ -21,38 +40,71 @@ export function passwordResetEmail({ name, resetUrl }: { name: string; resetUrl:
 
   return {
     subject: 'Reset your NexusTimer password',
-    html: `
-    <div style="font-family:sans-serif;max-width:480px;margin:0 auto">
-      <h2>Hey ${escapeHtml(name)}, reset your password</h2>
-      <p>We received a request to reset your NexusTimer password. Click the button below to choose a new one. This link expires in 30 minutes.</p>
-      <p style="padding:16px 0">
-        <a href="${safeUrl}" style="background:#0f172a;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:bold;display:inline-block">Reset password</a>
-      </p>
-      <p style="color:#666;font-size:0.85rem">Or copy this link into your browser:<br/><span style="word-break:break-all">${safeUrl}</span></p>
-      <p style="color:#888;font-size:0.85rem">If you didn't request this, you can safely ignore this email.</p>
-    </div>
-  `
+    html: renderEmail({
+      title: 'Reset your NexusTimer password',
+      preheader: 'Choose a new password for your account. The link expires in 30 minutes.',
+      eyebrow: 'Password reset',
+      heading: 'Reset your password',
+      body: [
+        emailText(
+          `Hi ${escapeHtml(name)}, we received a request to reset the password for your account. Choose a new one with the button below.`
+        ),
+        emailButton({ href: safeUrl, label: 'Choose a new password' }),
+        emailNote('The link expires in 30 minutes and works only once.'),
+        emailNote("If the button doesn't work, paste this link into your browser:"),
+        emailPanel(
+          `<a href="${safeUrl}" style="font:400 13px/1.5 ${BODY_FONT};color:${EMAIL_COLORS.primary};text-decoration:none;word-break:break-all">${safeUrl}</a>`
+        )
+      ].join(''),
+      footnote: "If you didn't ask to reset your password, you can ignore this email. Your password won't change."
+    })
   } satisfies EmailContent
+}
+
+const WELCOME_STEPS = [
+  {
+    title: 'Register your cubes',
+    text: 'Add each cube you own and switch between them freely. Every cube keeps its own sessions and averages.'
+  },
+  {
+    title: 'Import your solves',
+    text: 'Bring your history from csTimer, CubeDesk or TwistyTimer in a few clicks.'
+  },
+  {
+    title: 'Train your algorithms',
+    text: 'Learn OLL, PLL and more with the trainer, then race your friends in free play.'
+  }
+]
+
+function welcomeSteps() {
+  const rows = WELCOME_STEPS.map(
+    ({ title, text }, index) => `<tr>
+<td width="40" style="width:40px;padding:16px 0;border-top:1px solid ${EMAIL_COLORS.border};vertical-align:top;font:600 13px/22px ${DISPLAY_FONT};letter-spacing:0.04em;color:${EMAIL_COLORS.primary}">${String(index + 1).padStart(2, '0')}</td>
+<td style="padding:16px 0;border-top:1px solid ${EMAIL_COLORS.border};vertical-align:top">
+<p style="margin:0;font:600 15px/22px ${DISPLAY_FONT};color:${EMAIL_COLORS.ink}">${title}</p>
+<p style="margin:4px 0 0;font:400 14px/1.55 ${BODY_FONT};color:${EMAIL_COLORS.muted}">${text}</p>
+</td>
+</tr>`
+  ).join('')
+
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-bottom:1px solid ${EMAIL_COLORS.border}">${rows}</table>`
 }
 
 export function welcomeEmail({ name }: { name: string }) {
   return {
-    subject: "Welcome to NexusTimer – Let's get cubing!",
-    html: `
-    <div style="font-family:sans-serif;max-width:480px;margin:0 auto">
-      <h2>Hi ${escapeHtml(name)}, welcome to NexusTimer!</h2>
-      <p>We're excited to have you on board as part of our growing community of speedcubing enthusiasts.</p>
-      <p style="font-weight:bold;font-size:1.1rem;margin-top:24px">What's next?</p>
-      <ol style="padding-left:20px;line-height:1.6">
-        <li><strong>Create collections</strong> to track stats per cube without affecting category metrics.</li>
-        <li><strong>Import your times</strong> from csTimer, CubeDesk or TwistyTimer.</li>
-        <li><strong>Customize your timer</strong> with features and colors that fit your style.</li>
-      </ol>
-      <p style="margin-top:24px">
-        <a href="https://nexustimer.com" style="display:inline-block;padding:10px 18px;background:#111;color:#fff;text-decoration:none;border-radius:6px">Get cubing</a>
-      </p>
-      <p style="color:#888;font-size:0.85rem;margin-top:32px">Happy cubing,<br/>The NexusTimer Team</p>
-    </div>
-  `
+    subject: 'Welcome to NexusTimer',
+    html: renderEmail({
+      title: 'Welcome to NexusTimer',
+      preheader: 'Your account is ready. Here are three good places to start.',
+      eyebrow: 'Welcome',
+      heading: 'Your account is ready',
+      body: [
+        emailText(`Hi ${escapeHtml(name)}, thanks for joining NexusTimer. Here are three good places to start.`),
+        welcomeSteps(),
+        `<div style="height:24px;line-height:24px;font-size:0">&nbsp;</div>`,
+        emailButton({ href: `${SITE_URL}/app`, label: 'Open the timer' })
+      ].join(''),
+      footnote: 'You received this email because you created a NexusTimer account.'
+    })
   } satisfies EmailContent
 }
