@@ -28,6 +28,12 @@ describe('sitemap', () => {
     expect(entries.some((entry) => entry.url === 'https://nexustimer.com/es/privacy-policy')).toBe(false)
   })
 
+  it('leaves out the tool pages that only show local data', () => {
+    for (const path of ['/solves', '/stats', '/cubes', '/options', '/transfer-solves']) {
+      expect(entries.some((entry) => new URL(entry.url).pathname.endsWith(path))).toBe(false)
+    }
+  })
+
   it('lists translated pages in every locale with hreflang alternates', () => {
     const trainerUrls = entries.filter((entry) => entry.url.endsWith('/algorithms/trainer'))
 
