@@ -9,6 +9,7 @@ import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import type { AoWindowSolve, CategoryStats } from '@/entities/user-stats/model/types'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { GRID } from '@/widgets/people/ui/overview-tab-content'
+import { RecordSolvesStrip } from '@/widgets/people/ui/record-solves-strip'
 
 interface PeopleOverviewRowProps {
   stats: CategoryStats
@@ -84,7 +85,7 @@ export default function PeopleOverviewRow({ stats }: PeopleOverviewRowProps) {
                 title={tCubes('col-ao5')}
                 value={ao5Str}
                 extra={
-                  ao5Window && ao5Edges ? (
+                  ao5Window && ao5Edges && !bestAo5?.solves ? (
                     <span className="text-[11px] text-muted-foreground tabular-nums">{`[${ao5Window
                       .map((solve) => {
                         const label = formatSolveLabel(solve)
@@ -101,6 +102,10 @@ export default function PeopleOverviewRow({ stats }: PeopleOverviewRowProps) {
                   value={bestAo5 ? dayjs(bestAo5.endTime).locale(locale).format('LL') : '--'}
                 />
               </DetailGroup>
+
+              {(best?.solve || bestAo5?.solves) && (
+                <RecordSolvesStrip single={best?.solve} ao5={bestAo5?.solves} ao5Edges={ao5Edges} category={category} />
+              )}
             </div>
           </motion.div>
         )}
