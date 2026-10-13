@@ -72,7 +72,7 @@ describe('feedback service', () => {
     await settle()
 
     expect(created).toEqual([{ userId: USER, rating: 5, comment: '' }])
-    expect(sent[0]!.html).toContain('<strong>Comment:</strong> -')
+    expect(sent[0]!.html).toContain('No comment')
   })
 
   it('skips the email without an admin address or a user', async () => {
