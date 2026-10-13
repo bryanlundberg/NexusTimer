@@ -2,9 +2,9 @@
 
 <div align="center">
   <p align="center">
-    <strong>NexusTimer</strong> is an advanced speedcubing manager built around hierarchical statistical analysis,
+    <strong>NexusTimer</strong> is a free, open source speedcubing timer,
 <br />
-with independent metrics tracked at both the category and the individual cube level.
+with statistics tracked at both the category and the individual cube level.
     <br />
     <a href="https://github.com/bryanlundberg/NexusTimer/issues">Report Bug</a>
     ·
@@ -40,7 +40,7 @@ with independent metrics tracked at both the category and the individual cube le
 
 ## About The Project
 
-NexusTimer is a speedcubing timer and analytics tool. It started as a project inspired by [Twisty Timer](https://github.com/aricneto/TwistyTimer) and grew into a full environment for timing solves and studying performance in depth. The interface keeps your data in the foreground: times, averages, and trends are the content, and everything else stays out of the way.
+NexusTimer is a speedcubing timer and statistics tool. Besides the timer, it includes algorithm sets to study and train, smart cube support over Bluetooth for GAN, MoYu and QiYi cubes, multiplayer rooms, leaderboards and an interface in 17 languages. Every feature is free, and user data is never sold.
 
 Speedcubing is the practice of solving the Rubik's Cube as quickly as possible. The clip below shows a solve by [Feliks Zemdegs](https://www.worldcubeassociation.org/persons/2009ZEMD01).
 
@@ -50,19 +50,19 @@ Speedcubing is the practice of solving the Rubik's Cube as quickly as possible. 
 
 ---
 
-## A Record For Every Cube, Not Just Every Category
+## Statistics Per Cube, Not Only Per Category
 
-Most timers only track statistics by category. Every 3x3 solve lands in the same pile no matter which cube you used, so the moment you switch mains the history of the old cube dissolves into one shared average. There is no way to look back and ask what you actually achieved on a specific cube.
+Most timers group statistics by category: every 3x3 solve goes into the same history regardless of the cube used. After switching to a new main, the previous cube's results are merged into the category average and can no longer be reviewed on their own.
 
-NexusTimer keeps statistics at the individual cube level as well as by category. Each cube holds its own records, averages, and full solve history, and that record stays intact as the years pass. When you think back to an old main you retired long ago, you can still see the bests you set with it, the averages you held, and every solve you logged on it. The category view remains for the aggregate picture, but the per cube history is what turns a retired puzzle into something you can actually revisit.
+NexusTimer tracks both levels. Each cube keeps its own records, averages and solve history alongside the category totals, and that data stays available after the cube is retired. You can compare how you perform on each cube, or go back to an old main and check the bests and averages you set with it.
 
 ---
 
-## Profiles and the Social Layer
+## Profiles and Social Features
 
-Every account generates a public profile, and it is one of the most complete a speedcubing app exposes. It brings together your personal bests by category, your solve history and trends, the cubes you own, and your trajectory over time, so a profile reads as a full picture of a cuber rather than a single headline average.
+Every account has a public profile with personal bests by category, solve history and trends, the cubes you own and your progress over time.
 
-That depth is what makes the social layer worth using. You can open another cuber's profile and compare it against your own metric by metric, connect with other people, and measure yourself on community leaderboards. Data analysis is the core of the project, and these features give that data a purpose.
+Profiles can be compared side by side, stat by stat. You can also add friends, send them messages and see where you rank on the community leaderboards.
 
 ---
 
