@@ -317,6 +317,10 @@
   --primary-foreground: oklch(0.99 0.01 277.117);
   --ring: oklch(0.585 0.233 277.117);
 
+  --sidebar-accent: var(--lp-bg-deep);
+  --sidebar-mark: var(--primary);
+  --sidebar-foreground: oklch(0.145 0.023 277.117);
+
   color-scheme: light;
   background-color: var(--lp-bg);
 }
@@ -324,13 +328,11 @@
 @keyframes lp-rise {
   from {
     opacity: 0;
-    transform: translateY(24px);
-    filter: blur(8px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
-    filter: blur(0);
   }
 }
 
