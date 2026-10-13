@@ -11,7 +11,7 @@ import { LandingHero } from './LandingHero'
 import { useLenis } from '../model/useLenis'
 import LandingOutro from './LandingOutro'
 import LandingBelowFold from './LandingBelowFold'
-import { Nexi } from '@/shared/ui/nexi'
+import { BrandMark } from '@/widgets/sidebar/ui/brand-mark'
 import * as React from 'react'
 import { cn } from '@/shared/lib/utils'
 
@@ -59,39 +59,42 @@ export default function LandingShell({ footer }: { footer: ReactNode }) {
             <header className="sticky top-0 z-50 w-full px-3 sm:px-4">
               <m.div
                 initial={false}
-                animate={scrolled ? 'pill' : 'bar'}
+                animate={scrolled ? 'floating' : 'bar'}
                 variants={{
                   bar: {
                     maxWidth: '80rem',
                     marginTop: '0rem',
-                    borderRadius: '0px',
                     paddingTop: '1rem',
                     paddingBottom: '1rem',
                     paddingLeft: '1.5rem',
                     paddingRight: '1.5rem',
-                    backgroundColor: 'rgba(250,248,247,0)',
+                    backgroundColor: 'rgba(255,255,255,0)',
+                    borderColor: 'rgba(17,24,39,0)',
                     boxShadow: '0 0 0 0 rgba(0,0,0,0)',
                     backdropFilter: 'blur(0px)'
                   },
-                  pill: {
-                    maxWidth: '60rem',
+                  floating: {
+                    maxWidth: '64rem',
                     marginTop: '0.75rem',
-                    borderRadius: '9999px',
                     paddingTop: '0.5rem',
                     paddingBottom: '0.5rem',
-                    paddingLeft: '1rem',
-                    paddingRight: '0.55rem',
-                    backgroundColor: 'rgba(255,255,255,0.90)',
+                    paddingLeft: '0.75rem',
+                    paddingRight: '0.5rem',
+                    backgroundColor: 'rgba(255,255,255,0.9)',
+                    borderColor: 'rgba(17,24,39,0.1)',
                     boxShadow: '0 14px 40px -16px rgba(0,0,0,0.12)',
                     backdropFilter: 'blur(8px)'
                   }
                 }}
                 transition={{ duration: reduce ? 0 : 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="mx-auto flex items-center justify-between gap-3"
+                className="notch-bl-tr mx-auto flex items-center justify-between gap-3 border"
               >
-                <div className="flex items-center gap-3">
-                  <Nexi state="pb" size={38} />
-                  <span className="font-display text-base font-bold tracking-wide text-gray-900">NexusTimer</span>
+                <div className="flex items-center gap-2">
+                  <BrandMark />
+                  <span className="font-brand text-base leading-tight font-bold tracking-tight">
+                    <span className="text-gray-900">NEXUSTIMER</span>
+                    <span className="text-gray-500">.COM</span>
+                  </span>
                 </div>
                 <nav className="hidden md:flex items-center gap-1">
                   {NAV.map((item) => (
@@ -99,7 +102,7 @@ export default function LandingShell({ footer }: { footer: ReactNode }) {
                       key={item.href}
                       href={item.href}
                       className={cn(
-                        'whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium text-gray-600 transition-colors duration-300 hover:text-gray-900',
+                        'inline-flex h-9 items-center whitespace-nowrap px-3 text-sm font-medium text-gray-600 transition-colors duration-300 hover:bg-gray-900/5 hover:text-gray-900',
                         item.wide && 'hidden lg:inline-flex'
                       )}
                     >
@@ -109,7 +112,7 @@ export default function LandingShell({ footer }: { footer: ReactNode }) {
                 </nav>
                 <Link
                   href="/app"
-                  className="group inline-flex whitespace-nowrap items-center gap-2 rounded-full bg-primary text-white px-4 sm:px-5 py-2 text-sm font-semibold hover:brightness-110 transition-all duration-300"
+                  className="group btn-notch inline-flex h-9 items-center gap-2 whitespace-nowrap bg-primary px-4 text-sm font-semibold text-white transition-all duration-300 hover:brightness-110 active:scale-[0.97] pointer-coarse:h-10 sm:px-5"
                 >
                   {t('header.start-timing')}
                   <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
@@ -118,7 +121,7 @@ export default function LandingShell({ footer }: { footer: ReactNode }) {
             </header>
 
             <main className="flex-1">
-              <LandingHero scrollContainerRef={containerRef} />
+              <LandingHero />
 
               <LandingBelowFold />
             </main>
