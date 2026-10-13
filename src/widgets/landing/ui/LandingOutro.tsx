@@ -7,7 +7,7 @@ import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useReducedMotion } from 'motion/react'
 import * as m from 'motion/react-m'
-import { STRIP } from '../model/strip'
+import FooterSlab from './FooterSlab'
 
 /**
  * The close of the page. The CTA stays on the same light ground as everything
@@ -21,17 +21,7 @@ export default function LandingOutro({ children }: { children: ReactNode }) {
 
   return (
     <section className="relative">
-      <div className="relative overflow-hidden px-2 sm:px-3">
-        {/* A wash under the CTA so the light ground has a centre of gravity. */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(58% 52% at 50% 42%, color-mix(in oklch, var(--primary) 12%, var(--lp-bg-deep)) 0%, transparent 72%)'
-          }}
-        />
-
+      <div className="px-2 sm:px-3">
         <m.div
           initial={reduce ? { opacity: 0 } : { opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -47,12 +37,8 @@ export default function LandingOutro({ children }: { children: ReactNode }) {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/app"
-              className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden btn-notch bg-primary px-8 py-4 text-sm font-semibold text-white transition-all duration-300 hover:brightness-110"
+              className="group btn-notch inline-flex items-center justify-center gap-2.5 bg-primary px-8 py-4 text-sm font-semibold text-white transition-all duration-300 hover:brightness-110 active:scale-[0.97]"
             >
-              <span
-                aria-hidden
-                className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full"
-              />
               <Image
                 src="/landing/cube.gif"
                 alt=""
@@ -60,33 +46,20 @@ export default function LandingOutro({ children }: { children: ReactNode }) {
                 height={22}
                 unoptimized
                 style={{ width: 22, height: 22 }}
-                className="relative transition-transform duration-300 group-hover:rotate-[18deg]"
+                className="transition-transform duration-300 group-hover:rotate-[18deg]"
               />
-              <span className="relative">{t('cta.primary')}</span>
-              <ArrowRight className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              {t('cta.primary')}
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
             <Link
               href="/options?redirect=import"
-              className="inline-flex items-center justify-center border border-gray-900/15 bg-white/60 px-7 py-4 text-sm font-medium text-gray-700 transition-all duration-300 hover:border-gray-900/30 hover:bg-white hover:text-gray-900"
+              className="inline-flex items-center justify-center border border-gray-900/15 bg-white/60 px-7 py-4 text-sm font-medium text-gray-700 transition-all duration-300 hover:border-gray-900/30 hover:bg-white hover:text-gray-900 active:scale-[0.97]"
             >
               {t('cta.secondary')}
             </Link>
           </div>
 
-          <div className="mt-10 flex items-center justify-center gap-3 text-xs text-gray-500">
-            <div className="flex -space-x-2">
-              {[1, 2, 7].map((num) => (
-                <Image
-                  key={num}
-                  className="inline-block h-7 w-7 rounded-full border-2 border-white shadow-sm"
-                  src={`https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_${num}.png`}
-                  alt="Community member"
-                  width={28}
-                  height={28}
-                  loading="lazy"
-                />
-              ))}
-            </div>
+          <div className="mt-10 text-xs text-gray-500">
             <Link href="/people" className="transition-colors hover:text-gray-900 hover:underline">
               {t('hero.social-proof')}
             </Link>
@@ -94,18 +67,7 @@ export default function LandingOutro({ children }: { children: ReactNode }) {
         </m.div>
       </div>
 
-      {/* The dark slab. Same block shape, gutter and colour-strip as the hero,
-          so the page opens and closes on the same object. */}
-      <div className="px-2 pb-2 sm:px-3 sm:pb-3">
-        <div className="relative overflow-hidden rounded-[28px] bg-[var(--lp-hero-dark)] ring-1 ring-white/5">
-          <div aria-hidden className="absolute inset-x-0 top-0 flex h-[3px]">
-            {STRIP.map((c) => (
-              <span key={c} className="flex-1" style={{ backgroundColor: c }} />
-            ))}
-          </div>
-          {children}
-        </div>
-      </div>
+      <FooterSlab>{children}</FooterSlab>
     </section>
   )
 }
