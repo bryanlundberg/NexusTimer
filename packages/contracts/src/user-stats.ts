@@ -1,4 +1,5 @@
 import type { CubeCategory } from './cube-categories'
+import type { SolveReplayPayload } from './solves'
 
 export const USER_STATS_VERSION = 1
 
@@ -17,11 +18,25 @@ export interface AoWindowSolve {
   plus2: boolean
 }
 
+export interface RecordSolve {
+  id: string
+  cubeId: string
+  scramble: string
+  startTime: number
+  endTime: number
+  bookmark: boolean
+  time: number
+  rating: number
+  dnf: boolean
+  plus2: boolean
+  replay?: SolveReplayPayload
+}
+
 export interface CategoryStats {
   category: CubeCategory
   count: number
-  best: StatRecord | null
-  bestAo5: (StatRecord & { window: AoWindowSolve[] }) | null
+  best: (StatRecord & { solve?: RecordSolve }) | null
+  bestAo5: (StatRecord & { window: AoWindowSolve[]; solves?: RecordSolve[] }) | null
 }
 
 export interface CubeStats {
