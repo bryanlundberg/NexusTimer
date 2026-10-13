@@ -1465,9 +1465,9 @@
       "start-timing": "开始计时"
     },
     "hero": {
-      "title-before": "魔方玩家训练、对战、",
-      "title-highlight": "相聚的地方",
-      "subtitle": "计时器、训练器、多人对战、聊天，以及保存你全部历史的主页。一站搞定。",
+      "title-before": "专为魔方速拧打造的",
+      "title-highlight": "一站式平台",
+      "subtitle": "记录还原时间、练习公式、与其他魔友对战，并追踪每一项数据的变化。免费且开源。",
       "cta-primary": "开始计时",
       "cta-secondary": "浏览算法",
       "social-proof": "加入不断壮大的魔方社区",
