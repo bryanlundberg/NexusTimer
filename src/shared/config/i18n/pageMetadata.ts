@@ -8,6 +8,10 @@ export async function localizedPathMetadata(path: string): Promise<Metadata> {
   return { alternates: localizedAlternates(await getLocale(), path) }
 }
 
+export async function noIndexPathMetadata(path: string): Promise<Metadata> {
+  return { ...(await localizedPathMetadata(path)), robots: { index: false, follow: true } }
+}
+
 export async function localizedPageMetadata(page: SeoPage, path: string): Promise<Metadata> {
   const locale = await getLocale()
   const t = await getTranslations({ locale, namespace: `Metadata.pages.${page}` })
