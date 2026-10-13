@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { createMailers } from '../src/infra/mail'
 
-const mail = { to: 'a@b.co', subject: 'Hi', html: '<p>Hi</p>' }
+const mail = { to: 'a@b.co', subject: 'Hi', html: '<p>Hi</p>', text: 'Hi' }
 
 function stubFetch(response = new Response('{}', { status: 200 })) {
   const fetchMock = vi.fn(async (_url: string, _init: RequestInit) => response)
@@ -22,7 +22,8 @@ describe('mailers', () => {
       from: 'NexusTimer <noreply@nexustimer.com>',
       to: 'a@b.co',
       subject: 'Hi',
-      html: '<p>Hi</p>'
+      html: '<p>Hi</p>',
+      text: 'Hi'
     })
   })
 
@@ -38,7 +39,8 @@ describe('mailers', () => {
       sender: { name: 'Nexus Timer', email: 'noreply@nexustimer.com' },
       to: [{ email: 'a@b.co' }],
       subject: 'Hi',
-      htmlContent: '<p>Hi</p>'
+      htmlContent: '<p>Hi</p>',
+      textContent: 'Hi'
     })
   })
 

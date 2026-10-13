@@ -1,7 +1,7 @@
 const SEND_TIMEOUT_MS = 10_000
 const SENDER_ADDRESS = 'noreply@nexustimer.com'
 
-export type Mail = { to: string; subject: string; html: string }
+export type Mail = { to: string; subject: string; html: string; text: string }
 export type Mailer = (mail: Mail) => Promise<void>
 export type Mailers = { resend: Mailer; brevo: Mailer }
 
@@ -20,22 +20,28 @@ function notConfigured(variable: string): Mailer {
 }
 
 function resendMailer(apiKey: string): Mailer {
-  return ({ to, subject, html }) =>
+  return ({ to, subject, html, text }) =>
     post(
       'Resend',
       'https://api.resend.com/emails',
       { authorization: `Bearer ${apiKey}` },
-      { from: `NexusTimer <${SENDER_ADDRESS}>`, to, subject, html }
+      { from: `NexusTimer <${SENDER_ADDRESS}>`, to, subject, html, text }
     )
 }
 
 function brevoMailer(apiKey: string): Mailer {
-  return ({ to, subject, html }) =>
+  return ({ to, subject, html, text }) =>
     post(
       'Brevo',
       'https://api.brevo.com/v3/smtp/email',
       { 'api-key': apiKey },
-      { sender: { name: 'Nexus Timer', email: SENDER_ADDRESS }, to: [{ email: to }], subject, htmlContent: html }
+      {
+        sender: { name: 'Nexus Timer', email: SENDER_ADDRESS },
+        to: [{ email: to }],
+        subject,
+        htmlContent: html,
+        textContent: text
+      }
     )
 }
 
