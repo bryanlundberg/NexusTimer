@@ -3,7 +3,7 @@ import { Link } from '@/shared/config/i18n/navigation'
 import { ArrowLeft, ArrowRight, Code2, Gem, Gift, ShieldCheck } from 'lucide-react'
 import { Reveal } from '@/shared/ui/reveal/Reveal'
 import { CubeGridTexture } from '@/shared/ui/cube-grid-texture/CubeGridTexture'
-import { Nexi } from '@/shared/ui/nexi'
+import { BrandMark } from '@/widgets/sidebar/ui/brand-mark'
 import TeamSection from './TeamSection'
 import LibrariesSection from './LibrariesSection'
 import GrowthSection from './GrowthSection'
@@ -15,9 +15,12 @@ export default function AboutContent() {
   return (
     <div className="lp-root min-h-dvh bg-[var(--lp-bg)] text-gray-900">
       <header className="mx-auto flex max-w-5xl items-center justify-between px-6 py-6">
-        <Link href="/" className="flex items-center gap-3">
-          <Nexi state="pb" size={34} />
-          <span className="font-display text-md font-bold tracking-wide text-gray-900">NXTimer</span>
+        <Link href="/" className="flex items-center gap-2">
+          <BrandMark />
+          <span className="font-brand text-base leading-tight font-bold tracking-tight">
+            <span className="text-gray-900">NEXUSTIMER</span>
+            <span className="text-gray-500">.COM</span>
+          </span>
         </Link>
         <Link
           href="/"
