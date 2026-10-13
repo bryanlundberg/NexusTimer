@@ -5,6 +5,7 @@ import {
   getCategoryOrder,
   RECENT_SOLVES_LIMIT,
   type RecentSolve,
+  type RecordSolve,
   type SerializedSolveStats,
   USER_STATS_VERSION,
   type UserStatsSummary
@@ -35,6 +36,32 @@ type TaggedSolve = Solve & { category: CubeCategory; cubeName: string }
 
 const validAo = (ms: number) => Number.isFinite(ms) && ms > 0
 
+const recordSolve = ({
+  id,
+  cubeId,
+  scramble,
+  startTime,
+  endTime,
+  bookmark,
+  time,
+  rating,
+  dnf,
+  plus2,
+  replay
+}: TaggedSolve): RecordSolve => ({
+  id,
+  cubeId,
+  scramble,
+  startTime,
+  endTime,
+  bookmark: Boolean(bookmark),
+  time,
+  rating,
+  dnf: Boolean(dnf),
+  plus2: Boolean(plus2),
+  ...(replay && { replay })
+})
+
 function tagSolves(cubes: Cube[]): TaggedSolve[] {
   const tag = (cube: Cube, solves: Solve[]) =>
     solves.map((solve) => ({ ...solve, category: cube.category, cubeName: cube.name }))
@@ -57,14 +84,15 @@ function categoryStats(category: CubeCategory, solves: TaggedSolve[]): CategoryS
   return {
     category,
     count: solves.length,
-    best: best ? { time: best.time, cubeName: best.cubeName, endTime: best.endTime } : null,
+    best: best ? { time: best.time, cubeName: best.cubeName, endTime: best.endTime, solve: recordSolve(best) } : null,
     bestAo5:
       window && last
         ? {
             time: ao5,
             cubeName: last.cubeName,
             endTime: last.endTime,
-            window: window.map(({ id, time, dnf, plus2 }) => ({ id, time, dnf, plus2 }))
+            window: window.map(({ id, time, dnf, plus2 }) => ({ id, time, dnf, plus2 })),
+            solves: window.map(recordSolve)
           }
         : null
   }

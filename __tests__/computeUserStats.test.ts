@@ -74,9 +74,11 @@ describe('computeUserStats', () => {
       const window = findBestAoWindow(ordered, 5)!
 
       expect(category.count).toBe(solves.length)
-      expect(category.best).toEqual({ time: best.time, cubeName: best.cubeName, endTime: best.endTime })
+      expect(category.best).toMatchObject({ time: best.time, cubeName: best.cubeName, endTime: best.endTime })
+      expect(category.best?.solve).toMatchObject({ id: best.id, scramble: best.scramble, endTime: best.endTime })
       expect(category.bestAo5?.time).toBe(calcBestAo(ordered, 5))
       expect(category.bestAo5?.window.map((s) => s.id)).toEqual(window.map((s) => s.id))
+      expect(category.bestAo5?.solves?.map((s) => [s.id, s.scramble])).toEqual(window.map((s) => [s.id, s.scramble]))
       expect(category.bestAo5?.cubeName).toBe(window[4].cubeName)
       expect(category.bestAo5?.endTime).toBe(window[4].endTime)
     }
@@ -114,6 +116,21 @@ describe('computeUserStats', () => {
       category: expected[0].category,
       cubeName: expected[0].cubeName
     })
+  })
+
+  it('keeps the replay of a record solve but never its comment', () => {
+    const replay = {
+      version: 1 as const,
+      puzzle: '3x3x3',
+      scramble: 'R U',
+      durationMs: 5000,
+      moves: [{ m: 'R', t: 120 }]
+    }
+    const cube = makeCube({ category: '3x3', allSolves: [solve(5000, { replay, comment: 'private note' })] })
+    const [category] = computeUserStats([cube], 'UTC').categories
+
+    expect(category.best?.solve?.replay).toEqual(replay)
+    expect(category.best?.solve).not.toHaveProperty('comment')
   })
 
   it('stores the timezone it was computed with', () => {
