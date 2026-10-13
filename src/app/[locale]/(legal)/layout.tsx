@@ -1,16 +1,20 @@
 import { Link } from '@/shared/config/i18n/navigation'
 import { ArrowLeft } from 'lucide-react'
 import LandingFooter from '@/widgets/landing/ui/LandingFooter'
-import { Nexi } from '@/shared/ui/nexi'
+import FooterSlab from '@/widgets/landing/ui/FooterSlab'
+import { BrandMark } from '@/widgets/sidebar/ui/brand-mark'
 
 export default function LegalLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <div className="lp-root min-h-dvh bg-[var(--lp-bg)] text-gray-900">
         <header className="mx-auto flex max-w-5xl items-center justify-between px-6 py-6">
-          <Link href="/" className="flex items-center gap-3">
-            <Nexi state="pb" size={34} />
-            <span className="font-display text-md font-bold tracking-wide text-gray-900">NXTimer</span>
+          <Link href="/" className="flex items-center gap-2">
+            <BrandMark />
+            <span className="font-brand text-base leading-tight font-bold tracking-tight">
+              <span className="text-gray-900">NEXUSTIMER</span>
+              <span className="text-gray-500">.COM</span>
+            </span>
           </Link>
           <Link
             href="/"
@@ -24,8 +28,10 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
         <main className="px-6 pb-24">{children}</main>
       </div>
 
-      <div className="bg-neutral-950">
-        <LandingFooter />
+      <div className="lp-root">
+        <FooterSlab>
+          <LandingFooter />
+        </FooterSlab>
       </div>
     </>
   )
