@@ -6,7 +6,8 @@ import {
   emailButton,
   emailPanel,
   emailText,
-  renderEmail
+  renderEmail,
+  type EmailPart
 } from '../../lib/email-layout'
 
 interface Sender {
@@ -33,31 +34,42 @@ function renderAvatar(sender: Sender, appUrl: string): string {
   return `<div style="width:48px;height:48px;border-radius:50%;background:${EMAIL_COLORS.primaryTint};color:${EMAIL_COLORS.primary};font:600 16px/48px ${DISPLAY_FONT};text-align:center">${initials}</div>`
 }
 
-function renderSenderCard({ sender, mutualCount, appUrl }: TemplateArgs): string {
+function renderSenderCard({ sender, mutualCount, appUrl }: TemplateArgs): EmailPart {
+  const profileUrl = `${appUrl}/people/${sender.id}`
   const meta = [
-    sender.wcaId && `WCA ID ${escapeHtml(sender.wcaId)}`,
+    sender.wcaId && `WCA ID ${sender.wcaId}`,
     mutualCount > 0 && `${mutualCount} mutual ${mutualCount === 1 ? 'friend' : 'friends'}`
-  ]
-    .filter(Boolean)
-    .join(' &middot; ')
+  ].filter((item): item is string => Boolean(item))
+  const metaHtml = meta.map(escapeHtml).join(' &middot; ')
 
-  return emailPanel(`<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+  return emailPanel({
+    html: `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
 <td width="48" style="width:48px;padding:0 14px 0 0;vertical-align:middle">${renderAvatar(sender, appUrl)}</td>
 <td style="vertical-align:middle">
 <p style="margin:0;font:600 16px/1.3 ${DISPLAY_FONT};color:${EMAIL_COLORS.ink}">${escapeHtml(sender.name)}</p>
-${meta ? `<p style="margin:4px 0 0;font:400 13px/1.4 ${BODY_FONT};color:${EMAIL_COLORS.muted}">${meta}</p>` : ''}
-<p style="margin:8px 0 0;font:600 13px/1 ${DISPLAY_FONT}"><a href="${appUrl}/people/${sender.id}" style="color:${EMAIL_COLORS.primary};text-decoration:none">View profile</a></p>
+${metaHtml ? `<p style="margin:4px 0 0;font:400 13px/1.4 ${BODY_FONT};color:${EMAIL_COLORS.muted}">${metaHtml}</p>` : ''}
+<p style="margin:8px 0 0;font:600 13px/1 ${DISPLAY_FONT}"><a href="${escapeHtml(profileUrl)}" style="color:${EMAIL_COLORS.primary};text-decoration:none">View profile</a></p>
 </td>
-</tr></table>`)
+</tr></table>`,
+    text: [sender.name, meta.join(' · '), `View profile: ${profileUrl}`].filter(Boolean).join('\n')
+  })
+}
+
+function privacyFootnote(appUrl: string): EmailPart {
+  const privacyUrl = `${appUrl}/account?tab=privacy`
+
+  return {
+    html: `To stop receiving these emails, turn them off in your <a href="${escapeHtml(privacyUrl)}" style="color:${EMAIL_COLORS.slabInk};text-decoration:underline">privacy settings</a>.`,
+    text: `To stop receiving these emails, turn them off in your privacy settings: ${privacyUrl}`
+  }
 }
 
 export function friendRequestEmail(args: TemplateArgs) {
-  const name = escapeHtml(args.sender.name)
-  const privacyUrl = `${args.appUrl}/account?tab=privacy`
+  const { name } = args.sender
 
   return {
-    subject: `${args.sender.name} wants to add you as a friend on Nexus Timer`,
-    html: renderEmail({
+    subject: `${name} wants to add you as a friend on Nexus Timer`,
+    ...renderEmail({
       title: `${name} wants to add you as a friend`,
       preheader: `${name} wants to add you as a friend on Nexus Timer.`,
       eyebrow: 'Friend request',
@@ -66,8 +78,8 @@ export function friendRequestEmail(args: TemplateArgs) {
         emailText('Once you accept, you can message each other, compare your times and see when the other is online.'),
         renderSenderCard(args),
         emailButton({ href: `${args.appUrl}/friends?tab=requests`, label: 'Review request' })
-      ].join(''),
-      footnote: `To stop receiving these emails, turn them off in your <a href="${privacyUrl}" style="color:${EMAIL_COLORS.slabInk};text-decoration:underline">privacy settings</a>.`
+      ],
+      footnote: privacyFootnote(args.appUrl)
     })
   }
 }

@@ -1,4 +1,7 @@
+import { escapeHtml } from './escape-html'
+
 export const SITE_URL = 'https://nexustimer.com'
+const SITE_HOST = 'nexustimer.com'
 
 export const EMAIL_COLORS = {
   page: '#f8f4f4',
@@ -23,13 +26,15 @@ export const BODY_FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
 
 const C = EMAIL_COLORS
 
+export type EmailPart = { html: string; text: string }
+
 export type EmailLayout = {
   title: string
   preheader: string
   eyebrow: string
   heading: string
-  body: string
-  footnote: string
+  body: EmailPart[]
+  footnote: EmailPart
 }
 
 type Notched = { fill: string; cut: number; content: string; contentStyle: string; fullWidth?: boolean }
@@ -53,43 +58,64 @@ function notched({ fill, cut, content, contentStyle, fullWidth }: Notched) {
 const block = (content: string, padding: string) =>
   `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding:${padding}">${content}</td></tr></table>`
 
-export const emailText = (html: string) =>
-  `<p style="margin:0 0 16px;font:400 15px/1.6 ${BODY_FONT};color:${C.ink}">${html}</p>`
+export const emailText = (text: string): EmailPart => ({
+  html: `<p style="margin:0 0 16px;font:400 15px/1.6 ${BODY_FONT};color:${C.ink}">${escapeHtml(text)}</p>`,
+  text
+})
 
-export const emailNote = (html: string) =>
-  `<p style="margin:0 0 16px;font:400 13px/1.6 ${BODY_FONT};color:${C.muted}">${html}</p>`
+export const emailNote = (text: string): EmailPart => ({
+  html: `<p style="margin:0 0 16px;font:400 13px/1.6 ${BODY_FONT};color:${C.muted}">${escapeHtml(text)}</p>`,
+  text
+})
 
-export function emailButton({ href, label }: { href: string; label: string }) {
-  return block(
-    notched({
-      fill: C.primary,
-      cut: 9,
-      contentStyle: 'padding:0',
-      content: `<a href="${href}" style="display:block;padding:4px 28px;font:600 14px/20px ${DISPLAY_FONT};letter-spacing:0.02em;color:${C.onPrimary};text-decoration:none">${label}</a>`
-    }),
-    '8px 0 24px'
-  )
+export const emailFootnote = (text: string): EmailPart => ({ html: escapeHtml(text), text })
+
+export const emailSpacer = (height: number): EmailPart => ({
+  html: `<div style="height:${height}px;line-height:${height}px;font-size:0">&nbsp;</div>`,
+  text: ''
+})
+
+export const htmlOnly = ({ html }: EmailPart): EmailPart => ({ html, text: '' })
+
+export function emailButton({ href, label }: { href: string; label: string }): EmailPart {
+  return {
+    html: block(
+      notched({
+        fill: C.primary,
+        cut: 9,
+        contentStyle: 'padding:0',
+        content: `<a href="${escapeHtml(href)}" style="display:block;padding:4px 28px;font:600 14px/20px ${DISPLAY_FONT};letter-spacing:0.02em;color:${C.onPrimary};text-decoration:none">${escapeHtml(label)}</a>`
+      }),
+      '8px 0 24px'
+    ),
+    text: `${label}: ${href}`
+  }
 }
 
-export function emailCode(code: string) {
-  return block(
-    `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-<td align="center" style="padding:22px 12px;background:${C.field};border:1px solid ${C.border};font:600 34px/1 ${DISPLAY_FONT};letter-spacing:0.3em;color:${C.ink}"><span style="padding-left:0.3em">${code}</span></td>
+export function emailCode(code: string): EmailPart {
+  return {
+    html: block(
+      `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+<td align="center" style="padding:22px 12px;background:${C.field};border:1px solid ${C.border};font:600 34px/1 ${DISPLAY_FONT};letter-spacing:0.3em;color:${C.ink}"><span style="padding-left:0.3em">${escapeHtml(code)}</span></td>
 </tr></table>`,
-    '8px 0 16px'
-  )
+      '8px 0 16px'
+    ),
+    text: code
+  }
 }
 
-export const emailPanel = (html: string) =>
-  block(
+export const emailPanel = ({ html, text }: EmailPart): EmailPart => ({
+  html: block(
     `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding:16px;background:${C.field};border:1px solid ${C.border}">${html}</td></tr></table>`,
     '8px 0 16px'
-  )
+  ),
+  text
+})
 
 function eyebrow(label: string) {
   return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
 <td width="8" style="width:8px;padding:0;vertical-align:middle"><div style="width:8px;height:8px;background:${C.primary};font-size:0;line-height:0">&nbsp;</div></td>
-<td style="padding:0 10px;white-space:nowrap;vertical-align:middle;font:600 11px/1 ${DISPLAY_FONT};letter-spacing:0.14em;text-transform:uppercase;color:${C.muted}">${label}</td>
+<td style="padding:0 10px;white-space:nowrap;vertical-align:middle;font:600 11px/1 ${DISPLAY_FONT};letter-spacing:0.14em;text-transform:uppercase;color:${C.muted}">${escapeHtml(label)}</td>
 <td width="100%" style="width:100%;padding:0;vertical-align:middle"><div style="height:1px;background:${C.border};font-size:0;line-height:1px">&nbsp;</div></td>
 </tr></table>`
 }
@@ -113,7 +139,7 @@ function footer(footnote: string) {
   })
 }
 
-export function renderEmail({ title, preheader, eyebrow: label, heading, body, footnote }: EmailLayout) {
+function renderHtml({ title, preheader, eyebrow: label, heading, body, footnote }: EmailLayout) {
   return `<!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -123,7 +149,7 @@ export function renderEmail({ title, preheader, eyebrow: label, heading, body, f
 <meta name="format-detection" content="telephone=no,date=no,address=no,email=no,url=no">
 <meta name="color-scheme" content="light">
 <meta name="supported-color-schemes" content="light">
-<title>${title}</title>
+<title>${escapeHtml(title)}</title>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&display=swap" rel="stylesheet">
 <style>
 @media (max-width:600px){.nx-pad{padding:32px 24px 16px!important}.nx-h1{font-size:22px!important}}
@@ -131,20 +157,28 @@ export function renderEmail({ title, preheader, eyebrow: label, heading, body, f
 <!--[if mso]><style>body,table,td,p,a,span,h1{font-family:'Segoe UI',Arial,sans-serif!important}</style><![endif]-->
 </head>
 <body style="margin:0;padding:0;background:${C.page};-webkit-text-size-adjust:100%">
-<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;mso-hide:all">${preheader}${'&#847;&zwnj;&nbsp;'.repeat(40)}</div>
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;mso-hide:all">${escapeHtml(preheader)}${'&#847;&zwnj;&nbsp;'.repeat(40)}</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${C.page}">
 <tr><td align="center" style="padding:40px 12px">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:560px">
 <tr><td style="padding:0 4px 20px">${header()}</td></tr>
 <tr><td class="nx-pad" style="padding:40px 40px 24px;background:${C.card};border:1px solid ${C.cardBorder}">
 ${eyebrow(label)}
-<h1 class="nx-h1" style="margin:20px 0 16px;font:700 26px/1.2 ${DISPLAY_FONT};letter-spacing:-0.01em;color:${C.ink}">${heading}</h1>
-${body}
+<h1 class="nx-h1" style="margin:20px 0 16px;font:700 26px/1.2 ${DISPLAY_FONT};letter-spacing:-0.01em;color:${C.ink}">${escapeHtml(heading)}</h1>
+${body.map((part) => part.html).join('')}
 </td></tr>
-<tr><td style="padding:8px 0 0">${footer(footnote)}</td></tr>
+<tr><td style="padding:8px 0 0">${footer(footnote.html)}</td></tr>
 </table>
 </td></tr>
 </table>
 </body>
 </html>`
+}
+
+function renderText({ heading, body, footnote }: EmailLayout) {
+  return [heading, ...body.map((part) => part.text), `-- \n${footnote.text}\n${SITE_HOST}`].filter(Boolean).join('\n\n')
+}
+
+export function renderEmail(layout: EmailLayout) {
+  return { html: renderHtml(layout), text: renderText(layout) }
 }
