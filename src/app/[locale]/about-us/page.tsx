@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import LandingFooter from '@/widgets/landing/ui/LandingFooter'
+import FooterSlab from '@/widgets/landing/ui/FooterSlab'
 import AboutContent from './AboutContent'
 import { ABOUT } from './content'
 
@@ -22,8 +23,10 @@ export default function AboutUsPage() {
   return (
     <>
       <AboutContent />
-      <div className="bg-neutral-950">
-        <LandingFooter />
+      <div className="lp-root">
+        <FooterSlab>
+          <LandingFooter />
+        </FooterSlab>
       </div>
     </>
   )
