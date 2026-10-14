@@ -20,7 +20,8 @@ import { usePwaInstall } from '@/shared/model/usePwaInstall'
 import { Link, usePathname } from '@/shared/config/i18n/navigation'
 import { useTranslations } from 'next-intl'
 import { NavMain } from '@/widgets/sidebar/ui/nav-main'
-import { SidebarStreak } from '@/widgets/sidebar/ui/sidebar-streak'
+import { SidebarActivity } from '@/widgets/sidebar/ui/sidebar-activity'
+import { SidebarScrollFade } from '@/widgets/sidebar/ui/sidebar-scroll-fade'
 import { BrandMark } from '@/widgets/sidebar/ui/brand-mark'
 import { SmartCubeIndicator } from '@/features/smart-cube/ui/SmartCubeIndicator'
 import { SmartCubeIndicatorCompact } from '@/features/smart-cube/ui/SmartCubeIndicatorCompact'
@@ -83,6 +84,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </Link>
           </SidebarMenuItem>
         </SidebarMenu>
+        <SidebarScrollFade edge="top" scrollRef={scrollRef} contentRef={menuRef} />
       </SidebarHeader>
       <SidebarContent
         ref={scrollRef}
@@ -108,12 +110,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </div>
       </SidebarContent>
       <SidebarFooter className="relative">
+        <SidebarScrollFade edge="bottom" scrollRef={scrollRef} contentRef={menuRef} />
         <div className="hidden group-data-[collapsible=icon]:block">
           <SmartCubeIndicatorCompact />
         </div>
         <div className="flex flex-col gap-2 group-data-[collapsible=icon]:hidden">
           <SmartCubeIndicator />
-          <SidebarStreak />
+          <SidebarActivity />
           {isInstallable && (
             <button
               type="button"
