@@ -2,6 +2,8 @@ import { useTranslations } from 'next-intl'
 import { MenuSection } from './MenuSection'
 import { MenuOption } from './MenuOption'
 import MenuSelectScrambleSize from './MenuSelectScrambleSize'
+import MenuSelectTimerFont from './MenuSelectTimerFont'
+import MenuRangeTimerSize from './MenuRangeTimerSize'
 
 export default function MenuFeaturesSection({ control }: { control: any }) {
   const t = useTranslations('Index')
@@ -39,6 +41,8 @@ export default function MenuFeaturesSection({ control }: { control: any }) {
         description={t('Settings-descriptions.scramble-background')}
       />
       <MenuSelectScrambleSize />
+      <MenuSelectTimerFont />
+      <MenuRangeTimerSize />
       <MenuOption
         name={'features.haptics'}
         label={t('Settings-menu.haptics')}
