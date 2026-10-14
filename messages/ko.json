@@ -57,8 +57,7 @@
       "message-sent-sound": "채팅 메시지를 보냈을 때",
       "new-friend-sound": "친구 요청을 수락했을 때",
       "scramble-size": "스크램블 글자 크기",
-      "trash-sound": "솔브 삭제 시 소리 재생",
-      "focus-mode-scramble": "집중 모드에서도 스크램블을 계속 보여 줍니다"
+      "trash-sound": "솔브 삭제 시 소리 재생"
     },
     "leaderboard-solve-details": {
       "user-solution": "복기 (Reconstruction)",
@@ -752,8 +751,7 @@
       "scramble-size": "스크램블 크기",
       "scramble-size-large": "크게",
       "scramble-size-normal": "보통",
-      "trash-sound": "삭제",
-      "focus-mode-scramble": "집중 모드의 스크램블"
+      "trash-sound": "삭제"
     },
     "backup-modal": {
       "title": "지능형 백업 복원",

@@ -57,8 +57,7 @@
       "message-sent-sound": "Когда вы отправляете сообщение в чате",
       "new-friend-sound": "Когда вы принимаете заявку в друзья",
       "scramble-size": "Насколько крупным будет текст скрамбла",
-      "trash-sound": "Проигрывать звук при удалении сборки",
-      "focus-mode-scramble": "Скрамбл остается на экране в режиме концентрации"
+      "trash-sound": "Проигрывать звук при удалении сборки"
     },
     "leaderboard-solve-details": {
       "user-solution": "Реконструкция",
@@ -752,8 +751,7 @@
       "scramble-size": "Размер скрамбла",
       "scramble-size-large": "Крупный",
       "scramble-size-normal": "Обычный",
-      "trash-sound": "Удаление",
-      "focus-mode-scramble": "Скрамбл в режиме концентрации"
+      "trash-sound": "Удаление"
     },
     "backup-modal": {
       "title": "Умное восстановление",

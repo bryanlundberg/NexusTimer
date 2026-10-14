@@ -64,8 +64,7 @@
       "custom-background-description": "Gamitin ang sarili mong larawan bilang background (max 4 MB)",
       "data-import-export": "Mag-save ng backup ng data mo o mag-restore ng dati",
       "language-description": "Ang wikang ginagamit sa buong app",
-      "analytics": "Magbahagi ng anonymous na usage data para mapabuti ang NexusTimer",
-      "focus-mode-scramble": "Panatilihing nakikita ang scramble sa focus mode"
+      "analytics": "Magbahagi ng anonymous na usage data para mapabuti ang NexusTimer"
     },
     "leaderboard-solve-details": {
       "user-solution": "Reconstruction",
@@ -759,8 +758,7 @@
       "light": "Maliwanag",
       "system": "System",
       "close": "X",
-      "fullscreen": "Fullscreen",
-      "focus-mode-scramble": "Scramble sa focus mode"
+      "fullscreen": "Fullscreen"
     },
     "backup-modal": {
       "title": "Intelligent Backup Restoration",

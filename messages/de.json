@@ -57,8 +57,7 @@
       "message-sent-sound": "Wenn du eine Chatnachricht sendest",
       "new-friend-sound": "Wenn du eine Freundschaftsanfrage annimmst",
       "scramble-size": "Wie groß der Scramble-Text erscheint",
-      "trash-sound": "Sound beim Löschen eines Solves abspielen",
-      "focus-mode-scramble": "Der Scramble bleibt im Fokusmodus sichtbar"
+      "trash-sound": "Sound beim Löschen eines Solves abspielen"
     },
     "leaderboard-solve-details": {
       "user-solution": "Rekonstruktion",
@@ -752,8 +751,7 @@
       "scramble-size": "Scramble-Größe",
       "scramble-size-large": "Groß",
       "scramble-size-normal": "Normal",
-      "trash-sound": "Löschen",
-      "focus-mode-scramble": "Scramble im Fokusmodus"
+      "trash-sound": "Löschen"
     },
     "backup-modal": {
       "title": "Intelligente Backup-Wiederherstellung",

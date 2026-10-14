@@ -656,8 +656,7 @@
       "activation-key-listening": "Pulsa una tecla…",
       "fullscreen": "Pantalla completa",
       "hold-to-start-time": "Tiempo de pulsación",
-      "inspection-time": "Tiempo de inspección",
-      "focus-mode-scramble": "Scramble en modo concentración"
+      "inspection-time": "Tiempo de inspección"
     },
     "backup-modal": {
       "title": "Restauración Inteligente de Respaldo",
@@ -784,8 +783,7 @@
       "start-cue": "Una señal visual cuando el cronómetro está listo",
       "voice-gender-description": "La voz de los avisos de inspección",
       "worst-time-alert": "Te avisa cuando haces tu peor tiempo de la sesión",
-      "solve-delta": "Mira cuánto más rápido o lento fue cada tiempo respecto al anterior",
-      "focus-mode-scramble": "Mantén el scramble a la vista en el modo concentración"
+      "solve-delta": "Mira cuánto más rápido o lento fue cada tiempo respecto al anterior"
     },
     "TransferSolvesPage": {
       "no-source-title": "¿Hiciste alguna resolución con el cubo equivocado?",

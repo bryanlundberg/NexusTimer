@@ -57,8 +57,7 @@
       "message-sent-sound": "Quando você envia uma mensagem no chat",
       "new-friend-sound": "Quando você aceita um pedido de amizade",
       "scramble-size": "O tamanho do texto do embaralhamento",
-      "trash-sound": "Tocar um som ao excluir um solve",
-      "focus-mode-scramble": "Mantenha o embaralhamento na tela no modo de concentração"
+      "trash-sound": "Tocar um som ao excluir um solve"
     },
     "leaderboard-solve-details": {
       "user-solution": "Reconstrução",
@@ -752,8 +751,7 @@
       "scramble-size": "Tamanho do embaralhamento",
       "scramble-size-large": "Grande",
       "scramble-size-normal": "Normal",
-      "trash-sound": "Excluir",
-      "focus-mode-scramble": "Embaralhamento no modo de concentração"
+      "trash-sound": "Excluir"
     },
     "backup-modal": {
       "title": "Restauração Inteligente de Backup",

@@ -57,8 +57,7 @@
       "message-sent-sound": "Quand tu envoies un message de chat",
       "new-friend-sound": "Quand tu acceptes une demande d'ami",
       "scramble-size": "La taille du texte du mélange",
-      "trash-sound": "Jouer un son lors de la suppression d’un solve",
-      "focus-mode-scramble": "Garde le mélange à l'écran en mode concentration"
+      "trash-sound": "Jouer un son lors de la suppression d’un solve"
     },
     "leaderboard-solve-details": {
       "user-solution": "Reconstruction",
@@ -752,8 +751,7 @@
       "scramble-size": "Taille du mélange",
       "scramble-size-large": "Grande",
       "scramble-size-normal": "Normale",
-      "trash-sound": "Suppression",
-      "focus-mode-scramble": "Mélange en mode concentration"
+      "trash-sound": "Suppression"
     },
     "backup-modal": {
       "title": "Restauration intelligente de sauvegarde",

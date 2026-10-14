@@ -57,8 +57,7 @@
       "message-sent-sound": "チャットメッセージを送ったとき",
       "new-friend-sound": "フレンド申請を承認したとき",
       "scramble-size": "スクランブルの文字の大きさ",
-      "trash-sound": "ソルブ削除時にサウンドを再生",
-      "focus-mode-scramble": "集中モード中もスクランブルを表示したままにします"
+      "trash-sound": "ソルブ削除時にサウンドを再生"
     },
     "leaderboard-solve-details": {
       "user-solution": "再構築 (Reconstruction)",
@@ -752,8 +751,7 @@
       "scramble-size": "スクランブルサイズ",
       "scramble-size-large": "大",
       "scramble-size-normal": "標準",
-      "trash-sound": "削除",
-      "focus-mode-scramble": "集中モードのスクランブル"
+      "trash-sound": "削除"
     },
     "backup-modal": {
       "title": "インテリジェント復元",

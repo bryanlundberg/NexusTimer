@@ -57,8 +57,7 @@
       "message-sent-sound": "发送聊天消息时",
       "new-friend-sound": "接受好友请求时",
       "scramble-size": "打乱公式文字的大小",
-      "trash-sound": "删除复原记录时播放提示音",
-      "focus-mode-scramble": "专注模式下仍显示打乱公式"
+      "trash-sound": "删除复原记录时播放提示音"
     },
     "leaderboard-solve-details": {
       "user-solution": "还原重建",
@@ -752,8 +751,7 @@
       "scramble-size": "打乱文字大小",
       "scramble-size-large": "大",
       "scramble-size-normal": "标准",
-      "trash-sound": "删除",
-      "focus-mode-scramble": "专注模式下的打乱公式"
+      "trash-sound": "删除"
     },
     "backup-modal": {
       "title": "智能备份恢复",

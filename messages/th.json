@@ -64,8 +64,7 @@
       "custom-background-description": "ใช้รูปของคุณเองเป็นพื้นหลัง (สูงสุด 4 MB)",
       "data-import-export": "สำรองข้อมูลของคุณ หรือกู้คืนจากข้อมูลสำรองก่อนหน้า",
       "language-description": "ภาษาที่ใช้ทั้งแอป",
-      "analytics": "แชร์ข้อมูลการใช้งานแบบไม่ระบุตัวตนเพื่อช่วยพัฒนา NexusTimer",
-      "focus-mode-scramble": "ให้ scramble อยู่บนหน้าจอในโหมดโฟกัส"
+      "analytics": "แชร์ข้อมูลการใช้งานแบบไม่ระบุตัวตนเพื่อช่วยพัฒนา NexusTimer"
     },
     "leaderboard-solve-details": {
       "user-solution": "การจำลองย้อนหลัง",
@@ -759,8 +758,7 @@
       "light": "สว่าง",
       "system": "ระบบ",
       "close": "X",
-      "fullscreen": "เต็มหน้าจอ",
-      "focus-mode-scramble": "scramble ในโหมดโฟกัส"
+      "fullscreen": "เต็มหน้าจอ"
     },
     "backup-modal": {
       "title": "การกู้คืนข้อมูลสำรองอัจฉริยะ",
