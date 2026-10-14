@@ -64,7 +64,9 @@
       "custom-background-description": "Gunakan gambarmu sendiri sebagai latar belakang (maks 4 MB)",
       "data-import-export": "Simpan cadangan datamu atau pulihkan cadangan sebelumnya",
       "language-description": "Bahasa yang dipakai di seluruh aplikasi",
-      "analytics": "Bagikan data penggunaan anonim untuk membantu meningkatkan NexusTimer"
+      "analytics": "Bagikan data penggunaan anonim untuk membantu meningkatkan NexusTimer",
+      "timer-font": "Jenis huruf angka pada timer",
+      "timer-size": "Seberapa besar angka pada timer"
     },
     "leaderboard-solve-details": {
       "user-solution": "Rekonstruksi",
@@ -758,7 +760,9 @@
       "light": "Terang",
       "system": "Sistem",
       "close": "X",
-      "fullscreen": "Layar penuh"
+      "fullscreen": "Layar penuh",
+      "timer-font": "Font timer",
+      "timer-size": "Ukuran timer"
     },
     "backup-modal": {
       "title": "Pemulihan Cadangan Cerdas",

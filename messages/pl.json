@@ -64,7 +64,9 @@
       "custom-background-description": "Użyj własnego obrazu jako tła (maks. 4 MB)",
       "data-import-export": "Zapisz kopię zapasową danych lub przywróć wcześniejszą",
       "language-description": "Język całej aplikacji",
-      "analytics": "Udostępniaj anonimowe dane o użyciu, aby pomóc ulepszać NexusTimer"
+      "analytics": "Udostępniaj anonimowe dane o użyciu, aby pomóc ulepszać NexusTimer",
+      "timer-font": "Krój cyfr na stoperze",
+      "timer-size": "Jak duże są cyfry na stoperze"
     },
     "leaderboard-solve-details": {
       "user-solution": "Rekonstrukcja",
@@ -758,7 +760,9 @@
       "light": "Jasny",
       "system": "Systemowy",
       "close": "X",
-      "fullscreen": "Pełny ekran"
+      "fullscreen": "Pełny ekran",
+      "timer-font": "Czcionka stopera",
+      "timer-size": "Rozmiar stopera"
     },
     "backup-modal": {
       "title": "Inteligentne przywracanie kopii zapasowej",

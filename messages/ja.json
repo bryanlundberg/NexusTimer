@@ -57,7 +57,9 @@
       "message-sent-sound": "チャットメッセージを送ったとき",
       "new-friend-sound": "フレンド申請を承認したとき",
       "scramble-size": "スクランブルの文字の大きさ",
-      "trash-sound": "ソルブ削除時にサウンドを再生"
+      "trash-sound": "ソルブ削除時にサウンドを再生",
+      "timer-font": "タイマーの数字に使うフォント",
+      "timer-size": "タイマーの数字の大きさ"
     },
     "leaderboard-solve-details": {
       "user-solution": "再構築 (Reconstruction)",
@@ -751,7 +753,9 @@
       "scramble-size": "スクランブルサイズ",
       "scramble-size-large": "大",
       "scramble-size-normal": "標準",
-      "trash-sound": "削除"
+      "trash-sound": "削除",
+      "timer-font": "タイマーのフォント",
+      "timer-size": "タイマーのサイズ"
     },
     "backup-modal": {
       "title": "インテリジェント復元",

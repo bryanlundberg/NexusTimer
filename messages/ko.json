@@ -57,7 +57,9 @@
       "message-sent-sound": "채팅 메시지를 보냈을 때",
       "new-friend-sound": "친구 요청을 수락했을 때",
       "scramble-size": "스크램블 글자 크기",
-      "trash-sound": "솔브 삭제 시 소리 재생"
+      "trash-sound": "솔브 삭제 시 소리 재생",
+      "timer-font": "타이머 숫자에 쓰이는 글꼴",
+      "timer-size": "타이머 숫자 크기"
     },
     "leaderboard-solve-details": {
       "user-solution": "복기 (Reconstruction)",
@@ -751,7 +753,9 @@
       "scramble-size": "스크램블 크기",
       "scramble-size-large": "크게",
       "scramble-size-normal": "보통",
-      "trash-sound": "삭제"
+      "trash-sound": "삭제",
+      "timer-font": "타이머 글꼴",
+      "timer-size": "타이머 크기"
     },
     "backup-modal": {
       "title": "지능형 백업 복원",

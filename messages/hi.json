@@ -57,7 +57,9 @@
       "message-sent-sound": "जब आप चैट संदेश भेजें",
       "new-friend-sound": "जब आप मित्र अनुरोध स्वीकार करें",
       "scramble-size": "स्क्रैम्बल का टेक्स्ट कितना बड़ा दिखे",
-      "trash-sound": "सॉल्व हटाते समय ध्वनि चलाएँ"
+      "trash-sound": "सॉल्व हटाते समय ध्वनि चलाएँ",
+      "timer-font": "टाइमर के अंकों का फ़ॉन्ट",
+      "timer-size": "टाइमर के अंक कितने बड़े दिखें"
     },
     "leaderboard-solve-details": {
       "user-solution": "पुनर्निर्माण (Reconstruction)",
@@ -751,7 +753,9 @@
       "scramble-size": "स्क्रैम्बल आकार",
       "scramble-size-large": "बड़ा",
       "scramble-size-normal": "सामान्य",
-      "trash-sound": "हटाएँ"
+      "trash-sound": "हटाएँ",
+      "timer-font": "टाइमर फ़ॉन्ट",
+      "timer-size": "टाइमर आकार"
     },
     "backup-modal": {
       "title": "बुद्धिमान बैकअप बहाली",

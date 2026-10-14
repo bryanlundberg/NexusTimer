@@ -57,7 +57,9 @@
       "message-sent-sound": "Wenn du eine Chatnachricht sendest",
       "new-friend-sound": "Wenn du eine Freundschaftsanfrage annimmst",
       "scramble-size": "Wie groß der Scramble-Text erscheint",
-      "trash-sound": "Sound beim Löschen eines Solves abspielen"
+      "trash-sound": "Sound beim Löschen eines Solves abspielen",
+      "timer-font": "Die Schriftart der Timer-Ziffern",
+      "timer-size": "Wie groß die Timer-Ziffern erscheinen"
     },
     "leaderboard-solve-details": {
       "user-solution": "Rekonstruktion",
@@ -751,7 +753,9 @@
       "scramble-size": "Scramble-Größe",
       "scramble-size-large": "Groß",
       "scramble-size-normal": "Normal",
-      "trash-sound": "Löschen"
+      "trash-sound": "Löschen",
+      "timer-font": "Timer-Schriftart",
+      "timer-size": "Timer-Größe"
     },
     "backup-modal": {
       "title": "Intelligente Backup-Wiederherstellung",

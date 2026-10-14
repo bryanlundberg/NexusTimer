@@ -64,7 +64,9 @@
       "data-import-export": "Збережіть резервну копію даних або відновіть попередню",
       "language-description": "Мова всього застосунку",
       "analytics": "Діліться анонімними даними про використання, щоб покращувати NexusTimer",
-      "scramble-size": "Наскільки великим буде текст скрамблу"
+      "scramble-size": "Наскільки великим буде текст скрамблу",
+      "timer-font": "Шрифт цифр на таймері",
+      "timer-size": "Наскільки великими будуть цифри таймера"
     },
     "leaderboard-solve-details": {
       "user-solution": "Реконструкція",
@@ -758,7 +760,9 @@
       "fullscreen": "На весь екран",
       "scramble-size": "Розмір скрамбла",
       "scramble-size-large": "Великий",
-      "scramble-size-normal": "Звичайний"
+      "scramble-size-normal": "Звичайний",
+      "timer-font": "Шрифт таймера",
+      "timer-size": "Розмір таймера"
     },
     "backup-modal": {
       "title": "Розумне відновлення резервної копії",

@@ -57,7 +57,9 @@
       "message-sent-sound": "Quand tu envoies un message de chat",
       "new-friend-sound": "Quand tu acceptes une demande d'ami",
       "scramble-size": "La taille du texte du mélange",
-      "trash-sound": "Jouer un son lors de la suppression d’un solve"
+      "trash-sound": "Jouer un son lors de la suppression d’un solve",
+      "timer-font": "La police des chiffres du chronomètre",
+      "timer-size": "La taille des chiffres du chronomètre"
     },
     "leaderboard-solve-details": {
       "user-solution": "Reconstruction",
@@ -751,7 +753,9 @@
       "scramble-size": "Taille du mélange",
       "scramble-size-large": "Grande",
       "scramble-size-normal": "Normale",
-      "trash-sound": "Suppression"
+      "trash-sound": "Suppression",
+      "timer-font": "Police du chronomètre",
+      "timer-size": "Taille du chronomètre"
     },
     "backup-modal": {
       "title": "Restauration intelligente de sauvegarde",

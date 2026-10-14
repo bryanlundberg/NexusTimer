@@ -57,7 +57,9 @@
       "message-sent-sound": "Quando você envia uma mensagem no chat",
       "new-friend-sound": "Quando você aceita um pedido de amizade",
       "scramble-size": "O tamanho do texto do embaralhamento",
-      "trash-sound": "Tocar um som ao excluir um solve"
+      "trash-sound": "Tocar um som ao excluir um solve",
+      "timer-font": "A fonte dos números do cronômetro",
+      "timer-size": "O tamanho dos números do cronômetro"
     },
     "leaderboard-solve-details": {
       "user-solution": "Reconstrução",
@@ -751,7 +753,9 @@
       "scramble-size": "Tamanho do embaralhamento",
       "scramble-size-large": "Grande",
       "scramble-size-normal": "Normal",
-      "trash-sound": "Excluir"
+      "trash-sound": "Excluir",
+      "timer-font": "Fonte do cronômetro",
+      "timer-size": "Tamanho do cronômetro"
     },
     "backup-modal": {
       "title": "Restauração Inteligente de Backup",
