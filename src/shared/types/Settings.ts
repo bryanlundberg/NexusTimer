@@ -17,6 +17,9 @@ type Features = {
   hideWhileSolving: boolean
   scrambleBackground: boolean
   scrambleSize: 'normal' | 'large'
+  timerFont:
+    'default' | 'ds-digital' | 'inter' | 'jetbrains-mono' | 'space-mono' | 'oxanium' | 'bebas-neue' | 'press-start-2p'
+  timerSize: number
   haptics: boolean
 }
 

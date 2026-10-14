@@ -17,6 +17,8 @@ export const defaultSettings: Settings = {
     hideWhileSolving: false,
     scrambleBackground: false,
     scrambleSize: 'normal',
+    timerFont: 'default',
+    timerSize: 150,
     haptics: true
   },
   alerts: {
