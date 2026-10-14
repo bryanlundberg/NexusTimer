@@ -675,6 +675,8 @@
       "download-data": "กู้คืนข้อมูลสำรอง",
       "log-out": "ออกจากระบบ",
       "streak-days": "{count, plural, other {วันติดต่อกัน}}",
+      "activity-solves": "{count, plural, other {# การต่อ}}",
+      "activity-calendar": "ปฏิทินกิจกรรม",
       "toggle-section": "แสดงหรือซ่อน {title}",
       "toggle-sidebar": "แสดงหรือซ่อนแถบด้านข้าง"
     },

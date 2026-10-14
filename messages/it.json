@@ -675,6 +675,8 @@
       "download-data": "Ripristina backup",
       "log-out": "Esci",
       "streak-days": "{count, plural, one {giorno di fila} other {giorni di fila}}",
+      "activity-solves": "{count, plural, =1 {# solve} other {# solve}}",
+      "activity-calendar": "Calendario attività",
       "toggle-section": "Mostra o nascondi {title}",
       "toggle-sidebar": "Mostra o nascondi la barra laterale"
     },

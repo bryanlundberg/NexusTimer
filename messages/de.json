@@ -666,6 +666,8 @@
       "download-data": "Backup wiederherstellen",
       "log-out": "Abmelden",
       "streak-days": "{count, plural, one {Tag in Folge} other {Tage in Folge}}",
+      "activity-solves": "{count, plural, =1 {# Solve} other {# Solves}}",
+      "activity-calendar": "Aktivitätskalender",
       "trainer": "Trainer",
       "training": "Training",
       "toggle-section": "{title} ein- oder ausblenden",

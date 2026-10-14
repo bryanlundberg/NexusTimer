@@ -950,6 +950,8 @@
       "download-data": "Restaurar copia de seguridad",
       "log-out": "Cerrar sesión",
       "streak-days": "{count, plural, one {día seguido} other {días seguidos}}",
+      "activity-solves": "{count, plural, =1 {# tiempo} other {# tiempos}}",
+      "activity-calendar": "Calendario de actividad",
       "toggle-section": "Mostrar u ocultar {title}",
       "toggle-sidebar": "Mostrar u ocultar la barra lateral"
     },

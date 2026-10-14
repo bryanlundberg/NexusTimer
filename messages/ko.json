@@ -666,6 +666,8 @@
       "download-data": "백업 복원",
       "log-out": "로그아웃",
       "streak-days": "{count, plural, other {일 연속}}",
+      "activity-solves": "{count, plural, other {#개 솔브}}",
+      "activity-calendar": "활동 캘린더",
       "trainer": "트레이너",
       "training": "트레이닝",
       "toggle-section": "{title} 표시/숨기기",

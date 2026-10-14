@@ -675,6 +675,8 @@
       "download-data": "Przywróć kopię zapasową",
       "log-out": "Wyloguj się",
       "streak-days": "{count, plural, one {dzień z rzędu} few {dni z rzędu} many {dni z rzędu} other {dnia z rzędu}}",
+      "activity-solves": "{count, plural, =1 {# ułożenie} few {# ułożenia} other {# ułożeń}}",
+      "activity-calendar": "Kalendarz aktywności",
       "toggle-section": "Pokaż lub ukryj {title}",
       "toggle-sidebar": "Pokaż lub ukryj pasek boczny"
     },

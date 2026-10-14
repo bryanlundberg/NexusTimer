@@ -666,6 +666,8 @@
       "download-data": "Восстановить из резервной копии",
       "log-out": "Выйти",
       "streak-days": "{count, plural, one {день подряд} few {дня подряд} many {дней подряд} other {дня подряд}}",
+      "activity-solves": "{count, plural, one {# сборка} few {# сборки} many {# сборок} other {# сборки}}",
+      "activity-calendar": "Календарь активности",
       "trainer": "Тренажёр",
       "training": "Тренировка",
       "toggle-section": "Показать или скрыть {title}",

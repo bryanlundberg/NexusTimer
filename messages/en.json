@@ -675,6 +675,8 @@
       "download-data": "Restore Backup",
       "log-out": "Sign Out",
       "streak-days": "{count, plural, one {day in a row} other {days in a row}}",
+      "activity-solves": "{count, plural, =1 {# solve} other {# solves}}",
+      "activity-calendar": "Activity calendar",
       "toggle-section": "Show or hide {title}",
       "toggle-sidebar": "Show or hide sidebar"
     },

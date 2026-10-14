@@ -675,6 +675,8 @@
       "download-data": "Pulihkan cadangan",
       "log-out": "Keluar",
       "streak-days": "{count, plural, other {hari berturut-turut}}",
+      "activity-solves": "{count, plural, other {# solve}}",
+      "activity-calendar": "Kalender aktivitas",
       "toggle-section": "Tampilkan atau sembunyikan {title}",
       "toggle-sidebar": "Tampilkan atau sembunyikan sidebar"
     },

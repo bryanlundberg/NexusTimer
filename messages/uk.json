@@ -675,6 +675,8 @@
       "download-data": "Відновити резервну копію",
       "log-out": "Вийти",
       "streak-days": "{count, plural, one {день поспіль} few {дні поспіль} many {днів поспіль} other {дня поспіль}}",
+      "activity-solves": "{count, plural, one {# збірка} few {# збірки} many {# збірок} other {# збірки}}",
+      "activity-calendar": "Календар активності",
       "toggle-section": "Показати або приховати {title}",
       "toggle-sidebar": "Показати або приховати бічну панель"
     },

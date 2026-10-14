@@ -666,6 +666,8 @@
       "download-data": "恢复备份",
       "log-out": "退出登录",
       "streak-days": "{count, plural, other {天不间断}}",
+      "activity-solves": "{count, plural, other {# 次复原}}",
+      "activity-calendar": "活动日历",
       "trainer": "训练器",
       "training": "训练",
       "toggle-section": "显示或隐藏{title}",

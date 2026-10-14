@@ -675,6 +675,8 @@
       "download-data": "Khôi phục bản sao lưu",
       "log-out": "Đăng xuất",
       "streak-days": "{count, plural, other {ngày liên tiếp}}",
+      "activity-solves": "{count, plural, other {# lượt giải}}",
+      "activity-calendar": "Lịch hoạt động",
       "toggle-section": "Hiện hoặc ẩn {title}",
       "toggle-sidebar": "Hiện hoặc ẩn thanh bên"
     },

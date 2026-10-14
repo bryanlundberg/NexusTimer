@@ -666,6 +666,8 @@
       "download-data": "バックアップを復元",
       "log-out": "ログアウト",
       "streak-days": "{count, plural, other {日連続}}",
+      "activity-solves": "{count, plural, other {# ソルブ}}",
+      "activity-calendar": "アクティビティカレンダー",
       "trainer": "トレーナー",
       "training": "トレーニング",
       "toggle-section": "{title}の表示を切り替え",

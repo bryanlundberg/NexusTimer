@@ -675,6 +675,8 @@
       "download-data": "I-restore ang backup",
       "log-out": "Mag-log out",
       "streak-days": "{count, plural, other {araw na sunod-sunod}}",
+      "activity-solves": "{count, plural, other {# solve}}",
+      "activity-calendar": "Kalendaryo ng aktibidad",
       "toggle-section": "Ipakita o itago ang {title}",
       "toggle-sidebar": "Ipakita o itago ang sidebar"
     },
