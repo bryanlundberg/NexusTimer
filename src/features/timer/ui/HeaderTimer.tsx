@@ -1,4 +1,3 @@
-import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { ScrambleZone } from './ScrambleZone'
 import { useWindowHeight } from '@/shared/model/useWindowHeight'
@@ -18,13 +17,11 @@ import { useSolveMoment } from '@/features/timer/model/useSolveMoment'
 export default function HeaderTimer() {
   const isSolving = useTimerStore((store) => store.isSolving)
   const timerStatus = useTimerStore((store) => store.timerStatus)
-  const settings = useSettingsStore((store) => store.settings)
   const isFocusMode = useFocusModeStore((store) => store.isFocusMode)
   const height = useWindowHeight()
   const { lastSolve, isPersonalBest, improvement } = useSolveMoment()
 
   const isHidden = isSolving || timerStatus !== TimerStatus.IDLE
-  const showScramble = !isFocusMode || settings.features.focusModeScramble
 
   return (
     <>
@@ -46,7 +43,7 @@ export default function HeaderTimer() {
           </div>
         )}
 
-        {showScramble && <ScrambleZone />}
+        <ScrambleZone />
         {isPersonalBest && lastSolve && (
           <div
             className={cn('flex justify-center mt-10', height <= SCRAMBLE_HEIGHT && 'mt-5', isHidden && 'invisible')}
