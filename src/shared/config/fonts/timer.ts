@@ -1,10 +1,12 @@
 import { Bebas_Neue, Inter, JetBrains_Mono, Oxanium, Press_Start_2P, Space_Mono } from 'next/font/google'
 import localFont from 'next/font/local'
 
-export const dsDigital = localFont({
-  src: './ds-digital/ds-digital.ttf',
+export const dseg7 = localFont({
+  src: './dseg7/DSEG7Classic-Regular.woff2',
   display: 'swap',
-  preload: false
+  preload: false,
+  adjustFontFallback: false,
+  declarations: [{ prop: 'size-adjust', value: '70%' }]
 })
 
 export const inter = Inter({ subsets: ['latin'], weight: '400', display: 'swap', preload: false })

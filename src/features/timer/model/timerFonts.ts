@@ -1,12 +1,4 @@
-import {
-  bebasNeue,
-  dsDigital,
-  inter,
-  jetbrainsMono,
-  oxanium,
-  pressStart2P,
-  spaceMono
-} from '@/shared/config/fonts/timer'
+import { bebasNeue, dseg7, inter, jetbrainsMono, oxanium, pressStart2P, spaceMono } from '@/shared/config/fonts/timer'
 import { Settings } from '@/shared/types/Settings'
 
 export type TimerFont = Settings['features']['timerFont']
@@ -15,10 +7,7 @@ const NATURAL_CELLS = '[--digit-cell-w:auto]'
 
 export const TIMER_FONTS: Record<TimerFont, { label: string; className: string; preview?: string }> = {
   default: { label: 'Chakra Petch', className: 'font-display' },
-  'ds-digital': {
-    label: 'DS-Digital',
-    className: `${dsDigital.className} [--digit-cell-w:0.49em] [--digit-cell-align:right]`
-  },
+  dseg7: { label: 'DSEG7', className: `${dseg7.className} ${NATURAL_CELLS}` },
   inter: { label: 'Inter', className: `${inter.className} tabular-nums ${NATURAL_CELLS}` },
   'jetbrains-mono': { label: 'JetBrains Mono', className: `${jetbrainsMono.className} ${NATURAL_CELLS}` },
   'space-mono': { label: 'Space Mono', className: `${spaceMono.className} ${NATURAL_CELLS}` },
