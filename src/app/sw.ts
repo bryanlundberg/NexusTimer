@@ -93,6 +93,12 @@ const workerScripts: SerwistPlugin = {
     request.destination === 'worker' ? new Response(response.body, response) : response
 }
 
+// A chunk requested mid-deploy can sit in the HTTP cache as an immutable 404, which would fail every install.
+const refetchCached404: SerwistPlugin = {
+  fetchDidSucceed: async ({ request, response }) =>
+    response.status === 404 ? fetch(request, { cache: 'reload' }) : response
+}
+
 const pageNavigations: RuntimeCaching = {
   matcher: ({ request, url }) => request.mode === 'navigate' && isPage(url),
   method: 'GET',
@@ -142,7 +148,7 @@ const authSessionCache: RuntimeCaching = {
 
 const serwist = new Serwist({
   precacheEntries: self.__SW_MANIFEST,
-  precacheOptions: { plugins: [workerScripts] },
+  precacheOptions: { plugins: [workerScripts, refetchCached404] },
   skipWaiting: true,
   clientsClaim: true,
   navigationPreload: true,
