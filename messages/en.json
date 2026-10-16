@@ -64,7 +64,7 @@
       "custom-background-description": "Use your own image as the background (max 4 MB)",
       "data-import-export": "Save a backup of your data or restore an earlier one",
       "language-description": "The language used across the app",
-      "analytics": "Share anonymous usage data to help improve NexusTimer",
+      "analytics": "Share usage data to help improve NexusTimer",
       "timer-font": "The typeface of the timer digits",
       "timer-size": "How big the timer digits look"
     },

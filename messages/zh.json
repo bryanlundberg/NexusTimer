@@ -48,7 +48,7 @@
       "custom-background-description": "使用你自己的图片作为背景（最大 4 MB）",
       "data-import-export": "备份你的数据，或从之前的备份恢复",
       "language-description": "整个应用使用的语言",
-      "analytics": "分享匿名使用数据，帮助改进 NexusTimer",
+      "analytics": "分享使用数据，帮助改进 NexusTimer",
       "favorite-sound": "收藏时播放提示音",
       "haptics": "计时器准备就绪时振动（仅支持的设备）",
       "inspection-sound": "观察期间播放语音提示",

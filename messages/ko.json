@@ -48,7 +48,7 @@
       "custom-background-description": "내 이미지를 배경으로 사용합니다 (최대 4 MB)",
       "data-import-export": "데이터를 백업하거나 이전 백업을 복원합니다",
       "language-description": "앱 전체에서 사용하는 언어",
-      "analytics": "익명 사용 데이터를 공유해 NexusTimer 개선에 도움을 줍니다",
+      "analytics": "사용 데이터를 공유해 NexusTimer 개선에 도움을 줍니다",
       "favorite-sound": "즐겨찾기 저장 시 소리 재생",
       "haptics": "타이머가 준비되면 진동합니다 (지원 기기만)",
       "inspection-sound": "인스펙션 중에 음성으로 알려 줍니다",

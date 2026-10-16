@@ -64,7 +64,7 @@
       "custom-background-description": "Usa una tua immagine come sfondo (max 4 MB)",
       "data-import-export": "Salva un backup dei tuoi dati o ripristinane uno precedente",
       "language-description": "La lingua usata in tutta l'app",
-      "analytics": "Condividi dati di utilizzo anonimi per aiutare a migliorare NexusTimer",
+      "analytics": "Condividi dati di utilizzo per aiutare a migliorare NexusTimer",
       "timer-font": "Il carattere delle cifre del timer",
       "timer-size": "Quanto sono grandi le cifre del timer"
     },
