@@ -23,6 +23,7 @@ import { FriendButton } from '@/features/friends/ui/FriendButton'
 import { MutualFriends } from '@/features/friends/ui/MutualFriends'
 import { useUserSharedSolves } from '@/entities/shared-solve/model/useUserSharedSolves'
 import SharedTabContent from '@/widgets/people/ui/shared-tab-content'
+import { ProfileMonthActivity } from '@/widgets/people/ui/profile-month-activity'
 
 interface PeopleTabsProps {
   user: UserProfile
@@ -73,15 +74,25 @@ export function PeopleTabs({ user, stats, isLoadingStats = false }: PeopleTabsPr
     <div className="flex flex-col w-full">
       <ProfileHeroBanner
         user={user}
-        level={userBadges.earnedTiers}
         actions={
           <ProfileActions
             user={user}
             isCurrentUser={isCurrentUser}
             status={relationship?.status}
             canRequest={relationship?.canRequest}
-            className="max-sm:hidden sm:self-end"
+            className="justify-end max-sm:hidden"
           />
+        }
+        aside={
+          !statsHidden &&
+          stats?.dailySolves && (
+            <ProfileMonthActivity
+              key={user._id}
+              dailySolves={stats.dailySolves}
+              timezone={stats.timezone}
+              className="shrink-0 max-md:hidden"
+            />
+          )
         }
       >
         {relationship?.mutual && <MutualFriends mutual={relationship.mutual} />}

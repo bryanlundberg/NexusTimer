@@ -16,12 +16,12 @@ import { useSession } from '@/shared/model/useSession'
 
 interface Props {
   user: UserDocument
-  level: number
   actions?: React.ReactNode
+  aside?: React.ReactNode
   children?: React.ReactNode
 }
 
-export function ProfileHeroBanner({ user, level, actions, children }: Props) {
+export function ProfileHeroBanner({ user, actions, aside, children }: Props) {
   const locale = useLocale()
   const t = useTranslations('Index.PeoplePage.hero')
 
@@ -40,11 +40,6 @@ export function ProfileHeroBanner({ user, level, actions, children }: Props) {
               <AvatarImage className="object-cover" src={user.image} alt={user.name} />
               <AvatarFallback>{user.name.substring(0, 2).toUpperCase()}</AvatarFallback>
             </Avatar>
-            {level > 0 && (
-              <span className="absolute -bottom-2 left-1 bg-primary text-primary-foreground text-[10px] font-bold px-1.5 py-0.5 leading-none">
-                LV.{level}
-              </span>
-            )}
             {isSignedIn && (
               <span className="absolute -bottom-0.5 -right-0.5 rounded-full bg-background p-0.5">
                 <PresenceDot state={resolvePresenceDisplay(presence)} className="size-3" />
@@ -94,15 +89,17 @@ export function ProfileHeroBanner({ user, level, actions, children }: Props) {
               mainColors={user.mainColors}
               className="justify-center sm:justify-start"
             />
-            {user.bio && <p className="text-sm text-muted-foreground wrap-break-word">{user.bio}</p>}
+            {user.bio && <p className="max-w-prose text-sm text-muted-foreground wrap-break-word">{user.bio}</p>}
+            <ProfileLinks links={user.links} size="sm" className="mt-1 justify-center sm:justify-start" />
             {children}
           </div>
         </div>
 
-        <ProfileLinks links={user.links} className="shrink-0 justify-center sm:max-w-[40%] sm:justify-end" />
+        <div className="flex shrink-0 flex-col items-end gap-4 max-sm:hidden sm:max-w-[45%]">
+          {aside}
+          {actions}
+        </div>
       </div>
-
-      {actions}
     </div>
   )
 }
