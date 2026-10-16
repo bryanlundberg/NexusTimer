@@ -9,19 +9,20 @@ import { WcaBadge } from '@/shared/ui/wca-badge/WcaBadge'
 import { CountryFlag } from '@/shared/ui/country-flag/CountryFlag'
 import { getCountryName } from '@/shared/lib/getCountryName'
 import { ProfileTraits } from '@/entities/user/ui/ProfileTraits'
-import { ProfileLinks } from '@/entities/user/ui/ProfileLinks'
+import { parseProfileLink } from '@/shared/lib/profile-links'
 import { PresenceDot } from '@/features/presence/ui/PresenceDot'
 import { usePresence, resolvePresenceDisplay } from '@/features/presence/model/usePresence'
 import { useSession } from '@/shared/model/useSession'
+import { ProfileContactInfo } from '@/widgets/people/ui/profile-contact-info'
 
 interface Props {
   user: UserDocument
-  actions?: React.ReactNode
+  avatarAction?: React.ReactNode
   aside?: React.ReactNode
   children?: React.ReactNode
 }
 
-export function ProfileHeroBanner({ user, actions, aside, children }: Props) {
+export function ProfileHeroBanner({ user, avatarAction, aside, children }: Props) {
   const locale = useLocale()
   const t = useTranslations('Index.PeoplePage.hero')
 
@@ -30,21 +31,25 @@ export function ProfileHeroBanner({ user, actions, aside, children }: Props) {
   const { status } = useSession()
   const isSignedIn = status === 'authenticated'
   const presence = usePresence(isSignedIn ? user._id : null)
+  const hasContactInfo = (user.links ?? []).some((link) => parseProfileLink(link) !== null)
 
   return (
     <div className="w-full px-4 md:px-6 py-6 flex flex-col gap-6 border-b border-border/40">
       <div className="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-start">
         <div className="flex flex-col items-center gap-4 min-w-0 w-full sm:w-auto sm:flex-row">
-          <div className="relative shrink-0 self-center sm:self-auto">
-            <Avatar className="size-28 md:size-32 rounded-full ring-2 ring-border/40">
-              <AvatarImage className="object-cover" src={user.image} alt={user.name} />
-              <AvatarFallback>{user.name.substring(0, 2).toUpperCase()}</AvatarFallback>
-            </Avatar>
-            {isSignedIn && (
-              <span className="absolute -bottom-0.5 -right-0.5 rounded-full bg-background p-0.5">
-                <PresenceDot state={resolvePresenceDisplay(presence)} className="size-3" />
-              </span>
-            )}
+          <div className="flex shrink-0 flex-col items-center gap-3 self-center sm:self-auto">
+            <div className="relative">
+              <Avatar className="size-28 md:size-32 rounded-full ring-2 ring-border/40">
+                <AvatarImage className="object-cover" src={user.image} alt={user.name} />
+                <AvatarFallback>{user.name.substring(0, 2).toUpperCase()}</AvatarFallback>
+              </Avatar>
+              {isSignedIn && (
+                <span className="absolute -bottom-0.5 -right-0.5 rounded-full bg-background p-0.5">
+                  <PresenceDot state={resolvePresenceDisplay(presence)} className="size-3" />
+                </span>
+              )}
+            </div>
+            {avatarAction}
           </div>
 
           <div className="flex flex-col items-center gap-1.5 min-w-0 w-full text-center sm:w-auto sm:items-start sm:text-left">
@@ -83,6 +88,12 @@ export function ProfileHeroBanner({ user, actions, aside, children }: Props) {
                 </>
               )}
               <span>{t('member-since', { date: memberSince })}</span>
+              {hasContactInfo && (
+                <>
+                  <span className="opacity-50">·</span>
+                  <ProfileContactInfo name={user.name} links={user.links ?? []} />
+                </>
+              )}
             </div>
             <ProfileTraits
               method={user.method}
@@ -90,15 +101,11 @@ export function ProfileHeroBanner({ user, actions, aside, children }: Props) {
               className="justify-center sm:justify-start"
             />
             {user.bio && <p className="max-w-prose text-sm text-muted-foreground wrap-break-word">{user.bio}</p>}
-            <ProfileLinks links={user.links} size="sm" className="mt-1 justify-center sm:justify-start" />
             {children}
           </div>
         </div>
 
-        <div className="flex shrink-0 flex-col items-end gap-4 max-sm:hidden sm:max-w-[45%]">
-          {aside}
-          {actions}
-        </div>
+        {aside}
       </div>
     </div>
   )

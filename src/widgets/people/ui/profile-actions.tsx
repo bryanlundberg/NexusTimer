@@ -1,9 +1,5 @@
 'use client'
 
-import { useRouter } from '@/shared/config/i18n/navigation'
-import { useTranslations } from 'next-intl'
-import { Pencil } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import { cn } from '@/shared/lib/utils'
 import type { UserProfile } from '@/entities/user/model/user'
 import type { RelationshipStatus } from '@/entities/friendship/model/types'
@@ -13,30 +9,15 @@ import { BlockUserMenu } from '@/features/friends/ui/BlockUserMenu'
 
 interface Props {
   user: UserProfile
-  isCurrentUser: boolean
   status?: RelationshipStatus
   canRequest?: boolean
   className?: string
   children?: React.ReactNode
 }
 
-export function ProfileActions({ user, isCurrentUser, status, canRequest, className, children }: Props) {
-  const t = useTranslations('Index.PeoplePage')
-  const router = useRouter()
-
+export function ProfileActions({ user, status, canRequest, className, children }: Props) {
   return (
     <div className={cn('flex flex-wrap items-center gap-2', className)}>
-      {isCurrentUser && (
-        <Button
-          variant="ghost"
-          size="sm"
-          className="gap-1.5 pointer-coarse:h-10"
-          onClick={() => router.push('/account')}
-        >
-          <Pencil className="size-4" />
-          {t('edit-profile')}
-        </Button>
-      )}
       {status === 'friends' && <MessageLink userId={user._id} variant="ghost" showLabel />}
       {status && status !== 'pending_in' && (
         <FriendButton userId={user._id} name={user.name} status={status} canRequest={canRequest} />

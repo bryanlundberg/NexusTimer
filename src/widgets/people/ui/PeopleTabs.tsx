@@ -24,12 +24,17 @@ import { MutualFriends } from '@/features/friends/ui/MutualFriends'
 import { useUserSharedSolves } from '@/entities/shared-solve/model/useUserSharedSolves'
 import SharedTabContent from '@/widgets/people/ui/shared-tab-content'
 import { ProfileMonthActivity } from '@/widgets/people/ui/profile-month-activity'
+import { EditProfileButton } from '@/widgets/people/ui/edit-profile-button'
+import { OwnProfileMenu } from '@/widgets/people/ui/own-profile-menu'
+import { ShareProfileButton } from '@/widgets/people/ui/share-profile-button'
 
 interface PeopleTabsProps {
   user: UserProfile
   stats: UserStatsSummary | null
   isLoadingStats?: boolean
 }
+
+const NO_DAILY_SOLVES: Record<string, number> = {}
 
 const tabs = [PTabs.OVERVIEW, PTabs.CUBES, PTabs.TIMELINE, PTabs.ALGORITHMS, PTabs.ACHIEVEMENTS, PTabs.SHARED] as const
 
@@ -74,22 +79,21 @@ export function PeopleTabs({ user, stats, isLoadingStats = false }: PeopleTabsPr
     <div className="flex flex-col w-full">
       <ProfileHeroBanner
         user={user}
-        actions={
-          <ProfileActions
-            user={user}
-            isCurrentUser={isCurrentUser}
-            status={relationship?.status}
-            canRequest={relationship?.canRequest}
-            className="justify-end max-sm:hidden"
-          />
+        avatarAction={
+          isCurrentUser && (
+            <div className="flex items-center gap-1 max-sm:hidden">
+              <EditProfileButton />
+              <ShareProfileButton userId={user._id} name={user.name} />
+            </div>
+          )
         }
         aside={
-          !statsHidden &&
-          stats?.dailySolves && (
+          !isLoadingStats &&
+          !statsHidden && (
             <ProfileMonthActivity
               key={user._id}
-              dailySolves={stats.dailySolves}
-              timezone={stats.timezone}
+              dailySolves={stats?.dailySolves ?? NO_DAILY_SOLVES}
+              timezone={stats?.timezone ?? Intl.DateTimeFormat().resolvedOptions().timeZone}
               className="shrink-0 max-md:hidden"
             />
           )
@@ -103,12 +107,12 @@ export function PeopleTabs({ user, stats, isLoadingStats = false }: PeopleTabsPr
         )}
         <ProfileActions
           user={user}
-          isCurrentUser={isCurrentUser}
           status={relationship?.status}
           canRequest={relationship?.canRequest}
-          className="mt-1.5 justify-center sm:hidden"
+          className="mt-1.5 justify-center sm:justify-start"
         >
-          {!statsHidden && <CompareUserButton user={user} />}
+          {!statsHidden && <CompareUserButton user={user} className="sm:hidden" />}
+          {isCurrentUser && <OwnProfileMenu userId={user._id} name={user.name} className="sm:hidden" />}
         </ProfileActions>
       </ProfileHeroBanner>
       {isCurrentUser && <ProfileCompletenessBar user={user} />}
