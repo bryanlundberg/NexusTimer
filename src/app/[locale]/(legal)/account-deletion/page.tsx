@@ -22,7 +22,7 @@ export default function AccountDeletionPage() {
 
       <LegalBody>
         <Para>
-          You can request the permanent deletion of your NexusTimer account and all associated data at any time.
+          You can request the permanent deletion of your NexusTimer account and the data linked to it at any time.
           Requests are processed manually and may take up to 30 days to complete.
         </Para>
 
@@ -46,31 +46,43 @@ export default function AccountDeletionPage() {
         <H2>What will be deleted</H2>
 
         <ul className="list-disc pl-6">
-          <Li>Your user account (name, email, profile picture, bio, preferences).</Li>
-          <Li>All solves and statistics synced to our servers.</Li>
-          <Li>All cloud backups stored on our servers and on our file storage provider.</Li>
           <Li>
-            Any authentication credentials, email verifications, and password reset tokens linked to your account.
+            Your user account and profile (name, email, profile picture, bio, profile details, WCA link and privacy
+            settings).
           </Li>
+          <Li>
+            Your sign-in methods, password, active sessions, and pending verification and password reset requests.
+          </Li>
+          <Li>All solves submitted to leaderboards, your shared solves and your statistics.</Li>
+          <Li>Your trainer progress, learned algorithms and achievements.</Li>
+          <Li>All cloud backups and your uploaded profile picture, from our file storage provider.</Li>
+          <Li>Your friends, pending friend requests and blocks, in both directions.</Li>
+          <Li>
+            All your conversations and their messages. Because conversations are one to one, they also disappear for the
+            other person.
+          </Li>
+          <Li>Your online status and last seen time.</Li>
           <Li>Feedback entries you have submitted.</Li>
         </ul>
 
         <H2>Local data on your device</H2>
 
         <Para>
-          NexusTimer also stores data locally on your device using your browser&apos;s IndexedDB so the app can work
-          offline. This data never leaves your device, so we cannot delete it for you. To remove it, clear the site data
-          for NexusTimer from your browser settings, or uninstall the PWA if you have installed it.
+          NexusTimer also stores your data locally in your browser&apos;s IndexedDB so the app can work offline. We
+          cannot access or delete this local copy for you. To remove it, clear the site data for NexusTimer from your
+          browser settings, or uninstall the PWA if you have installed it.
         </Para>
 
         <H2>Important notes</H2>
 
         <ul className="list-disc pl-6">
           <Li>
-            Requests are reviewed manually and may take up to 30 days to be processed. Once approved, all associated
-            data is permanently and immediately deleted from our servers.
+            Requests are reviewed manually and may take up to 30 days to be processed. Once approved, the data listed
+            above is permanently deleted from our servers. Copies in our providers&apos; backups and caches expire on
+            their own schedule.
           </Li>
           <Li>Deletion is permanent and cannot be undone.</Li>
+          <Li>Algorithm suggestions already published on GitHub never included your account, so they stay public.</Li>
           <Li>If you sign in again with the same provider after deletion, a new empty account will be created.</Li>
           <Li>
             For questions about how your data is handled, see our{' '}
