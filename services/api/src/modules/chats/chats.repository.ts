@@ -1,5 +1,6 @@
 import type { MessageReaction } from '@nexustimer/contracts'
 import { Types } from 'mongoose'
+import type { UserDocuments } from '../../infra/user-documents'
 import { pairKeyOf } from '../../lib/pair-key'
 import { ConversationModel } from './conversation.model'
 import { MessageModel } from './message.model'
@@ -297,5 +298,16 @@ export const chatsRepository: ChatsRepository = {
   async reactions(messageId) {
     const doc = await MessageModel.findOne({ _id: messageId }, { reactions: 1 }).lean<Pick<RawMessage, 'reactions'>>()
     return toReactions(doc?.reactions)
+  }
+}
+
+export const conversationsUserData: UserDocuments = {
+  count: ({ id }) => ConversationModel.countDocuments({ members: id }),
+  async purge({ id }) {
+    const conversations = await ConversationModel.find({ members: id }, { _id: 1 }).lean<{ _id: Types.ObjectId }[]>()
+    if (conversations.length === 0) return 0
+    const conversationIds = conversations.map((conversation) => conversation._id)
+    await MessageModel.deleteMany({ conversationId: { $in: conversationIds } })
+    return (await ConversationModel.deleteMany({ _id: { $in: conversationIds } })).deletedCount
   }
 }
