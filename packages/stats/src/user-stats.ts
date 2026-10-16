@@ -12,6 +12,7 @@ import {
 } from '@nexustimer/contracts'
 import { groupBy, minBy, orderBy } from 'es-toolkit'
 import { calcBestAo, findBestAoWindow } from './best-ao'
+import { createDateKey } from './date-key'
 import { computeSolveStats, type SolveStats } from './solve-stats'
 import { mergeSolvesNewestFirst } from './sort-solves'
 import type { Cube, Solve } from './types'
@@ -143,6 +144,22 @@ function recentSolves(solves: TaggedSolve[]): RecentSolve[] {
     }))
 }
 
+function dailySolves(solves: TaggedSolve[], timezone: string): Record<string, number> {
+  const dateKey = createDateKey(timezone)
+  const seen = new Set<string>()
+  const counts: Record<string, number> = {}
+
+  for (const solve of solves) {
+    const timestamp = solve.endTime || solve.startTime
+    if (!timestamp || seen.has(solve.id)) continue
+    seen.add(solve.id)
+    const day = dateKey(timestamp)
+    counts[day] = (counts[day] ?? 0) + 1
+  }
+
+  return counts
+}
+
 export function computeUserStats(cubes: Cube[], timezone: string): UserStatsSummary {
   const solves = tagSolves(cubes)
   const byCategory = groupBy(solves, (solve) => solve.category)
@@ -157,6 +174,7 @@ export function computeUserStats(cubes: Cube[], timezone: string): UserStatsSumm
     version: USER_STATS_VERSION,
     timezone,
     totalSolves: solves.length,
+    dailySolves: dailySolves(solves, timezone),
     categories,
     cubes: cubes.map(cubeStats),
     recentSolves: recentSolves(solves),

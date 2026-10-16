@@ -155,10 +155,30 @@ describe('computeUserStats', () => {
   it('handles an empty backup', () => {
     expect(computeUserStats([], 'UTC')).toMatchObject({
       totalSolves: 0,
+      dailySolves: {},
       categories: [],
       cubes: [],
       recentSolves: [],
       achievements: { cubeCount: 0 }
     })
+  })
+
+  it('counts the solves of each day, DNFs included and deleted solves left out', () => {
+    expect(stats.dailySolves).toEqual({ '2023-11-14': tagged.length })
+  })
+
+  it('keys the days in the timezone of the summary', () => {
+    expect(computeUserStats(cubes, 'Asia/Tokyo').dailySolves).toEqual({ '2023-11-15': tagged.length })
+  })
+
+  it('counts a solve listed in both the session and the history once per day', () => {
+    const shared = makeSolve({
+      id: 'twice',
+      startTime: Date.UTC(2026, 9, 1, 10),
+      endTime: Date.UTC(2026, 9, 1, 10, 0, 9)
+    })
+    const cube = makeCube({ id: 'c4', category: '3x3', allSolves: [shared], sessionSolves: [shared] })
+
+    expect(computeUserStats([cube], 'UTC').dailySolves).toEqual({ '2026-10-01': 1 })
   })
 })
