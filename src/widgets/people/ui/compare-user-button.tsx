@@ -56,7 +56,7 @@ export function CompareUserButton({ user, className }: { user: UserProfile; clas
         ) : (
           <GitCompareIcon className="size-4" />
         )}
-        {t('compare-stats')}
+        <span className="max-sm:sr-only">{t('compare-stats')}</span>
       </Button>
     </>
   )
