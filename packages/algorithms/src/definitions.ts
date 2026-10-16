@@ -3,6 +3,7 @@ import { ALGORITHM_SET_CATALOG, type AlgorithmSetSlug } from './sets'
 import { PBL_ALGS } from './data/pbl'
 import { OCLL_ALGS } from './data/ocll'
 import { OLL_ALGS } from './data/oll'
+import { OLL_OH_ALGS } from './data/oll-oh'
 import { PLL_ALGS } from './data/pll'
 import { COLL_ALGS } from './data/coll'
 import { BLE_ALGS } from './data/ble'
@@ -48,6 +49,7 @@ const ALGORITHMS_BY_SET: Record<AlgorithmSetSlug, AlgorithmCollection[]> = {
   f2l: F2L_ALGS,
   'advanced-f2l': ADVANCED_F2L_ALGS,
   oll: OLL_ALGS,
+  'oll-oh': OLL_OH_ALGS,
   pll: PLL_ALGS,
   coll: COLL_ALGS,
   ble: BLE_ALGS,

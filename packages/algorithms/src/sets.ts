@@ -107,6 +107,18 @@ export const ALGORITHM_SET_CATALOG = [
     file: 'oll.ts'
   },
   {
+    slug: 'oll-oh',
+    goal: 'oll',
+    title: 'OLL-OH',
+    subtitle: 'One-Handed Orientation of the Last Layer',
+    puzzle: '3x3x3',
+    difficulty: 2,
+    virtualization: {
+      experimentalStickering: 'OLL'
+    },
+    file: 'oll-oh.ts'
+  },
+  {
     slug: 'pll',
     goal: 'full',
     title: 'PLL',
