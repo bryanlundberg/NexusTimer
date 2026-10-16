@@ -1,4 +1,5 @@
 import type { Types } from 'mongoose'
+import { userDocuments } from '../../infra/user-documents'
 import { pairKeyOf } from '../../lib/pair-key'
 import { FriendRequestEmailLogModel } from './friend-request-email-log.model'
 import { FriendshipModel } from './friendship.model'
@@ -130,3 +131,9 @@ export const friendsRepository: FriendsRepository = {
     }
   }
 }
+
+export const friendshipsUserData = userDocuments(FriendshipModel, ({ id }) => ({ users: id }))
+
+export const friendRequestEmailsUserData = userDocuments(FriendRequestEmailLogModel, ({ id }) => ({
+  pairKey: new RegExp(`^${id}:|:${id}$`)
+}))
