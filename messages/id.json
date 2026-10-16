@@ -504,7 +504,9 @@
         "member-since": "Anggota sejak {date}",
         "pb-label": "PB 3x3 · {date}",
         "new-pb": "PB BARU",
-        "pb-broken": "{days, plural, =0 {dipecahkan hari ini} other {dipecahkan # hari lalu}}"
+        "pb-broken": "{days, plural, =0 {dipecahkan hari ini} other {dipecahkan # hari lalu}}",
+        "contact-info": "Info kontak",
+        "contact-info-description": "Tempat menemukan {name} secara online."
       },
       "find-cubers": "Jelajahi para cuber.",
       "showing-members": "Menampilkan <b>{showing}</b> dari <b>{total}</b> anggota",

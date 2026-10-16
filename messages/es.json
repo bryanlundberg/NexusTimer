@@ -458,7 +458,9 @@
         "member-since": "Miembro desde {date}",
         "pb-label": "3x3 PB · {date}",
         "new-pb": "NUEVO PB",
-        "pb-broken": "{days, plural, =0 {conseguido hoy} one {conseguido hace # día} other {conseguido hace # días}}"
+        "pb-broken": "{days, plural, =0 {conseguido hoy} one {conseguido hace # día} other {conseguido hace # días}}",
+        "contact-info": "Información de contacto",
+        "contact-info-description": "Dónde encontrar a {name} en internet."
       },
       "find-cubers": "Busca cuberos.",
       "showing-members": "Mostrando <b>{showing}</b> de <b>{total}</b> miembros",

@@ -504,7 +504,9 @@
         "member-since": "Thành viên từ {date}",
         "pb-label": "PB 3x3 · {date}",
         "new-pb": "PB MỚI",
-        "pb-broken": "{days, plural, =0 {phá hôm nay} other {phá # ngày trước}}"
+        "pb-broken": "{days, plural, =0 {phá hôm nay} other {phá # ngày trước}}",
+        "contact-info": "Thông tin liên hệ",
+        "contact-info-description": "Nơi tìm {name} trên mạng."
       },
       "find-cubers": "Duyệt các cuber.",
       "showing-members": "Đang hiển thị <b>{showing}</b> trong <b>{total}</b> thành viên",

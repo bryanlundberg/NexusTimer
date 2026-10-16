@@ -488,7 +488,9 @@
         "member-since": "{date} 가입",
         "pb-label": "3x3 PB · {date}",
         "new-pb": "새 PB",
-        "pb-broken": "{days, plural, =0 {오늘 달성} other {# 일 전 달성}}"
+        "pb-broken": "{days, plural, =0 {오늘 달성} other {# 일 전 달성}}",
+        "contact-info": "연락처 정보",
+        "contact-info-description": "{name}님이 공개한 링크입니다."
       },
       "find-cubers": "큐버 검색.",
       "showing-members": "전체 <b>{total}</b>명 중 <b>{showing}</b>명 표시",

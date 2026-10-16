@@ -495,7 +495,9 @@
         "member-since": "Учасник із {date}",
         "pb-label": "3x3 PB · {date}",
         "new-pb": "НОВИЙ PB",
-        "pb-broken": "{days, plural, =0 {побито сьогодні} one {побито # день тому} few {побито # дні тому} many {побито # днів тому} other {побито # дня тому}}"
+        "pb-broken": "{days, plural, =0 {побито сьогодні} one {побито # день тому} few {побито # дні тому} many {побито # днів тому} other {побито # дня тому}}",
+        "contact-info": "Контактна інформація",
+        "contact-info-description": "Де знайти {name} в мережі."
       },
       "find-cubers": "Перегляд кьюберів.",
       "showing-members": "Показано <b>{showing}</b> з <b>{total}</b> учасників",

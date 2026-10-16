@@ -504,7 +504,9 @@
         "member-since": "สมาชิกตั้งแต่ {date}",
         "pb-label": "PB 3x3 · {date}",
         "new-pb": "PB ใหม่",
-        "pb-broken": "{days, plural, =0 {ทำลายวันนี้} other {ทำลายเมื่อ # วันก่อน}}"
+        "pb-broken": "{days, plural, =0 {ทำลายวันนี้} other {ทำลายเมื่อ # วันก่อน}}",
+        "contact-info": "ข้อมูลติดต่อ",
+        "contact-info-description": "ลิงก์ที่ {name} เปิดเผยไว้"
       },
       "find-cubers": "เรียกดู cuber",
       "showing-members": "กำลังแสดง <b>{showing}</b> จาก <b>{total}</b> สมาชิก",

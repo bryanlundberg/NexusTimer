@@ -504,7 +504,9 @@
         "member-since": "Membro dal {date}",
         "pb-label": "PB 3x3 · {date}",
         "new-pb": "NUOVO PB",
-        "pb-broken": "{days, plural, =0 {battuto oggi} one {battuto # giorno fa} other {battuto # giorni fa}}"
+        "pb-broken": "{days, plural, =0 {battuto oggi} one {battuto # giorno fa} other {battuto # giorni fa}}",
+        "contact-info": "Informazioni di contatto",
+        "contact-info-description": "Dove trovare {name} online."
       },
       "find-cubers": "Esplora i cuber.",
       "showing-members": "Mostrando <b>{showing}</b> di <b>{total}</b> membri",
