@@ -17,12 +17,11 @@ import { ProfileContactInfo } from '@/widgets/people/ui/profile-contact-info'
 
 interface Props {
   user: UserDocument
-  avatarAction?: React.ReactNode
   aside?: React.ReactNode
   children?: React.ReactNode
 }
 
-export function ProfileHeroBanner({ user, avatarAction, aside, children }: Props) {
+export function ProfileHeroBanner({ user, aside, children }: Props) {
   const locale = useLocale()
   const t = useTranslations('Index.PeoplePage.hero')
 
@@ -37,19 +36,16 @@ export function ProfileHeroBanner({ user, avatarAction, aside, children }: Props
     <div className="w-full px-4 md:px-6 py-6 flex flex-col gap-6 border-b border-border/40">
       <div className="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-start">
         <div className="flex flex-col items-center gap-4 min-w-0 w-full sm:w-auto sm:flex-row">
-          <div className="flex shrink-0 flex-col items-center gap-3 self-center sm:self-auto">
-            <div className="relative">
-              <Avatar className="size-28 md:size-32 rounded-full ring-2 ring-border/40">
-                <AvatarImage className="object-cover" src={user.image} alt={user.name} />
-                <AvatarFallback>{user.name.substring(0, 2).toUpperCase()}</AvatarFallback>
-              </Avatar>
-              {isSignedIn && (
-                <span className="absolute -bottom-0.5 -right-0.5 rounded-full bg-background p-0.5">
-                  <PresenceDot state={resolvePresenceDisplay(presence)} className="size-3" />
-                </span>
-              )}
-            </div>
-            {avatarAction}
+          <div className="relative shrink-0 self-center sm:self-auto">
+            <Avatar className="size-28 md:size-32 rounded-full ring-2 ring-border/40">
+              <AvatarImage className="object-cover" src={user.image} alt={user.name} />
+              <AvatarFallback>{user.name.substring(0, 2).toUpperCase()}</AvatarFallback>
+            </Avatar>
+            {isSignedIn && (
+              <span className="absolute -bottom-0.5 -right-0.5 rounded-full bg-background p-0.5">
+                <PresenceDot state={resolvePresenceDisplay(presence)} className="size-3" />
+              </span>
+            )}
           </div>
 
           <div className="flex flex-col items-center gap-1.5 min-w-0 w-full text-center sm:w-auto sm:items-start sm:text-left">

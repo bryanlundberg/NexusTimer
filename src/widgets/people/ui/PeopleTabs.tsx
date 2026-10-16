@@ -24,9 +24,6 @@ import { MutualFriends } from '@/features/friends/ui/MutualFriends'
 import { useUserSharedSolves } from '@/entities/shared-solve/model/useUserSharedSolves'
 import SharedTabContent from '@/widgets/people/ui/shared-tab-content'
 import { ProfileMonthActivity } from '@/widgets/people/ui/profile-month-activity'
-import { EditProfileButton } from '@/widgets/people/ui/edit-profile-button'
-import { OwnProfileMenu } from '@/widgets/people/ui/own-profile-menu'
-import { ShareProfileButton } from '@/widgets/people/ui/share-profile-button'
 
 interface PeopleTabsProps {
   user: UserProfile
@@ -79,14 +76,6 @@ export function PeopleTabs({ user, stats, isLoadingStats = false }: PeopleTabsPr
     <div className="flex flex-col w-full">
       <ProfileHeroBanner
         user={user}
-        avatarAction={
-          isCurrentUser && (
-            <div className="flex items-center gap-1 max-sm:hidden">
-              <EditProfileButton />
-              <ShareProfileButton userId={user._id} name={user.name} />
-            </div>
-          )
-        }
         aside={
           !isLoadingStats &&
           !statsHidden && (
@@ -107,13 +96,12 @@ export function PeopleTabs({ user, stats, isLoadingStats = false }: PeopleTabsPr
         )}
         <ProfileActions
           user={user}
+          isCurrentUser={isCurrentUser}
+          isSignedIn={!!session?.user?.id}
           status={relationship?.status}
           canRequest={relationship?.canRequest}
           className="mt-1.5 justify-center sm:justify-start"
-        >
-          {!statsHidden && <CompareUserButton user={user} className="sm:hidden" />}
-          {isCurrentUser && <OwnProfileMenu userId={user._id} name={user.name} className="sm:hidden" />}
-        </ProfileActions>
+        />
       </ProfileHeroBanner>
       {isCurrentUser && <ProfileCompletenessBar user={user} />}
       {!isLoadingStats && !statsHidden && <ProfileBadgesStrip badges={userBadges} />}
@@ -140,7 +128,7 @@ export function PeopleTabs({ user, stats, isLoadingStats = false }: PeopleTabsPr
             />
           </div>
 
-          {!statsHidden && <CompareUserButton user={user} className="max-sm:hidden sm:shrink-0" />}
+          {!statsHidden && <CompareUserButton user={user} className="shrink-0" />}
         </div>
 
         {/* Tab content */}
