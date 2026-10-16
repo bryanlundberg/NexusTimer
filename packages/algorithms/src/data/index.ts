@@ -38,6 +38,7 @@ export { ZBLL_PI_ALGS } from './zbll-pi'
 export { ZBLL_S_ALGS } from './zbll-s'
 export { ZBLL_T_ALGS } from './zbll-t'
 export { ZBLL_U_ALGS } from './zbll-u'
+export { ZBLS_ALGS } from './zbls'
 
 import { ADVANCED_F2L_ALGS } from './advanced-f2l'
 import { BLE_ALGS } from './ble'
@@ -77,6 +78,7 @@ import { ZBLL_PI_ALGS } from './zbll-pi'
 import { ZBLL_S_ALGS } from './zbll-s'
 import { ZBLL_T_ALGS } from './zbll-t'
 import { ZBLL_U_ALGS } from './zbll-u'
+import { ZBLS_ALGS } from './zbls'
 
 export const ALL_ALGS: AlgorithmCollection[] = [
   ...ADVANCED_F2L_ALGS,
@@ -116,7 +118,8 @@ export const ALL_ALGS: AlgorithmCollection[] = [
   ...ZBLL_PI_ALGS,
   ...ZBLL_S_ALGS,
   ...ZBLL_T_ALGS,
-  ...ZBLL_U_ALGS
+  ...ZBLL_U_ALGS,
+  ...ZBLS_ALGS
 ]
 
 // O(1) lookup indices — built once at module load
