@@ -511,7 +511,11 @@
       "search": "ค้นหา",
       "compare-basket": "<b>{count}</b> ในตะกร้าเปรียบเทียบ",
       "stats-hidden": "สถิติและอัลกอริทึมของ {name} เป็นแบบส่วนตัว",
-      "clear-filters": "ล้างตัวกรอง"
+      "clear-filters": "ล้างตัวกรอง",
+      "activity": {
+        "previous-month": "เดือนก่อนหน้า",
+        "next-month": "เดือนถัดไป"
+      }
     },
     "FriendsPage": {
       "title": "เพื่อน",

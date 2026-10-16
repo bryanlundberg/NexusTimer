@@ -511,7 +511,11 @@
       "search": "Search",
       "compare-basket": "<b>{count}</b> in compare basket",
       "stats-hidden": "{name}'s stats and algorithms are private.",
-      "clear-filters": "Clear filters"
+      "clear-filters": "Clear filters",
+      "activity": {
+        "previous-month": "Previous month",
+        "next-month": "Next month"
+      }
     },
     "FriendsPage": {
       "title": "Friends",

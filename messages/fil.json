@@ -511,7 +511,11 @@
       "search": "Maghanap",
       "compare-basket": "<b>{count}</b> sa compare basket",
       "stats-hidden": "Pribado ang stats at algorithm ni {name}.",
-      "clear-filters": "I-clear ang mga filter"
+      "clear-filters": "I-clear ang mga filter",
+      "activity": {
+        "previous-month": "Nakaraang buwan",
+        "next-month": "Susunod na buwan"
+      }
     },
     "FriendsPage": {
       "title": "Mga Kaibigan",

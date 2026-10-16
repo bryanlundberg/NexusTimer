@@ -504,7 +504,11 @@
         "view-all": "Показать все"
       },
       "stats-hidden": "Статистика и алгоритмы пользователя {name} скрыты.",
-      "clear-filters": "Сбросить фильтры"
+      "clear-filters": "Сбросить фильтры",
+      "activity": {
+        "previous-month": "Предыдущий месяц",
+        "next-month": "Следующий месяц"
+      }
     },
     "FriendsPage": {
       "title": "Друзья",

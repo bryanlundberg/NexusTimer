@@ -511,7 +511,11 @@
       "search": "Cerca",
       "compare-basket": "<b>{count}</b> nel confronto",
       "stats-hidden": "Le statistiche e gli algoritmi di {name} sono privati.",
-      "clear-filters": "Cancella filtri"
+      "clear-filters": "Cancella filtri",
+      "activity": {
+        "previous-month": "Mese precedente",
+        "next-month": "Mese successivo"
+      }
     },
     "FriendsPage": {
       "title": "Amici",

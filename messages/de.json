@@ -504,7 +504,11 @@
         "view-all": "Alle ansehen"
       },
       "stats-hidden": "Die Statistiken und Algorithmen von {name} sind privat.",
-      "clear-filters": "Filter zurücksetzen"
+      "clear-filters": "Filter zurücksetzen",
+      "activity": {
+        "previous-month": "Vorheriger Monat",
+        "next-month": "Nächster Monat"
+      }
     },
     "FriendsPage": {
       "title": "Freunde",

@@ -504,7 +504,11 @@
         "view-all": "すべて見る"
       },
       "stats-hidden": "{name}さんの統計と手順は非公開です。",
-      "clear-filters": "フィルターをクリア"
+      "clear-filters": "フィルターをクリア",
+      "activity": {
+        "previous-month": "前の月",
+        "next-month": "次の月"
+      }
     },
     "FriendsPage": {
       "title": "フレンド",

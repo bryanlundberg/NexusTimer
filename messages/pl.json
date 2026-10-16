@@ -511,7 +511,11 @@
       "search": "Szukaj",
       "compare-basket": "<b>{count}</b> w koszyku porównania",
       "stats-hidden": "Statystyki i algorytmy użytkownika {name} są prywatne.",
-      "clear-filters": "Wyczyść filtry"
+      "clear-filters": "Wyczyść filtry",
+      "activity": {
+        "previous-month": "Poprzedni miesiąc",
+        "next-month": "Następny miesiąc"
+      }
     },
     "FriendsPage": {
       "title": "Znajomi",

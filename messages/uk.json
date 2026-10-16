@@ -511,7 +511,11 @@
         "view-all": "Переглянути всі"
       },
       "stats-hidden": "Статистика та алгоритми користувача {name} приховані.",
-      "clear-filters": "Скинути фільтри"
+      "clear-filters": "Скинути фільтри",
+      "activity": {
+        "previous-month": "Попередній місяць",
+        "next-month": "Наступний місяць"
+      }
     },
     "FriendsPage": {
       "title": "Друзі",

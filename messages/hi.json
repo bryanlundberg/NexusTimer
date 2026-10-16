@@ -504,7 +504,11 @@
         "view-all": "सभी देखें"
       },
       "stats-hidden": "{name} के आँकड़े और एल्गोरिदम निजी हैं।",
-      "clear-filters": "फ़िल्टर हटाएँ"
+      "clear-filters": "फ़िल्टर हटाएँ",
+      "activity": {
+        "previous-month": "पिछला महीना",
+        "next-month": "अगला महीना"
+      }
     },
     "FriendsPage": {
       "title": "मित्र",
