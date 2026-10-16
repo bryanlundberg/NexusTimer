@@ -1540,8 +1540,8 @@
     }
   },
   "Cookies": {
-    "title": "我们重视您的隐私",
-    "description": "我们使用 Cookie 及类似技术来记住您的偏好并分析网站流量。点击接受即表示您同意此类使用。",
+    "title": "我们使用 Google Analytics",
+    "description": "它帮助我们了解 NexusTimer 的使用情况，只有在您接受后才会设置 Cookie。",
     "privacy-policy": "隐私政策",
     "accept": "接受",
     "decline": "拒绝"

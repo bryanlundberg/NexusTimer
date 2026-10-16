@@ -1558,8 +1558,8 @@
     }
   },
   "Cookies": {
-    "title": "Chúng tôi tôn trọng quyền riêng tư của bạn",
-    "description": "Chúng tôi sử dụng cookie và các công nghệ tương tự để ghi nhớ tùy chọn của bạn và phân tích lưu lượng trang web. Khi chấp nhận, bạn đồng ý với việc sử dụng này.",
+    "title": "Chúng tôi sử dụng Google Analytics",
+    "description": "Công cụ này giúp chúng tôi biết NexusTimer được sử dụng thế nào và chỉ lưu cookie khi bạn chấp nhận.",
     "privacy-policy": "Chính sách bảo mật",
     "accept": "Chấp nhận",
     "decline": "Từ chối"

@@ -1558,8 +1558,8 @@
     }
   },
   "Cookies": {
-    "title": "Valoramos tu privacidad",
-    "description": "Usamos cookies y tecnologías similares para recordar tus preferencias y analizar el tráfico del sitio. Al aceptar, consientes este uso.",
+    "title": "Usamos Google Analytics",
+    "description": "Nos ayuda a ver cómo se usa NexusTimer, y solo guarda cookies si aceptas.",
     "privacy-policy": "Política de privacidad",
     "accept": "Aceptar",
     "decline": "Rechazar"
