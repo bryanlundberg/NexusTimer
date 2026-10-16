@@ -30,9 +30,6 @@ export default function ProfileVisual() {
             height={44}
             className="h-11 w-11 rounded-full shadow-md ring-2 ring-gray-900/10"
           />
-          <span className="absolute -bottom-1 left-0 rounded-[3px] bg-[var(--cube-red)] px-1 text-[8px] font-black leading-tight text-white">
-            LV.6
-          </span>
           <span className="absolute -bottom-0.5 -right-0.5 size-2.5 rounded-full border-2 border-white bg-[var(--cube-green)]" />
         </div>
         <div className="min-w-0">
