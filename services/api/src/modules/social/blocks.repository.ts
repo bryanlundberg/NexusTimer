@@ -1,4 +1,5 @@
 import type { Types } from 'mongoose'
+import { userDocuments } from '../../infra/user-documents'
 import { BlockModel } from './blocks.model'
 
 export type BlockState = 'none' | 'blocked' | 'blocked_by'
@@ -60,3 +61,5 @@ export const blocksRepository: BlocksRepository = {
     return result.deletedCount > 0
   }
 }
+
+export const blocksUserData = userDocuments(BlockModel, ({ id }) => ({ $or: [{ blockerId: id }, { blockedId: id }] }))
