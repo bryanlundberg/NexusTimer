@@ -80,6 +80,7 @@ export interface UserStatsSummary {
   version: number
   timezone: string
   totalSolves: number
+  dailySolves?: Record<string, number>
   categories: CategoryStats[]
   cubes: CubeStats[]
   recentSolves: RecentSolve[]
