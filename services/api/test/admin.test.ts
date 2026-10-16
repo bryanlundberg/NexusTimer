@@ -9,6 +9,8 @@ import { buildTestApp, testEnv } from './helpers'
 
 const TOKEN = 'admin-token-0123456789'
 const USER = '64b7f0c2a1b2c3d4e5f60718'
+const FRIEND_A = '64b7f0c2a1b2c3d4e5f60719'
+const FRIEND_B = '64b7f0c2a1b2c3d4e5f6071a'
 const account = {
   id: USER,
   email: 'ana@test.dev',
@@ -80,6 +82,17 @@ function adminSetup({ found = true, failFiles = false } = {}) {
       forgetUser: async (id) => {
         calls.push(`sharedCache:${id}`)
       }
+    },
+    social: {
+      friendIds: async (id) => {
+        calls.push(`friendIds:${id}`)
+        return [FRIEND_A, FRIEND_B]
+      }
+    },
+    friendsCache: {
+      invalidate: async (...ids) => {
+        calls.push(`friendsCache:${ids.join(',')}`)
+      }
     }
   })
 
@@ -121,7 +134,7 @@ describe('admin service', () => {
     })
   })
 
-  it('deletes files, presence and caches before the data, then the account', async () => {
+  it('deletes files, presence and caches before the data, then the account and stale friend lists', async () => {
     const { service, calls } = adminSetup()
 
     const result = await service.deleteUser('ana@test.dev')
@@ -137,6 +150,7 @@ describe('admin service', () => {
       }
     })
     expect(calls).toEqual([
+      `friendIds:${USER}`,
       `delete:backups/${USER}/a.json`,
       `delete:avatars/${USER}`,
       `presence:${USER}`,
@@ -146,7 +160,8 @@ describe('admin service', () => {
       'purge:feedback',
       'authRecords',
       `deleteUser:${USER}`,
-      `forgetCaches:${USER}`
+      `forgetCaches:${USER}`,
+      `friendsCache:${USER},${FRIEND_A},${FRIEND_B}`
     ])
   })
 

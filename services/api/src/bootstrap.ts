@@ -25,7 +25,7 @@ import {
 import { hashPassword } from './modules/auth/password'
 import { createAvatarsService } from './modules/avatars/avatars.service'
 import { createBackupsService } from './modules/backups/backups.service'
-import { chatsRepository } from './modules/chats/chats.repository'
+import { chatsRepository, conversationsUserData } from './modules/chats/chats.repository'
 import { createChatsService } from './modules/chats/chats.service'
 import { feedbackRepository, feedbackUserData } from './modules/feedback/feedback.repository'
 import { createFeedbackService } from './modules/feedback/feedback.service'
@@ -46,12 +46,16 @@ import { createAchievementsService } from './modules/achievements/achievements.s
 import { createAdminService } from './modules/admin/admin.service'
 import { productsRepository } from './modules/products/products.repository'
 import { createProductsService } from './modules/products/products.service'
-import { achievementsRepository } from './modules/achievements/achievements.repository'
-import { blocksRepository } from './modules/social/blocks.repository'
+import { achievementsRepository, achievementsUserData } from './modules/achievements/achievements.repository'
+import { blocksRepository, blocksUserData } from './modules/social/blocks.repository'
 import { createBlocksService } from './modules/social/blocks.service'
 import { createFriendRequestLimits } from './modules/social/friend-requests.limits'
 import { createFriendsCache } from './modules/social/friends.cache'
-import { friendsRepository } from './modules/social/friends.repository'
+import {
+  friendRequestEmailsUserData,
+  friendshipsUserData,
+  friendsRepository
+} from './modules/social/friends.repository'
 import { createFriendsService } from './modules/social/friends.service'
 import { createSocialService } from './modules/social/social.service'
 import { createLeaderboardCache } from './modules/solves/leaderboards.cache'
@@ -205,6 +209,11 @@ export function buildApp() {
         trainerStats: trainerStatsUserData,
         userStats: userStatsUserData,
         feedback: feedbackUserData,
+        achievements: achievementsUserData,
+        friendships: friendshipsUserData,
+        friendRequestEmails: friendRequestEmailsUserData,
+        blocks: blocksUserData,
+        conversations: conversationsUserData,
         credentials: legacyCredentialsUserData,
         emailVerifications: legacyEmailVerificationsUserData,
         passwordResetTokens: passwordResetTokensUserData,
@@ -214,7 +223,9 @@ export function buildApp() {
       accounts,
       storage,
       presence,
-      sharedSolves
+      sharedSolves,
+      social,
+      friendsCache
     }),
     products: createProductsService({
       repository: productsRepository,

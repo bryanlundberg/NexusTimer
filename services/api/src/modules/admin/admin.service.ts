@@ -7,6 +7,8 @@ import type { AchievementsService } from '../achievements/achievements.service'
 import type { AccountStore } from '../auth/auth.accounts'
 import type { PresenceStore } from '../realtime/presence.store'
 import type { SharedSolvesService } from '../shared-solves/shared-solves.service'
+import type { FriendsCache } from '../social/friends.cache'
+import type { SocialService } from '../social/social.service'
 import type { UsersService } from '../users/users.service'
 
 type UserIdentity = { _id: string; email: string }
@@ -37,6 +39,8 @@ type AdminDeps = {
   storage: Pick<Storage, 'list' | 'delete'>
   presence: Pick<PresenceStore, 'clear'>
   sharedSolves: Pick<SharedSolvesService, 'forgetUser'>
+  social: Pick<SocialService, 'friendIds'>
+  friendsCache: Pick<FriendsCache, 'invalidate'>
 }
 
 export function createAdminService({
@@ -46,7 +50,9 @@ export function createAdminService({
   accounts,
   storage,
   presence,
-  sharedSolves
+  sharedSolves,
+  social,
+  friendsCache
 }: AdminDeps): AdminService {
   async function eachUserData(action: (data: UserDocuments) => Promise<number>) {
     return Object.fromEntries(
@@ -124,6 +130,7 @@ export function createAdminService({
       const user = await users.findByEmail(email)
       if (!user) return null
 
+      const friendIds = await social.friendIds(user.id)
       await removeFiles(user.id)
       await presence.clear(user.id)
       await sharedSolves.forgetUser(user.id)
@@ -133,6 +140,7 @@ export function createAdminService({
       const authRecords = await accounts.authRecords(user.id)
       await accounts.deleteUser(user.id)
       await users.forgetCaches(user.id)
+      await friendsCache.invalidate(user.id, ...friendIds)
 
       return { deleted: { user: { _id: user.id, email }, ...deleted, ...authRecords } }
     }
