@@ -14,7 +14,7 @@ import {
   zonedToday
 } from '@/widgets/people/lib/dailyActivity'
 
-const LEVEL_CLASS = ['bg-muted-foreground/15', 'bg-primary/30', 'bg-primary/55', 'bg-primary/80', 'bg-primary'] as const
+const LEVEL_CLASS = ['bg-muted-foreground/5', 'bg-primary/30', 'bg-primary/55', 'bg-primary/80', 'bg-primary'] as const
 
 const NAV_BUTTON =
   'grid size-5 place-items-center text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-30'
@@ -108,7 +108,7 @@ export function ProfileMonthActivity({ dailySolves, timezone, className }: Props
                   title={label}
                   className={cn(
                     'size-4',
-                    isCurrentMonth && day > today.day ? 'bg-muted-foreground/5' : LEVEL_CLASS[activityLevel(count)],
+                    LEVEL_CLASS[activityLevel(count)],
                     isCurrentMonth && day === today.day && 'outline outline-1 outline-offset-1 outline-primary/60'
                   )}
                 />
