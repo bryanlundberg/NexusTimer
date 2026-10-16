@@ -1,4 +1,5 @@
 import type { AchievementRarityInput } from '@nexustimer/contracts'
+import { userDocuments } from '../../infra/user-documents'
 import { ACHIEVEMENT_RARITY_ID, AchievementRarityModel, UserAchievementModel } from './achievements.model'
 
 export type GrantedAchievement = { key: string; createdAt: string }
@@ -48,3 +49,5 @@ export const achievementsRepository: AchievementsRepository = {
     await AchievementRarityModel.replaceOne({ _id: ACHIEVEMENT_RARITY_ID }, stats, { upsert: true })
   }
 }
+
+export const achievementsUserData = userDocuments(UserAchievementModel, ({ id }) => ({ userId: id }))
