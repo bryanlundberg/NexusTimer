@@ -1022,6 +1022,7 @@
         "f2l": "Algoritmos F2L (Primeras Dos Capas) para resolver el cubo de Rubik con el método CFOP. Con la cruz completa, cada esquina se empareja con su arista y se inserta en su hueco, resolviendo las dos primeras capas par por par.",
         "advanced-f2l": "Algoritmos de F2L avanzado para los casos más difíciles de emparejar esquina-arista en el método CFOP: piezas atrapadas en el último hueco, piezas atascadas en la capa incorrecta, o ambas piezas atrapadas a la vez. Van más allá del F2L intuitivo para cubrir los casos que suelen costar más movimientos.",
         "oll": "Los algoritmos OLL (Orientación de la última capa) para resolver el cubo de Rubik con el método CFOP. Estos algoritmos se utilizan para orientar todas las piezas de la última capa, una vez que se completa el F2L.",
+        "oll-oh": "Los algoritmos OLL-OH orientan la última capa del 3x3 cuando resuelves a una mano. Cubren los mismos 57 casos de OLL que el CFOP a dos manos, pero priorizan movimientos R, U, F y anchos, además de rotaciones cómodas con una sola mano, y se basan en los algoritmos de Feliks Zemdegs y otros cuberos de una mano.",
         "pll": "Los algoritmos PLL (Permutación de la última capa) para resolver el cubo de Rubik con el método CFOP. Estos algoritmos se utilizan para el paso final del método CFOP, para permutar las aristas y esquinas de la última capa, una vez que todas las piezas están orientadas.",
         "coll": "Los algoritmos COLL (Orientación y permutación de las esquinas de la última capa) se utilizan para orientar y permutar las esquinas de la última capa al mismo tiempo, suponiendo que todas las aristas de la última capa ya estén orientadas.",
         "ble": "BLE (Brooks' Last Edge) inserta la última arista del F2L mientras orienta las esquinas de la última capa. Se usa cuando la esquina del último hueco ya está resuelta y las aristas de la última capa están orientadas, así que solo queda el PLL.",
@@ -1093,6 +1094,10 @@
         "oll": {
           "when": "OLL es el tercer paso de CFOP. Con las dos primeras capas resueltas, un algoritmo de OLL orienta todas las piezas de la última capa para que la cara superior quede de un solo color, y solo queda el PLL para terminar el cubo.",
           "learn": "Empieza con el OLL en 2 pasos: tres algoritmos para orientar las aristas formando una cruz y después los siete casos de esquinas. Luego aprende los 57 casos completos, un grupo de formas cada vez. El reconocimiento se basa en el patrón de la cara superior y en las pegatinas laterales."
+        },
+        "oll-oh": {
+          "when": "OLL-OH es el tercer paso del CFOP en las resoluciones a una mano. Después del F2L, un algoritmo orienta todas las piezas de la última capa, igual que en el OLL normal, pero con secuencias pensadas para una mano: pocos reagarres, sin giros incómodos de B o L, y rotaciones como y o z donde facilitan los siguientes movimientos.",
+          "learn": "Si ya sabes el OLL a dos manos, conserva los algoritmos que ya funcionan con una mano y cambia solo los incómodos. Empieza por el OLL en 2 pasos y por los casos que más te salen, practica cada algoritmo despacio hasta asentar los trucos de dedos y de mesa, y repásalos con el cronómetro hasta que salgan sin pausas."
         },
         "pll": {
           "when": "PLL es el último paso de CFOP. Con la cara superior ya de un solo color, un algoritmo de PLL coloca las piezas de la última capa en su posición correcta y resuelve el cubo. Hay 21 casos, con nombres de letras como T, J, U e Y.",

@@ -1022,6 +1022,7 @@
         "f2l": "Algoritmi F2L (primi due strati) per risolvere il cubo di Rubik con il metodo CFOP. Completata la croce, ogni angolo viene accoppiato al suo spigolo e inserito nel suo slot, risolvendo i primi due strati una coppia alla volta.",
         "advanced-f2l": "Gli algoritmi F2L avanzati per i casi più difficili di abbinamento angolo-spigolo del metodo CFOP: pezzi bloccati nell'ultimo slot, pezzi incastrati nello strato sbagliato, o entrambi i pezzi bloccati insieme. Vanno oltre l'F2L intuitivo per coprire i casi che di solito costano più mosse.",
         "oll": "Gli algoritmi OLL (Orientamento dell'ultimo strato) per risolvere il cubo di Rubik con il metodo CFOP. Vengono usati per orientare tutti i pezzi dell'ultimo strato, una volta completato l'F2L.",
+        "oll-oh": "Gli algoritmi OLL-OH orientano l'ultimo strato del 3x3 quando risolvi a una mano. Coprono gli stessi 57 casi di OLL del CFOP a due mani, ma privilegiano mosse R, U, F e larghe, oltre a rotazioni comode con una mano, basandosi sugli algoritmi di Feliks Zemdegs e di altri cuber a una mano.",
         "pll": "Gli algoritmi PLL (Permutazione dell'ultimo strato) per risolvere il cubo di Rubik con il metodo CFOP. Vengono usati per il passaggio finale del metodo CFOP, per permutare gli spigoli e gli angoli dell'ultimo strato, una volta orientati tutti i pezzi.",
         "coll": "Gli algoritmi COLL (Angoli e orientamento dell'ultimo strato) vengono usati per orientare e permutare contemporaneamente gli angoli dell'ultimo strato, presumendo che tutti gli spigoli dell'ultimo strato siano già orientati.",
         "ble": "Il BLE (Brooks' Last Edge) inserisce l'ultimo spigolo dell'F2L mentre orienta gli angoli dell'ultimo strato. Si usa quando l'angolo dell'ultimo slot è già risolto e gli spigoli dell'ultimo strato sono orientati, così resta solo la PLL.",
@@ -1093,6 +1094,10 @@
         "oll": {
           "when": "L'OLL è il terzo passaggio del CFOP. Una volta risolti i primi due strati, un algoritmo OLL orienta tutti i pezzi dell'ultimo strato in modo che la faccia superiore diventi di un solo colore, e resta solo la PLL per finire il cubo.",
           "learn": "Inizia con l'OLL in 2 fasi: tre algoritmi per orientare gli spigoli formando una croce, poi i sette casi degli angoli. Dopo impara tutti i 57 casi, un gruppo di forme alla volta. Il riconoscimento si basa sul disegno della faccia superiore e sugli adesivi laterali."
+        },
+        "oll-oh": {
+          "when": "OLL-OH è il terzo passo del CFOP nelle risoluzioni a una mano. Dopo l'F2L, un algoritmo orienta tutti i pezzi dell'ultimo strato, proprio come l'OLL normale, ma con sequenze pensate per una mano: pochi cambi di presa, niente mosse scomode di B o L, e rotazioni come y o z dove rendono più facili le mosse successive.",
+          "learn": "Se conosci già l'OLL a due mani, tieni gli algoritmi che funzionano già con una mano e sostituisci solo quelli scomodi. Inizia dall'OLL in 2 passi e dai casi che incontri più spesso, esercitati lentamente su ogni algoritmo finché i trucchi con le dita e con il tavolo non diventano naturali, e ripassali con il timer finché non scorrono senza pause."
         },
         "pll": {
           "when": "La PLL è l'ultimo passaggio del CFOP. Con la faccia superiore già di un solo colore, un algoritmo PLL porta i pezzi dell'ultimo strato nelle posizioni corrette e risolve il cubo. Ci sono 21 casi, indicati con lettere come T, J, U e Y.",

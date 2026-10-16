@@ -1022,6 +1022,7 @@
         "f2l": "Algoritma F2L (Dua Lapisan Pertama) untuk menyelesaikan kubus Rubik dengan metode CFOP. Setelah cross selesai, setiap sudut dipasangkan dengan edge-nya lalu dimasukkan ke slotnya, sehingga dua lapisan pertama selesai pasang demi pasang.",
         "advanced-f2l": "Algoritma F2L tingkat lanjut untuk kasus pemasangan corner-edge CFOP yang lebih rumit: bagian yang terjebak di slot terakhir, bagian yang tersangkut di layer yang salah, atau kedua bagian terjebak sekaligus. Algoritma ini melampaui F2L intuitif untuk mencakup kasus yang biasanya membutuhkan gerakan paling banyak.",
         "oll": "Algoritma OLL (Orientasi Lapisan Terakhir) untuk menyelesaikan kubus Rubik dengan metode CFOP. Digunakan untuk mengorientasikan semua bagian lapisan terakhir, setelah F2L selesai.",
+        "oll-oh": "Algoritma OLL-OH mengorientasikan lapisan terakhir 3x3 saat kamu menyelesaikan dengan satu tangan. Algoritma ini mencakup 57 kasus OLL yang sama dengan CFOP dua tangan, tetapi mengutamakan gerakan R, U, F, gerakan lebar, dan rotasi kubus yang nyaman untuk satu tangan, berdasarkan algoritma Feliks Zemdegs dan cuber satu tangan lainnya.",
         "pll": "Algoritma PLL (Permutasi Lapisan Terakhir) untuk menyelesaikan kubus Rubik dengan metode CFOP. Digunakan untuk langkah terakhir metode CFOP, untuk mempermutasi edge dan sudut lapisan terakhir, setelah semua bagian terorientasi.",
         "coll": "Algoritma COLL (Sudut dan Orientasi Lapisan Terakhir) digunakan untuk mengorientasikan dan mempermutasi sudut lapisan terakhir secara bersamaan, dengan asumsi semua edge lapisan terakhir sudah terorientasi.",
         "ble": "BLE (Brooks' Last Edge) memasukkan edge F2L terakhir sambil mengorientasikan sudut lapisan terakhir. Digunakan saat sudut slot terakhir sudah selesai dan edge lapisan terakhir sudah terorientasi, sehingga hanya tersisa PLL.",
@@ -1093,6 +1094,10 @@
         "oll": {
           "when": "OLL adalah langkah ketiga CFOP. Setelah dua lapisan pertama selesai, satu algoritma OLL mengorientasikan semua kepingan lapisan terakhir sehingga sisi atas menjadi satu warna, dan hanya tersisa PLL untuk menyelesaikan kubus.",
           "learn": "Mulailah dengan 2-look OLL: tiga algoritma untuk mengorientasikan edge menjadi cross, lalu tujuh kasus sudut. Setelah itu pelajari seluruh 57 kasus, satu kelompok bentuk setiap kali. Pengenalan didasarkan pada pola sisi atas dan stiker di bagian samping."
+        },
+        "oll-oh": {
+          "when": "OLL-OH adalah langkah ketiga CFOP saat menyelesaikan dengan satu tangan. Setelah F2L, satu algoritma mengorientasikan semua bagian lapisan terakhir seperti OLL biasa, tetapi dengan urutan gerakan yang dipilih untuk satu tangan: sedikit ganti pegangan, tanpa putaran B atau L yang canggung, dan rotasi seperti y atau z di tempat yang memudahkan gerakan berikutnya.",
+          "learn": "Jika kamu sudah hafal OLL dua tangan, pertahankan algoritma yang sudah nyaman untuk satu tangan dan ganti hanya yang canggung. Mulailah dari OLL 2 langkah dan kasus yang paling sering kamu temui, latih setiap algoritma perlahan sampai trik jari dan trik meja terasa mantap, lalu ulangi dengan timer sampai bisa dijalankan tanpa jeda."
         },
         "pll": {
           "when": "PLL adalah langkah terakhir CFOP. Dengan sisi atas yang sudah satu warna, algoritma PLL memindahkan kepingan lapisan terakhir ke posisi yang benar dan menyelesaikan kubus. Ada 21 kasus yang dinamai dengan huruf seperti T, J, U, dan Y.",

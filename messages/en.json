@@ -1012,6 +1012,7 @@
         "f2l": "F2L (First Two Layers) algorithms for solving the Rubik's cube with the CFOP method. Once the cross is complete, each corner is paired with its matching edge and inserted into its slot, solving the first two layers one pair at a time.",
         "advanced-f2l": "Advanced F2L algorithms for the trickier CFOP corner-edge pair cases: pieces trapped in the last slot, pieces stuck in the wrong layer, or both pieces trapped at once. These go beyond intuitive F2L to cover the cases that usually cost the most moves.",
         "oll": "The OLL (Orientation of Last Layer) algorithms for solving the Rubik's cube with the CFOP method. These algorithms are used to orient all of the pieces on the last layer, once the F2L is complete.",
+        "oll-oh": "OLL-OH algorithms orient the last layer of the 3x3 when you solve one-handed. They cover the same 57 OLL cases as two-handed CFOP, but favor R, U, F and wide moves plus cube rotations that are comfortable with one hand, based on the algorithms used by Feliks Zemdegs and other one-handed solvers.",
         "pll": "The PLL (Permutation of Last Layer) algorithms for solving the Rubik's cube with the CFOP method. These algorithms are used for the final step of the CFOP method, to permute the edges and corners of the last layer, once all pieces are oriented.",
         "coll": "COLL (Corners and Orientation of Last Layer) algorithms are used to orient and permute the corners of your last layer at the same time, presuming that all of your last layer edges are already oriented.",
         "ble": "BLE (Brooks' Last Edge) inserts the last F2L edge while orienting the last layer corners. It is used when the last slot corner is already solved and the last layer edges are oriented, so only PLL remains.",
@@ -1083,6 +1084,10 @@
         "oll": {
           "when": "OLL is the third step of CFOP. Once the first two layers are solved, one OLL algorithm orients every last layer piece so the top face becomes a single color, leaving only PLL to finish the cube.",
           "learn": "Start with 2-look OLL: three algorithms to orient the edges into a cross, then the seven corner cases. After that, learn the full 57 cases one shape group at a time. Recognition is based on the pattern of the top face and the stickers on the sides."
+        },
+        "oll-oh": {
+          "when": "OLL-OH is the third step of CFOP in one-handed solves. After F2L, one algorithm orients every last layer piece, just like regular OLL, but with move sequences chosen for one hand: few regrips, no awkward B or L turns, and rotations such as y or z where they make the next moves easier.",
+          "learn": "If you already know two-handed OLL, keep the algorithms that already work with one hand and replace only the uncomfortable ones. Start with 2-look OLL and the cases you meet most often, practice each algorithm slowly until the finger and table tricks settle, and review them on a timer until they flow without pauses."
         },
         "pll": {
           "when": "PLL is the last step of CFOP. With the top face already a single color, a PLL algorithm moves the last layer pieces into their correct positions and solves the cube. There are 21 cases, named with letters such as T, J, U and Y.",

@@ -1022,6 +1022,7 @@
         "f2l": "Mga F2L (Unang Dalawang Layer) algorithm para lutasin ang Rubik's cube gamit ang CFOP method. Kapag tapos na ang cross, ipinapares ang bawat corner sa katugmang edge nito at ipinapasok sa slot nito, kaya nalulutas ang unang dalawang layer nang isa-isang pares.",
         "advanced-f2l": "Ang mga advanced F2L algorithm para sa mas mahirap na corner-edge pair cases sa CFOP method: mga pieces na nasilo sa huling slot, mga pieces na nasiksik sa maling layer, o pareho silang nasilo nang sabay-sabay. Lumalampas ito sa intuitive F2L para masakop ang mga case na karaniwang pinakamarami ang moves.",
         "oll": "Ang mga OLL (Orientation of Last Layer) algorithm para lutasin ang Rubik's cube gamit ang CFOP method. Ginagamit ang mga ito para i-orient ang lahat ng piraso sa last layer, kapag kumpleto na ang F2L.",
+        "oll-oh": "Ino-orient ng mga OLL-OH algorithm ang last layer ng 3x3 kapag one-handed ang paglutas mo. Saklaw nito ang parehong 57 OLL case ng two-handed CFOP, pero inuuna nito ang R, U, F at wide moves pati ang cube rotations na komportable sa isang kamay, batay sa mga algorithm ni Feliks Zemdegs at ng iba pang one-handed solver.",
         "pll": "Ang mga PLL (Permutation of Last Layer) algorithm para lutasin ang Rubik's cube gamit ang CFOP method. Ginagamit ang mga ito sa huling hakbang ng CFOP method, para i-permute ang edges at corners ng last layer, kapag naka-orient na ang lahat ng piraso.",
         "coll": "Ang mga COLL (Corners and Orientation of Last Layer) algorithm ay ginagamit para sabay na i-orient at i-permute ang corners ng last layer mo, sa pag-aakalang naka-orient na ang lahat ng edge ng last layer.",
         "ble": "Ipinapasok ng BLE (Brooks' Last Edge) ang huling edge ng F2L habang ino-orient ang mga corner ng huling layer. Ginagamit ito kapag nalutas na ang corner ng huling slot at naka-orient na ang mga edge ng huling layer, kaya PLL na lang ang natitira.",
@@ -1093,6 +1094,10 @@
         "oll": {
           "when": "Ang OLL ang ikatlong hakbang ng CFOP. Kapag lutas na ang unang dalawang layer, isang OLL algorithm ang mag-o-orient sa lahat ng piraso ng huling layer para maging iisang kulay ang itaas, at PLL na lang ang kailangan para matapos ang cube.",
           "learn": "Magsimula sa 2-look OLL: tatlong algorithm para i-orient ang mga edge bilang cross, saka ang pitong corner case. Pagkatapos, pag-aralan ang lahat ng 57 case, isang grupo ng hugis sa bawat pagkakataon. Nakabatay ang pagkilala sa pattern ng itaas na mukha at sa mga sticker sa gilid."
+        },
+        "oll-oh": {
+          "when": "Ang OLL-OH ang ikatlong hakbang ng CFOP sa one-handed na paglutas. Pagkatapos ng F2L, isang algorithm ang mag-o-orient sa lahat ng piraso ng last layer, gaya ng karaniwang OLL, pero gamit ang mga galaw na pinili para sa isang kamay: kaunting regrip, walang alanganing B o L turn, at mga rotation gaya ng y o z kung saan pinapadali nito ang mga susunod na galaw.",
+          "learn": "Kung alam mo na ang two-handed OLL, panatilihin ang mga algorithm na gumagana na sa isang kamay at palitan lang ang mga alanganin. Magsimula sa 2-look OLL at sa mga case na pinakamadalas mong makita, sanayin nang dahan-dahan ang bawat algorithm hanggang masanay ka sa finger tricks at table tricks, at balikan ang mga ito gamit ang timer hanggang tuloy-tuloy na walang hinto."
         },
         "pll": {
           "when": "Ang PLL ang huling hakbang ng CFOP. Kapag iisang kulay na ang itaas, inililipat ng isang PLL algorithm ang mga piraso ng huling layer sa tamang posisyon at nilulutas ang cube. May 21 case, na pinangalanan ng mga letra gaya ng T, J, U at Y.",

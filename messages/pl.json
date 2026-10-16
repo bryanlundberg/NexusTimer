@@ -1022,6 +1022,7 @@
         "f2l": "Algorytmy F2L (pierwsze dwie warstwy) do układania kostki Rubika metodą CFOP. Po ułożeniu krzyża każdy róg łączy się w parę z jego krawędzią i wkłada do jego slotu, dzięki czemu pierwsze dwie warstwy układa się para po parze.",
         "advanced-f2l": "Zaawansowane algorytmy F2L dla trudniejszych przypadków parowania narożnik-krawędź w metodzie CFOP: elementy uwięzione w ostatnim slocie, elementy uwięzione w niewłaściwej warstwie lub obie części uwięzione jednocześnie. Wykraczają poza intuicyjne F2L, obejmując przypadki, które zwykle kosztują najwięcej ruchów.",
         "oll": "Algorytmy OLL (Orientacja ostatniej warstwy) do układania kostki Rubika metodą CFOP. Służą do zorientowania wszystkich elementów ostatniej warstwy po ukończeniu F2L.",
+        "oll-oh": "Algorytmy OLL-OH orientują ostatnią warstwę kostki 3x3 podczas układania jedną ręką. Obejmują te same 57 przypadków OLL co CFOP dwiema rękami, ale preferują ruchy R, U, F i szerokie oraz obroty wygodne dla jednej ręki, na podstawie algorytmów Feliksa Zemdegsa i innych kostkarzy układających jedną ręką.",
         "pll": "Algorytmy PLL (Permutacja ostatniej warstwy) do układania kostki Rubika metodą CFOP. Służą do ostatniego kroku metody CFOP, aby spermutować krawędzie i narożniki ostatniej warstwy po zorientowaniu wszystkich elementów.",
         "coll": "Algorytmy COLL (Narożniki i orientacja ostatniej warstwy) służą do jednoczesnego zorientowania i spermutowania narożników ostatniej warstwy, zakładając, że wszystkie krawędzie ostatniej warstwy są już zorientowane.",
         "ble": "BLE (Brooks' Last Edge) wkłada ostatnią krawędź F2L i jednocześnie orientuje rogi ostatniej warstwy. Stosuje się go, gdy róg ostatniego slotu jest już ułożony, a krawędzie ostatniej warstwy są zorientowane, więc zostaje tylko PLL.",
@@ -1093,6 +1094,10 @@
         "oll": {
           "when": "OLL to trzeci krok CFOP. Gdy pierwsze dwie warstwy są ułożone, jeden algorytm OLL orientuje wszystkie elementy ostatniej warstwy, aby górna ściana była w jednym kolorze, i do końca zostaje tylko PLL.",
           "learn": "Zacznij od dwuetapowego OLL: trzy algorytmy, aby zorientować krawędzie w krzyż, a potem siedem przypadków rogów. Następnie naucz się wszystkich 57 przypadków, jedną grupę kształtów naraz. Rozpoznawanie opiera się na wzorze górnej ściany i bocznych naklejkach."
+        },
+        "oll-oh": {
+          "when": "OLL-OH to trzeci krok CFOP przy układaniu jedną ręką. Po F2L jeden algorytm orientuje wszystkie elementy ostatniej warstwy, tak jak zwykły OLL, ale ruchami dobranymi pod jedną rękę: mało przechwytów, żadnych niewygodnych ruchów B ani L, a obroty takie jak y czy z tam, gdzie ułatwiają kolejne ruchy.",
+          "learn": "Jeśli znasz już OLL dwiema rękami, zostaw algorytmy, które działają też jedną ręką, i wymień tylko niewygodne. Zacznij od 2-look OLL i przypadków, które spotykasz najczęściej, ćwicz każdy algorytm powoli, aż utrwalisz triki palcami i ze stołem, a potem powtarzaj je z timerem, aż będą płynne bez przerw."
         },
         "pll": {
           "when": "PLL to ostatni krok CFOP. Gdy górna ściana jest już w jednym kolorze, algorytm PLL przestawia elementy ostatniej warstwy na właściwe miejsca i układa kostkę. Jest 21 przypadków, oznaczanych literami takimi jak T, J, U i Y.",

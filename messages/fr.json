@@ -1015,6 +1015,7 @@
         "f2l": "Algorithmes F2L (deux premières couches) pour résoudre le Rubik's cube avec la méthode CFOP. Une fois la croix terminée, chaque coin est associé à son arête puis inséré dans son emplacement, ce qui résout les deux premières couches paire par paire.",
         "advanced-f2l": "Les algorithmes F2L avancés pour les cas d'association coin-arête les plus difficiles de la méthode CFOP : pièces coincées dans le dernier emplacement, pièces bloquées dans la mauvaise couche, ou les deux pièces coincées à la fois. Ils vont au-delà du F2L intuitif pour couvrir les cas qui coûtent généralement le plus de mouvements.",
         "oll": "OLL (Orientation of Last Layer) - Orienter toutes les pièces de la dernière couche (CFOP).",
+        "oll-oh": "Les algorithmes OLL-OH orientent la dernière couche du 3x3 lors de la résolution à une main. Ils couvrent les mêmes 57 cas d'OLL que le CFOP à deux mains, mais privilégient les mouvements R, U, F et larges ainsi que des rotations confortables à une main, d'après les algorithmes de Feliks Zemdegs et d'autres speedcubers à une main.",
         "pll": "PLL (Permutation of Last Layer) - Permuter les arêtes et les coins de la dernière couche (CFOP).",
         "coll": "COLL oriente et permute les coins de la dernière couche si les arêtes sont déjà orientées.",
         "ble": "Le BLE (Brooks' Last Edge) insère la dernière arête du F2L tout en orientant les coins de la dernière couche. Il s'utilise quand le coin du dernier emplacement est déjà résolu et que les arêtes de la dernière couche sont orientées, il ne reste alors que la PLL.",
@@ -1086,6 +1087,10 @@
         "oll": {
           "when": "L'OLL est la troisième étape de CFOP. Une fois les deux premières couches résolues, un algorithme OLL oriente toutes les pièces de la dernière couche pour que la face du dessus soit d'une seule couleur, et il ne reste que la PLL pour finir le cube.",
           "learn": "Commencez par l'OLL en 2 temps : trois algorithmes pour orienter les arêtes en croix, puis les sept cas de coins. Apprenez ensuite les 57 cas complets, un groupe de formes à la fois. La reconnaissance repose sur le motif de la face du dessus et sur les stickers des côtés."
+        },
+        "oll-oh": {
+          "when": "OLL-OH est la troisième étape du CFOP en résolution à une main. Après le F2L, un algorithme oriente toutes les pièces de la dernière couche, comme l'OLL classique, mais avec des séquences pensées pour une main : peu de changements de prise, pas de mouvements B ou L gênants, et des rotations comme y ou z là où elles facilitent les mouvements suivants.",
+          "learn": "Si vous connaissez déjà l'OLL à deux mains, gardez les algorithmes qui fonctionnent déjà à une main et remplacez seulement les moins confortables. Commencez par l'OLL en 2 étapes et par les cas que vous rencontrez le plus souvent, travaillez chaque algorithme lentement pour fixer les mouvements de doigts et l'appui sur la table, puis révisez-les au chronomètre jusqu'à les enchaîner sans pause."
         },
         "pll": {
           "when": "La PLL est la dernière étape de CFOP. Avec la face du dessus déjà d'une seule couleur, un algorithme PLL place les pièces de la dernière couche dans leur position correcte et résout le cube. Il y a 21 cas, désignés par des lettres comme T, J, U et Y.",

@@ -1015,6 +1015,7 @@
         "f2l": "F2L-Algorithmen (erste zwei Ebenen) zum Lösen des Zauberwürfels mit der CFOP-Methode. Sobald das Kreuz fertig ist, wird jede Ecke mit ihrer passenden Kante zu einem Paar verbunden und in ihren Slot eingesetzt, sodass die ersten zwei Ebenen Paar für Paar gelöst werden.",
         "advanced-f2l": "Advanced-F2L-Algorithmen für die schwierigeren Eck-Kanten-Paar-Fälle der CFOP-Methode: Teile, die im letzten Slot gefangen sind, Teile in der falschen Schicht oder beide Teile gleichzeitig gefangen. Sie gehen über das intuitive F2L hinaus und decken die Fälle ab, die meist die meisten Züge kosten.",
         "oll": "OLL (Orientation of Last Layer) - Orientierung der letzten Ebene (CFOP).",
+        "oll-oh": "OLL-OH-Algorithmen orientieren die letzte Ebene des 3x3, wenn du einhändig löst. Sie decken dieselben 57 OLL-Fälle ab wie CFOP mit zwei Händen, bevorzugen aber R-, U-, F- und Wide-Moves sowie Würfeldrehungen, die mit einer Hand bequem sind, und stützen sich auf die Algorithmen von Feliks Zemdegs und anderen Einhand-Speedcubern.",
         "pll": "PLL (Permutation of Last Layer) - Permutation der letzten Ebene (CFOP).",
         "coll": "COLL orientiert und vertauscht die Ecken, wenn die Kanten bereits orientiert sind.",
         "ble": "BLE (Brooks' Last Edge) setzt die letzte F2L-Kante ein und orientiert dabei die Ecken der letzten Ebene. Es wird verwendet, wenn die Ecke des letzten Slots bereits gelöst ist und die Kanten der letzten Ebene orientiert sind, sodass nur noch PLL übrig bleibt.",
@@ -1086,6 +1087,10 @@
         "oll": {
           "when": "OLL ist der dritte Schritt von CFOP. Sobald die ersten zwei Ebenen gelöst sind, orientiert ein OLL-Algorithmus alle Teile der letzten Ebene, sodass die obere Seite einfarbig wird. Danach bleibt nur noch PLL, um den Würfel zu beenden.",
           "learn": "Beginne mit 2-Look-OLL: drei Algorithmen, um die Kanten zu einem Kreuz zu orientieren, dann die sieben Eckfälle. Lerne danach alle 57 Fälle, eine Formgruppe nach der anderen. Die Erkennung basiert auf dem Muster der oberen Seite und den seitlichen Stickern."
+        },
+        "oll-oh": {
+          "when": "OLL-OH ist der dritte Schritt von CFOP beim Einhandlösen. Nach F2L orientiert ein Algorithmus alle Teile der letzten Ebene, genau wie beim normalen OLL, aber mit Zugfolgen für eine Hand: wenige Umgriffe, keine unbequemen B- oder L-Drehungen und Rotationen wie y oder z dort, wo sie die nächsten Züge erleichtern.",
+          "learn": "Wenn du OLL mit zwei Händen schon kannst, behalte die Algorithmen, die auch einhändig gut funktionieren, und ersetze nur die unbequemen. Beginne mit 2-Look-OLL und den Fällen, die dir am häufigsten begegnen, übe jeden Algorithmus langsam, bis die Finger- und Tischtricks sitzen, und wiederhole sie mit dem Timer, bis sie ohne Pausen laufen."
         },
         "pll": {
           "when": "PLL ist der letzte Schritt von CFOP. Wenn die obere Seite bereits einfarbig ist, bringt ein PLL-Algorithmus die Teile der letzten Ebene an ihre richtige Position und löst den Würfel. Es gibt 21 Fälle, die mit Buchstaben wie T, J, U und Y benannt sind.",

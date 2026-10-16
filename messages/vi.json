@@ -1022,6 +1022,7 @@
         "f2l": "Các công thức F2L (hai tầng đầu) để giải Rubik bằng phương pháp CFOP. Sau khi hoàn thành dấu cộng, mỗi góc được ghép với cạnh tương ứng rồi đưa vào khe của nó, giải hai tầng đầu theo từng cặp.",
         "advanced-f2l": "Các thuật toán F2L nâng cao cho những trường hợp ghép cặp góc-cạnh khó hơn trong phương pháp CFOP: các viên bị kẹt ở ô cuối, các viên bị kẹt sai tầng, hoặc cả hai viên bị kẹt cùng lúc. Chúng vượt ra ngoài F2L trực quan để xử lý những trường hợp thường tốn nhiều bước di chuyển nhất.",
         "oll": "Các thuật toán OLL (Định hướng tầng cuối) để giải khối Rubik bằng phương pháp CFOP. Chúng được dùng để định hướng tất cả các mảnh ở tầng cuối, sau khi hoàn thành F2L.",
+        "oll-oh": "Các công thức OLL-OH định hướng tầng cuối của khối 3x3 khi bạn giải bằng một tay. Chúng bao gồm đủ 57 trường hợp OLL giống CFOP hai tay, nhưng ưu tiên các bước R, U, F, bước xoay rộng và các phép xoay khối thuận tiện cho một tay, dựa trên các công thức của Feliks Zemdegs và những người chơi một tay khác.",
         "pll": "Các thuật toán PLL (Hoán vị tầng cuối) để giải khối Rubik bằng phương pháp CFOP. Chúng được dùng cho bước cuối của phương pháp CFOP, để hoán vị các cạnh và góc của tầng cuối, sau khi tất cả các mảnh đã được định hướng.",
         "coll": "Các thuật toán COLL (Góc và định hướng tầng cuối) được dùng để định hướng và hoán vị các góc của tầng cuối cùng lúc, với giả định rằng tất cả các cạnh tầng cuối đã được định hướng.",
         "ble": "BLE (Brooks' Last Edge) đưa cạnh F2L cuối cùng vào đồng thời định hướng các góc tầng cuối. Dùng khi góc của khe cuối đã được giải và các cạnh tầng cuối đã đúng hướng, nên chỉ còn lại PLL.",
@@ -1093,6 +1094,10 @@
         "oll": {
           "when": "OLL là bước thứ ba của CFOP. Khi hai tầng đầu đã xong, một công thức OLL định hướng mọi mảnh của tầng cuối để mặt trên chỉ còn một màu, và chỉ còn PLL để hoàn thành khối.",
           "learn": "Hãy bắt đầu với OLL 2 bước: ba công thức để định hướng các cạnh thành dấu cộng, sau đó là bảy trường hợp góc. Tiếp theo, học đủ 57 trường hợp theo từng nhóm hình dạng. Việc nhận diện dựa trên họa tiết của mặt trên và các nhãn bên hông."
+        },
+        "oll-oh": {
+          "when": "OLL-OH là bước thứ ba của CFOP khi giải bằng một tay. Sau F2L, một công thức định hướng mọi mảnh của tầng cuối giống như OLL thông thường, nhưng dùng các chuỗi bước chọn riêng cho một tay: ít phải đổi cách cầm, không có bước B hay L khó xoay, và dùng phép xoay y hoặc z ở những chỗ giúp các bước tiếp theo dễ hơn.",
+          "learn": "Nếu bạn đã biết OLL hai tay, hãy giữ lại các công thức vốn đã dễ làm bằng một tay và chỉ thay những công thức khó. Bắt đầu với OLL 2 bước và các trường hợp bạn gặp nhiều nhất, luyện từng công thức thật chậm cho đến khi quen các kỹ thuật ngón tay và tì mặt bàn, rồi ôn lại với đồng hồ bấm giờ đến khi làm trôi chảy không ngắt quãng."
         },
         "pll": {
           "when": "PLL là bước cuối cùng của CFOP. Khi mặt trên đã một màu, một công thức PLL đưa các mảnh tầng cuối về đúng vị trí và giải xong khối. Có 21 trường hợp, được đặt tên bằng các chữ cái như T, J, U và Y.",

@@ -1015,6 +1015,7 @@
         "f2l": "Algoritmos de F2L (Duas Primeiras Camadas) para resolver o cubo mágico com o método CFOP. Com a cruz completa, cada canto é emparelhado com o seu meio e inserido no seu slot, resolvendo as duas primeiras camadas par a par.",
         "advanced-f2l": "Algoritmos de F2L avançado para os casos mais difíceis de emparelhamento canto-aresta do método CFOP: peças presas no último slot, peças presas na camada errada, ou ambas as peças presas ao mesmo tempo. Vão além do F2L intuitivo para cobrir os casos que geralmente custam mais movimentos.",
         "oll": "OLL (Orientation of Last Layer) - Orientar todas as peças da última camada (CFOP).",
+        "oll-oh": "Os algoritmos OLL-OH orientam a última camada do 3x3 quando você resolve com uma mão. Eles cobrem os mesmos 57 casos de OLL do CFOP com duas mãos, mas priorizam movimentos R, U, F e largos, além de rotações confortáveis com uma mão, com base nos algoritmos de Feliks Zemdegs e de outros cubistas de uma mão.",
         "pll": "PLL (Permutation of Last Layer) - Permutar os meios e cantos da última camada (CFOP).",
         "coll": "COLL orienta e permuta os cantos se os meios já estiverem orientados.",
         "ble": "BLE (Brooks' Last Edge) insere o último meio do F2L enquanto orienta os cantos da última camada. É usado quando o canto do último slot já está resolvido e os meios da última camada estão orientados, então só falta o PLL.",
@@ -1086,6 +1087,10 @@
         "oll": {
           "when": "OLL é o terceiro passo do CFOP. Com as duas primeiras camadas resolvidas, um algoritmo de OLL orienta todas as peças da última camada para que a face de cima fique de uma só cor, e só falta o PLL para terminar o cubo.",
           "learn": "Comece com o OLL em 2 etapas: três algoritmos para orientar os meios formando uma cruz e depois os sete casos de cantos. Em seguida, aprenda os 57 casos completos, um grupo de formas por vez. O reconhecimento se baseia no padrão da face de cima e nos adesivos laterais."
+        },
+        "oll-oh": {
+          "when": "O OLL-OH é o terceiro passo do CFOP nas resoluções com uma mão. Depois do F2L, um algoritmo orienta todas as peças da última camada, igual ao OLL normal, mas com sequências pensadas para uma mão: poucas trocas de pegada, sem giros desconfortáveis de B ou L, e rotações como y ou z onde elas facilitam os próximos movimentos.",
+          "learn": "Se você já sabe o OLL com duas mãos, mantenha os algoritmos que já funcionam com uma mão e troque só os desconfortáveis. Comece pelo OLL em 2 etapas e pelos casos que você encontra com mais frequência, pratique cada algoritmo devagar até firmar os truques de dedo e de mesa, e revise com o cronômetro até sair sem pausas."
         },
         "pll": {
           "when": "PLL é o último passo do CFOP. Com a face de cima já de uma só cor, um algoritmo de PLL leva as peças da última camada às suas posições corretas e resolve o cubo. Existem 21 casos, nomeados com letras como T, J, U e Y.",
