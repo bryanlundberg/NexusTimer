@@ -1021,6 +1021,7 @@
         "vls": "VLS (Valk Last Slot) résout le dernier slot F2L et l'OLL simultanément.",
         "cls": "CLS (Corner Last Slot) résout le dernier coin F2L et l'OLL simultanément.",
         "wv": "WV (Winter Variation) oriente les coins de la dernière couche lors de l'insertion du dernier slot F2L.",
+        "zbls": "ZBLS (Zborowski-Bruchem Last Slot), aussi appelé ZBF2L ou EOLS, insère la dernière paire du F2L et oriente en même temps toutes les arêtes de la dernière couche. C'est la première moitié de la méthode ZB : une fois les arêtes orientées, ZBLL résout toute la dernière couche en un seul algorithme. Chaque cas est présenté avec toutes ses variantes d'orientation des arêtes.",
         "zbll-s": "ZBLL Sune - Résout la dernière couche en une séquence si les coins sont en Sune.",
         "zbll-as": "ZBLL Antisune - Résout la dernière couche en une séquence si les coins sont en Antisune.",
         "zbll-u": "ZBLL U - Résout la dernière couche en une séquence si les coins sont en U.",
@@ -1113,6 +1114,10 @@
         "wv": {
           "when": "La Winter Variation s'utilise quand la dernière paire du F2L est formée et peut être insérée avec R U R', et que les arêtes de la dernière couche sont déjà orientées. Un algorithme insère la paire et oriente en même temps les coins de la dernière couche, ce qui permet de sauter l'OLL et de passer directement à la PLL.",
           "learn": "La WV compte 27 cas et beaucoup sont de courts algorithmes en R et U, ce qui en fait l'un des sets de dernier emplacement les plus abordables. Apprenez à reconnaître l'orientation des coins du dessus pendant que la paire attend d'être insérée, et regroupez les cas selon le nombre de coins orientés."
+        },
+        "zbls": {
+          "when": "ZBLS s'utilise sur la dernière paire du F2L quand les arêtes de la dernière couche ne sont pas encore orientées. Au lieu d'insérer la paire puis de faire l'OLL, un algorithme insère la paire et oriente toutes les arêtes : la dernière couche montre toujours une croix et vous pouvez finir avec ZBLL, ou avec COLL et une permutation des arêtes.",
+          "learn": "Chacun des 42 cas est un cas normal de F2L, et ses variantes ne changent que l'orientation des arêtes. Commencez par les variantes que vous rencontrez le plus souvent et par celles qui ressemblent le plus à votre insertion habituelle, puis entraînez-vous à lire l'orientation des arêtes sur la couche du dessus pendant que vous suivez la paire. Beaucoup de cubeurs apprennent d'abord le contrôle des arêtes et ajoutent le ZBLS complet cas par cas."
         },
         "zbll-s": {
           "when": "Le ZBLL-S couvre les cas ZBLL où les coins de la dernière couche forment un Sune, avec un coin orienté. Quand les arêtes sont orientées après le F2L, un de ces algorithmes résout toute la dernière couche d'un coup, sans passer par l'OCLL ni la PLL.",

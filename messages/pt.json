@@ -1021,6 +1021,7 @@
         "vls": "VLS (Valk Last Slot) resolve o último slot F2L e OLL simultaneamente.",
         "cls": "CLS (Corner Last Slot) resolve o último canto F2L e OLL simultaneamente.",
         "wv": "WV (Winter Variation) orienta os cantos enquanto insere o último par de F2L.",
+        "zbls": "ZBLS (Zborowski-Bruchem Last Slot), também chamado de ZBF2L ou EOLS, insere o último par do F2L e orienta todos os meios da última camada ao mesmo tempo. É a primeira metade do método ZB: com os meios orientados, o ZBLL resolve toda a última camada com um único algoritmo. Cada caso aparece com todas as suas variantes de orientação dos meios.",
         "zbll-s": "ZBLL Sune - Resolve a última camada em uma sequência se os cantos estiverem em Sune.",
         "zbll-as": "ZBLL Antisune - Resolve a última camada em uma sequência se os cantos estiverem em Antisune.",
         "zbll-u": "ZBLL U - Resolve a última camada em uma sequência se os cantos estiverem em U.",
@@ -1113,6 +1114,10 @@
         "wv": {
           "when": "A Winter Variation é usada quando o último par do F2L está conectado e pode ser inserido com R U R', e os meios da última camada já estão orientados. Um algoritmo insere o par e orienta os cantos da última camada ao mesmo tempo, então você pula o OLL e vai direto para o PLL.",
           "learn": "WV tem 27 casos e muitos deles são algoritmos curtos de R e U, o que o torna um dos conjuntos de último slot mais acessíveis. Aprenda a reconhecer a orientação dos cantos de cima enquanto o par espera para ser inserido e agrupe os casos pelo número de cantos orientados."
+        },
+        "zbls": {
+          "when": "O ZBLS é usado no último par do F2L quando os meios da última camada ainda não estão orientados. Em vez de inserir o par e depois fazer o OLL, um algoritmo insere o par e orienta todos os meios, então a última camada sempre mostra uma cruz e você pode terminar com ZBLL, ou com COLL e uma permutação dos meios.",
+          "learn": "Cada um dos 42 casos é um caso normal de F2L, e as variantes só mudam a orientação dos meios. Comece pelas variantes que você encontra com mais frequência e pelas mais parecidas com a sua inserção normal, e pratique ler a orientação dos meios na camada de cima enquanto acompanha o par. Muitos cubistas aprendem primeiro o controle dos meios e adicionam o ZBLS completo um caso por vez."
         },
         "zbll-s": {
           "when": "ZBLL-S cobre os casos de ZBLL em que os cantos da última camada formam um Sune, com um canto orientado. Quando os meios ficam orientados depois do F2L, um destes algoritmos resolve toda a última camada de uma vez, pulando o OCLL e o PLL.",

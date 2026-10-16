@@ -1028,6 +1028,7 @@
         "vls": "Các thuật toán VLS (Valk Last Slot) giải slot F2L cuối và OLL cùng lúc, trong các trường hợp bạn có cặp F2L đã ghép. Lựa chọn thuật toán này là phần giới thiệu cho bộ thuật toán VLS đầy đủ, nhằm làm nổi bật những trường hợp hữu ích nhất nên biết.",
         "cls": "Các thuật toán CLS (Corner Last Slot) giải góc F2L cuối và định hướng tầng cuối của bạn cùng lúc. Chúng được dùng khi cạnh của cặp F2L cuối đã được giải, và các cạnh tầng cuối đã được định hướng. Lựa chọn này là phần giới thiệu cho bộ thuật toán CLS đầy đủ, nhằm làm nổi bật những trường hợp hữu ích nhất nên biết.",
         "wv": "Các thuật toán WV (Winter Variation) được dùng để định hướng các góc của tầng cuối trong khi bạn chèn cặp F2L cuối, trong trường hợp cặp đã được ghép và tất cả các cạnh tầng cuối đã được định hướng.",
+        "zbls": "ZBLS (Zborowski-Bruchem Last Slot), còn gọi là ZBF2L hoặc EOLS, đưa cặp F2L cuối vào đồng thời định hướng tất cả các cạnh của tầng cuối. Đây là nửa đầu của phương pháp ZB: khi các cạnh đã đúng hướng, ZBLL giải toàn bộ tầng cuối bằng một công thức. Mỗi trường hợp được liệt kê kèm tất cả các biến thể định hướng cạnh.",
         "zbll-s": "ZBLL Sune (ZBLL-S) là một tập con của phương pháp ZBLL để giải tầng cuối của khối Rubik. Nó tập trung vào các trường hợp góc ở dạng sune, cho phép các thuật toán hiệu quả để giải toàn bộ tầng cuối trong một chuỗi bước.",
         "zbll-as": "ZBLL Antisune (ZBLL-AS) là một tập con của phương pháp ZBLL để giải tầng cuối của khối Rubik. Nó tập trung vào các trường hợp góc ở dạng antisune, cho phép các thuật toán hiệu quả để giải toàn bộ tầng cuối trong một chuỗi bước.",
         "zbll-u": "ZBLL U (ZBLL-U) là một tập con của phương pháp ZBLL để giải tầng cuối của khối Rubik. Nó tập trung vào các trường hợp góc ở dạng U, cho phép các thuật toán hiệu quả để giải toàn bộ tầng cuối trong một chuỗi bước.",
@@ -1120,6 +1121,10 @@
         "wv": {
           "when": "Winter Variation được dùng khi cặp F2L cuối đã được ghép và có thể đưa vào bằng R U R', đồng thời các cạnh tầng cuối đã đúng hướng. Một công thức vừa đưa cặp vào vừa định hướng các góc tầng cuối, nên bạn bỏ qua OLL và đi thẳng tới PLL.",
           "learn": "WV có 27 trường hợp và nhiều trong số đó là công thức R và U ngắn, nên đây là một trong những bộ khe cuối dễ tiếp cận nhất. Hãy học cách nhận diện định hướng các góc phía trên trong lúc cặp đang chờ đưa vào, và nhóm các trường hợp theo số góc đã đúng hướng."
+        },
+        "zbls": {
+          "when": "ZBLS được dùng ở cặp F2L cuối khi các cạnh tầng cuối chưa đúng hướng. Thay vì đưa cặp vào rồi làm OLL, một công thức vừa đưa cặp vào vừa định hướng tất cả các cạnh, nên tầng cuối luôn có dấu cộng và bạn có thể kết thúc bằng ZBLL, hoặc bằng COLL và hoán vị cạnh.",
+          "learn": "Mỗi trường hợp trong 42 trường hợp là một trường hợp F2L bình thường, và các biến thể chỉ khác nhau ở hướng của các cạnh. Hãy bắt đầu với các biến thể bạn gặp nhiều nhất và những biến thể gần với cách đưa cặp F2L thông thường của bạn, rồi luyện đọc hướng cạnh trên tầng trên trong lúc theo dõi cặp. Nhiều người chơi học kiểm soát cạnh trước, rồi thêm ZBLS đầy đủ từng trường hợp một."
         },
         "zbll-s": {
           "when": "ZBLL-S bao gồm các trường hợp ZBLL khi các góc tầng cuối tạo thành hình Sune, với một góc đúng hướng. Khi các cạnh đã đúng hướng sau F2L, một trong các công thức này giải toàn bộ tầng cuối cùng lúc, bỏ qua cả OCLL và PLL.",

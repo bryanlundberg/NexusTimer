@@ -1018,6 +1018,7 @@
         "vls": "VLS (Valk Last Slot) algorithms solve the final F2L slot and OLL at the same time, in the cases where you have a connected F2L pair. This selection of algorithms serves as an introduction to the full VLS algorithm set, and aims to highlight the most useful cases to know.",
         "cls": "CLS (Corner Last Slot) algorithms solve the last F2L corner and orient your last layer at the same time. They are used when the edge of your final F2L pair is already solved, and the last layer edges are oriented. This selection of algorithms serves as an introduction to the full CLS algorithm set, and aims to highlight the most useful cases to know.",
         "wv": "WV (Winter Variation) algorithms are used to orient the corners of your last layer whilst you insert your final F2L pair, in the case where the pair is connected and where all of the last layer edges are already oriented.",
+        "zbls": "ZBLS (Zborowski-Bruchem Last Slot), also called ZBF2L or EOLS, inserts the last F2L pair and orients every last layer edge at the same time. It is the first half of the ZB method: with the edges oriented, ZBLL can then solve the whole last layer in one algorithm. Every case is listed with all of its edge orientation variants.",
         "zbll-s": "ZBLL Sune (ZBLL-S) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in a sune configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
         "zbll-as": "ZBLL Antisune (ZBLL-AS) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in an antisune configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
         "zbll-u": "ZBLL U (ZBLL-U) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in a U configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
@@ -1110,6 +1111,10 @@
         "wv": {
           "when": "Winter Variation is used when the last F2L pair is connected and can be inserted with R U R', and the last layer edges are already oriented. One algorithm inserts the pair and orients the last layer corners at the same time, so you skip OLL and go straight to PLL.",
           "learn": "WV has 27 cases and many of them are short R and U algorithms, which makes it one of the most approachable last slot sets. Learn to recognize the corner orientation on top while the pair is waiting to be inserted, and group the cases by the number of oriented corners."
+        },
+        "zbls": {
+          "when": "ZBLS is used on the last F2L pair when the last layer edges are not oriented yet. Instead of inserting the pair and then doing OLL, one algorithm inserts the pair and orients all the edges, so the last layer always shows a cross and you can finish with ZBLL, or with COLL and an edge permutation.",
+          "learn": "Each of the 42 cases is a regular F2L case, and its variants only change how the edges are oriented. Start with the variants you meet most often and the ones closest to your normal F2L insert, and practice reading edge orientation on the top layer while you track the pair. Many solvers learn edge control first and add full ZBLS one case at a time."
         },
         "zbll-s": {
           "when": "ZBLL-S covers the ZBLL cases where the last layer corners form a Sune shape, with one corner oriented. When the edges are oriented after F2L, one of these algorithms solves the whole last layer at once, skipping both OCLL and PLL.",

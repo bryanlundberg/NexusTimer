@@ -1021,6 +1021,7 @@
         "vls": "VLS löst den letzten Slot und OLL gleichzeitig.",
         "cls": "CLS löst die letzte Ecke und OLL gleichzeitig.",
         "wv": "Winter Variation (WV) orientiert die Ecken beim Einsetzen des letzten Paares.",
+        "zbls": "ZBLS (Zborowski-Bruchem Last Slot), auch ZBF2L oder EOLS genannt, setzt das letzte F2L-Paar ein und orientiert gleichzeitig alle Kanten der letzten Ebene. Es ist die erste Hälfte der ZB-Methode: Sind die Kanten orientiert, löst ZBLL die ganze letzte Ebene mit einem Algorithmus. Jeder Fall wird mit allen Varianten der Kantenorientierung aufgeführt.",
         "zbll-s": "ZBLL Sune - Löst die letzte Ebene in einem Schritt bei Sune-Ecken.",
         "zbll-as": "ZBLL Antisune - Löst die letzte Ebene in einem Schritt bei Antisune-Ecken.",
         "zbll-u": "ZBLL U - Löst die letzte Ebene in einem Schritt bei U-Ecken.",
@@ -1113,6 +1114,10 @@
         "wv": {
           "when": "Die Winter Variation wird verwendet, wenn das letzte F2L-Paar verbunden ist und mit R U R' eingesetzt werden kann und die Kanten der letzten Ebene bereits orientiert sind. Ein Algorithmus setzt das Paar ein und orientiert gleichzeitig die Ecken der letzten Ebene, sodass du OLL überspringst und direkt zu PLL gehst.",
           "learn": "WV hat 27 Fälle, und viele davon sind kurze R- und U-Algorithmen. Das macht es zu einem der zugänglichsten Last-Slot-Sets. Lerne, die Orientierung der oberen Ecken zu erkennen, während das Paar auf das Einsetzen wartet, und gruppiere die Fälle nach der Anzahl orientierter Ecken."
+        },
+        "zbls": {
+          "when": "ZBLS wird beim letzten F2L-Paar verwendet, wenn die Kanten der letzten Ebene noch nicht orientiert sind. Statt das Paar einzusetzen und danach OLL zu machen, setzt ein Algorithmus das Paar ein und orientiert alle Kanten. So zeigt die letzte Ebene immer ein Kreuz, und du beendest den Solve mit ZBLL oder mit COLL und einer Kantenpermutation.",
+          "learn": "Jeder der 42 Fälle ist ein normaler F2L-Fall, und seine Varianten ändern nur die Orientierung der Kanten. Beginne mit den Varianten, die dir am häufigsten begegnen, und mit denen, die deinem normalen F2L-Einsetzen am ähnlichsten sind. Übe, die Kantenorientierung in der oberen Ebene zu lesen, während du das Paar verfolgst. Viele Cuber lernen zuerst Kantenkontrolle und ergänzen das volle ZBLS Fall für Fall."
         },
         "zbll-s": {
           "when": "ZBLL-S umfasst die ZBLL-Fälle, in denen die Ecken der letzten Ebene eine Sune-Form bilden, mit einer orientierten Ecke. Wenn die Kanten nach dem F2L orientiert sind, löst einer dieser Algorithmen die gesamte letzte Ebene auf einmal und überspringt OCLL und PLL.",

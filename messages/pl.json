@@ -1028,6 +1028,7 @@
         "vls": "Algorytmy VLS (Valk Last Slot) jednocześnie układają ostatni slot F2L i OLL w przypadkach, gdy masz połączoną parę F2L. Ten wybór algorytmów stanowi wprowadzenie do pełnego zestawu VLS i ma na celu wyróżnienie najbardziej przydatnych przypadków.",
         "cls": "Algorytmy CLS (Corner Last Slot) jednocześnie układają ostatni narożnik F2L i orientują ostatnią warstwę. Stosuje się je, gdy krawędź ostatniej pary F2L jest już ułożona, a krawędzie ostatniej warstwy są zorientowane. Ten wybór stanowi wprowadzenie do pełnego zestawu CLS i ma na celu wyróżnienie najbardziej przydatnych przypadków.",
         "wv": "Algorytmy WV (Winter Variation) służą do zorientowania narożników ostatniej warstwy podczas wkładania ostatniej pary F2L, w przypadku gdy para jest połączona, a wszystkie krawędzie ostatniej warstwy są już zorientowane.",
+        "zbls": "ZBLS (Zborowski-Bruchem Last Slot), nazywany też ZBF2L lub EOLS, wkłada ostatnią parę F2L i jednocześnie orientuje wszystkie krawędzie ostatniej warstwy. To pierwsza połowa metody ZB: gdy krawędzie są zorientowane, ZBLL układa całą ostatnią warstwę jednym algorytmem. Każdy przypadek ma tu wszystkie swoje warianty orientacji krawędzi.",
         "zbll-s": "ZBLL Sune (ZBLL-S) to podzbiór metody ZBLL do układania ostatniej warstwy kostki Rubika. Skupia się na przypadkach, w których narożniki są w układzie sune, co pozwala na efektywne ułożenie całej ostatniej warstwy w jednej sekwencji ruchów.",
         "zbll-as": "ZBLL Antisune (ZBLL-AS) to podzbiór metody ZBLL do układania ostatniej warstwy kostki Rubika. Skupia się na przypadkach, w których narożniki są w układzie antisune, co pozwala na efektywne ułożenie całej ostatniej warstwy w jednej sekwencji ruchów.",
         "zbll-u": "ZBLL U (ZBLL-U) to podzbiór metody ZBLL do układania ostatniej warstwy kostki Rubika. Skupia się na przypadkach, w których narożniki są w układzie U, co pozwala na efektywne ułożenie całej ostatniej warstwy w jednej sekwencji ruchów.",
@@ -1120,6 +1121,10 @@
         "wv": {
           "when": "Winter Variation stosuje się, gdy ostatnia para F2L jest połączona i można ją włożyć ruchami R U R', a krawędzie ostatniej warstwy są już zorientowane. Jeden algorytm wkłada parę i jednocześnie orientuje rogi ostatniej warstwy, więc pomijasz OLL i przechodzisz prosto do PLL.",
           "learn": "WV ma 27 przypadków, a wiele z nich to krótkie algorytmy z ruchów R i U, co czyni go jednym z najprzystępniejszych zestawów na ostatni slot. Naucz się rozpoznawać orientację górnych rogów, gdy para czeka na włożenie, i grupuj przypadki według liczby zorientowanych rogów."
+        },
+        "zbls": {
+          "when": "ZBLS stosuje się przy ostatniej parze F2L, gdy krawędzie ostatniej warstwy nie są jeszcze zorientowane. Zamiast włożyć parę i potem wykonać OLL, jeden algorytm wkłada parę i orientuje wszystkie krawędzie, więc na ostatniej warstwie zawsze jest krzyż i możesz skończyć ZBLL albo COLL z permutacją krawędzi.",
+          "learn": "Każdy z 42 przypadków to zwykły przypadek F2L, a jego warianty różnią się tylko orientacją krawędzi. Zacznij od wariantów, które spotykasz najczęściej, i od tych najbardziej podobnych do twojego zwykłego wkładania pary. Ćwicz odczytywanie orientacji krawędzi na górnej warstwie, gdy śledzisz parę. Wielu kostkarzy najpierw uczy się kontroli krawędzi, a pełny ZBLS dodaje przypadek po przypadku."
         },
         "zbll-s": {
           "when": "ZBLL-S obejmuje przypadki ZBLL, w których rogi ostatniej warstwy tworzą kształt Sune z jednym zorientowanym rogiem. Gdy po F2L krawędzie są zorientowane, jeden z tych algorytmów układa całą ostatnią warstwę naraz, z pominięciem OCLL i PLL.",
