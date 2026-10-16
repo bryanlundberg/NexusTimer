@@ -17,6 +17,7 @@ export { MEGAMINX_EO_ALGS } from './megaminx-eo'
 export { MEGAMINX_EP_ALGS } from './megaminx-ep'
 export { OCLL_ALGS } from './ocll'
 export { OLL_ALGS } from './oll'
+export { OLL_OH_ALGS } from './oll-oh'
 export { PARITY_444_ALGS } from './parity-444'
 export { PARITY_555_ALGS } from './parity-555'
 export { PBL_ALGS } from './pbl'
@@ -57,6 +58,7 @@ import { MEGAMINX_EO_ALGS } from './megaminx-eo'
 import { MEGAMINX_EP_ALGS } from './megaminx-ep'
 import { OCLL_ALGS } from './ocll'
 import { OLL_ALGS } from './oll'
+import { OLL_OH_ALGS } from './oll-oh'
 import { PARITY_444_ALGS } from './parity-444'
 import { PARITY_555_ALGS } from './parity-555'
 import { PBL_ALGS } from './pbl'
@@ -98,6 +100,7 @@ export const ALL_ALGS: AlgorithmCollection[] = [
   ...MEGAMINX_EP_ALGS,
   ...OCLL_ALGS,
   ...OLL_ALGS,
+  ...OLL_OH_ALGS,
   ...PARITY_444_ALGS,
   ...PARITY_555_ALGS,
   ...PBL_ALGS,
