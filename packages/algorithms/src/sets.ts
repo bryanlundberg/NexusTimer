@@ -199,6 +199,20 @@ export const ALGORITHM_SET_CATALOG = [
     file: 'wv.ts'
   },
   {
+    slug: 'zbls',
+    goal: 'f2l',
+    title: 'ZBLS',
+    subtitle: 'Zborowski-Bruchem Last Slot',
+    puzzle: '3x3x3',
+    difficulty: 3,
+    virtualization: {
+      experimentalStickering: 'OLL',
+      visualization: '3D',
+      experimentalDragInput: 'none'
+    },
+    file: 'zbls.ts'
+  },
+  {
     slug: 'zbll-s',
     goal: 'full',
     title: 'ZBLL-S',

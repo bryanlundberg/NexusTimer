@@ -9,6 +9,7 @@ import { BLE_ALGS } from './data/ble'
 import { VLS_ALGS } from './data/vls'
 import { CLS_ALGS } from './data/cls'
 import { WV_ALGS } from './data/vw'
+import { ZBLS_ALGS } from './data/zbls'
 import { PARITY_444_ALGS } from './data/parity-444'
 import { PARITY_555_ALGS } from './data/parity-555'
 import { L2C_555_ALGS } from './data/l2c-555'
@@ -54,6 +55,7 @@ const ALGORITHMS_BY_SET: Record<AlgorithmSetSlug, AlgorithmCollection[]> = {
   cls: CLS_ALGS,
   sv: SV_ALGS,
   wv: WV_ALGS,
+  zbls: ZBLS_ALGS,
   'zbll-s': ZBLL_S_ALGS,
   'zbll-as': ZBLL_AS_ALGS,
   'zbll-u': ZBLL_U_ALGS,
