@@ -6,6 +6,7 @@ import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useScrambleGuideStore } from '@/shared/model/timer/useScrambleGuideStore'
 import { saveVirtualSolve } from '@/features/timer/lib/saveVirtualSolve'
 import { tryAnalyzeSolution } from '@/shared/lib/tryAnalyzeSolution'
+import { countTurns } from '@/shared/lib/timer/replayMoves'
 import { buildBarSegments, buildPhases, type BarSegment } from '@/shared/lib/timer/solveAnalysis'
 import {
   formatMove,
@@ -196,9 +197,13 @@ const resetSolveMoves = () => {
 }
 
 const recordSolveMove = (move: string, atZero: boolean) => {
+  if (atZero) {
+    solveMoves.push({ m: move, t: 0 })
+    return
+  }
   const now = performance.now()
   if (solveMovesStart == null) solveMovesStart = now
-  solveMoves.push({ m: move, t: atZero ? 0 : Math.round(now - solveMovesStart) })
+  solveMoves.push({ m: move, t: Math.round(now - solveMovesStart) })
 }
 
 const engineStateJson = (): string | null => {
@@ -289,7 +294,7 @@ const finalize = (dnf = false) => {
     publish({ lastSolveTime: null, solveStats: null })
   } else {
     try {
-      const moveCount = simplifyMoves(moves.map((move) => move.m)).length
+      const moveCount = countTurns(simplifyMoves(moves.map((move) => move.m)))
       if (moveCount > 0)
         stats = {
           moveCount,
