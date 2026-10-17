@@ -185,7 +185,7 @@ export default function SharedSolvePage() {
         {analysis && (
           <section className="flex flex-col gap-3">
             <div className="grid grid-cols-3 gap-2">
-              <Stat icon={<RotateCw className="size-3" />} label={t('moves')} value={analysis.moves.length} />
+              <Stat icon={<RotateCw className="size-3" />} label={t('moves')} value={analysis.turnCount} />
               <Stat icon={<Zap className="size-3" />} label={t('tps')} value={tps ?? '—'} />
               <Stat icon={<Layers className="size-3" />} label={t('method')} value={analysis.method ?? '—'} />
             </div>
