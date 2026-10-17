@@ -41,7 +41,7 @@ export function useReplaySolveDetails() {
   const analysis = hasReplay ? tryAnalyzeSolution(replay!.moves) : null
 
   const tps = analysis?.tps != null ? formatTps(analysis.tps) : null
-  const moveCount = analysis ? analysis.moves.length : null
+  const moveCount = analysis ? analysis.turnCount : null
   const simplifiedSolution = analysis ? analysis.moves.map((x) => x.m).join(' ') : (metadata?.solution ?? null)
   const markers = phaseMarkers(analysis)
 
