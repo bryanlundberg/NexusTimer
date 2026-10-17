@@ -6,10 +6,13 @@ export function useSolveReplayRecorder() {
   const movesRef = useRef<TimedMove[]>([])
 
   const record = useCallback((move: string, opts?: { t?: number }) => {
+    if (opts?.t !== undefined) {
+      movesRef.current.push({ m: move, t: opts.t })
+      return
+    }
     const now = performance.now()
     if (startRef.current === null) startRef.current = now
-    const t = opts?.t ?? Math.round(now - startRef.current)
-    movesRef.current.push({ m: move, t })
+    movesRef.current.push({ m: move, t: Math.round(now - startRef.current) })
   }, [])
 
   const reset = useCallback(() => {
