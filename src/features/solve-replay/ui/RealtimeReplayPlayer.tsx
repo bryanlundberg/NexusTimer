@@ -1,11 +1,12 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import { Pause, Play, RotateCcw, SkipBack, SkipForward } from 'lucide-react'
 import { cn } from '@/shared/lib/utils'
 import type { SolveReplay } from '@/entities/replay/model/types'
 import { useRealtimeReplay } from '@/features/solve-replay/model/useRealtimeReplay'
+import { buildPlaybackReplay } from '@/features/solve-replay/lib/buildPlaybackReplay'
 import { disposeTwistyPlayer } from '@/shared/lib/twisty/disposeTwistyPlayer'
 
 export interface ReplayMarker {
@@ -44,7 +45,16 @@ function buildSegments(markers: ReplayMarker[], total: number): BarSegment[] {
 const ICON_BUTTON =
   'inline-flex items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-30'
 
-export function RealtimeReplayPlayer({ replay, markers = [], size = 232, tempoScale = 4 }: RealtimeReplayPlayerProps) {
+export function RealtimeReplayPlayer({
+  replay: source,
+  markers: sourceMarkers = [],
+  size = 232,
+  tempoScale = 4
+}: RealtimeReplayPlayerProps) {
+  const { replay, skipped } = useMemo(() => buildPlaybackReplay(source), [source])
+  const markers = skipped
+    ? sourceMarkers.map((marker) => ({ ...marker, moveIndex: Math.max(0, marker.moveIndex - skipped) }))
+    : sourceMarkers
   const containerRef = useRef<HTMLDivElement>(null)
   const [player, setPlayer] = useState<TwistyPlayer | null>(null)
 
