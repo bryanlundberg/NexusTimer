@@ -797,6 +797,13 @@
 .auth-flow-row[data-invalid='true'] .auth-flow-label {
   color: var(--destructive);
 }
+.auth-flow-row input:is(:autofill, :-webkit-autofill) {
+  -webkit-text-fill-color: var(--foreground);
+  caret-color: var(--foreground);
+  transition:
+    background-color 0s 600000s,
+    color 0s 600000s;
+}
 .auth-flow-highlight {
   position: absolute;
   top: 0;
