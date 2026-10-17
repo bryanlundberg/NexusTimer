@@ -32,7 +32,10 @@ export default function AccountLoadPage() {
     if (!user || isLoading) return
     setIsLoading(true)
     try {
-      await handleDownloadData({ user })
+      if ((await handleDownloadData({ user })) !== 'merged') {
+        setIsLoading(false)
+        return
+      }
       router.push('/app')
       toast.success(t('SettingsPage.load-data-toast'))
     } catch (error) {
