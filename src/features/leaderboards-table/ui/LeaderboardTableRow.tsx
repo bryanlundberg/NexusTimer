@@ -33,7 +33,7 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
   const rank = index + 1
   const hasReplay = Boolean(solve.replay?.moves?.length)
   const tps = analysis?.tps != null ? formatTps(analysis.tps) : null
-  const moveCount = analysis ? analysis.moves.length : null
+  const moveCount = analysis ? analysis.turnCount : null
   const date = dayjs(solve.createdAt).locale(locale).format('ll')
 
   return (
