@@ -105,8 +105,8 @@ importers:
         specifier: ^1.5.18
         version: 1.6.17
       cube-state-engine:
-        specifier: ^1.9.0
-        version: 1.9.0
+        specifier: ^1.10.0
+        version: 1.10.0
       dayjs:
         specifier: ^1.11.21
         version: 1.11.21
@@ -299,8 +299,8 @@ importers:
         specifier: ^24.13.2
         version: 24.13.2
       cube-state-engine:
-        specifier: ^1.9.0
-        version: 1.9.0
+        specifier: ^1.10.0
+        version: 1.10.0
       typescript:
         specifier: 7.0.2
         version: 7.0.2
@@ -3189,8 +3189,8 @@ packages:
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
 
-  cube-state-engine@1.9.0:
-    resolution: {integrity: sha512-eQVdq7M9x2LczNz5hR0ynabIBBg+EDYuieZrsbPSfxIm7tiXhY07AZN8lAyZNIoHZKnIUzBo4Xdqh0vNN2DxNA==}
+  cube-state-engine@1.10.0:
+    resolution: {integrity: sha512-eAoOTljKgsS7VExS0EiXEdRKhtU6MZt30KJUj1qcxfDjDn+1hpKI/pcjLaj61fEJGFBpqbBvjxzIrfiuxgtlEg==}
 
   data-urls@7.0.0:
     resolution: {integrity: sha512-23XHcCF+coGYevirZceTVD7NdJOqVn+49IHyxgszm+JIiHLoB2TkmPtsYkNWT1pvRSGkc35L6NHs0yHkN2SumA==}
@@ -6976,7 +6976,7 @@ snapshots:
 
   csstype@3.2.3: {}
 
-  cube-state-engine@1.9.0: {}
+  cube-state-engine@1.10.0: {}
 
   data-urls@7.0.0(@noble/hashes@2.4.0):
     dependencies:
