@@ -15,6 +15,8 @@ import { gzipJson } from '@/shared/lib/backup/gzip'
 import { showUploadToast, UPLOAD_BACKUP_TOAST_ID } from '@/shared/model/backup/uploadToast'
 import { useBackupUploadStore } from '@/shared/model/backup/useBackupUploadStore'
 
+export type BackupDownloadResult = 'merged' | 'unreachable' | 'unreadable'
+
 export const useSyncBackup = () => {
   const { data: session } = useSession()
   const t = useTranslations('Index.SettingsPage')
@@ -64,18 +66,26 @@ export const useSyncBackup = () => {
       mode: BackupLoadMode.MERGE,
       user: undefined
     }
-  ) => {
-    if (!session || !session.user || !session.user.email) return
+  ): Promise<BackupDownloadResult> => {
+    if (!session || !session.user || !session.user.email) return 'unreachable'
+
+    if (!user?.backup?.url) {
+      toast.error(t('backup-not-found'))
+      return 'unreachable'
+    }
+
+    let data: string
+    try {
+      const doc = await fetch(`${user.backup.url}`)
+      if (!doc.ok) throw new Error(`Download failed with status ${doc.status}`)
+      data = await doc.text()
+    } catch (err) {
+      console.error(err)
+      toast.error(t('backup-download-error'))
+      return 'unreachable'
+    }
 
     try {
-      if (!user?.backup?.url) {
-        toast.error('No backup found for this user.')
-        return false
-      }
-
-      const doc = await fetch(`${user.backup.url}`)
-      const data = await doc.text()
-
       const backupData = importNexusTimerData(data)
       const existingCubes = await cubesDB.getAllDatabase()
 
@@ -92,8 +102,11 @@ export const useSyncBackup = () => {
           setSelectedCube(null)
         }
       }
-    } catch {
-      toast.error('Error loading backup')
+      return 'merged'
+    } catch (err) {
+      console.error(err)
+      toast.error(t('backup-download-error'))
+      return 'unreadable'
     }
   }
 
