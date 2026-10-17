@@ -34,7 +34,7 @@ export default function SolveDetails() {
   const [visualization, setVisualization] = useState<'2D' | '3D'>('2D')
 
   const analysis = solve?.replay?.moves?.length ? tryAnalyzeSolution(solve.replay.moves) : null
-  const moveCount = analysis ? analysis.moves.length : null
+  const moveCount = analysis ? analysis.turnCount : null
   const tps = analysis?.tps != null ? formatTps(analysis.tps) : null
 
   const solveDate = dayjs(solve?.endTime || 0).locale(locale)
