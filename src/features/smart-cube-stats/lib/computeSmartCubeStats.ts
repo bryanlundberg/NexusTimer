@@ -1,6 +1,7 @@
 import type { Solve } from '@/entities/solve/model/types'
 import type { TimedMove } from 'cube-state-engine'
 import { tryAnalyzeSolution } from '@/shared/lib/tryAnalyzeSolution'
+import { normalizeReplayMoves } from '@/shared/lib/timer/replayMoves'
 import { buildPhases, type PhaseInfo } from '@/shared/lib/timer/solveAnalysis'
 
 /** A gap between two consecutive moves longer than this counts as a pause. */
@@ -124,7 +125,7 @@ export function computeSmartCubeStats(solves: Solve[] | undefined): SmartCubeSta
   const methodCounts = new Map<string, number>()
 
   for (const solve of smart) {
-    const moves = solve.replay!.moves
+    const moves = normalizeReplayMoves(solve.replay!.moves)
     const analysis = tryAnalyzeSolution(moves)
     if (!analysis) continue
     const method = analysis.method ?? 'unknown'
@@ -135,7 +136,7 @@ export function computeSmartCubeStats(solves: Solve[] | undefined): SmartCubeSta
       method,
       total: analysis.total ?? solve.time,
       tps: analysis.tps ?? 0,
-      moveCount: analysis.moves.length,
+      moveCount: analysis.turnCount,
       pausedMs: pauses.ms,
       pauseCount: pauses.count,
       phases: buildPhases(analysis)
