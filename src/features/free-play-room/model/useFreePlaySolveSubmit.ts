@@ -5,6 +5,7 @@ import genId from '@/shared/lib/genId'
 import { Solve } from '@/entities/solve/model/types'
 import { withPlus2 } from '@/entities/solve/lib/penalty'
 import { setRoomPenalty, submitRoomSolve } from '@/features/free-play-room/model/room-actions'
+import { InspectionPenalty } from '@/features/timer/lib/inspection'
 
 interface Penalty {
   dnf: boolean
@@ -15,6 +16,7 @@ export interface PendingSolve {
   round: number
   time: number
   scramble: string
+  inspectionPenalty?: InspectionPenalty
 }
 
 export function useFreePlaySolveSubmit() {

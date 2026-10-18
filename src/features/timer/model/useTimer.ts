@@ -3,7 +3,9 @@ import useTimerControls from './useTimerControls'
 import useInspection from './useInspection'
 import useHoldToStart from './useHoldToStart'
 import useEventHandlers from './useEventHandlers'
-import { TimerStatus } from '@/features/timer/model/enums'
+import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
+import { TimerSettings } from '@/features/timer/model/timerSettings'
+import { InspectionPenalty } from '@/features/timer/lib/inspection'
 import { Cube } from '@/entities/cube/model/types'
 
 interface UseTimerProps {
@@ -13,9 +15,9 @@ interface UseTimerProps {
   inspectionRequired: boolean
   setIsSolving: (isSolving: boolean) => void
   setSolvingTime: (time: number) => void
-  timerMode?: any
-  settings?: any
-  onFinishSolve: () => void
+  timerMode?: TimerMode
+  settings?: TimerSettings
+  onFinishSolve: (penalty: InspectionPenalty) => void
 }
 
 export default function useTimer({
@@ -25,8 +27,8 @@ export default function useTimer({
   inspectionRequired,
   setIsSolving,
   setSolvingTime,
-  timerMode = 'NORMAL',
-  settings = { timer: { startCue: false, holdToStart: false } },
+  timerMode = TimerMode.NORMAL,
+  settings = { timer: { holdToStart: false } },
   onFinishSolve
 }: UseTimerProps) {
   const { startTimer, resetTimer, stopTimer } = useTimerControls({
@@ -35,9 +37,8 @@ export default function useTimer({
     setTimerStatus
   })
 
-  const { inspectionTime, startInspection, removeInspection, inspectionId } = useInspection({
+  const { inspectionTime, startInspection, removeInspection, penaltyAt, inspectionId } = useInspection({
     setTimerStatus,
-    setSolvingTime,
     settings
   })
 
@@ -47,6 +48,7 @@ export default function useTimer({
   })
 
   const mustReleaseAfterInspection = useRef<boolean>(false)
+  const solvePenalty = useRef<InspectionPenalty>('none')
 
   const resetAll = () => {
     if (inspectionId.current) removeInspection()
@@ -57,6 +59,7 @@ export default function useTimer({
   // Picks up an inspection or solve that started before a reload, from how long ago it started.
   const resumeSolve = (elapsedMs: number) => {
     if (inspectionId.current) removeInspection()
+    solvePenalty.current = 'none'
     startTimer(elapsedMs)
   }
 
@@ -69,17 +72,18 @@ export default function useTimer({
   const handleHold = (isReleased: boolean, at?: number) => {
     if (!selectedCube) return
     if (isSolving && isReleased) {
+      const penalty = solvePenalty.current
       stopTimer(at)
       setTimerStatus(TimerStatus.IDLE)
       requestAnimationFrame(() => {
-        onFinishSolve()
+        onFinishSolve(penalty)
         resetTimer()
       })
     }
     if (!isReleased && !inspectionId.current) return
     if (!isSolving) {
       if (!inspectionId.current && inspectionRequired) {
-        startInspection()
+        startInspection(0, at)
         setTimerStatus(TimerStatus.INSPECTING)
         mustReleaseAfterInspection.current = true
         return
@@ -108,6 +112,7 @@ export default function useTimer({
       return
     }
     if (inspectionId.current && inspectionRequired) {
+      solvePenalty.current = penaltyAt(at)
       removeInspection()
       removeHolding()
       setTimerStatus(TimerStatus.READY)
@@ -115,6 +120,7 @@ export default function useTimer({
       return
     }
     if (!inspectionRequired) {
+      solvePenalty.current = 'none'
       removeInspection()
       removeHolding()
       setTimerStatus(TimerStatus.READY)

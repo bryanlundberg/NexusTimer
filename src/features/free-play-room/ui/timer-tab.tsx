@@ -8,6 +8,7 @@ import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useAudioTrigger } from '@/shared/model/useAudioTrigger'
 import { useIsMobile } from '@/shared/model/use-mobile'
 import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
+import { InspectionPenalty } from '@/features/timer/lib/inspection'
 import { Cube } from '@/entities/cube/model/types'
 import { type PendingSolve, useFreePlaySolveSubmit } from '@/features/free-play-room/model/useFreePlaySolveSubmit'
 import { useScrambleSoundCue } from '@/features/free-play-room/model/useScrambleSoundCue'
@@ -69,11 +70,11 @@ export default function TimerTab({ event, onlineUsers }: TimerTabProps) {
 
   const { sendTime, confirm, showResult, submitManual } = useFreePlaySolveSubmit()
 
-  const finishSolve = () => {
+  const finishSolve = (inspectionPenalty: InspectionPenalty = 'none') => {
     const time = sendTime(currentRound)
     if (time === null) return
     setHasSolvedCurrentScramble(true)
-    setPending({ round: currentRound, time, scramble })
+    setPending({ round: currentRound, time, scramble, inspectionPenalty })
   }
 
   const handleSubmitTime = async (args: { dnf: boolean; plus2: boolean; cubeId: string | null }) => {
@@ -108,7 +109,7 @@ export default function TimerTab({ event, onlineUsers }: TimerTabProps) {
   }, [timerStatus, disableTimer, scramble])
 
   const { inspectionTime, resetAll, resumeSolve, resumeInspection } = useTimer({
-    onFinishSolve: async () => finishSolve(),
+    onFinishSolve: async (penalty) => finishSolve(penalty),
     isSolving,
     setTimerStatus,
     selectedCube: disableTimer || modalOpen ? null : ({} as Cube),
@@ -116,7 +117,7 @@ export default function TimerTab({ event, onlineUsers }: TimerTabProps) {
     setIsSolving,
     setSolvingTime,
     timerMode,
-    settings: { timer: { startCue: false, holdToStart: false, inspectionTime: 15000 } }
+    settings: { timer: { holdToStart: false, inspectionTime: 15000 } }
   })
 
   useEffect(() => {
@@ -254,6 +255,7 @@ export default function TimerTab({ event, onlineUsers }: TimerTabProps) {
         onClose={() => {}}
         category={event}
         time={pending?.time}
+        minimumPenalty={pending?.inspectionPenalty}
         confirmBy={pendingSolve ? toLocalTime(pendingSolve.confirmBy, clockOffset) : undefined}
         onChoose={handleSubmitTime}
       />

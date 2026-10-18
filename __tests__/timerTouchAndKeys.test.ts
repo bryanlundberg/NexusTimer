@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react'
 import useTimer from '@/features/timer/model/useTimer'
-import { TimerStatus } from '@/features/timer/model/enums'
+import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { Cube } from '@/entities/cube/model/types'
 
 type Props = Parameters<typeof useTimer>[0]
@@ -29,12 +29,14 @@ describe('timer touch and keyboard input', () => {
   let root: HTMLDivElement
   let child: HTMLSpanElement
   let unmount: () => void
+  let frames: FrameRequestCallback[]
 
   beforeEach(() => {
+    frames = []
     vi.spyOn(performance, 'now').mockReturnValue(100_000)
     vi.stubGlobal(
       'requestAnimationFrame',
-      vi.fn(() => 1)
+      vi.fn((callback: FrameRequestCallback) => frames.push(callback))
     )
     vi.stubGlobal('cancelAnimationFrame', vi.fn())
     root = document.createElement('div')
@@ -60,7 +62,7 @@ describe('timer touch and keyboard input', () => {
       inspectionRequired: false,
       setIsSolving: vi.fn(),
       setSolvingTime: vi.fn(),
-      timerMode: 'NORMAL',
+      timerMode: TimerMode.NORMAL,
       settings: settingsWith(),
       onFinishSolve: vi.fn(),
       ...overrides
@@ -136,27 +138,50 @@ describe('timer touch and keyboard input', () => {
     expect(props.setIsSolving).toHaveBeenCalledTimes(2)
   })
 
-  it('drops the hold when inspection runs out before the finger lifts', () => {
-    vi.useFakeTimers({ toFake: ['setInterval', 'clearInterval', 'setTimeout', 'clearTimeout', 'Date'] })
+  it('keeps inspecting past the limit instead of resetting', () => {
+    vi.useFakeTimers({ toFake: ['setInterval', 'clearInterval', 'setTimeout', 'clearTimeout'] })
     try {
       const { props } = setup({ inspectionRequired: true })
 
       touch('touchstart', root, 1000)
       touch('touchend', root, 1100)
-      touch('touchstart', root, 2000)
       act(() => {
-        vi.advanceTimersByTime(15_100)
+        vi.advanceTimersByTime(20_000)
       })
-      touch('touchend', root, 17_200)
-      expect(props.setTimerStatus).toHaveBeenLastCalledWith(TimerStatus.IDLE)
 
-      touch('touchstart', root, 20_000)
-      touch('touchend', root, 20_100)
       expect(props.setTimerStatus).toHaveBeenLastCalledWith(TimerStatus.INSPECTING)
-      expect(props.setIsSolving).not.toHaveBeenCalled()
+      expect(props.setTimerStatus).not.toHaveBeenCalledWith(TimerStatus.IDLE)
     } finally {
       vi.useRealTimers()
     }
+  })
+
+  describe('inspection penalties', () => {
+    const solveStartingAt = (startsAt: number) => {
+      const { props, rerender } = setup({ inspectionRequired: true })
+
+      touch('touchstart', root, 1000)
+      touch('touchend', root, 1100)
+      touch('touchstart', root, startsAt - 100)
+      touch('touchend', root, startsAt)
+      rerender({ isSolving: true })
+      touch('touchstart', root, startsAt + 10_000)
+      act(() => frames.at(-1)?.(0))
+
+      return props.onFinishSolve
+    }
+
+    it('adds no penalty when the solve starts within the inspection time', () => {
+      expect(solveStartingAt(15_900)).toHaveBeenCalledWith('none')
+    })
+
+    it('adds +2 when the solve starts in the 2 seconds after it', () => {
+      expect(solveStartingAt(17_500)).toHaveBeenCalledWith('plus2')
+    })
+
+    it('marks the solve DNF when it starts later than that', () => {
+      expect(solveStartingAt(18_200)).toHaveBeenCalledWith('dnf')
+    })
   })
 
   it('ignores held keys repeating while the solve runs', () => {
