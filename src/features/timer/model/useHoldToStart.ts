@@ -1,16 +1,16 @@
 import { useRef, useEffect } from 'react'
-import { Settings } from '@/shared/types/Settings'
 import { TimerStatus } from '@/features/timer/model/enums'
+import { TimerSettings } from '@/features/timer/model/timerSettings'
 import { triggerHaptic } from '@/shared/model/useHaptics'
 import { HAPTIC_DURATION_READY_MS } from '@/shared/lib/haptics'
 
 interface UseHoldToStartProps {
   setTimerStatus: (status: TimerStatus) => void
-  settings: Settings
+  settings: TimerSettings
 }
 
 export default function useHoldToStart({ setTimerStatus, settings }: UseHoldToStartProps) {
-  const holdTimeRequired = settings.timer.holdToStart ? Number(settings.timer.holdToStartTime) : 0
+  const holdTimeRequired = settings.timer.holdToStart ? Number(settings.timer.holdToStartTime ?? 0) : 0
   const startHoldingTime = useRef<number | null>(null)
   const readyTimeoutId = useRef<ReturnType<typeof setTimeout> | null>(null)
 

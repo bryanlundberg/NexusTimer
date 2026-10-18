@@ -10,7 +10,7 @@ interface UseTimerControlsProps {
 
 export default function useTimerControls({ setSolvingTime, setIsSolving, setTimerStatus }: UseTimerControlsProps) {
   const startSolveTime = useRef<number | null>(null)
-  const solveTimeId = useRef<any>(null)
+  const solveTimeId = useRef<number | null>(null)
 
   const startTimer = (elapsedMs = 0, startedAt = performance.now()) => {
     // Set state and references in a single batch to minimize renders
