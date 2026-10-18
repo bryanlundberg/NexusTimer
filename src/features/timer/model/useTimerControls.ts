@@ -12,12 +12,12 @@ export default function useTimerControls({ setSolvingTime, setIsSolving, setTime
   const startSolveTime = useRef<number | null>(null)
   const solveTimeId = useRef<any>(null)
 
-  const startTimer = (elapsedMs = 0) => {
+  const startTimer = (elapsedMs = 0, startedAt = performance.now()) => {
     // Set state and references in a single batch to minimize renders
     setIsSolving(true)
     setTimerStatus(TimerStatus.SOLVING)
 
-    startSolveTime.current = performance.now() - elapsedMs
+    startSolveTime.current = startedAt - elapsedMs
 
     const updateTimer = () => {
       if (!startSolveTime.current) return
@@ -42,11 +42,12 @@ export default function useTimerControls({ setSolvingTime, setIsSolving, setTime
     useTimerStore.getState().reset()
   }
 
-  const stopTimer = () => {
+  const stopTimer = (stoppedAt = performance.now()) => {
     if (solveTimeId.current) {
       cancelAnimationFrame(solveTimeId.current)
       solveTimeId.current = null
     }
+    if (startSolveTime.current !== null) setSolvingTime(Math.max(0, stoppedAt - startSolveTime.current))
     // Keep the final time by not resetting startSolveTime here
   }
 
