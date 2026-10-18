@@ -45,7 +45,7 @@ export default function useInspection({ setTimerStatus, setSolvingTime, settings
           }
         }
 
-        setInspectionTime(timeRemaining)
+        setInspectionTime((shown) => (Math.trunc(shown) === Math.trunc(timeRemaining) ? shown : timeRemaining))
         if (difference <= 0) {
           setTimerStatus(TimerStatus.IDLE)
           setSolvingTime(0)
