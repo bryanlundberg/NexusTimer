@@ -6,6 +6,7 @@ import { useSmartSessionStore } from '@/features/smart-cube/model/useSmartSessio
 import { useSmartCubePlayer } from '@/features/smart-cube/model/useSmartCubePlayer'
 import { useSmartCubeGyro } from '@/features/smart-cube/model/useSmartCubeGyro'
 import { SolvingTime } from '@/features/smart-cube/ui/SolvingTime'
+import { inspectionLabel } from '@/features/timer/lib/inspection'
 
 interface SmartCubeTimerProps {
   connection: SmartCubeConnection
@@ -19,6 +20,7 @@ export function SmartCubeTimer({ connection, secondaryActions }: SmartCubeTimerP
   const phase = useSmartSessionStore((store) => store.phase)
   const solvingTime = useSmartSessionStore((store) => store.solvingTime)
   const lastSolveTime = useSmartSessionStore((store) => store.lastSolveTime)
+  const lastSolvePenalty = useSmartSessionStore((store) => store.lastSolvePenalty)
   const inspectionTime = useSmartSessionStore((store) => store.inspectionTime)
   const solveStats = useSmartSessionStore((store) => store.solveStats)
   const resync = useSmartSessionStore((store) => store.resync)
@@ -35,6 +37,7 @@ export function SmartCubeTimer({ connection, secondaryActions }: SmartCubeTimerP
 
   // The last time stays on screen while the next scramble is applied.
   const displayTime = phase === 'solving' ? solvingTime : (lastSolveTime ?? solvingTime)
+  const lastPenalty = phase !== 'solving' && lastSolveTime != null ? lastSolvePenalty : 'none'
 
   return (
     <div className="grow flex flex-col items-center justify-center gap-1.5 sm:gap-3">
@@ -42,10 +45,17 @@ export function SmartCubeTimer({ connection, secondaryActions }: SmartCubeTimerP
 
       {phase === 'inspecting' && inspectionTime != null ? (
         <div className="text-5xl sm:text-7xl tabular-nums font-semibold text-timer-inspect">
-          {Math.max(0, Math.trunc(inspectionTime))}
+          {inspectionLabel(inspectionTime)}
         </div>
+      ) : lastPenalty === 'dnf' ? (
+        <div className="text-5xl sm:text-7xl font-semibold leading-none text-destructive">DNF</div>
       ) : (
-        <SolvingTime ms={displayTime || 0} />
+        <div className="flex items-baseline gap-2">
+          <SolvingTime ms={displayTime || 0} />
+          {lastPenalty === 'plus2' && (
+            <span className="text-3xl sm:text-5xl font-semibold leading-none text-destructive">+2</span>
+          )}
+        </div>
       )}
 
       {solveStats && (
