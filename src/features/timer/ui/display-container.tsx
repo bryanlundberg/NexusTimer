@@ -10,7 +10,6 @@ export default function DisplayContainer({ className, children, ...rest }: Displ
   return (
     <>
       <div
-        id="touch"
         className={cn('flex flex-col items-center justify-center grow', className)}
         {...rest}
         data-testid="timer-touch-area"

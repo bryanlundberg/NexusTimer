@@ -76,9 +76,8 @@ export default function TimerWidgets() {
           'flex flex-col gap-1 pb-1 relative transition-opacity duration-150',
           isHidden ? 'opacity-30 pointer-events-none' : 'opacity-100'
         )}
-        id="touch"
       >
-        <div className="absolute bottom-full right-0 mb-1 flex flex-col items-end gap-1" id="touch">
+        <div className="absolute bottom-full right-0 mb-1 flex flex-col items-end gap-1">
           {settings.alerts.solveDelta && !isHidden && lastSolve && <SolveDelta className={compactAlert || undefined} />}
           {bestAverageAlert}
           {worstTimeAlert}
