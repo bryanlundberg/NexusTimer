@@ -6,11 +6,13 @@ import { submitLeaderboardSolve } from '@/features/timer/api/leaderboardSolvesAp
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import genId from '@/shared/lib/genId'
 import { Solve } from '@/entities/solve/model/types'
+import { withPlus2 } from '@/entities/solve/lib/penalty'
 
 export interface SaveVirtualSolvePayload {
   timeMs: number
   scramble: string | null
   dnf: boolean
+  plus2?: boolean
   replayMoves?: TimedMove[]
   smart?: boolean
   solution?: string
@@ -22,6 +24,7 @@ export async function saveVirtualSolve({
   timeMs,
   scramble,
   dnf,
+  plus2 = false,
   replayMoves,
   smart = false,
   solution
@@ -38,9 +41,9 @@ export async function saveVirtualSolve({
     endTime: now,
     scramble,
     bookmark: false,
-    time: timeMs,
+    time: withPlus2(timeMs, plus2),
     dnf,
-    plus2: false,
+    plus2,
     rating: Math.floor(Math.random() * 20) + scramble.length,
     cubeId: selectedCube.id,
     comment: '',
@@ -51,9 +54,11 @@ export async function saveVirtualSolve({
       : {})
   }
 
-  submitLeaderboardSolve({ solve: newSolve, solution, puzzle, smart }).catch((e) => {
-    console.warn('submitLeaderboardSolve error (ignored):', e)
-  })
+  if (!dnf) {
+    submitLeaderboardSolve({ solve: newSolve, solution, puzzle, smart }).catch((e) => {
+      console.warn('submitLeaderboardSolve error (ignored):', e)
+    })
+  }
 
   const updatedCube = {
     ...selectedCube,
