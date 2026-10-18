@@ -31,7 +31,7 @@ export default function Timer({ children }: { children?: ReactNode }) {
   const { saveSolveMainTimer } = useSolveData()
 
   const { inspectionTime } = useTimer({
-    onFinishSolve: () => saveSolveMainTimer(),
+    onFinishSolve: (penalty) => saveSolveMainTimer(penalty),
     isSolving,
     setTimerStatus,
     selectedCube,

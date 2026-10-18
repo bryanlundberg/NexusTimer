@@ -4,6 +4,8 @@ import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useState } from 'react'
 import { Solve } from '@/entities/solve/model/types'
 import { cubesDB } from '@/entities/cube/api/indexdb'
+import { withPlus2 } from '@/entities/solve/lib/penalty'
+import { InspectionPenalty } from '@/features/timer/lib/inspection'
 
 export default function useSolveData() {
   const selectedCube = useTimerStore((store) => store.selectedCube)
@@ -15,7 +17,7 @@ export default function useSolveData() {
   const solvesSinceLastSync = useSettingsStore((state) => state.settings.sync.totalSolves)
   const [value, setValue] = useState<string>('')
 
-  const saveSolveMainTimer = async () => {
+  const saveSolveMainTimer = async (penalty: InspectionPenalty = 'none') => {
     if (selectedCube && scramble) {
       const solvingTime = useTimerStore.getState().solvingTime
       const lastSolve: Solve = {
@@ -24,9 +26,9 @@ export default function useSolveData() {
         endTime: Date.now(),
         scramble: scramble,
         bookmark: false,
-        time: solvingTime,
-        dnf: false,
-        plus2: false,
+        time: withPlus2(solvingTime, penalty === 'plus2'),
+        dnf: penalty === 'dnf',
+        plus2: penalty === 'plus2',
         rating: Math.floor(Math.random() * 20) + scramble.length,
         cubeId: selectedCube.id,
         comment: '',
