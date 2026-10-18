@@ -8,6 +8,7 @@ import { saveVirtualSolve } from '@/features/timer/lib/saveVirtualSolve'
 import { tryAnalyzeSolution } from '@/shared/lib/tryAnalyzeSolution'
 import { countTurns } from '@/shared/lib/timer/replayMoves'
 import { buildBarSegments, buildPhases, type BarSegment } from '@/shared/lib/timer/solveAnalysis'
+import { type InspectionPenalty, inspectionLabel, inspectionPenalty } from '@/features/timer/lib/inspection'
 import {
   formatMove,
   guideFromState,
@@ -71,6 +72,8 @@ let solveStartedAt: number | null = null
 let clockRaf: number | null = null
 let inspectionIntervalId: number | null = null
 let inspectionStartedAt: number | null = null
+let inspectionDurationMs = DEFAULT_INSPECTION_MS
+let solvePenalty: InspectionPenalty = 'none'
 
 let running = false
 let suspended = false
@@ -84,6 +87,7 @@ interface SmartSessionState {
   solvingTime: number
   inspectionTime: number | null
   lastSolveTime: number | null
+  lastSolvePenalty: InspectionPenalty
   solveStats: SmartSolveStats | null
 
   trackMove: (move: string) => void
@@ -102,6 +106,7 @@ const initialState = {
   solvingTime: 0,
   inspectionTime: null as number | null,
   lastSolveTime: null as number | null,
+  lastSolvePenalty: 'none' as InspectionPenalty,
   solveStats: null as SmartSolveStats | null
 }
 
@@ -171,18 +176,21 @@ const stopInspection = () => {
   useSmartSessionStore.setState({ inspectionTime: null })
 }
 
+const inspectionRemaining = (at: number) =>
+  inspectionStartedAt == null ? inspectionDurationMs / 1000 : (inspectionDurationMs - (at - inspectionStartedAt)) / 1000
+
 const startInspection = (durationMs: number) => {
   stopInspection()
-  inspectionStartedAt = Date.now()
+  inspectionDurationMs = durationMs
+  inspectionStartedAt = performance.now()
   useSmartSessionStore.setState({ inspectionTime: durationMs / 1000 })
   inspectionIntervalId = window.setInterval(() => {
     if (inspectionStartedAt == null) return
-    const remaining = durationMs - (Date.now() - inspectionStartedAt)
-    if (remaining <= 0) {
-      finalize(true)
-      return
+    const remaining = inspectionRemaining(performance.now())
+    const shown = useSmartSessionStore.getState().inspectionTime
+    if (shown == null || inspectionLabel(shown) !== inspectionLabel(remaining)) {
+      useSmartSessionStore.setState({ inspectionTime: remaining })
     }
-    useSmartSessionStore.setState({ inspectionTime: remaining / 1000 })
   }, 100)
 }
 
@@ -281,48 +289,44 @@ const advanceScramble = () => {
   if (selectedCube) setNewScramble(selectedCube)
 }
 
-const finalize = (dnf = false) => {
+const finalize = () => {
   stopInspection()
   const finalTime = stopClock()
   const moves = solveMoves.slice()
   resetSolveMoves()
   const scramble = primedScramble
+  const penalty = solvePenalty
+  solvePenalty = 'none'
 
   let stats: SmartSolveStats | null = null
-
-  if (dnf) {
-    publish({ lastSolveTime: null, solveStats: null })
-  } else {
-    try {
-      const moveCount = countTurns(simplifyMoves(moves.map((move) => move.m)))
-      if (moveCount > 0)
-        stats = {
-          moveCount,
-          tps: finalTime > 0 ? moveCount / (finalTime / 1000) : 0,
-          method: null,
-          segments: null
-        }
-    } catch {
-      stats = null
-    }
-    publish({ lastSolveTime: finalTime, solveStats: stats })
-
-    saveVirtualSolve({
-      timeMs: finalTime,
-      scramble,
-      dnf: false,
-      replayMoves: moves,
-      smart: true,
-      solution: moves.map((move) => move.m).join(' ')
-    }).catch((e) => console.warn('saveVirtualSolve error (ignored):', e))
-
-    // The cube is physically solved, so a fresh tracking epoch starts here. A
-    // DNF leaves the log alone: the cube is still scrambled, and replaying that
-    // log against the next scramble is what produces the corrections to undo it.
-    engine.reset()
-    resetTrackedMoves()
-    notifyResync()
+  try {
+    const moveCount = countTurns(simplifyMoves(moves.map((move) => move.m)))
+    if (moveCount > 0)
+      stats = {
+        moveCount,
+        tps: finalTime > 0 ? moveCount / (finalTime / 1000) : 0,
+        method: null,
+        segments: null
+      }
+  } catch {
+    stats = null
   }
+  publish({ lastSolveTime: finalTime, lastSolvePenalty: penalty, solveStats: stats })
+
+  saveVirtualSolve({
+    timeMs: finalTime,
+    scramble,
+    dnf: penalty === 'dnf',
+    plus2: penalty === 'plus2',
+    replayMoves: moves,
+    smart: true,
+    solution: moves.map((move) => move.m).join(' ')
+  }).catch((e) => console.warn('saveVirtualSolve error (ignored):', e))
+
+  // The cube is physically solved, so a fresh tracking epoch starts here.
+  engine.reset()
+  resetTrackedMoves()
+  notifyResync()
 
   // Everything below runs inside the same Bluetooth event that finished the
   // solve, so the next scramble is primed before the next turn can arrive.
@@ -387,6 +391,7 @@ const trackMove = (raw: string) => {
   recordSolveMove(move, ready && isRotation)
 
   if (ready && !isRotation) {
+    solvePenalty = phase === 'inspecting' ? inspectionPenalty(inspectionRemaining(performance.now())) : 'none'
     stopInspection()
     publish({ phase: 'solving', solveStats: null })
     startClock()
