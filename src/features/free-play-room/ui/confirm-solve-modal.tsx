@@ -15,6 +15,7 @@ import { cubesDB } from '@/entities/cube/api/indexdb'
 import { Cube } from '@/entities/cube/model/types'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { useCountdown } from '@/shared/model/useCountdown'
+import { InspectionPenalty } from '@/features/timer/lib/inspection'
 
 interface ConfirmSolveModalProps {
   isOpen: boolean
@@ -22,6 +23,7 @@ interface ConfirmSolveModalProps {
   onClose: (open: boolean) => void
   category?: CubeCategory | string
   time?: number
+  minimumPenalty?: InspectionPenalty
   confirmBy?: number
 }
 
@@ -34,6 +36,7 @@ export default function ConfirmSolveModal({
   onChoose,
   category,
   time,
+  minimumPenalty = 'none',
   confirmBy
 }: ConfirmSolveModalProps) {
   const t = useTranslations('Multiplayer.confirm-solve')
@@ -115,10 +118,20 @@ export default function ConfirmSolveModal({
             >
               {t('dnf')}
             </Button>
-            <Button className={'w-full'} variant={'secondary'} onClick={() => handleClose({ plus2: true, dnf: false })}>
+            <Button
+              className={'w-full'}
+              variant={'secondary'}
+              disabled={minimumPenalty === 'dnf'}
+              onClick={() => handleClose({ plus2: true, dnf: false })}
+            >
               {t('plus2')}
             </Button>
-            <Button className={'w-full'} variant={'default'} onClick={() => handleClose({ plus2: false, dnf: false })}>
+            <Button
+              className={'w-full'}
+              variant={'default'}
+              disabled={minimumPenalty !== 'none'}
+              onClick={() => handleClose({ plus2: false, dnf: false })}
+            >
               {t('ok')}
             </Button>
           </div>
