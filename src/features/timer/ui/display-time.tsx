@@ -128,6 +128,21 @@ export default function DisplayTime({
                   >
                     <DigitCells text={inspectionLabel(inspectionTime)} />
                   </motion.div>
+                ) : lastSolve?.dnf && !isSolving ? (
+                  <motion.div
+                    className={cn(
+                      font,
+                      'font-normal',
+                      FIT_TEXT,
+                      MAIN_SIZE[size],
+                      timerStatus === TimerStatus.IDLE && 'text-destructive'
+                    )}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    DNF
+                  </motion.div>
                 ) : (
                   <>
                     <motion.div
