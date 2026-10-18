@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react'
 import { TimerMode } from '@/features/timer/model/enums'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
+import { eventTime } from '@/features/timer/lib/eventTime'
 
-type HandleHoldFunction = (isReleased: boolean) => void
-type HandleReleaseFunction = () => void
+type HandleHoldFunction = (isReleased: boolean, at?: number) => void
+type HandleReleaseFunction = (at?: number) => void
 type ResetTimerFunction = () => void
 
 interface UseEventHandlersProps {
@@ -22,16 +23,17 @@ export default function useEventHandlers({
   isSolving
 }: UseEventHandlersProps) {
   const releasedKey = useRef<boolean>(true)
+  const pendingTouchEnds = useRef(new Set<() => void>())
   const activationKey = useSettingsStore((state) => state.settings.timer.activationKey) || 'Space'
 
-  const handleHoldWithReleasedState = () => {
-    handleHold(releasedKey.current)
+  const handleHoldWithReleasedState = (at?: number) => {
+    handleHold(releasedKey.current, at)
     releasedKey.current = false
   }
 
-  const handleReleaseWithReleasedState = () => {
+  const handleReleaseWithReleasedState = (at?: number) => {
     releasedKey.current = true
-    handleRelease()
+    handleRelease(at)
   }
 
   const resetAndRelease = () => {
@@ -56,16 +58,32 @@ export default function useEventHandlers({
       return !!el.closest('button, a, input, textarea, select, [role="button"], [data-no-timer-touch]')
     }
 
+    // touchend goes to the element where the touch started, even after a re-render removed it,
+    // so the release is listened for on that element instead of on the #touch containers.
     const handleTouchStart = (event: TouchEvent): void => {
       if (isExcludedTouchTarget(event.target)) return
       event.preventDefault()
-      handleHoldWithReleasedState()
-    }
-
-    const handleTouchEnd = (event: TouchEvent): void => {
-      if (isExcludedTouchTarget(event.target)) return
-      event.preventDefault()
-      handleReleaseWithReleasedState()
+      const target = event.target
+      const touch = event.changedTouches?.[0]
+      if (target && touch) {
+        const finish = (end: Event) => {
+          const changed = Array.from((end as TouchEvent).changedTouches ?? [])
+          if (!changed.some((ended) => ended.identifier === touch.identifier)) return
+          detach()
+          if (end.type !== 'touchend') return
+          end.preventDefault()
+          latest.current.handleReleaseWithReleasedState(eventTime(end))
+        }
+        const detach = () => {
+          target.removeEventListener('touchend', finish)
+          target.removeEventListener('touchcancel', finish)
+          pendingTouchEnds.current.delete(detach)
+        }
+        target.addEventListener('touchend', finish)
+        target.addEventListener('touchcancel', finish)
+        pendingTouchEnds.current.add(detach)
+      }
+      handleHoldWithReleasedState(eventTime(event))
     }
 
     const isTypingTarget = (): boolean => {
@@ -83,16 +101,16 @@ export default function useEventHandlers({
         resetAndRelease()
         return
       }
-      if (isTypingTarget()) {
+      if (event.repeat || isTypingTarget()) {
         return
       }
       if (event.code === activationKey) {
-        handleHoldWithReleasedState()
+        handleHoldWithReleasedState(eventTime(event))
         return
       }
       // For any other key: if the timer is running, stop it (treat as hold) without altering released state
       if (isSolving) {
-        handleHold(true)
+        handleHold(true, eventTime(event))
         releasedKey.current = true
       }
     }
@@ -108,16 +126,17 @@ export default function useEventHandlers({
       if (isTypingTarget()) {
         return
       }
-      handleReleaseWithReleasedState()
+      handleReleaseWithReleasedState(eventTime(event))
     }
 
-    const touchElements = document.querySelectorAll('#touch')
+    const touchElements = Array.from(document.querySelectorAll('#touch')).filter(
+      (element) => !element.parentElement?.closest('#touch')
+    )
 
     window.addEventListener('keydown', handleKeyDown)
     window.addEventListener('keyup', handleKeyUp)
     touchElements.forEach((element) => {
       element.addEventListener('touchstart', handleTouchStart as EventListener, { passive: false })
-      element.addEventListener('touchend', handleTouchEnd as EventListener, { passive: false })
     })
 
     return () => {
@@ -125,7 +144,6 @@ export default function useEventHandlers({
       window.removeEventListener('keyup', handleKeyUp)
       touchElements.forEach((element) => {
         element.removeEventListener('touchstart', handleTouchStart as EventListener)
-        element.removeEventListener('touchend', handleTouchEnd as EventListener)
       })
     }
   }, [
@@ -138,6 +156,11 @@ export default function useEventHandlers({
     activationKey
   ])
 
+  useEffect(() => {
+    const pending = pendingTouchEnds.current
+    return () => pending.forEach((detach) => detach())
+  }, [])
+
   // KEYBOARD STACKMAT MODE
   // Simulates a Stackmat with the keyboard: both Ctrl keys (left + right) must be
   // held together to count as preparation. Releasing either one triggers the release
@@ -149,9 +172,9 @@ export default function useEventHandlers({
 
   // Keep the latest callbacks/state in a ref so the keyboard-stackmat listeners can
   // be attached ONCE per mode (below) without being torn down on every re-render.
-  // Inspection/holding re-render this component every ~10ms; re-subscribing there and
-  // resetting the Ctrl-held flags would drop an in-progress gesture and prevent the
-  // timer from starting.
+  // Re-subscribing on a re-render and resetting the Ctrl-held flags would drop an
+  // in-progress gesture and prevent the timer from starting. The touch release
+  // listeners also read the latest callbacks from here.
   const latest = useRef({
     handleHold,
     handleHoldWithReleasedState,
@@ -191,11 +214,11 @@ export default function useEventHandlers({
         latest.current.resetAndRelease()
         return
       }
-      if (isTypingTarget()) return
+      if (event.repeat || isTypingTarget()) return
 
       // While solving, any key stops the timer (matches Normal mode).
       if (latest.current.isSolving) {
-        latest.current.handleHold(true)
+        latest.current.handleHold(true, eventTime(event))
         releasedKey.current = true
         clearCtrlState()
         return
@@ -208,7 +231,7 @@ export default function useEventHandlers({
       // Engage preparation only once both Ctrl keys are held together.
       if (leftCtrlDown.current && rightCtrlDown.current && !bothEngaged.current) {
         bothEngaged.current = true
-        latest.current.handleHoldWithReleasedState()
+        latest.current.handleHoldWithReleasedState(eventTime(event))
       }
     }
 
@@ -227,7 +250,7 @@ export default function useEventHandlers({
       // Releasing either Ctrl while both were engaged triggers the release.
       if (bothEngaged.current) {
         bothEngaged.current = false
-        latest.current.handleReleaseWithReleasedState()
+        latest.current.handleReleaseWithReleasedState(eventTime(event))
       }
     }
 
