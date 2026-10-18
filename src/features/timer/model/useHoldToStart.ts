@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 import { Settings } from '@/shared/types/Settings'
 import { TimerStatus } from '@/features/timer/model/enums'
 import { triggerHaptic } from '@/shared/model/useHaptics'
@@ -12,55 +12,49 @@ interface UseHoldToStartProps {
 export default function useHoldToStart({ setTimerStatus, settings }: UseHoldToStartProps) {
   const holdTimeRequired = settings.timer.holdToStart ? Number(settings.timer.holdToStartTime) : 0
   const startHoldingTime = useRef<number | null>(null)
-  const holdingTimeId = useRef<any>(null)
-  const hasReachedReady = useRef(false)
-  const [holdingTime, setHoldingTime] = useState<number | null>(10)
+  const readyTimeoutId = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  const startHold = () => {
-    if (!holdingTimeId.current) {
-      startHoldingTime.current = Date.now() - 1
-      holdingTimeId.current = setInterval(() => {
-        if (startHoldingTime.current) {
-          const now = Date.now()
-          const difference = now - startHoldingTime.current
-          setHoldingTime(difference)
-          if (difference >= holdTimeRequired) {
-            if (!hasReachedReady.current) {
-              hasReachedReady.current = true
-              triggerHaptic(HAPTIC_DURATION_READY_MS)
-            }
-            setTimerStatus(TimerStatus.READY)
-          } else {
-            setTimerStatus(TimerStatus.HOLDING)
-          }
-        }
-      }, 10)
-    }
+  const clearReadyTimeout = () => {
+    if (readyTimeoutId.current !== null) clearTimeout(readyTimeoutId.current)
+    readyTimeoutId.current = null
   }
+
+  const startHold = (startedAt = performance.now()) => {
+    if (startHoldingTime.current !== null) return
+    startHoldingTime.current = startedAt
+
+    const markReady = () => {
+      readyTimeoutId.current = null
+      triggerHaptic(HAPTIC_DURATION_READY_MS)
+      setTimerStatus(TimerStatus.READY)
+    }
+
+    const remaining = holdTimeRequired - (performance.now() - startedAt)
+    if (remaining <= 0) {
+      markReady()
+      return
+    }
+    setTimerStatus(TimerStatus.HOLDING)
+    readyTimeoutId.current = setTimeout(markReady, remaining)
+  }
+
+  const isHolding = () => startHoldingTime.current !== null
+
+  const heldFor = (releasedAt = performance.now()) =>
+    startHoldingTime.current === null ? 0 : releasedAt - startHoldingTime.current
 
   const removeHolding = () => {
-    clearInterval(holdingTimeId.current)
-    holdingTimeId.current = null
+    clearReadyTimeout()
     startHoldingTime.current = null
-    hasReachedReady.current = false
-    setHoldingTime(0)
   }
 
-  useEffect(() => {
-    return () => {
-      if (holdingTimeId.current) {
-        clearInterval(holdingTimeId.current)
-        holdingTimeId.current = null
-      }
-    }
-  }, [])
+  useEffect(() => clearReadyTimeout, [])
 
   return {
     startHold,
     removeHolding,
-    holdingTime,
-    holdTimeRequired,
-    holdingTimeId,
-    startHoldingTime
+    isHolding,
+    heldFor,
+    holdTimeRequired
   }
 }

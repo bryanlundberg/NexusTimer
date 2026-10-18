@@ -41,7 +41,7 @@ export default function useTimer({
     settings
   })
 
-  const { startHold, removeHolding, holdingTime, holdTimeRequired, holdingTimeId } = useHoldToStart({
+  const { startHold, removeHolding, isHolding, heldFor, holdTimeRequired } = useHoldToStart({
     setTimerStatus,
     settings
   })
@@ -50,6 +50,7 @@ export default function useTimer({
 
   const resetAll = () => {
     if (inspectionId.current) removeInspection()
+    removeHolding()
     resetTimer()
   }
 
@@ -65,10 +66,10 @@ export default function useTimer({
   }
 
   // MAIN HOLD CONTROL
-  const handleHold = (isReleased: boolean) => {
+  const handleHold = (isReleased: boolean, at?: number) => {
     if (!selectedCube) return
     if (isSolving && isReleased) {
-      stopTimer()
+      stopTimer(at)
       setTimerStatus(TimerStatus.IDLE)
       requestAnimationFrame(() => {
         onFinishSolve()
@@ -87,17 +88,17 @@ export default function useTimer({
       if (inspectionId.current && inspectionRequired && mustReleaseAfterInspection.current) {
         return
       }
-      startHold()
+      startHold(at)
     }
   }
 
   // MAIN RELEASE CONTROL
-  const handleRelease = () => {
+  const handleRelease = (at?: number) => {
     // Ensure user must lift finger after starting inspection before allowing hold to start
     mustReleaseAfterInspection.current = false
     if (!selectedCube) return
-    if (!holdingTimeId.current) return
-    if (typeof holdingTime === 'number' && holdingTime <= holdTimeRequired) {
+    if (!isHolding()) return
+    if (heldFor(at) < holdTimeRequired) {
       removeHolding()
       if (inspectionId.current) {
         setTimerStatus(TimerStatus.INSPECTING)
@@ -110,16 +111,18 @@ export default function useTimer({
       removeInspection()
       removeHolding()
       setTimerStatus(TimerStatus.READY)
-      startTimer()
+      startTimer(0, at)
       return
     }
     if (!inspectionRequired) {
       removeInspection()
       removeHolding()
       setTimerStatus(TimerStatus.READY)
-      startTimer()
+      startTimer(0, at)
       return
     }
+    removeHolding()
+    setTimerStatus(TimerStatus.IDLE)
   }
 
   // Event handlers
