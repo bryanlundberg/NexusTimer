@@ -7,6 +7,8 @@ await build({
   platform: 'node',
   format: 'esm',
   target: 'node24',
+  conditions: ['inline-wasm', 'module'],
+  loader: { '.wasm': 'binary' },
   sourcemap: true,
   sourcesContent: false,
   banner: { js: "import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);" }

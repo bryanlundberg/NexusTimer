@@ -17,6 +17,7 @@
     "@aws-sdk/client-s3": "^3.1053.0",
     "@hono/node-server": "^2.1.0",
     "@nexustimer/algorithms": "workspace:*",
+    "@nexustimer/avatars": "workspace:*",
     "@nexustimer/contracts": "workspace:*",
     "@nexustimer/stats": "workspace:*",
     "@nexustimer/tnoodle-lib-rs": "workspace:*",
