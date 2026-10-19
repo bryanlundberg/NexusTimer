@@ -9,6 +9,7 @@ import { Eye, SquareArrowOutUpRight, Mail, X } from 'lucide-react'
 import { KeyedMutator } from 'swr'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { AvatarUploader } from '@/features/update-user-avatar/ui/AvatarUploader'
+import { EditNexiLink } from '@/features/avatar-builder/ui/EditNexiLink'
 import { WcaBadge } from '@/shared/ui/wca-badge/WcaBadge'
 import { CountryFlag } from '@/shared/ui/country-flag/CountryFlag'
 import { getCountryName } from '@/shared/lib/getCountryName'
@@ -98,7 +99,10 @@ export default function ProfileHero({
 
   return (
     <section className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
-      <AvatarUploader />
+      <div className="flex flex-col items-center gap-2">
+        <AvatarUploader />
+        <EditNexiLink />
+      </div>
 
       <div className="flex flex-col items-center sm:items-start gap-2 min-w-0 flex-1">
         <div className="flex items-center gap-2 min-w-0 max-w-full">
