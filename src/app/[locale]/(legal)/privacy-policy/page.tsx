@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function PrivacyPolicyPage() {
   return (
     <>
-      <LegalHero label="Legal" title="Privacy Policy" intro="Last updated: October 15, 2026" />
+      <LegalHero label="Legal" title="Privacy Policy" intro="Last updated: October 19, 2026" />
 
       <LegalBody>
         <Para>
@@ -43,7 +43,8 @@ export default function PrivacyPolicyPage() {
           <Li>
             <strong>Account.</strong> If you register with email, we collect your email address, name and password. The
             password is stored only as a salted hash. If you sign in with Google or Discord, we receive your name, email
-            address, profile picture and account identifier from that provider, along with the sign-in tokens it issues.
+            address and account identifier from that provider, along with the sign-in tokens it issues. The provider
+            also sends your profile picture, but we do not store or display it.
           </Li>
           <Li>
             <strong>Profile.</strong> Anything you add to your profile: profile picture, bio, pronouns, country, goal,
@@ -190,20 +191,13 @@ export default function PrivacyPolicyPage() {
           <Li>Koyeb, which runs our API.</Li>
           <Li>MongoDB Atlas, which stores account, profile, solve and social data.</Li>
           <Li>Oracle Cloud, which hosts our realtime server, cache and product search.</Li>
-          <Li>Backblaze B2, which stores cloud backups and uploaded profile pictures.</Li>
+          <Li>Backblaze B2, which stores cloud backups and profile pictures, both uploaded and generated.</Li>
           <Li>Google Firebase, which relays Nexus Connect sessions.</Li>
           <Li>Google Analytics, for usage analytics with your consent.</Li>
           <Li>Resend and Brevo, which send our emails.</Li>
           <Li>GitHub, which hosts algorithm suggestions as public issues.</Li>
-          <Li>
-            Google and Discord, if you sign in with them. Profile pictures from these providers are loaded from their
-            servers.
-          </Li>
+          <Li>Google and Discord, if you sign in with them.</Li>
           <Li>The World Cube Association, if you link your WCA account.</Li>
-          <Li>
-            UI Avatars (ui-avatars.com), which generates the default profile picture from your name, so your name is
-            sent to it whenever that picture is displayed.
-          </Li>
         </ul>
 
         <Para>

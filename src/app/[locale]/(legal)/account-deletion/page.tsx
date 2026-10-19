@@ -55,7 +55,7 @@ export default function AccountDeletionPage() {
           </Li>
           <Li>All solves submitted to leaderboards, your shared solves and your statistics.</Li>
           <Li>Your trainer progress, learned algorithms and achievements.</Li>
-          <Li>All cloud backups and your uploaded profile picture, from our file storage provider.</Li>
+          <Li>All cloud backups and your profile picture, from our file storage provider.</Li>
           <Li>Your friends, pending friend requests and blocks, in both directions.</Li>
           <Li>
             All your conversations and their messages. Because conversations are one to one, they also disappear for the
