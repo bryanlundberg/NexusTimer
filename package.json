@@ -22,6 +22,7 @@
     "@firebase/database": "^1.1.0",
     "@hookform/resolvers": "^5.2.2",
     "@nexustimer/algorithms": "workspace:*",
+    "@nexustimer/avatars": "workspace:*",
     "@nexustimer/contracts": "workspace:*",
     "@nexustimer/cube-solver-rs": "workspace:*",
     "@nexustimer/stats": "workspace:*",

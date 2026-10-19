@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   transpilePackages: [
     '@nexustimer/algorithms',
+    '@nexustimer/avatars',
     '@nexustimer/contracts',
     '@nexustimer/stats',
     '@nexustimer/tnoodle-lib-rs'
