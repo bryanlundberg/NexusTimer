@@ -24,6 +24,8 @@ import {
 } from './modules/auth/auth.repository'
 import { hashPassword } from './modules/auth/password'
 import { createAvatarsService } from './modules/avatars/avatars.service'
+import { createNexiQuota } from './modules/avatars/nexi.quota'
+import { createNexiAvatarsService } from './modules/avatars/nexi.service'
 import { createBackupsService } from './modules/backups/backups.service'
 import { chatsRepository, conversationsUserData } from './modules/chats/chats.repository'
 import { createChatsService } from './modules/chats/chats.service'
@@ -92,8 +94,6 @@ export function buildApp() {
     emulator: env.FILES_EMULATOR,
     endpoint: env.FILES_ENDPOINT
   })
-  const getAuth = createAuthProvider(env, mail)
-  const accounts = createAccountStore(getAuth)
   const achievements = createAchievementsService(achievementsRepository, createRarityCache(redis))
   const presence = createPresenceStore(redis, realtime)
   const users = createUsersService({
@@ -102,6 +102,9 @@ export function buildApp() {
     statsCache: createStatsCache(redis),
     achievements
   })
+  const nexi = createNexiAvatarsService({ storage, users, quota: createNexiQuota(redis) })
+  const getAuth = createAuthProvider(env, mail, nexi)
+  const accounts = createAccountStore(getAuth)
   const friendsCache = createFriendsCache(redis)
   const social = createSocialService({ blocks: blocksRepository, friends: friendsRepository, friendsCache })
   const trainer = createTrainerService({
@@ -173,6 +176,7 @@ export function buildApp() {
     chats: createChatsService({ repository: chatsRepository, social, users, realtime }),
     backups: createBackupsService({ storage, users, background: runInBackground }),
     avatars: createAvatarsService({ storage, users }),
+    nexi,
     feedback: createFeedbackService({
       repository: feedbackRepository,
       users,

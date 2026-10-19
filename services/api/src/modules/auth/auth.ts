@@ -3,13 +3,14 @@ import { AUTH_COOKIE_PREFIX, CLIENT_IP_HEADER, DEV_LOGIN_PATH } from '@nexustime
 import { betterAuth } from 'better-auth'
 import { mongodbAdapter } from 'better-auth/adapters/mongodb'
 import { isAPIError } from 'better-auth/api'
-import type { MongoClient } from 'mongodb'
+import { type MongoClient, ObjectId } from 'mongodb'
 import type { Env } from '../../config/env'
 import type { SessionReader } from '../../http/require-user'
 import type { Mailers } from '../../infra/mail'
 import { connectMongo } from '../../infra/mongo'
 import { logger, serializeError } from '../../lib/logger'
 import { runInBackground } from '../../platform/background'
+import type { NexiAvatarsService } from '../avatars/nexi.service'
 import { recordLog } from '../logs/logs.service'
 import { welcomeEmail } from './auth.emails'
 import { devLogin } from './dev-login'
@@ -20,24 +21,34 @@ const SESSION_REFRESH_AGE_SECONDS = 24 * 60 * 60
 const SESSION_COOKIE_CACHE_SECONDS = 5 * 60
 const MAX_PASSWORD_LENGTH = 72
 
-type AuthDeps = { env: Env; client: MongoClient; mail: Mailers }
-
-function defaultAvatarUrl(name: string | null | undefined) {
-  const encoded = (name ?? '').replace(/\s+/g, '+')
-  return `https://ui-avatars.com/api/?name=${encoded}&background=random&size=128`
-}
+export type SignupAvatars = Pick<NexiAvatarsService, 'createForNewUser'>
+type AuthDeps = { env: Env; client: MongoClient; mail: Mailers; avatars: SignupAvatars }
 
 function hashIp(ip: string | null | undefined) {
   return ip ? createHash('sha256').update(ip).digest('hex') : undefined
 }
 
+const withoutProviderImage = () => ({ image: undefined })
+
 function socialProviders(env: Env) {
   return {
     ...(env.AUTH_GOOGLE_ID && env.AUTH_GOOGLE_SECRET
-      ? { google: { clientId: env.AUTH_GOOGLE_ID, clientSecret: env.AUTH_GOOGLE_SECRET } }
+      ? {
+          google: {
+            clientId: env.AUTH_GOOGLE_ID,
+            clientSecret: env.AUTH_GOOGLE_SECRET,
+            mapProfileToUser: withoutProviderImage
+          }
+        }
       : {}),
     ...(env.AUTH_DISCORD_ID && env.AUTH_DISCORD_SECRET
-      ? { discord: { clientId: env.AUTH_DISCORD_ID, clientSecret: env.AUTH_DISCORD_SECRET } }
+      ? {
+          discord: {
+            clientId: env.AUTH_DISCORD_ID,
+            clientSecret: env.AUTH_DISCORD_SECRET,
+            mapProfileToUser: withoutProviderImage
+          }
+        }
       : {})
   }
 }
@@ -67,7 +78,29 @@ function sendWelcomeEmail(mail: Mailers, email: string, name: string) {
   })
 }
 
-function createAuth({ env, client, mail }: AuthDeps) {
+async function signupAvatar(avatars: SignupAvatars, userId: string) {
+  try {
+    return await avatars.createForNewUser(userId)
+  } catch (error) {
+    logger.error('signup avatar failed', { error: serializeError(error) })
+    await recordLog({
+      type: 'api_error',
+      message: error instanceof Error ? error.message : String(error),
+      metadata: { source: 'signup-avatar', userId, stack: error instanceof Error ? error.stack : undefined }
+    })
+    return null
+  }
+}
+
+export function signupUserHook(avatars: SignupAvatars) {
+  return async (user: Record<string, unknown>) => {
+    const id = new ObjectId().toHexString()
+    const image = await signupAvatar(avatars, id)
+    return { data: { ...user, id, image: image ?? '' } }
+  }
+}
+
+function createAuth({ env, client, mail, avatars }: AuthDeps) {
   return betterAuth({
     baseURL: env.BETTER_AUTH_URL,
     secret: env.BETTER_AUTH_SECRET,
@@ -97,7 +130,7 @@ function createAuth({ env, client, mail }: AuthDeps) {
     databaseHooks: {
       user: {
         create: {
-          before: async (user) => ({ data: { ...user, image: user.image || defaultAvatarUrl(user.name) } }),
+          before: signupUserHook(avatars),
           after: async (user, ctx) => {
             if (ctx?.path === DEV_LOGIN_PATH) return
             void sendWelcomeEmail(mail, user.email, user.name)
@@ -119,12 +152,12 @@ function createAuth({ env, client, mail }: AuthDeps) {
 export type Auth = ReturnType<typeof createAuth>
 export type AuthProvider = () => Promise<Auth>
 
-export function createAuthProvider(env: Env, mail: Mailers): AuthProvider {
+export function createAuthProvider(env: Env, mail: Mailers, avatars: SignupAvatars): AuthProvider {
   let pending: Promise<Auth> | undefined
 
   return () =>
     (pending ??= connectMongo(env.MONGODB_URI)
-      .then(({ connection }) => createAuth({ env, client: connection.getClient(), mail }))
+      .then(({ connection }) => createAuth({ env, client: connection.getClient(), mail, avatars }))
       .catch((error: unknown) => {
         pending = undefined
         throw error

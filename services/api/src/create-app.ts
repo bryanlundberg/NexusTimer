@@ -14,6 +14,8 @@ import type { SuggestionsService } from './modules/algorithms/suggestions.servic
 import { authRoutes, type AuthServices } from './modules/auth/auth.routes'
 import { avatarsRoutes } from './modules/avatars/avatars.routes'
 import type { AvatarsService } from './modules/avatars/avatars.service'
+import { nexiRoutes } from './modules/avatars/nexi.routes'
+import type { NexiAvatarsService } from './modules/avatars/nexi.service'
 import { backupsRoutes } from './modules/backups/backups.routes'
 import type { BackupsService } from './modules/backups/backups.service'
 import { chatsRoutes } from './modules/chats/chats.routes'
@@ -65,6 +67,7 @@ export type AppDeps = {
   chats: ChatsService
   backups: BackupsService
   avatars: AvatarsService
+  nexi: NexiAvatarsService
   feedback: FeedbackService
   suggestions: SuggestionsService
   roomLobby: RoomLobby
@@ -97,6 +100,7 @@ export function createApp(deps: AppDeps) {
   app.route('/v1/trainer', trainerRoutes(deps.trainer, signedIn))
   app.route('/v1/shared-solves', sharedSolvesRoutes(deps.sharedSolves, signedIn, viewer))
   app.route('/v1/users', avatarsRoutes(deps.avatars, signedIn))
+  app.route('/v1/users', nexiRoutes(deps.nexi, signedIn))
   app.route('/v1/users', profilesRoutes(deps.profiles, signedIn, viewer))
   app.route('/v1/friends', friendsRoutes(deps.friends, signedIn))
   app.route('/v1/blocks', blocksRoutes(deps.blocks, signedIn))

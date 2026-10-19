@@ -139,6 +139,7 @@ export function buildTestApp(overrides: Partial<AppDeps> = {}) {
     },
     backups: { upload: unused, list: unused, remove: unused },
     avatars: { upload: unused },
+    nexi: { save: unused, createForNewUser: unused },
     feedback: { submit: unused },
     suggestions: { allow: unused, suggest: unused },
     roomLobby: { list: unused },
