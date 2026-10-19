@@ -1,0 +1,31 @@
+{
+  "name": "@nexustimer/avatars",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts",
+    "./node": "./src/node.ts"
+  },
+  "imports": {
+    "#wasm": {
+      "inline-wasm": "./src/wasm/inline.ts",
+      "default": "./src/wasm/files.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@jsquash/webp": "^1.5.0",
+    "@nexustimer/contracts": "workspace:*",
+    "@resvg/resvg-wasm": "^2.6.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.2",
+    "typescript": "7.0.2",
+    "vitest": "^5.0.0"
+  }
+}
