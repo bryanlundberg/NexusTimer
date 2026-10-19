@@ -1,6 +1,7 @@
 export * from './admin'
 export * from './algorithms'
 export * from './auth'
+export * from './avatar-recipe'
 export * from './backups'
 export * from './chats'
 export * from './common'
