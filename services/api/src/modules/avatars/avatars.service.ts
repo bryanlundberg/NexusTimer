@@ -29,7 +29,12 @@ type AvatarsDeps = {
   now?: () => number
 }
 
-const avatarKey = (userId: string) => `avatars/${userId}`
+export const avatarKey = (userId: string) => `avatars/${userId}`
+
+export function versionedUrl(storage: Pick<Storage, 'url'>, key: string, version: number) {
+  const baseUrl = storage.url(key)
+  return `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}v=${version}`
+}
 
 export function createAvatarsService({ storage, users, now = () => Date.now() }: AvatarsDeps): AvatarsService {
   return {
@@ -37,8 +42,7 @@ export function createAvatarsService({ storage, users, now = () => Date.now() }:
       const key = avatarKey(userId)
       await storage.upload(key, bytes, { contentType: type })
 
-      const baseUrl = storage.url(key)
-      const url = `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}v=${now()}`
+      const url = versionedUrl(storage, key, now())
 
       return (await users.setImage(userId, url)) ? { url, public_id: key } : null
     }
