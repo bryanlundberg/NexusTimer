@@ -39,7 +39,7 @@ export default function CookieConsentBanner() {
 
   return (
     <div
-      className="fixed inset-x-0 bottom-0 z-50 border-t bg-background shadow-2xl animate-in fade-in slide-in-from-bottom-4 duration-500"
+      className="fixed inset-x-0 bottom-0 z-50 border-t bg-background shadow-float animate-in fade-in slide-in-from-bottom-4 duration-500"
       style={DOT_TEXTURE}
     >
       <div className="mx-auto flex max-w-5xl flex-col gap-3 p-4 sm:flex-row sm:items-center sm:gap-4">

@@ -133,10 +133,10 @@ function DialogContent({
         <DrawerPrimitive.Content
           data-slot="dialog-content"
           style={{ ...style, ...keyboardStyle }}
-          className="bg-background border-foreground/15 fixed inset-x-0 bottom-0 z-50 flex max-h-[92dvh] flex-col rounded-none border-t pb-[env(safe-area-inset-bottom)] shadow-[0_-12px_32px_-8px_rgb(0_0_0/0.45)] outline-none"
+          className="bg-background fixed inset-x-0 bottom-0 z-50 flex max-h-[92dvh] flex-col border-t pb-[env(safe-area-inset-bottom)] shadow-float outline-none"
           {...contentProps}
         >
-          <div aria-hidden className="bg-muted-foreground/60 mx-auto mt-2.5 mb-1 h-1 w-10 shrink-0 rounded-none" />
+          <div aria-hidden className="bg-muted-foreground/60 mx-auto mt-2.5 mb-1 h-1 w-10 shrink-0" />
           <div
             className={cn(
               'grid min-h-0 w-full gap-4 overflow-y-auto overscroll-contain p-6 pt-3',
@@ -164,7 +164,7 @@ function DialogContent({
         onOpenAutoFocus={(e) => e.preventDefault()}
         data-slot="dialog-content"
         className={cn(
-          'bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-none border p-6 shadow-lg duration-200 sm:max-w-lg',
+          'bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 border p-6 shadow-float duration-200 sm:max-w-lg',
           className
         )}
         {...props}
