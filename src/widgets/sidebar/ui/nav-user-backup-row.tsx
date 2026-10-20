@@ -18,7 +18,7 @@ export function NavUserBackupRow({ percent, remaining, isLast }: NavUserBackupRo
   return (
     <DropdownMenuItem
       onClick={() => open({ id: 'sync-info', component: <SyncInfoModal /> })}
-      className="cursor-pointer gap-2.5 rounded-none border-t px-3 py-2"
+      className="cursor-pointer gap-2.5 border-t px-3 py-2"
       data-testid="header-backup-row"
     >
       <BackupRing percent={percent} isLast={isLast} strokeWidth={3} className="size-7">

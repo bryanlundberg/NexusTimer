@@ -162,11 +162,11 @@ export function ProductSearchInput({
                   choose(hit)
                 }}
                 className={cn(
-                  'flex cursor-pointer items-center gap-2.5 rounded-none px-2 py-1.5 transition-colors',
+                  'flex cursor-pointer items-center gap-2.5 px-2 py-1.5 transition-colors',
                   index === highlight ? 'bg-primary/15 text-foreground' : 'hover:bg-primary/10'
                 )}
               >
-                <div className="bg-muted/40 flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-md border">
+                <div className="bg-muted/40 flex size-8 shrink-0 items-center justify-center overflow-hidden border">
                   {hit.image ? (
                     <img
                       src={hit.image}

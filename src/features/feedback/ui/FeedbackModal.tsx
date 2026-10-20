@@ -82,7 +82,7 @@ export default function FeedbackModal() {
             role="radio"
             onClick={() => setRating(value)}
             aria-checked={rating === value}
-            className={`flex flex-col items-center gap-1 p-2 rounded-none transition-all cursor-pointer ${
+            className={`flex flex-col items-center gap-1 p-2 transition-all cursor-pointer ${
               rating === value
                 ? 'bg-accent scale-110 ring-2 ring-primary'
                 : 'opacity-60 hover:opacity-100 hover:bg-accent/50'
