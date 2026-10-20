@@ -133,7 +133,7 @@ export default function GrowthChart({ months, seriesLabel, monthLabel, tableLabe
                   y={y(tick)}
                   textAnchor="end"
                   dominantBaseline="middle"
-                  className="fill-gray-500 text-[11px] tabular-nums"
+                  className="fill-muted-foreground text-[11px] tabular-nums"
                 >
                   {numberFormat.format(tick)}
                 </text>
@@ -146,7 +146,7 @@ export default function GrowthChart({ months, seriesLabel, monthLabel, tableLabe
                 x={PAD.left + ((index - start) / span) * plotWidth}
                 y={HEIGHT - 10}
                 textAnchor="middle"
-                className="fill-gray-500 text-[11px] tabular-nums"
+                className="fill-muted-foreground text-[11px] tabular-nums"
               >
                 {Math.floor(index / 12)}
               </text>
@@ -183,7 +183,7 @@ export default function GrowthChart({ months, seriesLabel, monthLabel, tableLabe
                 x={x(last.month) - 10}
                 y={y(last.total) - 10}
                 textAnchor="end"
-                className="fill-gray-900 text-xs font-semibold"
+                className="fill-foreground text-xs font-semibold"
               >
                 {numberFormat.format(last.total)}
               </text>
@@ -194,11 +194,11 @@ export default function GrowthChart({ months, seriesLabel, monthLabel, tableLabe
         {activePoint && (
           <div
             aria-hidden
-            className={`pointer-events-none absolute -translate-x-1/2 border border-gray-900/10 bg-white px-3 py-2 shadow-sm ${tooltipAbove ? '-translate-y-full' : ''}`}
+            className={`pointer-events-none absolute -translate-x-1/2 border border-border bg-card px-3 py-2 shadow-float ${tooltipAbove ? '-translate-y-full' : ''}`}
             style={{ left: tooltipLeft, top: tooltipAbove ? tooltipY - 14 : tooltipY + 14 }}
           >
-            <p className="text-sm font-semibold text-gray-900">{numberFormat.format(activePoint.total)}</p>
-            <p className="mt-0.5 flex items-center gap-1.5 whitespace-nowrap text-[11px] text-gray-500">
+            <p className="text-sm font-semibold text-foreground">{numberFormat.format(activePoint.total)}</p>
+            <p className="mt-0.5 flex items-center gap-1.5 whitespace-nowrap text-[11px] text-muted-foreground">
               <svg width="12" height="4" aria-hidden>
                 <line x1="1" y1="2" x2="11" y2="2" stroke={LINE} strokeWidth="2" />
               </svg>
@@ -208,22 +208,22 @@ export default function GrowthChart({ months, seriesLabel, monthLabel, tableLabe
         )}
       </div>
 
-      <details className="mt-6 text-sm text-gray-600">
-        <summary className="cursor-pointer select-none transition-colors duration-300 hover:text-gray-900">
+      <details className="mt-6 text-sm text-muted-foreground">
+        <summary className="cursor-pointer select-none transition-colors duration-300 hover:text-foreground">
           {tableLabel}
         </summary>
         <table className="mt-4 w-full max-w-sm text-left">
           <thead>
-            <tr className="border-b border-gray-900/10 text-[11px] uppercase tracking-[0.15em] text-gray-500">
+            <tr className="border-b border-border text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
               <th className="py-2 font-medium">{monthLabel}</th>
               <th className="py-2 text-right font-medium">{seriesLabel}</th>
             </tr>
           </thead>
           <tbody className="tabular-nums">
             {months.map((point) => (
-              <tr key={point.month} className="border-b border-gray-900/5 last:border-0">
+              <tr key={point.month} className="border-b border-border last:border-0">
                 <td className="py-1.5">{formatMonth(point.month)}</td>
-                <td className="py-1.5 text-right text-gray-900">{numberFormat.format(point.total)}</td>
+                <td className="py-1.5 text-right text-foreground">{numberFormat.format(point.total)}</td>
               </tr>
             ))}
           </tbody>
