@@ -12,34 +12,41 @@
   }
 }
 
+/* The active fill grows out of the left edge and the previous one shrinks back
+   into it, so a change of page reads as one sweep instead of a slide. */
 .nav-item {
-  --nav-fill: transparent;
+  --nav-cut: 8px;
+  --nav-shape: polygon(0 0, 100% 0, 100% calc(100% - var(--nav-cut)), calc(100% - var(--nav-cut)) 100%, 0 100%);
   position: relative;
   isolation: isolate;
   background-color: transparent;
+}
+.nav-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-color: color-mix(in oklch, var(--sidebar-accent) 60%, transparent);
+  clip-path: var(--nav-shape);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 150ms var(--ease-solve);
+}
+.nav-item:hover::after {
+  opacity: 1;
 }
 .nav-item::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: -1;
-  background-color: var(--nav-fill);
+  background-color: var(--sidebar-accent);
+  clip-path: polygon(0 0, 0 0, 0 calc(100% - var(--nav-cut)), 0 100%, 0 100%);
   pointer-events: none;
-  transition: background-color 150ms var(--ease-solve);
+  transition: clip-path 220ms var(--ease-solve);
 }
-.nav-item:hover {
-  --nav-fill: var(--sidebar-accent);
-}
-.nav-item[data-active='true'] {
-  --nav-fill: color-mix(in oklch, var(--nav-accent, var(--sidebar-primary)) 14%, var(--sidebar-accent));
-}
-@media (min-width: 768px) {
-  .nav-item[data-active-item='true'] {
-    --nav-fill: transparent;
-  }
-}
-.nav-indicator {
-  transition: background-color 300ms var(--ease-solve);
+.nav-item[data-active='true']::before {
+  clip-path: var(--nav-shape);
 }
 
 @keyframes link-pending-in {
@@ -73,7 +80,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .nav-item::before,
-  .nav-indicator {
+  .nav-item::after {
     transition: none;
   }
 }
