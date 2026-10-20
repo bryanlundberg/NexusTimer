@@ -21,7 +21,7 @@ export function OfflineIndicator() {
     <div
       role="status"
       aria-live="polite"
-      className="fixed inset-x-0 top-0 z-100 flex items-center justify-center bg-red-600 text-white text-[11px] font-medium leading-none tracking-wide pointer-events-none"
+      className="fixed inset-x-0 top-0 z-100 flex items-center justify-center bg-destructive text-white text-[11px] font-medium leading-none tracking-wide pointer-events-none"
       style={{ paddingTop: 'calc(env(safe-area-inset-top, 0px) + 2px)', paddingBottom: '2px' }}
     >
       {t('Offline.offline')}

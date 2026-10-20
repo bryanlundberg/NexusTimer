@@ -18,8 +18,8 @@ const COLORS: Record<PresenceView, string> = {
   online: 'text-success',
   away: 'text-warning',
   busy: 'text-destructive',
-  offline: 'text-zinc-400 dark:text-zinc-500',
-  unknown: 'text-zinc-300/70 dark:text-zinc-700'
+  offline: 'text-muted-foreground',
+  unknown: 'text-muted-foreground/40'
 }
 
 interface Props {

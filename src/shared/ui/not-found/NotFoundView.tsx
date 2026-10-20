@@ -41,7 +41,7 @@ export function NotFoundView() {
           </span>
         </div>
 
-        <span className="mt-2 inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur">
+        <span className="mt-2 inline-flex items-center gap-2 border border-border bg-card/60 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur">
           <span className="size-1.5 rounded-full bg-primary animate-pulse" />
           Error 404 · Page not found
         </span>

@@ -42,10 +42,7 @@ export default function Segmented<T extends string>({
     <div
       role="radiogroup"
       aria-label={props['aria-label']}
-      className={cn(
-        'inline-flex w-fit shrink-0 items-stretch rounded-none border border-input bg-background',
-        className
-      )}
+      className={cn('inline-flex w-fit shrink-0 items-stretch border border-input bg-background', className)}
     >
       {options.map((option, index) => {
         const active = value === option.value
@@ -70,7 +67,7 @@ export default function Segmented<T extends string>({
               }
             }}
             className={cn(
-              'relative flex shrink-0 items-center gap-2 px-3 py-[7px] rounded-none text-sm font-medium outline-none transition-colors duration-[var(--dur-fast)] ease-[var(--ease-solve)] cursor-pointer [-webkit-tap-highlight-color:transparent] focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-ring pointer-coarse:py-[9px]',
+              'relative flex shrink-0 items-center gap-2 px-3 py-[7px] text-sm font-medium outline-none transition-colors duration-[var(--dur-fast)] ease-[var(--ease-solve)] cursor-pointer [-webkit-tap-highlight-color:transparent] focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-ring pointer-coarse:py-[9px]',
               active ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
             )}
           >
