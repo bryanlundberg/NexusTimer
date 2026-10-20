@@ -56,7 +56,7 @@ export function EmojiPicker({ onSelect, className }: Props) {
       <Frimousse.Search
         placeholder={t('emoji-search')}
         aria-label={t('emoji-search')}
-        className="mx-1.5 mt-1.5 h-8 shrink-0 rounded-md border border-border/60 bg-muted/40 px-2.5 text-sm outline-hidden focus-visible:border-[color-mix(in_oklab,var(--primary)_45%,var(--border))]"
+        className="mx-1.5 mt-1.5 h-8 shrink-0 border border-border/60 bg-muted/40 px-2.5 text-sm outline-hidden focus-visible:border-[color-mix(in_oklab,var(--primary)_45%,var(--border))]"
       />
 
       <Frimousse.Viewport className="relative flex-1 outline-hidden">
@@ -84,10 +84,7 @@ export function EmojiPicker({ onSelect, className }: Props) {
               </div>
             ),
             Emoji: ({ emoji, ...props }) => (
-              <button
-                {...props}
-                className="flex size-8 items-center justify-center rounded-md text-xl data-[active]:bg-muted"
-              >
+              <button {...props} className="flex size-8 items-center justify-center text-xl data-[active]:bg-muted">
                 {emoji.emoji}
               </button>
             )

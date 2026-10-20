@@ -178,7 +178,7 @@ function MessageText({ nodes }: { nodes: MessageNode[] }) {
         return <SolveCard key={index} data={node.data} />
       case 'code':
         return (
-          <code key={index} className="rounded-sm bg-foreground/10 px-1 font-mono text-[0.9em]">
+          <code key={index} className="bg-foreground/10 px-1 font-mono text-[0.9em]">
             {node.value}
           </code>
         )

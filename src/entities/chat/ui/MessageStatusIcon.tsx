@@ -18,7 +18,7 @@ const COLORS: Record<MessageStatus, string> = {
   failed: 'text-destructive',
   sent: 'text-muted-foreground',
   delivered: 'text-muted-foreground',
-  read: 'text-sky-500 dark:text-sky-400'
+  read: 'text-primary'
 }
 
 export function MessageStatusIcon({ status, className }: { status: MessageStatus; className?: string }) {
