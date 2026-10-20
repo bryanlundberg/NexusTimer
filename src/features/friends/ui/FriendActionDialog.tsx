@@ -12,7 +12,6 @@ import {
   AlertDialogHeader,
   AlertDialogTitle
 } from '@/components/ui/alert-dialog'
-import { cn } from '@/shared/lib/utils'
 
 export type FriendAction = 'remove-friend' | 'cancel-request' | 'decline' | 'block'
 
@@ -36,7 +35,7 @@ export function FriendActionDialog({ friend, action, onOpenChange, onConfirm }: 
         <AlertDialogFooter>
           <AlertDialogCancel>{t('cancel')}</AlertDialogCancel>
           <AlertDialogAction
-            className={cn(buttonVariants({ variant: 'destructive' }), 'btn-notch')}
+            className={buttonVariants({ variant: 'destructive' })}
             onClick={() => friend && onConfirm(friend._id)}
           >
             {t(action)}
