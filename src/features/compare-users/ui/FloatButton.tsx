@@ -1,5 +1,5 @@
 'use client'
-import { motion } from 'motion/react'
+import { Button } from '@/components/ui/button'
 import { GitCompareIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
@@ -16,20 +16,18 @@ export default function FloatButton() {
   }
 
   return (
-    <motion.button
+    <Button
       id="compare-float-button"
       type="button"
+      size="lg"
       onClick={handleOpen}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.97 }}
-      transition={{ duration: 0.2 }}
-      className="btn-notch fixed bottom-5 right-5 z-40 inline-flex h-11 items-center gap-2 bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-lg cursor-pointer"
+      className="fixed bottom-5 right-5 z-40 px-4"
     >
       <GitCompareIcon className="size-4.5" strokeWidth={2} />
       <span>{t('compare')}</span>
       {users.length > 0 && (
         <span className="bg-primary-foreground/20 px-1.5 py-0.5 text-xs font-bold tabular-nums">{users.length}</span>
       )}
-    </motion.button>
+    </Button>
   )
 }

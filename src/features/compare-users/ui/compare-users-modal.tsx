@@ -90,7 +90,7 @@ export default function CompareUsersModal() {
             <div key={user._id} className={cn(VALUE_COLUMN, 'py-5 sm:py-6')}>
               <div className="group flex flex-col items-center gap-3">
                 <div className="relative">
-                  <Avatar className="size-16 shadow-xl ring-4 ring-muted transition-all duration-300 group-hover:ring-primary/50 sm:size-24">
+                  <Avatar className="size-16 ring-4 ring-muted transition-all duration-300 group-hover:ring-primary/50 sm:size-24">
                     <AvatarImage className="object-cover" src={user.image} />
                     <AvatarFallback className="bg-muted-foreground/10 text-lg font-bold sm:text-xl">
                       {user.name.substring(0, 2).toUpperCase()}
@@ -101,7 +101,7 @@ export default function CompareUsersModal() {
                     onClick={() => removeUser(user._id)}
                     aria-label={t('remove', { name: user.name })}
                     title={t('remove', { name: user.name })}
-                    className="absolute -top-1 -right-1 grid size-7 place-items-center rounded-full border bg-background text-muted-foreground shadow-sm transition-colors hover:text-destructive pointer-coarse:size-9"
+                    className="absolute -top-1 -right-1 grid size-7 place-items-center rounded-full border bg-background text-muted-foreground transition-colors hover:text-destructive pointer-coarse:size-9"
                   >
                     <XIcon className="size-3.5" />
                   </button>

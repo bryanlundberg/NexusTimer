@@ -17,9 +17,7 @@ export default function CompareTableRow({
     <div
       className={cn(
         'flex gap-3 w-max items-center',
-        isHeader
-          ? 'sticky top-0 z-50 border-b bg-background/85 backdrop-blur-md shadow-sm'
-          : 'border-b border-border/40',
+        isHeader ? 'sticky top-0 z-50 border-b bg-background/85 backdrop-blur-md' : 'border-b border-border/40',
         className
       )}
     >
