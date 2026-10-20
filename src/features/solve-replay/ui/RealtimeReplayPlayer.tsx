@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import { Pause, Play, RotateCcw, SkipBack, SkipForward } from 'lucide-react'
 import { cn } from '@/shared/lib/utils'
+import { buttonVariants } from '@/components/ui/button'
 import type { SolveReplay } from '@/entities/replay/model/types'
 import { useRealtimeReplay } from '@/features/solve-replay/model/useRealtimeReplay'
 import { buildPlaybackReplay } from '@/features/solve-replay/lib/buildPlaybackReplay'
@@ -43,7 +44,7 @@ function buildSegments(markers: ReplayMarker[], total: number): BarSegment[] {
 }
 
 const ICON_BUTTON =
-  'inline-flex items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-30'
+  'inline-flex items-center justify-center text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-30'
 
 export function RealtimeReplayPlayer({
   replay: source,
@@ -96,7 +97,7 @@ export function RealtimeReplayPlayer({
 
   return (
     <div className="flex w-full flex-col items-center gap-4">
-      <div ref={containerRef} className="rounded-lg" />
+      <div ref={containerRef} className="" />
 
       <div className="flex w-full flex-col gap-3">
         {/* Progress bar with phase markers */}
@@ -161,7 +162,7 @@ export function RealtimeReplayPlayer({
               type="button"
               aria-label={isPlaying ? 'Pause' : 'Play'}
               onClick={toggle}
-              className="btn-notch mx-1 inline-flex size-11 items-center justify-center bg-primary text-primary-foreground shadow-sm transition-transform hover:bg-primary/90 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+              className={cn(buttonVariants({ size: 'icon' }), 'mx-1 size-11')}
             >
               {isPlaying ? (
                 <Pause className="size-5 fill-current" />
