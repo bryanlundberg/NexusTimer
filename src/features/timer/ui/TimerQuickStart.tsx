@@ -34,7 +34,7 @@ export default function TimerQuickStart() {
             disabled={pending}
             onClick={() => start(category)}
             data-testid={`quick-start-${category}`}
-            className="category-notch group flex w-24 flex-col items-center gap-2 p-3 disabled:opacity-60 sm:w-28 sm:p-4"
+            className="surface surface-sm group flex w-24 flex-col items-center gap-2 p-3 disabled:opacity-60 sm:w-28 sm:p-4"
           >
             <span className="size-12 text-muted-foreground transition-colors group-hover:text-foreground sm:size-14">
               <CubeCategoryIcon category={category} />

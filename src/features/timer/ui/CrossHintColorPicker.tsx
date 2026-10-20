@@ -30,7 +30,7 @@ export function CrossHintColorPicker({ faces, value, onChange }: CrossHintColorP
             aria-label={t(`MainColors.colors.${color}`)}
             onClick={() => onChange(color)}
             className={cn(
-              'flex flex-col items-center gap-1 rounded-md border py-2 text-xs tabular-nums outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring',
+              'flex flex-col items-center gap-1 border py-2 text-xs tabular-nums outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring',
               selected
                 ? 'border-primary/60 bg-primary/10 text-foreground'
                 : 'border-transparent text-muted-foreground hover:bg-muted'

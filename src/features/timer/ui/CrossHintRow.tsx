@@ -14,7 +14,7 @@ export function CrossHintRow({ icon, iconClassName, label, rotation, moves }: Cr
   const count = moves ? moves.split(' ').length : 0
 
   return (
-    <div className="flex items-center gap-3 rounded-md px-2 py-1.5 odd:bg-muted/50">
+    <div className="flex items-center gap-3 px-2 py-1.5 odd:bg-muted/50">
       <span
         aria-hidden
         className={cn('size-5 shrink-0 bg-current', iconClassName)}
