@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl'
 import { ArrowRight } from 'lucide-react'
 import MethodThumbnail from '@/features/algorithm-method/ui/MethodThumbnail'
 
-const DIFFICULTY_FILL = ['bg-emerald-500', 'bg-amber-500', 'bg-red-500'] as const
+const DIFFICULTY_FILL = ['bg-success', 'bg-warning', 'bg-destructive'] as const
 
 function AlgorithmMethod({ set }: { set: ALGORITHM_SET }) {
   const t = useTranslations('Index.AlgorithmsPage')
@@ -20,8 +20,8 @@ function AlgorithmMethod({ set }: { set: ALGORITHM_SET }) {
   const fill = DIFFICULTY_FILL[difficulty - 1] ?? DIFFICULTY_FILL[0]
 
   return (
-    <Link href={`/algorithms/${slug}`} className="group focus:outline-none rounded-none">
-      <div className="item-card flex h-full flex-col gap-5 p-4 text-card-foreground">
+    <Link href={`/algorithms/${slug}`} className="group focus:outline-none">
+      <div className="surface flex h-full flex-col gap-5 p-4 text-card-foreground">
         <div className="flex items-start gap-4">
           <MethodThumbnail set={set} />
 

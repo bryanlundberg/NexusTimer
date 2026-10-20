@@ -39,7 +39,7 @@ export default function AlgorithmModal() {
 
       <RealtimeReplayPlayer replay={replay} size={260} tempoScale={TEMPO_SCALE} />
 
-      <div className="notch-br w-full border border-border bg-muted/60 p-3 sm:p-4 text-center text-foreground">
+      <div className="surface surface-panel w-full p-3 sm:p-4 text-center text-foreground">
         <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider block mb-1.5">
           {t('algorithm-label')}
         </span>

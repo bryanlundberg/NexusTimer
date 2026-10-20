@@ -133,7 +133,7 @@ export const AlgorithmsList = ({ algorithms, virtualization, puzzle, methodSlug 
       </div>
 
       {/* Algorithm rows */}
-      <div className="algo-panel-notch divide-y divide-border/60 overflow-hidden">
+      <div className="surface surface-panel divide-y divide-border/60 overflow-hidden">
         {displayedAlgs.map((item) => (
           <AlgorithmCard
             algorithm={item}

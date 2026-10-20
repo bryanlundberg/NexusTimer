@@ -14,7 +14,7 @@ export default function AlternativeRow({ alt, index, onPreview }: AlternativeRow
   const t = useTranslations('Index.AlgorithmsPage')
 
   return (
-    <div className="notch-br-sm flex items-start gap-2 border border-border/60 bg-muted/60 px-2 py-1.5 text-foreground">
+    <div className="surface surface-panel surface-sm flex items-start gap-2 px-2 py-1.5 text-foreground">
       <span className="mt-1.5 w-10 shrink-0 text-[10px] uppercase tracking-wider text-muted-foreground sm:w-12">
         {alt.label ?? t('alt', { index })}
       </span>
