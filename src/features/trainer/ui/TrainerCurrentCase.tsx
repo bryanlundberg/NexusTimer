@@ -101,7 +101,7 @@ export default function TrainerCurrentCase({
 
             {showViz && (
               <div className="relative">
-                <div className="algo-panel-notch size-32 sm:size-36 p-2.5 flex items-center justify-center overflow-hidden">
+                <div className="surface surface-panel size-32 sm:size-36 p-2.5 flex items-center justify-center overflow-hidden">
                   <AlgorithmRender config={vizConfig} width="100%" height="100%" className="size-full" />
                 </div>
 
@@ -138,7 +138,7 @@ export default function TrainerCurrentCase({
         )}
       </div>
 
-      <div className="algo-panel-notch flex items-center justify-between gap-4 px-4 py-2.5">
+      <div className="surface surface-panel flex items-center justify-between gap-4 px-4 py-2.5">
         <div className="flex items-center gap-6 min-w-0">
           <BarStat label={t('stats.best')} value={best ?? '--'} />
           <BarStat label="ao5" value={ao5 ?? '--'} />

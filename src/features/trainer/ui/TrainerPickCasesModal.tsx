@@ -58,23 +58,23 @@ const CaseTile = memo(function CaseTile({ alg, config, isSelected, onToggle }: C
       type="button"
       onClick={() => onToggle(alg.id)}
       data-selected={isSelected ? 'true' : undefined}
-      className={cn('category-notch group relative flex flex-col items-center gap-1.5 p-2 cursor-pointer')}
+      className={cn('surface surface-sm group relative flex flex-col items-center gap-1.5 p-2 cursor-pointer')}
     >
       {isSelected && (
-        <div className="absolute top-1.5 right-1.5 size-4 rounded-[3px] bg-primary text-primary-foreground flex items-center justify-center z-10">
+        <div className="absolute top-1.5 right-1.5 size-4 bg-primary text-primary-foreground flex items-center justify-center z-10">
           <Check className="size-3" />
         </div>
       )}
       <div
         className={cn(
-          'rounded-none bg-muted/40 p-1 pointer-events-none flex items-center justify-center size-[80px]',
+          'bg-muted/40 p-1 pointer-events-none flex items-center justify-center size-[80px]',
           !isSelected && 'opacity-80'
         )}
       >
         {visible ? (
           <AlgorithmRender config={config} width={72} height={72} />
         ) : (
-          <div className="size-[72px] rounded-none animate-pulse bg-muted" />
+          <div className="size-[72px] animate-pulse bg-muted" />
         )}
       </div>
       <span className="text-[11px] font-medium truncate w-full text-center">{alg.name}</span>

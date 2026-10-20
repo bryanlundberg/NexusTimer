@@ -156,13 +156,13 @@ export default function TrainerSmartTimer({ connection }: TrainerSmartTimerProps
           <AlgorithmRender config={vizConfig} width="100%" height="100%" className="size-full" />
         </div>
         {/* Live physical cube tracking. */}
-        <div ref={containerRef} className="rounded-md overflow-hidden" />
+        <div ref={containerRef} className="overflow-hidden" />
       </div>
 
       <div className="flex items-center gap-2">
         <div
           className={cn(
-            'inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium',
+            'inline-flex items-center gap-2 px-3 py-1 text-xs font-medium',
             phase === 'ready'
               ? 'bg-timer-ready/15 text-timer-ready'
               : phase === 'solving'

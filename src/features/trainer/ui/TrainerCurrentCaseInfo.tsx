@@ -15,7 +15,7 @@ export default function TrainerCurrentCaseInfo({ algCase, vizConfig, count, reac
   const t = useTranslations('Index.TrainerHistoryPage')
 
   return (
-    <div className="algo-panel-notch flex items-center gap-3 px-3 py-2.5">
+    <div className="surface surface-panel flex items-center gap-3 px-3 py-2.5">
       <div className="size-14 overflow-hidden bg-muted/30 flex items-center justify-center shrink-0">
         {vizConfig ? <AlgorithmRender config={vizConfig} width={56} height={56} /> : null}
       </div>

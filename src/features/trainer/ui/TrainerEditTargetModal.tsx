@@ -40,7 +40,7 @@ export default function TrainerEditTargetModal({ initial, onApply }: TrainerEdit
               onClick={() => setValue(seconds)}
               data-selected={active ? 'true' : undefined}
               className={cn(
-                'category-notch flex cursor-pointer flex-col items-center justify-center gap-0.5 p-3 focus:outline-none',
+                'surface surface-sm flex cursor-pointer flex-col items-center justify-center gap-0.5 p-3 focus:outline-none',
                 active && 'text-primary'
               )}
             >

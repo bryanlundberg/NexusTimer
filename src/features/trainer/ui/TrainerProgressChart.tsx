@@ -106,7 +106,7 @@ export default function TrainerProgressChart({ solves, targetMs, label }: Traine
               style={{ left: `${point.x}%`, top: `${point.y}%`, backgroundColor: color }}
             />
             <div
-              className="pointer-events-none absolute grid min-w-[8rem] items-start gap-1.5 rounded-lg border border-white/10 bg-black px-2.5 py-1.5 text-xs text-white shadow-xl"
+              className="pointer-events-none absolute grid min-w-[8rem] items-start gap-1.5 menu-panel px-2.5 py-1.5 text-xs text-popover-foreground"
               style={{
                 left: `${point.x}%`,
                 top: `${point.y}%`,
@@ -114,12 +114,10 @@ export default function TrainerProgressChart({ solves, targetMs, label }: Traine
               }}
             >
               <div className="flex w-full items-center gap-2">
-                <span className="size-2.5 shrink-0 rounded-[2px]" style={{ backgroundColor: color }} />
+                <span className="size-2.5 shrink-0" style={{ backgroundColor: color }} />
                 <div className="flex flex-1 items-center justify-between gap-2 leading-none">
-                  <span className="text-white/80">{label}</span>
-                  <span className="font-mono font-medium tabular-nums text-white">
-                    {point.seconds.toLocaleString()}
-                  </span>
+                  <span className="text-muted-foreground">{label}</span>
+                  <span className="font-mono font-medium tabular-nums">{point.seconds.toLocaleString()}</span>
                 </div>
               </div>
             </div>
