@@ -47,39 +47,36 @@ export default function ContactUsPage() {
       />
 
       <div className="mx-auto max-w-3xl">
-        <div className="notch-br border border-gray-900/10 bg-gray-900/[0.03] p-8 text-center">
+        <div className="surface surface-panel p-8 text-center">
           <Mail className="mx-auto h-6 w-6 text-primary mb-4" aria-hidden />
-          <p className="text-sm text-gray-600 mb-3">Write to us at</p>
+          <p className="text-sm text-muted-foreground mb-3">Write to us at</p>
           <a
             href={`mailto:${SUPPORT_EMAIL}`}
-            className="font-display text-lg md:text-2xl font-bold tracking-[-0.01em] text-gray-900 underline decoration-gray-900/20 underline-offset-4 transition-colors hover:decoration-gray-900/60 break-all"
+            className="font-display text-lg md:text-2xl font-bold tracking-[-0.01em] text-foreground underline decoration-foreground/20 underline-offset-4 transition-colors hover:decoration-foreground/60 break-all"
           >
             {SUPPORT_EMAIL}
           </a>
-          <p className="mt-6 text-sm text-gray-600 leading-relaxed text-pretty">
+          <p className="mt-6 text-sm text-muted-foreground leading-relaxed text-pretty">
             Account questions, data or privacy requests, press, or anything you would rather not post in public. If you
             are writing about your account, send it from the address you signed up with so we can verify it.
           </p>
         </div>
 
-        <h2 className="font-display mt-12 mb-4 text-xl md:text-2xl font-bold tracking-[-0.01em] text-gray-900">
+        <h2 className="font-display mt-12 mb-4 text-xl md:text-2xl font-bold tracking-[-0.01em] text-foreground">
           Other ways to reach us
         </h2>
 
         <div className="grid gap-4 sm:grid-cols-3">
           {ELSEWHERE.map((item) => (
-            <div
-              key={item.title}
-              className="flex h-full flex-col notch-br border border-gray-900/10 bg-gray-900/[0.02] p-5"
-            >
+            <div key={item.title} className="surface surface-panel flex h-full flex-col p-5">
               <item.icon className="h-5 w-5 text-primary mb-3" aria-hidden />
-              <h3 className="font-semibold text-gray-900 mb-1.5">{item.title}</h3>
-              <p className="text-sm text-gray-600 leading-relaxed text-pretty mb-4">{item.text}</p>
+              <h3 className="font-semibold text-foreground mb-1.5">{item.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed text-pretty mb-4">{item.text}</p>
               <Link
                 href={item.href}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-auto text-sm font-medium text-gray-900 underline decoration-gray-900/25 underline-offset-4 transition-colors hover:decoration-gray-900/60"
+                className="mt-auto text-sm font-medium text-foreground underline decoration-foreground/25 underline-offset-4 transition-colors hover:decoration-foreground/60"
               >
                 {item.action}
               </Link>
@@ -87,7 +84,7 @@ export default function ContactUsPage() {
           ))}
         </div>
 
-        <p className="mt-10 text-sm text-gray-600 leading-relaxed text-pretty">
+        <p className="mt-10 text-sm text-muted-foreground leading-relaxed text-pretty">
           To delete your account and its data, follow the steps on the{' '}
           <Link href="/account-deletion" className="underline underline-offset-4">
             account deletion
