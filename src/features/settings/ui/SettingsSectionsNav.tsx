@@ -18,7 +18,7 @@ export default function SettingsSectionsNav({ observeKey }: SettingsSectionsNavP
 
   return (
     <nav aria-label={t('SettingsPage.options')} className="hidden lg:flex w-52 shrink-0 sticky top-20 flex-col gap-0.5">
-      {SETTINGS_SECTIONS.map(({ id, icon: Icon, color, titleKey }) => {
+      {SETTINGS_SECTIONS.map(({ id, icon: Icon, titleKey }) => {
         const isActive = activeId === id
         return (
           <button
@@ -27,13 +27,12 @@ export default function SettingsSectionsNav({ observeKey }: SettingsSectionsNavP
             onClick={() => scrollToSection(id)}
             data-active={isActive ? 'true' : undefined}
             aria-current={isActive ? 'true' : undefined}
-            style={{ '--nav-accent': color } as React.CSSProperties}
             className={cn(
               'nav-item flex items-center gap-2.5 px-3 py-2 text-sm text-left transition-colors',
               isActive ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground'
             )}
           >
-            <Icon className="size-4 shrink-0 transition-colors" style={isActive ? { color } : undefined} />
+            <Icon className="size-4 shrink-0" />
             <span className="truncate">{t(titleKey)}</span>
           </button>
         )
