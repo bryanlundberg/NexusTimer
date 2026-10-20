@@ -18,6 +18,7 @@ import { formatTps } from '@/shared/lib/formatTps'
 import { SolveBreakdown } from '@/features/manage-solves/ui/SolveBreakdown'
 import { cn } from '@/shared/lib/utils'
 import { RotateCw, Zap, Layers } from 'lucide-react'
+import { Stat } from '@/features/replay-solve-details/ui/Stat'
 
 export default function SolveDetails() {
   const t = useTranslations('Index')
@@ -89,24 +90,9 @@ export default function SolveDetails() {
         {analysis && (
           <div className="px-4 pb-3 sm:px-5 flex flex-col gap-3">
             <div className="grid grid-cols-3 gap-2">
-              <div className="notch-br-sm flex flex-col items-center gap-1 bg-muted/40 py-2.5">
-                <span className="flex items-center gap-1 text-[10px] text-muted-foreground">
-                  <RotateCw className="size-3" /> Moves
-                </span>
-                <span className="font-mono text-sm font-semibold tabular-nums">{moveCount ?? '—'}</span>
-              </div>
-              <div className="rounded-none flex flex-col items-center gap-1 bg-muted/40 py-2.5">
-                <span className="flex items-center gap-1 text-[10px] text-muted-foreground">
-                  <Zap className="size-3" /> TPS
-                </span>
-                <span className="font-mono text-sm font-semibold tabular-nums">{tps ?? '—'}</span>
-              </div>
-              <div className="notch-br-sm flex flex-col items-center gap-1 bg-muted/40 py-2.5">
-                <span className="flex items-center gap-1 text-[10px] text-muted-foreground">
-                  <Layers className="size-3" /> Method
-                </span>
-                <span className="font-mono text-sm font-semibold tabular-nums">{analysis.method ?? '—'}</span>
-              </div>
+              <Stat icon={<RotateCw className="size-3" />} label="Moves" value={moveCount ?? '—'} />
+              <Stat icon={<Zap className="size-3" />} label="TPS" value={tps ?? '—'} />
+              <Stat icon={<Layers className="size-3" />} label="Method" value={analysis.method ?? '—'} />
             </div>
             <SolveBreakdown analysis={analysis} totalMs={totalMs} />
           </div>
@@ -122,7 +108,7 @@ export default function SolveDetails() {
               type="button"
               aria-label={t('tooltips.copy')}
               onClick={handleCopyScramble}
-              className="absolute right-0 top-0 rounded-none border p-1 text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+              className="absolute right-0 top-0 border p-1 text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
             >
               <CopyIcon className="size-3.5" />
             </button>
@@ -136,7 +122,7 @@ export default function SolveDetails() {
             </p>
           )}
           <div className="flex flex-col items-center gap-2.5">
-            <div data-vaul-no-drag className="notch-br bg-muted/40 p-2">
+            <div data-vaul-no-drag className="surface surface-well p-2">
               <ScrambleDisplay
                 show={true}
                 scramble={solve?.scramble || ''}
@@ -150,7 +136,7 @@ export default function SolveDetails() {
                 visualization={visualization}
               />
             </div>
-            <div className="inline-flex rounded-none border overflow-hidden text-[10px] font-medium">
+            <div className="inline-flex border overflow-hidden text-[10px] font-medium">
               {(['2D', '3D'] as const).map((v, i) => (
                 <button
                   key={v}
