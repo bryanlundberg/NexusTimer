@@ -49,7 +49,6 @@ export default function SolveGridItem({ index, orderedSolves, solve, isRecord = 
   return (
     <Button
       variant={'outline'}
-      notch={false}
       data-testid={`solve-grid-item-${index}`}
       onClick={handleClick}
       onContextMenu={handleContextMenu}
@@ -59,7 +58,7 @@ export default function SolveGridItem({ index, orderedSolves, solve, isRecord = 
       data-record={isRecord ? 'true' : undefined}
       style={{ WebkitTouchCallout: 'none' }}
       className={cn(
-        'item-card relative grow flex flex-col items-center justify-center w-full h-full text-center transition duration-200 cursor-pointer p-2 sm:p-3 select-none active:scale-100'
+        'surface relative grow flex flex-col items-center justify-center w-full h-full text-center transition duration-200 cursor-pointer p-2 sm:p-3 select-none active:scale-100'
       )}
     >
       {item.bookmark && (
