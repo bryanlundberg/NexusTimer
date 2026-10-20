@@ -73,7 +73,7 @@ export default function DeleteCollectionForm() {
         <Alert
           variant="destructive"
           data-tone="danger"
-          className={'alert-notch'}
+          className={'surface surface-panel'}
           data-testid="dialog-delete-cube-warning"
         >
           <AlertCircleIcon />

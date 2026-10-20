@@ -94,7 +94,7 @@ export default function EmptyCubes({
       >
         <span
           className={cn(
-            'grid place-items-center size-9 shrink-0 rounded-md',
+            'grid place-items-center size-9 shrink-0',
             'bg-primary/10 text-primary transition-colors group-hover/action:bg-primary/15',
             '[&_svg]:size-4.5'
           )}

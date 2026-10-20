@@ -130,7 +130,7 @@ export default function CreateCollectionForm() {
                     title={e.name}
                     onClick={() => setValue('category', e.name)}
                     className={cn(
-                      'category-notch group focus-visible:outline-none relative flex min-w-0 flex-col items-center gap-1 p-1.5 sm:gap-1.5 sm:p-2'
+                      'surface surface-sm group focus-visible:outline-none relative flex min-w-0 flex-col items-center gap-1 p-1.5 sm:gap-1.5 sm:p-2'
                     )}
                   >
                     <span
