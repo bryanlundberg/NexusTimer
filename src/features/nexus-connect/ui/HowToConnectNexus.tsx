@@ -43,7 +43,7 @@ export default function HowToConnectNexus() {
           <li className="wrap-break-word">{t('HomePage.nx-step-3')}</li>
         </ol>
 
-        <Image src="/nexus_connect.png" alt="Nexus Connect App" width={200} height={60} className="w-full rounded-md" />
+        <Image src="/nexus_connect.png" alt="Nexus Connect App" width={200} height={60} className="w-full" />
 
         <Link href={DOWNLOAD_URL} target="_blank" rel="noreferrer noopener" className="mx-auto">
           <Image

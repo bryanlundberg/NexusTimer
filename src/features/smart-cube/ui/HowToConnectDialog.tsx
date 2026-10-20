@@ -33,9 +33,7 @@ export function HowToConnectDialog() {
 
   const renderUrl = (url: string) => (
     <div className="mt-1.5 flex items-start gap-2">
-      <code className="min-w-0 flex-1 rounded-md bg-muted px-2 py-1 font-mono text-xs text-foreground break-all">
-        {url}
-      </code>
+      <code className="min-w-0 flex-1 bg-muted px-2 py-1 font-mono text-xs text-foreground break-all">{url}</code>
       <Button
         type="button"
         variant="outline"
