@@ -9,7 +9,11 @@ function Svg({ size = 24, children, ...props }: IconProps & { children: React.Re
       width={size}
       height={size}
       viewBox="0 0 24 24"
-      fill="currentColor"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="square"
+      strokeLinejoin="miter"
       {...props}
     >
       {children}
@@ -17,104 +21,81 @@ function Svg({ size = 24, children, ...props }: IconProps & { children: React.Re
   )
 }
 
-/* Timer — solid stopwatch */
 export function TimerNavIcon(props: IconProps) {
   return (
     <Svg {...props}>
-      <rect x="9" y="1.5" width="6" height="2.8" rx="1.4" />
-      <path fillRule="evenodd" d="M12 5.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17Zm1 3.5v5.5h-2V9h2Z" />
+      <circle cx="12" cy="13.5" r="7.5" />
+      <path d="M9.5 2.75h5M12 2.75V6M12 10v3.5" />
     </Svg>
   )
 }
 
-/* Solves — solid list of records */
 export function SolvesNavIcon(props: IconProps) {
   return (
     <Svg {...props}>
-      <rect x="3" y="4.6" width="18" height="3.6" rx="1.8" />
-      <rect x="3" y="10.2" width="18" height="3.6" rx="1.8" />
-      <rect x="3" y="15.8" width="18" height="3.6" rx="1.8" />
+      <path d="M8.5 6H20M8.5 12H20M8.5 18H20M4 6h.5M4 12h.5M4 18h.5" />
     </Svg>
   )
 }
 
-/* Statistics — ascending bars */
 export function StatsNavIcon(props: IconProps) {
   return (
     <Svg {...props}>
-      <rect x="2.5" y="11" width="5" height="10.5" rx="1.4" />
-      <rect x="9.5" y="6" width="5" height="15.5" rx="1.4" />
-      <rect x="16.5" y="2.5" width="5" height="19" rx="1.4" />
+      <path d="M3.75 20.25V12.5h4v7.75M10 20.25V7.5h4v12.75M16.25 20.25V3.75h4v16.5M2.5 20.25h19" />
     </Svg>
   )
 }
 
-/* Cube — solid cut-corner cube */
 export function CubeNavIcon(props: IconProps) {
   return (
     <Svg {...props}>
-      <path d="M3 3h11l7 7v11H3z" />
+      <path d="M3.75 3.75h10l6.5 6.5v10H3.75z" />
     </Svg>
   )
 }
 
-/* Transfer — two solid arrows */
 export function TransferNavIcon(props: IconProps) {
   return (
     <Svg {...props}>
-      <path d="M3 5.5h10V3l7.5 4.5L13 12V9.5H3z" />
-      <path d="M21 18.5H11V21l-7.5-4.5L11 12v2.5h10z" />
+      <path d="M4 7.5h15M15 3.5l4 4-4 4M20 16.5H5M9 12.5l-4 4 4 4" />
     </Svg>
   )
 }
 
-/* Settings — solid gear */
 export function SettingsNavIcon(props: IconProps) {
   return (
     <Svg {...props}>
+      <circle cx="12" cy="12" r="6" />
+      <circle cx="12" cy="12" r="2.25" />
       {Array.from({ length: 8 }).map((_, i) => (
-        <rect key={i} x="10.6" y="1.4" width="2.8" height="4.2" rx="0.9" transform={`rotate(${i * 45} 12 12)`} />
+        <path key={i} d="M12 2.5V6" transform={`rotate(${i * 45} 12 12)`} />
       ))}
-      <path
-        fillRule="evenodd"
-        d="M12 5.6a6.4 6.4 0 1 0 0 12.8 6.4 6.4 0 0 0 0-12.8Zm0 3.8a2.6 2.6 0 1 1 0 5.2 2.6 2.6 0 0 1 0-5.2Z"
-      />
     </Svg>
   )
 }
 
-/* Trainer — solid dumbbell */
 export function TrainerNavIcon(props: IconProps) {
   return (
     <Svg {...props}>
-      <rect x="2.4" y="8" width="2.8" height="8" rx="1.1" />
-      <rect x="5.2" y="9.6" width="2.2" height="4.8" rx="0.9" />
-      <rect x="7.2" y="10.6" width="9.6" height="2.8" rx="1.1" />
-      <rect x="16.6" y="9.6" width="2.2" height="4.8" rx="0.9" />
-      <rect x="18.8" y="8" width="2.8" height="8" rx="1.1" />
+      <path d="M2.75 9.5v5M5.25 7.25v9.5h2.5v-9.5zM7.75 12h8.5M16.25 7.25v9.5h2.5v-9.5zM21.25 9.5v5" />
     </Svg>
   )
 }
 
-/* Algorithms — solid cube face (2x2) */
 export function AlgorithmsNavIcon(props: IconProps) {
   return (
     <Svg {...props}>
-      <rect x="3" y="3" width="8" height="8" rx="1.4" />
-      <rect x="13" y="3" width="8" height="8" rx="1.4" />
-      <rect x="3" y="13" width="8" height="8" rx="1.4" />
-      <rect x="13" y="13" width="8" height="8" rx="1.4" />
+      <path d="M3.75 3.75h6.5v6.5h-6.5zM13.75 3.75h6.5v6.5h-6.5zM3.75 13.75h6.5v6.5h-6.5zM13.75 13.75h6.5v6.5h-6.5z" />
     </Svg>
   )
 }
 
-/* People — solid group */
 export function PeopleNavIcon(props: IconProps) {
   return (
     <Svg {...props}>
-      <circle cx="8" cy="8.5" r="3.2" />
-      <circle cx="16" cy="8.5" r="3.2" />
-      <path d="M2.5 20.5a7 7 0 0 1 19 0 1 1 0 0 1-1 1H3.5a1 1 0 0 1-1-1z" />
+      <circle cx="9" cy="8" r="3.25" />
+      <path d="M2.75 20.25a6.25 6.25 0 0 1 12.5 0" />
+      <path d="M15.5 4.9a3.25 3.25 0 0 1 0 6.2M18 14.6a6.25 6.25 0 0 1 3.25 5.65" />
     </Svg>
   )
 }
@@ -122,9 +103,9 @@ export function PeopleNavIcon(props: IconProps) {
 export function FriendsNavIcon(props: IconProps) {
   return (
     <Svg {...props}>
-      <circle cx="9" cy="8" r="3.6" />
-      <path d="M2.5 20.5a6.5 6.5 0 0 1 11.2-4.5 3.6 3.6 0 0 0 .6 5.5H3.5a1 1 0 0 1-1-1z" />
-      <path d="M18 21.5l-3.4-3.3a2.2 2.2 0 0 1 3.4-2.8 2.2 2.2 0 0 1 3.4 2.8z" />
+      <circle cx="9" cy="8" r="3.25" />
+      <path d="M2.75 20.25a6.25 6.25 0 0 1 9.5-5.35" />
+      <path d="M18 20.5l-3.1-3.05a1.95 1.95 0 0 1 3.1-2.35 1.95 1.95 0 0 1 3.1 2.35z" />
     </Svg>
   )
 }
@@ -132,28 +113,25 @@ export function FriendsNavIcon(props: IconProps) {
 export function MessagesNavIcon(props: IconProps) {
   return (
     <Svg {...props}>
-      <path d="M3 4.5A2.5 2.5 0 0 1 5.5 2h9A2.5 2.5 0 0 1 17 4.5v6a2.5 2.5 0 0 1-2.5 2.5H8.2l-3.6 2.9A1 1 0 0 1 3 15.1z" />
-      <path d="M19 7.2a2.5 2.5 0 0 1 2 2.45v10.5a1 1 0 0 1-1.6.8L16 18.5h-5.5A2.5 2.5 0 0 1 8 16v-1h6.5A4.5 4.5 0 0 0 19 10.5z" />
+      <path d="M3.25 3.75h13v9.5H8.5l-5.25 4z" />
+      <path d="M16.25 8h4.5v12.5l-4-3H9.5v-4.25" />
     </Svg>
   )
 }
 
-/* Leaderboards — solid podium */
 export function LeaderboardsNavIcon(props: IconProps) {
   return (
     <Svg {...props}>
-      <rect x="2.5" y="12" width="5.6" height="8.5" rx="1.2" />
-      <rect x="9.2" y="6.5" width="5.6" height="14" rx="1.2" />
-      <rect x="15.9" y="14.5" width="5.6" height="6" rx="1.2" />
+      <path d="M2.75 20.25V12.5h6.5M9.25 20.25V6.75h5.5v13.5M14.75 15h6.5v5.25M2 20.25h20" />
     </Svg>
   )
 }
 
-/* Free play — two stacked cubes (multiplayer) */
 export function FreePlayNavIcon(props: IconProps) {
   return (
     <Svg {...props}>
-      <path fillRule="evenodd" d="M3 4h9l3 3v8H3zM9 9h9l3 3v8H9z" />
+      <path d="M3.25 3.75h7.5l3 3v7h-10.5z" />
+      <path d="M13.75 9.75h3l3 3v7.5h-10.5v-3.5" />
     </Svg>
   )
 }
