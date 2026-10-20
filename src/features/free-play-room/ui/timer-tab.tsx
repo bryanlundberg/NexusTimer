@@ -229,7 +229,7 @@ export default function TimerTab({ event, onlineUsers }: TimerTabProps) {
         <AnimatePresence>
           {disableTimer && (
             <motion.div
-              className="mt-6 px-4 py-2.5 rounded-lg bg-muted text-muted-foreground text-sm text-center max-w-xs"
+              className="mt-6 px-4 py-2.5 bg-muted text-muted-foreground text-sm text-center max-w-xs"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}

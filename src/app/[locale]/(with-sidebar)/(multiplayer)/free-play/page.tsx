@@ -94,7 +94,7 @@ export default function FreePlayPage() {
             {status === 'authenticated' ? (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3, delay: 0.15 }}>
                 <div className="flex items-center gap-2 mb-5">
-                  <span className="size-2 shrink-0 rounded-[2px] bg-cube-red" aria-hidden />
+                  <span className="size-2 shrink-0 bg-cube-red" aria-hidden />
                   <h2 className="font-display text-xs font-semibold uppercase tracking-[0.14em] text-foreground/80">
                     {t('available-rooms')}
                   </h2>
@@ -143,7 +143,7 @@ export default function FreePlayPage() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.4, delay: 0.25 }}
           >
-            <div className="algo-panel-notch p-5">
+            <div className="surface surface-panel p-5">
               <h3 className="font-display text-xs font-semibold uppercase tracking-[0.14em] text-foreground/80 mb-4">
                 {t('how-to-play.title')}
               </h3>

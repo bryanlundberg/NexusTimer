@@ -26,7 +26,7 @@ export default function InspectionToggleButton({ enabled, onToggle }: Inspection
             size="icon"
             aria-pressed={enabled}
             aria-label={enabled ? t('inspection-on') : t('inspection-off')}
-            className="size-9 rounded-lg pointer-coarse:size-11"
+            className="size-9 pointer-coarse:size-11"
             onClick={onToggle}
           >
             {enabled ? <Eye className="size-4" /> : <EyeOff className="size-4" />}
