@@ -15,18 +15,23 @@ import {
 } from '@/components/ui/sidebar'
 import { ChevronRightIcon } from '@radix-ui/react-icons'
 import { Link, usePathname } from '@/shared/config/i18n/navigation'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { cn } from '@/shared/lib/utils'
 import { LinkPendingHint } from '@/shared/ui/link-pending-hint/LinkPendingHint'
 import { SIDEBAR_HINT_CLASS } from '@/widgets/sidebar/model/link-hint'
 import type { SidebarNavItem } from '@/widgets/sidebar/model/useSidebarNav'
 import { useTranslations } from 'next-intl'
 
-export function NavMain({ items, label, accent }: { items: SidebarNavItem[]; label?: string; accent?: string }) {
+export function NavMain({ items, label }: { items: SidebarNavItem[]; label?: string }) {
   const t = useTranslations('Index.NavMain')
   const pathname = usePathname() ?? ''
   const [hash, setHash] = useState<string>('')
+  const [openOverrides, setOpenOverrides] = useState<Record<string, boolean>>({})
   const { setOpenMobile, isMobile } = useSidebar()
+
+  useEffect(() => {
+    setOpenOverrides({})
+  }, [pathname])
 
   const handleNavClick = () => {
     if (isMobile) setOpenMobile(false)
@@ -52,34 +57,12 @@ export function NavMain({ items, label, accent }: { items: SidebarNavItem[]; lab
 
   const isItemActive = (item: (typeof items)[number]) =>
     item.items?.length ? pathname === item.url || item.items.some((s) => isPathActive(s.url)) : isPathActive(item.url)
-  const sectionActive = items.some(isItemActive)
 
   return (
-    <SidebarGroup
-      style={accent ? ({ ['--nav-accent']: accent } as React.CSSProperties) : undefined}
-      className="group-data-[collapsible=icon]:mt-1 group-data-[collapsible=icon]:border-t group-data-[collapsible=icon]:border-sidebar-border/60 group-data-[collapsible=icon]:pt-2"
-    >
+    <SidebarGroup className="group-data-[collapsible=icon]:mt-1 group-data-[collapsible=icon]:border-t group-data-[collapsible=icon]:border-sidebar-border/60 group-data-[collapsible=icon]:pt-2 group-data-[collapsible=icon]:first:mt-0 group-data-[collapsible=icon]:first:border-t-0">
       {label && (
-        <SidebarGroupLabel className="gap-2 font-display text-[10px] font-semibold uppercase tracking-[0.14em]">
-          {accent && <span aria-hidden className="size-2 shrink-0" style={{ backgroundColor: 'var(--nav-accent)' }} />}
-          <span
-            className={cn(
-              'truncate transition-colors duration-300',
-              sectionActive ? 'text-sidebar-foreground' : 'text-sidebar-foreground/55'
-            )}
-          >
-            {label}
-          </span>
-          <span
-            aria-hidden
-            className="h-px min-w-4 flex-1 transition-colors duration-300"
-            style={{
-              backgroundColor:
-                sectionActive && accent
-                  ? 'color-mix(in oklch, var(--nav-accent) 45%, transparent)'
-                  : 'var(--sidebar-border)'
-            }}
-          />
+        <SidebarGroupLabel className="font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-sidebar-foreground/40">
+          <span className="truncate">{label}</span>
         </SidebarGroupLabel>
       )}
       <SidebarMenu>
@@ -87,16 +70,19 @@ export function NavMain({ items, label, accent }: { items: SidebarNavItem[]; lab
           const itemActive = isItemActive(item)
 
           return (
-            <Collapsible key={`${item.title}-${itemActive}`} asChild defaultOpen={itemActive}>
+            <Collapsible
+              key={item.title}
+              asChild
+              open={openOverrides[item.title] ?? itemActive}
+              onOpenChange={(open) => setOpenOverrides((prev) => ({ ...prev, [item.title]: open }))}
+            >
               <SidebarMenuItem>
                 <SidebarMenuButton
                   asChild
                   tooltip={item.badge ? `${item.title} (${item.badge})` : item.title}
                   isActive={itemActive}
-                  data-active-item={itemActive ? 'true' : undefined}
                   className={cn(
-                    'nav-item transition-[width,height,padding,color] text-sidebar-foreground/75 hover:text-sidebar-foreground data-[active=true]:text-sidebar-foreground group-data-[collapsible=icon]:[&>svg]:opacity-90',
-                    accent && 'data-[active=true]:[&>svg]:text-(--nav-accent)',
+                    'nav-item transition-[width,height,padding,color] text-sidebar-foreground hover:text-sidebar-foreground data-[active=true]:text-sidebar-foreground [&>svg]:text-sidebar-foreground/50 data-[active=true]:font-normal',
                     isMobile && 'h-10'
                   )}
                 >
@@ -148,7 +134,7 @@ export function NavMain({ items, label, accent }: { items: SidebarNavItem[]; lab
                                 asChild
                                 isActive={subIsActive}
                                 className={cn(
-                                  'nav-item text-sidebar-foreground/70 hover:text-sidebar-foreground data-[active=true]:text-sidebar-foreground',
+                                  'nav-item text-sidebar-foreground hover:text-sidebar-foreground data-[active=true]:text-sidebar-foreground',
                                   isMobile && 'h-9'
                                 )}
                               >

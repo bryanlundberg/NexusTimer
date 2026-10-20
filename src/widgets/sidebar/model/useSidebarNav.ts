@@ -23,15 +23,7 @@ import { formatBadgeCount } from '@/shared/lib/badge-count'
 import { useFriends } from '@/entities/friendship/model/useFriends'
 import { useInbox } from '@/entities/chat/model/useInbox'
 
-export const SECTION_ACCENT = {
-  platform: 'var(--cube-blue)',
-  training: 'var(--cube-green)',
-  community: 'var(--cube-orange)'
-} as const
-
-export type SectionKey = keyof typeof SECTION_ACCENT
-
-export const SECTION_KEYS = Object.keys(SECTION_ACCENT) as SectionKey[]
+export type SectionKey = 'platform' | 'training' | 'community'
 
 export interface SidebarNavItem {
   title: string
@@ -45,7 +37,6 @@ export interface SidebarNavItem {
 export interface SidebarNavSection {
   key: SectionKey
   label: string
-  accent: string
   items: SidebarNavItem[]
 }
 
@@ -62,7 +53,6 @@ export function useSidebarNav(): SidebarNavSection[] {
       {
         key: 'platform',
         label: t('NavMain.platform'),
-        accent: SECTION_ACCENT.platform,
         items: [
           { title: t('NavMain.timer'), url: '/app', icon: TimerNavIcon },
           { title: t('NavMain.solves'), url: '/solves', icon: SolvesNavIcon },
@@ -79,7 +69,6 @@ export function useSidebarNav(): SidebarNavSection[] {
       {
         key: 'training',
         label: t('NavMain.training'),
-        accent: SECTION_ACCENT.training,
         items: [
           { title: t('NavMain.trainer'), url: '/algorithms/trainer', icon: TrainerNavIcon },
           {
@@ -96,7 +85,6 @@ export function useSidebarNav(): SidebarNavSection[] {
       {
         key: 'community',
         label: t('NavMain.community'),
-        accent: SECTION_ACCENT.community,
         items: [
           { title: t('NavMain.people'), url: '/people', icon: PeopleNavIcon },
           {
