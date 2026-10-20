@@ -32,7 +32,7 @@ export function RecordSolveCard({
       data-selected={selected}
       data-record={isRecord}
       onClick={onSelect}
-      className="item-card flex min-w-0 cursor-pointer flex-col items-center gap-1 p-1.5 pb-2 outline-none"
+      className="surface flex min-w-0 cursor-pointer flex-col items-center gap-1 p-1.5 pb-2 outline-none"
     >
       <span className={cn('text-[10px] font-medium', isRecord ? 'text-record' : 'text-muted-foreground')}>{label}</span>
       <div

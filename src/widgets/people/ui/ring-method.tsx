@@ -27,7 +27,7 @@ export default function RingMethod({
       aria-pressed={selected}
       data-selected={selected ? 'true' : undefined}
       title={`${set.title} — ${set.subtitle} · ${learnedCount}/${total}`}
-      className={cn('category-notch flex w-26 flex-col items-center my-2 gap-2 p-3 focus:outline-none')}
+      className={cn('surface surface-sm flex w-26 flex-col items-center my-2 gap-2 p-3 focus:outline-none')}
     >
       <div className="relative">
         <svg width={SIZE} height={SIZE} viewBox={`0 0 ${SIZE} ${SIZE}`} className="-rotate-90">
