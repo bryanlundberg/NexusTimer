@@ -49,7 +49,7 @@ export default function AuthBackground({ variant }: Props) {
           }}
         >
           <div
-            className="rounded-md border-2 border-black/80 dark:border-white/20 shadow-lg"
+            className="border-2 border-black/80 dark:border-white/20 shadow-lg"
             style={{
               width: `${s.size}px`,
               height: `${s.size}px`,
