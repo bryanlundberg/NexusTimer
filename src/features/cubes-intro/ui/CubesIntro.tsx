@@ -11,7 +11,7 @@ export default function CubesIntro() {
   if (seen) return null
 
   return (
-    <div className="notch-br flex flex-col items-start gap-2.5 border bg-muted/40 p-3" role="note">
+    <div className="surface surface-panel flex flex-col items-start gap-2.5 p-3" role="note">
       <p className="text-sm leading-relaxed text-pretty">{t('content')}</p>
       <Button variant="outline" size="sm" className="h-7 px-2.5 text-xs" onClick={markSeen}>
         {t('cta')}

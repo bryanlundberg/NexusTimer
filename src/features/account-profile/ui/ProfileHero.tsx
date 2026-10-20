@@ -116,7 +116,7 @@ export default function ProfileHero({
                     <button
                       type="button"
                       aria-label={tAccount('wca-unlink')}
-                      className="text-muted-foreground hover:text-destructive transition-colors rounded-sm p-0.5"
+                      className="text-muted-foreground hover:text-destructive transition-colors p-0.5"
                     >
                       <X className="size-3.5" />
                     </button>

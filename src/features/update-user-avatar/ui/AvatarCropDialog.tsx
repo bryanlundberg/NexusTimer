@@ -97,7 +97,7 @@ export function AvatarCropDialog({ open, imageSrc, onConfirm, onCancel }: Avatar
         <div
           ref={setFrame}
           data-vaul-no-drag
-          className="relative mx-auto aspect-square w-full max-w-[min(100%,55vh)] overflow-hidden rounded-md bg-muted"
+          className="relative mx-auto aspect-square w-full max-w-[min(100%,55vh)] overflow-hidden bg-muted"
         >
           {imageSrc && (
             <Cropper

@@ -11,7 +11,7 @@ export default function BackupTips() {
   if (seen) return null
 
   return (
-    <div className="notch-br flex flex-col items-start gap-2.5 border bg-muted/40 p-3" role="note">
+    <div className="surface surface-panel flex flex-col items-start gap-2.5 p-3" role="note">
       <p className="text-sm leading-relaxed text-pretty">
         <span className="font-medium">{t('label')}</span> {t('sync-order')}
       </p>

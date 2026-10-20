@@ -11,7 +11,7 @@ export default function AccountNotAuth() {
     <div className="flex items-center justify-center min-h-[60dvh] px-4">
       <div className="w-full max-w-sm space-y-8 text-center">
         <div className="flex flex-col items-center gap-4">
-          <div className="flex items-center justify-center size-16 rounded-2xl bg-primary/10 text-primary">
+          <div className="flex items-center justify-center size-16 bg-primary/10 text-primary">
             <LogIn className="size-7" />
           </div>
           <div className="space-y-2">
