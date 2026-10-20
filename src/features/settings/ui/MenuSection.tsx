@@ -36,14 +36,8 @@ export function MenuSection({
         {title}
       </h2>
       <div
-        style={
-          tone === 'destructive'
-            ? ({
-                '--pn-border-color': 'color-mix(in oklab, var(--destructive) 40%, var(--border))'
-              } as React.CSSProperties)
-            : undefined
-        }
-        className={cn('panel-notch', separators && SEPARATORS)}
+        data-tone={tone === 'destructive' ? 'danger' : undefined}
+        className={cn('surface surface-panel', separators && SEPARATORS)}
       >
         {children}
       </div>
