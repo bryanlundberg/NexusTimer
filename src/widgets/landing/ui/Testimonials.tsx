@@ -29,7 +29,7 @@ export default function Testimonials() {
 
       <div className="relative z-10 mx-auto max-w-5xl px-6">
         <Reveal className="mb-10">
-          <h2 className="font-display text-balance text-3xl font-bold tracking-[-0.02em] text-gray-900 md:text-4xl">
+          <h2 className="font-display text-balance text-3xl font-bold tracking-[-0.02em] text-foreground md:text-4xl">
             {t('testimonials.label')}
           </h2>
         </Reveal>

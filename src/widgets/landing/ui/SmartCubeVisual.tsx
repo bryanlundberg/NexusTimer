@@ -34,7 +34,7 @@ export default function SmartCubeVisual() {
       ))}
 
       {/* circular 3D cube preview (white frame clipped away) */}
-      <span className="relative z-10 flex size-20 items-center justify-center rounded-full ring-1 ring-gray-900/10">
+      <span className="relative z-10 flex size-20 items-center justify-center rounded-full ring-1 ring-border">
         <video
           ref={videoRef}
           src="/landing/cube3d-160.webm"
@@ -51,7 +51,7 @@ export default function SmartCubeVisual() {
           style={{ boxShadow: 'inset 0 0 10px 6px #fff' }}
         />
         {/* bluetooth chip */}
-        <span className="absolute -bottom-1 -right-1 z-20 flex size-6 items-center justify-center rounded-full bg-[var(--cube-blue)] shadow-md ring-2 ring-white">
+        <span className="absolute -bottom-1 -right-1 z-20 flex size-6 items-center justify-center rounded-full bg-[var(--cube-blue)] ring-2 ring-card">
           <Bluetooth className="size-3.5 text-white" />
         </span>
       </span>
@@ -59,7 +59,7 @@ export default function SmartCubeVisual() {
       {moves.map((move, i) => (
         <m.span
           key={i}
-          className="absolute z-20 font-mono text-xs font-bold text-gray-900/70"
+          className="absolute z-20 font-mono text-xs font-bold text-foreground/70"
           style={{ left: `${10 + i * 24}%`, bottom: 4 }}
           animate={reduce ? { opacity: 0.5 } : { y: [6, -70], opacity: [0, 0.8, 0] }}
           transition={{ duration: 3, delay: i * 0.6, repeat: Infinity, ease: 'linear' }}

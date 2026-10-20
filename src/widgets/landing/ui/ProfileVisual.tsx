@@ -28,16 +28,16 @@ export default function ProfileVisual() {
             alt=""
             width={44}
             height={44}
-            className="h-11 w-11 rounded-full shadow-md ring-2 ring-gray-900/10"
+            className="h-11 w-11 rounded-full ring-2 ring-border"
           />
-          <span className="absolute -bottom-0.5 -right-0.5 size-2.5 rounded-full border-2 border-white bg-[var(--cube-green)]" />
+          <span className="absolute -bottom-0.5 -right-0.5 size-2.5 rounded-full border-2 border-card bg-[var(--cube-green)]" />
         </div>
         <div className="min-w-0">
-          <span className="inline-block bg-gray-900 px-1.5 text-[8px] font-bold uppercase leading-tight text-white">
+          <span className="inline-block bg-foreground px-1.5 text-[8px] font-bold uppercase leading-tight text-background">
             sub-7
           </span>
-          <p className="mt-0.5 text-base font-black leading-none tracking-tight text-gray-900">redsito</p>
-          <div className="mt-1 flex flex-wrap items-center gap-x-1 gap-y-0.5 text-[10px] text-gray-500">
+          <p className="mt-0.5 text-base font-black leading-none tracking-tight text-foreground">redsito</p>
+          <div className="mt-1 flex flex-wrap items-center gap-x-1 gap-y-0.5 text-[10px] text-muted-foreground">
             <span>🇲🇽 Mexico</span>
             <span className="opacity-40">·</span>
             <span className="inline-flex items-center gap-1 font-medium text-[#000000]">
@@ -58,20 +58,22 @@ export default function ProfileVisual() {
       </div>
 
       {/* tabs */}
-      <div className="flex items-center gap-4 border-b border-gray-900/8 pb-2">
+      <div className="flex items-center gap-4 border-b border-border pb-2">
         {tabs.map((tb) => (
           <span
             key={tb.label}
             className={cn(
               'relative inline-flex items-center gap-1 pb-1.5 text-[10px] font-semibold',
-              tb.active ? 'text-gray-900' : 'text-gray-400'
+              tb.active ? 'text-foreground' : 'text-muted-foreground/70'
             )}
           >
             {tb.label}
             <span
               className={cn(
                 'inline-flex min-w-[14px] items-center justify-center rounded-full px-1 text-[8px] font-bold tabular-nums',
-                tb.active ? 'bg-[var(--cube-orange)]/15 text-[var(--cube-orange)]' : 'bg-gray-900/8 text-gray-400'
+                tb.active
+                  ? 'bg-[var(--cube-orange)]/15 text-[var(--cube-orange)]'
+                  : 'bg-foreground/8 text-muted-foreground/70'
               )}
             >
               {tb.count}
@@ -88,7 +90,7 @@ export default function ProfileVisual() {
         <div className="grid grid-cols-[minmax(0,1.3fr)_repeat(3,minmax(0,1fr))] px-2 pb-0.5">
           <span />
           {['single', 'ao5', 'ao12'].map((h) => (
-            <span key={h} className="text-right text-[8px] uppercase tracking-[0.15em] text-gray-400">
+            <span key={h} className="text-right text-[8px] uppercase tracking-[0.15em] text-muted-foreground/70">
               {h}
             </span>
           ))}
@@ -100,12 +102,12 @@ export default function ProfileVisual() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.15 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="grid grid-cols-[minmax(0,1.3fr)_repeat(3,minmax(0,1fr))] items-center border border-gray-900/8 bg-white/70 px-2 py-1.5"
+            className="grid grid-cols-[minmax(0,1.3fr)_repeat(3,minmax(0,1fr))] items-center border border-border bg-card/70 px-2 py-1.5"
           >
-            <span className="text-[11px] font-semibold text-gray-800">{r.cat}</span>
-            <span className="text-right font-mono text-[11px] font-bold tabular-nums text-gray-900">{r.single}</span>
-            <span className="text-right font-mono text-[11px] tabular-nums text-gray-500">{r.ao5}</span>
-            <span className="text-right font-mono text-[11px] tabular-nums text-gray-500">{r.ao12}</span>
+            <span className="text-[11px] font-semibold text-foreground">{r.cat}</span>
+            <span className="text-right font-mono text-[11px] font-bold tabular-nums text-foreground">{r.single}</span>
+            <span className="text-right font-mono text-[11px] tabular-nums text-muted-foreground">{r.ao5}</span>
+            <span className="text-right font-mono text-[11px] tabular-nums text-muted-foreground">{r.ao12}</span>
           </m.div>
         ))}
       </div>
