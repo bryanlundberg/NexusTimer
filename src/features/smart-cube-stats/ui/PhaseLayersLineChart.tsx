@@ -210,7 +210,7 @@ export default function PhaseLayersLineChart({ series, phases }: PhaseLayersLine
         <div ref={containerRef} className="absolute inset-0" />
         <div
           ref={tooltipRef}
-          className="pointer-events-none absolute z-10 hidden rounded-xs border border-border/50 bg-popover/95 p-2.5 text-popover-foreground shadow-xl backdrop-blur-md"
+          className="pointer-events-none absolute z-10 hidden rounded-xs border border-border/50 bg-popover/95 p-2.5 text-popover-foreground shadow-float backdrop-blur-md"
         />
       </div>
     </div>

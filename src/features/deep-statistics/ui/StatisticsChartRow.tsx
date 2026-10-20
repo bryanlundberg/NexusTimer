@@ -18,7 +18,7 @@ export default function StatisticsChartRow({ row, columns, isLoading, activeGrou
     <div
       className={cn(
         ROW_GRID,
-        'group rounded-none px-1 transition-colors',
+        'group px-1 transition-colors',
         row.highlight ? 'bg-record/[0.07] hover:bg-record/10' : 'hover:bg-muted/40'
       )}
     >

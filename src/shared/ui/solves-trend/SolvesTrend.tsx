@@ -59,7 +59,7 @@ export default function SolvesTrend({ solves, bestTime, className }: SolvesTrend
             animate={{ height: `${bar.height}%` }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className={cn(
-              'min-w-0 max-w-1.5 flex-1 rounded-t-[1px]',
+              'min-w-0 max-w-1.5 flex-1',
               bar.dnf
                 ? 'bg-destructive/20'
                 : bar.isBest

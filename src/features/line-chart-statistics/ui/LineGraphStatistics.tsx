@@ -11,10 +11,10 @@ export default function LineGraphStatistics({ solves }: { solves: Solve[] }) {
   return (
     <div className="relative w-full">
       <div className="h-80 md:h-96">
-        <div ref={chartContainerRef} className="w-full h-full rounded-lg overflow-hidden"></div>
+        <div ref={chartContainerRef} className="w-full h-full overflow-hidden"></div>
         <div
           ref={tooltipRef}
-          className="absolute hidden p-2.5 bg-popover/95 backdrop-blur-md border border-border/50 rounded-xs shadow-xl z-10 text-popover-foreground"
+          className="absolute hidden p-2.5 bg-popover/95 backdrop-blur-md border border-border/50 rounded-xs shadow-float z-10 text-popover-foreground"
           style={{ pointerEvents: 'none' }}
         ></div>
       </div>
