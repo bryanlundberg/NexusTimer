@@ -16,7 +16,7 @@ export function SolveBreakdown({ analysis, totalMs }: SolveBreakdownProps) {
   return (
     <div className="flex flex-col gap-3">
       {/* Segmented bar */}
-      <div className="flex h-3 w-full overflow-hidden rounded-full">
+      <div className="flex h-3 w-full overflow-hidden">
         {barSegments.map((seg) => (
           <div key={seg.key} className={seg.bgClass} style={{ width: `${seg.pct}%` }} />
         ))}
@@ -31,8 +31,8 @@ export function SolveBreakdown({ analysis, totalMs }: SolveBreakdownProps) {
               {/* Main phase row */}
               <div className="flex items-center gap-2">
                 <span className={`w-12 text-[11px] font-semibold ${phase.textClass}`}>{phase.label}</span>
-                <div className="flex-1 h-1 rounded-full bg-muted overflow-hidden">
-                  <div className={`h-full rounded-full ${phase.bgClass}`} style={{ width: `${pct}%` }} />
+                <div className="flex-1 h-1 bg-muted overflow-hidden">
+                  <div className={`h-full ${phase.bgClass}`} style={{ width: `${pct}%` }} />
                 </div>
                 <span className="w-14 text-right font-mono text-[11px] text-muted-foreground tabular-nums">
                   {formatTime(phase.duration, 2)}
@@ -46,11 +46,8 @@ export function SolveBreakdown({ analysis, totalMs }: SolveBreakdownProps) {
                 return (
                   <div key={slot.key} className="flex items-center gap-2 pl-3 mt-0.5">
                     <span className="w-9 text-[10px] text-muted-foreground">{slot.label}</span>
-                    <div className="flex-1 h-px rounded-full bg-muted overflow-hidden">
-                      <div
-                        className={`h-full rounded-full ${slot.bgClass} opacity-60`}
-                        style={{ width: `${slotPct}%` }}
-                      />
+                    <div className="flex-1 h-px bg-muted overflow-hidden">
+                      <div className={`h-full ${slot.bgClass} opacity-60`} style={{ width: `${slotPct}%` }} />
                     </div>
                     <span className="w-14 text-right font-mono text-[10px] text-muted-foreground/70 tabular-nums">
                       {formatTime(slot.duration, 2)}
