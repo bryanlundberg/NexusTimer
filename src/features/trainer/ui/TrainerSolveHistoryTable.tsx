@@ -58,7 +58,7 @@ export default function TrainerSolveHistoryTable({
 
   if (solves.length === 0) {
     return (
-      <div className="algo-panel-notch px-3 py-8 text-center">
+      <div className="surface surface-panel px-3 py-8 text-center">
         <p className="text-xs text-muted-foreground">{isLoading ? t('loading') : (emptyLabel ?? t('empty'))}</p>
       </div>
     )
@@ -66,7 +66,7 @@ export default function TrainerSolveHistoryTable({
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="algo-panel-notch overflow-hidden">
+      <div className="surface surface-panel overflow-hidden">
         <div
           className={cn(
             'grid items-center gap-x-4 px-3 py-2 border-b border-border/60',

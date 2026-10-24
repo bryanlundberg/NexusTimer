@@ -1,20 +1,17 @@
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog'
-import { CUBE_CATEGORIES, CubeCategory } from '@/shared/const/cube-categories'
-import { cubeColorClass } from '@/shared/const/cube-colors'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { useCubeActions } from '@/features/manage-cubes/model/useCubeActions'
-import { Check, ListFilter, PlusIcon, Search } from 'lucide-react'
+import { PlusIcon, Search } from 'lucide-react'
 import { Nexi } from '@/shared/ui/nexi'
-import { cn } from '@/shared/lib/utils'
 import { useEffect, useMemo, useState } from 'react'
 import { CubeListItem } from '@/features/select-collection/ui/CubeListItem'
-
-type Filter = CubeCategory | 'all'
+import CubeCategoryFilter, {
+  CubeCategoryFilterValue as Filter
+} from '@/features/filter-cube-category/ui/CubeCategoryFilter'
 
 export default function SelectCollection() {
   const close = useOverlayStore((state) => state.close)
@@ -61,13 +58,6 @@ export default function SelectCollection() {
 
   const allCubes = useMemo(() => cubes ?? [], [cubes])
 
-  const disciplines = useMemo(() => {
-    return CUBE_CATEGORIES.map((category) => ({
-      category,
-      count: allCubes.filter((c) => c.category === category).length
-    })).filter((d) => d.count > 0)
-  }, [allCubes])
-
   const visibleCubes = useMemo(() => {
     const q = query.trim().toLowerCase()
     return allCubes
@@ -87,8 +77,6 @@ export default function SelectCollection() {
     setLastSolve(null)
     close()
   }
-
-  const filterLabel = filter === 'all' ? t('SolvesPage.all') : filter
 
   return (
     <Dialog
@@ -116,39 +104,16 @@ export default function SelectCollection() {
               />
             </div>
 
-            <DropdownMenu modal={false} open={filterOpen} onOpenChange={setFilterOpen}>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="h-9 shrink-0 gap-1.5 pointer-coarse:h-11"
-                  aria-label={t('CubesPage.category')}
-                >
-                  {filter === 'all' ? (
-                    <ListFilter className="size-4" />
-                  ) : (
-                    <span className={cn('size-2 shrink-0 rounded-full', cubeColorClass(filter))} />
-                  )}
-                  <span className="max-w-24 truncate">{filterLabel}</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="z-[60] min-w-44">
-                <DropdownMenuItem onClick={() => setFilter('all')}>
-                  <span className="size-2 shrink-0 rounded-full bg-muted-foreground" />
-                  <span className="flex-1">{t('SolvesPage.all')}</span>
-                  <span className="text-xs text-muted-foreground">{allCubes.length}</span>
-                  {filter === 'all' && <Check className="size-3.5 text-primary" />}
-                </DropdownMenuItem>
-                {disciplines.map((d) => (
-                  <DropdownMenuItem key={d.category} onClick={() => setFilter(d.category)}>
-                    <span className={cn('size-2 shrink-0 rounded-full', cubeColorClass(d.category))} />
-                    <span className="flex-1 truncate">{d.category}</span>
-                    <span className="text-xs text-muted-foreground">{d.count}</span>
-                    {filter === d.category && <Check className="size-3.5 text-primary" />}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <CubeCategoryFilter
+              value={filter}
+              onChange={setFilter}
+              cubes={allCubes}
+              modal={false}
+              open={filterOpen}
+              onOpenChange={setFilterOpen}
+              className="pointer-coarse:h-11"
+              contentClassName="z-[60]"
+            />
           </div>
 
           {/* Cube list */}
@@ -160,7 +125,7 @@ export default function SelectCollection() {
                   {t('Inputs.no-results')}
                   {query.trim() && <span className="ml-1 font-medium text-foreground">&quot;{query.trim()}&quot;</span>}
                 </p>
-                <Button onClick={handleCreate} variant="secondary" size="sm">
+                <Button onClick={handleCreate} variant="outline" size="sm">
                   <PlusIcon className="size-4" />
                   {t('CubesPage.new-collection')}
                 </Button>
@@ -174,7 +139,7 @@ export default function SelectCollection() {
 
           {/* Create collection (fixed footer) */}
           <div className="border-t p-2">
-            <Button variant="secondary" onClick={handleCreate} className="w-full justify-center gap-2">
+            <Button variant="outline" onClick={handleCreate} className="w-full justify-center gap-2">
               <PlusIcon className="size-4" />
               {t('CubesPage.new-collection')}
             </Button>

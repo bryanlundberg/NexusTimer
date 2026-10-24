@@ -12,34 +12,41 @@
   }
 }
 
+/* The active fill grows out of the left edge and the previous one shrinks back
+   into it, so a change of page reads as one sweep instead of a slide. */
 .nav-item {
-  --nav-fill: transparent;
+  --nav-cut: 8px;
+  --nav-shape: polygon(0 0, 100% 0, 100% calc(100% - var(--nav-cut)), calc(100% - var(--nav-cut)) 100%, 0 100%);
   position: relative;
   isolation: isolate;
   background-color: transparent;
+}
+.nav-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-color: color-mix(in oklch, var(--sidebar-accent) 60%, transparent);
+  clip-path: var(--nav-shape);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 150ms var(--ease-solve);
+}
+.nav-item:hover::after {
+  opacity: 1;
 }
 .nav-item::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: -1;
-  background-color: var(--nav-fill);
+  background-color: var(--sidebar-accent);
+  clip-path: polygon(0 0, 0 0, 0 calc(100% - var(--nav-cut)), 0 100%, 0 100%);
   pointer-events: none;
-  transition: background-color 150ms var(--ease-solve);
+  transition: clip-path 220ms var(--ease-solve);
 }
-.nav-item:hover {
-  --nav-fill: var(--sidebar-accent);
-}
-.nav-item[data-active='true'] {
-  --nav-fill: color-mix(in oklch, var(--nav-accent, var(--sidebar-primary)) 14%, var(--sidebar-accent));
-}
-@media (min-width: 768px) {
-  .nav-item[data-active-item='true'] {
-    --nav-fill: transparent;
-  }
-}
-.nav-indicator {
-  transition: background-color 300ms var(--ease-solve);
+.nav-item[data-active='true']::before {
+  clip-path: var(--nav-shape);
 }
 
 @keyframes link-pending-in {
@@ -73,7 +80,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .nav-item::before,
-  .nav-indicator {
+  .nav-item::after {
     transition: none;
   }
 }
@@ -128,14 +135,17 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  --radius-2xl: 0;
+  --shadow-float: var(--elevation-float);
 }
 
 :root {
-  --radius: 0.45rem;
+  --radius: 0;
+  --elevation-float: 0 2px 4px rgb(0 0 0 / 0.12), 0 12px 32px -8px rgb(0 0 0 / 0.4);
 
   --font-chakra: 'Chakra Petch', ui-sans-serif, system-ui, sans-serif;
   --cube-white: oklch(0.97 0 0);
@@ -313,6 +323,21 @@
   --cube-green: oklch(0.74 0.18 150);
   --cube-blue: oklch(0.623 0.214 259.815);
 
+  --background: var(--lp-bg);
+  --foreground: oklch(0.21 0.034 264.665);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--foreground);
+  --secondary: var(--lp-bg-deep);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--lp-bg-deep);
+  --muted-foreground: oklch(0.446 0.03 256.802);
+  --accent: var(--lp-bg-deep);
+  --accent-foreground: var(--foreground);
+  --border: oklch(0.21 0.034 264.665 / 10%);
+  --input: oklch(0.21 0.034 264.665 / 15%);
+
   --primary: oklch(0.585 0.233 277.117);
   --primary-foreground: oklch(0.99 0.01 277.117);
   --ring: oklch(0.585 0.233 277.117);
@@ -406,7 +431,10 @@
   .menu-panel {
     border: 1px solid var(--border);
     background-color: var(--popover);
-    box-shadow: 0 4px 8px rgb(0 0 0 / 0.2);
+    box-shadow: var(--elevation-float);
+  }
+  .menu-item {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%);
   }
 }
 
@@ -463,8 +491,8 @@
 @layer components {
   .field {
     position: relative;
-    border: 1px solid var(--input);
-    background-color: var(--background);
+    border: 1px solid transparent;
+    background-color: var(--muted);
     transition:
       border-color var(--dur-fast) var(--ease-solve),
       background-color var(--dur-fast) var(--ease-solve),
@@ -480,11 +508,14 @@
   .field[aria-invalid='true'] {
     border-color: var(--destructive);
   }
+  .dark .field {
+    background-color: color-mix(in oklab, var(--muted) 50%, transparent);
+  }
   .field-hover:hover {
-    background-color: var(--accent);
+    background-color: color-mix(in oklab, var(--foreground) 5%, var(--muted));
   }
   .dark .field-hover:hover {
-    background-color: color-mix(in oklab, var(--accent) 50%, var(--background));
+    background-color: color-mix(in oklab, var(--muted) 80%, transparent);
   }
 }
 
@@ -503,195 +534,112 @@
   clip-path: var(--btn-shape);
 }
 
-.item-card {
-  --card-cut: 12px;
-  --card-border: 1px;
-  --card-border-color: var(--border);
-  --card-fill: color-mix(in oklab, var(--card) 50%, var(--background));
-  --card-shape: polygon(
+@layer components {
+  .btn-notch {
+    background-image: linear-gradient(to bottom, rgb(255 255 255 / 0.16), rgb(255 255 255 / 0));
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.22),
+      inset 0 -1px 0 rgb(0 0 0 / 0.18);
+  }
+}
+
+/* One notched surface for every panel and card: cut bottom-right corner with a
+   border traced by ::before. .surface-panel is the quieter container level,
+   .surface-well a borderless inset for read-only data, .surface-sm the smaller
+   cut for compact tiles. */
+.surface {
+  --surface-cut: 12px;
+  --surface-border: 1px;
+  --surface-border-color: var(--border);
+  --surface-fill: color-mix(in oklab, var(--card) 50%, var(--background));
+  --surface-shape: polygon(
     0 0,
     100% 0,
-    100% calc(100% - var(--card-cut)),
-    calc(100% - var(--card-cut)) 100%,
+    100% calc(100% - var(--surface-cut)),
+    calc(100% - var(--surface-cut)) 100%,
     0 100%
   );
   position: relative;
   isolation: isolate;
   border: 0 !important;
   border-radius: 0 !important;
-  background-color: var(--card-border-color) !important;
-  clip-path: var(--card-shape);
+  background-color: var(--surface-border-color) !important;
+  clip-path: var(--surface-shape);
   transition: background-color 200ms ease;
 }
-.item-card::before {
+.surface::before {
   content: '';
   position: absolute;
-  inset: var(--card-border);
+  inset: var(--surface-border);
   z-index: -1;
-  background-color: var(--card-fill);
-  clip-path: var(--card-shape);
+  background-color: var(--surface-fill);
+  clip-path: var(--surface-shape);
   pointer-events: none;
   transition: background-color 200ms ease;
 }
-.item-card:hover {
-  --card-border-color: color-mix(in oklab, var(--primary) 55%, var(--border));
-  --card-fill: color-mix(in oklab, var(--card) 80%, var(--background));
-}
-.item-card[data-active='true'] {
-  --card-border-color: color-mix(in oklab, var(--primary) 30%, var(--border));
-}
-.item-card:is([data-record='true'], [data-favorite='true']) {
-  --card-border-color: color-mix(in oklab, var(--record) 45%, var(--border));
-  --card-fill: color-mix(in oklab, var(--record) 7%, var(--background));
-}
-.item-card:is([data-record='true'], [data-favorite='true']):hover {
-  --card-border-color: color-mix(in oklab, var(--record) 75%, var(--border));
-  --card-fill: color-mix(in oklab, var(--record) 10%, var(--background));
-}
-.item-card[data-selected='true'],
-.item-card[data-selected='true']:hover {
-  --card-border: 2px;
-  --card-border-color: var(--primary);
-  --card-fill: color-mix(in oklab, var(--primary) 12%, var(--background));
-}
-
-/* Notched alert boxes (edit / delete modals) — cut bottom-right corner with a
-   toned border. */
-.alert-notch {
-  --alert-notch: 12px;
-  --alert-notch-border: 1.5px;
-  --alert-notch-border-color: var(--border);
-  --alert-notch-fill: var(--card);
-  --alert-notch-shape: polygon(
+.dialog-shell {
+  --dialog-cut: 14px;
+  --dialog-shape: polygon(
     0 0,
     100% 0,
-    100% calc(100% - var(--alert-notch)),
-    calc(100% - var(--alert-notch)) 100%,
+    100% calc(100% - var(--dialog-cut)),
+    calc(100% - var(--dialog-cut)) 100%,
     0 100%
   );
-  position: relative;
-  isolation: isolate;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background-color: var(--alert-notch-border-color) !important;
-  clip-path: var(--alert-notch-shape);
+  border: 1px solid var(--border);
+  background-color: color-mix(in oklab, var(--card) 30%, var(--background));
+  clip-path: var(--dialog-shape);
 }
-.alert-notch::before {
+.dialog-shell::after {
   content: '';
   position: absolute;
-  inset: var(--alert-notch-border);
-  z-index: -1;
-  background-color: var(--alert-notch-fill);
-  clip-path: var(--alert-notch-shape);
-  pointer-events: none;
-}
-.alert-notch[data-tone='warning'] {
-  --alert-notch-border-color: color-mix(in oklab, var(--warning) 70%, transparent);
-}
-.alert-notch[data-tone='danger'] {
-  --alert-notch-border-color: color-mix(in oklab, var(--destructive) 70%, transparent);
-}
-
-/* Notched category tiles cut-corner picker cells with a
-   traced border and a distinct selected state. */
-.category-notch {
-  --cat-notch: 8px;
-  --cat-border: 1px;
-  --cat-border-color: var(--border);
-  --cat-fill: color-mix(in oklab, var(--card) 45%, var(--background));
-  --cat-shape: polygon(
-    0 0,
-    100% 0,
-    100% calc(100% - var(--cat-notch)),
-    calc(100% - var(--cat-notch)) 100%,
-    0 100%
+  right: -1px;
+  bottom: -1px;
+  width: var(--dialog-cut);
+  height: var(--dialog-cut);
+  background: linear-gradient(
+    to top left,
+    transparent calc(50% - 0.5px),
+    var(--border) calc(50% - 0.5px),
+    var(--border) calc(50% + 0.5px),
+    transparent calc(50% + 0.5px)
   );
-  position: relative;
-  isolation: isolate;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background-color: var(--cat-border-color) !important;
-  clip-path: var(--cat-shape);
-  transition: background-color 150ms ease;
-}
-.category-notch::before {
-  content: '';
-  position: absolute;
-  inset: var(--cat-border);
-  z-index: -1;
-  background-color: var(--cat-fill);
-  clip-path: var(--cat-shape);
-  pointer-events: none;
-  transition: background-color 150ms ease;
-}
-.category-notch:hover {
-  --cat-border-color: color-mix(in oklab, var(--primary) 45%, var(--border));
-  --cat-fill: color-mix(in oklab, var(--primary) 7%, var(--background));
-}
-.category-notch[data-selected='true'] {
-  --cat-border: 1.5px;
-  --cat-border-color: color-mix(in oklab, var(--primary) 75%, var(--border));
-  --cat-fill: color-mix(in oklab, var(--primary) 11%, var(--background));
-}
-
-/* Shared surface panel — cut bottom-right corner with a traced border. Used by the
-   algorithm list and the trainer stage. */
-.algo-panel-notch {
-  --ap-notch: 12px;
-  --ap-border: 1px;
-  --ap-border-color: var(--border);
-  --ap-fill: color-mix(in oklab, var(--card) 30%, var(--background));
-  --ap-shape: polygon(
-    0 0,
-    100% 0,
-    100% calc(100% - var(--ap-notch)),
-    calc(100% - var(--ap-notch)) 100%,
-    0 100%
-  );
-  position: relative;
-  isolation: isolate;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background-color: var(--ap-border-color) !important;
-  clip-path: var(--ap-shape);
-}
-.algo-panel-notch::before {
-  content: '';
-  position: absolute;
-  inset: var(--ap-border);
-  z-index: -1;
-  background-color: var(--ap-fill);
-  clip-path: var(--ap-shape);
   pointer-events: none;
 }
-
-.panel-notch {
-  --pn-notch: 12px;
-  --pn-border: 1px;
-  --pn-border-color: var(--border);
-  --pn-fill: color-mix(in oklab, var(--card) 30%, var(--background));
-  --pn-shape: polygon(
-    0 0,
-    100% 0,
-    100% calc(100% - var(--pn-notch)),
-    calc(100% - var(--pn-notch)) 100%,
-    0 100%
-  );
-  position: relative;
-  isolation: isolate;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background-color: var(--pn-border-color) !important;
-  clip-path: var(--pn-shape);
+.surface-panel {
+  --surface-fill: color-mix(in oklab, var(--card) 30%, var(--background));
 }
-.panel-notch::before {
-  content: '';
-  position: absolute;
-  inset: var(--pn-border);
-  z-index: -1;
-  background-color: var(--pn-fill);
-  clip-path: var(--pn-shape);
-  pointer-events: none;
+.surface-sm {
+  --surface-cut: 8px;
+}
+.surface-well {
+  --surface-border: 0px;
+  --surface-border-color: transparent;
+  --surface-fill: color-mix(in oklab, var(--muted) 40%, transparent);
+}
+.surface:not(.surface-panel, .surface-well):hover {
+  --surface-border-color: color-mix(in oklab, var(--foreground) 25%, var(--border));
+  --surface-fill: color-mix(in oklab, var(--card) 80%, var(--background));
+}
+.surface:is([data-record='true'], [data-favorite='true']) {
+  --surface-border-color: color-mix(in oklab, var(--record) 45%, var(--border));
+  --surface-fill: color-mix(in oklab, var(--record) 7%, var(--background));
+}
+.surface:is([data-record='true'], [data-favorite='true']):hover {
+  --surface-border-color: color-mix(in oklab, var(--record) 75%, var(--border));
+  --surface-fill: color-mix(in oklab, var(--record) 10%, var(--background));
+}
+.surface[data-selected='true'],
+.surface[data-selected='true']:hover {
+  --surface-border: 2px;
+  --surface-border-color: var(--primary);
+  --surface-fill: color-mix(in oklab, var(--primary) 12%, var(--background));
+}
+.surface[data-tone='warning'] {
+  --surface-border-color: color-mix(in oklab, var(--warning) 70%, transparent);
+}
+.surface[data-tone='danger'] {
+  --surface-border-color: color-mix(in oklab, var(--destructive) 70%, transparent);
 }
 
 /* Semi-diagonal (slanted) difficulty bars. */
@@ -857,11 +805,7 @@
   outline-offset: -2px;
 }
 
-.item-card:focus-visible {
-  --card-border: 2px;
-  --card-border-color: currentColor;
-}
-.category-notch:focus-visible {
-  --cat-border: 2px;
-  --cat-border-color: currentColor;
+.surface:focus-visible {
+  --surface-border: 2px;
+  --surface-border-color: currentColor;
 }

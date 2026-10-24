@@ -22,7 +22,7 @@ export default function TimerFontPreview() {
       <div
         style={{ '--timer-scale': timerScale(timerSize) } as React.CSSProperties}
         className={cn(
-          'notch-br flex flex-col items-center gap-3 bg-muted/40 px-4 py-5 leading-none font-normal whitespace-nowrap',
+          'surface surface-well flex flex-col items-center gap-3 px-4 py-5 leading-none font-normal whitespace-nowrap',
           timerFontClass(timerFont)
         )}
       >

@@ -17,7 +17,7 @@ export function CountryFlag({ code, className }: CountryFlagProps) {
       alt=""
       loading="lazy"
       decoding="async"
-      className={cn('w-4 aspect-[3/2] rounded-[2px]', className)}
+      className={cn('w-4 aspect-[3/2]', className)}
     />
   )
 }

@@ -39,9 +39,7 @@ export default function AccountDeletionPage() {
 
         <Para>You may write your own short message in English, or copy and paste the default text below:</Para>
 
-        <pre className="border rounded-md p-3 text-sm whitespace-pre-wrap break-words bg-muted/30 mb-3">
-          {DEFAULT_MESSAGE}
-        </pre>
+        <pre className="border p-3 text-sm whitespace-pre-wrap break-words bg-muted/30 mb-3">{DEFAULT_MESSAGE}</pre>
 
         <H2>What will be deleted</H2>
 

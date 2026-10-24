@@ -19,14 +19,13 @@ export default function SolveTransferCard({ solve, isSelected, onToggle }: Solve
   return (
     <Button
       variant={'outline'}
-      notch={false}
       id={solve.id}
       data-testid={`solve-card-${solve.id}`}
       onClick={onToggle}
       aria-pressed={isSelected}
       data-selected={isSelected ? 'true' : undefined}
       className={cn(
-        'item-card relative grow flex items-center justify-center font-medium text-center transition duration-200 cursor-pointer w-full h-full p-2 sm:p-3 select-none active:scale-100'
+        'surface relative grow flex items-center justify-center font-medium text-center transition duration-200 cursor-pointer w-full h-full p-2 sm:p-3 select-none active:scale-100'
       )}
     >
       <div className={cn('flex items-end gap-1 tabular-nums transition-opacity', solve.dnf && 'opacity-60')}>
@@ -48,7 +47,7 @@ export default function SolveTransferCard({ solve, isSelected, onToggle }: Solve
       </div>
       <div
         className={cn(
-          'absolute top-1 right-1 sm:top-2 sm:right-2 flex size-4 items-center justify-center rounded-[3px] border transition-colors',
+          'absolute top-1 right-1 sm:top-2 sm:right-2 flex size-4 items-center justify-center border transition-colors',
           isSelected ? 'border-primary bg-primary text-primary-foreground' : 'border-muted-foreground/40'
         )}
         data-testid={`solve-select-indicator-${solve.id}`}

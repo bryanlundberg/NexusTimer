@@ -22,7 +22,7 @@ export default function TrainerAlgorithmsModal() {
 
       <ol className="flex flex-col gap-2">
         {algs.map((alg, i) => (
-          <li key={alg.id} className="flex items-start gap-3 rounded-md border bg-muted/40 px-3 py-2">
+          <li key={alg.id} className="flex items-start gap-3 border bg-muted/40 px-3 py-2">
             <span className="text-[11px] font-mono tabular-nums text-muted-foreground pt-0.5 shrink-0 w-4">
               {i + 1}.
             </span>

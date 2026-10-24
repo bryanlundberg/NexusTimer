@@ -5,8 +5,7 @@ import { useMemo, useRef, useState } from 'react'
 import { motion } from 'motion/react'
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { useTranslations } from 'next-intl'
-import { Tabs } from '@/components/ui/tabs'
-import ScrollableUnderlineTabs from '@/shared/ui/animated-tabs/ScrollableUnderlineTabs'
+import Segmented from '@/shared/ui/segmented/Segmented'
 import CubesIcon from '@/components/ui/cubes-icon'
 import CubeIcon from '@/components/ui/cube-icon'
 import { cn } from '@/shared/lib/utils'
@@ -42,9 +41,9 @@ export default function TimerSolvesRail() {
     open({ id: 'solve-details', metadata: { ...solve }, component: <SolveDetails /> })
   }
 
-  const tabs = [
-    { value: 'category', icon: CubesIcon, label: t('category') },
-    { value: 'cube', icon: CubeIcon, label: t('cube') }
+  const tabs: { value: RailTab; icon: React.ReactNode; label: string }[] = [
+    { value: 'category', icon: <CubesIcon size={16} />, label: t('category') },
+    { value: 'cube', icon: <CubeIcon size={16} />, label: t('cube') }
   ]
 
   const solves = useMemo<Solve[]>(() => {
@@ -136,15 +135,19 @@ export default function TimerSolvesRail() {
       <div className="flex h-full w-52 lg:w-64 min-h-0 flex-col overflow-hidden border-s border-border bg-sidebar/25 backdrop-blur-md">
         {/* Switch */}
         <div className="p-2">
-          <Tabs value={tab} onValueChange={(value) => setTab(value as RailTab)}>
-            <ScrollableUnderlineTabs items={tabs} activeValue={tab} layoutId="timer-rail-tab-indicator" />
-          </Tabs>
+          <Segmented
+            value={tab}
+            onChange={setTab}
+            options={tabs}
+            layoutId="timer-rail-tab-indicator"
+            className="w-full [&>button]:flex-1 [&>button]:justify-center"
+          />
         </div>
 
         {/* Stats */}
         <div className="px-3 pb-3">
           <div
-            className="grid items-end gap-x-2 pb-1 text-[9px] font-medium uppercase tracking-[0.12em] text-muted-foreground/70"
+            className="grid items-end gap-x-2 pb-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground"
             style={{ gridTemplateColumns: STAT_COLS }}
           >
             <span />
@@ -214,8 +217,8 @@ export default function TimerSolvesRail() {
                       type="button"
                       onClick={() => openSolveDetails(solve)}
                       className={cn(
-                        'relative grid h-full w-full items-center gap-1.5 border-b border-border/50 px-2 text-left transition-colors hover:bg-muted/50',
-                        virtualRow.index === 0 && 'bg-primary/[0.04]'
+                        'relative grid h-full w-full cursor-pointer items-center gap-1.5 border-b border-border/50 px-2 text-left transition-colors hover:bg-accent/50',
+                        virtualRow.index === 0 && 'bg-accent/30'
                       )}
                       style={{ gridTemplateColumns: GRID_COLS }}
                     >

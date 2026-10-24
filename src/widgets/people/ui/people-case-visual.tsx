@@ -50,13 +50,13 @@ export default function PeopleCaseVisual({ set, item }: { set: ALGORITHM_SET; it
     <div className="flex flex-col items-center gap-1">
       <div
         ref={ref}
-        className="flex items-center justify-center overflow-hidden rounded-none bg-primary/5"
+        className="flex items-center justify-center overflow-hidden bg-primary/5"
         style={{ width: SIZE, height: SIZE }}
       >
         {inView && item.moves ? (
           <AlgorithmRender config={config} width={SIZE} height={SIZE} />
         ) : (
-          <div className="size-full rounded-none bg-muted/40" />
+          <div className="size-full bg-muted/40" />
         )}
       </div>
       <span className="text-[10px] font-medium leading-none text-center max-w-15 truncate">{item.name}</span>

@@ -15,7 +15,7 @@ export function InboxListSkeleton({ rows = 6, compact = false }: { rows?: number
             compact ? 'py-2.5 last:border-b-0' : 'py-3'
           )}
         >
-          <Skeleton className="size-10 shrink-0 rounded-lg" />
+          <Skeleton className="size-10 shrink-0" />
 
           <div className="flex min-w-0 flex-1 flex-col gap-2">
             <div className="flex items-baseline justify-between gap-2">
@@ -33,7 +33,7 @@ export function InboxListSkeleton({ rows = 6, compact = false }: { rows?: number
 export function ConversationPeerSkeleton() {
   return (
     <span aria-hidden className="flex min-w-0 items-center gap-2.5">
-      <Skeleton className="size-9 shrink-0 rounded-lg" />
+      <Skeleton className="size-9 shrink-0" />
       <span className="flex flex-col gap-1.5">
         <Skeleton className="h-3.5 w-28" />
         <Skeleton className="h-2.5 w-16" />

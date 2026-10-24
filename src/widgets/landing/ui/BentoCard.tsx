@@ -28,10 +28,7 @@ export default function BentoCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-8%' }}
       transition={{ duration: 0.55, delay, ease: [0.16, 1, 0.3, 1] }}
-      className={cn(
-        'relative flex flex-col overflow-hidden notch-br border border-gray-900/10 bg-gray-900/[0.03] p-6',
-        className
-      )}
+      className={cn('surface surface-panel flex flex-col overflow-hidden p-6', className)}
     >
       <div className="flex items-center gap-3">
         <span
@@ -44,11 +41,11 @@ export default function BentoCard({
         >
           <Icon className="size-4" style={{ color: accent }} />
         </span>
-        <h3 className="text-sm font-semibold text-gray-900">{title}</h3>
+        <h3 className="text-sm font-semibold text-foreground">{title}</h3>
       </div>
-      <p className="mb-5 mt-2.5 text-sm leading-relaxed text-gray-600 text-pretty">{desc}</p>
+      <p className="mb-5 mt-2.5 text-sm leading-relaxed text-muted-foreground text-pretty">{desc}</p>
 
-      <div className="mt-auto border-t border-gray-900/5 pt-5">{visual}</div>
+      <div className="mt-auto border-t border-border pt-5">{visual}</div>
     </m.div>
   )
 }

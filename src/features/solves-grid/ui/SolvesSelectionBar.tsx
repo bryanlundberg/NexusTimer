@@ -5,7 +5,7 @@ import { useLocale, useTranslations } from 'next-intl'
 import { useQueryState } from 'nuqs'
 import { toast } from 'sonner'
 import { ArrowRightLeft, ListChecks, Share2, Trash, X } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Button, buttonVariants } from '@/components/ui/button'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { createShareMessage } from '@/features/deep-statistics/lib/createShareMessage'
 import dayjs from '@/shared/lib/dayjs'
@@ -116,7 +116,7 @@ export default function SolvesSelectionBar({ allIds }: SolvesSelectionBarProps) 
           if (e.propertyName === 'translate' && !selectionMode) setShouldRender(false)
         }}
         className={cn(
-          'notch-br pointer-events-auto mx-auto flex max-w-2xl items-center gap-1 sm:gap-2 bg-foreground p-2 text-background shadow-xl transition-[translate,opacity]',
+          'notch-br pointer-events-auto mx-auto flex max-w-2xl items-center gap-1 sm:gap-2 bg-foreground p-2 text-background shadow-float transition-[translate,opacity]',
           visible
             ? 'translate-y-0 opacity-100 duration-400 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]'
             : 'translate-y-[calc(100%+16px)] opacity-0 duration-200 ease-in'
@@ -195,10 +195,7 @@ export default function SolvesSelectionBar({ allIds }: SolvesSelectionBarProps) 
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>{t('Inputs.cancel')}</AlertDialogCancel>
-            <AlertDialogAction
-              onClick={handleDelete}
-              className="bg-destructive text-white hover:bg-destructive/90 dark:bg-destructive/60"
-            >
+            <AlertDialogAction onClick={handleDelete} className={buttonVariants({ variant: 'destructive' })}>
               {t('SolvesPage.selection.delete')}
             </AlertDialogAction>
           </AlertDialogFooter>

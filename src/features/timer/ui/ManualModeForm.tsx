@@ -61,7 +61,7 @@ export default function ManualModeForm({
           disabled={!value}
           aria-label={t('save')}
           onMouseDown={(e) => e.preventDefault()}
-          className="absolute right-2 top-1/2 z-[2] -translate-y-1/2 rounded-md p-2 text-muted-foreground/60 transition-opacity duration-200 hover:text-foreground focus-visible:text-foreground focus-visible:outline-none disabled:pointer-events-none disabled:opacity-0"
+          className="absolute right-2 top-1/2 z-[2] -translate-y-1/2 p-2 text-muted-foreground/60 transition-opacity duration-200 hover:text-foreground focus-visible:text-foreground focus-visible:outline-none disabled:pointer-events-none disabled:opacity-0"
         >
           <CornerDownLeft className="size-5" />
         </button>

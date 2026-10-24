@@ -30,12 +30,12 @@ export default function TrainerMethodOverview({ set, stats, targetMs, isLoading 
   )
 
   if (isLoading) {
-    return <div className="algo-panel-notch h-24 animate-pulse" />
+    return <div className="surface surface-panel h-24 animate-pulse" />
   }
 
   if (totalSolves === 0) {
     return (
-      <div className="algo-panel-notch px-3 py-6 text-center">
+      <div className="surface surface-panel px-3 py-6 text-center">
         <p className="text-xs text-muted-foreground">{t('empty')}</p>
       </div>
     )

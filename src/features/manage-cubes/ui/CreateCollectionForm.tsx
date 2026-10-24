@@ -1,7 +1,5 @@
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
-import { cubeCollection } from '@/shared/const/cube-collection'
-import { cn } from '@/shared/lib/utils'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
 import { useForm } from 'react-hook-form'
@@ -21,7 +19,7 @@ import { createCubeCollection } from '@/features/manage-cubes/api/createCubeColl
 import { useEffect } from 'react'
 import { Nexi } from '@/shared/ui/nexi'
 import { ProductSearchInput } from '@/features/search/ui/ProductSearchInput'
-import { CubeCategoryIcon } from '@/shared/ui/cube-category-icon/CubeCategoryIcon'
+import CubeCategoryGrid from '@/features/manage-cubes/ui/CubeCategoryGrid'
 import CubesIntro from '@/features/cubes-intro/ui/CubesIntro'
 import { useCubesIntroStore } from '@/features/cubes-intro/model/useCubesIntroStore'
 
@@ -116,45 +114,11 @@ export default function CreateCollectionForm() {
               </span>
             </div>
 
-            <div className="grid grid-cols-5 sm:grid-cols-9 gap-1.5 sm:gap-2">
-              {cubeCollection.map((e) => {
-                const selected = formWatch.category === e.name
-                return (
-                  <button
-                    type="button"
-                    key={e.name}
-                    data-testid={'checkbox-category-' + e.name}
-                    data-selected={selected ? 'true' : undefined}
-                    aria-pressed={selected}
-                    aria-label={e.name}
-                    title={e.name}
-                    onClick={() => setValue('category', e.name)}
-                    className={cn(
-                      'category-notch group focus-visible:outline-none relative flex min-w-0 flex-col items-center gap-1 p-1.5 sm:gap-1.5 sm:p-2'
-                    )}
-                  >
-                    <span
-                      className={cn(
-                        'size-9 transition-[transform,color] duration-150 motion-reduce:transform-none sm:size-12',
-                        selected
-                          ? 'text-primary scale-105'
-                          : 'text-muted-foreground group-hover:text-foreground group-hover:scale-105'
-                      )}
-                    >
-                      <CubeCategoryIcon category={e.name} />
-                    </span>
-                    <span
-                      className={cn(
-                        'w-full truncate text-center text-[10px] leading-tight font-medium block sm:text-[11px]',
-                        selected ? 'text-foreground' : 'text-muted-foreground'
-                      )}
-                    >
-                      {e.name}
-                    </span>
-                  </button>
-                )
-              })}
-            </div>
+            <CubeCategoryGrid
+              value={formWatch.category}
+              onChange={(next) => setValue('category', next)}
+              testIdPrefix="checkbox-category"
+            />
           </div>
         </div>
       </div>

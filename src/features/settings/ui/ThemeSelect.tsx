@@ -15,7 +15,7 @@ function ThemePreviewLight({ selected }: { selected: boolean }) {
       <div className="h-full w-full bg-neutral-50 flex">
         {/* Sidebar */}
         <div className="w-6 sm:w-8 h-full bg-neutral-200 flex flex-col items-center gap-1 sm:gap-1.5 pt-2">
-          <div className="w-3 sm:w-4 h-3 sm:h-4 rounded-md bg-neutral-300" />
+          <div className="w-3 sm:w-4 h-3 sm:h-4 bg-neutral-300" />
           <div className="w-3 sm:w-4 h-1 rounded-full bg-neutral-300" />
           <div className="w-3 sm:w-4 h-1 rounded-full bg-neutral-300" />
           <div className="w-3 sm:w-4 h-1 rounded-full bg-neutral-300" />
@@ -29,10 +29,10 @@ function ThemePreviewLight({ selected }: { selected: boolean }) {
           </div>
           {/* Main content blocks */}
           <div className="flex gap-1 flex-1">
-            <div className="flex-1 rounded-md bg-neutral-200" />
-            <div className="flex-1 rounded-md bg-neutral-200" />
+            <div className="flex-1 bg-neutral-200" />
+            <div className="flex-1 bg-neutral-200" />
           </div>
-          <div className="h-2.5 sm:h-3 rounded-md bg-neutral-100" />
+          <div className="h-2.5 sm:h-3 bg-neutral-100" />
         </div>
       </div>
     </div>
@@ -49,7 +49,7 @@ function ThemePreviewDark({ selected }: { selected: boolean }) {
       <div className="h-full w-full bg-zinc-950 flex">
         {/* Sidebar */}
         <div className="w-6 sm:w-8 h-full bg-zinc-900 flex flex-col items-center gap-1 sm:gap-1.5 pt-2">
-          <div className="w-3 sm:w-4 h-3 sm:h-4 rounded-md bg-zinc-800" />
+          <div className="w-3 sm:w-4 h-3 sm:h-4 bg-zinc-800" />
           <div className="w-3 sm:w-4 h-1 rounded-full bg-zinc-800" />
           <div className="w-3 sm:w-4 h-1 rounded-full bg-zinc-800" />
           <div className="w-3 sm:w-4 h-1 rounded-full bg-zinc-800" />
@@ -63,10 +63,10 @@ function ThemePreviewDark({ selected }: { selected: boolean }) {
           </div>
           {/* Main content blocks */}
           <div className="flex gap-1 flex-1">
-            <div className="flex-1 rounded-md bg-zinc-900" />
-            <div className="flex-1 rounded-md bg-zinc-900" />
+            <div className="flex-1 bg-zinc-900" />
+            <div className="flex-1 bg-zinc-900" />
           </div>
-          <div className="h-2.5 sm:h-3 rounded-md bg-zinc-900/50" />
+          <div className="h-2.5 sm:h-3 bg-zinc-900/50" />
         </div>
       </div>
     </div>
@@ -107,7 +107,7 @@ export default function ThemeSelect() {
               onClick={() => handleSetTheme('light')}
               variant="circle"
               start="center"
-              className="absolute inset-0 h-full w-full rounded-xl p-0 m-0 opacity-0"
+              className="absolute inset-0 h-full w-full p-0 m-0 opacity-0"
             />
           </div>
           <div className="mt-1.5 text-[13px] sm:text-xs">{t('light')}</div>
@@ -121,7 +121,7 @@ export default function ThemeSelect() {
               onClick={() => handleSetTheme('dark')}
               variant="circle"
               start="center"
-              className="absolute inset-0 h-full w-full rounded-xl p-0 m-0 opacity-0"
+              className="absolute inset-0 h-full w-full p-0 m-0 opacity-0"
             />
           </div>
           <div className="mt-1.5 text-[13px] sm:text-xs">{t('dark')}</div>

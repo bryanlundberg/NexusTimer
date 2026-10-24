@@ -5,10 +5,9 @@ import { PUZZLE_LABELS } from '@/features/algorithm-method/model/method-filters'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { ALGORITHM_SET } from '@/shared/const/algorithms-sets'
 import { useTranslations } from 'next-intl'
-import { ArrowRight } from 'lucide-react'
 import MethodThumbnail from '@/features/algorithm-method/ui/MethodThumbnail'
 
-const DIFFICULTY_FILL = ['bg-emerald-500', 'bg-amber-500', 'bg-red-500'] as const
+const DIFFICULTY_FILL = ['bg-success', 'bg-warning', 'bg-destructive'] as const
 
 function AlgorithmMethod({ set }: { set: ALGORITHM_SET }) {
   const t = useTranslations('Index.AlgorithmsPage')
@@ -20,16 +19,13 @@ function AlgorithmMethod({ set }: { set: ALGORITHM_SET }) {
   const fill = DIFFICULTY_FILL[difficulty - 1] ?? DIFFICULTY_FILL[0]
 
   return (
-    <Link href={`/algorithms/${slug}`} className="group focus:outline-none rounded-none">
-      <div className="item-card flex h-full flex-col gap-5 p-4 text-card-foreground">
+    <Link href={`/algorithms/${slug}`} className="group focus:outline-none">
+      <div className="surface flex h-full flex-col gap-5 p-4 text-card-foreground">
         <div className="flex items-start gap-4">
           <MethodThumbnail set={set} />
 
           <div className="min-w-0 flex-1">
-            <div className="flex items-start justify-between gap-2">
-              <h3 className="font-display text-lg font-bold leading-tight tracking-tight">{title}</h3>
-              <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-primary" />
-            </div>
+            <h3 className="font-display text-lg font-bold leading-tight tracking-tight">{title}</h3>
             <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{subtitle}</p>
           </div>
         </div>

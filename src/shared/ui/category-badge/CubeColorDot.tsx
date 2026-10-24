@@ -7,5 +7,5 @@ interface CubeColorDotProps {
 }
 
 export function CubeColorDot({ category, className }: CubeColorDotProps) {
-  return <span className={cn('size-1.5 shrink-0 rounded-[2px]', cubeColorClass(category), className)} aria-hidden />
+  return <span className={cn('size-1.5 shrink-0', cubeColorClass(category), className)} aria-hidden />
 }

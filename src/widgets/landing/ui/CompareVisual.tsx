@@ -25,7 +25,7 @@ export default function CompareVisual() {
   return (
     <div className="flex flex-col">
       {/* Header: users are the columns */}
-      <div className={`${COLS} border-b border-gray-900/8 pb-2`}>
+      <div className={`${COLS} border-b border-border pb-2`}>
         <span />
         {users.map((u) => (
           <span key={u.name} className="flex min-w-0 flex-col items-center gap-1">
@@ -34,9 +34,9 @@ export default function CompareVisual() {
               alt=""
               width={28}
               height={28}
-              className="h-7 w-7 shrink-0 rounded-full border-2 border-gray-900/10"
+              className="h-7 w-7 shrink-0 rounded-full border-2 border-border"
             />
-            <span className="max-w-full truncate text-[10px] font-bold text-gray-800">{u.name}</span>
+            <span className="max-w-full truncate text-[10px] font-bold text-foreground">{u.name}</span>
           </span>
         ))}
       </div>
@@ -52,11 +52,11 @@ export default function CompareVisual() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.12 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className={`${COLS} border border-gray-900/8 bg-white/70 py-2 pl-2.5 pr-1`}
+              className={`${COLS} border border-border bg-card/70 py-2 pl-2.5 pr-1`}
             >
               <span className="flex items-center gap-1.5">
-                <span className="size-2 shrink-0 rounded-[3px]" style={{ backgroundColor: row.color }} />
-                <span className="text-[11px] font-semibold text-gray-800">{row.cat}</span>
+                <span className="size-2 shrink-0" style={{ backgroundColor: row.color }} />
+                <span className="text-[11px] font-semibold text-foreground">{row.cat}</span>
               </span>
               {row.times.map((tm, c) => {
                 const isBest = tm === best
@@ -65,10 +65,10 @@ export default function CompareVisual() {
                     key={c}
                     className={cn(
                       'flex items-center justify-center gap-1 font-mono text-xs tabular-nums',
-                      isBest ? 'font-bold text-amber-500' : 'text-gray-500'
+                      isBest ? 'font-bold text-record' : 'text-muted-foreground'
                     )}
                   >
-                    {isBest && <Trophy className="size-3 shrink-0 fill-amber-500 text-amber-500" />}
+                    {isBest && <Trophy className="size-3 shrink-0 fill-record text-record" />}
                     {fmt(tm)}
                   </span>
                 )

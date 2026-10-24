@@ -18,7 +18,7 @@ export default function FeatureBento() {
     <section className="lp-cv relative overflow-hidden py-20 md:py-28">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 text-gray-900"
+        className="pointer-events-none absolute inset-0 -z-10 text-foreground"
         style={{
           maskImage: 'linear-gradient(to bottom, transparent, black 22%, black 78%, transparent)',
           WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 22%, black 78%, transparent)'
@@ -29,10 +29,12 @@ export default function FeatureBento() {
 
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mb-12 text-center">
-          <h2 className="font-display text-balance text-3xl font-bold tracking-[-0.02em] text-gray-900 md:text-5xl">
+          <h2 className="font-display text-balance text-3xl font-bold tracking-[-0.02em] text-foreground md:text-5xl">
             {t('title')}
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-sm text-gray-600 md:text-base text-pretty">{t('subtitle')}</p>
+          <p className="mx-auto mt-5 max-w-xl text-sm text-muted-foreground md:text-base text-pretty">
+            {t('subtitle')}
+          </p>
         </Reveal>
 
         <div className="grid gap-5 md:grid-cols-6">

@@ -128,7 +128,7 @@ function DetailGroup({
   return (
     <div className="flex flex-col gap-1 min-w-0">
       <div className="flex items-baseline gap-1.5 flex-wrap">
-        <span className="text-[9px] font-semibold uppercase tracking-wider text-muted-foreground">{title}</span>
+        <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{title}</span>
         <span className="text-xs font-bold tabular-nums">{value}</span>
         {extra}
       </div>

@@ -7,12 +7,7 @@ export function AchievementFamilyCard({ family }: { family: BadgeFamily }) {
   const { progress } = family
 
   return (
-    <div
-      className={cn(
-        'notch-br flex items-center gap-3 border border-border/40 bg-card/40 p-3 transition-colors',
-        locked ? 'opacity-60' : 'hover:border-primary'
-      )}
-    >
+    <div className={cn('surface flex items-center gap-3 p-3', locked && 'opacity-60')}>
       <div className="shrink-0">
         <AchievementItem
           achievement={family}

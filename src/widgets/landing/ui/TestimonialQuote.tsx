@@ -29,15 +29,12 @@ export default function TestimonialQuote({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-8%' }}
       transition={{ duration: 0.55, delay, ease: [0.16, 1, 0.3, 1] }}
-      className={cn(
-        'flex h-full flex-col notch-br border border-gray-900/10 bg-white/55 backdrop-blur-sm',
-        lead ? 'p-7 md:p-10' : 'p-6 md:p-7'
-      )}
+      className={cn('surface surface-panel flex h-full flex-col', lead ? 'p-7 md:p-10' : 'p-6 md:p-7')}
     >
-      <Quote className={cn('text-gray-900/20', lead ? 'mb-5 h-7 w-7' : 'mb-4 h-5 w-5')} aria-hidden />
+      <Quote className={cn('text-foreground/20', lead ? 'mb-5 h-7 w-7' : 'mb-4 h-5 w-5')} aria-hidden />
       <blockquote
         className={cn(
-          'font-display font-medium tracking-[-0.01em] text-gray-900 text-pretty',
+          'font-display font-medium tracking-[-0.01em] text-foreground text-pretty',
           lead ? 'text-xl leading-relaxed md:text-2xl lg:text-[1.75rem]' : 'text-base leading-relaxed'
         )}
       >
@@ -45,15 +42,15 @@ export default function TestimonialQuote({
       </blockquote>
       <figcaption className="mt-auto flex items-center gap-3 pt-7">
         <Image
-          className={cn('rounded-full border-2 border-gray-900/10', lead ? 'h-11 w-11' : 'h-9 w-9')}
+          className={cn('rounded-full border-2 border-border', lead ? 'h-11 w-11' : 'h-9 w-9')}
           src={`https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_${avatar}.png`}
           alt=""
           width={44}
           height={44}
         />
         <div className="min-w-0">
-          <span className="block truncate text-sm font-semibold text-gray-900">{user}</span>
-          <span className="block truncate text-xs text-gray-600">{role}</span>
+          <span className="block truncate text-sm font-semibold text-foreground">{user}</span>
+          <span className="block truncate text-xs text-muted-foreground">{role}</span>
         </div>
       </figcaption>
     </m.figure>

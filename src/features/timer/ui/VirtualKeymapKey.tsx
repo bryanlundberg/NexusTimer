@@ -31,7 +31,7 @@ function VirtualKeymapKey({ code, label, move, isPressed, onSelect }: VirtualKey
           type="button"
           aria-label={definition ? `${label.toUpperCase()}: ${definition.move}` : label.toUpperCase()}
           className={cn(
-            'relative flex h-(--key-h) w-(--key-w) cursor-pointer flex-col items-center justify-center gap-0.5 rounded-md border transition-colors',
+            'relative flex h-(--key-h) w-(--key-w) cursor-pointer flex-col items-center justify-center gap-0.5 border transition-colors',
             'focus-visible:ring-ring/50 outline-none focus-visible:ring-2',
             definition
               ? 'border-primary/40 bg-primary/10 text-foreground hover:bg-primary/20'

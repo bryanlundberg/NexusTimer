@@ -92,10 +92,10 @@ export function NavUser({
         {/* Identity header */}
         <DropdownMenuItem
           onClick={() => router.push('/account')}
-          className="group relative m-0 cursor-pointer gap-3 rounded-none px-3 py-3"
+          className="group relative m-0 cursor-pointer gap-3 px-3 py-3"
         >
           <div className="relative shrink-0">
-            <Avatar className="size-10 rounded-full shadow-sm ring-1 ring-border/60">
+            <Avatar className="size-10 rounded-full ring-1 ring-border/60">
               <AvatarImage className="object-cover" src={user.avatar} alt={user.name} />
               <AvatarFallback className="rounded-full">{initials}</AvatarFallback>
             </Avatar>
@@ -143,7 +143,7 @@ export function NavUser({
             <DropdownMenuItem
               key={href}
               onClick={() => router.push(href)}
-              className="cursor-pointer gap-2.5 rounded-none px-3 py-1.5"
+              className="cursor-pointer gap-2.5 px-3 py-1.5"
             >
               <span className="flex size-6 shrink-0 items-center justify-center bg-muted">
                 <Icon className="size-3.5" />
@@ -158,7 +158,7 @@ export function NavUser({
             <DropdownMenuItem
               key={href}
               onClick={() => router.push(href)}
-              className="cursor-pointer gap-2.5 rounded-none px-3 py-1.5"
+              className="cursor-pointer gap-2.5 px-3 py-1.5"
             >
               <span className="flex size-6 shrink-0 items-center justify-center bg-muted">
                 <Icon className="size-3.5" />
@@ -173,7 +173,7 @@ export function NavUser({
           <DropdownMenuItem
             variant="destructive"
             onClick={handleResetDeviceData}
-            className="cursor-pointer gap-2.5 rounded-none px-3 py-1.5"
+            className="cursor-pointer gap-2.5 px-3 py-1.5"
           >
             <span className="flex size-6 shrink-0 items-center justify-center bg-destructive/10">
               <LogOut className="size-3.5 text-destructive" />

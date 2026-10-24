@@ -18,7 +18,6 @@ import {
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { QUICK_REACTIONS } from '@/entities/chat/lib/reactions'
 import type { DeleteScope } from '@/entities/chat/model/types'
-import { cn } from '@/shared/lib/utils'
 
 const EmojiPicker = dynamic(() => import('@/shared/ui/emoji-picker/EmojiPicker').then((m) => m.EmojiPicker), {
   ssr: false
@@ -98,7 +97,7 @@ export function MessageActions({ isOwn, canEdit, canReact, canDeleteForEveryone,
                     type="button"
                     aria-label={t('reaction-add', { emoji })}
                     onClick={() => react(emoji)}
-                    className="flex size-8 items-center justify-center rounded-md text-xl transition-transform hover:scale-115 hover:bg-muted"
+                    className="flex size-8 items-center justify-center text-xl transition-transform hover:scale-115 hover:bg-muted"
                   >
                     {emoji}
                   </button>
@@ -108,7 +107,7 @@ export function MessageActions({ isOwn, canEdit, canReact, canDeleteForEveryone,
                   type="button"
                   aria-label={t('emoji-more')}
                   onClick={openPicker}
-                  className="flex size-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                  className="flex size-8 items-center justify-center text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                 >
                   <Plus className="size-4" />
                 </button>
@@ -150,10 +149,7 @@ export function MessageActions({ isOwn, canEdit, canReact, canDeleteForEveryone,
               {t('delete-for-me')}
             </AlertDialogAction>
             {canDeleteForEveryone && (
-              <AlertDialogAction
-                className={cn(buttonVariants({ variant: 'destructive' }), 'btn-notch')}
-                onClick={() => remove('all')}
-              >
+              <AlertDialogAction className={buttonVariants({ variant: 'destructive' })} onClick={() => remove('all')}>
                 {t('delete-for-everyone')}
               </AlertDialogAction>
             )}

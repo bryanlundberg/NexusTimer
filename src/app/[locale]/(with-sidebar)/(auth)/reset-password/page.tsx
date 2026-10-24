@@ -20,7 +20,7 @@ export default async function ResetPasswordPage() {
           <p className="text-sm text-muted-foreground">{t('reset-password-subtitle')}</p>
         </div>
 
-        <div className="w-full notch-br border bg-background/80 backdrop-blur-sm p-6 shadow-sm flex flex-col gap-5">
+        <div className="w-full surface surface-panel p-6 flex flex-col gap-5">
           <Suspense fallback={<p className="text-sm text-muted-foreground text-center">{t('loading')}</p>}>
             <ResetPasswordContent />
           </Suspense>

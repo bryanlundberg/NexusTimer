@@ -27,9 +27,9 @@ interface DisplayTimeProps extends Omit<HTMLMotionProps<'div'>, 'ref'> {
 }
 
 const timerStatusClasses = {
-  IDLE: 'light:text-neutral-900 dark:text-white',
+  IDLE: 'text-foreground',
   HOLDING: 'text-timer-holding',
-  SOLVING: 'light:text-neutral-700 dark:text-slate-200',
+  SOLVING: 'text-foreground/85',
   READY: 'text-timer-ready',
   INSPECTING: 'text-timer-inspect',
   WAITING_NEXT_ROUND: 'inherit'

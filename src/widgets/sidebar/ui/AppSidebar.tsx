@@ -1,9 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react'
-import { motion } from 'motion/react'
-import { useActiveIndicator } from '@/widgets/sidebar/model/useActiveIndicator'
+import { useRef, useSyncExternalStore } from 'react'
 import { MonitorDown } from 'lucide-react'
 import {
   Sidebar,
@@ -17,7 +15,7 @@ import {
 import GithubIcon from '@/components/ui/github-icon'
 import DiscordIcon from '@/components/ui/discord-icon'
 import { usePwaInstall } from '@/shared/model/usePwaInstall'
-import { Link, usePathname } from '@/shared/config/i18n/navigation'
+import { Link } from '@/shared/config/i18n/navigation'
 import { useTranslations } from 'next-intl'
 import { NavMain } from '@/widgets/sidebar/ui/nav-main'
 import { SidebarActivity } from '@/widgets/sidebar/ui/sidebar-activity'
@@ -26,51 +24,31 @@ import { BrandMark } from '@/widgets/sidebar/ui/brand-mark'
 import { SmartCubeIndicator } from '@/features/smart-cube/ui/SmartCubeIndicator'
 import { SmartCubeIndicatorCompact } from '@/features/smart-cube/ui/SmartCubeIndicatorCompact'
 import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
-import { INDICATOR_SPRING } from '@/shared/lib/motion'
 import { useOverscrollStretch } from '@/shared/model/useOverscrollStretch'
-import { SECTION_ACCENT, useSidebarNav, type SectionKey } from '@/widgets/sidebar/model/useSidebarNav'
+import { useSidebarNav } from '@/widgets/sidebar/model/useSidebarNav'
 
 const subscribeNoop = () => () => {}
 const getIsMac = () => /Mac|iPhone|iPad/.test(navigator.userAgent)
 const getIsMacServer = () => false
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { open, openMobile, setOpenMobile, isMobile, state, toggleSidebar } = useSidebar()
+  const { open, openMobile, setOpenMobile, isMobile, toggleSidebar } = useSidebar()
   const isMac = useSyncExternalStore(subscribeNoop, getIsMac, getIsMacServer)
   const t = useTranslations('Index')
   const { isInstallable, install } = usePwaInstall()
-  const pathname = usePathname() ?? ''
   const isFocusMode = useFocusModeStore((store) => store.isFocusMode)
-  const [hash, setHash] = useState<string>('')
-  const { menuRef, indicator } = useActiveIndicator<HTMLDivElement>([pathname, hash, state])
+  const menuRef = useRef<HTMLDivElement>(null)
   const sections = useSidebarNav()
 
   const scrollRef = useRef<HTMLDivElement>(null)
 
   useOverscrollStretch(scrollRef, menuRef)
 
-  useEffect(() => {
-    const updateHash = () => setHash(window.location.hash || '')
-    updateHash()
-    window.addEventListener('hashchange', updateHash)
-    return () => window.removeEventListener('hashchange', updateHash)
-  }, [])
-
-  const activeSection = useMemo<SectionKey | null>(() => {
-    const matches = (items: { url: string; items?: { url: string }[] }[]) =>
-      items.some((it) => {
-        const hit = (url: string) => !!url && (pathname === url || (url !== '/' && pathname.startsWith(url + '/')))
-        return hit(it.url) || (it.items?.some((s) => hit(s.url.split('#')[0])) ?? false)
-      })
-    return sections.find((section) => matches(section.items))?.key ?? null
-  }, [sections, pathname])
-  const activeAccent = SECTION_ACCENT[activeSection ?? 'platform']
-
   if (isFocusMode) return null
 
   return (
     <Sidebar collapsible={'icon'} {...props}>
-      <SidebarHeader className={'relative mt-2'}>
+      <SidebarHeader className="relative h-14 shrink-0 justify-center border-b border-sidebar-border py-0">
         <SidebarMenu>
           <SidebarMenuItem>
             <Link href={'/app'} className="flex items-center gap-2" onClick={() => isMobile && setOpenMobile(false)}>
@@ -91,21 +69,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         className="group-data-[collapsible=icon]:overflow-auto pointer-coarse:overscroll-y-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         <div ref={menuRef} className="relative isolate">
-          {!isMobile && indicator && (
-            <motion.div
-              className="nav-indicator pointer-events-none absolute top-0 left-0 -z-10"
-              style={{
-                width: indicator.width,
-                height: indicator.height,
-                backgroundColor: `color-mix(in oklch, ${activeAccent} 14%, var(--sidebar-accent))`
-              }}
-              initial={false}
-              animate={{ x: indicator.left, y: indicator.top }}
-              transition={INDICATOR_SPRING}
-            />
-          )}
           {sections.map((section) => (
-            <NavMain key={section.key} items={section.items} label={section.label} accent={section.accent} />
+            <NavMain key={section.key} items={section.items} label={section.label} />
           ))}
         </div>
       </SidebarContent>

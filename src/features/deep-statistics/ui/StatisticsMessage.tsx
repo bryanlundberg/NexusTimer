@@ -1,6 +1,6 @@
 'use client'
 
-import { Nexi, NexiGridBackdrop } from '@/shared/ui/nexi'
+import { Nexi } from '@/shared/ui/nexi'
 
 interface StatisticsMessageProps {
   title: string
@@ -15,7 +15,6 @@ export default function StatisticsMessage({ title, description }: StatisticsMess
   return (
     <div className="flex grow flex-col items-center justify-center overflow-x-clip px-2 py-12 text-center">
       <div className="relative grid size-36 shrink-0 place-items-center" aria-hidden="true">
-        <NexiGridBackdrop />
         <div className="absolute inset-7 rounded-full bg-primary/10 blur-2xl" />
         <div className="absolute inset-11 rounded-full bg-primary/15 blur-xl" />
         <Nexi state="think" size={120} aria-label={title} />

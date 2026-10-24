@@ -8,7 +8,7 @@ export default function TestimonialsBackdrop({ reduce }: { reduce: boolean | nul
       <div className="absolute inset-0 bg-linear-to-b from-(--lp-bg) via-(--lp-bg-deep) to-(--lp-bg)" />
 
       <m.svg
-        className="absolute inset-[-12%] h-[124%] w-[124%] text-gray-900"
+        className="absolute inset-[-12%] h-[124%] w-[124%] text-foreground"
         xmlns="http://www.w3.org/2000/svg"
         animate={reduce ? undefined : { x: ['0px', '54px'], y: ['0px', '54px'] }}
         transition={{ duration: 22, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}

@@ -60,7 +60,7 @@ export default function StatsVisual() {
   return (
     <div className="flex flex-col">
       <div className="mb-2 flex items-center justify-between">
-        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-500">Ao100 trend</span>
+        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">Ao100 trend</span>
         <span className="inline-flex items-center gap-1 bg-[var(--cube-green)]/15 px-1.5 py-0.5 font-mono text-[10px] font-bold text-[var(--cube-green)]">
           <TrendingDown className="size-3" aria-hidden />
           1.42s
@@ -80,14 +80,14 @@ export default function StatsVisual() {
               x2="260"
               y2={g.y}
               stroke="currentColor"
-              className="text-gray-900/8"
+              className="text-foreground/8"
               strokeWidth="1"
             />
             <text
               x="0"
               y={g.y + 3}
               fill="currentColor"
-              className="text-gray-900/35"
+              className="text-foreground/35"
               style={{ fontFamily: 'var(--font-mono, ui-monospace, monospace)', fontSize: 8 }}
             >
               {g.tick}
@@ -187,8 +187,8 @@ export default function StatsVisual() {
       </svg>
 
       {/* solve distribution */}
-      <div className="mt-3 border-t border-gray-900/8 pt-2.5">
-        <div className="mb-1.5 flex items-center justify-between text-[8px] uppercase tracking-[0.15em] text-gray-400">
+      <div className="mt-3 border-t border-border pt-2.5">
+        <div className="mb-1.5 flex items-center justify-between text-[8px] uppercase tracking-[0.15em] text-muted-foreground/70">
           <span>Solve distribution</span>
           <span className="font-mono tracking-normal">2,481 solves</span>
         </div>
@@ -200,7 +200,7 @@ export default function StatsVisual() {
               whileInView={reduce ? { opacity: 1 } : { scaleY: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.4 + i * 0.04, ease: [0.16, 1, 0.3, 1] }}
-              className="flex-1 origin-bottom rounded-[2px]"
+              className="flex-1 origin-bottom"
               style={{
                 height: `${h}%`,
                 backgroundColor: i === peak ? 'var(--cube-green)' : 'rgba(0,0,0,0.12)'
@@ -208,7 +208,7 @@ export default function StatsVisual() {
             />
           ))}
         </div>
-        <div className="mt-1 flex items-center justify-between font-mono text-[8px] text-gray-400">
+        <div className="mt-1 flex items-center justify-between font-mono text-[8px] text-muted-foreground/70">
           <span>6s</span>
           <span>12s</span>
         </div>

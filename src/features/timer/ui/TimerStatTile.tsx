@@ -23,7 +23,7 @@ export default function TimerStatTile({ label, value, testId, side, isRecord = f
         'font-medium transition-colors md:flex md:min-w-24 md:flex-col md:justify-center md:gap-1 md:px-3 md:py-2 md:text-left',
         'stat-notch',
         side === 'right' && 'text-right',
-        isRecord ? 'text-record md:bg-record/15' : 'md:bg-primary/[0.08]'
+        isRecord ? 'text-record md:bg-record/15' : 'md:bg-muted dark:md:bg-muted/50'
       )}
     >
       <span className="md:flex md:items-center md:gap-1 md:font-display md:text-[9px] md:font-semibold md:uppercase md:tracking-[0.14em] md:text-muted-foreground">

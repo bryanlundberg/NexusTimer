@@ -30,7 +30,7 @@ export default function LeaderboardPodium({ solves }: { solves: LeaderboardSolve
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.08 * order, ease: [0.16, 1, 0.3, 1] }}
             className={cn(
-              'item-card group flex min-w-0 cursor-pointer flex-col items-center gap-1.5 px-2 pb-3 text-center sm:gap-2',
+              'surface group flex min-w-0 cursor-pointer flex-col items-center gap-1.5 px-2 pb-3 text-center sm:gap-2',
               isFirst ? 'pt-5 sm:pt-7' : 'pt-3 sm:pt-4'
             )}
           >

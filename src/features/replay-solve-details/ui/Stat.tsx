@@ -1,19 +1,8 @@
 import type { ReactNode } from 'react'
-import { cn } from '@/shared/lib/utils'
 
-export function Stat({
-  label,
-  value,
-  icon,
-  className
-}: {
-  label: string
-  value: string | number
-  icon?: ReactNode
-  className?: string
-}) {
+export function Stat({ label, value, icon }: { label: string; value: string | number; icon?: ReactNode }) {
   return (
-    <div className={cn('flex flex-col items-center gap-1 bg-muted/40 py-2.5', className)}>
+    <div className="surface surface-well surface-sm flex flex-col items-center gap-1 py-2.5">
       <span className="flex items-center gap-1 text-[10px] text-muted-foreground">
         {icon}
         {label}

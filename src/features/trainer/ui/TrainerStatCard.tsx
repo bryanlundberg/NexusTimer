@@ -11,7 +11,7 @@ interface TrainerStatCardProps {
 
 export default function TrainerStatCard({ icon: Icon, label, value, sub }: TrainerStatCardProps) {
   return (
-    <div className="algo-panel-notch flex flex-col gap-1 px-3 py-2.5">
+    <div className="surface surface-panel flex flex-col gap-1 px-3 py-2.5">
       <span className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
         <Icon className="size-3" />
         {label}

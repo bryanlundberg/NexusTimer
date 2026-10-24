@@ -54,7 +54,7 @@ export default function TransferSolvesPage() {
 
       {selectedSolves.length > 0 && (
         <div className="absolute inset-x-0 bottom-0 z-20 px-3 pb-3">
-          <div className="notch-br animate-in slide-in-from-bottom-4 fade-in-0 mx-auto flex max-w-2xl items-center gap-2 bg-foreground p-2 text-background shadow-xl duration-300 ease-out">
+          <div className="notch-br animate-in slide-in-from-bottom-4 fade-in-0 mx-auto flex max-w-2xl items-center gap-2 bg-foreground p-2 text-background shadow-float duration-300 ease-out">
             <span
               data-testid="solves-selected-counter"
               className="min-w-0 flex-1 truncate ps-2 text-sm font-medium tabular-nums"

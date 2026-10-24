@@ -14,6 +14,7 @@ import LandingBelowFold from './LandingBelowFold'
 import { BrandMark } from '@/widgets/sidebar/ui/brand-mark'
 import * as React from 'react'
 import { cn } from '@/shared/lib/utils'
+import { buttonVariants } from '@/components/ui/button'
 
 const NAV = [
   { href: '/app', page: 'timer', wide: false },
@@ -42,11 +43,11 @@ export default function LandingShell({ footer }: { footer: ReactNode }) {
 
   return (
     <LazyMotion features={loadMotionFeatures} strict>
-      <div className="lp-root relative w-dvw h-dvh bg-[var(--lp-bg)] overflow-hidden">
+      <div className="lp-root relative w-dvw h-dvh bg-background overflow-hidden">
         <div
           ref={containerRef}
           onScroll={handleScroll}
-          className="relative z-10 h-full text-gray-900 overflow-y-auto overflow-x-hidden"
+          className="relative z-10 h-full text-foreground overflow-y-auto overflow-x-hidden"
         >
           <div ref={contentRef} className="flex flex-col min-h-full">
             {/* Scroll progress — a thin brand-blue line that tracks reading position */}
@@ -92,8 +93,8 @@ export default function LandingShell({ footer }: { footer: ReactNode }) {
                 <div className="flex items-center gap-2">
                   <BrandMark />
                   <span className="font-brand text-base leading-tight font-bold tracking-tight">
-                    <span className="text-gray-900">NEXUSTIMER</span>
-                    <span className="text-gray-500">.COM</span>
+                    <span className="text-foreground">NEXUSTIMER</span>
+                    <span className="text-muted-foreground">.COM</span>
                   </span>
                 </div>
                 <nav className="hidden md:flex items-center gap-1">
@@ -102,7 +103,7 @@ export default function LandingShell({ footer }: { footer: ReactNode }) {
                       key={item.href}
                       href={item.href}
                       className={cn(
-                        'inline-flex h-9 items-center whitespace-nowrap px-3 text-sm font-medium text-gray-600 transition-colors duration-300 hover:bg-gray-900/5 hover:text-gray-900',
+                        'inline-flex h-9 items-center whitespace-nowrap px-3 text-sm font-medium text-muted-foreground transition-colors duration-300 hover:bg-foreground/5 hover:text-foreground',
                         item.wide && 'hidden lg:inline-flex'
                       )}
                     >
@@ -110,10 +111,7 @@ export default function LandingShell({ footer }: { footer: ReactNode }) {
                     </Link>
                   ))}
                 </nav>
-                <Link
-                  href="/app"
-                  className="group btn-notch inline-flex h-9 items-center gap-2 whitespace-nowrap bg-primary px-4 text-sm font-semibold text-white transition-all duration-300 hover:brightness-110 active:scale-[0.97] pointer-coarse:h-10 sm:px-5"
-                >
+                <Link href="/app" className={cn(buttonVariants({ size: 'sm' }), 'group pointer-coarse:h-10')}>
                   {t('header.start-timing')}
                   <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                 </Link>

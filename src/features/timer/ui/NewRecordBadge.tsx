@@ -41,7 +41,8 @@ export default function NewRecordBadge({ solve, improvement, onDismiss }: NewRec
       initial={{ opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.25 }}
-      className="notch-bl-tr relative flex flex-col gap-3 border border-record/30 bg-[color-mix(in_oklab,var(--record)_6%,var(--background))] p-3"
+      data-record="true"
+      className="surface flex flex-col gap-3 p-3"
       role="status"
     >
       <button

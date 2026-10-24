@@ -85,7 +85,7 @@ export default function ImportBackupInline() {
           <DropzoneContent />
         </Dropzone>
       ) : (
-        <div className="flex min-h-35 flex-col items-center justify-center gap-2 rounded-md border border-dashed text-center">
+        <div className="flex min-h-35 flex-col items-center justify-center gap-2 border border-dashed text-center">
           <Spinner />
           <div className="mt-1">{t('loading-part-1')}</div>
           <div className="font-bold">{t('loading-part-2')}</div>

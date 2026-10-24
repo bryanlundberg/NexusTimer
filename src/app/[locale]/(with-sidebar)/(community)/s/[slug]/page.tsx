@@ -208,14 +208,14 @@ export default function SharedSolvePage() {
               type="button"
               aria-label={t('copy-scramble')}
               onClick={handleCopyScramble}
-              className="absolute right-0 top-0 rounded-none border p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              className="absolute right-0 top-0 border p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
               <CopyIcon className="size-3.5" />
             </button>
           </div>
           {!replay && (
             <>
-              <div className="notch-br bg-muted/40 p-3">
+              <div className="surface surface-well p-3">
                 <ScrambleDisplay
                   show
                   scramble={solve.scramble}
@@ -227,7 +227,7 @@ export default function SharedSolvePage() {
                   )}
                 />
               </div>
-              <div className="inline-flex overflow-hidden rounded-none border text-[10px] font-medium">
+              <div className="inline-flex overflow-hidden border text-[10px] font-medium">
                 {(['2D', '3D'] as const).map((v, i) => (
                   <button
                     key={v}

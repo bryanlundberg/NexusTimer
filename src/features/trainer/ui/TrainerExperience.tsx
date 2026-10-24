@@ -5,8 +5,7 @@ import { Link } from '@/shared/config/i18n/navigation'
 import { useTranslations } from 'next-intl'
 import { BarChart3, Bluetooth, Settings as SettingsIcon } from 'lucide-react'
 import SmartCube from '@/features/smart-cube/ui/SmartCube'
-import { CHART_CONTRAST, DEFAULT_CHART_CONTRAST } from '@/shared/lib/chartContrastColor'
-import { Button } from '@/components/ui/button'
+import { Button, buttonVariants } from '@/components/ui/button'
 import TrainerSmartTimer from '@/features/trainer/ui/TrainerSmartTimer'
 import TrainerCurrentCase from '@/features/trainer/ui/TrainerCurrentCase'
 import TrainerMethodSelect from '@/features/trainer/ui/TrainerMethodSelect'
@@ -90,7 +89,6 @@ export default function TrainerExperience() {
   const setIsSolving = useTimerStore((s) => s.setIsSolving)
   const setSolvingTime = useTimerStore((s) => s.setSolvingTime)
   const settings = useSettingsStore((s) => s.settings)
-  const contrast = CHART_CONTRAST[settings.preferences.colorTheme] ?? DEFAULT_CHART_CONTRAST
 
   const { data: session } = useSession()
   const isAuthed = !!session?.user?.id
@@ -321,10 +319,7 @@ export default function TrainerExperience() {
                 href="/algorithms/trainer/history"
                 aria-label={t('methodStats')}
                 title={t('methodStats')}
-                className={cn(
-                  'btn-notch inline-flex h-9 items-center justify-center gap-1.5 px-2.5 text-xs font-medium text-white transition-opacity hover:opacity-90',
-                  contrast.bg
-                )}
+                className={buttonVariants({ size: 'sm' })}
               >
                 <BarChart3 className="size-4 shrink-0" />
                 <span className="hidden lg:inline">{t('methodStats')}</span>
@@ -373,7 +368,7 @@ function MiniSparkline({ solves, targetMs }: { solves: { _id: string; timeMs: nu
         const ratio = (s.timeMs - min) / range
         const heightPct = Math.max(20, Math.round(ratio * 80 + 20))
         const colorClass = s.timeMs <= targetMs ? 'bg-faster' : s.timeMs <= targetMs * 1.25 ? 'bg-warning' : 'bg-slower'
-        return <div key={s._id} className={cn('w-1 rounded-sm', colorClass, vis)} style={{ height: `${heightPct}%` }} />
+        return <div key={s._id} className={cn('w-1', colorClass, vis)} style={{ height: `${heightPct}%` }} />
       })}
     </div>
   )

@@ -102,7 +102,7 @@ export function ScrambleZone() {
     <div className="relative mx-auto w-full max-w-7xl">
       <div
         className={cn(
-          'relative h-auto text-balance p-2 font-semilight text-center rounded-md mx-auto w-full max-w-7xl',
+          'relative h-auto text-balance p-2 font-semilight text-center mx-auto w-full max-w-7xl',
           sizeClasses,
           scrambleBackground && 'bg-secondary'
         )}

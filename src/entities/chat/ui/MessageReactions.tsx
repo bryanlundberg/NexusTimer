@@ -27,7 +27,7 @@ export function MessageReactions({ reactions, myId, isOwn, onToggle }: Props) {
           aria-label={t(mine ? 'reaction-remove' : 'reaction-add', { emoji })}
           onClick={() => onToggle(emoji)}
           className={cn(
-            'flex items-center gap-1 rounded-full border px-1.5 py-0.5 text-sm leading-none transition-colors',
+            'flex items-center gap-1 border px-1.5 py-0.5 text-sm leading-none transition-colors',
             mine
               ? 'border-[color-mix(in_oklab,var(--primary)_45%,var(--border))] bg-[color-mix(in_oklab,var(--primary)_18%,var(--background))]'
               : 'border-border/60 bg-muted/50 hover:bg-muted'

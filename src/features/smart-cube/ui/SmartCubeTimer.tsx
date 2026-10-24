@@ -41,7 +41,7 @@ export function SmartCubeTimer({ connection, secondaryActions }: SmartCubeTimerP
 
   return (
     <div className="grow flex flex-col items-center justify-center gap-1.5 sm:gap-3">
-      <div ref={containerRef} className="rounded-md overflow-hidden" />
+      <div ref={containerRef} className="overflow-hidden" />
 
       {phase === 'inspecting' && inspectionTime != null ? (
         <div className="text-5xl sm:text-7xl tabular-nums font-semibold text-timer-inspect">

@@ -108,7 +108,7 @@ export function ChatMenu({ chatId, onDeleted, className }: Props) {
             <AlertDialogCancel disabled={busy}>{t('cancel')}</AlertDialogCancel>
             <AlertDialogAction
               disabled={busy}
-              className={cn(buttonVariants({ variant: 'destructive' }), 'btn-notch')}
+              className={buttonVariants({ variant: 'destructive' })}
               onClick={(event) => {
                 event.preventDefault()
                 void confirm()

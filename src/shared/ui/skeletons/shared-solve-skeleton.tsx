@@ -15,7 +15,7 @@ export default function SharedSolveSkeleton() {
         </div>
 
         <div className="flex flex-col items-center gap-3">
-          <Skeleton className="h-5 w-16 rounded-none" />
+          <Skeleton className="h-5 w-16" />
           <Skeleton className="h-15 w-56 sm:h-18 sm:w-64" />
           <Skeleton className="h-3 w-32" />
         </div>
@@ -23,7 +23,7 @@ export default function SharedSolveSkeleton() {
         <div className="flex flex-col gap-3">
           <div className="grid grid-cols-3 gap-2">
             {Array.from({ length: 3 }).map((_, i) => (
-              <Skeleton key={i} className="h-14 rounded-none" />
+              <Skeleton key={i} className="h-14" />
             ))}
           </div>
           <Skeleton className="h-3 w-full rounded-full" />

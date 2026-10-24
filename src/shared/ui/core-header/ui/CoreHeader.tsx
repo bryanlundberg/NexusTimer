@@ -12,7 +12,7 @@ import { Link } from '@/shared/config/i18n/navigation'
 import { NavUser } from '@/widgets/sidebar/ui/nav-user'
 import * as React from 'react'
 import { useSession } from '@/shared/model/useSession'
-import { Button } from '@/components/ui/button'
+import { Button, buttonVariants } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useTranslations } from 'next-intl'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
@@ -92,7 +92,7 @@ export default function CoreHeader({ breadcrumbs, actions }: CoreHeaderProps) {
           {actions}
 
           {status === 'loading' ? (
-            <Skeleton className="h-9 w-24 rounded-none" />
+            <Skeleton className="h-9 w-24" />
           ) : session?.user ? (
             <>
               <MessagesMenu />
@@ -124,11 +124,7 @@ export default function CoreHeader({ breadcrumbs, actions }: CoreHeaderProps) {
               />
             </>
           ) : (
-            <Link
-              href="/sign-in"
-              prefetch={false}
-              className="btn-notch inline-flex h-9 items-center gap-1.5 bg-primary px-4 text-sm font-medium text-primary-foreground transition-[scale,background-color] duration-(--dur-fast) ease-(--ease-solve) hover:bg-primary/90 active:scale-[0.97]"
-            >
+            <Link href="/sign-in" prefetch={false} className={buttonVariants({ size: 'sm' })}>
               <LogInIcon className="size-4" />
               <span>{tAuth('sign-in')}</span>
             </Link>

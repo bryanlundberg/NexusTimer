@@ -9,6 +9,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { Nexi, type NexiState } from '@/shared/ui/nexi'
 import { MailCheck } from 'lucide-react'
+import { cn } from '@/shared/lib/utils'
 
 const RATING_NEXI = [
   { value: 1, state: 'oops', labelKey: 'rating-1' },
@@ -74,24 +75,41 @@ export default function FeedbackModal() {
         <DialogDescription>{t('description')}</DialogDescription>
       </DialogHeader>
 
-      <div role="radiogroup" aria-label={t('description')} className="flex justify-center gap-1 py-4">
-        {RATING_NEXI.map(({ value, state, labelKey }) => (
-          <button
-            key={value}
-            type="button"
-            role="radio"
-            onClick={() => setRating(value)}
-            aria-checked={rating === value}
-            className={`flex flex-col items-center gap-1 p-2 rounded-none transition-all cursor-pointer ${
-              rating === value
-                ? 'bg-accent scale-110 ring-2 ring-primary'
-                : 'opacity-60 hover:opacity-100 hover:bg-accent/50'
-            }`}
-          >
-            <Nexi state={state} size={48} aria-hidden />
-            <span className="text-xs text-muted-foreground">{t(labelKey)}</span>
-          </button>
-        ))}
+      <div
+        role="radiogroup"
+        aria-label={t('description')}
+        className="grid grid-cols-5 gap-[3px] bg-muted p-[3px] dark:bg-muted/50"
+      >
+        {RATING_NEXI.map(({ value, state, labelKey }) => {
+          const selected = rating === value
+          return (
+            <button
+              key={value}
+              type="button"
+              role="radio"
+              onClick={() => setRating(value)}
+              aria-checked={selected}
+              className={cn(
+                'group flex min-w-0 cursor-pointer flex-col items-center gap-1.5 px-1 py-3 outline-none transition-colors focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-ring',
+                selected && 'menu-item bg-background dark:bg-muted'
+              )}
+            >
+              <span
+                className={cn('transition-opacity', selected ? 'opacity-100' : 'opacity-50 group-hover:opacity-100')}
+              >
+                <Nexi state={state} size={44} aria-hidden />
+              </span>
+              <span
+                className={cn(
+                  'w-full truncate text-center text-xs',
+                  selected ? 'font-medium text-foreground' : 'text-muted-foreground group-hover:text-foreground'
+                )}
+              >
+                {t(labelKey)}
+              </span>
+            </button>
+          )
+        })}
       </div>
 
       <div className="flex flex-col gap-2">
@@ -104,7 +122,7 @@ export default function FeedbackModal() {
           className="resize-none"
         />
         <p className="flex items-start gap-2 text-[13px] leading-snug text-muted-foreground sm:text-xs">
-          <MailCheck aria-hidden className="mt-px size-4 shrink-0 text-primary sm:size-3.5" />
+          <MailCheck aria-hidden className="mt-px size-4 shrink-0 sm:size-3.5" />
           {t('personal-note')}
         </p>
         {failed && (

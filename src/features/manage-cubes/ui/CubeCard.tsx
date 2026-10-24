@@ -60,7 +60,7 @@ export function CubeCard({ cube }: CubeCardProps) {
       key={cube.id}
       data-active={isActive ? 'true' : undefined}
       data-favorite={cube.favorite ? 'true' : undefined}
-      className={cn('item-card group relative flex flex-col gap-2 p-4 text-card-foreground')}
+      className={cn('surface group relative flex flex-col gap-2 p-4 text-card-foreground')}
     >
       {/* Header */}
       <div className="flex justify-between items-start">

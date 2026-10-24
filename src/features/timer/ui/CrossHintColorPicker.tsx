@@ -16,7 +16,11 @@ export function CrossHintColorPicker({ faces, value, onChange }: CrossHintColorP
   const t = useTranslations('Index')
 
   return (
-    <div role="group" aria-label={t('CrossHints.color')} className="grid grid-cols-6 gap-1.5">
+    <div
+      role="group"
+      aria-label={t('CrossHints.color')}
+      className="grid grid-cols-6 gap-[3px] bg-muted p-[3px] dark:bg-muted/50"
+    >
       {FACE_COLORS.map((color) => {
         const face = faces?.find((hint) => CROSS_FACE_COLOR[hint.face] === color)
         const count = face ? (face.cross ? face.cross.split(' ').length : 0) : null
@@ -30,13 +34,19 @@ export function CrossHintColorPicker({ faces, value, onChange }: CrossHintColorP
             aria-label={t(`MainColors.colors.${color}`)}
             onClick={() => onChange(color)}
             className={cn(
-              'flex flex-col items-center gap-1 rounded-md border py-2 text-xs tabular-nums outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring',
+              'group flex cursor-pointer flex-col items-center gap-1 py-2 text-xs tabular-nums outline-none transition-colors focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-ring',
               selected
-                ? 'border-primary/60 bg-primary/10 text-foreground'
-                : 'border-transparent text-muted-foreground hover:bg-muted'
+                ? 'menu-item bg-background font-medium text-foreground dark:bg-muted'
+                : 'text-muted-foreground hover:text-foreground'
             )}
           >
-            <FaceGlyph color={color} className="size-6" />
+            <FaceGlyph
+              color={color}
+              className={cn(
+                'size-6 transition-opacity',
+                selected ? 'opacity-100' : 'opacity-60 group-hover:opacity-100'
+              )}
+            />
             <span aria-hidden>{count ?? '·'}</span>
           </button>
         )

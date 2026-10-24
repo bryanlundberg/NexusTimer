@@ -52,7 +52,7 @@ export default function MenuSelectColor() {
               aria-pressed={isSelected}
               title={color.label}
               style={{ clipPath: 'polygon(26% 0, 100% 0, 74% 100%, 0 100%)' }}
-              className={`group relative size-9 sm:size-11 rounded-none bg-gradient-to-br ${color.gradient} transition-all duration-200 focus:outline-hidden cursor-pointer shrink-0 ${
+              className={`group relative size-9 sm:size-11 bg-gradient-to-br ${color.gradient} transition-all duration-200 focus:outline-hidden cursor-pointer shrink-0 ${
                 isSelected ? 'scale-110 brightness-110' : 'opacity-80 hover:opacity-100 hover:scale-110'
               }`}
             >

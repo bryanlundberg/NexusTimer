@@ -25,7 +25,7 @@ export function LastActivitySolveCard({ solve, index }: LastActivitySolveCardPro
   const locale = useLocale()
 
   return (
-    <div className="item-card group flex flex-col">
+    <div className="surface group flex flex-col">
       <div className="p-4 pb-3">
         {/* Header: cube + meta */}
         <div className="flex items-center gap-3 mb-3">

@@ -62,7 +62,7 @@ export function FlyingAvatar({ src, startPos, onComplete }: FlyingAvatarProps) {
         pointerEvents: 'none'
       }}
     >
-      <div className="size-20 rounded-full overflow-hidden border-2 border-primary shadow-2xl bg-background">
+      <div className="size-20 rounded-full overflow-hidden border-2 border-primary shadow-float bg-background">
         <img src={src} className="w-full h-full object-cover" alt="flying avatar" />
       </div>
     </motion.div>

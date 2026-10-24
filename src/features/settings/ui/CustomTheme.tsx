@@ -69,7 +69,7 @@ export default function CustomTheme() {
               event.stopPropagation()
               deleteBackgroundImage()
             }}
-            className="absolute top-1 right-1 w-5 h-5 text-white rounded-full bg-red-600 flex items-center justify-center hover:scale-110 transition duration-200"
+            className="absolute top-1 right-1 w-5 h-5 text-white rounded-full bg-destructive flex items-center justify-center hover:scale-110 transition duration-200"
           >
             <Cross2Icon className="w-3 h-3" />
           </button>
@@ -77,7 +77,7 @@ export default function CustomTheme() {
       ) : (
         <div
           onClick={openFilePicker}
-          className="w-28 h-20 sm:w-36 sm:h-24 notch-br overflow-hidden cursor-pointer transition-all duration-200 border border-dashed border-neutral-400 hover:border-primary text-muted-foreground hover:text-foreground flex items-center justify-center"
+          className="w-28 h-20 sm:w-36 sm:h-24 notch-br overflow-hidden cursor-pointer transition-all duration-200 border border-dashed border-muted-foreground/20 hover:border-primary text-muted-foreground hover:text-foreground flex items-center justify-center"
         >
           <ImageIcon className="w-6 h-6" />
         </div>
