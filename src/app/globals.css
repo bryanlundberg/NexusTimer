@@ -577,6 +577,35 @@
   pointer-events: none;
   transition: background-color 200ms ease;
 }
+.dialog-shell {
+  --dialog-cut: 14px;
+  --dialog-shape: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--dialog-cut)),
+    calc(100% - var(--dialog-cut)) 100%,
+    0 100%
+  );
+  border: 1px solid var(--border);
+  background-color: color-mix(in oklab, var(--card) 30%, var(--background));
+  clip-path: var(--dialog-shape);
+}
+.dialog-shell::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  width: var(--dialog-cut);
+  height: var(--dialog-cut);
+  background: linear-gradient(
+    to top left,
+    transparent calc(50% - 0.5px),
+    var(--border) calc(50% - 0.5px),
+    var(--border) calc(50% + 0.5px),
+    transparent calc(50% + 0.5px)
+  );
+  pointer-events: none;
+}
 .surface-panel {
   --surface-fill: color-mix(in oklab, var(--card) 30%, var(--background));
 }
