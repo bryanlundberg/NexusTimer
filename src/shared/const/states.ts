@@ -21,6 +21,12 @@ export const STATES = {
       DEFAULT_VALUE: ''
     }
   },
+  CUBES_PAGE: {
+    CATEGORY: {
+      KEY: 'category',
+      DEFAULT_VALUE: 'all'
+    }
+  },
   STATISTICS_PAGE: {
     TAB_MODE: {
       KEY: 'tab-stats',
