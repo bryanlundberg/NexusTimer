@@ -8,6 +8,7 @@ import { PuzzleID, TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import AlgorithmCard from '@/features/algorithms-list/ui/algorithm-card'
 import { AlgorithmCollection } from '@/features/algorithms-list/model/types'
 import { Filter } from 'lucide-react'
+import { cn } from '@/shared/lib/utils'
 import { useSession } from '@/shared/model/useSession'
 import { useTranslations } from 'next-intl'
 import { useTrainerLearned } from '@/features/trainer/model/useTrainerLearned'
@@ -75,7 +76,7 @@ export const AlgorithmsList = ({ algorithms, virtualization, puzzle, methodSlug 
       {groupKeys.length > 1 && (
         <div className="mb-6">
           <div className="flex items-center gap-2 mb-3">
-            <Filter className="h-3.5 w-3.5 text-cube-green" />
+            <Filter className="h-3.5 w-3.5 text-muted-foreground" />
             <span className="font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
               {t('AlgorithmsPage.filters.group')}
             </span>
@@ -88,8 +89,13 @@ export const AlgorithmsList = ({ algorithms, virtualization, puzzle, methodSlug 
                 <Badge
                   key={group}
                   asChild
-                  variant={active ? 'default' : 'outline'}
-                  className="cursor-pointer transition-colors select-none text-[11px] sm:text-xs px-2 py-0.5 whitespace-normal break-all max-w-full pointer-coarse:px-3 pointer-coarse:py-2 pointer-coarse:text-[13px]"
+                  variant="outline"
+                  className={cn(
+                    'cursor-pointer transition-colors select-none text-[11px] sm:text-xs px-2 py-0.5 whitespace-normal break-all max-w-full pointer-coarse:px-3 pointer-coarse:py-2 pointer-coarse:text-[13px]',
+                    active
+                      ? 'border-foreground/30 bg-accent text-foreground'
+                      : 'border-transparent bg-muted/60 text-muted-foreground hover:text-foreground'
+                  )}
                 >
                   <button type="button" aria-pressed={active} onClick={() => handleChooseGroup(group)}>
                     <span className="min-w-0 break-all">{group}</span>
@@ -110,7 +116,7 @@ export const AlgorithmsList = ({ algorithms, virtualization, puzzle, methodSlug 
             <button
               type="button"
               onClick={() => setActiveGroups([])}
-              className="-my-2 ml-1 px-1 py-2 text-primary hover:underline pointer-coarse:text-[13px]"
+              className="-my-2 ml-1 cursor-pointer px-1 py-2 text-foreground underline-offset-4 hover:underline pointer-coarse:text-[13px]"
             >
               {t('AlgorithmsPage.filters.clear')}
             </button>

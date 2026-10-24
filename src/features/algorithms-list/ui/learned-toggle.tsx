@@ -28,13 +28,11 @@ export default function LearnedToggle({ learned, onClick, className }: LearnedTo
       }}
       className={cn(
         'h-7 gap-1.5 px-2 text-xs font-medium pointer-coarse:h-10 pointer-coarse:min-w-10',
-        learned
-          ? 'border-primary/40 bg-primary/10 text-primary hover:bg-primary/15 hover:text-primary'
-          : 'text-muted-foreground',
+        learned ? 'text-foreground' : 'text-muted-foreground',
         className
       )}
     >
-      {learned ? <Check className="size-3.5" /> : <Circle className="size-3.5" />}
+      {learned ? <Check className="size-3.5 text-primary" /> : <Circle className="size-3.5" />}
       <span className="hidden sm:inline">{label}</span>
     </Button>
   )

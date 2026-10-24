@@ -70,7 +70,7 @@ export default function AlgorithmCard({
   }
 
   return (
-    <div className={cn('transition-colors', isLearned && 'bg-primary/5', className)}>
+    <div className={className}>
       <div
         className={cn(
           'flex items-start gap-2 px-2 py-2 transition-colors sm:gap-3 sm:px-3 sm:py-2.5',
@@ -88,12 +88,7 @@ export default function AlgorithmCard({
         tabIndex={canExpand ? 0 : undefined}
         aria-expanded={canExpand ? expanded : undefined}
       >
-        <div
-          className={cn(
-            'flex size-24 shrink-0 items-center justify-center overflow-hidden bg-muted/40 p-1.5 sm:size-36 sm:p-2.5',
-            isLearned && 'ring-1 ring-primary/40'
-          )}
-        >
+        <div className="flex size-24 shrink-0 items-center justify-center overflow-hidden bg-muted/40 p-1.5 sm:size-36 sm:p-2.5">
           <AlgorithmRender config={vizConfig} width="100%" height="100%" className="size-full" />
         </div>
 
