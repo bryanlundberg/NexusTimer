@@ -139,16 +139,13 @@ export default function ButtonSelectMode() {
                 data-testid={mode.testId}
                 disabled={isDisabled}
                 onClick={mode.value === TimerMode.NEXUS_CONNECT ? handleNexusConnectClick : undefined}
-                className={cn(
-                  'group/mode flex cursor-pointer items-start gap-3 px-3 py-2 transition-colors [&>span]:hidden',
-                  isActive && 'bg-primary/10'
-                )}
+                className="group/mode flex cursor-pointer items-start gap-3 px-3 py-2 transition-colors [&>span]:hidden"
               >
                 <div
                   className={cn(
                     'flex size-9 shrink-0 items-center justify-center transition-colors',
                     isActive
-                      ? 'bg-primary/20 text-primary'
+                      ? 'bg-muted text-foreground'
                       : 'bg-muted/60 text-muted-foreground group-focus/mode:bg-muted'
                   )}
                 >
