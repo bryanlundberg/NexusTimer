@@ -5,6 +5,8 @@ import { motion } from 'motion/react'
 import { cn } from '@/shared/lib/utils'
 import { INDICATOR_SPRING } from '@/shared/lib/motion'
 
+const PILL_SHAPE = 'polygon(0 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%)'
+
 export interface SegmentedOption<T extends string> {
   value: T
   label: React.ReactNode
@@ -42,7 +44,7 @@ export default function Segmented<T extends string>({
     <div
       role="radiogroup"
       aria-label={props['aria-label']}
-      className={cn('inline-flex w-fit shrink-0 items-stretch border border-input bg-background', className)}
+      className={cn('inline-flex w-fit shrink-0 items-stretch gap-[3px] bg-muted p-[3px] dark:bg-muted/50', className)}
     >
       {options.map((option, index) => {
         const active = value === option.value
@@ -67,14 +69,15 @@ export default function Segmented<T extends string>({
               }
             }}
             className={cn(
-              'relative flex shrink-0 items-center gap-2 px-3 py-[7px] text-sm font-medium outline-none transition-colors duration-[var(--dur-fast)] ease-[var(--ease-solve)] cursor-pointer [-webkit-tap-highlight-color:transparent] focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-ring pointer-coarse:py-[9px]',
+              'relative flex shrink-0 items-center gap-2 px-3 py-[5px] text-sm font-medium outline-none transition-colors duration-[var(--dur-fast)] ease-[var(--ease-solve)] cursor-pointer [-webkit-tap-highlight-color:transparent] focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-ring pointer-coarse:py-[7px]',
               active ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
             )}
           >
             {active && (
               <motion.span
                 layoutId={layoutId}
-                className="absolute inset-0 bg-primary/20"
+                className="absolute inset-0 bg-background dark:bg-muted"
+                style={{ clipPath: PILL_SHAPE }}
                 transition={INDICATOR_SPRING}
               />
             )}
