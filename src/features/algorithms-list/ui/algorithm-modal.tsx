@@ -28,7 +28,7 @@ export default function AlgorithmModal() {
   if (!metadata || !alg || !replay) return null
 
   return (
-    <DialogContent className="flex max-h-[80dvh] flex-col items-center gap-5 overflow-y-auto p-5 sm:max-w-sm">
+    <DialogContent className="flex max-h-[80dvh] flex-col items-center gap-5 overflow-y-auto scrollbar-hide p-5 sm:max-w-sm">
       <div className="flex flex-col items-center gap-2">
         <DialogTitle className="text-lg font-semibold">{metadata.name}</DialogTitle>
         <Badge variant="outline" className="text-xs">
