@@ -4,7 +4,7 @@ import { cn } from '@/shared/lib/utils'
 import getBestTime from '@/shared/lib/statistics/getBestTime'
 import formatTime from '@/shared/lib/formatTime'
 import { CubeCategoryIcon } from '@/shared/ui/cube-category-icon/CubeCategoryIcon'
-import { Star } from 'lucide-react'
+import { Check, Star } from 'lucide-react'
 
 export function CubeListItem({
   cube,
@@ -31,7 +31,7 @@ export function CubeListItem({
       type="button"
       onClick={() => onSelect(cube.id)}
       data-selected={isSelected ? 'true' : undefined}
-      className="relative flex w-full items-center gap-3 px-3 py-2.5 text-left outline-none transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring/50 data-[selected=true]:bg-primary/15 data-[selected=true]:hover:bg-primary/20"
+      className="menu-item relative flex w-full cursor-pointer items-center gap-3 px-3 py-2.5 text-left outline-none transition-colors hover:bg-accent/50 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring/50 data-[selected=true]:bg-accent"
     >
       {foundCube ? (
         <span className={cn('size-[22px] shrink-0', isSelected ? 'text-foreground' : 'text-muted-foreground')}>
@@ -46,6 +46,7 @@ export function CubeListItem({
 
       <div className="flex shrink-0 items-center gap-2">
         {cube.favorite && <Star className="size-3.5 fill-record text-record" />}
+        {isSelected && <Check className="size-4 text-primary" />}
       </div>
     </button>
   )
