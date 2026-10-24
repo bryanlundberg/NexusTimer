@@ -433,6 +433,9 @@
     background-color: var(--popover);
     box-shadow: var(--elevation-float);
   }
+  .menu-item {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%);
+  }
 }
 
 [data-sonner-toast].toast-panel[data-styled='true'] {
@@ -488,8 +491,8 @@
 @layer components {
   .field {
     position: relative;
-    border: 1px solid var(--input);
-    background-color: var(--background);
+    border: 1px solid transparent;
+    background-color: var(--muted);
     transition:
       border-color var(--dur-fast) var(--ease-solve),
       background-color var(--dur-fast) var(--ease-solve),
@@ -505,11 +508,14 @@
   .field[aria-invalid='true'] {
     border-color: var(--destructive);
   }
+  .dark .field {
+    background-color: color-mix(in oklab, var(--muted) 50%, transparent);
+  }
   .field-hover:hover {
-    background-color: var(--accent);
+    background-color: color-mix(in oklab, var(--foreground) 5%, var(--muted));
   }
   .dark .field-hover:hover {
-    background-color: color-mix(in oklab, var(--accent) 50%, var(--background));
+    background-color: color-mix(in oklab, var(--muted) 80%, transparent);
   }
 }
 
