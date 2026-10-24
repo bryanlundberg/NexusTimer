@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
-import { CheckIcon, ChevronRightIcon, CircleIcon } from 'lucide-react'
+import { CheckIcon, ChevronRightIcon } from 'lucide-react'
 
 import { cn } from '@/shared/lib/utils'
 
@@ -88,13 +88,13 @@ function DropdownMenuCheckboxItem({
     <DropdownMenuPrimitive.CheckboxItem
       data-slot="dropdown-menu-checkbox-item"
       className={cn(
-        "menu-item focus:bg-accent focus:text-foreground transition-colors relative flex cursor-default items-center gap-2 py-1.5 pr-2 pl-8 text-sm pointer-coarse:py-2.5 pointer-coarse:text-base outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "menu-item focus:bg-accent focus:text-foreground text-muted-foreground data-[state=checked]:text-foreground data-[state=checked]:font-medium transition-colors relative flex cursor-default items-center gap-2 py-1.5 pr-8 pl-2 text-sm pointer-coarse:py-2.5 pointer-coarse:text-base outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       checked={checked}
       {...props}
     >
-      <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center text-primary">
+      <span className="pointer-events-none absolute right-2 flex size-3.5 items-center justify-center text-primary">
         <DropdownMenuPrimitive.ItemIndicator>
           <CheckIcon className="size-4" />
         </DropdownMenuPrimitive.ItemIndicator>
@@ -117,14 +117,14 @@ function DropdownMenuRadioItem({
     <DropdownMenuPrimitive.RadioItem
       data-slot="dropdown-menu-radio-item"
       className={cn(
-        "menu-item focus:bg-accent focus:text-foreground transition-colors relative flex cursor-default items-center gap-2 py-1.5 pr-2 pl-8 text-sm pointer-coarse:py-2.5 pointer-coarse:text-base outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "menu-item focus:bg-accent focus:text-foreground text-muted-foreground data-[state=checked]:text-foreground data-[state=checked]:font-medium transition-colors relative flex cursor-default items-center gap-2 py-1.5 pr-8 pl-2 text-sm pointer-coarse:py-2.5 pointer-coarse:text-base outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}
     >
-      <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center text-primary">
+      <span className="pointer-events-none absolute right-2 flex size-3.5 items-center justify-center text-primary">
         <DropdownMenuPrimitive.ItemIndicator>
-          <CircleIcon className="size-2 fill-current" />
+          <CheckIcon className="size-4" />
         </DropdownMenuPrimitive.ItemIndicator>
       </span>
       {children}
@@ -156,7 +156,7 @@ function DropdownMenuSeparator({ className, ...props }: React.ComponentProps<typ
   return (
     <DropdownMenuPrimitive.Separator
       data-slot="dropdown-menu-separator"
-      className={cn('bg-primary/25 -mx-1 my-1 h-px', className)}
+      className={cn('bg-border -mx-1 my-1 h-px', className)}
       {...props}
     />
   )
