@@ -245,7 +245,7 @@ export default function QuickActions({
           data-testid="quick-action-buttons"
         >
           {/* Penalty segmented control */}
-          <div className="inline-flex items-center border overflow-hidden text-xs font-medium">
+          <div className="inline-flex items-center gap-[3px] bg-muted p-[3px] text-xs font-medium dark:bg-muted/50">
             <button
               type="button"
               onPointerDown={() => {
@@ -253,8 +253,10 @@ export default function QuickActions({
                 else if (solve?.dnf) handleToggleDNF()
               }}
               className={cn(
-                'px-3 py-1.5 transition-colors',
-                isOk ? 'bg-success/15 text-success' : 'text-muted-foreground hover:bg-muted'
+                'cursor-pointer px-3 py-1 transition-colors',
+                isOk
+                  ? 'menu-item bg-background text-success dark:bg-muted'
+                  : 'text-muted-foreground hover:text-foreground'
               )}
             >
               OK
@@ -266,8 +268,10 @@ export default function QuickActions({
                 if (!solve?.plus2) handleTogglePlus2()
               }}
               className={cn(
-                'px-3 py-1.5 border-l transition-colors',
-                solve?.plus2 ? 'bg-destructive/15 text-destructive' : 'text-muted-foreground hover:bg-muted'
+                'cursor-pointer px-3 py-1 transition-colors',
+                solve?.plus2
+                  ? 'menu-item bg-background text-destructive dark:bg-muted'
+                  : 'text-muted-foreground hover:text-foreground'
               )}
             >
               +2
@@ -279,8 +283,10 @@ export default function QuickActions({
                 if (!solve?.dnf) handleToggleDNF()
               }}
               className={cn(
-                'px-3 py-1.5 border-l transition-colors',
-                solve?.dnf ? 'bg-destructive/15 text-destructive' : 'text-muted-foreground hover:bg-muted'
+                'cursor-pointer px-3 py-1 transition-colors',
+                solve?.dnf
+                  ? 'menu-item bg-background text-destructive dark:bg-muted'
+                  : 'text-muted-foreground hover:text-foreground'
               )}
             >
               DNF
