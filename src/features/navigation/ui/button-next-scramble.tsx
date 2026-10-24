@@ -22,7 +22,7 @@ export default function ButtonNextScramble() {
         <Tooltip>
           <TooltipTrigger asChild disabled={selectedCube === null}>
             <Button
-              variant={'ghost'}
+              variant={'outline'}
               className="size-9 pointer-coarse:size-10"
               onClick={handleClick}
               onMouseEnter={() => iconRef.current?.startAnimation()}
