@@ -86,19 +86,13 @@ export default function EmptyCubes({
       <Button
         className={cn(
           'group/action w-full h-auto justify-start gap-4 px-4 py-3.5 text-left',
-          'border border-border/70 bg-card/40 hover:bg-accent hover:border-primary/30'
+          'border border-border/70 bg-card/40 hover:bg-accent hover:border-foreground/20'
         )}
         variant="ghost"
         onClick={onClick}
         data-testid={dataTestId}
       >
-        <span
-          className={cn(
-            'grid place-items-center size-9 shrink-0',
-            'bg-primary/10 text-primary transition-colors group-hover/action:bg-primary/15',
-            '[&_svg]:size-4.5'
-          )}
-        >
+        <span className={cn('grid place-items-center size-9 shrink-0', 'bg-muted text-foreground', '[&_svg]:size-4.5')}>
           {icon}
         </span>
         <span className="flex flex-col min-w-0 flex-1">
