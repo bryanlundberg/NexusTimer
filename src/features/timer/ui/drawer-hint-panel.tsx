@@ -31,11 +31,18 @@ export default function DrawerHintPanel() {
 
       {selected ? (
         <div className="grid gap-0.5">
-          <CrossHintRow icon="cross" label={t('cross')} rotation={selected.rotation} moves={selected.cross} />
+          <CrossHintRow
+            icon="cross"
+            color={color}
+            label={t('cross')}
+            rotation={selected.rotation}
+            moves={selected.cross}
+          />
           {XCROSS_SLOTS.map((slot, index) => (
             <CrossHintRow
               key={slot.label}
               icon="xcross"
+              color={color}
               iconClassName={slot.iconClassName}
               label={slot.label}
               rotation={selected.rotation}
