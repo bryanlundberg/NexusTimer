@@ -16,6 +16,8 @@ import type { LeaderboardSolve } from '@nexustimer/contracts'
 import { useLocale, useTranslations } from 'next-intl'
 import { cn } from '@/shared/lib/utils'
 import { PODIUM_CHIP } from '@/shared/const/podium'
+import { FaceGlyph } from '@/shared/ui/face-glyph/FaceGlyph'
+import { startFaceLayer } from '@/shared/lib/startFaceLayer'
 
 interface LeaderboardTableRowProps {
   solve: LeaderboardSolve
@@ -27,6 +29,8 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
   const locale = useLocale()
   const { openModal } = useLeaderboardRow(solve)
   const analysis = useSolveAnalysis(solve)
+  const tColors = useTranslations('Index.MainColors.colors')
+  const startColor = startFaceLayer(analysis)
 
   if (!solve?.user) return null
 
@@ -43,7 +47,6 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
       transition={{ duration: 0.2, ease: 'easeOut' }}
       className={cn(
         `grid ${GRID} items-center gap-x-4 px-3 py-2.5 border-b border-border/40 last:border-b-0 transition-colors duration-150`,
-        rank === 1 && 'bg-record/[0.04]',
         hasReplay && 'hover:bg-muted/40 cursor-pointer'
       )}
     >
@@ -83,6 +86,11 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
       </span>
 
       <div className="flex min-w-0 items-center gap-1 justify-self-end sm:justify-self-auto">
+        {startColor && (
+          <span role="img" aria-label={tColors(startColor)} title={tColors(startColor)} className="mr-1 inline-flex">
+            <FaceGlyph color={startColor} className="size-3.5" />
+          </span>
+        )}
         <TimeDisplay value={formatTime(solve.time)} isRecord={rank === 1} />
         {hasReplay && (
           <Tooltip>
