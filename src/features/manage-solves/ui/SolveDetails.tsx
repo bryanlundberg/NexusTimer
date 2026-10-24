@@ -20,6 +20,8 @@ import { cn } from '@/shared/lib/utils'
 import { RotateCw, Zap, Layers } from 'lucide-react'
 import { Stat } from '@/features/replay-solve-details/ui/Stat'
 import Segmented from '@/shared/ui/segmented/Segmented'
+import { FaceGlyph } from '@/shared/ui/face-glyph/FaceGlyph'
+import { startFaceLayer } from '@/shared/lib/startFaceLayer'
 
 export default function SolveDetails() {
   const t = useTranslations('Index')
@@ -38,6 +40,7 @@ export default function SolveDetails() {
   const analysis = solve?.replay?.moves?.length ? tryAnalyzeSolution(solve.replay.moves) : null
   const moveCount = analysis ? analysis.turnCount : null
   const tps = analysis?.tps != null ? formatTps(analysis.tps) : null
+  const startColor = startFaceLayer(analysis)
 
   const solveDate = dayjs(solve?.endTime || 0).locale(locale)
   const formattedDate = solveDate.format('ll')
@@ -93,7 +96,11 @@ export default function SolveDetails() {
             <div className="grid grid-cols-3 gap-2">
               <Stat icon={<RotateCw className="size-3" />} label="Moves" value={moveCount ?? '—'} />
               <Stat icon={<Zap className="size-3" />} label="TPS" value={tps ?? '—'} />
-              <Stat icon={<Layers className="size-3" />} label="Method" value={analysis.method ?? '—'} />
+              <Stat
+                icon={startColor ? <FaceGlyph color={startColor} className="size-3" /> : <Layers className="size-3" />}
+                label="Method"
+                value={analysis.method ?? '—'}
+              />
             </div>
             <SolveBreakdown analysis={analysis} totalMs={totalMs} />
           </div>
