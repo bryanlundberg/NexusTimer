@@ -589,11 +589,8 @@
   --surface-fill: color-mix(in oklab, var(--muted) 40%, transparent);
 }
 .surface:not(.surface-panel, .surface-well):hover {
-  --surface-border-color: color-mix(in oklab, var(--primary) 55%, var(--border));
+  --surface-border-color: color-mix(in oklab, var(--foreground) 25%, var(--border));
   --surface-fill: color-mix(in oklab, var(--card) 80%, var(--background));
-}
-.surface[data-active='true'] {
-  --surface-border-color: color-mix(in oklab, var(--primary) 30%, var(--border));
 }
 .surface:is([data-record='true'], [data-favorite='true']) {
   --surface-border-color: color-mix(in oklab, var(--record) 45%, var(--border));
