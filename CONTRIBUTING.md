@@ -27,12 +27,11 @@ Run the API and the web in separate terminals. The web sends every `/api` reques
 
 ### Environment variables
 
-`.env.local.example` (web) and `services/api/.env.example` (API) already point every service at its Docker container, so you don't need to configure anything to start. The web only reads `DEV_API_ORIGIN` and the Firebase values; everything else belongs to the API. The defaults cover:
+`.env.local.example` (web) and `services/api/.env.example` (API) already point every service at its Docker container, so you don't need to configure anything to start. The web only reads `DEV_API_ORIGIN`; everything else belongs to the API. The defaults cover:
 
 - **MongoDB**: main database (`MONGODB_URI`).
 - **Redis**: cache and realtime events (`REDIS_URL`). UI at `http://localhost:5540`.
 - **Realtime gateway**: chat and presence (`REALTIME_URL`, `REALTIME_SECRET`).
-- **Firebase Emulator**: multiplayer / clash mode, no real Firebase project needed. UI at `http://localhost:4000`.
 - **MinIO**: S3-compatible file storage, no third-party account needed. Console at `http://localhost:9101` (`minioadmin` / `minioadmin`).
 - **Meilisearch**: search index (`MEILISEARCH_HOST`, `MEILISEARCH_API_KEY`).
 
