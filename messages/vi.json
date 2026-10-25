@@ -315,8 +315,6 @@
     },
     "StatsPage": {
       "title": "Thống kê",
-      "global": "Toàn cục",
-      "sessions": "Phiên",
       "best-time": "Thời gian tốt nhất",
       "worst-time": "Thời gian tệ nhất",
       "average": "Trung bình",
@@ -326,13 +324,7 @@
       "counter": "Bộ đếm",
       "category-tab": "Hạng mục",
       "cube-tab": "Khối",
-      "cube-all": "Khối (Tất cả)",
-      "cube-session": "Khối (Phiên)",
       "solves-by-cube": "Phân bố lượt giải",
-      "global-tooltip": "Kết hợp tất cả lượt giải lịch sử và phiên của mọi khối trong cùng hạng mục.",
-      "sessions-tooltip": "Chỉ tính lượt giải phiên của mọi khối trong cùng hạng mục.",
-      "cube-all-tooltip": "Kết hợp tất cả lượt giải lịch sử và phiên chỉ cho khối đã chọn.",
-      "cube-session-tooltip": "Chỉ tính lượt giải phiên cho khối đã chọn.",
       "empty-statistics": "Không có thống kê khả dụng",
       "empty-statistics-description": "Có vẻ như kho lượt giải của bạn hiện đang trống.",
       "empty-statistics-select-cube": "Chọn một khối để tải thống kê của bạn.",
@@ -351,7 +343,13 @@
       "smart-only-3x3": "Thống kê Smart Cube chỉ có cho 3x3 và 3x3 OH.",
       "smart-pauses": "Số lần dừng",
       "smart-per-solve": "mỗi solve",
-      "smart-avg-pauses": "Số lần dừng TB"
+      "smart-avg-pauses": "Số lần dừng TB",
+      "chart-all": "Tất cả",
+      "chart-solves": "Lượt giải",
+      "chart-worst": "Tệ nhất",
+      "group-averages": "Trung bình",
+      "group-times": "Thời gian",
+      "group-activity": "Hoạt động"
     },
     "CubesPage": {
       "title": "Khối",

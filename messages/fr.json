@@ -308,8 +308,6 @@
     },
     "StatsPage": {
       "title": "Stats",
-      "global": "Global",
-      "sessions": "Sessions",
       "best-time": "Meilleur temps",
       "worst-time": "Pire temps",
       "average": "Moyenne",
@@ -319,13 +317,7 @@
       "counter": "Compteur",
       "category-tab": "Catégorie",
       "cube-tab": "Cube",
-      "cube-all": "Cube (Tout)",
-      "cube-session": "Cube (Session)",
       "solves-by-cube": "Distribution des résolutions",
-      "global-tooltip": "Combine tout l'historique et les résolutions de session pour chaque cube de la même catégorie.",
-      "sessions-tooltip": "Compte uniquement les résolutions de session pour chaque cube de la même catégorie.",
-      "cube-all-tooltip": "Combine tout l'historique et les résolutions de session uniquement pour le cube sélectionné.",
-      "cube-session-tooltip": "Compte uniquement les résolutions de session uniquement pour le cube sélectionné.",
       "empty-statistics": "Aucune statistique disponible",
       "empty-statistics-description": "Il semble que votre coffre de résolutions soit actuellement vide.",
       "empty-statistics-select-cube": "Sélectionne un cube pour charger tes statistiques.",
@@ -344,7 +336,13 @@
       "smart-only-3x3": "Les stats Smart Cube ne sont disponibles que pour le 3x3 et le 3x3 OH.",
       "smart-pauses": "Pauses",
       "smart-per-solve": "par solve",
-      "smart-avg-pauses": "Pauses moy."
+      "smart-avg-pauses": "Pauses moy.",
+      "chart-all": "Tout",
+      "chart-solves": "Solves",
+      "chart-worst": "Pire",
+      "group-averages": "Moyennes",
+      "group-times": "Temps",
+      "group-activity": "Activité"
     },
     "CubesPage": {
       "title": "Cubes",

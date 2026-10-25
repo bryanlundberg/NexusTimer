@@ -308,8 +308,6 @@
     },
     "StatsPage": {
       "title": "통계",
-      "global": "전체",
-      "sessions": "세션",
       "best-time": "최고 기록",
       "worst-time": "최악 기록",
       "average": "평균",
@@ -319,13 +317,7 @@
       "counter": "솔빙 횟수",
       "category-tab": "카테고리",
       "cube-tab": "큐브",
-      "cube-all": "큐브 (전체)",
-      "cube-session": "큐브 (세션)",
       "solves-by-cube": "솔빙 분포",
-      "global-tooltip": "동일 카테고리의 모든 큐브에 대한 전체 및 세션 기록을 합산합니다.",
-      "sessions-tooltip": "동일 카테고리의 모든 큐브에 대한 세션 기록만 계산합니다.",
-      "cube-all-tooltip": "선택한 큐브에 대한 전체 및 세션 기록을 합산합니다.",
-      "cube-session-tooltip": "선택한 큐브에 대한 세션 기록만 계산합니다.",
       "empty-statistics": "통계 데이터 없음",
       "empty-statistics-description": "아직 솔빙 기록이 없는 것 같습니다.",
       "empty-statistics-select-cube": "통계를 불러오려면 큐브를 선택하세요.",
@@ -344,7 +336,13 @@
       "smart-only-3x3": "스마트 큐브 통계는 3x3 및 3x3 OH에서만 제공됩니다.",
       "smart-pauses": "멈춤 횟수",
       "smart-per-solve": "솔브당",
-      "smart-avg-pauses": "평균 멈춤"
+      "smart-avg-pauses": "평균 멈춤",
+      "chart-all": "전체",
+      "chart-solves": "솔브",
+      "chart-worst": "최저",
+      "group-averages": "평균",
+      "group-times": "기록",
+      "group-activity": "활동"
     },
     "CubesPage": {
       "title": "큐브",

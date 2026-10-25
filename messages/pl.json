@@ -315,8 +315,6 @@
     },
     "StatsPage": {
       "title": "Statystyki",
-      "global": "Globalne",
-      "sessions": "Sesje",
       "best-time": "Najlepszy czas",
       "worst-time": "Najgorszy czas",
       "average": "Średnia",
@@ -326,13 +324,7 @@
       "counter": "Licznik",
       "category-tab": "Kategoria",
       "cube-tab": "Kostka",
-      "cube-all": "Kostka (Wszystko)",
-      "cube-session": "Kostka (Sesja)",
       "solves-by-cube": "Rozkład ułożeń",
-      "global-tooltip": "Łączy wszystkie historyczne i sesyjne ułożenia każdej kostki w tej samej kategorii.",
-      "sessions-tooltip": "Liczy tylko ułożenia sesyjne każdej kostki w tej samej kategorii.",
-      "cube-all-tooltip": "Łączy wszystkie historyczne i sesyjne ułożenia tylko dla wybranej kostki.",
-      "cube-session-tooltip": "Liczy tylko ułożenia sesyjne dla wybranej kostki.",
       "empty-statistics": "Brak dostępnych statystyk",
       "empty-statistics-description": "Wygląda na to, że Twój zbiór ułożeń jest obecnie pusty.",
       "empty-statistics-select-cube": "Wybierz kostkę, aby wczytać statystyki.",
@@ -351,7 +343,13 @@
       "smart-only-3x3": "Statystyki Smart Cube są dostępne tylko dla 3x3 i 3x3 OH.",
       "smart-pauses": "Pauzy",
       "smart-per-solve": "na ułożenie",
-      "smart-avg-pauses": "Śr. pauzy"
+      "smart-avg-pauses": "Śr. pauzy",
+      "chart-all": "Wszystko",
+      "chart-solves": "Ułożenia",
+      "chart-worst": "Najgorszy",
+      "group-averages": "Średnie",
+      "group-times": "Czasy",
+      "group-activity": "Aktywność"
     },
     "CubesPage": {
       "title": "Kostki",

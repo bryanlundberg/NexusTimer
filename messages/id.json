@@ -315,8 +315,6 @@
     },
     "StatsPage": {
       "title": "Statistik",
-      "global": "Global",
-      "sessions": "Sesi",
       "best-time": "Waktu Terbaik",
       "worst-time": "Waktu Terburuk",
       "average": "Rata-rata",
@@ -326,13 +324,7 @@
       "counter": "Penghitung",
       "category-tab": "Kategori",
       "cube-tab": "Kubus",
-      "cube-all": "Kubus (Semua)",
-      "cube-session": "Kubus (Sesi)",
       "solves-by-cube": "Distribusi Solve",
-      "global-tooltip": "Menggabungkan semua solve riwayat dan sesi untuk setiap kubus dalam kategori yang sama.",
-      "sessions-tooltip": "Menghitung hanya solve sesi untuk setiap kubus dalam kategori yang sama.",
-      "cube-all-tooltip": "Menggabungkan semua solve riwayat dan sesi hanya untuk kubus yang dipilih.",
-      "cube-session-tooltip": "Menghitung hanya solve sesi untuk kubus yang dipilih.",
       "empty-statistics": "Tidak Ada Statistik Tersedia",
       "empty-statistics-description": "Sepertinya brankas solve-mu saat ini kosong.",
       "empty-statistics-select-cube": "Pilih kubus untuk memuat statistikmu.",
@@ -351,7 +343,13 @@
       "smart-only-3x3": "Statistik Smart Cube hanya tersedia untuk 3x3 dan 3x3 OH.",
       "smart-pauses": "Jeda",
       "smart-per-solve": "per solve",
-      "smart-avg-pauses": "Rata-rata jeda"
+      "smart-avg-pauses": "Rata-rata jeda",
+      "chart-all": "Semua",
+      "chart-solves": "Solve",
+      "chart-worst": "Terburuk",
+      "group-averages": "Rata-rata",
+      "group-times": "Waktu",
+      "group-activity": "Aktivitas"
     },
     "CubesPage": {
       "title": "Kubus",

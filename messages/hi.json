@@ -308,8 +308,6 @@
     },
     "StatsPage": {
       "title": "आंकड़े",
-      "global": "वैश्विक",
-      "sessions": "सत्र",
       "best-time": "सर्वश्रेष्ठ समय",
       "worst-time": "सबसे खराब समय",
       "average": "औसत",
@@ -319,13 +317,7 @@
       "counter": "काउंटर",
       "category-tab": "श्रेणी",
       "cube-tab": "क्यूब",
-      "cube-all": "क्यूब (सभी)",
-      "cube-session": "क्यूब (सत्र)",
       "solves-by-cube": "समाधान वितरण",
-      "global-tooltip": "एक ही श्रेणी के प्रत्येक क्यूब के लिए सभी ऐतिहासिक और सत्र समाधानों को जोड़ता है।",
-      "sessions-tooltip": "एक ही श्रेणी के प्रत्येक क्यूब के लिए केवल सत्र समाधानों की गणना करता है।",
-      "cube-all-tooltip": "केवल चयनित क्यूब के लिए सभी ऐतिहासिक और सत्र समाधानों को जोड़ता है।",
-      "cube-session-tooltip": "केवल चयनित क्यूब के लिए केवल सत्र समाधानों की गणना करता है।",
       "empty-statistics": "कोई आंकड़े उपलब्ध नहीं",
       "empty-statistics-description": "ऐसा लगता है कि आपका समाधान वॉल्ट वर्तमान में खाली है।",
       "empty-statistics-select-cube": "अपने आँकड़े लोड करने के लिए एक क्यूब चुनें।",
@@ -344,7 +336,13 @@
       "smart-only-3x3": "स्मार्ट क्यूब आँकड़े केवल 3x3 और 3x3 OH के लिए उपलब्ध हैं।",
       "smart-pauses": "रुकाव",
       "smart-per-solve": "प्रति सॉल्व",
-      "smart-avg-pauses": "औसत रुकाव"
+      "smart-avg-pauses": "औसत रुकाव",
+      "chart-all": "सभी",
+      "chart-solves": "सॉल्व",
+      "chart-worst": "सबसे खराब",
+      "group-averages": "औसत",
+      "group-times": "समय",
+      "group-activity": "गतिविधि"
     },
     "CubesPage": {
       "title": "क्यूब्स",

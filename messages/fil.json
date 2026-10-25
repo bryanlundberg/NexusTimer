@@ -315,8 +315,6 @@
     },
     "StatsPage": {
       "title": "Stats",
-      "global": "Global",
-      "sessions": "Mga Session",
       "best-time": "Best Time",
       "worst-time": "Worst Time",
       "average": "Average",
@@ -326,13 +324,7 @@
       "counter": "Counter",
       "category-tab": "Kategorya",
       "cube-tab": "Cube",
-      "cube-all": "Cube (Lahat)",
-      "cube-session": "Cube (Session)",
       "solves-by-cube": "Distribusyon ng mga Solve",
-      "global-tooltip": "Pinagsasama ang lahat ng historical at session solves ng bawat cube sa parehong kategorya.",
-      "sessions-tooltip": "Binibilang lang ang session solves ng bawat cube sa parehong kategorya.",
-      "cube-all-tooltip": "Pinagsasama ang lahat ng historical at session solves para lang sa piniling cube.",
-      "cube-session-tooltip": "Binibilang lang ang session solves para sa piniling cube.",
       "empty-statistics": "Walang Available na Statistics",
       "empty-statistics-description": "Mukhang walang laman ang solve vault mo sa ngayon.",
       "empty-statistics-select-cube": "Pumili ng cube para i-load ang iyong mga istatistika.",
@@ -351,7 +343,13 @@
       "smart-only-3x3": "Available lang ang Smart Cube stats para sa 3x3 at 3x3 OH.",
       "smart-pauses": "Mga pause",
       "smart-per-solve": "kada solve",
-      "smart-avg-pauses": "Avg na pause"
+      "smart-avg-pauses": "Avg na pause",
+      "chart-all": "Lahat",
+      "chart-solves": "Solves",
+      "chart-worst": "Pinakamabagal",
+      "group-averages": "Mga average",
+      "group-times": "Mga oras",
+      "group-activity": "Aktibidad"
     },
     "CubesPage": {
       "title": "Mga Cube",

@@ -1,7 +1,7 @@
 import { Tabs } from '@/components/ui/tabs'
 import { StatisticsTabs } from '@/widgets/statistics-view/model/enums'
 import LineGraphStatistics from '@/features/line-chart-statistics/ui/LineGraphStatistics'
-import StatisticsChart from '@/features/deep-statistics/ui/StatisticsChart'
+import StatisticCards from '@/features/deep-statistics/ui/StatisticCards'
 import StatisticsMessage from '@/features/deep-statistics/ui/StatisticsMessage'
 import SmartCubeView from '@/features/smart-cube-stats/ui/SmartCubeView'
 import { useTranslations } from 'next-intl'
@@ -83,7 +83,7 @@ export default function StatisticsViewSwitcher({ statistics, loadingProps }: Sta
                 <LineGraphStatistics solves={activeSolves} />
               )}
             </div>
-            <StatisticsChart statistics={statistics} loadingProps={loadingProps} activeGroup={activeGroup} />
+            <StatisticCards statistics={statistics} loadingProps={loadingProps} activeGroup={activeGroup} />
           </>
         )}
       </Tabs>

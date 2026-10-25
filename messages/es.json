@@ -277,8 +277,6 @@
     },
     "StatsPage": {
       "title": "Estadísticas",
-      "global": "Global",
-      "sessions": "Sesiones",
       "best-time": "Mejor Tiempo",
       "worst-time": "Peor Tiempo",
       "average": "Promedio",
@@ -287,14 +285,8 @@
       "standard-deviation": "Desviación Estándar",
       "counter": "Contador",
       "category-tab": "Categoría",
-      "cube-all-tooltip": "Combina todos los tiempos (historial y sesión) solo para el cubo seleccionado.",
-      "cube-session-tooltip": "Cuenta solo los tiempos de la sesión para el cubo seleccionado.",
       "cube-tab": "Cubo",
-      "cube-all": "Cubo (Todo)",
-      "cube-session": "Cubo (Sesión)",
       "solves-by-cube": "Distribución de Resoluciones",
-      "global-tooltip": "Combina todos los tiempos (historial y sesión) de cada cubo dentro de la misma categoría.",
-      "sessions-tooltip": "Cuenta solo los tiempos de la sesión para cada cubo en la misma categoría.",
       "empty-statistics": "No hay estadísticas disponibles",
       "empty-statistics-description": "Parece que tu registro de tiempos está actualmente vacío.",
       "empty-statistics-select-cube": "Selecciona un cubo para cargar tus estadísticas.",
@@ -313,7 +305,13 @@
       "smart-only-3x3": "Las estadísticas de Smart Cube solo están disponibles para 3x3 y 3x3 OH.",
       "smart-pauses": "Pausas",
       "smart-per-solve": "por solve",
-      "smart-avg-pauses": "Pausas prom."
+      "smart-avg-pauses": "Pausas prom.",
+      "chart-all": "Todo",
+      "chart-solves": "Tiempos",
+      "chart-worst": "Peor",
+      "group-averages": "Promedios",
+      "group-times": "Tiempos",
+      "group-activity": "Actividad"
     },
     "CubesPage": {
       "historical-solves": "Tiempos históricos",

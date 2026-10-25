@@ -315,8 +315,6 @@
     },
     "StatsPage": {
       "title": "Статистика",
-      "global": "Загальна",
-      "sessions": "Сесії",
       "best-time": "Найкращий час",
       "worst-time": "Найгірший час",
       "average": "Середнє",
@@ -326,13 +324,7 @@
       "counter": "Лічильник",
       "category-tab": "Категорія",
       "cube-tab": "Куб",
-      "cube-all": "Куб (усі)",
-      "cube-session": "Куб (сесія)",
       "solves-by-cube": "Розподіл спроб",
-      "global-tooltip": "Поєднує всі історичні та сесійні спроби для кожного куба тієї самої категорії.",
-      "sessions-tooltip": "Враховує лише сесійні спроби для кожного куба тієї самої категорії.",
-      "cube-all-tooltip": "Поєднує всі історичні та сесійні спроби лише для вибраного куба.",
-      "cube-session-tooltip": "Враховує лише сесійні спроби лише для вибраного куба.",
       "empty-statistics": "Статистика недоступна",
       "empty-statistics-description": "Схоже, ваше сховище спроб поки порожнє.",
       "empty-statistics-select-cube": "Виберіть куб, щоб завантажити статистику.",
@@ -351,7 +343,13 @@
       "smart-only-3x3": "Статистика Smart Cube доступна лише для 3x3 та 3x3 OH.",
       "smart-pauses": "Паузи",
       "smart-per-solve": "за складання",
-      "smart-avg-pauses": "Сер. паузи"
+      "smart-avg-pauses": "Сер. паузи",
+      "chart-all": "Усі",
+      "chart-solves": "Збірки",
+      "chart-worst": "Найгірша",
+      "group-averages": "Середні",
+      "group-times": "Час",
+      "group-activity": "Активність"
     },
     "CubesPage": {
       "title": "Куби",

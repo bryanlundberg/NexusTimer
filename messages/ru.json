@@ -308,8 +308,6 @@
     },
     "StatsPage": {
       "title": "Статистика",
-      "global": "Глобально",
-      "sessions": "Сессии",
       "best-time": "Лучшее время",
       "worst-time": "Худшее время",
       "average": "Среднее",
@@ -319,13 +317,7 @@
       "counter": "Счетчик",
       "category-tab": "Категория",
       "cube-tab": "Куб",
-      "cube-all": "Куб (Все)",
-      "cube-session": "Куб (Сессия)",
       "solves-by-cube": "Распределение сборок",
-      "global-tooltip": "Объединяет всю историю и сессии для каждого куба в этой категории.",
-      "sessions-tooltip": "Учитывает только сборки из сессий для каждого куба в этой категории.",
-      "cube-all-tooltip": "Объединяет всю историю и сессии только для выбранного куба.",
-      "cube-session-tooltip": "Учитывает только сборки из сессий только для выбранного куба.",
       "empty-statistics": "Статистика недоступна",
       "empty-statistics-description": "Похоже, ваше хранилище сборок пусто.",
       "empty-statistics-select-cube": "Выберите куб, чтобы загрузить статистику.",
@@ -344,7 +336,13 @@
       "smart-only-3x3": "Статистика Smart Cube доступна только для 3x3 и 3x3 OH.",
       "smart-pauses": "Паузы",
       "smart-per-solve": "за сборку",
-      "smart-avg-pauses": "Ср. паузы"
+      "smart-avg-pauses": "Ср. паузы",
+      "chart-all": "Все",
+      "chart-solves": "Сборки",
+      "chart-worst": "Худшая",
+      "group-averages": "Средние",
+      "group-times": "Время",
+      "group-activity": "Активность"
     },
     "CubesPage": {
       "title": "Кубы",

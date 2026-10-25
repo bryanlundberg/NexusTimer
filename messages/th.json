@@ -315,8 +315,6 @@
     },
     "StatsPage": {
       "title": "สถิติ",
-      "global": "ทั้งหมด",
-      "sessions": "เซสชัน",
       "best-time": "เวลาที่ดีที่สุด",
       "worst-time": "เวลาที่แย่ที่สุด",
       "average": "ค่าเฉลี่ย",
@@ -326,13 +324,7 @@
       "counter": "ตัวนับ",
       "category-tab": "หมวดหมู่",
       "cube-tab": "ลูกบาศก์",
-      "cube-all": "ลูกบาศก์ (ทั้งหมด)",
-      "cube-session": "ลูกบาศก์ (เซสชัน)",
       "solves-by-cube": "การกระจายของการต่อ",
-      "global-tooltip": "รวมการต่อทั้งหมดทั้งจากประวัติและเซสชันของทุกลูกบาศก์ในหมวดหมู่เดียวกัน",
-      "sessions-tooltip": "นับเฉพาะการต่อในเซสชันของทุกลูกบาศก์ในหมวดหมู่เดียวกัน",
-      "cube-all-tooltip": "รวมการต่อทั้งหมดทั้งจากประวัติและเซสชันเฉพาะลูกบาศก์ที่เลือก",
-      "cube-session-tooltip": "นับเฉพาะการต่อในเซสชันสำหรับลูกบาศก์ที่เลือกเท่านั้น",
       "empty-statistics": "ไม่มีสถิติให้แสดง",
       "empty-statistics-description": "ดูเหมือนว่าคลังการต่อของคุณยังว่างอยู่ในขณะนี้",
       "empty-statistics-select-cube": "เลือกลูกบาศก์เพื่อโหลดสถิติของคุณ",
@@ -351,7 +343,13 @@
       "smart-only-3x3": "สถิติ Smart Cube ใช้ได้เฉพาะ 3x3 และ 3x3 OH เท่านั้น",
       "smart-pauses": "จำนวนหยุด",
       "smart-per-solve": "ต่อการต่อ",
-      "smart-avg-pauses": "จำนวนหยุดเฉลี่ย"
+      "smart-avg-pauses": "จำนวนหยุดเฉลี่ย",
+      "chart-all": "ทั้งหมด",
+      "chart-solves": "โซลฟ์",
+      "chart-worst": "แย่ที่สุด",
+      "group-averages": "ค่าเฉลี่ย",
+      "group-times": "เวลา",
+      "group-activity": "กิจกรรม"
     },
     "CubesPage": {
       "title": "ลูกบาศก์",

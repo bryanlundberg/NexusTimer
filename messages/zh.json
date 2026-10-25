@@ -308,8 +308,6 @@
     },
     "StatsPage": {
       "title": "统计",
-      "global": "全局",
-      "sessions": "当前组",
       "best-time": "最佳时间",
       "worst-time": "最差时间",
       "average": "平均",
@@ -319,13 +317,7 @@
       "counter": "还原次数",
       "category-tab": "类别",
       "cube-tab": "魔方",
-      "cube-all": "魔方（全部）",
-      "cube-session": "魔方（当前组）",
       "solves-by-cube": "还原分布",
-      "global-tooltip": "合并同一类别下所有魔方的历史和当前组还原纪录。",
-      "sessions-tooltip": "仅统计同一类别下所有魔方的当前组还原纪录。",
-      "cube-all-tooltip": "仅合并所选魔方的所有历史和当前组还原纪录。",
-      "cube-session-tooltip": "仅统计所选魔方的当前组还原纪录。",
       "empty-statistics": "暂无统计数据",
       "empty-statistics-description": "你的还原保险库目前似乎是空的。",
       "empty-statistics-select-cube": "选择一个魔方以加载你的统计数据。",
@@ -344,7 +336,13 @@
       "smart-only-3x3": "智能魔方统计仅适用于3x3和3x3 OH。",
       "smart-pauses": "停顿次数",
       "smart-per-solve": "每次还原",
-      "smart-avg-pauses": "平均停顿"
+      "smart-avg-pauses": "平均停顿",
+      "chart-all": "全部",
+      "chart-solves": "复原",
+      "chart-worst": "最差",
+      "group-averages": "平均",
+      "group-times": "成绩",
+      "group-activity": "活动"
     },
     "CubesPage": {
       "title": "魔方",

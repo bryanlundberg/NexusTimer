@@ -315,8 +315,6 @@
     },
     "StatsPage": {
       "title": "Stats",
-      "global": "Global",
-      "sessions": "Sessions",
       "best-time": "Best Time",
       "worst-time": "Worst Time",
       "average": "Average",
@@ -326,13 +324,7 @@
       "counter": "Counter",
       "category-tab": "Category",
       "cube-tab": "Cube",
-      "cube-all": "Cube (All)",
-      "cube-session": "Cube (Session)",
       "solves-by-cube": "Solves Distribution",
-      "global-tooltip": "Combines all historical and session solves for every cube in the same category.",
-      "sessions-tooltip": "Counts only session solves for every cube in the same category.",
-      "cube-all-tooltip": "Combines all historical and session solves for only the selected cube.",
-      "cube-session-tooltip": "Counts only session solves for only the selected cube.",
       "empty-statistics": "No Statistics Available",
       "empty-statistics-description": "It looks like your solve vault is currently empty.",
       "empty-statistics-select-cube": "Select a cube to load your statistics.",
@@ -351,7 +343,13 @@
       "smart-only-3x3": "Smart Cube stats are only available for 3x3 and 3x3 OH.",
       "smart-pauses": "Pauses",
       "smart-per-solve": "per solve",
-      "smart-avg-pauses": "Avg Pauses"
+      "smart-avg-pauses": "Avg Pauses",
+      "chart-all": "All",
+      "chart-solves": "Solves",
+      "chart-worst": "Worst",
+      "group-averages": "Averages",
+      "group-times": "Times",
+      "group-activity": "Activity"
     },
     "CubesPage": {
       "title": "Cubes",

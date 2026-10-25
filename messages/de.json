@@ -308,8 +308,6 @@
     },
     "StatsPage": {
       "title": "Statistiken",
-      "global": "Global",
-      "sessions": "Sitzungen",
       "best-time": "Bestzeit",
       "worst-time": "Schlechteste Zeit",
       "average": "Durchschnitt",
@@ -319,13 +317,7 @@
       "counter": "Zähler",
       "category-tab": "Kategorie",
       "cube-tab": "Würfel",
-      "cube-all": "Würfel (Alle)",
-      "cube-session": "Würfel (Sitzung)",
       "solves-by-cube": "Solve-Verteilung",
-      "global-tooltip": "Kombiniert alle Zeiten für jeden Würfel derselben Kategorie.",
-      "sessions-tooltip": "Zählt nur Sitzungszeiten für jeden Würfel derselben Kategorie.",
-      "cube-all-tooltip": "Kombiniert alle Zeiten nur für den gewählten Würfel.",
-      "cube-session-tooltip": "Zählt nur Sitzungszeiten für den gewählten Würfel.",
       "empty-statistics": "Keine Statistiken verfügbar",
       "empty-statistics-description": "Es sieht so aus, als wäre dein Zeitarchiv leer.",
       "empty-statistics-select-cube": "Wähle einen Würfel, um deine Statistiken zu laden.",
@@ -344,7 +336,13 @@
       "smart-only-3x3": "Smart-Cube-Statistiken sind nur für 3x3 und 3x3 OH verfügbar.",
       "smart-pauses": "Pausen",
       "smart-per-solve": "pro Lösung",
-      "smart-avg-pauses": "Ø Pausen"
+      "smart-avg-pauses": "Ø Pausen",
+      "chart-all": "Alle",
+      "chart-solves": "Solves",
+      "chart-worst": "Schlechtester",
+      "group-averages": "Durchschnitte",
+      "group-times": "Zeiten",
+      "group-activity": "Aktivität"
     },
     "CubesPage": {
       "title": "Würfel",
