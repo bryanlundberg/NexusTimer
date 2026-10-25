@@ -42,12 +42,7 @@ export default function useEventHandlers({
   }
 
   useEffect(() => {
-    if (
-      timerMode === TimerMode.STACKMAT ||
-      timerMode === TimerMode.MANUAL ||
-      timerMode === TimerMode.NEXUS_CONNECT ||
-      timerMode === TimerMode.KEYBOARD_STACKMAT
-    )
+    if (timerMode === TimerMode.STACKMAT || timerMode === TimerMode.MANUAL || timerMode === TimerMode.KEYBOARD_STACKMAT)
       return
 
     const isExcludedTouchTarget = (target: EventTarget | null): boolean => {

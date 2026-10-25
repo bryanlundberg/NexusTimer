@@ -186,8 +186,6 @@ export default function DisplayTime({
                   {timerMode === TimerMode.KEYBOARD_STACKMAT && t('hold-ctrl-to-start')}
 
                   {timerMode === TimerMode.STACKMAT && t('start-stackmat')}
-
-                  {timerMode === TimerMode.NEXUS_CONNECT && t('nexus-start')}
                 </motion.div>
               ) : null}
             </motion.div>
