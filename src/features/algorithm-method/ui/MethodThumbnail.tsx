@@ -34,7 +34,7 @@ export default function MethodThumbnail({ set, size = DEFAULT_SIZE }: { set: ALG
   const firstMoves = set.algorithms[0]?.algs[0]?.moves
   const viz = set.virtualization as unknown as Partial<TwistyPlayer>
 
-  const config: Partial<TwistyPlayer> = applyYellowOrientation(
+  const config = applyYellowOrientation(
     merge(
       {
         visualization: 'experimental-2D-LL',
@@ -46,7 +46,7 @@ export default function MethodThumbnail({ set, size = DEFAULT_SIZE }: { set: ALG
       },
       viz
     )
-  )
+  ) as unknown as Partial<TwistyPlayer>
 
   return (
     <div

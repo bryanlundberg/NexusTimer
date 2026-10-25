@@ -31,7 +31,7 @@ export default function PeopleCaseVisual({ set, item }: { set: ALGORITHM_SET; it
   }, [inView])
 
   const viz = set.virtualization as unknown as Partial<TwistyPlayer>
-  const config: Partial<TwistyPlayer> = applyYellowOrientation(
+  const config = applyYellowOrientation(
     merge(
       {
         visualization: 'experimental-2D-LL',
@@ -44,7 +44,7 @@ export default function PeopleCaseVisual({ set, item }: { set: ALGORITHM_SET; it
       },
       viz
     )
-  )
+  ) as unknown as Partial<TwistyPlayer>
 
   return (
     <div className="flex flex-col items-center gap-1">
