@@ -188,8 +188,7 @@
         "stackmat-bluetooth": "Stackmat Bluetooth",
         "keyboard-stackmat": "Tastatur-Stackmat",
         "virtual": "Virtuell",
-        "smart": "Smart Cube",
-        "nexus-connect": "Nexus Connect"
+        "smart": "Smart Cube"
       },
       "modes-subtitle": "Wähle, wie du deine Zeiten erfasst",
       "modes-soon": "Bald",
@@ -200,13 +199,11 @@
         "stackmat-bluetooth": "Bluetooth-Stackmat-Timer verwenden",
         "keyboard-stackmat": "Beide Strg-Tasten wirken als Stackmat",
         "virtual": "Würfel am Bildschirm, Tastatursteuerung",
-        "smart": "Bluetooth-Smart-Cube verbinden",
-        "nexus-connect": "Handy als Fernsteuerung nutzen"
+        "smart": "Bluetooth-Smart-Cube verbinden"
       },
       "new-scramble": "Neues Scramble",
       "hints": "Hinweise",
       "start-stackmat": "Stackmat verbinden",
-      "nexus-start": "Über dein Handy starten",
       "hold-ctrl-to-start": "Linke und rechte Strg-Taste gedrückt halten zum Starten",
       "reset-state": "Status zurücksetzen",
       "reset-orientation": "Ausrichtung zurücksetzen",
@@ -227,12 +224,6 @@
       "htc-mac-step-2": "Finde sie in der Cube-App, auf der Verpackung, im Batteriefach oder hier in Chrome:",
       "htc-copy": "Kopieren",
       "htc-copied": "Kopiert",
-      "nx-scan-hint": "Scanne diesen QR-Code mit der Nexus Connect App, um dein Gerät zu koppeln.",
-      "nx-how-to": "Verbindung herstellen",
-      "nx-how-to-desc": "Folge diesen Schritten, um dein Handy mit NexusTimer zu koppeln.",
-      "nx-step-1": "Installiere die Nexus Connect App.",
-      "nx-step-2": "Tippe in der App auf QR scannen.",
-      "nx-step-3": "Richte sie auf den QR-Code auf diesem Bildschirm.",
       "focus-mode": "Fokusmodus",
       "exit-focus-mode": "Fokusmodus beenden"
     },

@@ -195,8 +195,7 @@
         "stackmat-bluetooth": "Stackmat Bluetooth",
         "keyboard-stackmat": "Stackmat klawiaturowy",
         "virtual": "Wirtualny",
-        "smart": "Smart Cube",
-        "nexus-connect": "Nexus Connect"
+        "smart": "Smart Cube"
       },
       "modes-subtitle": "Wybierz sposób rejestrowania czasów",
       "modes-soon": "Wkrótce",
@@ -207,13 +206,11 @@
         "stackmat-bluetooth": "Użyj timera Stackmat Bluetooth",
         "keyboard-stackmat": "Oba klawisze Ctrl działają jak Stackmat",
         "virtual": "Kostka na ekranie, sterowanie klawiaturą",
-        "smart": "Połącz smart kostkę Bluetooth",
-        "nexus-connect": "Użyj telefonu jako zdalnego timera"
+        "smart": "Połącz smart kostkę Bluetooth"
       },
       "new-scramble": "Nowy scramble",
       "hints": "Wskazówki",
       "start-stackmat": "Podłącz swój Stackmat",
-      "nexus-start": "Uruchom z telefonu",
       "hold-ctrl-to-start": "Przytrzymaj lewy i prawy Ctrl, aby zacząć",
       "reset-state": "Resetuj stan",
       "reset-orientation": "Resetuj orientację",
@@ -234,12 +231,6 @@
       "htc-mac-step-2": "Znajdź go w aplikacji kostki, na pudełku, w komorze baterii lub tutaj w Chrome:",
       "htc-copy": "Kopiuj",
       "htc-copied": "Skopiowano",
-      "nx-scan-hint": "Zeskanuj ten kod QR aplikacją Nexus Connect, aby sparować urządzenie.",
-      "nx-how-to": "Jak połączyć",
-      "nx-how-to-desc": "Wykonaj te kroki, aby sparować telefon z NexusTimer.",
-      "nx-step-1": "Zainstaluj aplikację Nexus Connect.",
-      "nx-step-2": "Dotknij Skanuj QR w aplikacji.",
-      "nx-step-3": "Skieruj ją na kod QR na tym ekranie.",
       "focus-mode": "Tryb skupienia",
       "exit-focus-mode": "Wyjdź z trybu skupienia"
     },

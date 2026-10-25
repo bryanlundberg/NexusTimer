@@ -188,8 +188,7 @@
         "stackmat-bluetooth": "Stackmat Bluetooth",
         "keyboard-stackmat": "कीबोर्ड Stackmat",
         "virtual": "वर्चुअल",
-        "smart": "स्मार्ट क्यूब",
-        "nexus-connect": "Nexus Connect"
+        "smart": "स्मार्ट क्यूब"
       },
       "modes-subtitle": "चुनें कि आप अपने समय कैसे दर्ज करें",
       "modes-soon": "जल्द",
@@ -200,13 +199,11 @@
         "stackmat-bluetooth": "ब्लूटूथ Stackmat टाइमर का उपयोग करें",
         "keyboard-stackmat": "दोनों Ctrl कुंजियाँ Stackmat की तरह काम करें",
         "virtual": "स्क्रीन पर क्यूब, कीबोर्ड नियंत्रण",
-        "smart": "Bluetooth स्मार्ट क्यूब कनेक्ट करें",
-        "nexus-connect": "अपने फ़ोन को रिमोट टाइमर बनाएं"
+        "smart": "Bluetooth स्मार्ट क्यूब कनेक्ट करें"
       },
       "new-scramble": "नया स्क्रैम्बल",
       "hints": "संकेत",
       "start-stackmat": "अपना Stackmat कनेक्ट करें",
-      "nexus-start": "अपने फ़ोन से शुरू करें",
       "hold-ctrl-to-start": "शुरू करने के लिए बायाँ और दायाँ Ctrl दबाए रखें",
       "reset-state": "स्थिति रीसेट करें",
       "reset-orientation": "दिशा रीसेट करें",
@@ -227,12 +224,6 @@
       "htc-mac-step-2": "इसे क्यूब के ऐप, उसके बॉक्स, बैटरी कम्पार्टमेंट, या यहाँ Chrome में खोजें:",
       "htc-copy": "कॉपी करें",
       "htc-copied": "कॉपी हो गया",
-      "nx-scan-hint": "अपने डिवाइस को जोड़ने के लिए इस QR को Nexus Connect ऐप से स्कैन करें।",
-      "nx-how-to": "कैसे कनेक्ट करें",
-      "nx-how-to-desc": "अपने फ़ोन को NexusTimer से जोड़ने के लिए इन चरणों का पालन करें।",
-      "nx-step-1": "Nexus Connect ऐप इंस्टॉल करें।",
-      "nx-step-2": "ऐप में Scan QR पर टैप करें।",
-      "nx-step-3": "इसे इस स्क्रीन के QR की ओर करें।",
       "focus-mode": "फ़ोकस मोड",
       "exit-focus-mode": "फ़ोकस मोड से बाहर निकलें"
     },

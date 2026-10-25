@@ -188,8 +188,7 @@
         "stackmat-bluetooth": "Stackmat Bluetooth",
         "keyboard-stackmat": "键盘 Stackmat",
         "virtual": "虚拟",
-        "smart": "智能魔方",
-        "nexus-connect": "Nexus Connect"
+        "smart": "智能魔方"
       },
       "modes-subtitle": "选择记录成绩的方式",
       "modes-soon": "即将推出",
@@ -200,13 +199,11 @@
         "stackmat-bluetooth": "使用蓝牙 Stackmat 计时器",
         "keyboard-stackmat": "用左右 Ctrl 键模拟 Stackmat",
         "virtual": "屏幕魔方，键盘操作",
-        "smart": "连接蓝牙智能魔方",
-        "nexus-connect": "手机用作远程计时器"
+        "smart": "连接蓝牙智能魔方"
       },
       "new-scramble": "新的打乱",
       "hints": "提示",
       "start-stackmat": "连接你的 Stackmat",
-      "nexus-start": "用手机开始",
       "hold-ctrl-to-start": "按住左右 Ctrl 键开始",
       "reset-state": "重置状态",
       "reset-orientation": "重置方向",
@@ -227,12 +224,6 @@
       "htc-mac-step-2": "可在魔方 App、包装盒、电池仓或此处的 Chrome 中查找：",
       "htc-copy": "复制",
       "htc-copied": "已复制",
-      "nx-scan-hint": "使用 Nexus Connect 应用扫描此二维码以配对你的设备。",
-      "nx-how-to": "如何连接",
-      "nx-how-to-desc": "按以下步骤将手机与 NexusTimer 配对。",
-      "nx-step-1": "安装 Nexus Connect 应用。",
-      "nx-step-2": "在应用中点击“扫描二维码”。",
-      "nx-step-3": "将镜头对准此屏幕上的二维码。",
       "focus-mode": "专注模式",
       "exit-focus-mode": "退出专注模式"
     },

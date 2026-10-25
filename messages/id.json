@@ -195,8 +195,7 @@
         "stackmat-bluetooth": "Stackmat Bluetooth",
         "keyboard-stackmat": "Stackmat Keyboard",
         "virtual": "Virtual",
-        "smart": "Smart Cube",
-        "nexus-connect": "Nexus Connect"
+        "smart": "Smart Cube"
       },
       "modes-subtitle": "Pilih cara merekam solve Anda",
       "modes-soon": "Segera",
@@ -207,13 +206,11 @@
         "stackmat-bluetooth": "Gunakan timer Stackmat Bluetooth",
         "keyboard-stackmat": "Kedua tombol Ctrl berfungsi sebagai Stackmat",
         "virtual": "Kubus di layar, kontrol keyboard",
-        "smart": "Hubungkan smart cube Bluetooth",
-        "nexus-connect": "Gunakan ponsel sebagai timer jarak jauh"
+        "smart": "Hubungkan smart cube Bluetooth"
       },
       "new-scramble": "Scramble baru",
       "hints": "Petunjuk",
       "start-stackmat": "Hubungkan Stackmat kamu",
-      "nexus-start": "Mulai dari ponsel kamu",
       "hold-ctrl-to-start": "Tahan Ctrl kiri dan kanan untuk mulai",
       "reset-state": "Atur ulang status",
       "reset-orientation": "Atur ulang orientasi",
@@ -234,12 +231,6 @@
       "htc-mac-step-2": "Temukan di aplikasi kubus, kotaknya, kompartemen baterai, atau di sini di Chrome:",
       "htc-copy": "Salin",
       "htc-copied": "Tersalin",
-      "nx-scan-hint": "Pindai QR ini dengan aplikasi Nexus Connect untuk memasangkan perangkatmu.",
-      "nx-how-to": "Cara menghubungkan",
-      "nx-how-to-desc": "Ikuti langkah-langkah ini untuk memasangkan ponselmu dengan NexusTimer.",
-      "nx-step-1": "Pasang aplikasi Nexus Connect.",
-      "nx-step-2": "Ketuk Scan QR di aplikasi.",
-      "nx-step-3": "Arahkan ke QR di layar ini.",
       "focus-mode": "Mode fokus",
       "exit-focus-mode": "Keluar dari mode fokus"
     },

@@ -195,8 +195,7 @@
         "stackmat-bluetooth": "Stackmat Bluetooth",
         "keyboard-stackmat": "Keyboard Stackmat",
         "virtual": "Virtual",
-        "smart": "Smart Cube",
-        "nexus-connect": "Nexus Connect"
+        "smart": "Smart Cube"
       },
       "modes-subtitle": "Piliin kung paano itatala ang iyong mga solve",
       "modes-soon": "Malapit na",
@@ -207,13 +206,11 @@
         "stackmat-bluetooth": "Gumamit ng Bluetooth Stackmat timer",
         "keyboard-stackmat": "Parehong Ctrl key na parang Stackmat",
         "virtual": "Cube sa screen, keyboard controls",
-        "smart": "Ikonekta ang Bluetooth smart cube",
-        "nexus-connect": "Gamitin ang telepono bilang remote timer"
+        "smart": "Ikonekta ang Bluetooth smart cube"
       },
       "new-scramble": "Bagong scramble",
       "hints": "Mga Hint",
       "start-stackmat": "Ikonekta ang iyong Stackmat",
-      "nexus-start": "Magsimula mula sa iyong telepono",
       "hold-ctrl-to-start": "Pindutin nang matagal ang kaliwa at kanang Ctrl para magsimula",
       "reset-state": "I-reset ang State",
       "reset-orientation": "I-reset ang Orientation",
@@ -234,12 +231,6 @@
       "htc-mac-step-2": "Hanapin ito sa app ng cube, sa kahon nito, sa battery compartment, o dito sa Chrome:",
       "htc-copy": "Kopyahin",
       "htc-copied": "Nakopya",
-      "nx-scan-hint": "I-scan ang QR na ito gamit ang Nexus Connect app para ipares ang iyong device.",
-      "nx-how-to": "Paano kumonekta",
-      "nx-how-to-desc": "Sundin ang mga hakbang na ito para ipares ang iyong telepono sa NexusTimer.",
-      "nx-step-1": "I-install ang Nexus Connect app.",
-      "nx-step-2": "I-tap ang Scan QR sa app.",
-      "nx-step-3": "Itutok ito sa QR sa screen na ito.",
       "focus-mode": "Focus mode",
       "exit-focus-mode": "Lumabas sa focus mode"
     },
