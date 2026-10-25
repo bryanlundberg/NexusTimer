@@ -10,7 +10,6 @@ import { useQuickStartState } from '@/features/timer/model/useQuickStartState'
 
 const Stackmat = dynamic(() => import('@/features/timer/ui/stackmat'), { ssr: false })
 const TimerVirtual = dynamic(() => import('@/features/timer/ui/TimerVirtual'), { ssr: false })
-const NXConnect = dynamic(() => import('@/features/nexus-connect/ui/NXConnect'), { ssr: false })
 const SmartCube = dynamic(() => import('@/features/smart-cube/ui/SmartCube'), { ssr: false })
 
 export function MainTimer() {
@@ -39,12 +38,6 @@ export function MainTimer() {
       {timerMode === TimerMode.STACKMAT && (
         <Timer>
           <Stackmat />
-        </Timer>
-      )}
-
-      {timerMode === TimerMode.NEXUS_CONNECT && (
-        <Timer>
-          <NXConnect />
         </Timer>
       )}
 

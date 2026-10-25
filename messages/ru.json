@@ -188,8 +188,7 @@
         "stackmat-bluetooth": "Stackmat Bluetooth",
         "keyboard-stackmat": "Клавиатурный Stackmat",
         "virtual": "Виртуальный",
-        "smart": "Smart Cube",
-        "nexus-connect": "Nexus Connect"
+        "smart": "Smart Cube"
       },
       "modes-subtitle": "Выберите способ записи сборок",
       "modes-soon": "Скоро",
@@ -200,13 +199,11 @@
         "stackmat-bluetooth": "Используйте таймер Stackmat по Bluetooth",
         "keyboard-stackmat": "Обе клавиши Ctrl работают как Stackmat",
         "virtual": "Куб на экране, управление клавиатурой",
-        "smart": "Подключите Bluetooth смарт-куб",
-        "nexus-connect": "Телефон как пульт-таймер"
+        "smart": "Подключите Bluetooth смарт-куб"
       },
       "new-scramble": "Новый скрамбл",
       "hints": "Подсказки",
       "start-stackmat": "Подключите Stackmat",
-      "nexus-start": "Запустите с телефона",
       "hold-ctrl-to-start": "Удерживайте левый и правый Ctrl для старта",
       "reset-state": "Сбросить состояние",
       "reset-orientation": "Сбросить ориентацию",
@@ -227,12 +224,6 @@
       "htc-mac-step-2": "Найдите его в приложении кубика, на коробке, в батарейном отсеке или здесь в Chrome:",
       "htc-copy": "Копировать",
       "htc-copied": "Скопировано",
-      "nx-scan-hint": "Отсканируйте этот QR-код приложением Nexus Connect, чтобы подключить устройство.",
-      "nx-how-to": "Как подключить",
-      "nx-how-to-desc": "Выполните эти шаги, чтобы связать телефон с NexusTimer.",
-      "nx-step-1": "Установите приложение Nexus Connect.",
-      "nx-step-2": "Нажмите «Сканировать QR» в приложении.",
-      "nx-step-3": "Наведите камеру на QR-код на этом экране.",
       "focus-mode": "Режим концентрации",
       "exit-focus-mode": "Выйти из режима концентрации"
     },

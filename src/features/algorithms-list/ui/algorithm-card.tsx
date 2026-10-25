@@ -53,7 +53,7 @@ export default function AlgorithmCard({
           },
           (virtualization ?? {}) as Partial<TwistyPlayer>
         )
-      ),
+      ) as unknown as Partial<TwistyPlayer>,
     [primary?.moves, virtualization]
   )
 

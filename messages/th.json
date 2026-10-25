@@ -195,8 +195,7 @@
         "stackmat-bluetooth": "Stackmat Bluetooth",
         "keyboard-stackmat": "Stackmat แป้นพิมพ์",
         "virtual": "เสมือน",
-        "smart": "Smart Cube",
-        "nexus-connect": "Nexus Connect"
+        "smart": "Smart Cube"
       },
       "modes-subtitle": "เลือกวิธีบันทึกเวลาของคุณ",
       "modes-soon": "เร็วๆ นี้",
@@ -207,13 +206,11 @@
         "stackmat-bluetooth": "ใช้ตัวจับเวลา Stackmat แบบบลูทูธ",
         "keyboard-stackmat": "ใช้ปุ่ม Ctrl ทั้งสองข้างเป็น Stackmat",
         "virtual": "ลูกบาศก์บนหน้าจอ ควบคุมด้วยคีย์บอร์ด",
-        "smart": "เชื่อมต่อสมาร์ทคิวบ์ Bluetooth",
-        "nexus-connect": "ใช้โทรศัพท์เป็นตัวจับเวลาระยะไกล"
+        "smart": "เชื่อมต่อสมาร์ทคิวบ์ Bluetooth"
       },
       "new-scramble": "Scramble ใหม่",
       "hints": "คำใบ้",
       "start-stackmat": "เชื่อมต่อ Stackmat ของคุณ",
-      "nexus-start": "เริ่มจากโทรศัพท์ของคุณ",
       "hold-ctrl-to-start": "กดค้างปุ่ม Ctrl ซ้ายและขวาเพื่อเริ่ม",
       "reset-state": "รีเซ็ตสถานะ",
       "reset-orientation": "รีเซ็ตการวางแนว",
@@ -234,12 +231,6 @@
       "htc-mac-step-2": "ค้นหาได้ในแอปของลูกบาศก์ บนกล่อง ในช่องใส่แบตเตอรี่ หรือที่นี่ใน Chrome:",
       "htc-copy": "คัดลอก",
       "htc-copied": "คัดลอกแล้ว",
-      "nx-scan-hint": "สแกน QR นี้ด้วยแอป Nexus Connect เพื่อจับคู่อุปกรณ์ของคุณ",
-      "nx-how-to": "วิธีเชื่อมต่อ",
-      "nx-how-to-desc": "ทำตามขั้นตอนเหล่านี้เพื่อจับคู่โทรศัพท์กับ NexusTimer",
-      "nx-step-1": "ติดตั้งแอป Nexus Connect",
-      "nx-step-2": "แตะ Scan QR ในแอป",
-      "nx-step-3": "เล็งไปที่ QR บนหน้าจอนี้",
       "focus-mode": "โหมดโฟกัส",
       "exit-focus-mode": "ออกจากโหมดโฟกัส"
     },

@@ -195,8 +195,7 @@
         "stackmat-bluetooth": "Stackmat Bluetooth",
         "keyboard-stackmat": "Keyboard Stackmat",
         "virtual": "Virtual",
-        "smart": "Smart Cube",
-        "nexus-connect": "Nexus Connect"
+        "smart": "Smart Cube"
       },
       "modes-subtitle": "Choose how you record your solves",
       "modes-soon": "Soon",
@@ -207,13 +206,11 @@
         "stackmat-bluetooth": "Use a Bluetooth Stackmat timer",
         "keyboard-stackmat": "Both Ctrl keys act as a Stackmat",
         "virtual": "On-screen cube, keyboard controls",
-        "smart": "Connect a Bluetooth smart cube",
-        "nexus-connect": "Use your phone as a remote timer"
+        "smart": "Connect a Bluetooth smart cube"
       },
       "new-scramble": "New scramble",
       "hints": "Hints",
       "start-stackmat": "Connect your Stackmat",
-      "nexus-start": "Start from your phone",
       "hold-ctrl-to-start": "Hold left and right Ctrl to start",
       "reset-state": "Reset State",
       "reset-orientation": "Reset Orientation",
@@ -234,12 +231,6 @@
       "htc-mac-step-2": "Find it in the cube's app, its box, the battery compartment, or here in Chrome:",
       "htc-copy": "Copy",
       "htc-copied": "Copied",
-      "nx-scan-hint": "Scan this QR with the Nexus Connect app to pair your device.",
-      "nx-how-to": "How to connect",
-      "nx-how-to-desc": "Follow these steps to pair your phone with NexusTimer.",
-      "nx-step-1": "Install the Nexus Connect app.",
-      "nx-step-2": "Tap Scan QR in the app.",
-      "nx-step-3": "Point it at the QR on this screen.",
       "focus-mode": "Focus mode",
       "exit-focus-mode": "Exit focus mode"
     },

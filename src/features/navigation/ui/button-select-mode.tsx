@@ -12,11 +12,9 @@ import { useTranslations } from 'next-intl'
 import { useEffect, useRef } from 'react'
 import type { AnimatedIconHandle } from '@/components/ui/types'
 import { TimerMode } from '@/features/timer/model/enums'
-import { useNexusConnectStore } from '@/features/nexus-connect/model/useNexusConnectStore'
-import genId from '@/shared/lib/genId'
 import LayoutDashboardIcon from '@/components/ui/layout-dashboard-icon'
 import { cn } from '@/shared/lib/utils'
-import { Bluetooth, Cable, Check, ChevronDown, Gamepad2, Keyboard, Smartphone, Timer } from 'lucide-react'
+import { Bluetooth, Cable, Check, ChevronDown, Gamepad2, Keyboard, Timer } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
 interface ModeConfig {
@@ -56,8 +54,7 @@ const MODES: ModeConfig[] = [
     requires: VIRTUAL_ONLY_CATEGORIES,
     badge: '2x2 · 3x3 Virtual'
   },
-  { value: TimerMode.SMART_CUBE, tKey: 'smart', testId: 'mode-smart', icon: Bluetooth, requires: ['3x3'] },
-  { value: TimerMode.NEXUS_CONNECT, tKey: 'nexus-connect', testId: 'mode-nexus-connect', icon: Smartphone }
+  { value: TimerMode.SMART_CUBE, tKey: 'smart', testId: 'mode-smart', icon: Bluetooth, requires: ['3x3'] }
 ]
 
 export default function ButtonSelectMode() {
@@ -65,8 +62,6 @@ export default function ButtonSelectMode() {
   const setTimerMode = useTimerStore((state) => state.setTimerMode)
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const t = useTranslations('Index')
-  const connectId = useNexusConnectStore((state) => state.nexusConnectId)
-  const setConnectId = useNexusConnectStore((state) => state.setNexusConnectId)
   const iconRef = useRef<AnimatedIconHandle>(null)
 
   useEffect(() => {
@@ -85,10 +80,6 @@ export default function ButtonSelectMode() {
       setTimerMode(TimerMode.NORMAL)
     }
   }, [selectedCube, setTimerMode, timerMode])
-
-  const handleNexusConnectClick = () => {
-    if (!connectId) setConnectId(genId())
-  }
 
   const isModeDisabled = (mode: ModeConfig) => {
     if (mode.comingSoon) return true
@@ -138,7 +129,6 @@ export default function ButtonSelectMode() {
                 value={mode.value}
                 data-testid={mode.testId}
                 disabled={isDisabled}
-                onClick={mode.value === TimerMode.NEXUS_CONNECT ? handleNexusConnectClick : undefined}
                 className="group/mode flex cursor-pointer items-start gap-3 px-3 py-2 transition-colors [&>span]:hidden"
               >
                 <div

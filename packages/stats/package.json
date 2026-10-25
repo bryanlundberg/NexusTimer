@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@nexustimer/contracts": "workspace:*",
-    "dayjs": "^1.11.21",
-    "es-toolkit": "^1.42.0"
+    "dayjs": "^1.11.23",
+    "es-toolkit": "^1.53.0"
   },
   "devDependencies": {
     "typescript": "7.0.2"

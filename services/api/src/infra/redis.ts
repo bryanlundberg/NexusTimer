@@ -4,6 +4,7 @@ import { logger, serializeError } from '../lib/logger'
 const CONNECT_TIMEOUT_MS = 2000
 const COMMAND_TIMEOUT_MS = 1500
 const MAX_RECONNECT_DELAY_MS = 5000
+const KEEP_ALIVE_INITIAL_DELAY_MS = 5000
 
 type RedisState = {
   client?: RedisClientType
@@ -17,9 +18,11 @@ function createRedisClient(url: string): RedisClientType {
   const client: RedisClientType = createClient({
     url,
     disableOfflineQueue: true,
+    maintNotifications: 'disabled',
     commandOptions: { timeout: COMMAND_TIMEOUT_MS },
     socket: {
       connectTimeout: CONNECT_TIMEOUT_MS,
+      keepAliveInitialDelay: KEEP_ALIVE_INITIAL_DELAY_MS,
       reconnectStrategy: (retries) => Math.min(retries * 200, MAX_RECONNECT_DELAY_MS)
     }
   })

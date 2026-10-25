@@ -188,8 +188,7 @@
         "stackmat-bluetooth": "Stackmat Bluetooth",
         "keyboard-stackmat": "キーボード Stackmat",
         "virtual": "バーチャル",
-        "smart": "スマートキューブ",
-        "nexus-connect": "Nexus Connect"
+        "smart": "スマートキューブ"
       },
       "modes-subtitle": "ソルブの記録方法を選択",
       "modes-soon": "近日",
@@ -200,13 +199,11 @@
         "stackmat-bluetooth": "Bluetooth の Stackmat タイマーを使用",
         "keyboard-stackmat": "左右の Ctrl キーを Stackmat として使用",
         "virtual": "画面上のキューブをキーボードで操作",
-        "smart": "Bluetoothスマートキューブを接続",
-        "nexus-connect": "スマホをリモートタイマーとして使用"
+        "smart": "Bluetoothスマートキューブを接続"
       },
       "new-scramble": "新しいスクランブル",
       "hints": "ヒント",
       "start-stackmat": "Stackmat を接続",
-      "nexus-start": "スマホから開始",
       "hold-ctrl-to-start": "左右の Ctrl キーを押し続けて開始",
       "reset-state": "状態をリセット",
       "reset-orientation": "向きをリセット",
@@ -227,12 +224,6 @@
       "htc-mac-step-2": "キューブのアプリ、箱、電池ボックス、またはここChromeで確認できます：",
       "htc-copy": "コピー",
       "htc-copied": "コピーしました",
-      "nx-scan-hint": "Nexus Connect アプリでこの QR を読み取ってデバイスをペアリングします。",
-      "nx-how-to": "接続方法",
-      "nx-how-to-desc": "次の手順で NexusTimer とスマートフォンをペアリングします。",
-      "nx-step-1": "Nexus Connect アプリをインストールします。",
-      "nx-step-2": "アプリで「QR をスキャン」をタップします。",
-      "nx-step-3": "画面の QR にカメラを向けます。",
       "focus-mode": "集中モード",
       "exit-focus-mode": "集中モードを終了"
     },

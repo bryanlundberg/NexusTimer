@@ -25,7 +25,7 @@ fi
 command -v docker >/dev/null || { echo "no docker" >&2; exit 1; }
 
 echo "==> build"
-docker build --platform linux/amd64 --provenance=false -t "$IMAGE" .
+docker build --pull --platform linux/amd64 --provenance=false -t "$IMAGE" .
 
 echo "==> image"
 docker save "$IMAGE" | gzip | ssh -i "$KEY" "$HOST" 'docker load'

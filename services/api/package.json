@@ -14,28 +14,28 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.1053.0",
-    "@hono/node-server": "^2.1.0",
+    "@aws-sdk/client-s3": "^3.1156.0",
+    "@hono/node-server": "^2.1.5",
     "@nexustimer/algorithms": "workspace:*",
     "@nexustimer/avatars": "workspace:*",
     "@nexustimer/contracts": "workspace:*",
     "@nexustimer/stats": "workspace:*",
     "@nexustimer/tnoodle-lib-rs": "workspace:*",
     "bcryptjs": "^3.0.3",
-    "better-auth": "^1.7.7",
-    "country-flag-icons": "^1.5.18",
-    "hono": "^4.13.0",
-    "meilisearch": "^0.60.0",
-    "mongodb": "~7.2.0",
-    "mongoose": "^9.7.2",
-    "redis": "^5.12.1",
-    "zod": "^4.6.5"
+    "better-auth": "^1.7.12",
+    "country-flag-icons": "^1.6.20",
+    "hono": "^4.13.13",
+    "meilisearch": "^0.62.0",
+    "mongodb": "~7.7.0",
+    "mongoose": "^9.11.4",
+    "redis": "^6.3.0",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@types/node": "^24.13.2",
+    "@types/node": "^24.19.2",
     "esbuild": "^0.28.2",
-    "tsx": "^4.20.6",
+    "tsx": "^4.23.15",
     "typescript": "7.0.2",
-    "vitest": "^5.0.0"
+    "vitest": "^5.0.5"
   }
 }
