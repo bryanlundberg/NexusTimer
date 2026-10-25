@@ -1508,6 +1508,38 @@
         "cubes": "Kosteczki",
         "gradient": "Gradient"
       }
+    },
+    "PageAside": {
+      "never": "Nigdy",
+      "session-summary": "Podsumowanie sesji",
+      "history-summary": "Podsumowanie historii",
+      "solves": "Ułożenia",
+      "mean": "Średnia",
+      "best": "Najlepszy",
+      "worst": "Najgorszy",
+      "distribution": "Rozkład",
+      "distribution-empty": "Potrzeba co najmniej 5 ułożeń",
+      "records": "Rekordy",
+      "single": "Single",
+      "progress": "Postęp",
+      "last-record": "Ostatni rekord",
+      "this-month": "Ten miesiąc",
+      "last-month": "Poprzedni miesiąc",
+      "solves-count": "{count, plural, one {# ułożenie} few {# ułożenia} many {# ułożeń} other {# ułożenia}}",
+      "actions": "Szybkie akcje",
+      "new-cube": "Nowa kostka",
+      "transfer-solves": "Przenieś ułożenia",
+      "view-stats": "Zobacz statystyki",
+      "view-solves": "Zobacz ułożenia",
+      "scope-cube": "Kostka",
+      "scope-category": "Kategoria",
+      "monthly": "Ostatnie 6 miesięcy",
+      "clean": "Czyste",
+      "by-category": "Według kategorii",
+      "all-categories": "Pokaż wszystkie",
+      "use-cube": "Użyj",
+      "needs-solves": "Potrzeba: {count}",
+      "recent": "Ostatnio używane"
     }
   },
   "Metadata": {

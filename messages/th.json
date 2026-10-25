@@ -1508,6 +1508,38 @@
         "cubes": "คิวบ์เล็ก",
         "gradient": "ไล่สี"
       }
+    },
+    "PageAside": {
+      "never": "ไม่เคย",
+      "session-summary": "สรุปเซสชัน",
+      "history-summary": "สรุปประวัติ",
+      "solves": "โซลฟ์",
+      "mean": "ค่าเฉลี่ย",
+      "best": "ดีที่สุด",
+      "worst": "แย่ที่สุด",
+      "distribution": "การกระจาย",
+      "distribution-empty": "ต้องมีอย่างน้อย 5 โซลฟ์",
+      "records": "สถิติสูงสุด",
+      "single": "ซิงเกิล",
+      "progress": "ความก้าวหน้า",
+      "last-record": "สถิติล่าสุด",
+      "this-month": "เดือนนี้",
+      "last-month": "เดือนที่แล้ว",
+      "solves-count": "{count} โซลฟ์",
+      "actions": "การทำงานด่วน",
+      "new-cube": "ลูกบาศก์ใหม่",
+      "transfer-solves": "ย้ายโซลฟ์",
+      "view-stats": "ดูสถิติ",
+      "view-solves": "ดูโซลฟ์",
+      "scope-cube": "ลูกบาศก์",
+      "scope-category": "หมวดหมู่",
+      "monthly": "6 เดือนล่าสุด",
+      "clean": "ไม่มีโทษ",
+      "by-category": "ตามหมวดหมู่",
+      "all-categories": "แสดงทั้งหมด",
+      "use-cube": "ใช้",
+      "needs-solves": "ต้องมี {count} โซลฟ์",
+      "recent": "ใช้ล่าสุด"
     }
   },
   "Metadata": {

@@ -1508,6 +1508,38 @@
         "cubes": "Maliliit na cube",
         "gradient": "Gradient"
       }
+    },
+    "PageAside": {
+      "never": "Hindi pa",
+      "session-summary": "Buod ng session",
+      "history-summary": "Buod ng history",
+      "solves": "Solves",
+      "mean": "Mean",
+      "best": "Pinakamahusay",
+      "worst": "Pinakamabagal",
+      "distribution": "Distribusyon",
+      "distribution-empty": "Kailangan ng hindi bababa sa 5 solve",
+      "records": "Mga record",
+      "single": "Single",
+      "progress": "Pag-unlad",
+      "last-record": "Huling record",
+      "this-month": "Ngayong buwan",
+      "last-month": "Nakaraang buwan",
+      "solves-count": "{count, plural, one {# solve} other {# solves}}",
+      "actions": "Mabilisang aksyon",
+      "new-cube": "Bagong cube",
+      "transfer-solves": "Ilipat ang solves",
+      "view-stats": "Tingnan ang stats",
+      "view-solves": "Tingnan ang solves",
+      "scope-cube": "Cube",
+      "scope-category": "Kategorya",
+      "monthly": "Huling 6 na buwan",
+      "clean": "Malinis",
+      "by-category": "Ayon sa kategorya",
+      "all-categories": "Ipakita lahat",
+      "use-cube": "Gamitin",
+      "needs-solves": "Kailangan ng {count} solve",
+      "recent": "Kamakailang ginamit"
     }
   },
   "Metadata": {

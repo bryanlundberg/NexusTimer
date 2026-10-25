@@ -1532,6 +1532,38 @@
         "cubes": "小方块",
         "gradient": "渐变"
       }
+    },
+    "PageAside": {
+      "never": "从未",
+      "session-summary": "会话概览",
+      "history-summary": "历史概览",
+      "solves": "复原",
+      "mean": "平均",
+      "best": "最佳",
+      "worst": "最差",
+      "distribution": "分布",
+      "distribution-empty": "至少需要 5 次复原",
+      "records": "纪录",
+      "single": "单次",
+      "progress": "进展",
+      "last-record": "最近纪录",
+      "this-month": "本月",
+      "last-month": "上月",
+      "solves-count": "{count} 次复原",
+      "actions": "快捷操作",
+      "new-cube": "新建魔方",
+      "transfer-solves": "转移复原",
+      "view-stats": "查看统计",
+      "view-solves": "查看复原",
+      "scope-cube": "魔方",
+      "scope-category": "类别",
+      "monthly": "最近 6 个月",
+      "clean": "无罚时",
+      "by-category": "按类别",
+      "all-categories": "显示全部",
+      "use-cube": "使用",
+      "needs-solves": "需要 {count} 次复原",
+      "recent": "最近使用"
     }
   },
   "Multiplayer": {

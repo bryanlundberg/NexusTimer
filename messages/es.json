@@ -1508,6 +1508,38 @@
         "cubes": "Cubitos",
         "gradient": "Degradé"
       }
+    },
+    "PageAside": {
+      "never": "Nunca",
+      "session-summary": "Resumen de la sesión",
+      "history-summary": "Resumen del historial",
+      "solves": "Solves",
+      "mean": "Media",
+      "best": "Mejor",
+      "worst": "Peor",
+      "distribution": "Distribución",
+      "distribution-empty": "Necesita al menos 5 solves",
+      "records": "Récords",
+      "single": "Single",
+      "progress": "Progreso",
+      "last-record": "Último récord",
+      "this-month": "Este mes",
+      "last-month": "Mes pasado",
+      "solves-count": "{count, plural, one {# solve} other {# solves}}",
+      "actions": "Acciones rápidas",
+      "new-cube": "Nuevo cubo",
+      "transfer-solves": "Transferir solves",
+      "view-stats": "Ver estadísticas",
+      "view-solves": "Ver solves",
+      "scope-cube": "Cubo",
+      "scope-category": "Categoría",
+      "monthly": "Últimos 6 meses",
+      "clean": "Limpios",
+      "by-category": "Por categoría",
+      "all-categories": "Ver todos",
+      "use-cube": "Usar",
+      "needs-solves": "Necesita {count, plural, one {# solve} other {# solves}}",
+      "recent": "Usados recientemente"
     }
   },
   "Metadata": {

@@ -1532,6 +1532,38 @@
         "cubes": "छोटे क्यूब",
         "gradient": "ग्रेडिएंट"
       }
+    },
+    "PageAside": {
+      "never": "कभी नहीं",
+      "session-summary": "सत्र सारांश",
+      "history-summary": "इतिहास सारांश",
+      "solves": "सॉल्व",
+      "mean": "औसत",
+      "best": "सर्वश्रेष्ठ",
+      "worst": "सबसे खराब",
+      "distribution": "वितरण",
+      "distribution-empty": "कम से कम 5 सॉल्व चाहिए",
+      "records": "रिकॉर्ड",
+      "single": "सिंगल",
+      "progress": "प्रगति",
+      "last-record": "आखिरी रिकॉर्ड",
+      "this-month": "इस महीने",
+      "last-month": "पिछले महीने",
+      "solves-count": "{count} सॉल्व",
+      "actions": "त्वरित कार्य",
+      "new-cube": "नया क्यूब",
+      "transfer-solves": "सॉल्व स्थानांतरित करें",
+      "view-stats": "आंकड़े देखें",
+      "view-solves": "सॉल्व देखें",
+      "scope-cube": "क्यूब",
+      "scope-category": "श्रेणी",
+      "monthly": "पिछले 6 महीने",
+      "clean": "साफ़",
+      "by-category": "श्रेणी के अनुसार",
+      "all-categories": "सभी दिखाएँ",
+      "use-cube": "उपयोग करें",
+      "needs-solves": "{count} सॉल्व चाहिए",
+      "recent": "हाल में उपयोग किए गए"
     }
   },
   "Multiplayer": {

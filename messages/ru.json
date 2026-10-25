@@ -1532,6 +1532,38 @@
         "cubes": "Кубики",
         "gradient": "Градиент"
       }
+    },
+    "PageAside": {
+      "never": "Никогда",
+      "session-summary": "Итоги сессии",
+      "history-summary": "Итоги истории",
+      "solves": "Сборки",
+      "mean": "Среднее",
+      "best": "Лучшая",
+      "worst": "Худшая",
+      "distribution": "Распределение",
+      "distribution-empty": "Нужно минимум 5 сборок",
+      "records": "Рекорды",
+      "single": "Сингл",
+      "progress": "Прогресс",
+      "last-record": "Последний рекорд",
+      "this-month": "Этот месяц",
+      "last-month": "Прошлый месяц",
+      "solves-count": "{count, plural, one {# сборка} few {# сборки} many {# сборок} other {# сборки}}",
+      "actions": "Быстрые действия",
+      "new-cube": "Новый куб",
+      "transfer-solves": "Перенести сборки",
+      "view-stats": "Открыть статистику",
+      "view-solves": "Открыть сборки",
+      "scope-cube": "Куб",
+      "scope-category": "Категория",
+      "monthly": "Последние 6 месяцев",
+      "clean": "Чистые",
+      "by-category": "По категориям",
+      "all-categories": "Показать все",
+      "use-cube": "Использовать",
+      "needs-solves": "Нужно сборок: {count}",
+      "recent": "Недавние"
     }
   },
   "Multiplayer": {

@@ -1532,6 +1532,38 @@
         "cubes": "Würfelchen",
         "gradient": "Verlauf"
       }
+    },
+    "PageAside": {
+      "never": "Nie",
+      "session-summary": "Sitzungsübersicht",
+      "history-summary": "Verlaufsübersicht",
+      "solves": "Solves",
+      "mean": "Mittelwert",
+      "best": "Bester",
+      "worst": "Schlechtester",
+      "distribution": "Verteilung",
+      "distribution-empty": "Benötigt mindestens 5 Solves",
+      "records": "Rekorde",
+      "single": "Single",
+      "progress": "Fortschritt",
+      "last-record": "Letzter Rekord",
+      "this-month": "Dieser Monat",
+      "last-month": "Letzter Monat",
+      "solves-count": "{count, plural, one {# Solve} other {# Solves}}",
+      "actions": "Schnellaktionen",
+      "new-cube": "Neuer Würfel",
+      "transfer-solves": "Solves übertragen",
+      "view-stats": "Statistiken ansehen",
+      "view-solves": "Solves ansehen",
+      "scope-cube": "Würfel",
+      "scope-category": "Kategorie",
+      "monthly": "Letzte 6 Monate",
+      "clean": "Sauber",
+      "by-category": "Nach Kategorie",
+      "all-categories": "Alle zeigen",
+      "use-cube": "Verwenden",
+      "needs-solves": "Braucht {count, plural, one {# Solve} other {# Solves}}",
+      "recent": "Zuletzt verwendet"
     }
   },
   "Multiplayer": {

@@ -1532,6 +1532,38 @@
         "cubes": "큐브",
         "gradient": "그라데이션"
       }
+    },
+    "PageAside": {
+      "never": "없음",
+      "session-summary": "세션 요약",
+      "history-summary": "기록 요약",
+      "solves": "솔브",
+      "mean": "평균",
+      "best": "최고",
+      "worst": "최저",
+      "distribution": "분포",
+      "distribution-empty": "솔브가 5개 이상 필요합니다",
+      "records": "기록",
+      "single": "싱글",
+      "progress": "진행 상황",
+      "last-record": "마지막 기록",
+      "this-month": "이번 달",
+      "last-month": "지난달",
+      "solves-count": "솔브 {count}개",
+      "actions": "빠른 작업",
+      "new-cube": "새 큐브",
+      "transfer-solves": "솔브 이동",
+      "view-stats": "통계 보기",
+      "view-solves": "솔브 보기",
+      "scope-cube": "큐브",
+      "scope-category": "카테고리",
+      "monthly": "최근 6개월",
+      "clean": "페널티 없음",
+      "by-category": "카테고리별",
+      "all-categories": "전체 보기",
+      "use-cube": "사용",
+      "needs-solves": "솔브 {count}개 필요",
+      "recent": "최근 사용"
     }
   },
   "Multiplayer": {

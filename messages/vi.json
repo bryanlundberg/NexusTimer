@@ -1508,6 +1508,38 @@
         "cubes": "Khối nhỏ",
         "gradient": "Chuyển màu"
       }
+    },
+    "PageAside": {
+      "never": "Chưa có",
+      "session-summary": "Tóm tắt phiên",
+      "history-summary": "Tóm tắt lịch sử",
+      "solves": "Lượt giải",
+      "mean": "Trung bình",
+      "best": "Tốt nhất",
+      "worst": "Tệ nhất",
+      "distribution": "Phân bố",
+      "distribution-empty": "Cần ít nhất 5 lượt giải",
+      "records": "Kỷ lục",
+      "single": "Single",
+      "progress": "Tiến bộ",
+      "last-record": "Kỷ lục gần nhất",
+      "this-month": "Tháng này",
+      "last-month": "Tháng trước",
+      "solves-count": "{count} lượt giải",
+      "actions": "Thao tác nhanh",
+      "new-cube": "Khối mới",
+      "transfer-solves": "Chuyển lượt giải",
+      "view-stats": "Xem thống kê",
+      "view-solves": "Xem lượt giải",
+      "scope-cube": "Khối",
+      "scope-category": "Hạng mục",
+      "monthly": "6 tháng gần nhất",
+      "clean": "Sạch",
+      "by-category": "Theo hạng mục",
+      "all-categories": "Hiện tất cả",
+      "use-cube": "Dùng",
+      "needs-solves": "Cần {count} lượt giải",
+      "recent": "Dùng gần đây"
     }
   },
   "Metadata": {

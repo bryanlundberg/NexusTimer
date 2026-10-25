@@ -1532,6 +1532,38 @@
         "cubes": "キューブ",
         "gradient": "グラデーション"
       }
+    },
+    "PageAside": {
+      "never": "なし",
+      "session-summary": "セッションの概要",
+      "history-summary": "履歴の概要",
+      "solves": "ソルブ",
+      "mean": "平均",
+      "best": "ベスト",
+      "worst": "ワースト",
+      "distribution": "分布",
+      "distribution-empty": "5回以上のソルブが必要です",
+      "records": "記録",
+      "single": "シングル",
+      "progress": "進捗",
+      "last-record": "最後の記録",
+      "this-month": "今月",
+      "last-month": "先月",
+      "solves-count": "{count} ソルブ",
+      "actions": "クイック操作",
+      "new-cube": "新しいキューブ",
+      "transfer-solves": "ソルブを移動",
+      "view-stats": "統計を見る",
+      "view-solves": "ソルブを見る",
+      "scope-cube": "キューブ",
+      "scope-category": "カテゴリ",
+      "monthly": "過去6か月",
+      "clean": "ペナルティなし",
+      "by-category": "カテゴリ別",
+      "all-categories": "すべて表示",
+      "use-cube": "使う",
+      "needs-solves": "{count} ソルブ必要",
+      "recent": "最近使用"
     }
   },
   "Multiplayer": {

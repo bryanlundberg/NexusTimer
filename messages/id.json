@@ -1508,6 +1508,38 @@
         "cubes": "Kubus kecil",
         "gradient": "Gradasi"
       }
+    },
+    "PageAside": {
+      "never": "Belum pernah",
+      "session-summary": "Ringkasan sesi",
+      "history-summary": "Ringkasan riwayat",
+      "solves": "Solve",
+      "mean": "Rata-rata",
+      "best": "Terbaik",
+      "worst": "Terburuk",
+      "distribution": "Distribusi",
+      "distribution-empty": "Butuh minimal 5 solve",
+      "records": "Rekor",
+      "single": "Single",
+      "progress": "Kemajuan",
+      "last-record": "Rekor terakhir",
+      "this-month": "Bulan ini",
+      "last-month": "Bulan lalu",
+      "solves-count": "{count} solve",
+      "actions": "Aksi cepat",
+      "new-cube": "Kubus baru",
+      "transfer-solves": "Pindahkan solve",
+      "view-stats": "Lihat statistik",
+      "view-solves": "Lihat solve",
+      "scope-cube": "Kubus",
+      "scope-category": "Kategori",
+      "monthly": "6 bulan terakhir",
+      "clean": "Bersih",
+      "by-category": "Per kategori",
+      "all-categories": "Tampilkan semua",
+      "use-cube": "Gunakan",
+      "needs-solves": "Butuh {count} solve",
+      "recent": "Baru dipakai"
     }
   },
   "Metadata": {

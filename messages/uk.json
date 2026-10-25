@@ -1508,6 +1508,38 @@
         "cubes": "Кубики",
         "gradient": "Градієнт"
       }
+    },
+    "PageAside": {
+      "never": "Ніколи",
+      "session-summary": "Підсумок сесії",
+      "history-summary": "Підсумок історії",
+      "solves": "Збірки",
+      "mean": "Середнє",
+      "best": "Найкраща",
+      "worst": "Найгірша",
+      "distribution": "Розподіл",
+      "distribution-empty": "Потрібно щонайменше 5 збірок",
+      "records": "Рекорди",
+      "single": "Сингл",
+      "progress": "Прогрес",
+      "last-record": "Останній рекорд",
+      "this-month": "Цей місяць",
+      "last-month": "Минулий місяць",
+      "solves-count": "{count, plural, one {# збірка} few {# збірки} many {# збірок} other {# збірки}}",
+      "actions": "Швидкі дії",
+      "new-cube": "Новий кубик",
+      "transfer-solves": "Перенести збірки",
+      "view-stats": "Переглянути статистику",
+      "view-solves": "Переглянути збірки",
+      "scope-cube": "Кубик",
+      "scope-category": "Категорія",
+      "monthly": "Останні 6 місяців",
+      "clean": "Чисті",
+      "by-category": "За категоріями",
+      "all-categories": "Показати всі",
+      "use-cube": "Використати",
+      "needs-solves": "Потрібно збірок: {count}",
+      "recent": "Нещодавні"
     }
   },
   "Metadata": {
