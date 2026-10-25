@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function PrivacyPolicyPage() {
   return (
     <>
-      <LegalHero label="Legal" title="Privacy Policy" intro="Last updated: October 19, 2026" />
+      <LegalHero label="Legal" title="Privacy Policy" intro="Last updated: October 25, 2026" />
 
       <LegalBody>
         <Para>
@@ -93,10 +93,6 @@ export default function PrivacyPolicyPage() {
           <Li>
             <strong>Free play rooms.</strong> Your name, profile picture and the times you post are shared with the
             other players in the room. Room data is deleted one hour after the room’s last activity.
-          </Li>
-          <Li>
-            <strong>Nexus Connect.</strong> When you pair a phone as a remote timer, the pairing session (the phone’s
-            operating system and browser name, and the solves it sends) is relayed through Google Firebase.
           </Li>
           <Li>
             <strong>Error logs.</strong> When something fails, we record technical details that can include your email
@@ -192,7 +188,6 @@ export default function PrivacyPolicyPage() {
           <Li>MongoDB Atlas, which stores account, profile, solve and social data.</Li>
           <Li>Oracle Cloud, which hosts our realtime server, cache and product search.</Li>
           <Li>Backblaze B2, which stores cloud backups and profile pictures, both uploaded and generated.</Li>
-          <Li>Google Firebase, which relays Nexus Connect sessions.</Li>
           <Li>Google Analytics, for usage analytics with your consent.</Li>
           <Li>Resend and Brevo, which send our emails.</Li>
           <Li>GitHub, which hosts algorithm suggestions as public issues.</Li>
