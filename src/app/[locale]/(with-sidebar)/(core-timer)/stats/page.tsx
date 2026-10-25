@@ -6,19 +6,27 @@ import { PageBody } from '@/shared/ui/page-body/PageBody'
 import { StretchScroller } from '@/shared/ui/stretch-scroller/StretchScroller'
 import { useTranslations } from 'next-intl'
 import StatisticsViewSwitcher from '@/widgets/statistics-view/ui/StatisticsViewSwitcher'
+import StatsAside from '@/widgets/page-aside/ui/StatsAside'
+import { useMinWidth } from '@/shared/model/use-min-width'
 
 export default function StatsPage() {
   const { stats, loadingProps } = useDeepStatistics()
   const t = useTranslations('Index.StatsPage')
+  const showAside = useMinWidth(1280)
   return (
-    <StretchScroller className="flex-1 min-h-0 overflow-auto">
+    <div className="flex-1 min-h-0 flex flex-col">
       <CoreHeader breadcrumbs={[{ label: t('title'), href: '/stats' }]} />
-      <PageBody variant="data" className="px-3 pb-6 flex flex-col w-full min-h-full">
-        <StatsPageHeader />
-        <div className="grid grid-cols-1 gap-4 grow">
-          <StatisticsViewSwitcher statistics={stats} loadingProps={loadingProps} />
-        </div>
-      </PageBody>
-    </StretchScroller>
+      <div className="flex flex-1 min-h-0">
+        <StretchScroller className="flex-1 min-w-0 min-h-0 overflow-auto scrollbar-hide">
+          <PageBody variant="data" className="px-3 pb-6 flex flex-col w-full min-h-full">
+            <StatsPageHeader />
+            <div className="grid grid-cols-1 gap-4 grow">
+              <StatisticsViewSwitcher statistics={stats} loadingProps={loadingProps} />
+            </div>
+          </PageBody>
+        </StretchScroller>
+        {showAside && <StatsAside />}
+      </div>
+    </div>
   )
 }
