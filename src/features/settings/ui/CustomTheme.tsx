@@ -69,7 +69,7 @@ export default function CustomTheme() {
               event.stopPropagation()
               deleteBackgroundImage()
             }}
-            className="absolute top-1 right-1 w-5 h-5 text-white rounded-full bg-destructive flex items-center justify-center hover:scale-110 transition duration-200"
+            className="absolute top-1 right-1 w-5 h-5 text-destructive-foreground rounded-full bg-destructive flex items-center justify-center hover:scale-110 transition duration-200"
           >
             <Cross2Icon className="w-3 h-3" />
           </button>
