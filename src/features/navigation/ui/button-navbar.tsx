@@ -58,6 +58,7 @@ export default function ButtonNavbar() {
   const { toggleFullScreen } = useFullScreen()
   const { applyColorTheme } = useWebsiteColors()
   const settings = useSettingsStore((state) => state.settings)
+  const updateSetting = useSettingsStore((state) => state.updateSetting)
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -136,6 +137,7 @@ export default function ButtonNavbar() {
   }
 
   const handleThemeChange = (theme: string) => {
+    if (settings.preferences.vivid) updateSetting('preferences.vivid', false)
     setTheme(theme)
     applyColorTheme(settings.preferences.colorTheme)
   }
