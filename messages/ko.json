@@ -736,6 +736,7 @@
       "export-to-file": "파일로 내보내기",
       "dark": "다크 모드",
       "light": "라이트 모드",
+      "vivid": "비비드 모드",
       "system": "시스템 설정",
       "close": "닫기",
       "fullscreen": "전체 화면",
