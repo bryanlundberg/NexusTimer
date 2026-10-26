@@ -1,9 +1,11 @@
-import { Themes } from '@/shared/types/Themes'
 import CustomTheme from './CustomTheme'
 import { useTheme } from 'next-themes'
 import { useTranslations } from 'next-intl'
-import { useCallback, useEffect, useState } from 'react'
-import { ThemeToggleButton, useThemeTransition } from '@/components/ui/shadcn-io/theme-toggle-button'
+import { MouseEvent, useCallback, useEffect, useState } from 'react'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
+import { supportsVivid } from '@/shared/lib/vividColorScheme'
+import { ThemeChoice, useThemeSwitch } from '@/features/settings/model/useThemeSwitch'
+import ThemePreviewVivid from './ThemePreviewVivid'
 
 function ThemePreviewLight({ selected }: { selected: boolean }) {
   return (
@@ -74,58 +76,76 @@ function ThemePreviewDark({ selected }: { selected: boolean }) {
 }
 
 export default function ThemeSelect() {
-  const { startTransition } = useThemeTransition()
-  const { setTheme, theme, resolvedTheme } = useTheme()
+  const { theme } = useTheme()
+  const switchTheme = useThemeSwitch()
   const t = useTranslations('Index.Settings-menu')
   const tDescriptions = useTranslations('Index.Settings-descriptions')
+  const colorTheme = useSettingsStore((store) => store.settings.preferences.colorTheme)
+  const vivid = useSettingsStore((store) => store.settings.preferences.vivid)
+  const canBeVivid = supportsVivid(colorTheme)
+  const isVivid = vivid && canBeVivid
+  const current: ThemeChoice | null = isVivid ? 'vivid' : theme === 'light' || theme === 'dark' ? theme : null
 
   const [mounted, setMounted] = useState(false)
   useEffect(() => {
     setMounted(true)
   }, [])
 
-  const handleSetTheme = useCallback(
-    (mode: Themes) => {
-      if (!mode || mode === theme) return
-      startTransition(() => setTheme(mode))
+  const handleChoose = useCallback(
+    (choice: ThemeChoice, event: MouseEvent<HTMLButtonElement>) => {
+      if (choice === current) return
+      const rect = event.currentTarget.getBoundingClientRect()
+      const fromPointer = event.detail > 0
+      switchTheme(choice, {
+        x: fromPointer ? event.clientX : rect.left + rect.width / 2,
+        y: fromPointer ? event.clientY : rect.top + rect.height / 2
+      })
     },
-    [theme, setTheme, startTransition]
+    [current, switchTheme]
   )
 
   if (!mounted) {
     return null
   }
 
+  const chooser = (choice: ThemeChoice, label: string) => (
+    <button
+      type="button"
+      aria-label={label}
+      aria-pressed={current === choice}
+      onClick={(event) => handleChoose(choice, event)}
+      className="absolute inset-0 h-full w-full cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+    />
+  )
+
   return (
     <div className="flex flex-col gap-3 px-4 py-3.5">
       <div className="flex gap-3 flex-wrap">
         <div className="flex flex-col items-center">
           <div className="relative">
-            <ThemePreviewLight selected={theme === 'light'} />
-            <ThemeToggleButton
-              theme={resolvedTheme as 'light' | 'dark'}
-              onClick={() => handleSetTheme('light')}
-              variant="circle"
-              start="center"
-              className="absolute inset-0 h-full w-full p-0 m-0 opacity-0"
-            />
+            <ThemePreviewLight selected={current === 'light'} />
+            {chooser('light', t('light'))}
           </div>
           <div className="mt-1.5 text-[13px] sm:text-xs">{t('light')}</div>
         </div>
 
         <div className="flex flex-col items-center">
           <div className="relative">
-            <ThemePreviewDark selected={theme === 'dark'} />
-            <ThemeToggleButton
-              theme={resolvedTheme as 'light' | 'dark'}
-              onClick={() => handleSetTheme('dark')}
-              variant="circle"
-              start="center"
-              className="absolute inset-0 h-full w-full p-0 m-0 opacity-0"
-            />
+            <ThemePreviewDark selected={current === 'dark'} />
+            {chooser('dark', t('dark'))}
           </div>
           <div className="mt-1.5 text-[13px] sm:text-xs">{t('dark')}</div>
         </div>
+
+        {canBeVivid && (
+          <div className="flex flex-col items-center">
+            <div className="relative">
+              <ThemePreviewVivid color={colorTheme} selected={current === 'vivid'} />
+              {chooser('vivid', t('vivid'))}
+            </div>
+            <div className="mt-1.5 text-[13px] sm:text-xs">{t('vivid')}</div>
+          </div>
+        )}
 
         <CustomTheme />
       </div>
