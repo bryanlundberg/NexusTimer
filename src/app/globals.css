@@ -205,47 +205,59 @@
 }
 
 .dark {
-  --background: oklch(0.141 0.0251 276.966);
-  --foreground: oklch(0.985 0.0019 276.966);
-  --card: oklch(0.209 0.0251 276.966);
-  --card-foreground: oklch(0.985 0.0019 276.966);
-  --popover: oklch(0.209 0.0251 276.966);
-  --popover-foreground: oklch(0.985 0.0019 276.966);
-  --primary: oklch(0.511 0.262 276.966);
-  --primary-foreground: oklch(0.8883 0.0157 276.966);
-  --secondary: oklch(0.279 0.0246 276.966);
-  --secondary-foreground: oklch(0.985 0.0019 276.966);
-  --muted: oklch(0.279 0.0246 276.966);
-  --muted-foreground: oklch(0.708 0.024 276.966);
-  --accent: oklch(0.279 0.0246 276.966);
-  --accent-foreground: oklch(0.985 0.0019 276.966);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.3161 0.0764 22.216);
-  --record: oklch(0.828 0.189 84.429);
-  --faster: oklch(0.765 0.177 163.223);
-  --slower: oklch(0.704 0.191 22.216);
-  --success: oklch(0.765 0.177 163.223);
+  /* Generated: buildVividColorScheme('indigo') in shared/lib/vividColorScheme.ts. Vivid indigo is
+     the default, so first paint matches what the hook applies. Do not hand-edit. */
+  --background: oklch(0.436 0.262 276.966);
+  --foreground: oklch(0.985 0.0157 276.966);
+  --card: oklch(0.476 0.262 276.966);
+  --card-foreground: oklch(0.985 0.0157 276.966);
+  --popover: oklch(0.476 0.262 276.966);
+  --popover-foreground: oklch(0.985 0.0157 276.966);
+  --primary: oklch(0.985 0.0157 276.966);
+  --primary-foreground: oklch(0.436 0.262 276.966);
+  --secondary: oklch(0.516 0.262 276.966);
+  --secondary-foreground: oklch(0.985 0.0157 276.966);
+  --muted: oklch(0.516 0.262 276.966);
+  --muted-foreground: oklch(0.8955 0.0157 276.966);
+  --accent: oklch(0.516 0.262 276.966);
+  --accent-foreground: oklch(0.985 0.0157 276.966);
+  --destructive: oklch(0.8677 0.191 22.216);
+  --destructive-foreground: oklch(0.2 0.0764 22.216);
+  --record: oklch(0.8478 0.189 84.429);
+  --faster: oklch(0.8166 0.177 163.223);
+  --slower: oklch(0.9577 0.191 22.216);
+  --success: oklch(0.8166 0.177 163.223);
   --warning: oklch(0.852 0.199 91.936);
-  --timer-holding: oklch(0.592 0.249 0.584);
+  --timer-holding: oklch(0.848 0.249 0.584);
   --timer-ready: oklch(0.765 0.177 163.223);
-  --timer-inspect: oklch(0.705 0.213 47.604);
-  --border: oklch(1 0 276.966 / 10%);
-  --input: oklch(1 0 276.966 / 15%);
-  --ring: oklch(0.511 0.262 276.966);
-  --chart-1: oklch(0.71 0.18 276.966);
-  --chart-2: oklch(0.77 0.15 348.966);
-  --chart-3: oklch(0.65 0.16 60.966);
-  --chart-4: oklch(0.8 0.14 132.966);
-  --chart-5: oklch(0.69 0.19 204.966);
-  --sidebar: oklch(0.141 0.0251 276.966);
-  --sidebar-foreground: oklch(0.985 0.0019 276.966);
-  --sidebar-primary: oklch(0.511 0.262 276.966);
-  --sidebar-primary-foreground: oklch(0.8883 0.0157 276.966);
-  --sidebar-accent: oklch(0.209 0.0251 276.966);
-  --sidebar-accent-foreground: oklch(0.985 0.0019 276.966);
-  --sidebar-mark: oklch(0.5373 0.262 276.966);
-  --sidebar-border: oklch(1 0 276.966 / 10%);
-  --sidebar-ring: oklch(0.511 0.262 276.966);
+  --timer-inspect: oklch(0.7891 0.213 47.604);
+  --border: oklch(0.985 0.0157 276.966 / 20%);
+  --input: oklch(0.985 0.0157 276.966 / 25%);
+  --ring: oklch(0.985 0.0157 276.966);
+  --chart-1: oklch(0.7484 0.18 276.966);
+  --chart-2: oklch(0.7444 0.15 348.966);
+  --chart-3: oklch(0.736 0.16 60.966);
+  --chart-4: oklch(0.75 0.14 132.966);
+  --chart-5: oklch(0.681 0.19 204.966);
+  --sidebar: oklch(0.436 0.262 276.966);
+  --sidebar-foreground: oklch(0.985 0.0157 276.966);
+  --sidebar-primary: oklch(0.985 0.0157 276.966);
+  --sidebar-primary-foreground: oklch(0.436 0.262 276.966);
+  --sidebar-accent: oklch(0.476 0.262 276.966);
+  --sidebar-accent-foreground: oklch(0.985 0.0157 276.966);
+  --sidebar-mark: oklch(0.985 0.0157 276.966);
+  --sidebar-border: oklch(0.985 0.0157 276.966 / 20%);
+  --sidebar-ring: oklch(0.985 0.0157 276.966);
+}
+
+.theme-switching,
+.theme-switching * {
+  transition: none !important;
+}
+.theme-switching::view-transition-old(root),
+.theme-switching::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }
 
 @layer base {
