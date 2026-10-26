@@ -5,8 +5,7 @@ import { motion } from 'motion/react'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
 import { buildVizConfig, formatMs } from '@/features/trainer/lib/trainerUtils'
 import type { RankedCase } from '@/features/trainer/lib/methodOverview'
-import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
-import { CHART_CONTRAST, DEFAULT_CHART_CONTRAST } from '@/shared/lib/chartContrastColor'
+import { useChartContrast } from '@/shared/model/useChartContrast'
 import { cn } from '@/shared/lib/utils'
 
 interface TrainerCasePaceChartProps {
@@ -16,8 +15,7 @@ interface TrainerCasePaceChartProps {
 }
 
 export default function TrainerCasePaceChart({ ranked, puzzle, vizDefaults }: TrainerCasePaceChartProps) {
-  const colorTheme = useSettingsStore((store) => store.settings.preferences.colorTheme)
-  const contrast = CHART_CONTRAST[colorTheme] ?? DEFAULT_CHART_CONTRAST
+  const contrast = useChartContrast()
 
   const vizByCaseId = useMemo(() => {
     const map = new Map<string, ReturnType<typeof buildVizConfig>>()

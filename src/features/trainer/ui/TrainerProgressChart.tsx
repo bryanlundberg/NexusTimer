@@ -3,8 +3,7 @@
 import { useMemo, useState, type KeyboardEvent, type PointerEvent } from 'react'
 import type { TrainerSolveListItem } from '@/features/trainer/model/types'
 import { monotonePath } from '@/features/trainer/lib/monotonePath'
-import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
-import { CHART_CONTRAST, DEFAULT_CHART_CONTRAST } from '@/shared/lib/chartContrastColor'
+import { useChartContrast } from '@/shared/model/useChartContrast'
 
 interface TrainerProgressChartProps {
   solves: TrainerSolveListItem[]
@@ -16,8 +15,7 @@ const SIZE = 100
 const GRID_LINES = [0, 25, 50, 75, 100]
 
 export default function TrainerProgressChart({ solves, targetMs, label }: TrainerProgressChartProps) {
-  const colorTheme = useSettingsStore((store) => store.settings.preferences.colorTheme)
-  const color = (CHART_CONTRAST[colorTheme] ?? DEFAULT_CHART_CONTRAST).hex
+  const color = useChartContrast().hex
   const [active, setActive] = useState<number | null>(null)
 
   const chart = useMemo(() => {

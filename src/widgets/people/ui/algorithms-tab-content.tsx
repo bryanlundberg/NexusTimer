@@ -7,15 +7,13 @@ import PeopleCaseVisual from '@/widgets/people/ui/people-case-visual'
 import { buildLearnedMethods } from '@/entities/trainer-learned/lib/buildLearnedMethods'
 import type { LearnedMethod } from '@/entities/trainer-learned/model/useUserLearned'
 import RingMethod from '@/widgets/people/ui/ring-method'
-import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
-import { CHART_CONTRAST, DEFAULT_CHART_CONTRAST } from '@/shared/lib/chartContrastColor'
+import { useChartContrast } from '@/shared/model/useChartContrast'
 
 export default function AlgorithmsTabContent({ methods }: { methods?: LearnedMethod[] }) {
   const t = useTranslations('Index.PeoplePage.algorithms')
   const { total, byPuzzle } = useMemo(() => buildLearnedMethods(methods), [methods])
 
-  const colorTheme = useSettingsStore((store) => store.settings.preferences.colorTheme)
-  const strokeClass = (CHART_CONTRAST[colorTheme] ?? DEFAULT_CHART_CONTRAST).stroke
+  const strokeClass = useChartContrast().stroke
 
   const orderedMethods = useMemo(() => byPuzzle.flatMap((group) => group.methods), [byPuzzle])
 
