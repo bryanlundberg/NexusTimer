@@ -9,13 +9,13 @@ import type { Colors } from '@/shared/types/colors'
 
 export type ColorSchemeMode = 'light' | 'dark'
 
-type Oklch = { l: number; c: number; h: number }
+export type Oklch = { l: number; c: number; h: number }
 
-const ok = (l: number, c: number, h: number): Oklch => ({ l, c, h })
+export const ok = (l: number, c: number, h: number): Oklch => ({ l, c, h })
 
 const round = (n: number): number => Math.round(n * 1e4) / 1e4
 
-const toCss = ({ l, c, h }: Oklch, alpha?: number): string =>
+export const toCss = ({ l, c, h }: Oklch, alpha?: number): string =>
   alpha === undefined
     ? `oklch(${round(l)} ${round(c)} ${round(h)})`
     : `oklch(${round(l)} ${round(c)} ${round(h)} / ${round(alpha * 100)}%)`
@@ -46,7 +46,7 @@ export const contrastRatio = (a: Oklch, b: Oklch): number => {
 }
 
 /** AA, plus margin so rounding to 4 decimals cannot tip a pair under. */
-const AA_TARGET = 4.6
+export const AA_TARGET = 4.6
 
 /**
  * Searched rather than picked from two fixed candidates: mid-lightness accents
@@ -75,7 +75,7 @@ const readableOn = (bg: Oklch): Oklch => {
   return candidate(pass)
 }
 
-const GRAPHIC_TARGET = 3.1
+export const GRAPHIC_TARGET = 3.1
 
 const visibleOn = (color: Oklch, surface: Oklch): Oklch => {
   if (contrastRatio(color, surface) >= GRAPHIC_TARGET) return color
@@ -120,7 +120,7 @@ const monochrome = (hue: number, chroma: number, tint: number, chartHue: number)
   chartHue
 })
 
-const PALETTES: Record<Colors, PaletteSpec> = {
+export const PALETTES: Record<Colors, PaletteSpec> = {
   red: chromatic(ok(0.637, 0.237, 25.331), ok(0.637, 0.237, 25.331)),
   orange: chromatic(ok(0.705, 0.213, 47.604), ok(0.646, 0.222, 41.116)),
   amber: chromatic(ok(0.769, 0.188, 70.08), ok(0.769, 0.188, 70.08)),
@@ -178,7 +178,7 @@ const RAMPS: Record<ColorSchemeMode, Record<StepKey, Step>> = {
 }
 
 /** Fixed across themes: a warning that shifts hue stops reading as one. */
-const DESTRUCTIVE: Record<ColorSchemeMode, Oklch> = {
+export const DESTRUCTIVE: Record<ColorSchemeMode, Oklch> = {
   light: ok(0.577, 0.245, 27.325),
   dark: ok(0.704, 0.191, 22.216)
 }
@@ -192,7 +192,7 @@ const GAIN: Record<ColorSchemeMode, Oklch> = {
  * Fixed across themes like DESTRUCTIVE. Light takes darker shades because the dark
  * ones fall under 3:1 on white.
  */
-const ROLES: Record<string, Record<ColorSchemeMode, Oklch>> = {
+export const ROLES: Record<string, Record<ColorSchemeMode, Oklch>> = {
   record: { light: ok(0.555, 0.163, 48.998), dark: ok(0.828, 0.189, 84.429) },
   faster: GAIN,
   slower: DESTRUCTIVE,
@@ -204,7 +204,7 @@ const ROLES: Record<string, Record<ColorSchemeMode, Oklch>> = {
 }
 
 /** Lightness alternates so neighbouring series stay separable without relying on hue. */
-const CHART_STEPS = [
+export const CHART_STEPS = [
   { dh: 0, l: 0.66, c: 0.18 },
   { dh: 72, l: 0.72, c: 0.15 },
   { dh: 144, l: 0.6, c: 0.16 },
