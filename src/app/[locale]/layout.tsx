@@ -13,6 +13,8 @@ import CookieConsentBanner from '@/components/cookie-consent-banner'
 import { CONSENT_KEY } from '@/shared/lib/analyticsConsent'
 import { OfflineIndicator } from '@/shared/ui/offline-indicator/OfflineIndicator'
 import { LocaleRedirectScript } from '@/shared/ui/locale-redirect/LocaleRedirectScript'
+import { ColorSchemeScript } from '@/shared/ui/color-scheme/ColorSchemeScript'
+import { savedColorSchemeConfig } from '@/shared/lib/savedColorScheme'
 import { SerwistProvider } from '@serwist/turbopack/react'
 import { OG_IMAGES, siteOpenGraph } from '@/shared/config/seo/open-graph'
 
@@ -103,6 +105,7 @@ export default async function LocaleLayout({ children }: { children: React.React
     <html lang={locale} suppressHydrationWarning>
       <head>
         <LocaleRedirectScript />
+        <ColorSchemeScript />
         <JsonLd locale={locale} title={title} description={description} url={url} />
       </head>
       <body className={`font-sans ${spaceGrotesk.variable} ${chakraPetch.variable}`}>
@@ -124,7 +127,12 @@ export default async function LocaleLayout({ children }: { children: React.React
         </Script>
         <SerwistProvider swUrl="/serwist/sw.js" disable={process.env.NODE_ENV !== 'production'}>
           <NextIntlClientProvider messages={shellMessages(messages)}>
-            <ThemeProvider attribute="class" defaultTheme={'system'} enableSystem disableTransitionOnChange>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme={savedColorSchemeConfig.defaultTheme}
+              enableSystem
+              disableTransitionOnChange
+            >
               <OfflineIndicator />
               {children}
               <CookieConsentBanner />
