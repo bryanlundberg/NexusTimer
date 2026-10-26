@@ -32,6 +32,7 @@ type Alerts = {
 
 type Preferences = {
   colorTheme: Colors
+  vivid: boolean
 }
 
 type Sounds = {
