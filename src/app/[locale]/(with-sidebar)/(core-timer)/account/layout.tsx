@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <RequireSession fallback={<AccountNotAuth />}>
       <ScrollArea className={'max-h-dvh overflow-auto'} overscrollStretch>
-        <div className="mx-auto bg-background/90 backdrop-blur-lg pb-5">{children}</div>
+        <div className="mx-auto bg-background/90 backdrop-blur-lg backdrop-surface pb-5">{children}</div>
       </ScrollArea>
     </RequireSession>
   )
