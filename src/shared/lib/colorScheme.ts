@@ -237,6 +237,7 @@ export const buildColorScheme = (color: Colors, mode: ColorSchemeMode): Record<s
   return {
     background: grey(ramp.base),
     backdrop: 'none',
+    'glass-opacity': 'initial',
     foreground: text,
     card: grey(ramp.raised),
     'card-foreground': text,
