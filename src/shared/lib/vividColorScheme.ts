@@ -24,6 +24,18 @@ const MONOCHROME = new Set<Colors>(['slate', 'gray', 'zinc', 'neutral', 'stone']
 
 export const supportsVivid = (color: Colors): boolean => !MONOCHROME.has(color)
 
+/** The accent at full chroma across a whole screen glares; surfaces keep a share of it. */
+const SURFACE_CHROMA = 0.58
+const MIN_SURFACE_CHROMA = 0.1
+const MAX_DARK_SURFACE_L = 0.41
+
+const surfaceSeed = (seed: Oklch, polarity: ColorSchemeMode): Oklch =>
+  ok(
+    polarity === 'dark' ? Math.min(seed.l, MAX_DARK_SURFACE_L) : seed.l,
+    Math.min(seed.c, Math.max(seed.c * SURFACE_CHROMA, MIN_SURFACE_CHROMA)),
+    seed.h
+  )
+
 const RAISED_STEP = 0.04
 const SUBTLE_STEP = 0.08
 
@@ -48,7 +60,7 @@ const clearing = (color: Oklch, surfaces: Oklch[], target: number, toward: 0 | 1
 }
 
 const textFor = (seed: Oklch, polarity: ColorSchemeMode): Oklch =>
-  polarity === 'dark' ? ok(0.985, Math.min(seed.c * 0.06, 0.02), seed.h) : ok(0.2, Math.min(seed.c * 0.4, 0.08), seed.h)
+  polarity === 'dark' ? ok(0.95, Math.min(seed.c * 0.06, 0.02), seed.h) : ok(0.2, Math.min(seed.c * 0.4, 0.08), seed.h)
 
 /** Moves the seed's lightness, never its hue or chroma, until text clears on every surface. */
 const vividBase = (seed: Oklch, polarity: ColorSchemeMode): Oklch => {
@@ -64,6 +76,16 @@ const vividBase = (seed: Oklch, polarity: ColorSchemeMode): Oklch => {
     else fail = mid
   }
   return ok(pass, seed.c, seed.h)
+}
+
+const BACKDROP_HUE_SHIFT = 10
+const BACKDROP_DEPTH = 0.08
+
+/** One diagonal sweep from the base into a deeper shade, away from the text so contrast only grows. */
+const vividBackdrop = (base: Oklch, polarity: ColorSchemeMode): string => {
+  const away = polarity === 'dark' ? -1 : 1
+  const deep = ok(base.l + away * BACKDROP_DEPTH, base.c, (base.h - BACKDROP_HUE_SHIFT + 360) % 360)
+  return `linear-gradient(in oklab 135deg, ${toCss(base)}, ${toCss(deep)})`
 }
 
 /** Past this drop the accent turns muddy (yellow into olive, amber into brown). */
@@ -85,7 +107,7 @@ export const buildVividColorScheme = (color: Colors): Record<string, string> => 
   const polarity = vividPolarity(color)
   const toward = polarity === 'dark' ? 1 : 0
 
-  const base = vividBase(spec.accent.dark, polarity)
+  const base = vividBase(surfaceSeed(spec.accent.dark, polarity), polarity)
   const raised = ok(Math.min(base.l + RAISED_STEP, 1), base.c, base.h)
   const subtle = ok(Math.min(base.l + SUBTLE_STEP, 1), base.c, base.h)
   const surfaces = [base, raised, subtle]
@@ -116,6 +138,7 @@ export const buildVividColorScheme = (color: Colors): Record<string, string> => 
 
   return {
     background: toCss(base),
+    backdrop: vividBackdrop(base, polarity),
     foreground: textCss,
     card: toCss(raised),
     'card-foreground': textCss,
