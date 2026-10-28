@@ -11,7 +11,9 @@ import { DeepStatistics } from '@/shared/types/statistics'
 import StatisticsViewContainer from '@/widgets/statistics-view/ui/StatisticsViewContainer'
 import { STATES } from '@/shared/const/states'
 import { Loader2 } from 'lucide-react'
-import { CategoryStatIcon, CubeStatIcon, SmartStatIcon } from '@/components/ui/stats-icons'
+import { SmartStatIcon } from '@/components/ui/stats-icons'
+import CategoryIcon from '@/components/ui/category-icon'
+import PuzzleIcon from '@/components/ui/puzzle-icon'
 import ScrollableUnderlineTabs from '@/shared/ui/animated-tabs/ScrollableUnderlineTabs'
 
 interface StatisticsViewSwitcherProps {
@@ -32,8 +34,8 @@ export default function StatisticsViewSwitcher({ statistics, loadingProps }: Sta
   const isSmartCategory = SMART_CATEGORIES.includes(selectedCube?.category ?? '')
 
   const tabs = [
-    { value: StatisticsTabs.CATEGORY, icon: CategoryStatIcon, label: t('StatsPage.category-tab') },
-    { value: StatisticsTabs.CUBE, icon: CubeStatIcon, label: t('StatsPage.cube-tab') },
+    { value: StatisticsTabs.CATEGORY, icon: CategoryIcon, label: t('StatsPage.category-tab') },
+    { value: StatisticsTabs.CUBE, icon: PuzzleIcon, label: t('StatsPage.cube-tab') },
     { value: StatisticsTabs.SMART, icon: SmartStatIcon, label: t('StatsPage.smart-tab'), disabled: !isSmartCategory }
   ]
 
