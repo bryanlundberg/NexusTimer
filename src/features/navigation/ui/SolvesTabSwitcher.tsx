@@ -4,8 +4,8 @@ import { useTranslations } from 'next-intl'
 import { useQueryState } from 'nuqs'
 import { STATES } from '@/shared/const/states'
 import { SolveTab } from '@/shared/types/enums'
-import CubesIcon from '@/components/ui/cubes-icon'
-import StackIcon from '@/components/ui/stack-icon'
+import SessionIcon from '@/components/ui/session-icon'
+import HistoryIcon from '@/components/ui/history-icon'
 import Segmented from '@/shared/ui/segmented/Segmented'
 
 export default function SolvesTabSwitcher({ className }: { className?: string }) {
@@ -22,8 +22,8 @@ export default function SolvesTabSwitcher({ className }: { className?: string })
       aria-label={t('SolvesPage.title')}
       className={className}
       options={[
-        { value: SolveTab.SESSION, icon: <CubesIcon size={16} />, label: t('SolvesPage.session') },
-        { value: SolveTab.ALL, icon: <StackIcon size={16} />, label: t('SolvesPage.historial') }
+        { value: SolveTab.SESSION, icon: <SessionIcon size={16} />, label: t('SolvesPage.session') },
+        { value: SolveTab.ALL, icon: <HistoryIcon size={16} />, label: t('SolvesPage.historial') }
       ]}
     />
   )
