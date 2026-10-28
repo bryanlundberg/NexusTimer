@@ -47,7 +47,7 @@ export default function CoreHeader({ breadcrumbs, actions }: CoreHeaderProps) {
 
   return (
     <div className="w-full sticky top-0 z-50" data-testid="core-header">
-      <div className="@container/header h-14 border-b px-3 flex justify-between items-center gap-2 bg-background/60 backdrop-blur-md backdrop-surface">
+      <div className="@container/header h-14 border-b px-3 flex justify-between items-center gap-2 glass-60 backdrop-blur-md">
         <div className="flex items-center gap-3 min-w-0">
           <SidebarTrigger className="size-9 shrink-0 pointer-coarse:size-10 [&_svg]:size-5" />
           <Breadcrumb className="min-w-0">
