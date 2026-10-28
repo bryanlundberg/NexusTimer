@@ -132,7 +132,7 @@ export default function TimerSolvesRail() {
       transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
       className="hidden md:flex shrink-0 min-h-0 overflow-hidden"
     >
-      <div className="flex h-full w-52 lg:w-64 min-h-0 flex-col overflow-hidden border-s border-border bg-sidebar/25 backdrop-blur-md">
+      <div className="flex h-full w-52 lg:w-64 min-h-0 flex-col overflow-hidden border-s border-border bg-sidebar/25 backdrop-blur-md backdrop-surface">
         {/* Switch */}
         <div className="p-2">
           <Segmented
