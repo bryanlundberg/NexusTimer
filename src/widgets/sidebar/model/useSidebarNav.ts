@@ -16,7 +16,7 @@ import {
   MessagesNavIcon,
   LeaderboardsNavIcon,
   FreePlayNavIcon
-} from '@/components/ui/nav-icons'
+} from '@/components/ui/nav-icons-solid'
 import { useCubeActions } from '@/features/manage-cubes/model/useCubeActions'
 import { ALGORITHM_SET_CATALOG } from '@nexustimer/algorithms/sets'
 import { formatBadgeCount } from '@/shared/lib/badge-count'
