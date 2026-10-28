@@ -9,7 +9,7 @@ export default function BackgroundImageApp({ children }: { children: ReactNode }
   const showBackground = Boolean(backgroundImage) && pathname === '/app'
 
   return (
-    <div className="relative flex flex-col select-none bg-background grow min-h-0">
+    <div className="relative flex flex-col select-none grow min-h-0">
       {showBackground && (
         <div
           aria-hidden
