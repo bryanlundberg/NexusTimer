@@ -13,7 +13,10 @@ export default function ThemePreviewVivid({ color, selected }: { color: Colors; 
         selected ? 'border-2 border-primary scale-[1.02]' : 'border border-border hover:border-muted-foreground'
       }`}
     >
-      <div className="h-full w-full flex" style={{ background: scheme.background }}>
+      <div
+        className="h-full w-full flex"
+        style={{ backgroundColor: scheme.background, backgroundImage: scheme.backdrop }}
+      >
         <div
           className="w-6 sm:w-8 h-full flex flex-col items-center gap-1 sm:gap-1.5 pt-2"
           style={{ background: scheme['sidebar-accent'] }}
