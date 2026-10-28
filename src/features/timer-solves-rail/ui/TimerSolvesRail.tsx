@@ -6,8 +6,8 @@ import { motion } from 'motion/react'
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { useTranslations } from 'next-intl'
 import Segmented from '@/shared/ui/segmented/Segmented'
-import CubesIcon from '@/components/ui/cubes-icon'
-import CubeIcon from '@/components/ui/cube-icon'
+import CategoryIcon from '@/components/ui/category-icon'
+import PuzzleIcon from '@/components/ui/puzzle-icon'
 import { cn } from '@/shared/lib/utils'
 import formatTime from '@/shared/lib/formatTime'
 import calcCurrentAo from '@/shared/lib/statistics/calcCurrentAo'
@@ -42,8 +42,8 @@ export default function TimerSolvesRail() {
   }
 
   const tabs: { value: RailTab; icon: React.ReactNode; label: string }[] = [
-    { value: 'category', icon: <CubesIcon size={16} />, label: t('category') },
-    { value: 'cube', icon: <CubeIcon size={16} />, label: t('cube') }
+    { value: 'category', icon: <CategoryIcon size={16} />, label: t('category') },
+    { value: 'cube', icon: <PuzzleIcon size={16} />, label: t('cube') }
   ]
 
   const solves = useMemo<Solve[]>(() => {
