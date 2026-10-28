@@ -48,6 +48,13 @@
 .nav-item[data-active='true']::before {
   clip-path: var(--nav-shape);
 }
+[data-collapsible='icon'] .nav-item[data-active='true']::before {
+  background-color: var(--sidebar-primary);
+}
+[data-collapsible='icon'] .nav-item[data-active='true'] > svg {
+  color: var(--sidebar-primary-foreground);
+  opacity: 1;
+}
 
 @keyframes link-pending-in {
   to {
