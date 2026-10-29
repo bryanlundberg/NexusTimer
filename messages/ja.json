@@ -1692,16 +1692,7 @@
       "google-play": "Google Play で手に入れよう"
     },
     "testimonials": {
-      "label": "キューバーの声",
-      "t0-text": "何ヶ月もZBLLを手当たり次第に回してた。今はどのケースが遅いか一目で分かる。",
-      "t0-user": "@zbllgrind",
-      "t0-role": "Sub-12 CFOP",
-      "t1-text": "GANを繋いだら画面に触らなくなった。タイムが勝手に入ってく。",
-      "t1-user": "@gandrift",
-      "t1-role": "GAN 356 i",
-      "t2-text": "金曜はDiscordの人たちとルームを立ててる。一人で回すより断然楽しい。",
-      "t2-user": "@clubnight",
-      "t2-role": "オフ会主催"
+      "label": "キューバーの声"
     },
     "cta": {
       "title": "最初のソルブを始めよう。",

@@ -3,22 +3,15 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
+import { Link } from '@/shared/config/i18n/navigation'
 import { cn } from '@/shared/lib/utils'
+import { REVIEWS } from '../lib/reviews'
 import CornerHandles from './CornerHandles'
-
-const AVATARS = [9, 5, 4]
 
 export default function TestimonialRotator() {
   const t = useTranslations('LandingPage.testimonials')
   const [active, setActive] = useState(0)
-
-  const quotes = AVATARS.map((avatar, i) => ({
-    avatar,
-    text: t(`t${i}-text`),
-    user: t(`t${i}-user`),
-    role: t(`t${i}-role`)
-  }))
-  const current = quotes[active]
+  const current = REVIEWS[active]
 
   return (
     <section className="px-4 pt-20 md:px-0 md:pt-28">
@@ -27,41 +20,52 @@ export default function TestimonialRotator() {
       </h2>
 
       <figure className="group mt-14 md:mt-20">
-        <blockquote
-          key={active}
-          className="lp-rise mx-auto min-h-[7.5em] max-w-5xl md:px-10 font-[family-name:var(--font-space-grotesk)] text-pretty text-2xl font-medium leading-snug tracking-[-0.02em] text-foreground md:min-h-[5em] md:text-[2.5rem]"
-        >
-          &ldquo;{current.text}&rdquo;
-        </blockquote>
+        <div key={active} className="lp-rise mx-auto max-w-5xl md:px-10">
+          <blockquote
+            lang="en"
+            className="min-h-[6em] font-[family-name:var(--font-space-grotesk)] text-pretty text-2xl font-medium leading-snug tracking-[-0.02em] text-foreground md:min-h-[4.5em] md:text-[2.5rem]"
+          >
+            &ldquo;{current.text}&rdquo;
+          </blockquote>
+          <figcaption className="mt-6 text-sm text-muted-foreground">
+            <Link href={`/people/${current.userId}`} className="font-medium text-foreground hover:underline">
+              {current.name}
+            </Link>
+            {current.bio ? <span lang="en"> · {current.bio}</span> : null}
+          </figcaption>
+        </div>
 
-        <div className="relative mt-10 grid gap-px border border-border bg-border sm:grid-cols-3 md:border-x-0">
+        <div className="relative mt-10 grid grid-cols-2 gap-px border border-border bg-border sm:grid-cols-4 md:border-x-0 xl:grid-cols-7">
           <CornerHandles />
-          {quotes.map((quote, i) => (
+          {REVIEWS.map((review, i) => (
             <button
-              key={quote.user}
+              key={review.userId}
               type="button"
               onClick={() => setActive(i)}
               aria-pressed={i === active}
+              aria-label={review.name}
               className={cn(
-                'relative flex items-center gap-3 overflow-hidden bg-background p-4 text-left outline-none transition-colors focus-visible:bg-foreground/8 md:p-5',
+                'relative flex items-center gap-3 overflow-hidden bg-background p-4 text-left outline-none transition-colors focus-visible:bg-foreground/8 last:col-span-2 xl:flex-col xl:last:col-span-1 xl:items-start xl:gap-2.5',
                 i === active ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
               )}
             >
               <Image
-                src={`https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_${quote.avatar}.png`}
+                src={review.avatar}
                 alt=""
                 width={36}
                 height={36}
-                className={cn('size-9 rounded-full transition-opacity', i !== active && 'opacity-60')}
+                className={cn('size-9 shrink-0 rounded-full transition-opacity', i !== active && 'opacity-60')}
               />
-              <span className="min-w-0">
-                <span className="block truncate text-sm font-medium">{quote.user}</span>
-                <span className="block truncate text-xs text-muted-foreground">{quote.role}</span>
+              <span className="min-w-0 max-w-full">
+                <span className="block truncate text-sm font-medium">{review.name}</span>
+                <span lang="en" className="block truncate text-xs text-muted-foreground">
+                  {review.bio || ' '}
+                </span>
               </span>
               {i === active ? (
                 <span
                   aria-hidden
-                  onAnimationEnd={() => setActive((active + 1) % quotes.length)}
+                  onAnimationEnd={() => setActive((active + 1) % REVIEWS.length)}
                   className="lp-progress absolute inset-x-0 bottom-0 h-0.5 origin-left bg-primary group-hover:[animation-play-state:paused]"
                 />
               ) : null}

@@ -1710,16 +1710,7 @@
       "google-play": "ดาวน์โหลดได้จาก Google Play"
     },
     "testimonials": {
-      "label": "เสียงจาก cuber",
-      "t0-text": "ซ้อม ZBLL มั่วอยู่หลายเดือน ตอนนี้เห็นชัดว่าเคสไหนช้าจริง",
-      "t0-user": "@zbllgrind",
-      "t0-role": "Sub-12 CFOP",
-      "t1-text": "ต่อ GAN ทีเดียว ไม่ต้องแตะจอเลย เวลาเข้าเองอัตโนมัติ",
-      "t1-user": "@gandrift",
-      "t1-role": "GAN 356 i",
-      "t2-text": "ศุกร์ไหนก็เปิดห้องกับเพื่อนใน Discord สนุกกว่าเล่นคนเดียวเยอะ",
-      "t2-user": "@clubnight",
-      "t2-role": "จัดมีตอัพ"
+      "label": "เสียงจาก cuber"
     },
     "cta": {
       "title": "เริ่มการต่อครั้งแรกของคุณ",

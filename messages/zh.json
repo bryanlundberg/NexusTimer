@@ -1692,16 +1692,7 @@
       "google-play": "在 Google Play 上获取"
     },
     "testimonials": {
-      "label": "魔方爱好者怎么说",
-      "t0-text": "盲练了几个月 ZBLL，现在能看出到底哪些 case 拖后腿。",
-      "t0-user": "@zbllgrind",
-      "t0-role": "Sub-12 CFOP",
-      "t1-text": "连上 GAN 就再没碰过屏幕，成绩自己就进去了。",
-      "t1-user": "@gandrift",
-      "t1-role": "GAN 356 i",
-      "t2-text": "周五和 Discord 的魔友开房间，比自己一个人刷有意思多了。",
-      "t2-user": "@clubnight",
-      "t2-role": "组织线下活动"
+      "label": "魔方爱好者怎么说"
     },
     "cta": {
       "title": "开始你的第一次还原。",

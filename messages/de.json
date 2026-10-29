@@ -1692,16 +1692,7 @@
       "google-play": "Jetzt bei Google Play"
     },
     "testimonials": {
-      "label": "Was Cuber sagen",
-      "t0-text": "Monatelang ZBLL blind gedrillt. Jetzt sehe ich, welche Cases wirklich langsam sind.",
-      "t0-user": "@zbllgrind",
-      "t0-role": "Sub-12 CFOP",
-      "t1-text": "GAN verbunden und nie wieder den Bildschirm angefasst. Die Zeiten landen einfach in der App.",
-      "t1-user": "@gandrift",
-      "t1-role": "GAN 356 i",
-      "t2-text": "Wir machen freitags Rooms mit den Leuten aus dem Discord. Viel besser als allein zu solven.",
-      "t2-user": "@clubnight",
-      "t2-role": "Organisiert Cubing-Treffen"
+      "label": "Was Cuber sagen"
     },
     "cta": {
       "title": "Starte deine erste Lösung.",

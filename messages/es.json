@@ -1710,16 +1710,7 @@
       "google-play": "Disponible en Google Play"
     },
     "testimonials": {
-      "label": "Lo que dicen los cuberos",
-      "t0-text": "Llevaba meses metiéndole a ZBLL a ciegas. Ahora veo qué casos me tardan y practico esos.",
-      "t0-user": "@zbllgrind",
-      "t0-role": "Sub-12 CFOP",
-      "t1-text": "Conecté el GAN y ya no toco la pantalla, los tiempos caen solos.",
-      "t1-user": "@gandrift",
-      "t1-role": "GAN 356 i",
-      "t2-text": "Armamos salas los viernes con los del Discord. Mucho mejor que darle uno solo.",
-      "t2-user": "@clubnight",
-      "t2-role": "Arma quedadas"
+      "label": "Lo que dicen los cuberos"
     },
     "cta": {
       "title": "Haz tu primera resolución.",

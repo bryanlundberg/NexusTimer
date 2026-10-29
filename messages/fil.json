@@ -1710,16 +1710,7 @@
       "google-play": "Makukuha sa Google Play"
     },
     "testimonials": {
-      "label": "Sabi ng mga cuber",
-      "t0-text": "Ilang buwan akong nag-drill ng ZBLL nang patanga. Ngayon kita ko kung aling case ang mabagal.",
-      "t0-user": "@zbllgrind",
-      "t0-role": "Sub-12 CFOP",
-      "t1-text": "Ikinabit ko lang ang GAN, hindi na ako humahawak ng screen. Kusa nang pumapasok ang times.",
-      "t1-user": "@gandrift",
-      "t1-role": "GAN 356 i",
-      "t2-text": "Tuwing Biyernes may room kami ng mga taga-Discord. Mas masaya kaysa mag-solve mag-isa.",
-      "t2-user": "@clubnight",
-      "t2-role": "Nag-oorganisa ng meetup"
+      "label": "Sabi ng mga cuber"
     },
     "cta": {
       "title": "Simulan ang unang solve mo.",

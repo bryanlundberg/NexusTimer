@@ -1692,16 +1692,7 @@
       "google-play": "Google Play에서 다운로드"
     },
     "testimonials": {
-      "label": "큐버들의 이야기",
-      "t0-text": "몇 달을 ZBLL 감으로만 돌렸는데, 이제 어떤 케이스가 진짜 느린지 보여요.",
-      "t0-user": "@zbllgrind",
-      "t0-role": "Sub-12 CFOP",
-      "t1-text": "GAN 연결하고 나선 화면 안 만져요. 기록이 알아서 들어옵니다.",
-      "t1-user": "@gandrift",
-      "t1-role": "GAN 356 i",
-      "t2-text": "금요일엔 디스코드 사람들이랑 방 파요. 혼자 도는 것보다 훨씬 재밌어요.",
-      "t2-user": "@clubnight",
-      "t2-role": "정모 운영"
+      "label": "큐버들의 이야기"
     },
     "cta": {
       "title": "첫 풀이를 시작하세요.",

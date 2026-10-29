@@ -1710,16 +1710,7 @@
       "google-play": "Pobierz z Google Play"
     },
     "testimonials": {
-      "label": "Co mówią cuberzy",
-      "t0-text": "Wbijałem ZBLL na ślepo miesiącami. Teraz widzę, które case'y faktycznie mnie zjadają.",
-      "t0-user": "@zbllgrind",
-      "t0-role": "Sub-12 CFOP",
-      "t1-text": "Podpiąłem GAN-a i nie dotykam ekranu. Czasy same wpadają.",
-      "t1-user": "@gandrift",
-      "t1-role": "GAN 356 i",
-      "t2-text": "W piątki robimy roomy z ludźmi z Discorda. Dużo lepsze niż układanie samemu.",
-      "t2-user": "@clubnight",
-      "t2-role": "Organizuje spotkania"
+      "label": "Co mówią cuberzy"
     },
     "cta": {
       "title": "Zacznij swoje pierwsze ułożenie.",

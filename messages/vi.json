@@ -1710,16 +1710,7 @@
       "google-play": "Tải xuống trên Google Play"
     },
     "testimonials": {
-      "label": "Cuber nói gì",
-      "t0-text": "Tôi cày ZBLL mù mấy tháng trời. Giờ thấy rõ case nào thật sự chậm để tập.",
-      "t0-user": "@zbllgrind",
-      "t0-role": "Sub-12 CFOP",
-      "t1-text": "Kết nối GAN xong là khỏi chạm màn hình, thời gian tự nhảy vào.",
-      "t1-user": "@gandrift",
-      "t1-role": "GAN 356 i",
-      "t2-text": "Thứ Sáu bọn tôi mở room với anh em trong Discord. Vui hơn hẳn solve một mình.",
-      "t2-user": "@clubnight",
-      "t2-role": "Tổ chức offline"
+      "label": "Cuber nói gì"
     },
     "cta": {
       "title": "Bắt đầu lượt giải đầu tiên của bạn.",

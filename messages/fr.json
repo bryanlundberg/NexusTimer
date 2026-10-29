@@ -1692,16 +1692,7 @@
       "google-play": "Disponible sur Google Play"
     },
     "testimonials": {
-      "label": "Ce que disent les cubeurs",
-      "t0-text": "Je bourrais des ZBLL à l'aveugle. Maintenant je vois quels cas sont vraiment lents.",
-      "t0-user": "@zbllgrind",
-      "t0-role": "Sub-12 CFOP",
-      "t1-text": "GAN connecté, je ne touche plus l'écran. Les temps arrivent tout seuls.",
-      "t1-user": "@gandrift",
-      "t1-role": "GAN 356 i",
-      "t2-text": "On fait des rooms le vendredi avec les gens du Discord. Bien mieux que de solve seul.",
-      "t2-user": "@clubnight",
-      "t2-role": "Organise des rencontres"
+      "label": "Ce que disent les cubeurs"
     },
     "cta": {
       "title": "Lancez votre première résolution.",
