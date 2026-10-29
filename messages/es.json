@@ -1748,7 +1748,10 @@
       "report-bug": "Reportar un error",
       "contribute": "Contribuir",
       "language": "Idioma",
-      "copyright": "© {year} NexusTimer"
+      "copyright": "© {year} NexusTimer",
+      "account": "Cuenta",
+      "sign-in": "Iniciar sesión",
+      "sign-up": "Crear cuenta"
     },
     "unified": {
       "title": "Todo lo que usas, en una sola cuenta",
@@ -1757,6 +1760,14 @@
       "after": "Una cuenta para todo",
       "spreadsheet": "Hoja de cálculo",
       "learned": "Algoritmos aprendidos"
+    },
+    "about": {
+      "p1": "NexusTimer es un cronómetro de speedcubing gratuito para el cubo de Rubik y todos los puzzles de la WCA: de 2x2 a 7x7, Pyraminx, Megaminx, Skewb, Square-1 y Clock. Empieza cada solve con la barra espaciadora, un toque o un Stackmat, usa la inspección WCA si quieres y lleva una sesión distinta para cada cubo que tengas.",
+      "p2": "Cada solve alimenta tus estadísticas: récords personales, ao5, ao12 y ao100, con líneas de tendencia y análisis por cubo que muestran cómo bajan tus tiempos. Conecta un smart cube GAN, MoYu o QiYi por Bluetooth y cada giro se registra movimiento a movimiento. ¿Vienes de csTimer? Importa tus solves y conserva tu historial.",
+      "p3": "El aprendizaje viene incluido. Explora sets completos de algoritmos como F2L, OLL, PLL, COLL, ZBLS, CLL y EG para 2x2, además de sets de Square-1 y Megaminx, y entrénalos en el trainer de algoritmos, que recuerda los casos que ya aprendiste.",
+      "p4": "NexusTimer también es una comunidad de cubing. Compite con tus amigos en salas multijugador en tiempo real, sube en las clasificaciones, escribe a otros cuberos y comparte un perfil público con todo tu historial. Funciona en escritorio, tablet y móvil, se instala como app y es de código abierto bajo la licencia GPL-3.0.",
+      "more": "Más detalles",
+      "less": "Menos detalles"
     }
   },
   "Cookies": {

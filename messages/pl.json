@@ -1748,7 +1748,10 @@
       "report-bug": "Zgłoś błąd",
       "contribute": "Współtwórz",
       "language": "Język",
-      "copyright": "© {year} NexusTimer"
+      "copyright": "© {year} NexusTimer",
+      "account": "Konto",
+      "sign-in": "Zaloguj się",
+      "sign-up": "Utwórz konto"
     },
     "unified": {
       "title": "Wszystko, czego używasz, na jednym koncie",
@@ -1757,6 +1760,14 @@
       "after": "Jedno konto do wszystkiego",
       "spreadsheet": "Arkusz kalkulacyjny",
       "learned": "Nauczone algorytmy"
+    },
+    "about": {
+      "p1": "NexusTimer to darmowy timer do speedcubingu dla kostki Rubika i wszystkich łamigłówek WCA: od 2x2 do 7x7, Pyraminx, Megaminx, Skewb, Square-1 i Clock. Zaczynaj każde ułożenie spacją, dotknięciem albo timerem Stackmat, korzystaj z inspekcji WCA, jeśli chcesz, i prowadź osobną sesję dla każdej swojej kostki.",
+      "p2": "Każde ułożenie trafia do twoich statystyk: rekordy osobiste, ao5, ao12 i ao100, z liniami trendu i analizą dla każdej kostki, które pokazują, jak spadają twoje czasy. Połącz smart cube GAN, MoYu lub QiYi przez Bluetooth, a każdy ruch zostanie zapisany. Przechodzisz z csTimer? Zaimportuj swoje ułożenia i zachowaj historię.",
+      "p3": "Nauka jest wbudowana. Przeglądaj pełne zestawy algorytmów, takie jak F2L, OLL, PLL, COLL, ZBLS, CLL i EG dla 2x2, a także zestawy dla Square-1 i Megaminxa, i ćwicz je w trenerze algorytmów, który pamięta przypadki, które już opanowałeś.",
+      "p4": "NexusTimer to także społeczność cuberów. Ścigaj się ze znajomymi w pokojach multiplayer w czasie rzeczywistym, wspinaj się w rankingach, pisz do innych cuberów i udostępniaj publiczny profil z całą swoją historią. Działa na komputerze, tablecie i telefonie, instaluje się jak aplikacja i jest open source na licencji GPL-3.0.",
+      "more": "Więcej szczegółów",
+      "less": "Mniej szczegółów"
     }
   },
   "Cookies": {

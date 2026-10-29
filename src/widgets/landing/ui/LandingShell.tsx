@@ -51,9 +51,9 @@ export default function LandingShell({ footer }: { footer: ReactNode }) {
                 </RailFrame>
                 <ClosingPanel />
               </main>
-            </div>
 
-            <div className="mt-24 border-t border-border">{footer}</div>
+              {footer}
+            </div>
           </div>
         </div>
       </div>

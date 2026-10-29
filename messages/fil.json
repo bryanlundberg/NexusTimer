@@ -1748,7 +1748,10 @@
       "report-bug": "Mag-ulat ng Bug",
       "contribute": "Mag-ambag",
       "language": "Wika",
-      "copyright": "© {year} NexusTimer"
+      "copyright": "© {year} NexusTimer",
+      "account": "Account",
+      "sign-in": "Mag-sign in",
+      "sign-up": "Gumawa ng account"
     },
     "unified": {
       "title": "Lahat ng gamit mo, sa iisang account",
@@ -1757,6 +1760,14 @@
       "after": "Iisang account para sa lahat",
       "spreadsheet": "Spreadsheet",
       "learned": "Mga natutunang algorithm"
+    },
+    "about": {
+      "p1": "Ang NexusTimer ay libreng speedcubing timer para sa Rubik's Cube at sa bawat WCA puzzle: 2x2 hanggang 7x7, Pyraminx, Megaminx, Skewb, Square-1 at Clock. Simulan ang bawat solve gamit ang space bar, isang tap o Stackmat timer, gamitin ang WCA inspection kung gusto mo, at magkaroon ng hiwalay na session para sa bawat cube mo.",
+      "p2": "Bawat solve ay pumapasok sa iyong statistics: personal bests, ao5, ao12 at ao100, may trend lines at breakdown bawat cube na nagpapakita kung paano bumababa ang mga oras mo. Ikonekta ang GAN, MoYu o QiYi smart cube sa Bluetooth at itatala ang bawat galaw. Galing ka ba sa csTimer? I-import ang mga solve mo at panatilihin ang iyong history.",
+      "p3": "Kasama na ang pag-aaral. Tingnan ang kumpletong algorithm sets tulad ng F2L, OLL, PLL, COLL, ZBLS, CLL at EG para sa 2x2, pati mga set para sa Square-1 at Megaminx, at sanayin sila sa algorithm trainer na tinatandaan ang mga case na natutunan mo na.",
+      "p4": "Ang NexusTimer ay isa ring cubing community. Makipagkarera sa mga kaibigan sa real-time multiplayer rooms, umakyat sa leaderboards, mag-message sa ibang cubers at magbahagi ng public profile na may buong history mo. Gumagana ito sa desktop, tablet at phone, nai-install bilang app at open source sa ilalim ng GPL-3.0 license.",
+      "more": "Higit pang detalye",
+      "less": "Mas kaunting detalye"
     }
   },
   "Cookies": {

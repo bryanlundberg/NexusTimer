@@ -1730,7 +1730,10 @@
       "report-bug": "Relatar um erro",
       "contribute": "Contribuir",
       "language": "Idioma",
-      "copyright": "© {year} NexusTimer"
+      "copyright": "© {year} NexusTimer",
+      "account": "Conta",
+      "sign-in": "Entrar",
+      "sign-up": "Criar conta"
     },
     "unified": {
       "title": "Tudo o que você usa, em uma só conta",
@@ -1739,6 +1742,14 @@
       "after": "Uma conta para tudo",
       "spreadsheet": "Planilha",
       "learned": "Algoritmos aprendidos"
+    },
+    "about": {
+      "p1": "O NexusTimer é um timer de speedcubing gratuito para o cubo mágico e todos os puzzles da WCA: do 2x2 ao 7x7, Pyraminx, Megaminx, Skewb, Square-1 e Clock. Comece cada resolução com a barra de espaço, um toque ou um timer Stackmat, use a inspeção WCA se quiser e mantenha uma sessão separada para cada cubo que você tem.",
+      "p2": "Cada resolução alimenta suas estatísticas: recordes pessoais, ao5, ao12 e ao100, com linhas de tendência e análises por cubo que mostram seus tempos caindo. Conecte um smart cube GAN, MoYu ou QiYi por Bluetooth e cada movimento é registrado. Vindo do csTimer? Importe suas resoluções e mantenha seu histórico.",
+      "p3": "O aprendizado já vem incluído. Explore sets completos de algoritmos como F2L, OLL, PLL, COLL, ZBLS, CLL e EG para 2x2, além de sets para Square-1 e Megaminx, e treine-os no trainer de algoritmos, que lembra os casos que você já aprendeu.",
+      "p4": "O NexusTimer também é uma comunidade de cubing. Dispute com amigos em salas multiplayer em tempo real, suba nos rankings, mande mensagens para outros cubers e compartilhe um perfil público com todo o seu histórico. Funciona no computador, tablet e celular, pode ser instalado como app e é open source sob a licença GPL-3.0.",
+      "more": "Mais detalhes",
+      "less": "Menos detalhes"
     }
   },
   "Cookies": {

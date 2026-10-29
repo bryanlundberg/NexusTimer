@@ -1748,7 +1748,10 @@
       "report-bug": "Báo lỗi",
       "contribute": "Đóng góp",
       "language": "Ngôn ngữ",
-      "copyright": "© {year} NexusTimer"
+      "copyright": "© {year} NexusTimer",
+      "account": "Tài khoản",
+      "sign-in": "Đăng nhập",
+      "sign-up": "Tạo tài khoản"
     },
     "unified": {
       "title": "Mọi thứ bạn dùng, trong một tài khoản",
@@ -1757,6 +1760,14 @@
       "after": "Một tài khoản cho mọi thứ",
       "spreadsheet": "Bảng tính",
       "learned": "Thuật toán đã học"
+    },
+    "about": {
+      "p1": "NexusTimer là bộ bấm giờ speedcubing miễn phí cho khối Rubik và mọi puzzle của WCA: từ 2x2 đến 7x7, Pyraminx, Megaminx, Skewb, Square-1 và Clock. Bắt đầu mỗi lượt giải bằng phím cách, một cú chạm hoặc bộ bấm giờ Stackmat, dùng thời gian quan sát WCA nếu muốn, và giữ một phiên riêng cho từng khối bạn có.",
+      "p2": "Mỗi lượt giải đều được đưa vào thống kê của bạn: kỷ lục cá nhân, ao5, ao12 và ao100, kèm đường xu hướng và phân tích theo từng khối cho thấy thời gian của bạn giảm dần. Kết nối smart cube GAN, MoYu hoặc QiYi qua Bluetooth và mọi lượt xoay đều được ghi lại. Bạn chuyển từ csTimer sang? Hãy nhập các lượt giải và giữ nguyên lịch sử.",
+      "p3": "Việc học đã có sẵn. Khám phá các bộ thuật toán đầy đủ như F2L, OLL, PLL, COLL, ZBLS, CLL và EG cho 2x2, cùng các bộ cho Square-1 và Megaminx, rồi luyện tập trong trình luyện thuật toán, nơi ghi nhớ những trường hợp bạn đã học.",
+      "p4": "NexusTimer cũng là một cộng đồng cubing. Thi đấu với bạn bè trong phòng nhiều người chơi theo thời gian thực, leo lên bảng xếp hạng, nhắn tin với các cuber khác và chia sẻ hồ sơ công khai với toàn bộ lịch sử của bạn. Ứng dụng chạy trên máy tính, máy tính bảng và điện thoại, cài đặt được như một app và là mã nguồn mở theo giấy phép GPL-3.0.",
+      "more": "Xem thêm chi tiết",
+      "less": "Thu gọn"
     }
   },
   "Cookies": {
