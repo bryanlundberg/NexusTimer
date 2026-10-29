@@ -1,25 +1,14 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
 import { useReducedMotion } from 'motion/react'
 import * as m from 'motion/react-m'
 import { Bluetooth } from 'lucide-react'
+import SpinningCube from './SpinningCube'
 
 export default function SmartCubeVisual() {
   const reduce = useReducedMotion()
-  const videoRef = useRef<HTMLVideoElement>(null)
   const moves = ['R', "U'", 'F2', "L'"]
 
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-    const io = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) video.play().catch(() => {})
-      else video.pause()
-    })
-    io.observe(video)
-    return () => io.disconnect()
-  }, [])
   return (
     <div className="relative flex h-28 items-center justify-center overflow-hidden">
       {/* radar rings */}
@@ -33,23 +22,8 @@ export default function SmartCubeVisual() {
         />
       ))}
 
-      {/* circular 3D cube preview (white frame clipped away) */}
-      <span className="relative z-10 flex size-20 items-center justify-center rounded-full ring-1 ring-border">
-        <video
-          ref={videoRef}
-          src="/landing/cube3d-160.webm"
-          loop
-          muted
-          playsInline
-          aria-hidden
-          className="size-20 rounded-full object-cover"
-        />
-        {/* soft edge fade so the white recording blends into the card */}
-        <span
-          aria-hidden
-          className="pointer-events-none absolute inset-0 rounded-full"
-          style={{ boxShadow: 'inset 0 0 10px 6px #fff' }}
-        />
+      <span className="relative z-10 flex size-20 items-center justify-center rounded-full bg-foreground/5 ring-1 ring-border">
+        <SpinningCube size={42} />
         {/* bluetooth chip */}
         <span className="absolute -bottom-1 -right-1 z-20 flex size-6 items-center justify-center rounded-full bg-[var(--cube-blue)] ring-2 ring-card">
           <Bluetooth className="size-3.5 text-white" />

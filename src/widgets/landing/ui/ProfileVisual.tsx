@@ -40,13 +40,13 @@ export default function ProfileVisual() {
           <div className="mt-1 flex flex-wrap items-center gap-x-1 gap-y-0.5 text-[10px] text-muted-foreground">
             <span>🇲🇽 Mexico</span>
             <span className="opacity-40">·</span>
-            <span className="inline-flex items-center gap-1 font-medium text-[#000000]">
+            <span className="inline-flex items-center gap-1 font-medium text-foreground">
               <Image
                 src="/timer-logos/wca.svg"
                 alt="WCA"
                 width={12}
                 height={12}
-                className="h-3 w-3 shrink-0 brightness-0"
+                className="h-3 w-3 shrink-0 brightness-0 invert"
                 unoptimized
               />
               #2016REDS01

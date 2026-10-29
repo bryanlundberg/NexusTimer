@@ -203,7 +203,8 @@ export default function StatsVisual() {
               className="flex-1 origin-bottom"
               style={{
                 height: `${h}%`,
-                backgroundColor: i === peak ? 'var(--cube-green)' : 'rgba(0,0,0,0.12)'
+                backgroundColor:
+                  i === peak ? 'var(--cube-green)' : 'color-mix(in oklch, var(--foreground) 14%, transparent)'
               }}
             />
           ))}

@@ -86,7 +86,11 @@ export default function AlgorithmsVisual() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: 0.2 + ci * 0.12 + i * 0.02, ease: [0.16, 1, 0.3, 1] }}
                   className="size-3"
-                  style={{ backgroundColor: on ? 'var(--cube-yellow)' : 'rgba(0,0,0,0.10)' }}
+                  style={{
+                    backgroundColor: on
+                      ? 'var(--cube-yellow)'
+                      : 'color-mix(in oklch, var(--foreground) 12%, transparent)'
+                  }}
                 />
               ))}
             </div>
