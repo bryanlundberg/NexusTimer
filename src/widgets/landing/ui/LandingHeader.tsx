@@ -21,7 +21,7 @@ export default function LandingHeader() {
   return (
     <header className="relative">
       <div className={headerRow}>
-        <div aria-hidden className="invisible xl:flex xl:justify-center">
+        <div className="md:invisible xl:flex xl:justify-center">
           <BrandLink />
         </div>
 

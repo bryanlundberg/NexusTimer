@@ -11,7 +11,7 @@ export default function PinnedBar({ showAction }: { showAction: boolean }) {
   const t = useTranslations('LandingPage')
 
   return (
-    <div className="pointer-events-none sticky top-0 z-50 h-0">
+    <div className="pointer-events-none sticky top-0 z-50 hidden h-0 md:block">
       <div className={cn(headerRow, 'absolute inset-x-0 top-0')}>
         <div className="pointer-events-auto xl:flex xl:justify-center">
           <BrandLink />
