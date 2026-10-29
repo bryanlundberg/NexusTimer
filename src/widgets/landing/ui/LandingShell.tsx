@@ -10,6 +10,7 @@ import PlatformSection from './PlatformSection'
 import UnifiedSection from './UnifiedSection'
 import TestimonialRotator from './TestimonialRotator'
 import FeatureGrid from './FeatureGrid'
+import OpenSourceSection from './OpenSourceSection'
 import ClosingPanel from './ClosingPanel'
 import RailFrame from './RailFrame'
 import SectionBand from './SectionBand'
@@ -48,6 +49,8 @@ export default function LandingShell({ footer }: { footer: ReactNode }) {
                   <SectionBand variant="hatch" />
                   <FeatureGrid />
                   <SectionBand />
+                  <OpenSourceSection />
+                  <SectionBand variant="hatch" />
                 </RailFrame>
                 <ClosingPanel />
               </main>

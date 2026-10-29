@@ -1750,6 +1750,23 @@
       "p4": "NexusTimer est aussi une communauté de cubing. Affrontez vos amis dans des salles multijoueur en temps réel, grimpez dans les classements, écrivez à d'autres cubeurs et partagez un profil public avec tout votre historique. Il fonctionne sur ordinateur, tablette et téléphone, s'installe comme une application et est open source sous licence GPL-3.0.",
       "more": "Plus de détails",
       "less": "Moins de détails"
+    },
+    "free": {
+      "title": "Gratuit pour tous les cubeurs",
+      "subtitle": "Pas de publicité, pas d'offre payante. Juste le timer et tout ce qui l'entoure.",
+      "free-name": "Gratuit",
+      "free-sub": "pour tous les cubeurs",
+      "forever": "pour toujours",
+      "backups": "Sauvegardes dans le cloud",
+      "open-name": "Open source",
+      "no-ads": "Sans publicité",
+      "sponsor-name": "Sponsor",
+      "sponsor-sub": "si vous voulez soutenir le projet",
+      "sponsor-value": "À vous de choisir",
+      "chip-badge": "Badge Project Patron",
+      "chip-servers": "Fait tourner les serveurs",
+      "chip-features": "Finance de nouvelles fonctions",
+      "sponsor-cta": "Écrivez-nous"
     }
   },
   "Cookies": {

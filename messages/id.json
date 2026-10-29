@@ -1768,6 +1768,23 @@
       "p4": "NexusTimer juga sebuah komunitas cubing. Balapan dengan teman di ruang multiplayer real-time, naik di papan peringkat, kirim pesan ke cuber lain dan bagikan profil publik dengan seluruh riwayatmu. Berjalan di desktop, tablet dan ponsel, bisa dipasang sebagai aplikasi dan open source di bawah lisensi GPL-3.0.",
       "more": "Detail lainnya",
       "less": "Lebih sedikit detail"
+    },
+    "free": {
+      "title": "Gratis untuk semua cuber",
+      "subtitle": "Tanpa iklan, tanpa paket berbayar. Hanya timer dan semua yang ada di sekitarnya.",
+      "free-name": "Gratis",
+      "free-sub": "untuk semua cuber",
+      "forever": "selamanya",
+      "backups": "Cadangan cloud",
+      "open-name": "Open source",
+      "no-ads": "Tanpa iklan",
+      "sponsor-name": "Sponsor",
+      "sponsor-sub": "jika kamu ingin mendukung proyek ini",
+      "sponsor-value": "Kamu yang tentukan",
+      "chip-badge": "Lencana Project Patron",
+      "chip-servers": "Menjaga server tetap berjalan",
+      "chip-features": "Mendanai fitur baru",
+      "sponsor-cta": "Kirim email ke kami"
     }
   },
   "Cookies": {

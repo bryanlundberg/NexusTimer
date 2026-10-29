@@ -1768,6 +1768,23 @@
       "p4": "NexusTimer cũng là một cộng đồng cubing. Thi đấu với bạn bè trong phòng nhiều người chơi theo thời gian thực, leo lên bảng xếp hạng, nhắn tin với các cuber khác và chia sẻ hồ sơ công khai với toàn bộ lịch sử của bạn. Ứng dụng chạy trên máy tính, máy tính bảng và điện thoại, cài đặt được như một app và là mã nguồn mở theo giấy phép GPL-3.0.",
       "more": "Xem thêm chi tiết",
       "less": "Thu gọn"
+    },
+    "free": {
+      "title": "Miễn phí cho mọi cuber",
+      "subtitle": "Không quảng cáo, không gói trả phí. Chỉ có bộ bấm giờ và mọi thứ xoay quanh nó.",
+      "free-name": "Miễn phí",
+      "free-sub": "cho mọi cuber",
+      "forever": "mãi mãi",
+      "backups": "Sao lưu đám mây",
+      "open-name": "Mã nguồn mở",
+      "no-ads": "Không quảng cáo",
+      "sponsor-name": "Nhà tài trợ",
+      "sponsor-sub": "nếu bạn muốn ủng hộ dự án",
+      "sponsor-value": "Bạn quyết định",
+      "chip-badge": "Huy hiệu Project Patron",
+      "chip-servers": "Duy trì máy chủ",
+      "chip-features": "Tài trợ tính năng mới",
+      "sponsor-cta": "Gửi email cho chúng tôi"
     }
   },
   "Cookies": {

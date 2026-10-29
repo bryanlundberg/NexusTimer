@@ -1750,6 +1750,23 @@
       "p4": "NexusTimer 也是一个魔方社区。在实时多人房间里与好友比赛，冲上排行榜，与其他魔友互发消息，并分享包含全部历史的公开主页。它可在电脑、平板和手机上使用，可以作为应用安装，并以 GPL-3.0 许可证开源。",
       "more": "更多详情",
       "less": "收起详情"
+    },
+    "free": {
+      "title": "对每位魔友免费",
+      "subtitle": "没有广告，没有付费套餐。只有计时器和围绕它的一切。",
+      "free-name": "免费",
+      "free-sub": "面向每位魔友",
+      "forever": "永久",
+      "backups": "云端备份",
+      "open-name": "开源",
+      "no-ads": "无广告",
+      "sponsor-name": "赞助",
+      "sponsor-sub": "如果你想支持这个项目",
+      "sponsor-value": "由你决定",
+      "chip-badge": "Project Patron 徽章",
+      "chip-servers": "维持服务器运行",
+      "chip-features": "资助新功能",
+      "sponsor-cta": "发邮件给我们"
     }
   },
   "Cookies": {

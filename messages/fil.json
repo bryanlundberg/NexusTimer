@@ -1768,6 +1768,23 @@
       "p4": "Ang NexusTimer ay isa ring cubing community. Makipagkarera sa mga kaibigan sa real-time multiplayer rooms, umakyat sa leaderboards, mag-message sa ibang cubers at magbahagi ng public profile na may buong history mo. Gumagana ito sa desktop, tablet at phone, nai-install bilang app at open source sa ilalim ng GPL-3.0 license.",
       "more": "Higit pang detalye",
       "less": "Mas kaunting detalye"
+    },
+    "free": {
+      "title": "Libre para sa bawat cuber",
+      "subtitle": "Walang ads, walang bayad na plano. Ang timer lang at lahat ng nakapaligid dito.",
+      "free-name": "Libre",
+      "free-sub": "para sa bawat cuber",
+      "forever": "habambuhay",
+      "backups": "Cloud backups",
+      "open-name": "Open source",
+      "no-ads": "Walang ads",
+      "sponsor-name": "Sponsor",
+      "sponsor-sub": "kung gusto mong suportahan ang proyekto",
+      "sponsor-value": "Ikaw ang bahala",
+      "chip-badge": "Badge na Project Patron",
+      "chip-servers": "Pinapatakbo ang mga server",
+      "chip-features": "Pinopondohan ang mga bagong feature",
+      "sponsor-cta": "Mag-email sa amin"
     }
   },
   "Cookies": {

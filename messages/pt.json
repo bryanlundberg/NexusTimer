@@ -1750,6 +1750,23 @@
       "p4": "O NexusTimer também é uma comunidade de cubing. Dispute com amigos em salas multiplayer em tempo real, suba nos rankings, mande mensagens para outros cubers e compartilhe um perfil público com todo o seu histórico. Funciona no computador, tablet e celular, pode ser instalado como app e é open source sob a licença GPL-3.0.",
       "more": "Mais detalhes",
       "less": "Menos detalhes"
+    },
+    "free": {
+      "title": "Grátis para todo cuber",
+      "subtitle": "Sem anúncios, sem planos pagos. Só o timer e tudo ao redor dele.",
+      "free-name": "Grátis",
+      "free-sub": "para todo cuber",
+      "forever": "para sempre",
+      "backups": "Backups na nuvem",
+      "open-name": "Código aberto",
+      "no-ads": "Sem anúncios",
+      "sponsor-name": "Sponsor",
+      "sponsor-sub": "se você quiser apoiar o projeto",
+      "sponsor-value": "Você decide",
+      "chip-badge": "Selo Project Patron",
+      "chip-servers": "Mantém os servidores no ar",
+      "chip-features": "Financia novos recursos",
+      "sponsor-cta": "Fale com a gente"
     }
   },
   "Cookies": {

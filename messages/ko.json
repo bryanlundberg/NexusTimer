@@ -1750,6 +1750,23 @@
       "p4": "NexusTimer는 큐빙 커뮤니티이기도 합니다. 실시간 멀티플레이어 방에서 친구들과 겨루고, 리더보드에 오르고, 다른 큐버와 메시지를 주고받고, 전체 기록이 담긴 공개 프로필을 공유하세요. 데스크톱, 태블릿, 휴대폰에서 작동하고 앱으로 설치할 수 있으며 GPL-3.0 라이선스의 오픈 소스입니다.",
       "more": "자세히 보기",
       "less": "간단히 보기"
+    },
+    "free": {
+      "title": "모든 큐버에게 무료",
+      "subtitle": "광고도, 유료 플랜도 없습니다. 타이머와 그 주변의 모든 것만 있습니다.",
+      "free-name": "무료",
+      "free-sub": "모든 큐버를 위해",
+      "forever": "영원히",
+      "backups": "클라우드 백업",
+      "open-name": "오픈 소스",
+      "no-ads": "광고 없음",
+      "sponsor-name": "스폰서",
+      "sponsor-sub": "프로젝트를 후원하고 싶다면",
+      "sponsor-value": "직접 정하세요",
+      "chip-badge": "Project Patron 배지",
+      "chip-servers": "서버 운영 지원",
+      "chip-features": "새 기능 개발 지원",
+      "sponsor-cta": "이메일 보내기"
     }
   },
   "Cookies": {
