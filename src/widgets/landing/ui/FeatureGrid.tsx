@@ -14,7 +14,7 @@ export default function FeatureGrid() {
   const t = useTranslations('LandingPage.bento')
 
   return (
-    <section className="px-4 pt-32 md:px-6 md:pt-44">
+    <section className="px-4 pt-20 md:px-0 md:pt-28">
       <div className="mx-auto max-w-3xl text-center">
         <h2 className="font-[family-name:var(--font-space-grotesk)] text-balance text-4xl font-medium tracking-[-0.035em] md:text-6xl">
           {t('title')}
@@ -22,7 +22,7 @@ export default function FeatureGrid() {
         <p className="mt-5 text-pretty text-base text-muted-foreground md:text-lg">{t('subtitle')}</p>
       </div>
 
-      <div className="relative mx-auto mt-14 grid max-w-6xl gap-px border border-border bg-border md:mt-20 md:grid-cols-3">
+      <div className="relative mt-14 grid gap-px border border-border bg-border md:mt-20 md:border-x-0 md:grid-cols-3">
         <CornerHandles />
         <FeatureCard
           icon={ArrowLeftRight}

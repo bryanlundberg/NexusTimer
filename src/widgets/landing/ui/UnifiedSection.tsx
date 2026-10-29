@@ -43,7 +43,7 @@ export default function UnifiedSection() {
   const active = useCycle(features.length, 900, inView)
 
   return (
-    <section className="px-4 pt-32 md:px-6 md:pt-44">
+    <section className="px-4 pt-20 md:px-0 md:pt-28">
       <div className="mx-auto max-w-3xl text-center">
         <h2 className="font-[family-name:var(--font-space-grotesk)] text-balance text-4xl font-medium tracking-[-0.035em] md:text-6xl">
           {t('unified.title')}
@@ -53,7 +53,7 @@ export default function UnifiedSection() {
 
       <div
         ref={ref}
-        className="relative mx-auto mt-14 grid max-w-6xl border border-border md:mt-20 md:grid-cols-[minmax(0,1fr)_160px_minmax(0,1.1fr)]"
+        className="relative mt-14 grid border border-border md:mt-20 md:border-x-0 md:grid-cols-[minmax(0,1fr)_160px_minmax(0,1.1fr)]"
       >
         <CornerHandles />
         <ToolStream title={t('unified.before')} tools={tools} />

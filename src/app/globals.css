@@ -505,6 +505,26 @@
   }
 }
 
+.lp-dots {
+  background-image: radial-gradient(circle, oklch(0.95 0.008 265 / 6%) 0.7px, transparent 1.1px);
+  background-size: 11px 11px;
+}
+.lp-rail-y {
+  width: 1px;
+  background: linear-gradient(to bottom, oklch(0.95 0.008 265 / 18%) 60%, transparent 0) 0 0 / 1px 40px repeat-y;
+}
+.lp-rail-x-long {
+  height: 1px;
+  background: linear-gradient(to right, oklch(0.95 0.008 265 / 18%) 60%, transparent 0) 0 0 / 40px 1px repeat-x;
+}
+.lp-hatch {
+  background-image: repeating-linear-gradient(
+    135deg,
+    oklch(0.95 0.008 265 / 9%) 0 1px,
+    transparent 1px 9px
+  );
+}
+
 @keyframes lp-stream-y {
   to {
     translate: 0 -50%;

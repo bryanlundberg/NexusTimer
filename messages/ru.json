@@ -1660,7 +1660,7 @@
   "LandingPage": {
     "header": {
       "github": "GitHub",
-      "start-timing": "Начать хронометраж"
+      "start-short": "Начать"
     },
     "hero": {
       "title-before": "Платформа «всё в одном» для",
