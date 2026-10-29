@@ -367,13 +367,13 @@
   --border: oklch(0.21 0.034 264.665 / 10%);
   --input: oklch(0.21 0.034 264.665 / 15%);
 
-  --primary: oklch(0.585 0.233 277.117);
-  --primary-foreground: oklch(0.99 0.01 277.117);
-  --ring: oklch(0.585 0.233 277.117);
+  --primary: oklch(0.623 0.214 259.815);
+  --primary-foreground: oklch(0.99 0.01 259.815);
+  --ring: oklch(0.623 0.214 259.815);
 
   --sidebar-accent: var(--lp-bg-deep);
   --sidebar-mark: var(--primary);
-  --sidebar-foreground: oklch(0.145 0.023 277.117);
+  --sidebar-foreground: oklch(0.145 0.0224 259.815);
 
   color-scheme: light;
   background-color: var(--lp-bg);
