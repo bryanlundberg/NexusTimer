@@ -96,13 +96,13 @@ const MAX_DARKENING = 0.3
  * means light text, which is what `.dark` variants expect.
  */
 export const vividPolarity = (color: Colors): ColorSchemeMode => {
-  const seed = (PALETTES[color] ?? PALETTES.indigo).accent.dark
+  const seed = (PALETTES[color] ?? PALETTES.blue).accent.dark
   return seed.l - vividBase(seed, 'dark').l <= MAX_DARKENING ? 'dark' : 'light'
 }
 
 /** Keys come back without the leading `--`, like buildColorScheme. */
 export const buildVividColorScheme = (color: Colors): Record<string, string> => {
-  const spec = PALETTES[color] ?? PALETTES.indigo
+  const spec = PALETTES[color] ?? PALETTES.blue
   const polarity = vividPolarity(color)
   const toward = polarity === 'dark' ? 1 : 0
 

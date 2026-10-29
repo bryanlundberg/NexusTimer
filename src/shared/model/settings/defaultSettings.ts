@@ -28,7 +28,7 @@ export const defaultSettings: Settings = {
     solveDelta: true
   },
   preferences: {
-    colorTheme: 'indigo',
+    colorTheme: 'blue',
     vivid: true
   },
   sounds: {

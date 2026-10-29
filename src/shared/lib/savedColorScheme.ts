@@ -5,7 +5,7 @@ import { defaultSettings } from '@/shared/model/settings/defaultSettings'
 
 /**
  * The tokens are generated after hydration, so first paint would show the CSS
- * default (vivid indigo) and then jump. The last painted scheme is cached and
+ * default (vivid blue) and then jump. The last painted scheme is cached and
  * replayed by an inline script before anything renders.
  */
 

@@ -45,7 +45,7 @@ describe('applySavedColorScheme', () => {
     expect(empty.painted).toEqual({})
   })
 
-  it('lands a brand-new visitor in vivid indigo even on a light system', () => {
+  it('lands a brand-new visitor in vivid blue even on a light system', () => {
     const { items, run } = setup({}, false)
     run()
     expect(items.theme).toBe('dark')
