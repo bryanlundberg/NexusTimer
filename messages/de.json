@@ -1731,6 +1731,14 @@
       "contribute": "Mitwirken",
       "language": "Sprache",
       "copyright": "© {year} NexusTimer"
+    },
+    "unified": {
+      "title": "Alles, was du nutzt, in einem Konto",
+      "subtitle": "Hier ein Timer, dort Algorithmen, Rennen woanders und eine Tabelle für den Überblick. NexusTimer bringt alles zusammen.",
+      "before": "Für alles ein anderer Tab",
+      "after": "Ein Konto für alles",
+      "spreadsheet": "Tabelle",
+      "learned": "Gelernte Algorithmen"
     }
   },
   "Cookies": {

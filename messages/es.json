@@ -1749,6 +1749,14 @@
       "contribute": "Contribuir",
       "language": "Idioma",
       "copyright": "© {year} NexusTimer"
+    },
+    "unified": {
+      "title": "Todo lo que usas, en una sola cuenta",
+      "subtitle": "Un timer aquí, algoritmos allá, carreras en otro sitio y una hoja de cálculo para llevar la cuenta. NexusTimer lo junta todo.",
+      "before": "Una pestaña distinta para cada cosa",
+      "after": "Una cuenta para todo",
+      "spreadsheet": "Hoja de cálculo",
+      "learned": "Algoritmos aprendidos"
     }
   },
   "Cookies": {

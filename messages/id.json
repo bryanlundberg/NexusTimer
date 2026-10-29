@@ -1749,6 +1749,14 @@
       "contribute": "Berkontribusi",
       "language": "Bahasa",
       "copyright": "© {year} NexusTimer"
+    },
+    "unified": {
+      "title": "Semua yang kamu pakai, dalam satu akun",
+      "subtitle": "Timer di sini, algoritma di sana, balapan di tempat lain dan spreadsheet untuk mencatat. NexusTimer menyatukan semuanya.",
+      "before": "Tab berbeda untuk setiap hal",
+      "after": "Satu akun untuk semuanya",
+      "spreadsheet": "Spreadsheet",
+      "learned": "Algoritma yang sudah dipelajari"
     }
   },
   "Cookies": {

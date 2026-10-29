@@ -1749,6 +1749,14 @@
       "contribute": "Đóng góp",
       "language": "Ngôn ngữ",
       "copyright": "© {year} NexusTimer"
+    },
+    "unified": {
+      "title": "Mọi thứ bạn dùng, trong một tài khoản",
+      "subtitle": "Bấm giờ ở đây, thuật toán ở kia, thi đấu ở chỗ khác và một bảng tính để theo dõi. NexusTimer gom tất cả lại.",
+      "before": "Mỗi việc một tab riêng",
+      "after": "Một tài khoản cho mọi thứ",
+      "spreadsheet": "Bảng tính",
+      "learned": "Thuật toán đã học"
     }
   },
   "Cookies": {

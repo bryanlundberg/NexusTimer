@@ -1731,6 +1731,14 @@
       "contribute": "コントリビュート",
       "language": "言語",
       "copyright": "© {year} NexusTimer"
+    },
+    "unified": {
+      "title": "使っているすべてを、ひとつのアカウントに",
+      "subtitle": "タイマーはここ、アルゴリズムはあそこ、対戦は別のサイト、記録はスプレッドシート。NexusTimerならすべてがまとまります。",
+      "before": "やることごとに別のタブ",
+      "after": "すべてをひとつのアカウントで",
+      "spreadsheet": "スプレッドシート",
+      "learned": "覚えたアルゴリズム"
     }
   },
   "Cookies": {

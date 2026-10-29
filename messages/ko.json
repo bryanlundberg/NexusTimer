@@ -1731,6 +1731,14 @@
       "contribute": "기여하기",
       "language": "언어",
       "copyright": "© {year} NexusTimer"
+    },
+    "unified": {
+      "title": "쓰던 모든 것을 하나의 계정으로",
+      "subtitle": "타이머는 여기, 알고리즘은 저기, 대결은 다른 곳, 기록은 스프레드시트. NexusTimer가 모두 하나로 모읍니다.",
+      "before": "할 일마다 다른 탭",
+      "after": "모든 것을 위한 하나의 계정",
+      "spreadsheet": "스프레드시트",
+      "learned": "익힌 알고리즘"
     }
   },
   "Cookies": {

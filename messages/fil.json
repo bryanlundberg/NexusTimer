@@ -1749,6 +1749,14 @@
       "contribute": "Mag-ambag",
       "language": "Wika",
       "copyright": "© {year} NexusTimer"
+    },
+    "unified": {
+      "title": "Lahat ng gamit mo, sa iisang account",
+      "subtitle": "Timer dito, algorithms doon, karera sa ibang site at spreadsheet para magtala. Pinagsasama-sama ito ng NexusTimer.",
+      "before": "Ibang tab para sa bawat bagay",
+      "after": "Iisang account para sa lahat",
+      "spreadsheet": "Spreadsheet",
+      "learned": "Mga natutunang algorithm"
     }
   },
   "Cookies": {

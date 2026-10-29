@@ -1731,6 +1731,14 @@
       "contribute": "参与贡献",
       "language": "语言",
       "copyright": "© {year} NexusTimer"
+    },
+    "unified": {
+      "title": "你用的一切，尽在一个账号",
+      "subtitle": "计时在这里，公式在那里，对战在另一个网站，还要用表格记录进度。NexusTimer 把它们整合在一起。",
+      "before": "每件事都要开一个标签页",
+      "after": "一个账号搞定一切",
+      "spreadsheet": "表格",
+      "learned": "已学会的公式"
     }
   },
   "Cookies": {
