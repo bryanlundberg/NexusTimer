@@ -1678,7 +1678,7 @@
   "LandingPage": {
     "header": {
       "github": "GitHub",
-      "start-timing": "Start Timing"
+      "start-short": "Start cubing"
     },
     "hero": {
       "title-before": "The all-in-one platform for",

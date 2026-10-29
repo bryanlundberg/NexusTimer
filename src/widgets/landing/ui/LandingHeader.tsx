@@ -2,9 +2,10 @@
 
 import { useTranslations } from 'next-intl'
 import { Link } from '@/shared/config/i18n/navigation'
-import { BrandMark } from '@/widgets/sidebar/ui/brand-mark'
 import { cn } from '@/shared/lib/utils'
 import { pillSmall, pillSolid } from '../lib/pill'
+import { headerRow } from '../lib/rails'
+import BrandLink from './BrandLink'
 
 const NAV = [
   { href: '/app', page: 'timer', wide: false },
@@ -13,31 +14,18 @@ const NAV = [
   { href: '/algorithms/trainer', page: 'trainer', wide: true }
 ] as const
 
-export default function LandingHeader({ compact }: { compact: boolean }) {
+export default function LandingHeader() {
   const t = useTranslations('LandingPage')
   const tPages = useTranslations('Metadata.pages')
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
-      <div
-        className={cn(
-          'flex h-16 items-center justify-between gap-4 px-4 transition-colors duration-300 md:px-6',
-          compact ? 'bg-transparent' : 'bg-background'
-        )}
-      >
-        <Link href="/" className="flex items-center gap-2">
-          <BrandMark />
-          <span className="font-brand text-base font-bold leading-tight tracking-tight text-foreground">
-            NEXUSTIMER
-          </span>
-        </Link>
+    <header className="relative">
+      <div className={headerRow}>
+        <div aria-hidden className="invisible xl:flex xl:justify-center">
+          <BrandLink />
+        </div>
 
-        <nav
-          className={cn(
-            'hidden items-center gap-1 transition-opacity duration-300 md:flex',
-            compact && 'pointer-events-none opacity-0'
-          )}
-        >
+        <nav className="hidden items-center gap-1 md:flex xl:justify-center">
           {NAV.map((item) => (
             <Link
               key={item.href}
@@ -52,10 +40,16 @@ export default function LandingHeader({ compact }: { compact: boolean }) {
           ))}
         </nav>
 
-        <Link href="/app" className={cn(pillSolid, pillSmall)}>
-          {t('header.start-timing')}
-        </Link>
+        <div className="xl:flex xl:justify-center">
+          <Link href="/app" className={cn(pillSolid, pillSmall)}>
+            {t('header.start-short')}
+          </Link>
+        </div>
       </div>
+      <div
+        aria-hidden
+        className="lp-rail-x-long pointer-events-none absolute bottom-0 left-1/2 hidden w-[100dvw] -translate-x-1/2 md:block"
+      />
     </header>
   )
 }

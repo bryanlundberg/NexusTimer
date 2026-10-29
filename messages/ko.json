@@ -1660,7 +1660,7 @@
   "LandingPage": {
     "header": {
       "github": "GitHub",
-      "start-timing": "타이밍 시작"
+      "start-short": "시작하기"
     },
     "hero": {
       "title-before": "스피드큐빙을 위한",

@@ -1660,7 +1660,7 @@
   "LandingPage": {
     "header": {
       "github": "GitHub",
-      "start-timing": "टाइमिंग शुरू करें"
+      "start-short": "शुरू करें"
     },
     "hero": {
       "title-before": "स्पीडक्यूबिंग के लिए ऑल-इन-वन",

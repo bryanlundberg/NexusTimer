@@ -1678,7 +1678,7 @@
   "LandingPage": {
     "header": {
       "github": "GitHub",
-      "start-timing": "Simulan ang Pag-time"
+      "start-short": "Magsimula"
     },
     "hero": {
       "title-before": "Ang all-in-one na platform para sa",

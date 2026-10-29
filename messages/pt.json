@@ -1660,7 +1660,7 @@
   "LandingPage": {
     "header": {
       "github": "GitHub",
-      "start-timing": "Começar a cronometrar"
+      "start-short": "Começar"
     },
     "hero": {
       "title-before": "A plataforma tudo em um para",

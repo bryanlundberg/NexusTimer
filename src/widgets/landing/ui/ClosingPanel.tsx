@@ -10,7 +10,7 @@ export default function ClosingPanel() {
   const t = useTranslations('LandingPage')
 
   return (
-    <section className="px-2 pt-32 md:pt-44">
+    <section>
       <div className="lp-panel relative isolate overflow-hidden rounded-[16px]">
         <div aria-hidden className="lp-glow lp-glow-top" />
         <div className="mx-auto max-w-4xl px-6 pb-24 pt-[28vh] text-center md:pb-32">

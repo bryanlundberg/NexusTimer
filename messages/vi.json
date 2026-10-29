@@ -1678,7 +1678,7 @@
   "LandingPage": {
     "header": {
       "github": "GitHub",
-      "start-timing": "Bắt đầu bấm giờ"
+      "start-short": "Bắt đầu"
     },
     "hero": {
       "title-before": "Nền tảng tất cả trong một cho",

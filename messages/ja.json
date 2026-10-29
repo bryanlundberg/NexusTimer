@@ -1660,7 +1660,7 @@
   "LandingPage": {
     "header": {
       "github": "GitHub",
-      "start-timing": "タイマーを始める"
+      "start-short": "はじめる"
     },
     "hero": {
       "title-before": "スピードキューブのための",

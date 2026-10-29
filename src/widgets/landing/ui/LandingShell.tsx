@@ -4,17 +4,21 @@ import { ReactNode, useRef, useState } from 'react'
 import { LazyMotion } from 'motion/react'
 import { useLenis } from '../model/useLenis'
 import LandingHeader from './LandingHeader'
+import PinnedBar from './PinnedBar'
 import HeroPanel from './HeroPanel'
 import PlatformSection from './PlatformSection'
 import UnifiedSection from './UnifiedSection'
 import TestimonialRotator from './TestimonialRotator'
 import FeatureGrid from './FeatureGrid'
 import ClosingPanel from './ClosingPanel'
+import RailFrame from './RailFrame'
+import SectionBand from './SectionBand'
+import { frame } from '../lib/rails'
 
 const loadMotionFeatures = () => import('../model/motionFeatures').then((mod) => mod.default)
 
 export default function LandingShell({ footer }: { footer: ReactNode }) {
-  const [compact, setCompact] = useState(false)
+  const [pastHero, setPastHero] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
 
@@ -25,20 +29,29 @@ export default function LandingShell({ footer }: { footer: ReactNode }) {
       <div className="lp-root lp-night relative h-dvh w-dvw overflow-hidden text-foreground">
         <div
           ref={containerRef}
-          onScroll={(e) => setCompact(e.currentTarget.scrollTop > e.currentTarget.clientHeight * 0.6)}
+          onScroll={(e) => setPastHero(e.currentTarget.scrollTop > e.currentTarget.clientHeight - 64)}
           className="relative h-full overflow-y-auto overflow-x-hidden"
         >
           <div ref={contentRef} className="flex min-h-full flex-col">
-            <LandingHeader compact={compact} />
+            <div className={frame}>
+              <PinnedBar showAction={pastHero} />
+              <LandingHeader />
 
-            <main className="flex-1">
-              <HeroPanel />
-              <PlatformSection />
-              <UnifiedSection />
-              <TestimonialRotator />
-              <FeatureGrid />
-              <ClosingPanel />
-            </main>
+              <main>
+                <HeroPanel />
+                <RailFrame>
+                  <PlatformSection />
+                  <SectionBand variant="hatch" />
+                  <UnifiedSection />
+                  <SectionBand />
+                  <TestimonialRotator />
+                  <SectionBand variant="hatch" />
+                  <FeatureGrid />
+                  <SectionBand />
+                </RailFrame>
+                <ClosingPanel />
+              </main>
+            </div>
 
             <div className="mt-24 border-t border-border">{footer}</div>
           </div>

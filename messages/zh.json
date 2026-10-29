@@ -1660,7 +1660,7 @@
   "LandingPage": {
     "header": {
       "github": "GitHub",
-      "start-timing": "开始计时"
+      "start-short": "开始"
     },
     "hero": {
       "title-before": "专为魔方速拧打造的",

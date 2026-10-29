@@ -1678,7 +1678,7 @@
   "LandingPage": {
     "header": {
       "github": "GitHub",
-      "start-timing": "Mulai Menghitung Waktu"
+      "start-short": "Mulai"
     },
     "hero": {
       "title-before": "Platform serba ada untuk",

@@ -10,7 +10,7 @@ export default function HeroPanel() {
   const t = useTranslations('LandingPage')
 
   return (
-    <section className="px-2 pt-16">
+    <section className="pt-2">
       <div className="lp-panel relative isolate flex min-h-[calc(100dvh-72px)] items-center justify-center overflow-hidden rounded-[16px]">
         <div aria-hidden className="lp-glow" />
 

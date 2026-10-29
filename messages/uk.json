@@ -1678,7 +1678,7 @@
   "LandingPage": {
     "header": {
       "github": "GitHub",
-      "start-timing": "Почати відлік"
+      "start-short": "Почати"
     },
     "hero": {
       "title-before": "Платформа «все в одному» для",

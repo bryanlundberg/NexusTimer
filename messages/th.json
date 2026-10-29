@@ -1678,7 +1678,7 @@
   "LandingPage": {
     "header": {
       "github": "GitHub",
-      "start-timing": "เริ่มจับเวลา"
+      "start-short": "เริ่มเลย"
     },
     "hero": {
       "title-before": "แพลตฟอร์มครบวงจรสำหรับ",
