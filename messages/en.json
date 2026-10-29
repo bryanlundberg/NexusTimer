@@ -1785,6 +1785,23 @@
       "chip-servers": "Keeps servers running",
       "chip-features": "Funds new features",
       "sponsor-cta": "Email us"
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "q1": "Is NexusTimer free?",
+      "a1": "Yes. Every feature is free, with no ads and no paid plans. NexusTimer is also open source under the GPL-3.0 license, so anyone can read and improve the code.",
+      "q2": "Do I need an account?",
+      "a2": "No. You can time solves right away and everything is saved on your device. An account adds cloud backups, a public profile, multiplayer rooms and messages with other cubers.",
+      "q3": "Does it work offline?",
+      "a3": "Yes. Once you have opened it, the timer, your solves, sessions and settings keep working without a connection. You can also install it as an app on your phone or computer.",
+      "q4": "Can I import my times from csTimer or Twisty Timer?",
+      "a4": "Yes. Export a backup from csTimer or Twisty Timer and import it from the options page. csTimer sessions arrive as 3x3, so change their category afterwards if they belong to another puzzle.",
+      "q5": "Which smart cubes are supported?",
+      "a5": "GAN, MoYu, QiYi, GoCube and Rubik's Connected, and Giiker or Mi Smart cubes, over Bluetooth. You need a browser with Web Bluetooth, such as Chrome or Edge on a computer or on Android.",
+      "q6": "Can I use a Stackmat timer?",
+      "a6": "Yes. Connect the Stackmat to your device's audio input with a cable and NexusTimer reads the time straight from it.",
+      "q7": "Which events and scrambles does it have?",
+      "a7": "All the WCA puzzles: 2x2 to 7x7, 3x3 one-handed and blindfolded, 4x4 blindfolded, Pyraminx, Megaminx, Skewb, Square-1 and Clock, plus FTO. Scrambles come from a port of TNoodle, the WCA's official scrambler."
     }
   },
   "Cookies": {

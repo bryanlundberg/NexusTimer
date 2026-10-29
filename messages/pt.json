@@ -1767,6 +1767,23 @@
       "chip-servers": "Mantém os servidores no ar",
       "chip-features": "Financia novos recursos",
       "sponsor-cta": "Fale com a gente"
+    },
+    "faq": {
+      "title": "Perguntas frequentes",
+      "q1": "O NexusTimer é grátis?",
+      "a1": "Sim. Todos os recursos são grátis, sem anúncios e sem planos pagos. O NexusTimer também é código aberto sob a licença GPL-3.0, então qualquer pessoa pode ler e melhorar o código.",
+      "q2": "Preciso de uma conta?",
+      "a2": "Não. Você pode cronometrar na hora e tudo fica salvo no seu dispositivo. Com uma conta você ganha backups na nuvem, um perfil público, salas multiplayer e mensagens com outros cubers.",
+      "q3": "Funciona offline?",
+      "a3": "Sim. Depois de abrir uma vez, o timer, suas resoluções, sessões e configurações continuam funcionando sem internet. Você também pode instalá-lo como app no celular ou no computador.",
+      "q4": "Posso importar meus tempos do csTimer ou do Twisty Timer?",
+      "a4": "Sim. Exporte um backup do csTimer ou do Twisty Timer e importe-o pela página de opções. As sessões do csTimer chegam como 3x3, então mude a categoria depois se forem de outro puzzle.",
+      "q5": "Quais smart cubes são compatíveis?",
+      "a5": "GAN, MoYu, QiYi, GoCube e Rubik's Connected, além dos cubos Giiker ou Mi Smart, via Bluetooth. Você precisa de um navegador com Web Bluetooth, como Chrome ou Edge no computador ou no Android.",
+      "q6": "Posso usar um timer Stackmat?",
+      "a6": "Sim. Conecte o Stackmat à entrada de áudio do seu dispositivo com um cabo e o NexusTimer lê o tempo diretamente.",
+      "q7": "Quais modalidades e embaralhamentos ele tem?",
+      "a7": "Todos os puzzles da WCA: do 2x2 ao 7x7, 3x3 com uma mão e às cegas, 4x4 às cegas, Pyraminx, Megaminx, Skewb, Square-1 e Clock, além do FTO. Os embaralhamentos vêm de um port do TNoodle, o gerador oficial da WCA."
     }
   },
   "Cookies": {

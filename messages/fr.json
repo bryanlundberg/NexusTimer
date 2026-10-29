@@ -1767,6 +1767,23 @@
       "chip-servers": "Fait tourner les serveurs",
       "chip-features": "Finance de nouvelles fonctions",
       "sponsor-cta": "Écrivez-nous"
+    },
+    "faq": {
+      "title": "Questions fréquentes",
+      "q1": "NexusTimer est-il gratuit ?",
+      "a1": "Oui. Toutes les fonctionnalités sont gratuites, sans publicité ni offre payante. NexusTimer est aussi open source sous licence GPL-3.0, donc tout le monde peut lire et améliorer le code.",
+      "q2": "Ai-je besoin d’un compte ?",
+      "a2": "Non. Vous pouvez chronométrer tout de suite et tout est enregistré sur votre appareil. Un compte ajoute les sauvegardes dans le cloud, un profil public, les salles multijoueur et les messages avec d'autres cubeurs.",
+      "q3": "Fonctionne-t-il hors ligne ?",
+      "a3": "Oui. Une fois ouvert, le timer, vos résolutions, sessions et réglages continuent de fonctionner sans connexion. Vous pouvez aussi l’installer comme application sur votre téléphone ou votre ordinateur.",
+      "q4": "Puis-je importer mes temps depuis csTimer ou Twisty Timer ?",
+      "a4": "Oui. Exportez une sauvegarde depuis csTimer ou Twisty Timer et importez-la depuis la page des options. Les sessions de csTimer arrivent en 3x3 : changez ensuite leur catégorie si elles concernent un autre puzzle.",
+      "q5": "Quels smart cubes sont compatibles ?",
+      "a5": "GAN, MoYu, QiYi, GoCube et Rubik's Connected, ainsi que les cubes Giiker ou Mi Smart, en Bluetooth. Il vous faut un navigateur compatible Web Bluetooth, comme Chrome ou Edge sur ordinateur ou sur Android.",
+      "q6": "Puis-je utiliser un timer Stackmat ?",
+      "a6": "Oui. Branchez le Stackmat sur l'entrée audio de votre appareil avec un câble et NexusTimer lit le temps directement.",
+      "q7": "Quelles épreuves et quels mélanges propose-t-il ?",
+      "a7": "Tous les puzzles WCA : du 2x2 au 7x7, le 3x3 à une main et à l'aveugle, le 4x4 à l'aveugle, Pyraminx, Megaminx, Skewb, Square-1 et Clock, plus le FTO. Les mélanges viennent d'un portage de TNoodle, le générateur officiel de la WCA."
     }
   },
   "Cookies": {

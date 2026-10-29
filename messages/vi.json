@@ -1785,6 +1785,23 @@
       "chip-servers": "Duy trì máy chủ",
       "chip-features": "Tài trợ tính năng mới",
       "sponsor-cta": "Gửi email cho chúng tôi"
+    },
+    "faq": {
+      "title": "Câu hỏi thường gặp",
+      "q1": "NexusTimer có miễn phí không?",
+      "a1": "Có. Mọi tính năng đều miễn phí, không quảng cáo và không có gói trả phí. NexusTimer còn là mã nguồn mở theo giấy phép GPL-3.0, nên ai cũng có thể đọc và cải thiện mã nguồn.",
+      "q2": "Tôi có cần tài khoản không?",
+      "a2": "Không. Bạn có thể bấm giờ ngay và mọi thứ được lưu trên thiết bị của bạn. Có tài khoản, bạn sẽ có sao lưu đám mây, hồ sơ công khai, phòng nhiều người chơi và nhắn tin với các cuber khác.",
+      "q3": "Ứng dụng có chạy ngoại tuyến không?",
+      "a3": "Có. Sau khi mở một lần, bộ bấm giờ, các lượt giải, phiên và cài đặt của bạn vẫn hoạt động khi không có mạng. Bạn cũng có thể cài nó như một ứng dụng trên điện thoại hoặc máy tính.",
+      "q4": "Tôi có thể nhập thời gian từ csTimer hoặc Twisty Timer không?",
+      "a4": "Có. Xuất bản sao lưu từ csTimer hoặc Twisty Timer rồi nhập vào từ trang tùy chọn. Các phiên từ csTimer được nhập dưới dạng 3x3, nên hãy đổi danh mục sau đó nếu chúng thuộc puzzle khác.",
+      "q5": "Những smart cube nào được hỗ trợ?",
+      "a5": "GAN, MoYu, QiYi, GoCube và Rubik's Connected, cùng các khối Giiker hoặc Mi Smart, qua Bluetooth. Bạn cần trình duyệt hỗ trợ Web Bluetooth, như Chrome hoặc Edge trên máy tính hoặc Android.",
+      "q6": "Tôi có dùng được bộ bấm giờ Stackmat không?",
+      "a6": "Có. Nối Stackmat vào cổng âm thanh vào của thiết bị bằng dây cáp và NexusTimer sẽ đọc thời gian trực tiếp.",
+      "q7": "Có những nội dung và scramble nào?",
+      "a7": "Tất cả puzzle của WCA: từ 2x2 đến 7x7, 3x3 một tay và bịt mắt, 4x4 bịt mắt, Pyraminx, Megaminx, Skewb, Square-1 và Clock, thêm cả FTO. Scramble được tạo từ bản port của TNoodle, trình tạo scramble chính thức của WCA."
     }
   },
   "Cookies": {

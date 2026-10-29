@@ -5,6 +5,7 @@ import { landingMessages } from '@/shared/config/i18n/messageScopes'
 import { MessagesScope } from '@/shared/ui/messages-scope/MessagesScope'
 import LandingShell from '@/widgets/landing/ui/LandingShell'
 import FrameFooter from '@/widgets/landing/ui/FrameFooter'
+import FaqJsonLd from '@/widgets/landing/ui/FaqJsonLd'
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale()
@@ -19,6 +20,7 @@ export default async function Page() {
 
   return (
     <MessagesScope messages={landingMessages(messages)}>
+      <FaqJsonLd />
       <LandingShell footer={<FrameFooter />} />
     </MessagesScope>
   )

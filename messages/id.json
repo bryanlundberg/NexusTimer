@@ -1785,6 +1785,23 @@
       "chip-servers": "Menjaga server tetap berjalan",
       "chip-features": "Mendanai fitur baru",
       "sponsor-cta": "Kirim email ke kami"
+    },
+    "faq": {
+      "title": "Pertanyaan yang sering diajukan",
+      "q1": "Apakah NexusTimer gratis?",
+      "a1": "Ya. Semua fitur gratis, tanpa iklan dan tanpa paket berbayar. NexusTimer juga open source dengan lisensi GPL-3.0, jadi siapa pun bisa membaca dan memperbaiki kodenya.",
+      "q2": "Apakah saya perlu akun?",
+      "a2": "Tidak. Kamu bisa langsung mencatat waktu solve dan semuanya tersimpan di perangkatmu. Dengan akun, kamu mendapat cadangan cloud, profil publik, ruang multiplayer dan pesan dengan cuber lain.",
+      "q3": "Apakah bisa dipakai offline?",
+      "a3": "Ya. Setelah pernah dibuka, timer, solve, sesi dan pengaturanmu tetap berjalan tanpa koneksi. Kamu juga bisa memasangnya sebagai aplikasi di ponsel atau komputer.",
+      "q4": "Bisakah saya mengimpor waktu dari csTimer atau Twisty Timer?",
+      "a4": "Bisa. Ekspor cadangan dari csTimer atau Twisty Timer lalu impor dari halaman opsi. Sesi dari csTimer masuk sebagai 3x3, jadi ubah kategorinya setelah itu jika milik puzzle lain.",
+      "q5": "Smart cube apa saja yang didukung?",
+      "a5": "GAN, MoYu, QiYi, GoCube dan Rubik's Connected, serta kubus Giiker atau Mi Smart, lewat Bluetooth. Kamu perlu browser yang mendukung Web Bluetooth, seperti Chrome atau Edge di komputer atau Android.",
+      "q6": "Bisakah saya memakai timer Stackmat?",
+      "a6": "Bisa. Hubungkan Stackmat ke input audio perangkatmu dengan kabel dan NexusTimer membaca waktunya langsung.",
+      "q7": "Event dan scramble apa saja yang tersedia?",
+      "a7": "Semua puzzle WCA: 2x2 sampai 7x7, 3x3 satu tangan dan blindfold, 4x4 blindfold, Pyraminx, Megaminx, Skewb, Square-1 dan Clock, ditambah FTO. Scramble berasal dari port TNoodle, scrambler resmi WCA."
     }
   },
   "Cookies": {

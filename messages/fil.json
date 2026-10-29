@@ -1785,6 +1785,23 @@
       "chip-servers": "Pinapatakbo ang mga server",
       "chip-features": "Pinopondohan ang mga bagong feature",
       "sponsor-cta": "Mag-email sa amin"
+    },
+    "faq": {
+      "title": "Mga madalas itanong",
+      "q1": "Libre ba ang NexusTimer?",
+      "a1": "Oo. Libre ang bawat feature, walang ads at walang bayad na plano. Open source din ang NexusTimer sa ilalim ng GPL-3.0 license, kaya kahit sino ay puwedeng magbasa at magpaganda ng code.",
+      "q2": "Kailangan ko ba ng account?",
+      "a2": "Hindi. Puwede kang mag-time ng solves agad at naka-save ang lahat sa iyong device. Sa isang account, makakakuha ka ng cloud backups, public profile, multiplayer rooms at messages sa ibang cubers.",
+      "q3": "Gumagana ba ito offline?",
+      "a3": "Oo. Kapag nabuksan mo na ito, patuloy na gumagana ang timer, ang iyong solves, sessions at settings kahit walang internet. Puwede mo rin itong i-install bilang app sa phone o computer.",
+      "q4": "Puwede ko bang i-import ang mga oras ko mula sa csTimer o Twisty Timer?",
+      "a4": "Oo. Mag-export ng backup mula sa csTimer o Twisty Timer at i-import ito sa options page. Ang mga session mula sa csTimer ay pumapasok bilang 3x3, kaya palitan ang category nila pagkatapos kung para sa ibang puzzle sila.",
+      "q5": "Aling smart cubes ang suportado?",
+      "a5": "GAN, MoYu, QiYi, GoCube at Rubik's Connected, pati Giiker o Mi Smart cubes, sa pamamagitan ng Bluetooth. Kailangan mo ng browser na may Web Bluetooth, gaya ng Chrome o Edge sa computer o sa Android.",
+      "q6": "Puwede ba akong gumamit ng Stackmat timer?",
+      "a6": "Oo. Ikonekta ang Stackmat sa audio input ng iyong device gamit ang cable at direktang babasahin ng NexusTimer ang oras.",
+      "q7": "Anong mga event at scramble ang mayroon?",
+      "a7": "Lahat ng WCA puzzles: 2x2 hanggang 7x7, 3x3 one-handed at blindfolded, 4x4 blindfolded, Pyraminx, Megaminx, Skewb, Square-1 at Clock, pati FTO. Ang mga scramble ay galing sa port ng TNoodle, ang opisyal na scrambler ng WCA."
     }
   },
   "Cookies": {
