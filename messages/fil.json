@@ -1533,8 +1533,8 @@
     }
   },
   "Metadata": {
-    "title": "Nexus Timer - Propesyonal na Rubik's Cube Timer",
-    "description": "Ang Nexus Timer ay propesyonal na platform para sa pagsasanay at pagsusuri ng iyong journey sa Rubik's Cube.",
+    "title": "Nexus Timer - Libreng Speedcubing Timer at Plataporma sa Pagsasanay",
+    "description": "Libre at open source na speedcubing timer para sa bawat WCA puzzle. I-time ang mga solve, sanayin ang mga algorithm, makipagkarera sa ibang cuber at subaybayan ang bawat stat. Gumagana kahit offline.",
     "keywords": {
       "key1": "timer",
       "key2": "nxtimer",
@@ -1690,7 +1690,6 @@
       "subtitle": "I-time ang iyong mga solve, sanayin ang mga algorithm, makipagkarera sa ibang cuber at subaybayan ang bawat stat sa paglipas ng panahon. Libre at open source.",
       "cta-primary": "Simulan ang Pag-time",
       "cta-secondary": "Tuklasin ang mga algorithm",
-      "social-proof": "Sumali sa lumalaking komunidad ng mga cuber",
       "scroll": "Mag-scroll"
     },
     "bento": {
@@ -1698,12 +1697,8 @@
       "subtitle": "Bawat solve na tina-time mo ay napupunta sa iyong stats, profile at pagsasanay.",
       "smart-title": "Handa sa smart cube",
       "smart-desc": "Ikonekta ang GAN, MoYu, o QiYi smart cubes gamit ang Bluetooth. Bawat ikot ay live na naitatala.",
-      "profile-title": "Mga profile na may buong kuwento mo",
-      "profile-desc": "Bawat solve, bawat cube, bawat session. Hindi lang ang mga PB mo: ang buong history mo sa isang page na puwedeng i-share.",
       "stats-title": "Malalim na estadistika",
       "stats-desc": "Mga trend line at pagsusuri kada cube na nagpapakitang bumababa ang mga oras mo.",
-      "compare-title": "Ikumpara ang mga profile",
-      "compare-desc": "Ilagay ang ilang cuber sa isang table at tingnan kung sino ang nangunguna sa bawat stat.",
       "algs-title": "Mga algorithm",
       "algs-desc": "Kumpletong set ng mga algorithm para sa bawat case, handa para pag-aralan at sanayin.",
       "stats-benefit": "Tingnan kung talagang gumagaling ka",

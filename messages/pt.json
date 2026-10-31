@@ -1668,7 +1668,6 @@
       "subtitle": "Cronometre suas resoluções, treine algoritmos, dispute com outros cubers e acompanhe cada estatística ao longo do tempo. Gratuita e de código aberto.",
       "cta-primary": "Começar a cronometrar",
       "cta-secondary": "Explorar os algoritmos",
-      "social-proof": "Junte-se a uma comunidade crescente de cubers",
       "scroll": "Rolar"
     },
     "bento": {
@@ -1676,12 +1675,8 @@
       "subtitle": "Cada resolução que você cronometra alimenta suas estatísticas, seu perfil e seu treino.",
       "smart-title": "Pronto para smart cubes",
       "smart-desc": "Conecte smart cubes GAN, MoYu ou QiYi por Bluetooth. Cada giro é registrado ao vivo, movimento a movimento.",
-      "profile-title": "Perfis com toda a sua trajetória",
-      "profile-desc": "Cada solve, cada cubo, cada sessão. Não só seus PBs: todo o seu histórico em uma página para compartilhar.",
       "stats-title": "Estatísticas profundas",
       "stats-desc": "Linhas de tendência e análises por cubo que mostram seus tempos caindo.",
-      "compare-title": "Compare perfis",
-      "compare-desc": "Coloque vários cubers em uma tabela e veja quem leva cada estatística.",
       "algs-title": "Algoritmos",
       "algs-desc": "Conjuntos completos de algoritmos para cada caso, prontos para estudar e treinar.",
       "stats-benefit": "Veja se você está mesmo melhorando",
@@ -1802,8 +1797,8 @@
     "decline": "Recusar"
   },
   "Metadata": {
-    "title": "Nexus Timer - Timer profissional de Cubo Mágico",
-    "description": "O Nexus Timer é uma plataforma profissional para treinar e analisar sua jornada com o Cubo Mágico.",
+    "title": "Nexus Timer - Cronômetro e plataforma de speedcubing grátis",
+    "description": "Cronômetro de speedcubing gratuito e de código aberto para todos os puzzles da WCA. Cronometre resoluções, treine algoritmos, dispute com outros cubers e acompanhe cada estatística. Funciona offline.",
     "keywords": {
       "key1": "timer",
       "key2": "nxtimer",

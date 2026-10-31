@@ -1533,8 +1533,8 @@
     }
   },
   "Metadata": {
-    "title": "Nexus Timer - Đồng hồ Rubik chuyên nghiệp",
-    "description": "Nexus Timer là nền tảng chuyên nghiệp để luyện tập và phân tích hành trình của bạn với khối Rubik.",
+    "title": "Nexus Timer - Đồng hồ speedcubing và nền tảng luyện tập miễn phí",
+    "description": "Đồng hồ speedcubing miễn phí, mã nguồn mở cho mọi puzzle WCA. Bấm giờ các lần giải, luyện thuật toán, thi đấu với các cuber khác và theo dõi mọi chỉ số. Dùng được cả khi ngoại tuyến.",
     "keywords": {
       "key1": "đồng hồ",
       "key2": "nxtimer",
@@ -1690,7 +1690,6 @@
       "subtitle": "Bấm giờ các lần giải, luyện thuật toán, thi đấu với các cuber khác và theo dõi mọi chỉ số theo thời gian. Miễn phí và mã nguồn mở.",
       "cta-primary": "Bắt đầu bấm giờ",
       "cta-secondary": "Khám phá thuật toán",
-      "social-proof": "Tham gia cộng đồng cuber đang phát triển",
       "scroll": "Cuộn"
     },
     "bento": {
@@ -1698,12 +1697,8 @@
       "subtitle": "Mỗi lần giải bạn bấm giờ đều được đưa vào thống kê, hồ sơ và quá trình luyện tập của bạn.",
       "smart-title": "Sẵn sàng cho smart cube",
       "smart-desc": "Kết nối smart cube GAN, MoYu hoặc QiYi qua Bluetooth. Mọi bước xoay được ghi lại trực tiếp.",
-      "profile-title": "Hồ sơ lưu trọn hành trình của bạn",
-      "profile-desc": "Mọi lượt giải, mọi khối, mọi phiên. Không chỉ PB: toàn bộ lịch sử của bạn trên một trang để chia sẻ.",
       "stats-title": "Thống kê chuyên sâu",
       "stats-desc": "Đường xu hướng và phân tích theo từng cube cho thấy thời gian của bạn đang giảm.",
-      "compare-title": "So sánh hồ sơ",
-      "compare-desc": "Xếp nhiều cuber vào một bảng và xem ai thắng ở từng chỉ số.",
       "algs-title": "Công thức",
       "algs-desc": "Bộ công thức đầy đủ cho mọi trường hợp, sẵn sàng để học và luyện tập.",
       "stats-benefit": "Xem bạn có thật sự tiến bộ không",

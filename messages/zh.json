@@ -1668,7 +1668,6 @@
       "subtitle": "记录还原时间、练习公式、与其他魔友对战，并追踪每一项数据的变化。免费且开源。",
       "cta-primary": "开始计时",
       "cta-secondary": "浏览算法",
-      "social-proof": "加入不断壮大的魔方社区",
       "scroll": "滚动"
     },
     "bento": {
@@ -1676,12 +1675,8 @@
       "subtitle": "你记录的每一次还原，都会汇入你的数据、个人主页和训练。",
       "smart-title": "智能魔方支持",
       "smart-desc": "通过蓝牙连接 GAN、MoYu 或 QiYi 智能魔方,每一次转动都实时记录。",
-      "profile-title": "记录你完整历程的主页",
-      "profile-desc": "每一次还原、每一个魔方、每一个分组。不只是 PB：你的全部历史，集中在一个可分享的页面。",
       "stats-title": "深度统计",
       "stats-desc": "趋势线和按魔方划分的分析,让你看到成绩不断进步。",
-      "compare-title": "对比主页",
-      "compare-desc": "把几位魔友放进同一张表格,看看每项数据谁更强。",
       "algs-title": "公式库",
       "algs-desc": "覆盖每种情况的完整公式集,随时学习和练习。",
       "stats-benefit": "看看自己是否真的在进步",
@@ -1802,8 +1797,8 @@
     "decline": "拒绝"
   },
   "Metadata": {
-    "title": "Nexus Timer - 专业魔方计时器",
-    "description": "Nexus Timer 是一个用于训练和分析你魔方之旅的专业平台。",
+    "title": "Nexus Timer - 免费的速拧计时器与训练平台",
+    "description": "免费开源的速拧计时器，支持所有WCA项目。记录还原时间、练习公式、与其他魔友对战，并追踪每一项数据。支持离线使用。",
     "keywords": {
       "key1": "timer",
       "key2": "nxtimer",

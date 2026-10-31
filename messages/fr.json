@@ -1668,7 +1668,6 @@
       "subtitle": "Chronométrez vos résolutions, entraînez vos algorithmes, affrontez d'autres cubeurs et suivez chaque statistique dans le temps. Gratuit et open source.",
       "cta-primary": "Commencer à chronométrer",
       "cta-secondary": "Explorer les algorithmes",
-      "social-proof": "Rejoignez une communauté grandissante de cubeurs",
       "scroll": "Défiler"
     },
     "bento": {
@@ -1676,12 +1675,8 @@
       "subtitle": "Chaque résolution chronométrée alimente vos statistiques, votre profil et votre entraînement.",
       "smart-title": "Prêt pour les smart cubes",
       "smart-desc": "Connecte des smart cubes GAN, MoYu ou QiYi en Bluetooth. Chaque rotation est suivie en direct, mouvement par mouvement.",
-      "profile-title": "Des profils avec tout votre parcours",
-      "profile-desc": "Chaque résolution, chaque cube, chaque session. Pas seulement vos PB : tout votre historique sur une page à partager.",
       "stats-title": "Statistiques avancées",
       "stats-desc": "Courbes de tendance et analyses par cube qui montrent tes temps baisser.",
-      "compare-title": "Comparer les profils",
-      "compare-desc": "Aligne plusieurs cubeurs dans un tableau et vois qui remporte chaque stat.",
       "algs-title": "Algorithmes",
       "algs-desc": "Des sets d'algorithmes complets pour chaque cas, prêts à étudier et à entraîner.",
       "stats-benefit": "Voyez si vous progressez vraiment",
@@ -1802,8 +1797,8 @@
     "decline": "Refuser"
   },
   "Metadata": {
-    "title": "Nexus Timer – Timer professionnel pour Rubik’s Cube",
-    "description": "Nexus Timer est une plateforme professionnelle pour t’entraîner et analyser ta progression au Rubik’s Cube.",
+    "title": "Nexus Timer - Chronomètre de speedcubing gratuit et plateforme d'entraînement",
+    "description": "Chronomètre de speedcubing gratuit et open source pour tous les puzzles WCA. Chronométrez vos résolutions, entraînez vos algorithmes, affrontez d'autres cubeurs et suivez chaque statistique. Fonctionne hors ligne.",
     "keywords": {
       "key1": "timer",
       "key2": "nxtimer",

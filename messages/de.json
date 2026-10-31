@@ -1668,7 +1668,6 @@
       "subtitle": "Stoppe deine Solves, trainiere Algorithmen, tritt gegen andere Cuber an und verfolge jede Statistik über die Zeit. Kostenlos und Open Source.",
       "cta-primary": "Timing starten",
       "cta-secondary": "Algorithmen entdecken",
-      "social-proof": "Tritt einer wachsenden Cubing-Community bei",
       "scroll": "Scrollen"
     },
     "bento": {
@@ -1676,12 +1675,8 @@
       "subtitle": "Jeder Solve, den du stoppst, fließt in deine Statistiken, dein Profil und dein Training.",
       "smart-title": "Bereit für Smart Cubes",
       "smart-desc": "Verbinde GAN, MoYu oder QiYi Smart Cubes per Bluetooth. Jeder Zug wird live erfasst, Move für Move.",
-      "profile-title": "Profile mit deiner ganzen Geschichte",
-      "profile-desc": "Jeder Solve, jeder Würfel, jede Session. Nicht nur deine PBs: deine komplette Historie auf einer teilbaren Seite.",
       "stats-title": "Tiefe Statistiken",
       "stats-desc": "Trendlinien und Analysen pro Cube zeigen, wie deine Zeiten sinken.",
-      "compare-title": "Profile vergleichen",
-      "compare-desc": "Stelle mehrere Cuber in einer Tabelle gegenüber und sieh, wer welche Statistik gewinnt.",
       "algs-title": "Algorithmen",
       "algs-desc": "Komplette Algorithmus-Sets für jeden Fall, bereit zum Lernen und Trainieren.",
       "stats-benefit": "Sieh, ob du wirklich besser wirst",
@@ -1802,8 +1797,8 @@
     "decline": "Ablehnen"
   },
   "Metadata": {
-    "title": "Nexus Timer – Professioneller Zauberwürfel-Timer",
-    "description": "Nexus Timer ist eine professionelle Plattform, um dein Training mit dem Zauberwürfel zu verfolgen und zu analysieren.",
+    "title": "Nexus Timer - Kostenloser Speedcubing-Timer und Trainingsplattform",
+    "description": "Kostenloser Open-Source-Speedcubing-Timer für alle WCA-Puzzles. Stoppe Solves, trainiere Algorithmen, tritt gegen andere Cuber an und verfolge jede Statistik. Auch offline.",
     "keywords": {
       "key1": "timer",
       "key2": "nxtimer",

@@ -1533,8 +1533,8 @@
     }
   },
   "Metadata": {
-    "title": "Nexus Timer - Professional Rubik's Cube Timer",
-    "description": "Nexus Timer is a professional platform for training and analyzing your journey with the Rubik's Cube.",
+    "title": "Nexus Timer - Free Speedcubing Timer and Training Platform",
+    "description": "Free, open source speedcubing timer for every WCA puzzle. Time solves, drill algorithms, race other cubers and track every stat. Works offline.",
     "keywords": {
       "key1": "timer",
       "key2": "nxtimer",
@@ -1690,7 +1690,6 @@
       "subtitle": "Time your solves, drill algorithms, race other cubers and track every stat over time. Free and open source.",
       "cta-primary": "Start Timing",
       "cta-secondary": "Explore algorithms",
-      "social-proof": "Join a growing community of cubers",
       "scroll": "Scroll"
     },
     "bento": {
@@ -1698,12 +1697,8 @@
       "subtitle": "Every solve you time feeds your statistics, your profile and your training.",
       "smart-title": "Smart cube ready",
       "smart-desc": "Pair GAN, MoYu or QiYi smart cubes over Bluetooth. Every turn is tracked live, move by move.",
-      "profile-title": "Profiles with your whole story",
-      "profile-desc": "Every solve, every cube, every session. Not just your PBs: your full history on one shareable page.",
       "stats-title": "Deep statistics",
       "stats-desc": "Trend lines and per-cube analytics that show your times dropping.",
-      "compare-title": "Compare profiles",
-      "compare-desc": "Line up several cubers in one table and see who takes each stat.",
       "algs-title": "Algorithms",
       "algs-desc": "Full algorithm sets for every case, ready to study and train.",
       "stats-benefit": "See if you are really improving",

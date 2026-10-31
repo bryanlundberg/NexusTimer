@@ -1668,7 +1668,6 @@
       "subtitle": "솔브 시간을 재고, 알고리즘을 연습하고, 다른 큐버와 겨루고, 모든 통계를 시간에 따라 추적하세요. 무료이며 오픈 소스입니다.",
       "cta-primary": "타이밍 시작",
       "cta-secondary": "알고리즘 둘러보기",
-      "social-proof": "성장하는 큐버 커뮤니티에 참여하세요",
       "scroll": "스크롤"
     },
     "bento": {
@@ -1676,12 +1675,8 @@
       "subtitle": "기록한 모든 솔브가 통계, 프로필, 연습에 반영됩니다.",
       "smart-title": "스마트 큐브 지원",
       "smart-desc": "GAN, MoYu, QiYi 스마트 큐브를 블루투스로 연결하세요. 모든 회전이 실시간으로 기록됩니다.",
-      "profile-title": "당신의 모든 여정을 담은 프로필",
-      "profile-desc": "모든 풀이, 모든 큐브, 모든 세션. PB만이 아니라 전체 기록을 공유 가능한 한 페이지에.",
       "stats-title": "심층 통계",
       "stats-desc": "트렌드 라인과 큐브별 분석으로 기록 단축을 확인하세요.",
-      "compare-title": "프로필 비교",
-      "compare-desc": "여러 큐버를 한 표에 놓고 어떤 기록에서 앞서는지 확인하세요.",
       "algs-title": "알고리즘",
       "algs-desc": "모든 케이스의 알고리즘 세트를 학습하고 훈련하세요.",
       "stats-benefit": "정말 빨라지고 있는지 확인하세요",
@@ -1802,8 +1797,8 @@
     "decline": "거부"
   },
   "Metadata": {
-    "title": "Nexus Timer - 프로페셔널 루빅스 큐브 타이머",
-    "description": "Nexus Timer는 루빅스 큐브 훈련과 분석을 위한 프로페셔널 플랫폼입니다.",
+    "title": "Nexus Timer - 무료 스피드큐빙 타이머 및 연습 플랫폼",
+    "description": "모든 WCA 퍼즐을 지원하는 무료 오픈 소스 스피드큐빙 타이머. 솔브 시간을 재고, 알고리즘을 연습하고, 다른 큐버와 겨루고, 모든 통계를 추적하세요. 오프라인에서도 작동합니다.",
     "keywords": {
       "key1": "timer",
       "key2": "nxtimer",

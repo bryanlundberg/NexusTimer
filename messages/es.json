@@ -1533,8 +1533,8 @@
     }
   },
   "Metadata": {
-    "title": "Nexus Timer - Cronómetro Profesional para Cubo de Rubik",
-    "description": "Nexus Timer es una plataforma profesional para entrenar y analizar tu progreso con el Cubo de Rubik.",
+    "title": "Nexus Timer - Cronómetro y plataforma de speedcubing gratis",
+    "description": "Cronómetro de speedcubing gratis y de código abierto para todos los puzzles WCA. Cronometra solves, entrena algoritmos, compite con otros cubers y sigue cada estadística. Funciona sin conexión.",
     "keywords": {
       "key1": "cronómetro cubo",
       "key2": "nxtimer",
@@ -1690,7 +1690,6 @@
       "subtitle": "Cronometra tus solves, entrena algoritmos, compite contra otros cubers y sigue cada estadística en el tiempo. Gratis y de código abierto.",
       "cta-primary": "Empezar a cronometrar",
       "cta-secondary": "Explora los algoritmos",
-      "social-proof": "Únete a una comunidad creciente de cuberos",
       "scroll": "Desplazar"
     },
     "bento": {
@@ -1698,12 +1697,8 @@
       "subtitle": "Cada solve que cronometras alimenta tus estadísticas, tu perfil y tu entrenamiento.",
       "smart-title": "Listo para smart cubes",
       "smart-desc": "Conecta cubos inteligentes GAN, MoYu o QiYi por Bluetooth. Cada giro se registra en vivo, movimiento a movimiento.",
-      "profile-title": "Perfiles con toda tu trayectoria",
-      "profile-desc": "Cada solve, cada cubo, cada sesión. No solo tus PBs: todo tu historial en una página para compartir.",
       "stats-title": "Estadísticas profundas",
       "stats-desc": "Líneas de tendencia y análisis por cubo que muestran cómo bajan tus tiempos.",
-      "compare-title": "Compara perfiles",
-      "compare-desc": "Alinea a varios cuberos en una tabla y mira quién se lleva cada stat.",
       "algs-title": "Algoritmos",
       "algs-desc": "Sets completos de algoritmos por caso, listos para estudiar y entrenar.",
       "stats-benefit": "Comprueba si de verdad estás mejorando",
