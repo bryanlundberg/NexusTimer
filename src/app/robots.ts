@@ -1,16 +1,7 @@
 import { MetadataRoute } from 'next'
 import { locales, localizedPath } from '@/shared/config/i18n/locales'
 
-const AI_TRAINING_BOTS = [
-  'GPTBot',
-  'ClaudeBot',
-  'CCBot',
-  'Bytespider',
-  'meta-externalagent',
-  'Amazonbot',
-  'Google-Extended',
-  'Applebot-Extended'
-]
+const BLOCKED_BOTS = ['Bytespider', 'meta-externalagent', 'Amazonbot']
 
 const NOT_INDEXED = [
   '/sign-in',
@@ -38,7 +29,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', ...locales.flatMap((locale) => NOT_INDEXED.map((path) => localizedPath(locale, path)))]
       },
       {
-        userAgent: AI_TRAINING_BOTS,
+        userAgent: BLOCKED_BOTS,
         disallow: '/'
       }
     ],
