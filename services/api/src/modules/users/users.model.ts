@@ -4,6 +4,8 @@ import { Schema, model } from 'mongoose'
 const userSchema = new Schema(
   {
     name: { type: String, required: true },
+    username: { type: String },
+    usernameChangedAt: { type: Number },
     email: { type: String, required: true, trim: true, lowercase: true },
     emailVerified: { type: Boolean },
     image: { type: String, required: true },
@@ -48,6 +50,7 @@ userSchema.index({ 'providers.provider': 1, 'providers.providerId': 1 }, { uniqu
 userSchema.index({ 'backup.updatedAt': -1, createdAt: -1 })
 userSchema.index({ country: 1, 'backup.updatedAt': -1, createdAt: -1 })
 userSchema.index({ name: 1 })
+userSchema.index({ username: 1 }, { unique: true, partialFilterExpression: { username: { $type: 'string' } } })
 userSchema.index({ wcaId: 1 }, { unique: true, sparse: true })
 
 export const UserModel = model('User', userSchema)

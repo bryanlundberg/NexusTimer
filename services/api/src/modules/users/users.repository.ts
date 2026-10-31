@@ -18,8 +18,8 @@ import { UserModel } from './users.model'
 const PUBLIC_USER_FIELDS = 'name image country pronoun goal'
 const FRIEND_CARD_FIELDS = 'name image country wcaId'
 const FRIEND_PROFILE_FIELDS = `${FRIEND_CARD_FIELDS} pronoun method bio`
-const PROFILE_PROJECTION = '-email -emailVerified -providers -privacy -__v'
-const LIST_PROJECTION = '-email -emailVerified -providers -__v'
+const PROFILE_PROJECTION = '-email -emailVerified -providers -privacy -usernameChangedAt -__v'
+const LIST_PROJECTION = '-email -emailVerified -providers -usernameChangedAt -__v'
 const NEWEST_BACKUP_FIRST = { 'backup.updatedAt': -1, createdAt: -1 } as const
 
 export type ProfileUpdate = { $set?: Record<string, unknown>; $unset?: Record<string, ''> }
@@ -250,15 +250,13 @@ export const usersRepository: UsersRepository = {
   },
 
   async findAccountByEmail(email) {
-    const doc = await UserModel.findOne({ email })
-      .select('email name createdAt backup.url')
-      .lean<{
-        _id: Types.ObjectId
-        email: string
-        name: string
-        createdAt: Date
-        backup?: { url?: string | null } | null
-      }>()
+    const doc = await UserModel.findOne({ email }).select('email name createdAt backup.url').lean<{
+      _id: Types.ObjectId
+      email: string
+      name: string
+      createdAt: Date
+      backup?: { url?: string | null } | null
+    }>()
     if (!doc) return null
     return {
       id: doc._id.toString(),
