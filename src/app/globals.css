@@ -525,21 +525,10 @@
   );
 }
 
-@keyframes lp-stream-y {
-  to {
-    translate: 0 -50%;
-  }
-}
 @keyframes lp-stream-x {
   to {
     translate: -50% 0;
   }
-}
-.lp-stream-up {
-  animation: lp-stream-y 26s linear infinite;
-}
-.lp-stream-down {
-  animation: lp-stream-y 26s linear infinite reverse;
 }
 .lp-stream-left {
   animation: lp-stream-x 30s linear infinite;
@@ -561,8 +550,6 @@
   animation: lp-ping 1.6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 }
 @media (prefers-reduced-motion: reduce) {
-  .lp-stream-up,
-  .lp-stream-down,
   .lp-stream-left,
   .lp-stream-right,
   .lp-ping {
