@@ -9,8 +9,8 @@ import { Types } from 'mongoose'
 import { UserModel } from './users.model'
 
 const FALLBACK_BASE = 'cuber'
-const SUFFIX_DIGITS = 4
-const MAX_ATTEMPTS = 12
+const SUFFIX_DIGIT_STEPS = [4, 5, 6]
+const ATTEMPTS_PER_STEP = 4
 const DUPLICATE_KEY = 11000
 
 export const USERS_VALIDATOR = {
@@ -39,9 +39,9 @@ export function usernameBase(name: string) {
   return /[a-z]/.test(slug) && slug.length >= USERNAME_MIN_LENGTH ? slug : null
 }
 
-function withSuffix(base: string, random: () => number) {
-  const digits = String(Math.floor(random() * 10 ** SUFFIX_DIGITS)).padStart(SUFFIX_DIGITS, '0')
-  const room = USERNAME_MAX_LENGTH - SUFFIX_DIGITS - 1
+function withSuffix(base: string, length: number, random: () => number) {
+  const digits = String(Math.floor(random() * 10 ** length)).padStart(length, '0')
+  const room = USERNAME_MAX_LENGTH - length - 1
   return `${base.slice(0, room).replace(/_+$/, '')}_${digits}`
 }
 
@@ -49,7 +49,9 @@ export function usernameCandidates(name: string, random: () => number = Math.ran
   const base = usernameBase(name)
   const candidates: string[] = []
   if (base && !RESERVED_USERNAMES.has(base)) candidates.push(base)
-  while (candidates.length < MAX_ATTEMPTS) candidates.push(withSuffix(base ?? FALLBACK_BASE, random))
+  for (const length of SUFFIX_DIGIT_STEPS) {
+    for (let i = 0; i < ATTEMPTS_PER_STEP; i++) candidates.push(withSuffix(base ?? FALLBACK_BASE, length, random))
+  }
   return candidates.filter((candidate) => usernameIssue(candidate) === null)
 }
 

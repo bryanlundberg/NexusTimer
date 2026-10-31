@@ -95,6 +95,18 @@ describe('username generation', () => {
     for (const candidate of candidates) expect(usernameIssue(candidate), candidate).toBeNull()
   })
 
+  it('grows the suffix from 4 to 6 digits so common bases never run out', () => {
+    const candidates = usernameCandidates('Cube king', fixedRandom)
+    expect(candidates).toHaveLength(13)
+    expect(candidates.slice(1, 5).every((c) => c === 'cube_king_4821')).toBe(true)
+    expect(candidates[5]).toBe('cube_king_48210')
+    expect(candidates[9]).toBe('cube_king_482100')
+
+    const long = usernameCandidates('abcdefghijklmnopqrst', fixedRandom)
+    expect(long[12]).toBe('abcdefghijklm_482100')
+    for (const candidate of long) expect(candidate.length, candidate).toBeLessThanOrEqual(20)
+  })
+
   it('suffixes reserved bases and falls back to cuber', () => {
     expect(usernameCandidates('Admin', fixedRandom)[0]).toBe('admin_4821')
     expect(usernameCandidates('魔方小王', fixedRandom)[0]).toBe('cuber_4821')
