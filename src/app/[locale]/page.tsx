@@ -1,18 +1,14 @@
 import type { Metadata } from 'next'
-import { getLocale, getMessages } from 'next-intl/server'
-import { localizedAlternates } from '@/shared/config/i18n/alternates'
+import { getMessages } from 'next-intl/server'
+import { localizedPageMetadata } from '@/shared/config/i18n/pageMetadata'
 import { landingMessages } from '@/shared/config/i18n/messageScopes'
 import { MessagesScope } from '@/shared/ui/messages-scope/MessagesScope'
 import LandingShell from '@/widgets/landing/ui/LandingShell'
 import FrameFooter from '@/widgets/landing/ui/FrameFooter'
 import FaqJsonLd from '@/widgets/landing/ui/FaqJsonLd'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const locale = await getLocale()
-
-  return {
-    alternates: localizedAlternates(locale, '/')
-  }
+export function generateMetadata(): Promise<Metadata> {
+  return localizedPageMetadata('home', '/')
 }
 
 export default async function Page() {

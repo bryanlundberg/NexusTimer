@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { getLocale, getTranslations } from 'next-intl/server'
 import { localizedAlternates } from '@/shared/config/i18n/alternates'
 
-export type SeoPage = 'timer' | 'leaderboards' | 'community' | 'trainer'
+export type SeoPage = 'home' | 'timer' | 'leaderboards' | 'community' | 'trainer'
 
 export async function localizedPathMetadata(path: string): Promise<Metadata> {
   return { alternates: localizedAlternates(await getLocale(), path) }
