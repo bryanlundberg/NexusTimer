@@ -1,12 +1,18 @@
 'use client'
 
+import { useRef } from 'react'
 import Image from 'next/image'
-import { useReducedMotion } from 'motion/react'
+import { useInView, useReducedMotion } from 'motion/react'
 import * as m from 'motion/react-m'
+import { Check, Copy, Link2 } from 'lucide-react'
 import { cn } from '@/shared/lib/utils'
+import { useCycle } from '../model/useCycle'
 
 export default function ProfileVisual() {
   const reduce = useReducedMotion()
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { amount: 0.5 })
+  const copied = useCycle(2, 1800, inView) === 1
   const tabs = [
     { label: 'Overview', count: 3, active: true },
     { label: 'Cubes', count: 5, active: false },
@@ -19,8 +25,7 @@ export default function ProfileVisual() {
     { cat: 'Pyraminx', single: '2.40', ao5: '3.18', ao12: '3.55' }
   ]
   return (
-    <div className="flex flex-col">
-      {/* mini hero */}
+    <div ref={ref} className="flex flex-col">
       <div className="flex items-center gap-3 pb-3">
         <div className="relative shrink-0">
           <Image
@@ -30,6 +35,9 @@ export default function ProfileVisual() {
             height={44}
             className="h-11 w-11 ring-2 ring-border"
           />
+          {!reduce && (
+            <span className="absolute -bottom-0.5 -right-0.5 size-2.5 animate-ping bg-[var(--cube-green)] opacity-60" />
+          )}
           <span className="absolute -bottom-0.5 -right-0.5 size-2.5 border-2 border-card bg-[var(--cube-green)]" />
         </div>
         <div className="min-w-0">
@@ -108,6 +116,25 @@ export default function ProfileVisual() {
             <span className="text-right font-mono text-[11px] tabular-nums text-muted-foreground">{r.ao12}</span>
           </m.div>
         ))}
+      </div>
+
+      <div
+        className={cn(
+          'mt-3 flex items-center gap-2 border px-2 py-1.5 transition-colors duration-300',
+          copied ? 'border-[var(--cube-green)]/50 bg-[var(--cube-green)]/8' : 'border-border'
+        )}
+      >
+        <Link2 className="size-3.5 shrink-0 text-muted-foreground" aria-hidden />
+        <span className="min-w-0 flex-1 truncate font-mono text-[10px] text-foreground">nexustimer.com/redsito</span>
+        <span
+          className={cn(
+            'inline-flex shrink-0 items-center gap-1 px-1.5 py-0.5 font-mono text-[9px] font-bold transition-colors duration-300',
+            copied ? 'bg-[var(--cube-green)] text-background' : 'bg-foreground/10 text-foreground'
+          )}
+        >
+          {copied ? <Check className="size-3" strokeWidth={3} aria-hidden /> : <Copy className="size-3" aria-hidden />}
+          {copied ? 'Copied' : 'Copy'}
+        </span>
       </div>
     </div>
   )
