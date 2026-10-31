@@ -557,24 +557,6 @@
   }
 }
 
-@keyframes lp-cube-spin {
-  from {
-    transform: rotateX(-24deg) rotateY(0deg);
-  }
-  to {
-    transform: rotateX(-24deg) rotateY(360deg);
-  }
-}
-.lp-cube-spin {
-  transform: rotateX(-24deg) rotateY(-35deg);
-  animation: lp-cube-spin 10s linear infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-  .lp-cube-spin {
-    animation: none;
-  }
-}
-
 @keyframes lp-progress {
   from {
     transform: scaleX(0);
