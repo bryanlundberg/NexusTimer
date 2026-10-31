@@ -66,7 +66,7 @@ export async function generateMetadata(): Promise<Metadata> {
     appleWebApp: {
       capable: true,
       statusBarStyle: 'default',
-      title: t('title'),
+      title: 'Nexus Timer',
       startupImage: ['/ios/iTunesArtwork@2x.png']
     },
     robots: {
