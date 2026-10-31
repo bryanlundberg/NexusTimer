@@ -12,7 +12,7 @@ import { logger, serializeError } from '../../lib/logger'
 import { runInBackground } from '../../platform/background'
 import type { NexiAvatarsService } from '../avatars/nexi.service'
 import { recordLog } from '../logs/logs.service'
-import { assignUsername } from '../users/username'
+import { pickUsername } from '../users/username'
 import { welcomeEmail } from './auth.emails'
 import { devLogin } from './dev-login'
 import { hashPassword, verifyPassword } from './password'
@@ -79,21 +79,6 @@ function sendWelcomeEmail(mail: Mailers, email: string, name: string) {
   })
 }
 
-function assignSignupUsername(userId: string, name: string) {
-  return runInBackground('signup-username', async () => {
-    try {
-      await assignUsername(userId, name)
-    } catch (error) {
-      logger.error('signup username failed', { error: serializeError(error) })
-      await recordLog({
-        type: 'api_error',
-        message: error instanceof Error ? error.message : String(error),
-        metadata: { source: 'signup-username', userId, stack: error instanceof Error ? error.stack : undefined }
-      })
-    }
-  })
-}
-
 async function signupAvatar(avatars: SignupAvatars, userId: string) {
   try {
     return await avatars.createForNewUser(userId)
@@ -108,11 +93,17 @@ async function signupAvatar(avatars: SignupAvatars, userId: string) {
   }
 }
 
-export function signupUserHook(avatars: SignupAvatars) {
+export function signupUserHook(
+  avatars: SignupAvatars,
+  chooseUsername: (name: string) => Promise<string> = pickUsername
+) {
   return async (user: Record<string, unknown>) => {
     const id = new ObjectId().toHexString()
-    const image = await signupAvatar(avatars, id)
-    return { data: { ...user, id, image: image ?? '' } }
+    const [image, username] = await Promise.all([
+      signupAvatar(avatars, id),
+      chooseUsername(typeof user.name === 'string' ? user.name : '')
+    ])
+    return { data: { ...user, id, image: image ?? '', username } }
   }
 }
 
@@ -121,7 +112,12 @@ function createAuth({ env, client, mail, avatars }: AuthDeps) {
     baseURL: env.BETTER_AUTH_URL,
     secret: env.BETTER_AUTH_SECRET,
     database: mongodbAdapter(client.db(), { client }),
-    user: { modelName: 'users' },
+    user: {
+      modelName: 'users',
+      additionalFields: {
+        username: { type: 'string', required: false, input: false, returned: false }
+      }
+    },
     session: {
       modelName: 'auth_sessions',
       expiresIn: SESSION_MAX_AGE_SECONDS,
@@ -148,7 +144,6 @@ function createAuth({ env, client, mail, avatars }: AuthDeps) {
         create: {
           before: signupUserHook(avatars),
           after: async (user, ctx) => {
-            void assignSignupUsername(user.id, user.name)
             if (ctx?.path === DEV_LOGIN_PATH) return
             void sendWelcomeEmail(mail, user.email, user.name)
           }

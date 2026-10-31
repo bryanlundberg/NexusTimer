@@ -6,21 +6,22 @@ import { signupUserHook } from '../src/modules/auth/auth'
 vi.mock('../src/modules/logs/logs.service', () => ({ recordLog: vi.fn(async () => {}) }))
 
 const OBJECT_ID = /^[0-9a-f]{24}$/
+const chooseUsername = async (name: string) => `${name.toLowerCase()}_user`
 
 describe('signup avatar hook', () => {
   it('gives the new user an id and the Nexi uploaded for it', async () => {
     const createForNewUser = vi.fn(async (userId: string) => `https://files.test/avatars/${userId}?v=1`)
 
-    const { data } = await signupUserHook({ createForNewUser })({ name: 'Ana', email: 'ana@test.dev' })
+    const { data } = await signupUserHook({ createForNewUser }, chooseUsername)({ name: 'Ana', email: 'ana@test.dev' })
 
     expect(data.id).toMatch(OBJECT_ID)
     expect(createForNewUser).toHaveBeenCalledWith(data.id)
     expect(data.image).toBe(`https://files.test/avatars/${data.id}?v=1`)
-    expect(data).toMatchObject({ name: 'Ana', email: 'ana@test.dev' })
+    expect(data).toMatchObject({ name: 'Ana', email: 'ana@test.dev', username: 'ana_user' })
   })
 
   it('replaces the provider photo', async () => {
-    const hook = signupUserHook({ createForNewUser: async () => 'https://files.test/nexi' })
+    const hook = signupUserHook({ createForNewUser: async () => 'https://files.test/nexi' }, chooseUsername)
 
     expect((await hook({ image: 'https://lh3.googleusercontent.com/photo' })).data.image).toBe(
       'https://files.test/nexi'
@@ -28,7 +29,10 @@ describe('signup avatar hook', () => {
   })
 
   it('never falls back to the provider photo when generation fails', async () => {
-    const hook = signupUserHook({ createForNewUser: async () => Promise.reject(new Error('storage down')) })
+    const hook = signupUserHook(
+      { createForNewUser: async () => Promise.reject(new Error('storage down')) },
+      chooseUsername
+    )
 
     expect((await hook({ image: 'https://lh3.googleusercontent.com/photo' })).data.image).toBe('')
     expect((await hook({ image: null })).data.image).toBe('')
@@ -41,15 +45,23 @@ describe('signup avatar hook', () => {
       baseURL: 'http://localhost:3000',
       secret: 'test-better-auth-secret-0123456789',
       database: memoryAdapter({ user: [], session: [], account: [], verification: [] }),
+      user: {
+        additionalFields: {
+          username: { type: 'string', required: false, input: false, returned: false }
+        }
+      },
       databaseHooks: {
         user: {
           create: {
-            before: signupUserHook({
-              createForNewUser: async (userId) => {
-                uploaded.push(userId)
-                return `https://files.test/avatars/${userId}`
-              }
-            })
+            before: signupUserHook(
+              {
+                createForNewUser: async (userId) => {
+                  uploaded.push(userId)
+                  return `https://files.test/avatars/${userId}`
+                }
+              },
+              chooseUsername
+            )
           }
         }
       }
@@ -64,5 +76,7 @@ describe('signup avatar hook', () => {
     expect(uploaded).toEqual([user.id])
     expect(user.image).toBe(`https://files.test/avatars/${user.id}`)
     expect((await internalAdapter.findUserById(user.id))?.image).toBe(user.image)
+    const stored = await internalAdapter.findUserById(user.id)
+    expect((stored as Record<string, unknown> | null)?.username).toBe('ana_user')
   })
 })
