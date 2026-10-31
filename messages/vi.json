@@ -1694,8 +1694,8 @@
       "scroll": "Cuộn"
     },
     "bento": {
-      "title": "Xây dựng theo cách cuber suy nghĩ",
-      "subtitle": "Không phải một đồng hồ kèm vài tính năng phụ. Mọi thứ xoay quanh các lượt giải của bạn đều ở đây: khối của bạn, bạn bè, tiến bộ và toàn bộ lịch sử của bạn.",
+      "title": "Hơn cả một đồng hồ bấm giờ",
+      "subtitle": "Mỗi lần giải bạn bấm giờ đều được đưa vào thống kê, hồ sơ và quá trình luyện tập của bạn.",
       "smart-title": "Sẵn sàng cho smart cube",
       "smart-desc": "Kết nối smart cube GAN, MoYu hoặc QiYi qua Bluetooth. Mọi bước xoay được ghi lại trực tiếp.",
       "profile-title": "Hồ sơ lưu trọn hành trình của bạn",
@@ -1705,7 +1705,19 @@
       "compare-title": "So sánh hồ sơ",
       "compare-desc": "Xếp nhiều cuber vào một bảng và xem ai thắng ở từng chỉ số.",
       "algs-title": "Công thức",
-      "algs-desc": "Bộ công thức đầy đủ cho mọi trường hợp, sẵn sàng để học và luyện tập."
+      "algs-desc": "Bộ công thức đầy đủ cho mọi trường hợp, sẵn sàng để học và luyện tập.",
+      "stats-benefit": "Xem bạn có thật sự tiến bộ không",
+      "stats-story": "Một lần single may mắn không nói lên nhiều. Chọn bất kỳ tháng nào, đường xu hướng và phân bố lần giải sẽ cho thấy trung bình của bạn có thật sự giảm không, theo từng khối.",
+      "smart-benefit": "Tìm ra chỗ bạn mất thời gian",
+      "smart-story": "Kết nối smart cube GAN, MoYu hoặc QiYi và mọi lần xoay đều được ghi lại. Xem lại bất kỳ lần giải nào, kiểm tra TPS và thời gian cho cross, F2L và tầng cuối.",
+      "algs-benefit": "Học thuật toán mà không bị rối",
+      "algs-story": "Luyện OLL, PLL và nhiều hơn trong trainer, đánh dấu các case đã thuộc và luôn biết còn case nào.",
+      "profile-benefit": "Toàn bộ hành trình cubing trong một liên kết",
+      "profile-story": "Chia sẻ một liên kết là ai cũng xem được PB, khối và dòng thời gian của bạn. Không cần ảnh chụp màn hình hay bảng tính nữa.",
+      "compare-benefit": "Phân cao thấp với bạn bè",
+      "compare-story": "Ai mới thật sự có trung bình 3x3 tốt hơn? Đặt hồ sơ cạnh nhau và xem ai thắng ở từng nội dung.",
+      "offline-benefit": "Vẫn bấm giờ khi không có internet",
+      "offline-story": "Khi đi du lịch, trên máy bay hay ở giải đấu Wi-Fi yếu, đồng hồ vẫn chạy và lưu mọi lần giải trên thiết bị của bạn."
     },
     "cross-platform": {
       "title": "Bấm giờ ở bất cứ đâu",

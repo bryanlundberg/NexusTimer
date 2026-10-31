@@ -1694,8 +1694,8 @@
       "scroll": "Przewiń"
     },
     "bento": {
-      "title": "Zbudowany tak, jak myśli kostkarz",
-      "subtitle": "To nie stoper z dodatkami. Wszystko wokół twoich ułożeń jest tutaj: twoje kostki, twoi ludzie, twoje postępy i cała twoja historia.",
+      "title": "Więcej niż stoper",
+      "subtitle": "Każde zmierzone ułożenie trafia do twoich statystyk, profilu i treningu.",
       "smart-title": "Gotowy na smart kostki",
       "smart-desc": "Połącz smart kostki GAN, MoYu lub QiYi przez Bluetooth. Każdy ruch jest śledzony na żywo.",
       "profile-title": "Profile z całą twoją historią",
@@ -1705,7 +1705,19 @@
       "compare-title": "Porównuj profile",
       "compare-desc": "Zestaw kilku kostkarzy w jednej tabeli i zobacz, kto wygrywa każdą statystykę.",
       "algs-title": "Algorytmy",
-      "algs-desc": "Kompletne zestawy algorytmów dla każdego przypadku, gotowe do nauki i treningu."
+      "algs-desc": "Kompletne zestawy algorytmów dla każdego przypadku, gotowe do nauki i treningu.",
+      "stats-benefit": "Sprawdź, czy naprawdę się poprawiasz",
+      "stats-story": "Szczęśliwy single niewiele mówi. Wybierz dowolny miesiąc, a linia trendu i rozkład ułożeń pokażą, czy twoja średnia naprawdę spadła, osobno dla każdej kostki.",
+      "smart-benefit": "Znajdź miejsce, w którym tracisz czas",
+      "smart-story": "Połącz smart kostkę GAN, MoYu lub QiYi, a każdy ruch zostanie zapisany. Odtwórz dowolne ułożenie, sprawdź TPS i ile zajęły krzyż, F2L i ostatnia warstwa.",
+      "algs-benefit": "Ucz się algorytmów i nie gub się",
+      "algs-story": "Ćwicz OLL, PLL i więcej w trenerze, oznaczaj opanowane przypadki i zawsze wiedz, które jeszcze zostały.",
+      "profile-benefit": "Cała twoja historia w jednym linku",
+      "profile-story": "Udostępnij jeden link, a każdy zobaczy twoje PB, kostki i oś czasu. Koniec ze zrzutami ekranu i arkuszami.",
+      "compare-benefit": "Zmierz się ze znajomymi",
+      "compare-story": "Kto naprawdę ma lepszą średnią w 3x3? Zestawcie swoje profile obok siebie i zobaczcie, kto wygrywa w każdej konkurencji.",
+      "offline-benefit": "Mierzy czas nawet bez internetu",
+      "offline-story": "W podróży, w samolocie czy na zawodach ze słabym Wi-Fi stoper działa dalej i zapisuje każde ułożenie na twoim urządzeniu."
     },
     "cross-platform": {
       "title": "Mierz czasy, gdzie chcesz",

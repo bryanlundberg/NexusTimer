@@ -1672,8 +1672,8 @@
       "scroll": "Rolar"
     },
     "bento": {
-      "title": "Feito como um cuber pensa",
-      "subtitle": "Não é um cronômetro com extras. Tudo o que envolve seus solves vive aqui: seus cubos, sua galera, seu progresso e toda a sua história.",
+      "title": "Mais que um cronômetro",
+      "subtitle": "Cada resolução que você cronometra alimenta suas estatísticas, seu perfil e seu treino.",
       "smart-title": "Pronto para smart cubes",
       "smart-desc": "Conecte smart cubes GAN, MoYu ou QiYi por Bluetooth. Cada giro é registrado ao vivo, movimento a movimento.",
       "profile-title": "Perfis com toda a sua trajetória",
@@ -1683,7 +1683,19 @@
       "compare-title": "Compare perfis",
       "compare-desc": "Coloque vários cubers em uma tabela e veja quem leva cada estatística.",
       "algs-title": "Algoritmos",
-      "algs-desc": "Conjuntos completos de algoritmos para cada caso, prontos para estudar e treinar."
+      "algs-desc": "Conjuntos completos de algoritmos para cada caso, prontos para estudar e treinar.",
+      "stats-benefit": "Veja se você está mesmo melhorando",
+      "stats-story": "Um single de sorte diz pouco. Escolha qualquer mês e sua linha de tendência e a distribuição das resoluções mostram se sua média caiu de verdade, cubo por cubo.",
+      "smart-benefit": "Descubra onde você perde tempo",
+      "smart-story": "Conecte um cubo inteligente GAN, MoYu ou QiYi e cada movimento fica registrado. Reveja qualquer resolução, confira seu TPS e quanto tempo levaram a cruz, o F2L e a última camada.",
+      "algs-benefit": "Aprenda algoritmos sem se perder",
+      "algs-story": "Pratique OLL, PLL e mais no trainer, marque os casos que já aprendeu e saiba sempre quais faltam.",
+      "profile-benefit": "Toda a sua história no cubo em um link",
+      "profile-story": "Compartilhe um link e qualquer pessoa verá seus PBs, seus cubos e sua linha do tempo. Chega de prints e planilhas.",
+      "compare-benefit": "Desafie seus amigos",
+      "compare-story": "Quem tem mesmo a melhor média no 3x3? Coloquem os perfis lado a lado e vejam quem ganha em cada evento.",
+      "offline-benefit": "Continua cronometrando sem internet",
+      "offline-story": "Em viagem, no avião ou em uma competição com Wi-Fi ruim, o cronômetro continua funcionando e salva cada resolução no seu dispositivo."
     },
     "cross-platform": {
       "title": "Cronometre de onde quiser",

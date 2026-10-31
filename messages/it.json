@@ -1694,8 +1694,8 @@
       "scroll": "Scorri"
     },
     "bento": {
-      "title": "Fatto come ragiona un cuber",
-      "subtitle": "Non è un timer con qualche extra. Tutto ciò che ruota attorno ai tuoi solve vive qui: i tuoi cubi, la tua gente, i tuoi progressi e tutta la tua storia.",
+      "title": "Più di un timer",
+      "subtitle": "Ogni risoluzione che cronometri alimenta le tue statistiche, il tuo profilo e il tuo allenamento.",
       "smart-title": "Pronto per gli smart cube",
       "smart-desc": "Collega smart cube GAN, MoYu o QiYi via Bluetooth. Ogni rotazione viene tracciata dal vivo, mossa per mossa.",
       "profile-title": "Profili con tutto il tuo percorso",
@@ -1705,7 +1705,19 @@
       "compare-title": "Confronta i profili",
       "compare-desc": "Metti più cuber in una tabella e scopri chi vince ogni statistica.",
       "algs-title": "Algoritmi",
-      "algs-desc": "Set completi di algoritmi per ogni caso, pronti da studiare e allenare."
+      "algs-desc": "Set completi di algoritmi per ogni caso, pronti da studiare e allenare.",
+      "stats-benefit": "Scopri se stai davvero migliorando",
+      "stats-story": "Un single fortunato dice poco. Scegli un mese qualsiasi e la linea di tendenza e la distribuzione delle risoluzioni mostrano se la tua media è davvero scesa, cubo per cubo.",
+      "smart-benefit": "Scopri dove perdi tempo",
+      "smart-story": "Collega uno smart cube GAN, MoYu o QiYi e ogni mossa viene registrata. Rivedi qualsiasi risoluzione, controlla il tuo TPS e quanto hai impiegato per croce, F2L e ultimo strato.",
+      "algs-benefit": "Impara gli algoritmi senza perdere il conto",
+      "algs-story": "Allenati su OLL, PLL e altro nel trainer, segna i casi che hai imparato e sappi sempre quali ti mancano.",
+      "profile-benefit": "Tutta la tua storia da cuber in un link",
+      "profile-story": "Condividi un link e chiunque vedrà i tuoi PB, i tuoi cubi e la tua timeline. Niente più screenshot o fogli di calcolo.",
+      "compare-benefit": "Sfida i tuoi amici",
+      "compare-story": "Chi ha davvero la media migliore nel 3x3? Mettete i profili fianco a fianco e scoprite chi vince ogni evento.",
+      "offline-benefit": "Continua a cronometrare senza internet",
+      "offline-story": "In viaggio, in aereo o a una competizione con un Wi-Fi scarso, il timer continua a funzionare e salva ogni risoluzione sul tuo dispositivo."
     },
     "cross-platform": {
       "title": "Cronometra dove vuoi",

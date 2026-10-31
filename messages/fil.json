@@ -1694,8 +1694,8 @@
       "scroll": "Mag-scroll"
     },
     "bento": {
-      "title": "Ginawa ayon sa isip ng cuber",
-      "subtitle": "Hindi ito timer na may extras. Nandito ang lahat ng tungkol sa mga solve mo: ang mga cube mo, ang mga kasama mo, ang progreso mo at ang buong kasaysayan mo.",
+      "title": "Higit pa sa isang timer",
+      "subtitle": "Bawat solve na tina-time mo ay napupunta sa iyong stats, profile at pagsasanay.",
       "smart-title": "Handa sa smart cube",
       "smart-desc": "Ikonekta ang GAN, MoYu, o QiYi smart cubes gamit ang Bluetooth. Bawat ikot ay live na naitatala.",
       "profile-title": "Mga profile na may buong kuwento mo",
@@ -1705,7 +1705,19 @@
       "compare-title": "Ikumpara ang mga profile",
       "compare-desc": "Ilagay ang ilang cuber sa isang table at tingnan kung sino ang nangunguna sa bawat stat.",
       "algs-title": "Mga algorithm",
-      "algs-desc": "Kumpletong set ng mga algorithm para sa bawat case, handa para pag-aralan at sanayin."
+      "algs-desc": "Kumpletong set ng mga algorithm para sa bawat case, handa para pag-aralan at sanayin.",
+      "stats-benefit": "Tingnan kung talagang gumagaling ka",
+      "stats-story": "Kaunti lang ang sinasabi ng isang swerteng single. Pumili ng kahit anong buwan at ipapakita ng trend line at solve distribution kung talagang bumaba ang average mo, kada cube.",
+      "smart-benefit": "Alamin kung saan ka nawawalan ng oras",
+      "smart-story": "Ikonekta ang GAN, MoYu o QiYi smart cube at nire-record ang bawat ikot. I-replay ang kahit anong solve, tingnan ang TPS mo at kung gaano katagal ang cross, F2L at last layer.",
+      "algs-benefit": "Matuto ng mga algorithm nang hindi nalilito",
+      "algs-story": "Sanayin ang OLL, PLL at iba pa sa trainer, markahan ang mga case na natutunan mo na at laging alam kung alin pa ang kulang.",
+      "profile-benefit": "Ang buong cubing story mo sa isang link",
+      "profile-story": "Magbahagi ng isang link at makikita ng kahit sino ang mga PB, cube at timeline mo. Wala nang screenshot o spreadsheet.",
+      "compare-benefit": "Makipagsukatan sa mga kaibigan mo",
+      "compare-story": "Sino ba talaga ang may mas magandang 3x3 average? Pagtabihin ang inyong mga profile at tingnan kung sino ang panalo sa bawat event.",
+      "offline-benefit": "Tuloy ang pag-time kahit walang internet",
+      "offline-story": "Sa biyahe, sa eroplano o sa competition na mahina ang Wi-Fi, tuloy ang timer at sine-save ang bawat solve sa device mo."
     },
     "cross-platform": {
       "title": "Mag-time kahit saan ka man",

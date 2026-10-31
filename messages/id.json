@@ -1694,8 +1694,8 @@
       "scroll": "Gulir"
     },
     "bento": {
-      "title": "Dibuat seperti cara cuber berpikir",
-      "subtitle": "Bukan timer dengan fitur tambahan. Semua hal seputar solve-mu ada di sini: kubusmu, temanmu, progresmu, dan seluruh riwayatmu.",
+      "title": "Lebih dari sekadar timer",
+      "subtitle": "Setiap solve yang kamu catat mengisi statistik, profil, dan latihanmu.",
       "smart-title": "Siap smart cube",
       "smart-desc": "Sambungkan smart cube GAN, MoYu, atau QiYi lewat Bluetooth. Setiap putaran terekam langsung.",
       "profile-title": "Profil dengan seluruh perjalananmu",
@@ -1705,7 +1705,19 @@
       "compare-title": "Bandingkan profil",
       "compare-desc": "Susun beberapa cuber dalam satu tabel dan lihat siapa yang unggul di tiap statistik.",
       "algs-title": "Algoritma",
-      "algs-desc": "Set algoritma lengkap untuk setiap kasus, siap dipelajari dan dilatih."
+      "algs-desc": "Set algoritma lengkap untuk setiap kasus, siap dipelajari dan dilatih.",
+      "stats-benefit": "Lihat apakah kamu benar-benar makin cepat",
+      "stats-story": "Satu single yang beruntung tidak banyak berarti. Pilih bulan mana pun, dan garis tren serta distribusi solve menunjukkan apakah rata-ratamu benar-benar turun, per kubus.",
+      "smart-benefit": "Temukan di mana kamu kehilangan waktu",
+      "smart-story": "Hubungkan smart cube GAN, MoYu, atau QiYi dan setiap putaran tercatat. Putar ulang solve mana pun, cek TPS-mu, dan lihat berapa lama cross, F2L, dan last layer.",
+      "algs-benefit": "Belajar algoritma tanpa kehilangan jejak",
+      "algs-story": "Latih OLL, PLL, dan lainnya di trainer, tandai case yang sudah kamu kuasai, dan selalu tahu mana yang tersisa.",
+      "profile-benefit": "Seluruh perjalanan cubing-mu dalam satu link",
+      "profile-story": "Bagikan satu link dan siapa pun bisa melihat PB, kubus, dan timeline-mu. Tanpa screenshot atau spreadsheet lagi.",
+      "compare-benefit": "Adu dengan teman-temanmu",
+      "compare-story": "Siapa yang benar-benar punya rata-rata 3x3 lebih baik? Sandingkan profil kalian dan lihat siapa yang menang di tiap event.",
+      "offline-benefit": "Tetap mencatat waktu tanpa internet",
+      "offline-story": "Saat bepergian, di pesawat, atau di kompetisi dengan Wi-Fi buruk, timer tetap berjalan dan menyimpan setiap solve di perangkatmu."
     },
     "cross-platform": {
       "title": "Catat waktumu di mana saja",

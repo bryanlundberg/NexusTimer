@@ -1672,8 +1672,8 @@
       "scroll": "Scrollen"
     },
     "bento": {
-      "title": "Gebaut, wie ein Cuber denkt",
-      "subtitle": "Kein Timer mit Extras. Alles rund um deine Solves lebt hier: deine Würfel, deine Leute, dein Fortschritt und deine ganze Geschichte.",
+      "title": "Mehr als ein Timer",
+      "subtitle": "Jeder Solve, den du stoppst, fließt in deine Statistiken, dein Profil und dein Training.",
       "smart-title": "Bereit für Smart Cubes",
       "smart-desc": "Verbinde GAN, MoYu oder QiYi Smart Cubes per Bluetooth. Jeder Zug wird live erfasst, Move für Move.",
       "profile-title": "Profile mit deiner ganzen Geschichte",
@@ -1683,7 +1683,19 @@
       "compare-title": "Profile vergleichen",
       "compare-desc": "Stelle mehrere Cuber in einer Tabelle gegenüber und sieh, wer welche Statistik gewinnt.",
       "algs-title": "Algorithmen",
-      "algs-desc": "Komplette Algorithmus-Sets für jeden Fall, bereit zum Lernen und Trainieren."
+      "algs-desc": "Komplette Algorithmus-Sets für jeden Fall, bereit zum Lernen und Trainieren.",
+      "stats-benefit": "Sieh, ob du wirklich besser wirst",
+      "stats-story": "Ein Glücks-Single sagt wenig. Wähle einen beliebigen Monat, und deine Trendlinie und Solve-Verteilung zeigen, ob dein Average wirklich gesunken ist, Würfel für Würfel.",
+      "smart-benefit": "Finde heraus, wo du Zeit verlierst",
+      "smart-story": "Verbinde einen GAN-, MoYu- oder QiYi-Smart-Cube, und jeder Zug wird aufgezeichnet. Spiele jeden Solve erneut ab, prüfe deine TPS und sieh, wie lange Cross, F2L und letzte Ebene gedauert haben.",
+      "algs-benefit": "Algorithmen lernen, ohne den Überblick zu verlieren",
+      "algs-story": "Trainiere OLL, PLL und mehr im Trainer, markiere die gelernten Fälle und wisse immer, welche noch fehlen.",
+      "profile-benefit": "Deine ganze Cubing-Geschichte in einem Link",
+      "profile-story": "Teile einen Link, und jeder sieht deine PBs, deine Würfel und deine Timeline. Keine Screenshots, keine Tabellen mehr.",
+      "compare-benefit": "Miss dich mit deinen Freunden",
+      "compare-story": "Wer hat wirklich den besseren 3x3-Average? Stellt eure Profile nebeneinander und seht, wer jedes Event gewinnt.",
+      "offline-benefit": "Stoppt weiter ohne Internet",
+      "offline-story": "Auf Reisen, im Flugzeug oder auf einem Wettbewerb mit schlechtem WLAN läuft der Timer weiter und speichert jeden Solve auf deinem Gerät."
     },
     "cross-platform": {
       "title": "Stoppe deine Zeiten, wo du willst",

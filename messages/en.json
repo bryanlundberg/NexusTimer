@@ -1694,8 +1694,8 @@
       "scroll": "Scroll"
     },
     "bento": {
-      "title": "Built like a cuber thinks",
-      "subtitle": "Not a timer with extras. Everything around your solves lives here: your cubes, your people, your progress and your whole history.",
+      "title": "More than a timer",
+      "subtitle": "Every solve you time feeds your statistics, your profile and your training.",
       "smart-title": "Smart cube ready",
       "smart-desc": "Pair GAN, MoYu or QiYi smart cubes over Bluetooth. Every turn is tracked live, move by move.",
       "profile-title": "Profiles with your whole story",
@@ -1705,7 +1705,19 @@
       "compare-title": "Compare profiles",
       "compare-desc": "Line up several cubers in one table and see who takes each stat.",
       "algs-title": "Algorithms",
-      "algs-desc": "Full algorithm sets for every case, ready to study and train."
+      "algs-desc": "Full algorithm sets for every case, ready to study and train.",
+      "stats-benefit": "See if you are really improving",
+      "stats-story": "A lucky single says little. Pick any month and your trend line and solve distribution show whether your average actually dropped, cube by cube.",
+      "smart-benefit": "Find where your solve loses time",
+      "smart-story": "Pair a GAN, MoYu or QiYi smart cube and every turn is recorded. Replay any solve, check your TPS and see how long cross, F2L and last layer took.",
+      "algs-benefit": "Learn algorithms without losing track",
+      "algs-story": "Drill OLL, PLL and more in the trainer, mark the cases you have learned and always know which ones are left.",
+      "profile-benefit": "Your whole cubing story in one link",
+      "profile-story": "Share one link and anyone can see your PBs, your cubes and your timeline. No more screenshots or spreadsheets.",
+      "compare-benefit": "Settle it with your friends",
+      "compare-story": "Who really has the better 3x3 average? Put your profiles side by side and see who wins each event.",
+      "offline-benefit": "Keeps timing without internet",
+      "offline-story": "On a trip, on a plane or at a competition with bad Wi-Fi, the timer keeps working and saves every solve on your device."
     },
     "cross-platform": {
       "title": "Time your solves anywhere",

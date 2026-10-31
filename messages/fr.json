@@ -1672,8 +1672,8 @@
       "scroll": "Défiler"
     },
     "bento": {
-      "title": "Conçu comme pense un cubeur",
-      "subtitle": "Pas un timer avec des extras. Tout ce qui entoure vos résolutions vit ici : vos cubes, vos amis, vos progrès et tout votre historique.",
+      "title": "Plus qu'un chronomètre",
+      "subtitle": "Chaque résolution chronométrée alimente vos statistiques, votre profil et votre entraînement.",
       "smart-title": "Prêt pour les smart cubes",
       "smart-desc": "Connecte des smart cubes GAN, MoYu ou QiYi en Bluetooth. Chaque rotation est suivie en direct, mouvement par mouvement.",
       "profile-title": "Des profils avec tout votre parcours",
@@ -1683,7 +1683,19 @@
       "compare-title": "Comparer les profils",
       "compare-desc": "Aligne plusieurs cubeurs dans un tableau et vois qui remporte chaque stat.",
       "algs-title": "Algorithmes",
-      "algs-desc": "Des sets d'algorithmes complets pour chaque cas, prêts à étudier et à entraîner."
+      "algs-desc": "Des sets d'algorithmes complets pour chaque cas, prêts à étudier et à entraîner.",
+      "stats-benefit": "Voyez si vous progressez vraiment",
+      "stats-story": "Un single chanceux ne dit pas grand-chose. Choisissez n'importe quel mois et votre courbe de tendance et la distribution de vos résolutions montrent si votre moyenne a vraiment baissé, cube par cube.",
+      "smart-benefit": "Trouvez où vous perdez du temps",
+      "smart-story": "Connectez un smart cube GAN, MoYu ou QiYi et chaque mouvement est enregistré. Revoyez n'importe quelle résolution, vérifiez votre TPS et le temps passé sur la croix, le F2L et la dernière couche.",
+      "algs-benefit": "Apprenez les algorithmes sans vous perdre",
+      "algs-story": "Entraînez-vous sur OLL, PLL et plus dans le trainer, marquez les cas appris et sachez toujours lesquels il vous reste.",
+      "profile-benefit": "Toute votre histoire de cubeur en un lien",
+      "profile-story": "Partagez un lien et n'importe qui voit vos PB, vos cubes et votre timeline. Plus de captures d'écran ni de tableurs.",
+      "compare-benefit": "Mesurez-vous à vos amis",
+      "compare-story": "Qui a vraiment la meilleure moyenne en 3x3 ? Mettez vos profils côte à côte et voyez qui gagne chaque épreuve.",
+      "offline-benefit": "Continue de chronométrer sans internet",
+      "offline-story": "En voyage, dans un avion ou en compétition avec un mauvais Wi-Fi, le chronomètre continue de fonctionner et enregistre chaque résolution sur votre appareil."
     },
     "cross-platform": {
       "title": "Chronomètre où tu veux",
