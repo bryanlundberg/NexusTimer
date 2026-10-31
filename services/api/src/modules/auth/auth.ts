@@ -12,6 +12,7 @@ import { logger, serializeError } from '../../lib/logger'
 import { runInBackground } from '../../platform/background'
 import type { NexiAvatarsService } from '../avatars/nexi.service'
 import { recordLog } from '../logs/logs.service'
+import { assignUsername } from '../users/username'
 import { welcomeEmail } from './auth.emails'
 import { devLogin } from './dev-login'
 import { hashPassword, verifyPassword } from './password'
@@ -78,6 +79,21 @@ function sendWelcomeEmail(mail: Mailers, email: string, name: string) {
   })
 }
 
+function assignSignupUsername(userId: string, name: string) {
+  return runInBackground('signup-username', async () => {
+    try {
+      await assignUsername(userId, name)
+    } catch (error) {
+      logger.error('signup username failed', { error: serializeError(error) })
+      await recordLog({
+        type: 'api_error',
+        message: error instanceof Error ? error.message : String(error),
+        metadata: { source: 'signup-username', userId, stack: error instanceof Error ? error.stack : undefined }
+      })
+    }
+  })
+}
+
 async function signupAvatar(avatars: SignupAvatars, userId: string) {
   try {
     return await avatars.createForNewUser(userId)
@@ -132,6 +148,7 @@ function createAuth({ env, client, mail, avatars }: AuthDeps) {
         create: {
           before: signupUserHook(avatars),
           after: async (user, ctx) => {
+            void assignSignupUsername(user.id, user.name)
             if (ctx?.path === DEV_LOGIN_PATH) return
             void sendWelcomeEmail(mail, user.email, user.name)
           }
