@@ -1552,6 +1552,10 @@
       "key14": "world cubing association"
     },
     "pages": {
+      "home": {
+        "title": "Free Speedcubing Timer and Training Platform",
+        "description": "Free, open source speedcubing timer for every WCA puzzle. Time solves, drill algorithms, race other cubers and track every stat. Works offline."
+      },
       "timer": {
         "title": "Timer",
         "description": "Free online Rubik's cube timer with scrambles, inspection, smart cube support and detailed statistics for every solve. Works offline."
@@ -1750,7 +1754,12 @@
       "before": "A different tab for everything",
       "after": "One account for everything",
       "spreadsheet": "Spreadsheet",
-      "learned": "Learned algorithms"
+      "learned": "Learned algorithms",
+      "devices": "On every device, always in sync",
+      "computer": "Computer",
+      "tablet": "Tablet",
+      "phone": "Phone",
+      "synced": "Synced"
     },
     "about": {
       "p1": "NexusTimer is a free speedcubing timer for the Rubik's Cube and every WCA puzzle: 2x2 to 7x7, Pyraminx, Megaminx, Skewb, Square-1 and Clock. Start each solve with the space bar, a tap or a Stackmat timer, use WCA inspection if you want it, and keep a separate session for every cube you own.",

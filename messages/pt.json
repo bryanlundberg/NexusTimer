@@ -1732,7 +1732,12 @@
       "before": "Uma aba diferente para cada coisa",
       "after": "Uma conta para tudo",
       "spreadsheet": "Planilha",
-      "learned": "Algoritmos aprendidos"
+      "learned": "Algoritmos aprendidos",
+      "devices": "Em todos os seus dispositivos, sempre sincronizado",
+      "computer": "Computador",
+      "tablet": "Tablet",
+      "phone": "Celular",
+      "synced": "Sincronizado"
     },
     "about": {
       "p1": "O NexusTimer é um timer de speedcubing gratuito para o cubo mágico e todos os puzzles da WCA: do 2x2 ao 7x7, Pyraminx, Megaminx, Skewb, Square-1 e Clock. Comece cada resolução com a barra de espaço, um toque ou um timer Stackmat, use a inspeção WCA se quiser e mantenha uma sessão separada para cada cubo que você tem.",
@@ -1804,6 +1809,10 @@
       "key14": "world cubing association"
     },
     "pages": {
+      "home": {
+        "title": "Cronômetro e plataforma de speedcubing grátis",
+        "description": "Cronômetro de speedcubing gratuito e de código aberto para todos os puzzles da WCA. Cronometre resoluções, treine algoritmos, dispute com outros cubers e acompanhe cada estatística. Funciona offline."
+      },
       "timer": {
         "title": "Cronômetro",
         "description": "Cronômetro de cubo mágico online e gratuito com embaralhamentos, inspeção, cubos inteligentes e estatísticas detalhadas de cada resolução. Funciona offline."

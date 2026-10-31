@@ -1552,6 +1552,10 @@
       "key14": "asociación mundial de cuberos"
     },
     "pages": {
+      "home": {
+        "title": "Cronómetro y plataforma de speedcubing gratis",
+        "description": "Cronómetro de speedcubing gratis y de código abierto para todos los puzzles WCA. Cronometra solves, entrena algoritmos, compite con otros cubers y sigue cada estadística. Funciona sin conexión."
+      },
       "timer": {
         "title": "Cronómetro",
         "description": "Cronómetro de cubo Rubik online y gratis con mezclas, inspección, cubos inteligentes y estadísticas detalladas de cada resolución. Funciona sin conexión."
@@ -1750,7 +1754,12 @@
       "before": "Una pestaña distinta para cada cosa",
       "after": "Una cuenta para todo",
       "spreadsheet": "Hoja de cálculo",
-      "learned": "Algoritmos aprendidos"
+      "learned": "Algoritmos aprendidos",
+      "devices": "En todos tus dispositivos, siempre sincronizado",
+      "computer": "Computadora",
+      "tablet": "Tablet",
+      "phone": "Teléfono",
+      "synced": "Sincronizado"
     },
     "about": {
       "p1": "NexusTimer es un cronómetro de speedcubing gratuito para el cubo de Rubik y todos los puzzles de la WCA: de 2x2 a 7x7, Pyraminx, Megaminx, Skewb, Square-1 y Clock. Empieza cada solve con la barra espaciadora, un toque o un Stackmat, usa la inspección WCA si quieres y lleva una sesión distinta para cada cubo que tengas.",

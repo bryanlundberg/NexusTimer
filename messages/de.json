@@ -1732,7 +1732,12 @@
       "before": "Für alles ein anderer Tab",
       "after": "Ein Konto für alles",
       "spreadsheet": "Tabelle",
-      "learned": "Gelernte Algorithmen"
+      "learned": "Gelernte Algorithmen",
+      "devices": "Auf jedem Gerät, immer synchron",
+      "computer": "Computer",
+      "tablet": "Tablet",
+      "phone": "Handy",
+      "synced": "Synchronisiert"
     },
     "about": {
       "p1": "NexusTimer ist ein kostenloser Speedcubing-Timer für den Zauberwürfel und alle WCA-Puzzles: 2x2 bis 7x7, Pyraminx, Megaminx, Skewb, Square-1 und Clock. Starte jede Lösung mit der Leertaste, einem Tippen oder einem Stackmat-Timer, nutze die WCA-Inspektion, wenn du willst, und führe für jeden deiner Würfel eine eigene Session.",
@@ -1804,6 +1809,10 @@
       "key14": "world cubing association"
     },
     "pages": {
+      "home": {
+        "title": "Kostenloser Speedcubing-Timer und Trainingsplattform",
+        "description": "Kostenloser Open-Source-Speedcubing-Timer für alle WCA-Puzzles. Stoppe Solves, trainiere Algorithmen, tritt gegen andere Cuber an und verfolge jede Statistik. Auch offline."
+      },
       "timer": {
         "title": "Timer",
         "description": "Kostenloser Online-Timer für den Zauberwürfel mit Scrambles, Inspektion, Smart-Cube-Support und detaillierten Statistiken zu jedem Solve. Auch offline."

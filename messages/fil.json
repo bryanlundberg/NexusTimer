@@ -1552,6 +1552,10 @@
       "key14": "world cubing association"
     },
     "pages": {
+      "home": {
+        "title": "Libreng Speedcubing Timer at Plataporma sa Pagsasanay",
+        "description": "Libre at open source na speedcubing timer para sa bawat WCA puzzle. I-time ang mga solve, sanayin ang mga algorithm, makipagkarera sa ibang cuber at subaybayan ang bawat stat. Gumagana kahit offline."
+      },
       "timer": {
         "title": "Timer",
         "description": "Libreng online na Rubik's cube timer na may scramble, inspection, suporta sa smart cube at detalyadong estadistika sa bawat solve. Gumagana kahit offline."
@@ -1750,7 +1754,12 @@
       "before": "Ibang tab para sa bawat bagay",
       "after": "Iisang account para sa lahat",
       "spreadsheet": "Spreadsheet",
-      "learned": "Mga natutunang algorithm"
+      "learned": "Mga natutunang algorithm",
+      "devices": "Sa bawat device, laging naka-sync",
+      "computer": "Computer",
+      "tablet": "Tablet",
+      "phone": "Telepono",
+      "synced": "Naka-sync"
     },
     "about": {
       "p1": "Ang NexusTimer ay libreng speedcubing timer para sa Rubik's Cube at sa bawat WCA puzzle: 2x2 hanggang 7x7, Pyraminx, Megaminx, Skewb, Square-1 at Clock. Simulan ang bawat solve gamit ang space bar, isang tap o Stackmat timer, gamitin ang WCA inspection kung gusto mo, at magkaroon ng hiwalay na session para sa bawat cube mo.",

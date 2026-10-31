@@ -1552,6 +1552,10 @@
       "key14": "world cube association"
     },
     "pages": {
+      "home": {
+        "title": "Đồng hồ speedcubing và nền tảng luyện tập miễn phí",
+        "description": "Đồng hồ speedcubing miễn phí, mã nguồn mở cho mọi puzzle WCA. Bấm giờ các lần giải, luyện thuật toán, thi đấu với các cuber khác và theo dõi mọi chỉ số. Dùng được cả khi ngoại tuyến."
+      },
       "timer": {
         "title": "Đồng hồ",
         "description": "Bộ đếm giờ Rubik trực tuyến miễn phí với xáo trộn, thời gian quan sát, hỗ trợ smart cube và thống kê chi tiết cho mỗi lần giải. Dùng được cả khi ngoại tuyến."
@@ -1750,7 +1754,12 @@
       "before": "Mỗi việc một tab riêng",
       "after": "Một tài khoản cho mọi thứ",
       "spreadsheet": "Bảng tính",
-      "learned": "Thuật toán đã học"
+      "learned": "Thuật toán đã học",
+      "devices": "Trên mọi thiết bị, luôn đồng bộ",
+      "computer": "Máy tính",
+      "tablet": "Máy tính bảng",
+      "phone": "Điện thoại",
+      "synced": "Đã đồng bộ"
     },
     "about": {
       "p1": "NexusTimer là bộ bấm giờ speedcubing miễn phí cho khối Rubik và mọi puzzle của WCA: từ 2x2 đến 7x7, Pyraminx, Megaminx, Skewb, Square-1 và Clock. Bắt đầu mỗi lượt giải bằng phím cách, một cú chạm hoặc bộ bấm giờ Stackmat, dùng thời gian quan sát WCA nếu muốn, và giữ một phiên riêng cho từng khối bạn có.",

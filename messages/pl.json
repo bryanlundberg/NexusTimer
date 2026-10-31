@@ -1552,6 +1552,10 @@
       "key14": "world cube association"
     },
     "pages": {
+      "home": {
+        "title": "Darmowy timer do speedcubingu i platforma treningowa",
+        "description": "Darmowy timer do speedcubingu open source dla każdej układanki WCA. Mierz czasy ułożeń, trenuj algorytmy, rywalizuj z innymi cuberami i śledź każdą statystykę. Działa offline."
+      },
       "timer": {
         "title": "Stoper",
         "description": "Darmowy timer online do kostki Rubika z generatorem scramble, inspekcją, obsługą smart kostek i szczegółowymi statystykami każdego ułożenia. Działa offline."
@@ -1750,7 +1754,12 @@
       "before": "Inna karta do każdej rzeczy",
       "after": "Jedno konto do wszystkiego",
       "spreadsheet": "Arkusz kalkulacyjny",
-      "learned": "Nauczone algorytmy"
+      "learned": "Nauczone algorytmy",
+      "devices": "Na każdym urządzeniu, zawsze zsynchronizowane",
+      "computer": "Komputer",
+      "tablet": "Tablet",
+      "phone": "Telefon",
+      "synced": "Zsynchronizowano"
     },
     "about": {
       "p1": "NexusTimer to darmowy timer do speedcubingu dla kostki Rubika i wszystkich łamigłówek WCA: od 2x2 do 7x7, Pyraminx, Megaminx, Skewb, Square-1 i Clock. Zaczynaj każde ułożenie spacją, dotknięciem albo timerem Stackmat, korzystaj z inspekcji WCA, jeśli chcesz, i prowadź osobną sesję dla każdej swojej kostki.",

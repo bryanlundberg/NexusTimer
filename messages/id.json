@@ -1552,6 +1552,10 @@
       "key14": "world cube association"
     },
     "pages": {
+      "home": {
+        "title": "Timer Speedcubing dan Platform Latihan Gratis",
+        "description": "Timer speedcubing gratis dan open source untuk semua puzzle WCA. Catat waktu solve, latih algoritma, bertanding dengan cuber lain, dan pantau setiap statistik. Bisa dipakai offline."
+      },
       "timer": {
         "title": "Timer",
         "description": "Timer kubus Rubik online gratis dengan scramble, inspeksi, dukungan smart cube, dan statistik lengkap untuk setiap solve. Bisa dipakai offline."
@@ -1750,7 +1754,12 @@
       "before": "Tab berbeda untuk setiap hal",
       "after": "Satu akun untuk semuanya",
       "spreadsheet": "Spreadsheet",
-      "learned": "Algoritma yang sudah dipelajari"
+      "learned": "Algoritma yang sudah dipelajari",
+      "devices": "Di setiap perangkat, selalu tersinkron",
+      "computer": "Komputer",
+      "tablet": "Tablet",
+      "phone": "Ponsel",
+      "synced": "Tersinkron"
     },
     "about": {
       "p1": "NexusTimer adalah timer speedcubing gratis untuk Rubik's Cube dan semua puzzle WCA: 2x2 sampai 7x7, Pyraminx, Megaminx, Skewb, Square-1 dan Clock. Mulai setiap solve dengan tombol spasi, ketukan atau timer Stackmat, gunakan inspeksi WCA jika mau, dan simpan sesi terpisah untuk setiap kubus yang kamu punya.",
