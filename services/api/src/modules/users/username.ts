@@ -6,11 +6,15 @@ import {
   usernameIssue
 } from '@nexustimer/contracts'
 import { Types } from 'mongoose'
+import { logger, serializeError } from '../../lib/logger'
 import { UserModel } from './users.model'
 
 const FALLBACK_BASE = 'cuber'
 const SUFFIX_DIGIT_STEPS = [4, 5, 6]
 const ATTEMPTS_PER_STEP = 4
+const LAST_RESORT_LENGTH = 12
+const LAST_RESORT_ATTEMPTS = 3
+const LAST_RESORT_ALPHABET = 'abcdefghijklmnopqrstuvwxyz0123456789'
 const DUPLICATE_KEY = 11000
 
 export const USERS_VALIDATOR = {
@@ -76,13 +80,46 @@ export const mongoUsernameStore: UsernameStore = {
   }
 }
 
+export function lastResortUsername(random: () => number = Math.random) {
+  let tail = ''
+  for (let i = 0; i < LAST_RESORT_LENGTH; i++)
+    tail += LAST_RESORT_ALPHABET[Math.floor(random() * LAST_RESORT_ALPHABET.length)]
+  return `${FALLBACK_BASE}_${tail}`
+}
+
+export type TakenLookup = (candidates: string[]) => Promise<Set<string>>
+
+export const mongoTakenUsernames: TakenLookup = async (candidates) => {
+  const docs = await UserModel.find({ username: { $in: candidates } }, { username: 1 }).lean()
+  return new Set(docs.map((doc) => doc.username as string))
+}
+
+export async function pickUsername(
+  name: string,
+  lookup: TakenLookup = mongoTakenUsernames,
+  random: () => number = Math.random
+) {
+  const candidates = usernameCandidates(name, random)
+  try {
+    const taken = await lookup(candidates)
+    const free = candidates.find((candidate) => !taken.has(candidate))
+    if (free) return free
+  } catch (error) {
+    logger.error('username lookup failed', { error: serializeError(error) })
+  }
+  return lastResortUsername(random)
+}
+
 export async function assignUsername(
   userId: string,
   name: string,
   store: UsernameStore = mongoUsernameStore,
   random: () => number = Math.random
 ) {
-  for (const candidate of usernameCandidates(name, random)) {
+  const candidates = usernameCandidates(name, random)
+  for (let i = 0; i < LAST_RESORT_ATTEMPTS; i++) candidates.push(lastResortUsername(random))
+
+  for (const candidate of candidates) {
     const result = await store.claim(userId, candidate)
     if (result === 'claimed') return candidate
     if (result === 'already_set') return null

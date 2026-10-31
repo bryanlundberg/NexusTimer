@@ -5,6 +5,8 @@ import {
   USERS_VALIDATOR,
   type UsernameStore,
   assignUsername,
+  lastResortUsername,
+  pickUsername,
   usernameBase,
   usernameCandidates
 } from '../src/modules/users/username'
@@ -86,6 +88,7 @@ describe('username generation', () => {
     expect(usernameBase('魔方小王')).toBeNull()
     expect(usernameBase('12345')).toBeNull()
     expect(usernameBase('Al')).toBeNull()
+    expect(usernameBase('🧊🔥✨')).toBeNull()
   })
 
   it('tries the bare base first and then suffixed variants that fit', () => {
@@ -138,8 +141,42 @@ describe('assignUsername', () => {
     expect(claims).toEqual(['cube_king'])
   })
 
-  it('fails loudly when every candidate is taken', async () => {
+  it('falls back to a random username when every candidate is taken', async () => {
     const { store } = fakeStore(usernameCandidates('Cube king', fixedRandom))
+    expect(await assignUsername('u1', 'Cube king', store, fixedRandom)).toBe(lastResortUsername(fixedRandom))
+  })
+
+  it('only gives up when even the random usernames are taken', async () => {
+    const { store } = fakeStore([...usernameCandidates('Cube king', fixedRandom), lastResortUsername(fixedRandom)])
     await expect(assignUsername('u1', 'Cube king', store, fixedRandom)).rejects.toThrow('could not assign')
+  })
+})
+
+describe('pickUsername', () => {
+  it('picks the first candidate nobody has', async () => {
+    const lookup = async () => new Set(['cube_king'])
+    expect(await pickUsername('Cube king', lookup, fixedRandom)).toBe('cube_king_4821')
+  })
+
+  it('uses a random username when every candidate is taken', async () => {
+    const lookup = async (candidates: string[]) => new Set(candidates)
+    expect(await pickUsername('Cube king', lookup, fixedRandom)).toBe(lastResortUsername(fixedRandom))
+  })
+
+  it('still returns a username when the database lookup fails', async () => {
+    const lookup = async () => Promise.reject(new Error('mongo down'))
+    expect(await pickUsername('Cube king', lookup, fixedRandom)).toBe(lastResortUsername(fixedRandom))
+  })
+
+  it('gives emoji-only names a cuber username', async () => {
+    const lookup = async () => new Set<string>()
+    expect(await pickUsername('🧊🔥', lookup, fixedRandom)).toBe('cuber_4821')
+    expect(await pickUsername('Cuber 🧊 Pro', lookup, fixedRandom)).toBe('cuber_pro')
+  })
+
+  it('makes valid random usernames', () => {
+    const username = lastResortUsername()
+    expect(username).toMatch(/^cuber_[a-z0-9]{12}$/)
+    expect(usernameIssue(username)).toBeNull()
   })
 })
