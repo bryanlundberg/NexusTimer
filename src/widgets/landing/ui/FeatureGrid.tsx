@@ -1,7 +1,6 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { ArrowLeftRight, Bluetooth, BookOpen, LineChart, User } from 'lucide-react'
 import CornerHandles from './CornerHandles'
 import FeatureCard from './FeatureCard'
 import CompareVisual from './CompareVisual'
@@ -9,6 +8,7 @@ import SmartCubeVisual from './SmartCubeVisual'
 import ProfileVisual from './ProfileVisual'
 import AlgorithmsVisual from './AlgorithmsVisual'
 import StatsVisual from './StatsVisual'
+import OfflineVisual from './OfflineVisual'
 
 export default function FeatureGrid() {
   const t = useTranslations('LandingPage.bento')
@@ -25,22 +25,22 @@ export default function FeatureGrid() {
       <div className="relative mt-14 grid gap-px border border-border bg-border md:mt-20 md:border-x-0 md:grid-cols-3">
         <CornerHandles />
         <FeatureCard
-          icon={ArrowLeftRight}
-          title={t('compare-title')}
-          desc={t('compare-desc')}
-          visual={<CompareVisual />}
+          title={t('stats-benefit')}
+          desc={t('stats-story')}
+          visual={<StatsVisual />}
           className="md:col-span-2"
         />
+        <FeatureCard title={t('smart-benefit')} desc={t('smart-story')} visual={<SmartCubeVisual />} highlight />
+        <FeatureCard title={t('algs-benefit')} desc={t('algs-story')} visual={<AlgorithmsVisual />} />
+        <FeatureCard title={t('profile-benefit')} desc={t('profile-story')} visual={<ProfileVisual />} />
+        <FeatureCard title={t('compare-benefit')} desc={t('compare-story')} visual={<CompareVisual />} />
         <FeatureCard
-          icon={Bluetooth}
-          title={t('smart-title')}
-          desc={t('smart-desc')}
-          visual={<SmartCubeVisual />}
-          highlight
+          title={t('offline-benefit')}
+          desc={t('offline-story')}
+          visual={<OfflineVisual />}
+          wide
+          className="md:col-span-3"
         />
-        <FeatureCard icon={User} title={t('profile-title')} desc={t('profile-desc')} visual={<ProfileVisual />} />
-        <FeatureCard icon={BookOpen} title={t('algs-title')} desc={t('algs-desc')} visual={<AlgorithmsVisual />} />
-        <FeatureCard icon={LineChart} title={t('stats-title')} desc={t('stats-desc')} visual={<StatsVisual />} />
       </div>
     </section>
   )
