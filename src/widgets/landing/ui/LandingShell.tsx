@@ -46,11 +46,11 @@ export default function LandingShell({ footer }: { footer: ReactNode }) {
                   <SectionBand variant="hatch" />
                   <UnifiedSection />
                   <SectionBand />
-                  <TestimonialRotator />
-                  <SectionBand variant="hatch" />
                   <FeatureGrid />
-                  <SectionBand />
+                  <SectionBand variant="hatch" />
                   <OpenSourceSection />
+                  <SectionBand />
+                  <TestimonialRotator />
                   <SectionBand variant="hatch" />
                   <FaqSection />
                   <SectionBand />
