@@ -2,7 +2,6 @@
 
 import { useRef } from 'react'
 import { useInView, useReducedMotion } from 'motion/react'
-import * as m from 'motion/react-m'
 import { TrendingDown } from 'lucide-react'
 import { cn } from '@/shared/lib/utils'
 import { useCycle } from '../model/useCycle'
@@ -24,7 +23,6 @@ const monthX = (i: number) => 42 + i * 38.8
 const valueY = (v: number) => 18 + (14 - v) * 30
 const toX = (x: number) => `${((x - CHART_X0) / CHART_W) * 100}%`
 const toY = (y: number) => `${(y / CHART_H) * 100}%`
-const revealAt = (x: number) => 0.2 + 1.6 * ((x - CHART_X0) / CHART_W)
 
 function curve(from: number, to: number) {
   const parts: string[] = []
@@ -119,31 +117,23 @@ export default function StatsVisual() {
             ))}
           </svg>
 
-          <m.div
-            className="absolute -inset-1"
-            initial={reduce ? false : { clipPath: 'inset(0 100% 0 0)' }}
-            whileInView={{ clipPath: 'inset(0 0% 0 0)' }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.6, ease: 'easeInOut', delay: 0.2 }}
+          <svg
+            viewBox={`${CHART_X0} 0 ${CHART_W} ${CHART_H}`}
+            preserveAspectRatio="none"
+            className="absolute inset-0 size-full overflow-visible"
           >
-            <svg
-              viewBox={`${CHART_X0} 0 ${CHART_W} ${CHART_H}`}
-              preserveAspectRatio="none"
-              className="absolute inset-1 size-[calc(100%-0.5rem)] overflow-visible"
-            >
-              {SERIES.map((s) => (
-                <path
-                  key={s.label}
-                  d={curve(s.from, s.to)}
-                  fill="none"
-                  stroke={s.color}
-                  strokeWidth={s.width}
-                  strokeLinecap="square"
-                  vectorEffect="non-scaling-stroke"
-                />
-              ))}
-            </svg>
-          </m.div>
+            {SERIES.map((s) => (
+              <path
+                key={s.label}
+                d={curve(s.from, s.to)}
+                fill="none"
+                stroke={s.color}
+                strokeWidth={s.width}
+                strokeLinecap="square"
+                vectorEffect="non-scaling-stroke"
+              />
+            ))}
+          </svg>
 
           <span
             className="absolute inset-y-0 w-px border-l border-dashed border-foreground/30 transition-[left] duration-500 ease-out"
@@ -159,7 +149,7 @@ export default function StatsVisual() {
           />
 
           {SERIES.map((s) => (
-            <m.span
+            <span
               key={`${s.label}-end`}
               className="absolute size-[7px] -translate-x-1/2 -translate-y-1/2"
               style={{
@@ -167,35 +157,23 @@ export default function StatsVisual() {
                 top: toY(valueY(MONTHLY[s.to])),
                 backgroundColor: s.color
               }}
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: revealAt(monthX(s.to)), type: 'spring', stiffness: 300, damping: 15 }}
             />
           ))}
 
-          <m.span
+          <span
             className="absolute -translate-x-1/2 -translate-y-full whitespace-nowrap border border-border bg-background px-1.5 py-0.5 font-mono text-[8px] uppercase tracking-[0.1em] text-muted-foreground"
             style={{ left: toX(monthX(SWITCH_MONTH)), top: `calc(${toY(valueY(MONTHLY[SWITCH_MONTH]))} - 8px)` }}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: revealAt(monthX(SWITCH_MONTH)) + 0.2, duration: 0.4 }}
           >
             Switched to <span className="text-[var(--cube-green)]">GAN 356</span>
-          </m.span>
+          </span>
 
           {SERIES.map((s) => {
             const last = MONTHLY[s.to].toFixed(2)
             return (
-              <m.span
+              <span
                 key={`${s.label}-bubble`}
                 className="absolute flex flex-col items-center whitespace-nowrap px-2 py-1 leading-none"
                 style={{ left: toX(s.bubble.x), top: toY(s.bubble.y), backgroundColor: s.color, color: s.ink }}
-                initial={{ opacity: 0, y: 6 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: revealAt(monthX(s.to)) + 0.2, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               >
                 {s.stacked ? (
                   <>
@@ -207,7 +185,7 @@ export default function StatsVisual() {
                     {s.label} {last}
                   </span>
                 )}
-              </m.span>
+              </span>
             )
           })}
         </div>
