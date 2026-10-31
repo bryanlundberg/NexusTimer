@@ -34,7 +34,7 @@ export default function CompareVisual() {
               alt=""
               width={28}
               height={28}
-              className="h-7 w-7 shrink-0 rounded-full border-2 border-border"
+              className="h-7 w-7 shrink-0 border-2 border-border"
             />
             <span className="max-w-full truncate text-[10px] font-bold text-foreground">{u.name}</span>
           </span>

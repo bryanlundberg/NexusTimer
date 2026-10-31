@@ -28,9 +28,9 @@ export default function ProfileVisual() {
             alt=""
             width={44}
             height={44}
-            className="h-11 w-11 rounded-full ring-2 ring-border"
+            className="h-11 w-11 ring-2 ring-border"
           />
-          <span className="absolute -bottom-0.5 -right-0.5 size-2.5 rounded-full border-2 border-card bg-[var(--cube-green)]" />
+          <span className="absolute -bottom-0.5 -right-0.5 size-2.5 border-2 border-card bg-[var(--cube-green)]" />
         </div>
         <div className="min-w-0">
           <span className="inline-block bg-foreground px-1.5 text-[8px] font-bold uppercase leading-tight text-background">
@@ -70,7 +70,7 @@ export default function ProfileVisual() {
             {tb.label}
             <span
               className={cn(
-                'inline-flex min-w-[14px] items-center justify-center rounded-full px-1 text-[8px] font-bold tabular-nums',
+                'inline-flex min-w-[14px] items-center justify-center px-1 text-[8px] font-bold tabular-nums',
                 tb.active
                   ? 'bg-[var(--cube-orange)]/15 text-[var(--cube-orange)]'
                   : 'bg-foreground/8 text-muted-foreground/70'
@@ -78,9 +78,7 @@ export default function ProfileVisual() {
             >
               {tb.count}
             </span>
-            {tb.active && (
-              <span className="absolute -bottom-[9px] left-0 h-0.5 w-full rounded-full bg-[var(--cube-orange)]" />
-            )}
+            {tb.active && <span className="absolute -bottom-[9px] left-0 h-0.5 w-full bg-[var(--cube-orange)]" />}
           </span>
         ))}
       </div>

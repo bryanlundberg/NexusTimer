@@ -51,7 +51,7 @@ export default function AlgorithmsVisual() {
             {st.label}
             <span
               className={cn(
-                'inline-flex min-w-[14px] items-center justify-center rounded-full px-1 text-[8px] font-bold tabular-nums',
+                'inline-flex min-w-[14px] items-center justify-center px-1 text-[8px] font-bold tabular-nums',
                 st.active
                   ? 'bg-[var(--cube-blue)]/15 text-[var(--cube-blue)]'
                   : 'bg-foreground/8 text-muted-foreground/70'
@@ -59,9 +59,7 @@ export default function AlgorithmsVisual() {
             >
               {st.count}
             </span>
-            {st.active && (
-              <span className="absolute -bottom-[9px] left-0 h-0.5 w-full rounded-full bg-[var(--cube-blue)]" />
-            )}
+            {st.active && <span className="absolute -bottom-[9px] left-0 h-0.5 w-full bg-[var(--cube-blue)]" />}
           </span>
         ))}
       </div>
