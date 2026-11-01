@@ -2,7 +2,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Link } from '@/shared/config/i18n/navigation'
 import { useLocale } from 'next-intl'
-import type { LeaderboardSolve } from '@nexustimer/contracts'
+import { type LeaderboardSolve, profilePath } from '@nexustimer/contracts'
 import { CountryFlag } from '@/shared/ui/country-flag/CountryFlag'
 import { getCountryName } from '@/shared/lib/getCountryName'
 
@@ -17,7 +17,7 @@ export function UserCell({ user }: UserCellProps) {
     <Tooltip>
       <TooltipTrigger asChild>
         <Link
-          href={`/people/${user._id}`}
+          href={profilePath(user._id, user.username)}
           onClick={(e) => e.stopPropagation()}
           className="flex w-fit min-w-0 max-w-full flex-row items-center gap-2 outline-none hover:underline focus-visible:underline"
         >
@@ -43,6 +43,7 @@ export function UserCell({ user }: UserCellProps) {
                 <span className="shrink-0 text-[10px] font-normal text-primary-foreground/60">{user.pronoun}</span>
               )}
             </div>
+            {user.username && <span className="truncate text-[11px] text-primary-foreground/70">@{user.username}</span>}
             {user?.country && (
               <span className="flex items-center gap-1.5 text-[11px] text-primary-foreground/70">
                 <CountryFlag code={user.country} className="shrink-0" />

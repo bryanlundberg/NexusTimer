@@ -2,6 +2,7 @@
 
 import { Fragment, type ReactNode, type Ref } from 'react'
 import { Link } from '@/shared/config/i18n/navigation'
+import { profilePath } from '@nexustimer/contracts'
 import { useLocale, useTranslations } from 'next-intl'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import dayjs from '@/shared/lib/dayjs'
@@ -26,6 +27,7 @@ const MAX_LINK_ICONS = 4
 export interface UserListRowUser {
   _id: string
   name: string
+  username?: string
   image: string
   country?: string
   wcaId?: string
@@ -115,7 +117,7 @@ export function UserListRow({ user, presence, meta, actions, stackActions = fals
         stackActions ? 'flex-col sm:flex-row sm:items-center' : 'items-center'
       )}
     >
-      <Link href={`/people/${user._id}`} className="flex items-center gap-3 min-w-0 flex-1">
+      <Link href={profilePath(user._id, user.username)} className="flex items-center gap-3 min-w-0 flex-1">
         <div ref={avatarRef} className="relative shrink-0">
           <Avatar className="size-9 rounded-full">
             <AvatarImage className="object-cover" src={user.image} alt={user.name} />
@@ -134,6 +136,7 @@ export function UserListRow({ user, presence, meta, actions, stackActions = fals
           <span className="flex min-w-0 items-baseline gap-1.5">
             <span className="font-bold text-sm truncate">{user.name}</span>
             {user.pronoun && <span className="shrink-0 text-[10px] text-muted-foreground">{user.pronoun}</span>}
+            {user.username && <span className="min-w-0 truncate text-xs text-muted-foreground">@{user.username}</span>}
           </span>
 
           {traits.length > 0 && (

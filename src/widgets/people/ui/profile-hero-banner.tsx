@@ -62,6 +62,9 @@ export function ProfileHeroBanner({ user, aside, children }: Props) {
                 <span className="text-base font-normal text-muted-foreground shrink-0">{user.pronoun}</span>
               )}
             </h1>
+            {user.username && (
+              <p className="max-w-full truncate text-sm font-medium text-muted-foreground">@{user.username}</p>
+            )}
             <div className="flex items-center justify-center gap-1.5 text-sm text-muted-foreground flex-wrap sm:justify-start">
               {user.country && (
                 <>

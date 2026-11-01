@@ -1,5 +1,6 @@
 'use client'
 
+import { profilePath } from '@nexustimer/contracts'
 import { Link } from '@/shared/config/i18n/navigation'
 import { useTranslations } from 'next-intl'
 import { ArrowLeft } from 'lucide-react'
@@ -32,7 +33,10 @@ export function ConversationView({ chatId }: { chatId: string }) {
         </button>
 
         {peer ? (
-          <Link href={`/people/${peer._id}`} className="flex min-w-0 items-center gap-2.5 hover:opacity-80">
+          <Link
+            href={profilePath(peer._id, peer.username)}
+            className="flex min-w-0 items-center gap-2.5 hover:opacity-80"
+          >
             <div className="relative shrink-0">
               <ChatAvatar peer={peer} className="size-9" />
               <span className="absolute -right-0.5 -bottom-0.5 rounded-full bg-background p-px">
@@ -40,8 +44,13 @@ export function ConversationView({ chatId }: { chatId: string }) {
               </span>
             </div>
             <span className="flex min-w-0 flex-col leading-tight">
-              <span title={peer.name} className="truncate text-sm font-bold">
-                {peer.name}
+              <span className="flex min-w-0 items-baseline gap-1.5">
+                <span title={peer.name} className="truncate text-sm font-bold">
+                  {peer.name}
+                </span>
+                {peer.username && (
+                  <span className="min-w-0 truncate text-xs text-muted-foreground">@{peer.username}</span>
+                )}
               </span>
               <ChatPeerStatus chatId={chatId} presence={presence} />
             </span>
