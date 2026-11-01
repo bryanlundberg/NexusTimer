@@ -10,7 +10,15 @@ describe('users service', () => {
     const redis = fakeRedis()
     redis.strings.set(
       'user:profile:u1',
-      JSON.stringify({ _id: 'u1', name: 'Ana', image: 'a.png', email: 'ana@private.test', country: 'MX', bio: 'hi' })
+      JSON.stringify({
+        _id: 'u1',
+        name: 'Ana',
+        username: 'ana',
+        image: 'a.png',
+        email: 'ana@private.test',
+        country: 'MX',
+        bio: 'hi'
+      })
     )
     const asked: string[][] = []
     const repository = {
@@ -27,9 +35,29 @@ describe('users service', () => {
       achievements: { grantedKeys: async () => [] }
     }).publicProfiles(['u1', 'u2', 'u2'])
 
-    expect(profiles.get('u1')).toEqual({ _id: 'u1', name: 'Ana', image: 'a.png', country: 'MX' })
+    expect(profiles.get('u1')).toEqual({ _id: 'u1', name: 'Ana', username: 'ana', image: 'a.png', country: 'MX' })
     expect(profiles.get('u2')).toEqual({ _id: 'u2', name: 'name u2', image: 'u2.png' })
     expect(asked).toEqual([['u2']])
+  })
+
+  it('rereads profiles cached before they carried a username', async () => {
+    const redis = fakeRedis()
+    redis.strings.set('user:profile:u1', JSON.stringify({ _id: 'u1', name: 'Ana', image: 'a.png' }))
+    const repository = {
+      findPublicProfiles: async (ids: string[]) =>
+        ids.map((id) => ({ _id: id, name: 'Ana', username: 'ana', image: '' })),
+      findProfile: async (id: string) => ({ _id: id, name: 'Ana', username: 'ana', image: '' })
+    } as unknown as UsersRepository
+    const users = createUsersService({
+      repository,
+      profileCache: createProfileCache(redis.provider),
+      statsCache: createStatsCache(redis.provider),
+      achievements: { grantedKeys: async () => [] }
+    })
+
+    expect((await users.publicProfiles(['u1'])).get('u1')?.username).toBe('ana')
+    expect((await users.profile('u1'))?.username).toBe('ana')
+    expect(JSON.parse(redis.strings.get('user:profile:u1')!)).toMatchObject({ username: 'ana' })
   })
 
   it('falls back to the database when Redis is down', async () => {
@@ -114,6 +142,7 @@ describe('users service profiles and stats', () => {
   const profile = {
     _id: 'u1',
     name: 'Ana',
+    username: 'ana',
     image: 'a.png',
     backup: { url: 'b.json', updatedAt: 100 },
     createdAt: '2026-01-01T00:00:00.000Z',

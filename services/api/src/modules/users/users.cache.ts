@@ -48,7 +48,10 @@ async function writeJson(redis: RedisProvider, key: string, value: unknown, ttlS
 
 export function createProfileCache(redis: RedisProvider): ProfileCache {
   return {
-    get: (userId) => readJson<UserProfileResponse>(redis, profileKey(userId), 'profile.get'),
+    async get(userId) {
+      const profile = await readJson<UserProfileResponse>(redis, profileKey(userId), 'profile.get')
+      return profile?.username ? profile : null
+    },
 
     set: (userId, profile) => writeJson(redis, profileKey(userId), profile, PROFILE_TTL_SECONDS, 'profile.set'),
 
@@ -68,7 +71,8 @@ export function createProfileCache(redis: RedisProvider): ProfileCache {
         const values = await (await redis()).mGet(ids.map(profileKey))
         values.forEach((raw, index) => {
           const id = ids[index]
-          if (raw && id) found.set(id, toPublicUser(id, JSON.parse(raw)))
+          const profile = raw ? JSON.parse(raw) : null
+          if (id && profile?.username) found.set(id, toPublicUser(id, profile))
         })
       } catch (error) {
         warn('profile.getMany', error)
