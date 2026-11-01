@@ -1,3 +1,4 @@
+import { useId } from 'react'
 import { cn } from '@/shared/lib/utils'
 
 const SOFT = 0.4
@@ -176,7 +177,7 @@ function MegaminxFace(props: IconProps) {
 
 function SkewbFace(props: IconProps) {
   const m = 1
-  const shrink = 0.88
+  const shrink = 0.82
   type P = [number, number]
 
   const [tl, tr, br, bl]: P[] = [
@@ -221,7 +222,7 @@ function SkewbFace(props: IconProps) {
 function OctahedronFace(props: IconProps) {
   const c = 16
   const m = 1
-  const shrink = 0.85
+  const shrink = 0.78
   type P = [number, number]
 
   const corners: P[] = [
@@ -281,6 +282,33 @@ function Svg({ className, title, children }: IconProps & { children: React.React
   )
 }
 
+function NumberedGrid({ n, ...props }: IconProps & { n: number }) {
+  const maskId = useId()
+  const digit = {
+    x: 16,
+    y: 16.5,
+    textAnchor: 'middle',
+    dominantBaseline: 'central',
+    fontSize: 23,
+    fontWeight: 800
+  } as const
+
+  return (
+    <Svg {...props}>
+      <mask id={maskId}>
+        <rect width="32" height="32" fill="white" />
+        <text {...digit} fill="black" stroke="black" strokeWidth="5" strokeLinejoin="round">
+          {n}
+        </text>
+      </mask>
+      <g mask={`url(#${maskId})`}>
+        <FaceGrid n={n} opacity={SOFT} />
+      </g>
+      <text {...digit}>{n}</text>
+    </Svg>
+  )
+}
+
 function Blindfold({ n, ...props }: IconProps & { n: number }) {
   return (
     <Svg {...props}>
@@ -295,7 +323,7 @@ function Virtual({ n, ...props }: IconProps & { n: number }) {
   return (
     <Svg {...props}>
       <rect x="1.5" y="2" width="29" height="19" rx="2.4" fill="none" stroke="currentColor" strokeWidth="2" />
-      <g transform="translate(11.75 6.25) scale(0.265)">
+      <g transform="translate(9.6 5.1) scale(0.4)">
         <FaceGrid n={n} />
       </g>
       <g opacity={SOFT}>
@@ -319,26 +347,10 @@ const ICONS: Record<string, (props: IconProps) => React.ReactElement> = {
       <FaceGrid n={3} />
     </Svg>
   ),
-  '4x4': (p) => (
-    <Svg {...p}>
-      <FaceGrid n={4} />
-    </Svg>
-  ),
-  '5x5': (p) => (
-    <Svg {...p}>
-      <FaceGrid n={5} />
-    </Svg>
-  ),
-  '6x6': (p) => (
-    <Svg {...p}>
-      <FaceGrid n={6} />
-    </Svg>
-  ),
-  '7x7': (p) => (
-    <Svg {...p}>
-      <FaceGrid n={7} />
-    </Svg>
-  ),
+  '4x4': (p) => <NumberedGrid n={4} {...p} />,
+  '5x5': (p) => <NumberedGrid n={5} {...p} />,
+  '6x6': (p) => <NumberedGrid n={6} {...p} />,
+  '7x7': (p) => <NumberedGrid n={7} {...p} />,
 
   '3x3 BLD': (p) => <Blindfold n={3} {...p} />,
   '4x4 BLD': (p) => <Blindfold n={4} {...p} />,
