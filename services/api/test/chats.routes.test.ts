@@ -31,7 +31,7 @@ const serialized = { _id: MESSAGE, senderId: ME, text: 'hola', createdAt: '2026-
 
 const summary = {
   _id: CHAT,
-  user: { _id: OTHER, name: 'Ben', image: '' },
+  user: { _id: OTHER, name: 'Ben', username: 'ben', image: '' },
   unread: 0,
   receipts: { deliveredAt: null, readAt: null },
   muted: false

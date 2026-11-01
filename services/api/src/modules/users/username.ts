@@ -91,7 +91,7 @@ export type TakenLookup = (candidates: string[]) => Promise<Set<string>>
 
 export const mongoTakenUsernames: TakenLookup = async (candidates) => {
   const docs = await UserModel.find({ username: { $in: candidates } }, { username: 1 }).lean()
-  return new Set(docs.map((doc) => doc.username as string))
+  return new Set(docs.map((doc) => doc.username))
 }
 
 export async function pickUsername(

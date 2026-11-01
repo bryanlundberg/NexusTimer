@@ -2,6 +2,7 @@ import type { PublicUser } from '@nexustimer/contracts'
 
 type ProfileFields = {
   name: string
+  username: string
   image: string
   country?: string | null
   pronoun?: string | null
@@ -15,6 +16,7 @@ export function toPublicUser(id: string, profile: ProfileFields): PublicUser {
   return {
     _id: id,
     name: profile.name,
+    username: profile.username,
     image: profile.image,
     ...present('country', profile.country),
     ...present('pronoun', profile.pronoun),

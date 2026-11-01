@@ -88,8 +88,11 @@ describe('blocks service', () => {
 
     expect(await service.list('ana')).toEqual({
       blocked: [
-        { user: { _id: 'cam', name: 'Cam', image: '' }, since: '2026-10-04T10:00:00.000Z' },
-        { user: { _id: 'ben', name: 'Ben', image: 'https://cdn.test/b.png' }, since: '2026-10-04T10:00:00.000Z' }
+        { user: { _id: 'cam', name: 'Cam', username: 'cam', image: '' }, since: '2026-10-04T10:00:00.000Z' },
+        {
+          user: { _id: 'ben', name: 'Ben', username: 'ben', image: 'https://cdn.test/b.png' },
+          since: '2026-10-04T10:00:00.000Z'
+        }
       ]
     })
   })

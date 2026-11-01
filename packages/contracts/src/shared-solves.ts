@@ -26,7 +26,7 @@ export const shareSolveSchema = z
 
 export type ShareSolveInput = z.infer<typeof shareSolveSchema>
 
-export type SharedSolveAuthor = { _id: string; name: string; image: string; country?: string }
+export type SharedSolveAuthor = { _id: string; name: string; username: string; image: string; country?: string }
 
 export interface SharedSolveItem {
   slug: string

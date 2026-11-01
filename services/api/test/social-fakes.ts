@@ -5,12 +5,27 @@ import type { FriendsRepository, StoredFriendship } from '../src/modules/social/
 type Person = FriendUser & { email?: string }
 
 export const people: Record<string, Person> = {
-  ana: { _id: 'ana', name: 'Ana <3', image: '/a.png', wcaId: '2020ANAA01', email: 'ana@test.dev', bio: 'hi' },
-  ben: { _id: 'ben', name: 'Ben', image: 'https://cdn.test/b.png', email: 'ben@test.dev', method: 'CFOP' },
-  cam: { _id: 'cam', name: 'Cam', image: '', email: 'cam@test.dev' },
-  dan: { _id: 'dan', name: 'Dan', image: '' },
-  eve: { _id: 'eve', name: 'Eve', image: '' },
-  fay: { _id: 'fay', name: 'Fay', image: '' }
+  ana: {
+    _id: 'ana',
+    name: 'Ana <3',
+    username: 'ana',
+    image: '/a.png',
+    wcaId: '2020ANAA01',
+    email: 'ana@test.dev',
+    bio: 'hi'
+  },
+  ben: {
+    _id: 'ben',
+    name: 'Ben',
+    username: 'ben',
+    image: 'https://cdn.test/b.png',
+    email: 'ben@test.dev',
+    method: 'CFOP'
+  },
+  cam: { _id: 'cam', name: 'Cam', username: 'cam', image: '', email: 'cam@test.dev' },
+  dan: { _id: 'dan', name: 'Dan', username: 'dan', image: '' },
+  eve: { _id: 'eve', name: 'Eve', username: 'eve', image: '' },
+  fay: { _id: 'fay', name: 'Fay', username: 'fay', image: '' }
 }
 
 export function fakeFriendships() {
@@ -95,9 +110,10 @@ export function fakeFriendships() {
 }
 
 export function fakeUsers(privacy: Record<string, Partial<PrivacySettings>> = {}) {
-  const card = ({ _id, name, image, country, wcaId }: Person): FriendUser => ({
+  const card = ({ _id, name, username, image, country, wcaId }: Person): FriendUser => ({
     _id,
     name,
+    username,
     image,
     ...(country ? { country } : {}),
     ...(wcaId ? { wcaId } : {})

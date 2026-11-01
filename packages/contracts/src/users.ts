@@ -3,6 +3,7 @@ import * as z from 'zod'
 export const publicUserSchema = z.object({
   _id: z.string(),
   name: z.string(),
+  username: z.string(),
   image: z.string(),
   country: z.string().optional(),
   pronoun: z.string().optional(),

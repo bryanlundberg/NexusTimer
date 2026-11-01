@@ -6,6 +6,7 @@ export type RelationshipStatus = 'none' | 'pending_out' | 'pending_in' | 'friend
 export interface FriendUser {
   _id: string
   name: string
+  username: string
   image: string
   country?: string
   wcaId?: string

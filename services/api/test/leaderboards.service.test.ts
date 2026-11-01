@@ -8,7 +8,7 @@ import type { UsersService } from '../src/modules/users/users.service'
 const NOW = Date.parse('2026-10-04T13:20:00.000Z')
 const WINDOW_START = Date.parse('2026-10-04T13:00:00.000Z')
 
-const ana: PublicUser = { _id: 'u1', name: 'Ana', image: 'https://img/ana', country: 'MX' }
+const ana: PublicUser = { _id: 'u1', name: 'Ana', username: 'ana', image: 'https://img/ana', country: 'MX' }
 
 const stored = (overrides: Partial<StoredSolve> = {}): StoredSolve => ({
   id: 's1',

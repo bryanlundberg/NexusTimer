@@ -4,7 +4,7 @@ import { Schema, model } from 'mongoose'
 const userSchema = new Schema(
   {
     name: { type: String, required: true },
-    username: { type: String },
+    username: { type: String, required: true },
     usernameChangedAt: { type: Number },
     email: { type: String, required: true, trim: true, lowercase: true },
     emailVerified: { type: Boolean },

@@ -118,6 +118,7 @@ export function createSharedSolvesService({
         author: {
           _id: solve.ownerId,
           name: owner.name,
+          username: owner.username,
           image: owner.image,
           ...(owner.country ? { country: owner.country } : {})
         },

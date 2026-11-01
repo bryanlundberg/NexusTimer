@@ -6,6 +6,8 @@ export const USERS_PAGE_SIZE = 25
 export interface PublicProfile {
   _id: string
   name: string
+  username: string
+  usernameChangedAt?: number
   image: string
   bio?: string
   pronoun?: string

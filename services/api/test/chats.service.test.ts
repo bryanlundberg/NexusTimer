@@ -207,7 +207,7 @@ describe('chats service', () => {
     expect(first).toEqual({
       chat: {
         _id: expect.any(String),
-        user: { _id: 'ben', name: 'Ben', image: 'https://cdn.test/b.png' },
+        user: { _id: 'ben', name: 'Ben', username: 'ben', image: 'https://cdn.test/b.png' },
         unread: 0,
         receipts: { deliveredAt: null, readAt: null },
         muted: false

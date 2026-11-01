@@ -8,6 +8,7 @@ const USER = '64b7f0c2a1b2c3d4e5f60718'
 const profile: PublicProfile = {
   _id: USER,
   name: 'Ana',
+  username: 'ana',
   image: 'img.png',
   createdAt: '2026-01-01T00:00:00.000Z',
   updatedAt: '2026-01-01T00:00:00.000Z'

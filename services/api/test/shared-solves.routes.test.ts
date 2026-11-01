@@ -26,7 +26,7 @@ const detail: SharedSolveDetail = {
   solvedAt: 1_700_000_000_000,
   hasReplay: false,
   sharedAt: '2026-10-04T10:00:00.000Z',
-  author: { _id: 'owner-1', name: 'Ana', image: 'https://img/ana' },
+  author: { _id: 'owner-1', name: 'Ana', username: 'ana', image: 'https://img/ana' },
   isOwner: false
 }
 

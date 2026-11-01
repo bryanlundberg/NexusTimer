@@ -97,7 +97,9 @@ function fakeRepository() {
 }
 
 function setup({
-  profiles = { [OWNER]: { _id: OWNER, name: 'Ana', image: 'https://img/ana', country: 'MX', goal: 'sub 10' } },
+  profiles = {
+    [OWNER]: { _id: OWNER, name: 'Ana', username: 'ana', image: 'https://img/ana', country: 'MX', goal: 'sub 10' }
+  },
   blocks = 'none' as BlockState
 }: { profiles?: Record<string, PublicUser>; blocks?: BlockState } = {}) {
   const redis = fakeRedis()
@@ -183,7 +185,7 @@ describe('shared solves service', () => {
     expect(detail).toMatchObject({
       slug: 'AAAAAAAAAA',
       hasReplay: true,
-      author: { _id: OWNER, name: 'Ana', image: 'https://img/ana', country: 'MX' },
+      author: { _id: OWNER, name: 'Ana', username: 'ana', image: 'https://img/ana', country: 'MX' },
       replay,
       isOwner: false
     })

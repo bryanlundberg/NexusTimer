@@ -9,16 +9,17 @@ import type {
   UpdatePrivacyInput,
   UserStatsSummary
 } from '@nexustimer/contracts'
+import { normalizeUsername } from '@nexustimer/contracts'
 import { Types } from 'mongoose'
 import { userDocuments } from '../../infra/user-documents'
 import { toPublicUser } from './public-user'
 import { UserStatsModel } from './user-stats.model'
 import { UserModel } from './users.model'
 
-const PUBLIC_USER_FIELDS = 'name image country pronoun goal'
-const FRIEND_CARD_FIELDS = 'name image country wcaId'
+const PUBLIC_USER_FIELDS = 'name username image country pronoun goal'
+const FRIEND_CARD_FIELDS = 'name username image country wcaId'
 const FRIEND_PROFILE_FIELDS = `${FRIEND_CARD_FIELDS} pronoun method bio`
-const PROFILE_PROJECTION = '-email -emailVerified -providers -privacy -usernameChangedAt -__v'
+const PROFILE_PROJECTION = '-email -emailVerified -providers -privacy -__v'
 const LIST_PROJECTION = '-email -emailVerified -providers -usernameChangedAt -__v'
 const NEWEST_BACKUP_FIRST = { 'backup.updatedAt': -1, createdAt: -1 } as const
 
@@ -32,6 +33,7 @@ export type UserContact = { name: string; email: string | null; privacy?: Partia
 export type UsersRepository = {
   findPublicProfiles(ids: string[]): Promise<PublicUser[]>
   findProfile(id: string): Promise<PublicProfile | null>
+  findIdByUsername(username: string): Promise<string | null>
   updateProfile(id: string, update: ProfileUpdate | null): Promise<PublicProfile | null>
   list(query: ListQuery): Promise<{ users: ListedUser[]; total: number }>
   privacy(ids: string[]): Promise<Map<string, Partial<PrivacySettings> | undefined>>
@@ -52,6 +54,8 @@ export type UsersRepository = {
 type RawUser = {
   _id: Types.ObjectId
   name: string
+  username: string
+  usernameChangedAt?: number | null
   image: string
   bio?: string | null
   pronoun?: string | null
@@ -77,6 +81,7 @@ function toFriendUser(doc: RawUser): FriendUser {
   return {
     _id: doc._id.toString(),
     name: doc.name,
+    username: doc.username,
     image: doc.image,
     ...defined({
       country: doc.country,
@@ -92,8 +97,10 @@ export function toPublicProfile(doc: RawUser): PublicProfile {
   return {
     _id: doc._id.toString(),
     name: doc.name,
+    username: doc.username,
     image: doc.image,
     ...defined({
+      usernameChangedAt: doc.usernameChangedAt,
       bio: doc.bio,
       pronoun: doc.pronoun,
       country: doc.country,
@@ -129,6 +136,11 @@ export const usersRepository: UsersRepository = {
     return doc ? toPublicProfile(doc) : null
   },
 
+  async findIdByUsername(username) {
+    const doc = await UserModel.findOne({ username }).select('_id').lean<Pick<RawUser, '_id'>>()
+    return doc ? doc._id.toString() : null
+  },
+
   async updateProfile(id, update) {
     const doc = update
       ? await UserModel.findOneAndUpdate({ _id: id }, update, { returnDocument: 'after' })
@@ -143,7 +155,8 @@ export const usersRepository: UsersRepository = {
     if (excludeIds.length) query._id = { $nin: excludeIds }
     if (name) {
       const regex = { $regex: escapeRegex(name), $options: 'i' }
-      query.$or = [{ name: regex }, { wcaId: regex }]
+      const usernamePrefix = { $regex: `^${escapeRegex(normalizeUsername(name.replace(/^@/, '')))}` }
+      query.$or = [{ name: regex }, { wcaId: regex }, { username: usernamePrefix }]
     }
     if (country) query.country = country
 

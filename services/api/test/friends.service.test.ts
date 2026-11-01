@@ -215,9 +215,9 @@ describe('friends service', () => {
       mutual: {
         count: 4,
         users: [
-          { _id: 'cam', name: 'Cam', image: '' },
-          { _id: 'dan', name: 'Dan', image: '' },
-          { _id: 'eve', name: 'Eve', image: '' }
+          { _id: 'cam', name: 'Cam', username: 'cam', image: '' },
+          { _id: 'dan', name: 'Dan', username: 'dan', image: '' },
+          { _id: 'eve', name: 'Eve', username: 'eve', image: '' }
         ]
       }
     })
@@ -247,11 +247,13 @@ describe('friends service', () => {
 
     expect(list.friends).toEqual([
       {
-        user: { _id: 'ben', name: 'Ben', image: 'https://cdn.test/b.png', method: 'CFOP' },
+        user: { _id: 'ben', name: 'Ben', username: 'ben', image: 'https://cdn.test/b.png', method: 'CFOP' },
         since: '2026-01-01T00:00:01.000Z'
       }
     ])
     expect(list.incoming.map((entry) => entry.user._id)).toEqual(['cam'])
-    expect(list.outgoing).toEqual([{ user: { _id: 'dan', name: 'Dan', image: '' }, since: expect.any(String) }])
+    expect(list.outgoing).toEqual([
+      { user: { _id: 'dan', name: 'Dan', username: 'dan', image: '' }, since: expect.any(String) }
+    ])
   })
 })

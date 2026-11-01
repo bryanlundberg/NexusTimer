@@ -218,7 +218,7 @@ describe('sharedSolveMeta', () => {
         solvedAt: 0,
         hasReplay: false,
         sharedAt: '',
-        author: { _id: 'u1', name: 'Ben', image: '' },
+        author: { _id: 'u1', name: 'Ben', username: 'ben', image: '' },
         isOwner: false
       })
     ).toEqual({ title: 'DNF 2x2 · Ben', description: 'R U', canonical: `https://nexustimer.com/s/${SLUG}` })
