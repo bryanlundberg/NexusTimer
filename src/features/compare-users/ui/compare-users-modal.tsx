@@ -1,3 +1,4 @@
+import { profilePath } from '@nexustimer/contracts'
 import { useEffect, useMemo, useRef } from 'react'
 import { XIcon, PlusIcon } from 'lucide-react'
 import { Link, useRouter } from '@/shared/config/i18n/navigation'
@@ -107,7 +108,7 @@ export default function CompareUsersModal() {
                   </button>
                 </div>
                 <Link
-                  href={`/people/${user._id}`}
+                  href={profilePath(user._id, user.username)}
                   onClick={closeOverlay}
                   className="max-w-full truncate px-2 text-sm font-bold tracking-tight transition-colors hover:text-primary sm:text-base"
                 >

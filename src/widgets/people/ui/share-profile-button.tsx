@@ -8,12 +8,13 @@ import { useShareProfile } from '@/widgets/people/model/useShareProfile'
 interface Props {
   userId: string
   name: string
+  username?: string
   labeled?: boolean
 }
 
-export function ShareProfileButton({ userId, name, labeled = false }: Props) {
+export function ShareProfileButton({ userId, name, username, labeled = false }: Props) {
   const t = useTranslations('Index.SolvesPage')
-  const shareProfile = useShareProfile(userId, name)
+  const shareProfile = useShareProfile(userId, name, username)
 
   if (labeled) {
     return (

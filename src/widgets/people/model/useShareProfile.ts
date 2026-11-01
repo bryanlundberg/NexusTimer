@@ -1,11 +1,12 @@
 import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
+import { profilePath } from '@nexustimer/contracts'
 
-export function useShareProfile(userId: string, name: string) {
+export function useShareProfile(userId: string, name: string, username?: string) {
   const t = useTranslations('Index.SharedSolves')
 
   return async () => {
-    const url = `${window.location.origin}/people/${userId}`
+    const url = `${window.location.origin}${profilePath(userId, username)}`
 
     if (typeof navigator.share === 'function') {
       try {

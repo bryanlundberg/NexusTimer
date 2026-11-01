@@ -1,5 +1,6 @@
 'use client'
 
+import { profilePath } from '@nexustimer/contracts'
 import type { ReactNode } from 'react'
 import { Link } from '@/shared/config/i18n/navigation'
 import { useTranslations } from 'next-intl'
@@ -24,7 +25,7 @@ export function MutualFriends({ mutual }: { mutual: RelationshipResponse['mutual
   const named = mutual.users.slice(0, namedCountFor(mutual.count))
   const rest = mutual.count - named.length
   const nameLink = (user: FriendUser) => (chunks: ReactNode) => (
-    <Link href={`/people/${user._id}`} className="font-medium text-primary hover:underline">
+    <Link href={profilePath(user._id, user.username)} className="font-medium text-primary hover:underline">
       {chunks}
     </Link>
   )
@@ -52,7 +53,7 @@ export function MutualFriends({ mutual }: { mutual: RelationshipResponse['mutual
     <div className="flex items-center gap-2 text-xs text-muted-foreground">
       <div className="flex -space-x-2">
         {named.map((user) => (
-          <Link key={user._id} href={`/people/${user._id}`} title={user.name}>
+          <Link key={user._id} href={profilePath(user._id, user.username)} title={user.name}>
             <Avatar className="size-5 rounded-full ring-2 ring-background">
               <AvatarImage className="object-cover" src={user.image} alt={user.name} />
               <AvatarFallback className="text-[8px] font-bold">

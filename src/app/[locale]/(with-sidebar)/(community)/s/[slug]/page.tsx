@@ -1,5 +1,6 @@
 'use client'
 
+import { profilePath } from '@nexustimer/contracts'
 import { useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Link, useRouter } from '@/shared/config/i18n/navigation'
@@ -68,7 +69,7 @@ export default function SharedSolvePage() {
   const analysis = replay ? tryAnalyzeSolution(replay.moves) : null
   const markers = phaseMarkers(analysis)
   const tps = analysis?.tps != null ? formatTps(analysis.tps) : null
-  const profileHref = `/people/${solve.author._id}`
+  const profileHref = profilePath(solve.author._id, solve.author.username)
   const solvedDate = dayjs(solve.solvedAt).locale(locale)
 
   const handleUnshare = async () => {

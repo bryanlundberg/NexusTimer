@@ -1,4 +1,5 @@
 'use client'
+import { profilePath } from '@nexustimer/contracts'
 import { DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { GitCompareIcon, Plus, Users, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -63,7 +64,11 @@ export default function CompareUsersListModal() {
                 <AvatarImage className="object-cover" src={user.image} />
                 <AvatarFallback>{user.name.substring(0, 2).toUpperCase()}</AvatarFallback>
               </Avatar>
-              <Link href={`/people/${user._id}`} onClick={close} className="flex min-w-0 flex-1 flex-col gap-0.5">
+              <Link
+                href={profilePath(user._id, user.username)}
+                onClick={close}
+                className="flex min-w-0 flex-1 flex-col gap-0.5"
+              >
                 <span className="flex min-w-0 items-center gap-1.5">
                   <span className="truncate text-[15px] font-medium sm:text-sm">{user.name}</span>
                   {user.country && <CountryFlag code={user.country} className="w-3.5 shrink-0" />}

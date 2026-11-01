@@ -7,6 +7,8 @@ import { FRIEND_REQUEST_POLICIES, STATS_VISIBILITIES, type PrivacySettings } fro
 export interface UserDocument {
   _id: string
   name: string
+  username?: string
+  usernameChangedAt?: number
   email: string
   emailVerified?: boolean
   image: string

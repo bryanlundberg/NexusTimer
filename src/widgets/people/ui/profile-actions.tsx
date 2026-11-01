@@ -26,7 +26,7 @@ export function ProfileActions({ user, isCurrentUser, isSignedIn, status, canReq
       {status && status !== 'pending_in' && (
         <FriendButton userId={user._id} name={user.name} status={status} canRequest={canRequest} />
       )}
-      <ShareProfileButton userId={user._id} name={user.name} labeled={!isSignedIn} />
+      <ShareProfileButton userId={user._id} name={user.name} username={user.username} labeled={!isSignedIn} />
       {status && status !== 'blocked' && <BlockUserMenu userId={user._id} name={user.name} />}
     </div>
   )

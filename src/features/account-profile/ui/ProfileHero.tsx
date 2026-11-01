@@ -5,6 +5,7 @@ import type { ClientSession } from '@/shared/config/auth/auth-client'
 import { useQueryState } from 'nuqs'
 import { toast } from 'sonner'
 import { Link } from '@/shared/config/i18n/navigation'
+import { profilePath } from '@nexustimer/contracts'
 import { Eye, SquareArrowOutUpRight, Mail, X } from 'lucide-react'
 import { KeyedMutator } from 'swr'
 import { Button, buttonVariants } from '@/components/ui/button'
@@ -172,7 +173,7 @@ export default function ProfileHero({
         <ProfileLinks links={links} className="mt-1 justify-center sm:justify-start" />
 
         <div className="flex items-center gap-2 mt-3">
-          <Link href={`/people/${session.user?.id}`}>
+          <Link href={profilePath(session.user.id, session.user.username)}>
             <Button variant="outline" size="sm" className="gap-2">
               {tAccount('go-to-profile')}
               <SquareArrowOutUpRight className="size-3.5" />

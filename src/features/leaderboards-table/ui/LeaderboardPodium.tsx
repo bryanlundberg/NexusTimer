@@ -3,7 +3,7 @@
 import { motion } from 'motion/react'
 import { useRouter } from '@/shared/config/i18n/navigation'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import type { LeaderboardSolve } from '@nexustimer/contracts'
+import { type LeaderboardSolve, profilePath } from '@nexustimer/contracts'
 import formatTime from '@/shared/lib/formatTime'
 import { CountryFlag } from '@/shared/ui/country-flag/CountryFlag'
 import { PODIUM_CHIP, PODIUM_COLOR } from '@/shared/const/podium'
@@ -25,7 +25,7 @@ export default function LeaderboardPodium({ solves }: { solves: LeaderboardSolve
           <motion.button
             key={solve._id}
             type="button"
-            onClick={() => router.push(`/people/${solve.user._id}`)}
+            onClick={() => router.push(profilePath(solve.user._id, solve.user.username))}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.08 * order, ease: [0.16, 1, 0.3, 1] }}

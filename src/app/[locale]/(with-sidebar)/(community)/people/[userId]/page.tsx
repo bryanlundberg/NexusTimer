@@ -1,5 +1,6 @@
 'use client'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
+import { isObjectId } from '@nexustimer/contracts'
 import { notFound } from 'next/navigation'
 import { useSWRConfig } from 'swr'
 import { ScrollArea } from '@/components/ui/scroll-area'
@@ -13,19 +14,29 @@ import { PullToRefresh } from '@/shared/ui/pull-to-refresh/PullToRefresh'
 import { useRouteSegment } from '@/shared/model/useRouteSegment'
 
 export default function PeopleDetailsPage() {
-  const userId = useRouteSegment('/people')
+  const segment = useRouteSegment('/people')
   const scrollRef = useRef<HTMLDivElement>(null)
   const { cache, mutate } = useSWRConfig()
 
-  const { data: user, isLoading: isLoadingUser } = useUser(userId)
+  const { data: user, isLoading: isLoadingUser } = useUser(segment)
+  const userId: string | undefined = isObjectId(segment) ? segment : user?._id
   const { stats, isLoading: isLoadingStats } = useUserStats(userId)
+  const username: string | undefined = user?.username
+
+  useEffect(() => {
+    if (!user || !username || segment === username) return
+    mutate(`/api/v1/users/${username}`, user, { revalidate: false })
+    const { pathname, search, hash } = window.location
+    const shortPath = pathname.replace(/\/people\/[^/]+/, `/people/${username}`)
+    window.history.replaceState(window.history.state, '', `${shortPath}${search}${hash}`)
+  }, [segment, username, user, mutate])
 
   if (user === null) notFound()
 
   const refreshProfile = () =>
     Promise.all(
       Array.from(cache.keys())
-        .filter((key) => key.includes(userId))
+        .filter((key) => key.includes(segment) || (!!userId && key.includes(userId)))
         .map((key) => mutate(key))
     )
 
