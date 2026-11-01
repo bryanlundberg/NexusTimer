@@ -1,5 +1,5 @@
 import type { ElementType } from 'react'
-import { TimerNavIcon, SolvesNavIcon, StatsNavIcon, CubeNavIcon } from '@/components/ui/nav-icons'
+import { TimerNavIcon, SolvesNavIcon, StatsNavIcon, CubeNavIcon } from '@/components/ui/nav-icons-solid'
 
 export type PlatformRoute = {
   url: string
