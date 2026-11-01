@@ -3,5 +3,7 @@ export const CLIENT_IP_HEADER = 'x-client-ip'
 export const REQUEST_ID_HEADER = 'x-request-id'
 
 export const STATIC_ROUTE_PLACEHOLDER = '_'
+export const SEGMENT_FILE_PREFIX = '__next.'
+export const PAYLOAD_SUFFIX = '.txt'
 
 export const DYNAMIC_PAGE_ROUTES = ['/people', '/s', '/free-play'] as const

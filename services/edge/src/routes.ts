@@ -1,9 +1,12 @@
-import { DYNAMIC_PAGE_ROUTES, STATIC_ROUTE_PLACEHOLDER } from '@nexustimer/contracts'
+import {
+  DYNAMIC_PAGE_ROUTES,
+  PAYLOAD_SUFFIX,
+  SEGMENT_FILE_PREFIX,
+  STATIC_ROUTE_PLACEHOLDER
+} from '@nexustimer/contracts'
 import { splitLocale } from './locale'
 
 const API_PREFIX = '/api'
-const SEGMENT_FILE_PREFIX = '__next.'
-const PAYLOAD_SUFFIX = '.txt'
 const HOME_PATH = '/app'
 const SIGN_IN_PATH = '/sign-in'
 
