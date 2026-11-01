@@ -41,6 +41,9 @@ describe('username rules', () => {
     expect(usernameIssue('Abc')).toBe('invalid_format')
     expect(usernameIssue('ab-c')).toBe('invalid_format')
     expect(usernameIssue('admin')).toBe('reserved')
+    expect(usernameIssue('bob.txt')).toBe('reserved')
+    expect(usernameIssue('__next.bob')).toBe('reserved')
+    expect(usernameIssue('bob.txta')).toBeNull()
   })
 
   it('normalizes input before validating it in the schema', () => {
