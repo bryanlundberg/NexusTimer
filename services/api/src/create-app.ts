@@ -48,6 +48,8 @@ import { trainerRoutes } from './modules/trainer/trainer.routes'
 import { wcaRoutes } from './modules/wca/wca.routes'
 import type { WcaService } from './modules/wca/wca.service'
 import type { TrainerService } from './modules/trainer/trainer.service'
+import { usernamesRoutes } from './modules/usernames/usernames.routes'
+import type { UsernamesService } from './modules/usernames/usernames.service'
 import { type PrivacyService, privacyRoutes } from './modules/users/privacy.routes'
 
 export type AppDeps = {
@@ -68,6 +70,7 @@ export type AppDeps = {
   backups: BackupsService
   avatars: AvatarsService
   nexi: NexiAvatarsService
+  usernames: UsernamesService
   feedback: FeedbackService
   suggestions: SuggestionsService
   roomLobby: RoomLobby
@@ -101,6 +104,7 @@ export function createApp(deps: AppDeps) {
   app.route('/v1/shared-solves', sharedSolvesRoutes(deps.sharedSolves, signedIn, viewer))
   app.route('/v1/users', avatarsRoutes(deps.avatars, signedIn))
   app.route('/v1/users', nexiRoutes(deps.nexi, signedIn))
+  app.route('/v1/users', usernamesRoutes(deps.usernames, signedIn))
   app.route('/v1/users', profilesRoutes(deps.profiles, signedIn, viewer))
   app.route('/v1/friends', friendsRoutes(deps.friends, signedIn))
   app.route('/v1/blocks', blocksRoutes(deps.blocks, signedIn))

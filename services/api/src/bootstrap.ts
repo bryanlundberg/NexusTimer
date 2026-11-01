@@ -72,6 +72,9 @@ import {
   trainerStatsUserData
 } from './modules/trainer/trainer.repository'
 import { createTrainerService } from './modules/trainer/trainer.service'
+import { createUsernameLimits } from './modules/usernames/usernames.limits'
+import { usernamesRepository } from './modules/usernames/usernames.repository'
+import { createUsernamesService } from './modules/usernames/usernames.service'
 import { createProfileCache, createStatsCache } from './modules/users/users.cache'
 import { userStatsUserData, usersRepository } from './modules/users/users.repository'
 import { createUsersService } from './modules/users/users.service'
@@ -177,6 +180,7 @@ export function buildApp() {
     backups: createBackupsService({ storage, users, background: runInBackground }),
     avatars: createAvatarsService({ storage, users }),
     nexi,
+    usernames: createUsernamesService({ repository: usernamesRepository, limits: createUsernameLimits(redis), users }),
     feedback: createFeedbackService({
       repository: feedbackRepository,
       users,
