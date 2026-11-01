@@ -870,7 +870,7 @@
     },
     "AccountPage": {
       "go-to-profile": "Aller au profil",
-      "name": "Nom",
+      "name": "Surnom",
       "name-required": "Le nom est requis",
       "name-min-length": "Le nom doit faire au moins 5 caractères",
       "pronoun": "Pronom",
@@ -919,6 +919,24 @@
       "crop-error": "Impossible de traiter l'image. Veuillez réessayer.",
       "crop-invalid-file": "Ce fichier n'est pas une image. Choisissez un autre fichier.",
       "personal-info-description": "C'est ce que les autres cubeurs voient sur ton profil"
+    },
+    "UsernameSettings": {
+      "label": "Nom d'utilisateur",
+      "change": "Modifier",
+      "cancel": "Annuler",
+      "once": "Tu ne peux le changer qu'une seule fois. Il ne modifie que l'URL de ton profil.",
+      "locked": "Ne peut plus être modifié",
+      "checking": "Vérification de la disponibilité…",
+      "save": "Enregistrer",
+      "saved": "Nom d'utilisateur mis à jour",
+      "failed": "Impossible de mettre à jour ton nom d'utilisateur. Réessaie.",
+      "issues": {
+        "too_short": "Utilise au moins 3 caractères",
+        "too_long": "Utilise 20 caractères au maximum",
+        "invalid_format": "Utilise des lettres minuscules, des chiffres, des tirets bas et des points entre eux",
+        "reserved": "Ce nom d'utilisateur est réservé",
+        "taken": "Ce nom d'utilisateur est déjà pris"
+      }
     },
     "PrivacyPage": {
       "tab": "Confidentialité",

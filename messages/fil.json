@@ -878,7 +878,7 @@
     "AccountPage": {
       "personal-info-description": "Ito ang nakikita ng ibang cuber sa profile mo",
       "go-to-profile": "Pumunta sa Profile",
-      "name": "Pangalan",
+      "name": "Palayaw",
       "name-required": "Kailangan ang pangalan",
       "name-min-length": "Ang pangalan ay dapat hindi bababa sa 5 character",
       "pronoun": "Panghalip",
@@ -926,6 +926,24 @@
       "crop-confirm": "I-save ang image",
       "crop-error": "Hindi ma-proseso ang image. Subukang muli.",
       "crop-invalid-file": "Hindi image ang file na iyan. Pumili ng ibang file."
+    },
+    "UsernameSettings": {
+      "label": "Username",
+      "change": "Palitan",
+      "cancel": "Kanselahin",
+      "once": "Isang beses mo lang ito mapapalitan. Ang URL lang ng profile mo ang maaapektuhan.",
+      "locked": "Hindi na ito mapapalitan",
+      "checking": "Tinitingnan kung available…",
+      "save": "I-save",
+      "saved": "Na-update ang username",
+      "failed": "Hindi na-update ang username mo. Subukan ulit.",
+      "issues": {
+        "too_short": "Gumamit ng hindi bababa sa 3 character",
+        "too_long": "Gumamit ng 20 character o mas kaunti",
+        "invalid_format": "Gumamit ng maliliit na titik, numero, underscore at tuldok sa pagitan nila",
+        "reserved": "Nakareserba ang username na ito",
+        "taken": "May gumagamit na ng username na ito"
+      }
     },
     "PrivacyPage": {
       "tab": "Privacy",

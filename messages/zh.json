@@ -870,7 +870,7 @@
     },
     "AccountPage": {
       "go-to-profile": "前往个人资料",
-      "name": "名称",
+      "name": "昵称",
       "name-required": "名称为必填项",
       "name-min-length": "名称长度必须至少为 5 个字符",
       "pronoun": "人称代词",
@@ -919,6 +919,24 @@
       "crop-error": "无法处理图片，请重试。",
       "crop-invalid-file": "该文件不是图片，请选择其他文件。",
       "personal-info-description": "其他魔友会在你的个人资料中看到这些信息"
+    },
+    "UsernameSettings": {
+      "label": "用户名",
+      "change": "更改",
+      "cancel": "取消",
+      "once": "只能更改一次，只会影响你的个人资料网址。",
+      "locked": "无法再更改",
+      "checking": "正在检查是否可用…",
+      "save": "保存",
+      "saved": "用户名已更新",
+      "failed": "无法更新用户名，请重试。",
+      "issues": {
+        "too_short": "至少使用 3 个字符",
+        "too_long": "最多使用 20 个字符",
+        "invalid_format": "请使用小写字母、数字、下划线，以及字符之间的点",
+        "reserved": "此用户名已被保留",
+        "taken": "此用户名已被占用"
+      }
     },
     "PrivacyPage": {
       "tab": "隐私",

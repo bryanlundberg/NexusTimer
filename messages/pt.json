@@ -870,7 +870,7 @@
     },
     "AccountPage": {
       "go-to-profile": "Ir ao Perfil",
-      "name": "Nome",
+      "name": "Apelido",
       "name-required": "O nome é obrigatório",
       "name-min-length": "O nome deve ter pelo menos 5 caracteres",
       "pronoun": "Pronome",
@@ -919,6 +919,24 @@
       "crop-error": "Não foi possível processar a imagem. Tente novamente.",
       "crop-invalid-file": "Esse arquivo não é uma imagem. Escolha outro arquivo.",
       "personal-info-description": "É isso que outros cubistas veem no seu perfil"
+    },
+    "UsernameSettings": {
+      "label": "Nome de usuário",
+      "change": "Alterar",
+      "cancel": "Cancelar",
+      "once": "Você só pode alterá-lo uma vez. Ele afeta apenas a URL do seu perfil.",
+      "locked": "Não pode mais ser alterado",
+      "checking": "Verificando disponibilidade…",
+      "save": "Salvar",
+      "saved": "Nome de usuário atualizado",
+      "failed": "Não foi possível atualizar seu nome de usuário. Tente novamente.",
+      "issues": {
+        "too_short": "Use pelo menos 3 caracteres",
+        "too_long": "Use no máximo 20 caracteres",
+        "invalid_format": "Use letras minúsculas, números, sublinhados e pontos entre eles",
+        "reserved": "Este nome de usuário está reservado",
+        "taken": "Este nome de usuário já está em uso"
+      }
     },
     "PrivacyPage": {
       "tab": "Privacidade",

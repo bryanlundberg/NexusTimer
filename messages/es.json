@@ -839,7 +839,7 @@
     "AccountPage": {
       "personal-info-description": "Esto es lo que ven otros cuberos en tu perfil",
       "go-to-profile": "Ir al perfil",
-      "name": "Nombre",
+      "name": "Apodo",
       "name-required": "El nombre es obligatorio",
       "name-min-length": "El nombre debe tener al menos 5 caracteres",
       "pronoun": "Pronombre",
@@ -887,6 +887,24 @@
       "crop-confirm": "Guardar imagen",
       "crop-error": "No se pudo procesar la imagen. Inténtalo de nuevo.",
       "crop-invalid-file": "Ese archivo no es una imagen. Elige otro archivo."
+    },
+    "UsernameSettings": {
+      "label": "Nombre de usuario",
+      "change": "Cambiar",
+      "cancel": "Cancelar",
+      "once": "Solo puedes cambiarlo una vez. Solo afecta la URL de tu perfil.",
+      "locked": "Ya no se puede cambiar",
+      "checking": "Comprobando disponibilidad…",
+      "save": "Guardar",
+      "saved": "Nombre de usuario actualizado",
+      "failed": "No se pudo actualizar tu nombre de usuario. Inténtalo de nuevo.",
+      "issues": {
+        "too_short": "Usa al menos 3 caracteres",
+        "too_long": "Usa 20 caracteres o menos",
+        "invalid_format": "Usa letras minúsculas, números, guiones bajos y puntos entre ellos",
+        "reserved": "Este nombre de usuario está reservado",
+        "taken": "Este nombre de usuario ya está en uso"
+      }
     },
     "PrivacyPage": {
       "tab": "Privacidad",

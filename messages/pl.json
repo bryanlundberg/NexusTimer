@@ -878,7 +878,7 @@
     "AccountPage": {
       "personal-info-description": "To widzą inni cuberzy na twoim profilu",
       "go-to-profile": "Przejdź do profilu",
-      "name": "Imię",
+      "name": "Pseudonim",
       "name-required": "Imię jest wymagane",
       "name-min-length": "Imię musi mieć co najmniej 5 znaków",
       "pronoun": "Zaimek",
@@ -926,6 +926,24 @@
       "crop-confirm": "Zapisz obraz",
       "crop-error": "Nie udało się przetworzyć obrazu. Spróbuj ponownie.",
       "crop-invalid-file": "Ten plik nie jest obrazem. Wybierz inny plik."
+    },
+    "UsernameSettings": {
+      "label": "Nazwa użytkownika",
+      "change": "Zmień",
+      "cancel": "Anuluj",
+      "once": "Możesz ją zmienić tylko raz. Wpływa tylko na adres URL Twojego profilu.",
+      "locked": "Nie można jej już zmienić",
+      "checking": "Sprawdzanie dostępności…",
+      "save": "Zapisz",
+      "saved": "Nazwa użytkownika zaktualizowana",
+      "failed": "Nie udało się zaktualizować nazwy użytkownika. Spróbuj ponownie.",
+      "issues": {
+        "too_short": "Użyj co najmniej 3 znaków",
+        "too_long": "Użyj maksymalnie 20 znaków",
+        "invalid_format": "Użyj małych liter, cyfr, podkreśleń i kropek między nimi",
+        "reserved": "Ta nazwa użytkownika jest zarezerwowana",
+        "taken": "Ta nazwa użytkownika jest już zajęta"
+      }
     },
     "PrivacyPage": {
       "tab": "Prywatność",

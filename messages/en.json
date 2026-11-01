@@ -868,7 +868,7 @@
     "AccountPage": {
       "personal-info-description": "This is what other cubers see on your profile",
       "go-to-profile": "Go to Profile",
-      "name": "Name",
+      "name": "Nickname",
       "name-required": "Name is required",
       "name-min-length": "Name must be at least 5 characters long",
       "pronoun": "Pronoun",
@@ -916,6 +916,24 @@
       "crop-confirm": "Save image",
       "crop-error": "Could not process the image. Please try again.",
       "crop-invalid-file": "That file is not an image. Choose a different file."
+    },
+    "UsernameSettings": {
+      "label": "Username",
+      "change": "Change",
+      "cancel": "Cancel",
+      "once": "You can only change it once. It only affects your profile URL.",
+      "locked": "Can't be changed again",
+      "checking": "Checking availability…",
+      "save": "Save",
+      "saved": "Username updated",
+      "failed": "Couldn't update your username. Try again.",
+      "issues": {
+        "too_short": "Use at least 3 characters",
+        "too_long": "Use 20 characters or fewer",
+        "invalid_format": "Use lowercase letters, numbers, underscores and dots between them",
+        "reserved": "This username is reserved",
+        "taken": "This username is already taken"
+      }
     },
     "PrivacyPage": {
       "tab": "Privacy",

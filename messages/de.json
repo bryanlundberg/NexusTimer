@@ -870,7 +870,7 @@
     },
     "AccountPage": {
       "go-to-profile": "Zum Profil",
-      "name": "Name",
+      "name": "Spitzname",
       "name-required": "Name ist erforderlich",
       "name-min-length": "Mindestens 5 Zeichen",
       "pronoun": "Pronomen",
@@ -919,6 +919,24 @@
       "crop-error": "Das Bild konnte nicht verarbeitet werden. Bitte versuche es erneut.",
       "crop-invalid-file": "Diese Datei ist kein Bild. Wähle eine andere Datei.",
       "personal-info-description": "Das sehen andere Cuber auf deinem Profil"
+    },
+    "UsernameSettings": {
+      "label": "Benutzername",
+      "change": "Ändern",
+      "cancel": "Abbrechen",
+      "once": "Du kannst ihn nur einmal ändern. Er betrifft nur die URL deines Profils.",
+      "locked": "Kann nicht mehr geändert werden",
+      "checking": "Verfügbarkeit wird geprüft…",
+      "save": "Speichern",
+      "saved": "Benutzername aktualisiert",
+      "failed": "Dein Benutzername konnte nicht aktualisiert werden. Versuch es noch einmal.",
+      "issues": {
+        "too_short": "Verwende mindestens 3 Zeichen",
+        "too_long": "Verwende höchstens 20 Zeichen",
+        "invalid_format": "Verwende Kleinbuchstaben, Ziffern, Unterstriche und Punkte dazwischen",
+        "reserved": "Dieser Benutzername ist reserviert",
+        "taken": "Dieser Benutzername ist bereits vergeben"
+      }
     },
     "PrivacyPage": {
       "tab": "Privatsphäre",
