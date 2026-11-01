@@ -33,6 +33,7 @@ import { VenusAndMarsIcon } from '@/features/account-form/ui/VenusAndMarsIcon'
 import { normalizeProfileLink } from '@/shared/lib/profile-links'
 import { MenuSection } from '@/features/settings/ui/MenuSection'
 import { MenuFieldRow } from '@/features/settings/ui/MenuFieldRow'
+import { UsernameRow } from '@/features/change-username/ui/UsernameRow'
 
 const SECTION_IDS = PROFILE_SECTION_IDS
 
@@ -146,6 +147,8 @@ export default function AccountInfoForm({ user, mutate, onPreviewChange }: Accou
           max={NAME_MAX_LENGTH}
           error={nameErrorMessage}
         />
+
+        {user && <UsernameRow key={user.username} user={user} mutate={mutate} />}
 
         <MenuFieldRow label={t('pronoun')} htmlFor="account-pronoun">
           <Controller
