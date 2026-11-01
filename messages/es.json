@@ -895,6 +895,8 @@
       "once": "Solo puedes cambiarlo una vez. Solo afecta la URL de tu perfil.",
       "locked": "Ya no se puede cambiar",
       "checking": "Comprobando disponibilidad…",
+      "check": "Comprobar disponibilidad",
+      "available": "Disponible",
       "save": "Guardar",
       "saved": "Nombre de usuario actualizado",
       "failed": "No se pudo actualizar tu nombre de usuario. Inténtalo de nuevo.",

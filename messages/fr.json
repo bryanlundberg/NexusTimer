@@ -927,6 +927,8 @@
       "once": "Tu ne peux le changer qu'une seule fois. Il ne modifie que l'URL de ton profil.",
       "locked": "Ne peut plus être modifié",
       "checking": "Vérification de la disponibilité…",
+      "check": "Vérifier la disponibilité",
+      "available": "Disponible",
       "save": "Enregistrer",
       "saved": "Nom d'utilisateur mis à jour",
       "failed": "Impossible de mettre à jour ton nom d'utilisateur. Réessaie.",

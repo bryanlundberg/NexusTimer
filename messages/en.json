@@ -924,6 +924,8 @@
       "once": "You can only change it once. It only affects your profile URL.",
       "locked": "Can't be changed again",
       "checking": "Checking availability…",
+      "check": "Check availability",
+      "available": "Available",
       "save": "Save",
       "saved": "Username updated",
       "failed": "Couldn't update your username. Try again.",
