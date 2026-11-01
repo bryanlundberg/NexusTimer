@@ -173,7 +173,7 @@ export default function ProfileHero({
         <ProfileLinks links={links} className="mt-1 justify-center sm:justify-start" />
 
         <div className="flex items-center gap-2 mt-3">
-          <Link href={profilePath(session.user.id, session.user.username)}>
+          <Link href={profilePath(session.user.id)}>
             <Button variant="outline" size="sm" className="gap-2">
               {tAccount('go-to-profile')}
               <SquareArrowOutUpRight className="size-3.5" />

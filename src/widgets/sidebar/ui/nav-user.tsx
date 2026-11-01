@@ -45,7 +45,6 @@ export function NavUser({
   user: {
     id: string
     name: string
-    username?: string | null
     email: string
     avatar: string
   }
@@ -61,7 +60,7 @@ export function NavUser({
   const initials = user.name.substring(0, 2).toUpperCase()
 
   const navItems = [
-    { icon: Globe, label: t('NavMain.public-profile'), href: profilePath(user.id, user.username) },
+    { icon: Globe, label: t('NavMain.public-profile'), href: profilePath(user.id) },
     { icon: UserRound, label: t('NavMain.account'), href: '/account' },
     { icon: Settings, label: t('NavMain.adjust-app'), href: '/options' }
   ]

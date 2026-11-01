@@ -118,7 +118,6 @@ export default function CoreHeader({ breadcrumbs, actions }: CoreHeaderProps) {
                 user={{
                   id: session.user.id as string,
                   name: session?.user?.name || 'Guest',
-                  username: session.user.username,
                   email: session?.user?.email || '',
                   avatar: session?.user?.image || ''
                 }}
