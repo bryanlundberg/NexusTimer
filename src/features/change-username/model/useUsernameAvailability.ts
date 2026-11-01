@@ -1,35 +1,25 @@
-import { useEffect, useState } from 'react'
-import useSWR from 'swr'
+import { useState } from 'react'
 import type { UsernameAvailability } from '@nexustimer/contracts'
-import { useDebouncedCallback } from '@/shared/model/useDebouncedCallback'
-
-const CHECK_DELAY_MS = 400
 
 const availabilityUrl = (username: string) => `/api/v1/users/username-availability?u=${encodeURIComponent(username)}`
 
-async function fetchAvailability(url: string): Promise<UsernameAvailability> {
-  const res = await fetch(url)
-  if (!res.ok) throw new Error(`GET ${url} failed (${res.status})`)
-  return res.json()
-}
+export type AvailabilityCheck = { username: string; availability: UsernameAvailability | null }
 
-export function useUsernameAvailability(username: string | null) {
-  const [query, setQuery] = useState<string | null>(null)
-  const schedule = useDebouncedCallback(setQuery, CHECK_DELAY_MS)
+export function useUsernameAvailability() {
+  const [result, setResult] = useState<AvailabilityCheck | null>(null)
+  const [checking, setChecking] = useState(false)
 
-  useEffect(() => {
-    schedule(username)
-  }, [username, schedule])
-
-  const settled = query === username
-  const { data, error, isLoading } = useSWR(settled && username ? availabilityUrl(username) : null, fetchAvailability, {
-    revalidateOnFocus: false,
-    shouldRetryOnError: false
-  })
-
-  return {
-    availability: settled ? data : undefined,
-    isChecking: !!username && (!settled || isLoading),
-    failed: settled && !!error
+  const check = async (username: string) => {
+    setChecking(true)
+    try {
+      const res = await fetch(availabilityUrl(username))
+      setResult({ username, availability: res.ok ? ((await res.json()) as UsernameAvailability) : null })
+    } catch {
+      setResult({ username, availability: null })
+    } finally {
+      setChecking(false)
+    }
   }
+
+  return { result, checking, check }
 }

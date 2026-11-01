@@ -35,11 +35,28 @@ export function UsernameRow({ user, mutate }: Props) {
   const username = normalizeUsername(value)
   const changed = editing && username !== current
   const formatIssue = changed ? usernameIssue(username) : null
-  const { availability, isChecking, failed } = useUsernameAvailability(changed && !formatIssue ? username : null)
+  const { result, checking, check } = useUsernameAvailability()
 
+  const checked = changed && result?.username === username ? result : null
+  const availability = checked?.availability
+  const failed = !!checked && !availability
   const issue = formatIssue ?? (availability?.available === false ? availability.issue : null)
-  const canSave = changed && !saving && !issue && !isChecking && (availability?.available || failed)
-  const status = !changed ? null : issue ? t(`issues.${issue}`) : isChecking ? t('checking') : null
+  const canCheck = changed && !formatIssue && !checking && !saving && !checked
+  const canSave = changed && !saving && !issue && (availability?.available || failed)
+  const status = !changed
+    ? null
+    : issue
+      ? t(`issues.${issue}`)
+      : checking
+        ? t('checking')
+        : availability?.available
+          ? t('available')
+          : null
+
+  const submit = () => {
+    if (canSave) save()
+    else if (canCheck) check(username)
+  }
 
   const cancel = () => {
     setEditing(false)
@@ -113,7 +130,7 @@ export function UsernameRow({ user, mutate }: Props) {
           onKeyDown={(event) => {
             if (event.key === 'Enter') {
               event.preventDefault()
-              save()
+              submit()
             }
             if (event.key === 'Escape') cancel()
           }}
@@ -140,8 +157,8 @@ export function UsernameRow({ user, mutate }: Props) {
         <Button type="button" variant="ghost" size="sm" onClick={cancel} disabled={saving}>
           {t('cancel')}
         </Button>
-        <Button type="button" variant="outline" size="sm" onClick={save} disabled={!canSave}>
-          {t('save')}
+        <Button type="button" variant="outline" size="sm" onClick={submit} disabled={!canSave && !canCheck}>
+          {canSave ? t('save') : t('check')}
         </Button>
       </div>
     </MenuFieldRow>
