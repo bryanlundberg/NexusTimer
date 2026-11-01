@@ -6,7 +6,7 @@ import { cubeCollection } from '@/shared/const/cube-collection'
 import { CubeCategoryIcon } from '@/shared/ui/cube-category-icon/CubeCategoryIcon'
 import { useTranslations } from 'next-intl'
 import { ChevronDownIcon } from 'lucide-react'
-import { CubeNavIcon } from '@/components/ui/nav-icons'
+import { CubeNavIcon } from '@/components/ui/nav-icons-solid'
 import { cn } from '@/shared/lib/utils'
 
 export default function MainCubeSelector() {
