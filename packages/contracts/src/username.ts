@@ -15,6 +15,7 @@ export const RESERVED_USERNAMES: ReadonlySet<string> = new Set([
   'api',
   'app',
   'auth',
+  'avatar',
   'contact',
   'cubes',
   'edge',
@@ -50,6 +51,7 @@ export const RESERVED_USERNAMES: ReadonlySet<string> = new Set([
   'timer',
   'trainer',
   'undefined',
+  'username',
   'wca',
   'www'
 ])
