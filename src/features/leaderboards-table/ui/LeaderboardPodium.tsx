@@ -25,7 +25,7 @@ export default function LeaderboardPodium({ solves }: { solves: LeaderboardSolve
           <motion.button
             key={solve._id}
             type="button"
-            onClick={() => router.push(profilePath(solve.user._id, solve.user.username))}
+            onClick={() => router.push(profilePath(solve.user._id))}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.08 * order, ease: [0.16, 1, 0.3, 1] }}

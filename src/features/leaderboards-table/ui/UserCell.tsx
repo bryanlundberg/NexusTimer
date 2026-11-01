@@ -17,7 +17,7 @@ export function UserCell({ user }: UserCellProps) {
     <Tooltip>
       <TooltipTrigger asChild>
         <Link
-          href={profilePath(user._id, user.username)}
+          href={profilePath(user._id)}
           onClick={(e) => e.stopPropagation()}
           className="flex w-fit min-w-0 max-w-full flex-row items-center gap-2 outline-none hover:underline focus-visible:underline"
         >
