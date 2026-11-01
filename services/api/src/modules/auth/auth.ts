@@ -115,7 +115,7 @@ function createAuth({ env, client, mail, avatars }: AuthDeps) {
     user: {
       modelName: 'users',
       additionalFields: {
-        username: { type: 'string', required: false, input: false, returned: false }
+        username: { type: 'string', required: false, input: false }
       }
     },
     session: {
