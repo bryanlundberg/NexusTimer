@@ -11,6 +11,8 @@ const STRANGER = '64b7f0c2a1b2c3d4e5f60720'
 const profileOf = (id: string): PublicProfile => ({
   _id: id,
   name: `user ${id.slice(-2)}`,
+  username: `user_${id.slice(-2)}`,
+  usernameChangedAt: 1600,
   image: 'img.png',
   backup: { url: 'https://cdn/backup.json', updatedAt: 1700 },
   createdAt: '2026-01-01T00:00:00.000Z',
@@ -23,6 +25,7 @@ function setup(visibility: StatsVisibility = 'everyone', listed: ListedUser[] = 
     profile: vi.fn(async (id: string) =>
       id === OWNER ? { ...profileOf(OWNER), grantedAchievements: ['early'] } : null
     ),
+    idForUsername: vi.fn(async (username: string) => (username === 'owner' ? OWNER : null)),
     updateProfile: vi.fn(async () => profileOf(OWNER)),
     list: vi.fn(async () => ({ users: listed, total: 51 })),
     privacy: vi.fn(async () => privacy),
@@ -76,10 +79,34 @@ describe('profiles service', () => {
     expect((await service.profile(OWNER, viewer))?.backup).toEqual({ updatedAt: 1700 })
   })
 
+  it('finds a profile by its username in any case', async () => {
+    const { service, users } = setup()
+
+    expect((await service.profile('Owner', null))?._id).toBe(OWNER)
+    expect(users.idForUsername).toHaveBeenCalledWith('owner')
+  })
+
+  it('skips the lookup for segments that can never be a username', async () => {
+    const { service, users } = setup()
+
+    expect(await service.profile('no', null)).toBeNull()
+    expect(await service.profile('admin', null)).toBeNull()
+    expect(await service.profile('nobody_here', null)).toBeNull()
+    expect(users.idForUsername).toHaveBeenCalledTimes(1)
+  })
+
   it('gives the backup url to its owner only', async () => {
     const { service } = setup('nobody')
 
     expect((await service.profile(OWNER, OWNER))?.backup).toEqual({ url: 'https://cdn/backup.json', updatedAt: 1700 })
+  })
+
+  it('tells only the owner when the username last changed', async () => {
+    const { service } = setup()
+
+    expect((await service.profile(OWNER, OWNER))?.usernameChangedAt).toBe(1600)
+    expect(await service.profile(OWNER, FRIEND)).not.toHaveProperty('usernameChangedAt')
+    expect(await service.profile(OWNER, null)).not.toHaveProperty('usernameChangedAt')
   })
 
   it('answers null for unknown users', async () => {

@@ -1,6 +1,7 @@
 import {
   canViewStats,
   isObjectId,
+  normalizeUsername,
   type PublicProfile,
   resolvePrivacy,
   type SharedSolvesPage,
@@ -9,7 +10,8 @@ import {
   type UserProfileResponse,
   USERS_PAGE_SIZE,
   type UsersListResponse,
-  type UserStatsResponse
+  type UserStatsResponse,
+  usernameIssue
 } from '@nexustimer/contracts'
 import { EMPTY_SHARED_SOLVES_PAGE, type SharedSolvesService } from '../shared-solves/shared-solves.service'
 import type { SocialService } from '../social/social.service'
@@ -28,24 +30,24 @@ export type ProfilesService = {
 }
 
 type ProfilesDeps = {
-  users: Pick<UsersService, 'profile' | 'updateProfile' | 'list' | 'privacy' | 'statsSummary'>
+  users: Pick<UsersService, 'profile' | 'idForUsername' | 'updateProfile' | 'list' | 'privacy' | 'statsSummary'>
   social: Pick<SocialService, 'blockedEitherWay' | 'friendIds' | 'areFriends'>
   trainer: Pick<TrainerService, 'learnedSummary'>
   sharedSolves: Pick<SharedSolvesService, 'userPage'>
 }
 
-function withoutBackupUrl<T extends PublicProfile>(profile: T): T {
-  const { backup, ...rest } = profile
+function withoutOwnerFields<T extends PublicProfile>(profile: T): T {
+  const { backup, usernameChangedAt: _, ...rest } = profile
   return { ...rest, ...(backup ? { backup: { updatedAt: backup.updatedAt } } : {}) } as T
 }
 
 export function withoutStats<T extends PublicProfile>(profile: T): T & { statsHidden: true } {
-  return { ...withoutBackupUrl(profile), statsHidden: true }
+  return { ...withoutOwnerFields(profile), statsHidden: true }
 }
 
 function forViewer<T extends PublicProfile>(profile: T, viewerId: string | null, statsVisible: boolean) {
   if (profile._id === viewerId) return profile
-  return statsVisible ? withoutBackupUrl(profile) : withoutStats(profile)
+  return statsVisible ? withoutOwnerFields(profile) : withoutStats(profile)
 }
 
 export function createProfilesService({ users, social, trainer, sharedSolves }: ProfilesDeps): ProfilesService {
@@ -55,6 +57,12 @@ export function createProfilesService({ users, social, trainer, sharedSolves }: 
     if (statsVisibility === 'everyone') return true
     if (statsVisibility === 'nobody' || !viewerId) return false
     return social.areFriends(viewerId, ownerId)
+  }
+
+  async function resolveId(idOrUsername: string) {
+    if (isObjectId(idOrUsername)) return idOrUsername
+    const username = normalizeUsername(idOrUsername)
+    return usernameIssue(username) === null ? users.idForUsername(username) : null
   }
 
   return {
@@ -76,7 +84,9 @@ export function createProfilesService({ users, social, trainer, sharedSolves }: 
       return { events, page, pages: Math.ceil(total / USERS_PAGE_SIZE), docs: total }
     },
 
-    async profile(id, viewerId) {
+    async profile(idOrUsername, viewerId) {
+      const id = await resolveId(idOrUsername)
+      if (!id) return null
       const profile = await users.profile(id)
       if (!profile) return null
       return forViewer(profile, viewerId, await statsVisibleTo(id, viewerId))

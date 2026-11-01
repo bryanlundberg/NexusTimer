@@ -21,6 +21,7 @@ export type MailContact = { name: string; email: string | null; privacy: Privacy
 export type UsersService = {
   publicProfiles(ids: string[]): Promise<Map<string, PublicUser>>
   profile(id: string): Promise<UserProfileResponse | null>
+  idForUsername(username: string): Promise<string | null>
   updateProfile(id: string, input: UpdateProfileInput): Promise<PublicProfile | null>
   list(query: UsersListQuery, perPage: number): Promise<{ users: ListedUser[]; total: number }>
   privacy(id: string): Promise<PrivacySettings>
@@ -98,6 +99,8 @@ export function createUsersService({ repository, profileCache, statsCache, achie
       await profileCache.set(id, withAchievements)
       return withAchievements
     },
+
+    idForUsername: (username) => repository.findIdByUsername(username),
 
     async updateProfile(id, input) {
       const updated = await repository.updateProfile(id, buildProfileUpdate(input))
