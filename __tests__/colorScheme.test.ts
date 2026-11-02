@@ -1,4 +1,4 @@
-import { buildColorScheme, contrastRatio, type ColorSchemeMode } from '@/shared/lib/colorScheme'
+import { buildColorScheme, contrastRatio, sidebarSheetTokens, type ColorSchemeMode } from '@/shared/lib/colorScheme'
 import type { Colors } from '@/shared/types/colors'
 
 const THEMES: Colors[] = [
@@ -53,6 +53,15 @@ describe('buildColorScheme roles', () => {
       }
     }
   )
+
+  it.each(THEMES)('keeps the %s accent visible on the white sidebar sheet', (theme) => {
+    const tokens = sidebarSheetTokens(theme)
+    const accent = parse(tokens['sidebar-sheet-accent'])
+
+    expect(contrastRatio(accent, parse('oklch(1 0 0)'))).toBeGreaterThanOrEqual(3)
+    expect(contrastRatio(parse(tokens['sidebar-sheet-accent-text']), parse('oklch(1 0 0)'))).toBeGreaterThanOrEqual(4.5)
+    expect(contrastRatio(accent, parse(tokens['sidebar-sheet-on-accent']))).toBeGreaterThanOrEqual(4.5)
+  })
 
   it.each(THEMES.flatMap((theme) => MODES.map((mode) => [theme, mode] as const)))(
     'keeps the sidebar mark visible on %s %s',
