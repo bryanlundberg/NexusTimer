@@ -8,8 +8,10 @@ import DisplayContainer from '@/features/timer/ui/display-container'
 import DisplayTime from '@/features/timer/ui/display-time'
 import { useAudioTrigger } from '@/shared/model/useAudioTrigger'
 import { useIsMobile } from '@/shared/model/use-mobile'
-import { TimerStatus } from '@/features/timer/model/enums'
+import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { useSolveMoment } from '@/features/timer/model/useSolveMoment'
+import { useBackToCancel } from '@/features/timer/model/useBackToCancel'
+import { withoutPlus2 } from '@/entities/solve/lib/penalty'
 export default function Timer({ children }: { children?: ReactNode }) {
   const settings = useSettingsStore((store) => store.settings)
   const selectedCube = useTimerStore((store) => store.selectedCube)
@@ -25,8 +27,9 @@ export default function Timer({ children }: { children?: ReactNode }) {
 
   const { saveSolveMainTimer } = useSolveData()
 
-  const { inspectionTime } = useTimer({
+  const { inspectionTime, cancelAttempt } = useTimer({
     onFinishSolve: (penalty) => saveSolveMainTimer(penalty),
+    onCancelAttempt: () => setSolvingTime(lastSolve ? withoutPlus2(lastSolve.time, lastSolve.plus2) : 0),
     isSolving,
     setTimerStatus,
     selectedCube,
@@ -36,6 +39,8 @@ export default function Timer({ children }: { children?: ReactNode }) {
     timerMode,
     settings
   })
+
+  useBackToCancel(timerMode !== TimerMode.STACKMAT && (isSolving || timerStatus !== TimerStatus.IDLE), cancelAttempt)
 
   const isMobile = useIsMobile()
   const { isPersonalBest } = useSolveMoment()
