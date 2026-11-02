@@ -77,15 +77,15 @@ const readableOn = (bg: Oklch): Oklch => {
 
 export const GRAPHIC_TARGET = 3.1
 
-const visibleOn = (color: Oklch, surface: Oklch): Oklch => {
-  if (contrastRatio(color, surface) >= GRAPHIC_TARGET) return color
+const visibleOn = (color: Oklch, surface: Oklch, target = GRAPHIC_TARGET): Oklch => {
+  if (contrastRatio(color, surface) >= target) return color
 
   const at = (l: number): Oklch => ok(l, color.c, color.h)
   let pass = surface.l > color.l ? 0 : 1
   let fail = color.l
   for (let i = 0; i < 20; i++) {
     const mid = (pass + fail) / 2
-    if (contrastRatio(at(mid), surface) >= GRAPHIC_TARGET) pass = mid
+    if (contrastRatio(at(mid), surface) >= target) pass = mid
     else fail = mid
   }
   return at(pass)
@@ -215,6 +215,21 @@ export const CHART_STEPS = [
 const buildChartRamp = (hue: number, mode: ColorSchemeMode): string[] =>
   CHART_STEPS.map(({ dh, l, c }) => toCss(ok(mode === 'dark' ? l + 0.05 : l, c, (hue + dh) % 360)))
 
+/** Headroom over AA because active text sits on a tint of the accent, not on plain white. */
+const SHEET_TEXT_TARGET = 5
+
+/** The mobile sidebar sheet is white in every theme, so its accent is resolved against white. */
+export const sidebarSheetTokens = (color: Colors): Record<string, string> => {
+  const seed = (PALETTES[color] ?? PALETTES.blue).accent.light
+  const white = ok(1, 0, 0)
+  const accent = visibleOn(seed, white)
+  return {
+    'sidebar-sheet-accent': toCss(accent),
+    'sidebar-sheet-accent-text': toCss(visibleOn(seed, white, SHEET_TEXT_TARGET)),
+    'sidebar-sheet-on-accent': toCss(readableOn(accent))
+  }
+}
+
 /** Keys come back without the leading `--`. */
 export const buildColorScheme = (color: Colors, mode: ColorSchemeMode): Record<string, string> => {
   const spec = PALETTES[color] ?? PALETTES.blue
@@ -263,6 +278,7 @@ export const buildColorScheme = (color: Colors, mode: ColorSchemeMode): Record<s
     'chart-4': chart4,
     'chart-5': chart5,
     sidebar: grey(ramp.base),
+    ...sidebarSheetTokens(color),
     'sidebar-foreground': text,
     'sidebar-primary': accentCss,
     'sidebar-primary-foreground': onAccent,

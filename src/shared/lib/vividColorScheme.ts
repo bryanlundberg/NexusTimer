@@ -8,6 +8,7 @@ import {
   ROLES,
   contrastRatio,
   ok,
+  sidebarSheetTokens,
   toCss,
   type ColorSchemeMode,
   type Oklch
@@ -160,6 +161,7 @@ export const buildVividColorScheme = (color: Colors): Record<string, string> => 
     ring: primaryCss,
     ...Object.fromEntries(charts),
     sidebar: toCss(base),
+    ...sidebarSheetTokens(color),
     'sidebar-foreground': textCss,
     'sidebar-primary': primaryCss,
     'sidebar-primary-foreground': toCss(onPrimary),
