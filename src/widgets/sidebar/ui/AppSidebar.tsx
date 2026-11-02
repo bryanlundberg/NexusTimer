@@ -26,6 +26,7 @@ import { SmartCubeIndicatorCompact } from '@/features/smart-cube/ui/SmartCubeInd
 import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
 import { useOverscrollStretch } from '@/shared/model/useOverscrollStretch'
 import { useSidebarNav } from '@/widgets/sidebar/model/useSidebarNav'
+import { cn } from '@/shared/lib/utils'
 
 const subscribeNoop = () => () => {}
 const getIsMac = () => /Mac|iPhone|iPad/.test(navigator.userAgent)
@@ -48,13 +49,27 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   return (
     <Sidebar collapsible={'icon'} {...props}>
-      <SidebarHeader className="relative h-14 shrink-0 justify-center border-b border-sidebar-border py-0">
+      <SidebarHeader
+        className={cn(
+          'relative h-14 shrink-0 justify-center border-b border-sidebar-border py-0',
+          isMobile && 'h-18 px-3'
+        )}
+      >
         <SidebarMenu>
           <SidebarMenuItem>
-            <Link href={'/app'} className="flex items-center gap-2" onClick={() => isMobile && setOpenMobile(false)}>
+            <Link
+              href={'/app'}
+              className={cn('flex items-center gap-2', isMobile && 'gap-3 [&>div]:size-10 [&_svg]:size-6')}
+              onClick={() => isMobile && setOpenMobile(false)}
+            >
               <BrandMark />
               {open || openMobile ? (
-                <span className="min-w-0 flex-1 truncate font-brand text-base leading-tight font-bold tracking-tight">
+                <span
+                  className={cn(
+                    'min-w-0 flex-1 truncate font-brand text-base leading-tight font-bold tracking-tight',
+                    isMobile && 'text-lg'
+                  )}
+                >
                   <span className="text-foreground">NEXUSTIMER</span>
                   <span className="text-muted-foreground">.COM</span>
                 </span>
