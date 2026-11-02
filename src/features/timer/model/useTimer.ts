@@ -18,6 +18,7 @@ interface UseTimerProps {
   timerMode?: TimerMode
   settings?: TimerSettings
   onFinishSolve: (penalty: InspectionPenalty) => void
+  onCancelAttempt?: () => void
 }
 
 export default function useTimer({
@@ -29,7 +30,8 @@ export default function useTimer({
   setSolvingTime,
   timerMode = TimerMode.NORMAL,
   settings = { timer: { holdToStart: false } },
-  onFinishSolve
+  onFinishSolve,
+  onCancelAttempt
 }: UseTimerProps) {
   const { startTimer, resetTimer, stopTimer } = useTimerControls({
     setSolvingTime,
@@ -132,17 +134,21 @@ export default function useTimer({
   }
 
   // Event handlers
-  useEventHandlers({
+  const { cancel: cancelAttempt } = useEventHandlers({
     timerMode,
     handleHold,
     handleRelease,
-    resetTimer: resetAll,
+    resetTimer: () => {
+      resetAll()
+      onCancelAttempt?.()
+    },
     isSolving
   })
 
   return {
     inspectionTime,
     resetAll,
+    cancelAttempt,
     resumeSolve,
     resumeInspection,
     stopTimer

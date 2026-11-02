@@ -264,6 +264,7 @@ export default function useEventHandlers({
   }, [timerMode])
 
   return {
-    isReleased: () => releasedKey.current
+    isReleased: () => releasedKey.current,
+    cancel: resetAndRelease
   }
 }
