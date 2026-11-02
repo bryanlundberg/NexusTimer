@@ -13,7 +13,6 @@ import { useTimerFit } from '@/features/timer/model/useTimerFit'
 import { timerFontClass } from '@/features/timer/model/timerFonts'
 import { TIMER_MAX_VIEWPORT_HEIGHT, timerScale } from '@/features/timer/model/timerSize'
 import { inspectionLabel } from '@/features/timer/lib/inspection'
-import formatTime from '@/shared/lib/formatTime'
 
 interface DisplayTimeProps extends Omit<HTMLMotionProps<'div'>, 'ref'> {
   className?: string
@@ -189,7 +188,7 @@ export default function DisplayTime({
                   {timerMode === TimerMode.STACKMAT && t('start-stackmat')}
                 </motion.div>
               ) : null}
-              {showRecord && lastSolve ? (
+              {showRecord ? (
                 <motion.div
                   className="flex flex-col items-center gap-0.5 px-4 text-center"
                   role="status"
@@ -197,9 +196,7 @@ export default function DisplayTime({
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.25 }}
                 >
-                  <span className="text-sm font-semibold">
-                    {t('congratulations', { time: formatTime(lastSolve.time, settings.timer.decimals) })}
-                  </span>
+                  <span className="text-sm font-semibold">{t('congratulations')}</span>
                   <span className="text-xs text-muted-foreground">{t('personal_best')}</span>
                 </motion.div>
               ) : null}
