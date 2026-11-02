@@ -1,11 +1,11 @@
 import { useTranslations } from 'next-intl'
-import { Lightbulb } from 'lucide-react'
 import { DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { CROSS_FACE_COLOR, XCROSS_SLOTS } from '@/features/timer/model/const'
 import { useCrossHintStore } from '@/features/timer/model/useCrossHintStore'
 import { CrossHintColorPicker } from '@/features/timer/ui/CrossHintColorPicker'
 import { CrossHintRow } from '@/features/timer/ui/CrossHintRow'
+import HintBulbIcon from '@/features/timer/ui/HintBulbIcon'
 
 export default function DrawerHintPanel() {
   const t = useTranslations('Index.CrossHints')
@@ -21,7 +21,7 @@ export default function DrawerHintPanel() {
     <DialogContent className="sm:max-w-[560px]">
       <DialogHeader>
         <DialogTitle className="flex items-center gap-2">
-          <Lightbulb className="size-4" />
+          <HintBulbIcon className="size-4" />
           {t('title')}
         </DialogTitle>
         <DialogDescription className="text-start">{t('orientation')}</DialogDescription>
