@@ -29,7 +29,7 @@ export function MobileBottomNavItem({ url, icon: Icon, label, active }: Props) {
         className="flex w-full flex-col items-center justify-center gap-1 py-2 px-1"
       >
         <Icon
-          className={cn('size-5 transition-colors', active ? 'text-foreground' : 'text-muted-foreground')}
+          className={cn('size-6 transition-colors', active ? 'text-foreground' : 'text-muted-foreground')}
           aria-hidden="true"
         />
         <span
