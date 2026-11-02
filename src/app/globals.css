@@ -202,6 +202,9 @@
   --chart-4: oklch(0.75 0.14 115.815);
   --chart-5: oklch(0.64 0.19 187.815);
   --sidebar: oklch(1 0 259.815);
+  --sidebar-sheet-accent: oklch(0.623 0.214 259.815);
+  --sidebar-sheet-accent-text: oklch(0.552 0.214 259.815);
+  --sidebar-sheet-on-accent: oklch(0.2233 0.08 259.815);
   --sidebar-foreground: oklch(0.145 0.0224 259.815);
   --sidebar-primary: oklch(0.623 0.214 259.815);
   --sidebar-primary-foreground: oklch(0.2233 0.08 259.815);
@@ -1021,6 +1024,40 @@
 [data-slot='sidebar-inset'],
 [data-slot='sidebar-inner'] {
   background-color: transparent;
+}
+
+/* White in every theme, so the tokens its content reads are rescoped here. */
+[data-slot='sidebar'][data-mobile='true'] {
+  color-scheme: light;
+  --background: oklch(1 0 0);
+  --backdrop: none;
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: var(--sidebar-sheet-accent);
+  --primary-foreground: var(--sidebar-sheet-on-accent);
+  --secondary: oklch(0.968 0 0);
+  --secondary-foreground: oklch(0.21 0 0);
+  --muted: oklch(0.968 0 0);
+  --muted-foreground: oklch(0.553 0 0);
+  --accent: oklch(0.968 0 0);
+  --accent-foreground: oklch(0.21 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --success: oklch(0.508 0.118 165.612);
+  --border: oklch(0.925 0 0);
+  --input: oklch(0.925 0 0);
+  --ring: var(--sidebar-sheet-accent);
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: var(--sidebar-sheet-accent);
+  --sidebar-primary-foreground: var(--sidebar-sheet-on-accent);
+  --sidebar-accent: color-mix(in oklab, var(--sidebar-sheet-accent) 10%, oklch(1 0 0));
+  --sidebar-accent-foreground: oklch(0.21 0 0);
+  --sidebar-mark: var(--sidebar-sheet-accent);
+  --sidebar-border: oklch(0.925 0 0);
+  --sidebar-ring: var(--sidebar-sheet-accent);
 }
 
 
