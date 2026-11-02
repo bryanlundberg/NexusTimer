@@ -61,11 +61,16 @@ export function NavMain({ items, label }: { items: SidebarNavItem[]; label?: str
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:mt-1 group-data-[collapsible=icon]:border-t group-data-[collapsible=icon]:border-sidebar-border/60 group-data-[collapsible=icon]:pt-2 group-data-[collapsible=icon]:first:mt-0 group-data-[collapsible=icon]:first:border-t-0">
       {label && (
-        <SidebarGroupLabel className="font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-sidebar-foreground/40">
+        <SidebarGroupLabel
+          className={cn(
+            'font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-sidebar-foreground/40',
+            isMobile && 'text-[11px] text-sidebar-foreground/60'
+          )}
+        >
           <span className="truncate">{label}</span>
         </SidebarGroupLabel>
       )}
-      <SidebarMenu>
+      <SidebarMenu className={cn(isMobile && 'gap-0.5')}>
         {items.map((item) => {
           const itemActive = isItemActive(item)
 
@@ -83,7 +88,8 @@ export function NavMain({ items, label }: { items: SidebarNavItem[]; label?: str
                   isActive={itemActive}
                   className={cn(
                     'nav-item transition-[width,height,padding,color] text-sidebar-foreground hover:text-sidebar-foreground data-[active=true]:text-sidebar-foreground [&>svg]:text-sidebar-foreground/50 data-[active=true]:font-normal',
-                    isMobile && 'h-10'
+                    isMobile &&
+                      'h-11 gap-3 text-[15px] [&>svg]:size-5 [&>svg]:text-sidebar-foreground/70 data-[active=true]:text-(--sidebar-sheet-accent-text) data-[active=true]:[&>svg]:text-sidebar-mark'
                   )}
                 >
                   <Link href={item.url} onClick={handleNavClick}>
@@ -105,6 +111,7 @@ export function NavMain({ items, label }: { items: SidebarNavItem[]; label?: str
                 </SidebarMenuButton>
                 {item.action && !item.items?.length ? (
                   <SidebarMenuAction
+                    className={cn(isMobile && 'top-3!')}
                     onClick={(e) => {
                       e.preventDefault()
                       e.stopPropagation()
@@ -119,7 +126,7 @@ export function NavMain({ items, label }: { items: SidebarNavItem[]; label?: str
                 {item.items?.length ? (
                   <>
                     <CollapsibleTrigger asChild>
-                      <SidebarMenuAction className="data-[state=open]:rotate-90">
+                      <SidebarMenuAction className={cn('data-[state=open]:rotate-90', isMobile && 'top-3!')}>
                         <ChevronRightIcon />
                         <span className="sr-only">{t('toggle-section', { title: item.title })}</span>
                       </SidebarMenuAction>
@@ -135,7 +142,7 @@ export function NavMain({ items, label }: { items: SidebarNavItem[]; label?: str
                                 isActive={subIsActive}
                                 className={cn(
                                   'nav-item text-sidebar-foreground hover:text-sidebar-foreground data-[active=true]:text-sidebar-foreground',
-                                  isMobile && 'h-9'
+                                  isMobile && 'h-9 data-[active=true]:text-(--sidebar-sheet-accent-text)'
                                 )}
                               >
                                 <Link href={subItem.url} onClick={handleNavClick}>
