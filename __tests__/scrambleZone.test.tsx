@@ -27,19 +27,19 @@ const renderZone = () =>
 describe('ScrambleZone', () => {
   it('says the scramble is being prepared and hides the hints until it arrives', () => {
     useTimerStore.setState({ selectedCube: cube, scramble: null })
-    const { container } = renderZone()
+    renderZone()
 
     expect(screen.getByRole('status')).toHaveTextContent('Preparing scramble…')
-    expect(container.querySelector('.lucide-lightbulb')).toBeNull()
+    expect(screen.queryByTestId('hint-bulb-icon')).toBeNull()
   })
 
   it('shows the scramble and the hints once it is ready', () => {
     useTimerStore.setState({ selectedCube: cube, scramble: "R U R' U'" })
-    const { container } = renderZone()
+    renderZone()
 
     expect(screen.getByTestId('scramble-text-zone')).toHaveTextContent("R U R' U'")
     expect(screen.queryByRole('status')).toBeNull()
-    expect(container.querySelector('.lucide-lightbulb')).not.toBeNull()
+    expect(screen.getByTestId('hint-bulb-icon')).toBeInTheDocument()
   })
 
   it('asks for a cube when none is selected', () => {

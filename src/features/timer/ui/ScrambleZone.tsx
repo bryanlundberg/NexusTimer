@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useTranslations } from 'next-intl'
 import { AnimatePresence, motion } from 'motion/react'
-import { Keyboard, Lightbulb } from 'lucide-react'
+import { Keyboard } from 'lucide-react'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 
 import { Button } from '@/components/ui/button'
@@ -23,6 +23,7 @@ import { useScrambleGuideStore } from '@/shared/model/timer/useScrambleGuideStor
 import { truncateGuide, type ScrambleGuideItem } from '@/shared/lib/timer/scrambleGuide'
 
 import DrawerHintPanel from '@/features/timer/ui/drawer-hint-panel'
+import HintBulbIcon from '@/features/timer/ui/HintBulbIcon'
 import VirtualKeymapEditor from '@/features/timer/ui/VirtualKeymapEditor'
 import FocusModeToggle from '@/features/focus-mode/ui/FocusModeToggle'
 import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
@@ -171,11 +172,9 @@ export function ScrambleZone() {
         )}
       </div>
 
-      <div className="absolute z-10 bottom-0 right-0 cursor-pointer duration-300 transition translate-y-10 flex gap-3">
-        <TooltipProvider delayDuration={250}>
-          {showFocusModeButton && <FocusModeToggle />}
-
-          {showHintButton && (
+      {showHintButton && (
+        <div className="absolute z-10 bottom-0 left-0 cursor-pointer duration-300 transition translate-y-10 flex gap-3">
+          <TooltipProvider delayDuration={250}>
             <Dialog>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -186,7 +185,7 @@ export function ScrambleZone() {
                       className="size-9 pointer-coarse:size-10 [&>svg]:transition-all [&>svg]:duration-300 [&:hover>svg]:text-record"
                       onClick={handleShowHints}
                     >
-                      <Lightbulb />
+                      <HintBulbIcon />
                     </Button>
                   </DialogTrigger>
                 </TooltipTrigger>
@@ -197,7 +196,13 @@ export function ScrambleZone() {
                 </TooltipContent>
               </Tooltip>
             </Dialog>
-          )}
+          </TooltipProvider>
+        </div>
+      )}
+
+      <div className="absolute z-10 bottom-0 right-0 cursor-pointer duration-300 transition translate-y-10 flex gap-3">
+        <TooltipProvider delayDuration={250}>
+          {showFocusModeButton && <FocusModeToggle />}
 
           {showVirtualKeyboard && (
             <Tooltip>
