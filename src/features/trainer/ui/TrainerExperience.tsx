@@ -21,6 +21,7 @@ import { useTrainerStore } from '@/features/trainer/model/useTrainerStore'
 import { useTrainerSession } from '@/features/trainer/model/useTrainerSession'
 import { useSmartCubeStore } from '@/features/smart-cube/model/useSmartCubeStore'
 import useTimer from '@/features/timer/model/useTimer'
+import { useBackToCancel } from '@/features/timer/model/useBackToCancel'
 import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
@@ -130,7 +131,7 @@ export default function TrainerExperience() {
     [settings]
   )
 
-  useTimer({
+  const { cancelAttempt } = useTimer({
     isSolving,
     setTimerStatus,
     selectedCube: trainerCubeStub,
@@ -141,6 +142,8 @@ export default function TrainerExperience() {
     // and can't interfere with cube-move driven timing.
     timerMode: smartMode ? TimerMode.MANUAL : TimerMode.NORMAL,
     settings: trainerSettings,
+    touchAnywhereWhileActive: true,
+    onCancelAttempt: () => setSolvingTime(lastSolve?.timeMs ?? 0),
     onFinishSolve: () => {
       if (!currentCase) return
       const ms = useTimerStore.getState().solvingTime
@@ -160,6 +163,8 @@ export default function TrainerExperience() {
         })
     }
   })
+
+  useBackToCancel(!smartMode && (isSolving || timerStatus !== TimerStatus.IDLE), cancelAttempt)
 
   const handleSkip = () => advanceCase(sessionCases.length)
 
