@@ -248,8 +248,12 @@ export default function TrainerExperience() {
 
   const stageOverlayClass = timerStatus === TimerStatus.READY ? 'bg-primary/10' : 'bg-transparent'
 
-  const displayedTime =
-    timerStatus === TimerStatus.HOLDING || timerStatus === TimerStatus.READY ? '0.00' : formatMs(solvingTime)
+  const decimals = settings.timer.decimals
+
+  const displayedTime = formatMs(
+    timerStatus === TimerStatus.HOLDING || timerStatus === TimerStatus.READY ? 0 : solvingTime,
+    decimals
+  )
 
   const currentIsLearned = !!currentCase && learnedSet.has(currentCase.id)
 
@@ -301,15 +305,15 @@ export default function TrainerExperience() {
           timeColorClass={timeColorClass}
           vizConfig={vizConfig}
           isLearned={currentIsLearned}
-          best={currentStats?.best != null ? formatMs(currentStats.best) : undefined}
-          ao5={currentStats?.ao5 != null ? formatMs(currentStats.ao5) : undefined}
+          best={currentStats?.best != null ? formatMs(currentStats.best, decimals) : undefined}
+          ao5={currentStats?.ao5 != null ? formatMs(currentStats.ao5, decimals) : undefined}
           onSkip={handleSkip}
           onUndoLast={
             lastSolve && timerStatus === TimerStatus.IDLE && (!isAuthed || !!lastSolve.persistedId)
               ? handleUndoLast
               : undefined
           }
-          lastSolveTime={lastSolve ? formatMs(lastSolve.timeMs) : undefined}
+          lastSolveTime={lastSolve ? formatMs(lastSolve.timeMs, decimals) : undefined}
           onToggleLearned={isAuthed ? handleToggleLearned : undefined}
           showSolveInfo={showSolveInfo}
           sparklineSlot={<MiniSparkline solves={methodSolves} targetMs={targetSeconds * 1000} />}

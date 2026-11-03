@@ -4,7 +4,7 @@ import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import { applyYellowOrientation } from '@/shared/lib/algorithms/vizConfig'
 import { isSquare1Alg } from '@/shared/lib/algorithms/algNotation'
 
-export const formatMs = (ms: number): string => (ms / 1000).toFixed(2)
+export const formatMs = (ms: number, decimals = 2): string => (ms / 1000).toFixed(decimals)
 
 export const formatRelative = (iso: string): string => {
   const date = dayjs(iso)
