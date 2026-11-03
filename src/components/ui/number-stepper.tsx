@@ -18,6 +18,7 @@ interface NumberStepperProps {
   id?: string
   'aria-label'?: string
   className?: string
+  disabled?: boolean
 }
 
 function NumberStepper({
@@ -32,7 +33,8 @@ function NumberStepper({
   incrementLabel,
   id,
   'aria-label': ariaLabel,
-  className
+  className,
+  disabled = false
 }: NumberStepperProps) {
   const [draft, setDraft] = React.useState<string | null>(null)
   const current = Number.isFinite(value) ? value : min
@@ -66,11 +68,14 @@ function NumberStepper({
     'relative z-[1] flex w-11 shrink-0 cursor-pointer items-center justify-center text-muted-foreground outline-none transition-colors [-webkit-tap-highlight-color:transparent] hover:text-foreground focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-ring active:text-primary disabled:pointer-events-none disabled:opacity-30 sm:w-9 [&_svg]:size-4 [&_svg]:transition-transform active:[&_svg]:scale-75'
 
   return (
-    <div data-slot="number-stepper" className={cn('field flex h-11 w-40 shrink-0 sm:h-9 sm:w-36', className)}>
+    <div
+      data-slot="number-stepper"
+      className={cn('field flex h-11 w-40 shrink-0 sm:h-9 sm:w-36', disabled && 'opacity-50', className)}
+    >
       <button
         type="button"
         aria-label={decrementLabel}
-        disabled={current <= min}
+        disabled={disabled || current <= min}
         onPointerDown={(e) => e.preventDefault()}
         onClick={() => nudge(-1)}
         className={buttonClassName}
@@ -85,6 +90,7 @@ function NumberStepper({
           enterKeyHint="done"
           autoComplete="off"
           aria-label={ariaLabel}
+          disabled={disabled}
           value={shown}
           style={{ width: `${Math.max(shown.length, 1) + 0.5}ch` }}
           onFocus={(e) => e.currentTarget.select()}
@@ -108,7 +114,7 @@ function NumberStepper({
       <button
         type="button"
         aria-label={incrementLabel}
-        disabled={current >= max}
+        disabled={disabled || current >= max}
         onPointerDown={(e) => e.preventDefault()}
         onClick={() => nudge(1)}
         className={buttonClassName}

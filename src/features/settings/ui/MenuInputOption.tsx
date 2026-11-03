@@ -15,6 +15,7 @@ interface MenuInputOptionProps {
   scale?: number
   unit?: string
   description?: string
+  disabled?: boolean
 }
 
 export default function MenuInputOption({
@@ -26,7 +27,8 @@ export default function MenuInputOption({
   step,
   scale,
   unit,
-  description
+  description,
+  disabled
 }: MenuInputOptionProps) {
   const t = useTranslations('Index.Inputs')
   const updateSetting = useSettingsStore((state) => state.updateSetting)
@@ -45,6 +47,7 @@ export default function MenuInputOption({
             step={step}
             scale={scale}
             unit={unit}
+            disabled={disabled}
             decrementLabel={t('decrease')}
             incrementLabel={t('increase')}
             onValueChange={(next) => {

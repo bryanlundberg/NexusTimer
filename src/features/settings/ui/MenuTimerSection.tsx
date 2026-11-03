@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { MenuSection } from './MenuSection'
 import { MenuOption } from './MenuOption'
 import MenuInputOption from './MenuInputOption'
@@ -7,6 +8,7 @@ import MenuSelectActivationKey from './MenuSelectActivationKey'
 
 export default function MenuTimerSection({ control }: { control: any }) {
   const t = useTranslations('Index')
+  const holdToStart = useSettingsStore((state) => state.settings.timer.holdToStart)
 
   return (
     <MenuSection id="timer" title={t('Settings-menu.timer')}>
@@ -43,6 +45,7 @@ export default function MenuTimerSection({ control }: { control: any }) {
         step={100}
         unit="ms"
         description={t('Settings-descriptions.hold-to-start-time')}
+        disabled={!holdToStart}
       />
       <MenuSegmentedOption
         name={'timer.decimals'}
