@@ -35,7 +35,7 @@ export default function useInspection({ setTimerStatus, settings }: UseInspectio
         reproduced8 = true
         if (settings.sounds?.inspection) {
           const audio8 = new Audio(`/sounds/en/8${suffix}`)
-          audio8.play()
+          void audio8.play().catch(() => {})
         }
       }
 
@@ -43,7 +43,7 @@ export default function useInspection({ setTimerStatus, settings }: UseInspectio
         reproduced12 = true
         if (settings.sounds?.inspection) {
           const audio12 = new Audio(`/sounds/en/12${suffix}`)
-          audio12.play()
+          void audio12.play().catch(() => {})
         }
       }
 
