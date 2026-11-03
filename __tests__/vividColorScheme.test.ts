@@ -24,7 +24,7 @@ const CHROMATIC: Colors[] = [
 const THEMES: Colors[] = [...CHROMATIC, 'slate', 'gray', 'zinc', 'neutral', 'stone']
 
 const TEXT_ROLES = ['record', 'faster', 'slower', 'success', 'warning']
-const TIMER_ROLES = ['timer-holding', 'timer-ready', 'timer-inspect']
+const TIMER_ROLES = ['timer-ready', 'timer-inspect']
 const CHARTS = ['chart-1', 'chart-2', 'chart-3', 'chart-4', 'chart-5']
 
 const parse = (css: string) => {

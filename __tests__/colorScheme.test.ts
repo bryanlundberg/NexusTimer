@@ -28,7 +28,7 @@ const THEMES: Colors[] = [
 const MODES: ColorSchemeMode[] = ['light', 'dark']
 
 const TEXT_ROLES = ['record', 'faster', 'slower', 'success', 'warning']
-const TIMER_ROLES = ['timer-holding', 'timer-ready', 'timer-inspect']
+const TIMER_ROLES = ['timer-ready', 'timer-inspect']
 
 const parse = (css: string) => {
   const match = /^oklch\(([\d.]+) ([\d.]+) ([\d.]+)\)$/.exec(css)

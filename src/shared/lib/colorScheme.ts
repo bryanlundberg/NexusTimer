@@ -198,7 +198,6 @@ export const ROLES: Record<string, Record<ColorSchemeMode, Oklch>> = {
   slower: DESTRUCTIVE,
   success: GAIN,
   warning: { light: ok(0.554, 0.135, 66.442), dark: ok(0.852, 0.199, 91.936) },
-  'timer-holding': { light: ok(0.592, 0.249, 0.584), dark: ok(0.592, 0.249, 0.584) },
   'timer-ready': { light: ok(0.596, 0.145, 163.225), dark: ok(0.765, 0.177, 163.223) },
   'timer-inspect': { light: ok(0.646, 0.222, 41.116), dark: ok(0.705, 0.213, 47.604) }
 }
