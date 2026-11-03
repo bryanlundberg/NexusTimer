@@ -73,8 +73,8 @@ export default function TimerWidgets() {
     <>
       <div
         className={cn(
-          'flex flex-col gap-1 pb-1 relative transition-opacity duration-150',
-          isHidden ? 'opacity-30 pointer-events-none' : 'opacity-100'
+          'flex flex-col gap-1 pb-1 relative max-md:transition-opacity duration-150',
+          isHidden ? 'opacity-0 pointer-events-none transition-opacity' : 'opacity-100'
         )}
       >
         <div className="absolute bottom-full right-0 mb-1 flex flex-col items-end gap-1">

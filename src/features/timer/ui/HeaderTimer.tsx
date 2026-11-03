@@ -23,10 +23,9 @@ export default function HeaderTimer() {
       <RecordRipple active={isPersonalBest} solveId={lastSolve?.id} />
       <div
         className={cn(
-          'w-full flex flex-col items-center transition-opacity duration-150',
+          'w-full flex flex-col items-center max-md:transition-opacity duration-150',
           !isHidden && 'opacity-100',
-          isHidden && 'pointer-events-none',
-          isHidden && (isFocusMode ? 'opacity-0' : 'opacity-30')
+          isHidden && 'opacity-0 pointer-events-none transition-opacity'
         )}
       >
         {!isFocusMode && (

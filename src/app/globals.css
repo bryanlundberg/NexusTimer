@@ -1061,6 +1061,14 @@
 }
 
 
+/* !important beats the inline opacity motion writes on the rail. The transition lives here so they reappear instantly. */
+html[data-timer-active] [data-slot='sidebar-container'],
+html[data-timer-active] [data-timer-chrome] {
+  opacity: 0 !important;
+  pointer-events: none;
+  transition: opacity 150ms ease-out;
+}
+
 /* Translucent bars in neutral themes; in vivid --glass-opacity makes them the body itself, shade and all. */
 @utility glass-* {
   background-color: color-mix(in oklab, var(--background) var(--glass-opacity, calc(--value(integer) * 1%)), transparent);

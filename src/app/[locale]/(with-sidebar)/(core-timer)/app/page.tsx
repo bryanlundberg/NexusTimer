@@ -4,6 +4,8 @@ import { useTranslations } from 'next-intl'
 import * as React from 'react'
 import { useEffect } from 'react'
 import TimerContainer from '@/features/timer/ui/TimerContainer'
+import TimerHeaderCollapse from '@/features/timer/ui/TimerHeaderCollapse'
+import TimerChromeHider from '@/features/timer/ui/TimerChromeHider'
 import HeaderTimer from '@/features/timer/ui/HeaderTimer'
 import { MainTimer } from '@/features/timer/ui/MainTimer'
 import TimerWidgets from '@/features/timer/ui/TimerWidgets'
@@ -44,8 +46,13 @@ export default function TimerPage() {
   return (
     <div className="flex flex-col grow min-h-0 relative">
       <h1 className="sr-only">{t('description')}</h1>
-      {!isFocusMode && <CoreHeader breadcrumbs={[{ label: tHomePage('title'), href: '/app' }]} />}
+      {!isFocusMode && (
+        <TimerHeaderCollapse>
+          <CoreHeader breadcrumbs={[{ label: tHomePage('title'), href: '/app' }]} />
+        </TimerHeaderCollapse>
+      )}
       <FocusModeExitButton />
+      <TimerChromeHider />
       <div className="flex grow min-h-0">
         <PageBody variant="data" className="flex flex-col grow min-w-0">
           <TimerContainer>

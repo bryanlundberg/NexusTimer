@@ -127,6 +127,7 @@ export default function TimerSolvesRail() {
   return (
     <motion.aside
       data-testid="timer-solves-rail"
+      data-timer-chrome
       initial={false}
       animate={{ width: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
       transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
