@@ -16,6 +16,7 @@ export default function useTimerControls({ setSolvingTime, setIsSolving, setTime
     // Set state and references in a single batch to minimize renders
     setIsSolving(true)
     setTimerStatus(TimerStatus.SOLVING)
+    setSolvingTime(elapsedMs)
 
     startSolveTime.current = startedAt - elapsedMs
 

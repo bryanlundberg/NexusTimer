@@ -13,6 +13,7 @@ import { useTimerFit } from '@/features/timer/model/useTimerFit'
 import { timerFontClass } from '@/features/timer/model/timerFonts'
 import { TIMER_MAX_VIEWPORT_HEIGHT, timerScale } from '@/features/timer/model/timerSize'
 import { inspectionLabel } from '@/features/timer/lib/inspection'
+import { getDecimalPart, getIntegerPart } from '@/shared/lib/formatTimeParts'
 
 interface DisplayTimeProps extends Omit<HTMLMotionProps<'div'>, 'ref'> {
   className?: string
@@ -28,7 +29,7 @@ interface DisplayTimeProps extends Omit<HTMLMotionProps<'div'>, 'ref'> {
 
 const timerStatusClasses = {
   IDLE: 'text-foreground',
-  HOLDING: 'text-timer-holding',
+  HOLDING: 'text-foreground/50',
   SOLVING: 'text-foreground/85',
   READY: 'text-timer-ready',
   INSPECTING: 'text-timer-inspect',
@@ -69,6 +70,7 @@ export default function DisplayTime({
   const size = height < 700 ? 'short' : 'tall'
   const showRecord = isRecord && timerStatus === TimerStatus.IDLE
   const font = timerFontClass(settings.features.timerFont)
+  const isPreparing = timerStatus === TimerStatus.HOLDING || timerStatus === TimerStatus.READY
 
   return (
     <>
@@ -128,7 +130,7 @@ export default function DisplayTime({
                   >
                     <DigitCells text={inspectionLabel(inspectionTime)} />
                   </motion.div>
-                ) : lastSolve?.dnf && !isSolving ? (
+                ) : lastSolve?.dnf && !isSolving && !isPreparing ? (
                   <motion.div
                     className={cn(
                       font,
@@ -151,7 +153,7 @@ export default function DisplayTime({
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <SolvingTimeInteger />
+                      {isPreparing ? <DigitCells text={getIntegerPart(0)} /> : <SolvingTimeInteger />}
                     </motion.div>
                     <motion.div
                       className={cn(font, 'font-normal', FIT_TEXT, DECIMAL_SIZE[size])}
@@ -159,9 +161,15 @@ export default function DisplayTime({
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.3, delay: 0.1 }}
                     >
-                      <SolvingTimeDecimals decimals={settings.timer.decimals} />
+                      {isPreparing ? (
+                        <span className="opacity-60">
+                          <DigitCells text={getDecimalPart(0, settings.timer.decimals)} />
+                        </span>
+                      ) : (
+                        <SolvingTimeDecimals decimals={settings.timer.decimals} />
+                      )}
                     </motion.div>
-                    {lastSolve?.plus2 && !isSolving && (
+                    {lastSolve?.plus2 && !isSolving && !isPreparing && (
                       <motion.span
                         className={cn('text-destructive', font, 'font-normal', FIT_TEXT, PENALTY_SIZE[size])}
                         initial={{ opacity: 0, x: -10 }}
