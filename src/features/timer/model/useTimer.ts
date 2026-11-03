@@ -19,6 +19,7 @@ interface UseTimerProps {
   settings?: TimerSettings
   onFinishSolve: (penalty: InspectionPenalty) => void
   onCancelAttempt?: () => void
+  touchAnywhereWhileActive?: boolean
 }
 
 export default function useTimer({
@@ -31,7 +32,8 @@ export default function useTimer({
   timerMode = TimerMode.NORMAL,
   settings = { timer: { holdToStart: false } },
   onFinishSolve,
-  onCancelAttempt
+  onCancelAttempt,
+  touchAnywhereWhileActive
 }: UseTimerProps) {
   const { startTimer, resetTimer, stopTimer } = useTimerControls({
     setSolvingTime,
@@ -142,7 +144,8 @@ export default function useTimer({
       resetAll()
       onCancelAttempt?.()
     },
-    isSolving
+    isSolving,
+    touchAnywhereWhileActive
   })
 
   return {

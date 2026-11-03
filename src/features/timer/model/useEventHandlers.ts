@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
-import { TimerMode } from '@/features/timer/model/enums'
+import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { eventTime } from '@/features/timer/lib/eventTime'
 
 type HandleHoldFunction = (isReleased: boolean, at?: number) => void
@@ -13,6 +14,7 @@ interface UseEventHandlersProps {
   handleRelease: HandleReleaseFunction
   resetTimer: ResetTimerFunction
   isSolving: boolean
+  touchAnywhereWhileActive?: boolean
 }
 
 export default function useEventHandlers({
@@ -20,7 +22,8 @@ export default function useEventHandlers({
   handleHold,
   handleRelease,
   resetTimer,
-  isSolving
+  isSolving,
+  touchAnywhereWhileActive = false
 }: UseEventHandlersProps) {
   const releasedKey = useRef<boolean>(true)
   const pendingTouchEnds = useRef(new Set<() => void>())
@@ -81,6 +84,13 @@ export default function useEventHandlers({
       handleHoldWithReleasedState(eventTime(event))
     }
 
+    const handleTouchOutside = (event: TouchEvent): void => {
+      if (event.target instanceof Element && event.target.closest('#touch')) return
+      const { isSolving, timerStatus } = useTimerStore.getState()
+      if (!isSolving && timerStatus === TimerStatus.IDLE) return
+      handleTouchStart(event)
+    }
+
     const isTypingTarget = (): boolean => {
       const ae = document.activeElement as HTMLElement | null
       if (!ae) return false
@@ -133,6 +143,7 @@ export default function useEventHandlers({
     touchElements.forEach((element) => {
       element.addEventListener('touchstart', handleTouchStart as EventListener, { passive: false })
     })
+    if (touchAnywhereWhileActive) document.addEventListener('touchstart', handleTouchOutside, { passive: false })
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
@@ -140,6 +151,7 @@ export default function useEventHandlers({
       touchElements.forEach((element) => {
         element.removeEventListener('touchstart', handleTouchStart as EventListener)
       })
+      document.removeEventListener('touchstart', handleTouchOutside)
     }
   }, [
     handleHoldWithReleasedState,
@@ -148,7 +160,8 @@ export default function useEventHandlers({
     handleHold,
     isSolving,
     timerMode,
-    activationKey
+    activationKey,
+    touchAnywhereWhileActive
   ])
 
   useEffect(() => {

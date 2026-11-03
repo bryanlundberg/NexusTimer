@@ -37,7 +37,8 @@ export default function Timer({ children }: { children?: ReactNode }) {
     setIsSolving,
     setSolvingTime,
     timerMode,
-    settings
+    settings,
+    touchAnywhereWhileActive: true
   })
 
   useBackToCancel(timerMode !== TimerMode.STACKMAT && (isSolving || timerStatus !== TimerStatus.IDLE), cancelAttempt)
