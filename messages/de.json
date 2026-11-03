@@ -29,7 +29,6 @@
     "Settings-descriptions": {
       "inspection": "Inspektion vor jedem Solve, wie bei WCA-Wettbewerben",
       "inspection-time": "Wie viel Zeit du für die Inspektion hast",
-      "start-cue": "Ein visuelles Signal, wenn der Timer bereit ist",
       "hold-to-start": "Kurz gedrückt halten, bevor der Timer startet",
       "hold-to-start-time": "Wie lange du halten musst, bevor es losgeht",
       "decimal-places": "Wie viele Nachkommastellen deine Zeiten zeigen",
@@ -705,7 +704,6 @@
       "timer": "Timer",
       "inspection": "Inspektion",
       "inspection-time": "Inspektionszeit",
-      "start-cue": "Startsignal",
       "hold-to-start": "Halten zum Starten",
       "hold-to-start-time": "Haltezeit",
       "decimal-places": "Dezimalstellen",

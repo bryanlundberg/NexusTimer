@@ -29,7 +29,6 @@
     "Settings-descriptions": {
       "inspection": "WCA 대회처럼 매 솔브 전에 인스펙션을 합니다",
       "inspection-time": "인스펙션에 주어지는 시간",
-      "start-cue": "타이머가 준비되면 보이는 신호",
       "hold-to-start": "타이머가 시작되기 전에 잠깐 누르고 있어야 합니다",
       "hold-to-start-time": "시작하기 전에 누르고 있어야 하는 시간",
       "decimal-places": "기록에 표시할 소수점 자릿수",
@@ -705,7 +704,6 @@
       "timer": "타이머",
       "inspection": "미리보기 (WCA)",
       "inspection-time": "미리보기 시간",
-      "start-cue": "시작 신호",
       "hold-to-start": "누르고 시작",
       "hold-to-start-time": "대기 시간",
       "decimal-places": "소수점 자릿수",

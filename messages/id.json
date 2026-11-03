@@ -36,7 +36,6 @@
     "Settings-descriptions": {
       "inspection": "Inspeksi sebelum setiap solve, seperti di kompetisi WCA",
       "inspection-time": "Berapa lama waktu yang kamu punya untuk inspeksi",
-      "start-cue": "Sinyal visual saat timer siap",
       "hold-to-start": "Tahan sebentar sebelum timer mulai",
       "hold-to-start-time": "Berapa lama kamu perlu menahan sebelum mulai",
       "decimal-places": "Berapa angka desimal yang ditampilkan pada waktumu",
@@ -712,7 +711,6 @@
       "timer": "Timer",
       "inspection": "Inspeksi",
       "inspection-time": "Waktu inspeksi",
-      "start-cue": "Isyarat mulai",
       "hold-to-start": "Tahan untuk memulai",
       "hold-to-start-time": "Waktu tahan untuk memulai",
       "decimal-places": "Angka desimal",

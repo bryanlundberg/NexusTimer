@@ -29,7 +29,6 @@
     "Settings-descriptions": {
       "inspection": "大会（WCA）と同じように、毎回ソルブ前にインスペクションします",
       "inspection-time": "インスペクションに使える時間",
-      "start-cue": "タイマーの準備ができたことを知らせる合図",
       "hold-to-start": "タイマーが始まる前に少し長押しします",
       "hold-to-start-time": "スタートまでに長押しが必要な時間",
       "decimal-places": "タイムに表示する小数点以下の桁数",
@@ -705,7 +704,6 @@
       "timer": "タイマー",
       "inspection": "インスペクション",
       "inspection-time": "インスペクション時間",
-      "start-cue": "開始合図",
       "hold-to-start": "長押しで開始",
       "hold-to-start-time": "長押し時間",
       "decimal-places": "小数点以下の桁数",

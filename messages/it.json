@@ -36,7 +36,6 @@
     "Settings-descriptions": {
       "inspection": "Ispeziona prima di ogni risoluzione, come nelle gare WCA",
       "inspection-time": "Quanto tempo hai per l'ispezione",
-      "start-cue": "Un segnale visivo quando il timer è pronto",
       "hold-to-start": "Tieni premuto un attimo prima che parta il timer",
       "hold-to-start-time": "Quanto a lungo devi tenere premuto prima di partire",
       "decimal-places": "Quanti decimali mostrano i tuoi tempi",
@@ -712,7 +711,6 @@
       "timer": "Timer",
       "inspection": "Ispezione",
       "inspection-time": "Tempo di ispezione",
-      "start-cue": "Segnale di avvio",
       "hold-to-start": "Tieni premuto per partire",
       "hold-to-start-time": "Tempo di pressione per partire",
       "decimal-places": "Cifre decimali",

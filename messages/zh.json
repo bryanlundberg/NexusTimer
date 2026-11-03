@@ -29,7 +29,6 @@
     "Settings-descriptions": {
       "inspection": "每次还原前进行观察，和 WCA 比赛一样",
       "inspection-time": "你有多长的观察时间",
-      "start-cue": "计时器准备就绪时的视觉提示",
       "hold-to-start": "计时器启动前需要按住片刻",
       "hold-to-start-time": "开始前需要按住多久",
       "decimal-places": "成绩显示几位小数",
@@ -705,7 +704,6 @@
       "timer": "计时器",
       "inspection": "观察时间",
       "inspection-time": "观察时间长度",
-      "start-cue": "启动提示",
       "hold-to-start": "按住启动",
       "hold-to-start-time": "按住等待时间",
       "decimal-places": "小数位数",

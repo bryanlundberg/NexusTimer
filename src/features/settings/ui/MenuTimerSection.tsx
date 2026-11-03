@@ -29,12 +29,6 @@ export default function MenuTimerSection({ control }: { control: any }) {
         description={t('Settings-descriptions.inspection-time')}
       />
       <MenuOption
-        name={'timer.startCue'}
-        label={t('Settings-menu.start-cue')}
-        control={control}
-        description={t('Settings-descriptions.start-cue')}
-      />
-      <MenuOption
         name={'timer.holdToStart'}
         label={t('Settings-menu.hold-to-start')}
         control={control}

@@ -36,7 +36,6 @@
     "Settings-descriptions": {
       "inspection": "Quan sát trước mỗi lần giải, giống như ở các cuộc thi WCA",
       "inspection-time": "Bạn có bao nhiêu thời gian để quan sát",
-      "start-cue": "Tín hiệu trực quan khi đồng hồ sẵn sàng",
       "hold-to-start": "Giữ một chút trước khi đồng hồ bắt đầu",
       "hold-to-start-time": "Bạn cần giữ bao lâu trước khi bắt đầu",
       "decimal-places": "Số chữ số thập phân hiển thị trong thời gian của bạn",
@@ -712,7 +711,6 @@
       "timer": "Đồng hồ",
       "inspection": "Quan sát",
       "inspection-time": "Thời gian quan sát",
-      "start-cue": "Tín hiệu bắt đầu",
       "hold-to-start": "Giữ để bắt đầu",
       "hold-to-start-time": "Thời gian giữ để bắt đầu",
       "decimal-places": "Số chữ số thập phân",

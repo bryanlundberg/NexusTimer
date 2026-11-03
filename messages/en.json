@@ -36,7 +36,6 @@
     "Settings-descriptions": {
       "inspection": "Inspect before each solve, like at WCA competitions",
       "inspection-time": "How much time you get to inspect",
-      "start-cue": "A visual signal when the timer is ready to go",
       "hold-to-start": "Hold for a moment before the timer starts",
       "hold-to-start-time": "How long you need to hold before starting",
       "decimal-places": "How many decimals your times show",
@@ -702,7 +701,6 @@
       "timer": "Timer",
       "inspection": "Inspection",
       "inspection-time": "Inspection time",
-      "start-cue": "Start cue",
       "hold-to-start": "Hold to start",
       "hold-to-start-time": "Hold to start time",
       "decimal-places": "Decimal places",

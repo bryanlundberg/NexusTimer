@@ -29,7 +29,6 @@
     "Settings-descriptions": {
       "inspection": "Inspecione antes de cada resolução, como nas competições da WCA",
       "inspection-time": "Quanto tempo você tem para inspecionar",
-      "start-cue": "Um sinal visual quando o cronômetro está pronto",
       "hold-to-start": "Segure por um instante antes de o cronômetro começar",
       "hold-to-start-time": "Quanto tempo você precisa segurar antes de começar",
       "decimal-places": "Quantas casas decimais seus tempos mostram",
@@ -705,7 +704,6 @@
       "timer": "Cronômetro",
       "inspection": "Inspeção",
       "inspection-time": "Tempo de inspeção",
-      "start-cue": "Sinal de início",
       "hold-to-start": "Manter para iniciar",
       "hold-to-start-time": "Tempo de pulsão",
       "decimal-places": "Casas decimais",

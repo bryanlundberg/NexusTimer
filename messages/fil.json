@@ -36,7 +36,6 @@
     "Settings-descriptions": {
       "inspection": "Mag-inspect bago ang bawat solve, gaya sa mga WCA competition",
       "inspection-time": "Gaano katagal ang oras mo para mag-inspect",
-      "start-cue": "Isang visual na senyales kapag handa na ang timer",
       "hold-to-start": "Pindutin nang matagal saglit bago magsimula ang timer",
       "hold-to-start-time": "Gaano katagal kailangan mong pindutin bago magsimula",
       "decimal-places": "Ilang decimal ang ipapakita sa mga oras mo",
@@ -712,7 +711,6 @@
       "timer": "Timer",
       "inspection": "Inspection",
       "inspection-time": "Inspection time",
-      "start-cue": "Start cue",
       "hold-to-start": "Hold to start",
       "hold-to-start-time": "Hold to start time",
       "decimal-places": "Decimal places",

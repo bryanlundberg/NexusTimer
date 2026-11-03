@@ -36,7 +36,6 @@
     "Settings-descriptions": {
       "inspection": "Inspekcja przed każdym ułożeniem, jak na zawodach WCA",
       "inspection-time": "Ile czasu masz na inspekcję",
-      "start-cue": "Sygnał wizualny, gdy stoper jest gotowy",
       "hold-to-start": "Przytrzymaj chwilę, zanim stoper wystartuje",
       "hold-to-start-time": "Jak długo trzeba przytrzymać przed startem",
       "decimal-places": "Ile miejsc po przecinku pokazują twoje czasy",
@@ -712,7 +711,6 @@
       "timer": "Stoper",
       "inspection": "Inspekcja",
       "inspection-time": "Czas inspekcji",
-      "start-cue": "Sygnał startu",
       "hold-to-start": "Przytrzymaj, aby zacząć",
       "hold-to-start-time": "Czas przytrzymania do startu",
       "decimal-places": "Miejsca dziesiętne",

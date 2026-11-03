@@ -2,7 +2,6 @@ import { Colors } from '@/shared/types/colors'
 
 type Timer = {
   inspection: boolean
-  startCue: boolean
   holdToStart: boolean
   inspectionTime: number
   holdToStartTime: number

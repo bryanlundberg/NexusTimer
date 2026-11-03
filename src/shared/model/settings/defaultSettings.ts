@@ -4,7 +4,6 @@ export const defaultSettings: Settings = {
   timer: {
     inspection: false,
     inspectionTime: 15000,
-    startCue: false,
     holdToStart: false,
     holdToStartTime: 300,
     decimals: 2,
