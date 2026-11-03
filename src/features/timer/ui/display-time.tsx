@@ -71,6 +71,9 @@ export default function DisplayTime({
   const showRecord = isRecord && timerStatus === TimerStatus.IDLE
   const font = timerFontClass(settings.features.timerFont)
   const isPreparing = timerStatus === TimerStatus.HOLDING || timerStatus === TimerStatus.READY
+  const startHint = settings.timer.holdToStart
+    ? t(isMobile ? 'tap-to-start' : 'space-to-start')
+    : t(isMobile ? 'tap-to-start-no-hold' : 'space-to-start-no-hold')
 
   return (
     <>
@@ -189,7 +192,7 @@ export default function DisplayTime({
                   animate={{ opacity: [0.5, 1, 0.5], y: 0 }}
                   exit={{ opacity: 0, y: -5 }}
                 >
-                  {timerMode === TimerMode.NORMAL && (isMobile ? t('tap-to-start') : t('space-to-start'))}
+                  {timerMode === TimerMode.NORMAL && startHint}
 
                   {timerMode === TimerMode.KEYBOARD_STACKMAT && t('hold-ctrl-to-start')}
 

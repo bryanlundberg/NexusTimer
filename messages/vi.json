@@ -170,6 +170,8 @@
       "solving": "Đang giải...",
       "tap-to-start": "Chạm và giữ để bắt đầu",
       "space-to-start": "Giữ phím cách để bắt đầu",
+      "tap-to-start-no-hold": "Chạm để bắt đầu",
+      "space-to-start-no-hold": "Nhấn phím cách để bắt đầu",
       "empty-scramble": "Chọn một khối để tải scramble.",
       "quick-start-other": "Khối khác",
       "preparing-scramble": "Đang chuẩn bị scramble…",

@@ -170,6 +170,8 @@
       "solving": "Solving...",
       "tap-to-start": "Tieni premuto per iniziare",
       "space-to-start": "Tieni premuto Spazio per iniziare",
+      "tap-to-start-no-hold": "Tocca per iniziare",
+      "space-to-start-no-hold": "Premi Spazio per iniziare",
       "empty-scramble": "Scegli un cubo per caricare uno scramble.",
       "quick-start-other": "Altro cubo",
       "preparing-scramble": "Preparazione dello scramble…",

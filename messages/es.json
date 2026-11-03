@@ -135,6 +135,8 @@
       "solving": "Resolviendo...",
       "tap-to-start": "Mantén pulsado para empezar",
       "space-to-start": "Mantén espacio para empezar",
+      "tap-to-start-no-hold": "Toca para empezar",
+      "space-to-start-no-hold": "Pulsa espacio para empezar",
       "empty-scramble": "Elige un cubo para cargar un scramble.",
       "quick-start-other": "Otro cubo",
       "preparing-scramble": "Preparando scramble…",

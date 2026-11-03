@@ -170,6 +170,8 @@
       "solving": "Układanie...",
       "tap-to-start": "Przytrzymaj, aby zacząć",
       "space-to-start": "Przytrzymaj spację, aby zacząć",
+      "tap-to-start-no-hold": "Dotknij, aby zacząć",
+      "space-to-start-no-hold": "Naciśnij spację, aby zacząć",
       "empty-scramble": "Wybierz kostkę, aby załadować scramble.",
       "quick-start-other": "Inna kostka",
       "preparing-scramble": "Przygotowywanie scramble…",

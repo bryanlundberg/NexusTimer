@@ -163,6 +163,8 @@
       "solving": "Löse...",
       "tap-to-start": "Halten zum Starten",
       "space-to-start": "Leertaste halten zum Starten",
+      "tap-to-start-no-hold": "Tippen zum Starten",
+      "space-to-start-no-hold": "Leertaste drücken zum Starten",
       "empty-scramble": "Wähle einen Würfel, um ein Scramble zu laden.",
       "quick-start-other": "Anderer Würfel",
       "preparing-scramble": "Scramble wird vorbereitet…",

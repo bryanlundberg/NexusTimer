@@ -170,6 +170,8 @@
       "solving": "Nagso-solve...",
       "tap-to-start": "Pindutin nang matagal para magsimula",
       "space-to-start": "Pindutin nang matagal ang space para magsimula",
+      "tap-to-start-no-hold": "I-tap para magsimula",
+      "space-to-start-no-hold": "Pindutin ang space para magsimula",
       "empty-scramble": "Pumili ng cube para mag-load ng scramble.",
       "quick-start-other": "Ibang cube",
       "preparing-scramble": "Inihahanda ang scramble…",

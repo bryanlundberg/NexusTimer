@@ -170,6 +170,8 @@
       "solving": "กำลังต่อ...",
       "tap-to-start": "แตะค้างเพื่อเริ่ม",
       "space-to-start": "กดค้าง Space เพื่อเริ่ม",
+      "tap-to-start-no-hold": "แตะเพื่อเริ่ม",
+      "space-to-start-no-hold": "กด Space เพื่อเริ่ม",
       "empty-scramble": "เลือกลูกบาศก์เพื่อโหลด scramble",
       "quick-start-other": "ลูกบาศก์อื่น",
       "preparing-scramble": "กำลังเตรียม scramble…",

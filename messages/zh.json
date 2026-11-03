@@ -163,6 +163,8 @@
       "solving": "还原中...",
       "tap-to-start": "长按开始",
       "space-to-start": "按住空格开始",
+      "tap-to-start-no-hold": "点按开始",
+      "space-to-start-no-hold": "按空格开始",
       "empty-scramble": "选择一个魔方以加载打乱公式。",
       "quick-start-other": "其他魔方",
       "preparing-scramble": "正在准备打乱公式…",

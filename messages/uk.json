@@ -170,6 +170,8 @@
       "solving": "Складання...",
       "tap-to-start": "Утримуйте, щоб почати",
       "space-to-start": "Утримуйте пробіл, щоб почати",
+      "tap-to-start-no-hold": "Торкніться, щоб почати",
+      "space-to-start-no-hold": "Натисніть пробіл, щоб почати",
       "empty-scramble": "Виберіть куб, щоб завантажити скрамбл.",
       "quick-start-other": "Інший кубик",
       "preparing-scramble": "Готуємо скрамбл…",

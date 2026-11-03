@@ -163,6 +163,8 @@
       "solving": "Resolvendo...",
       "tap-to-start": "Toque e segure para iniciar",
       "space-to-start": "Segure espaço para iniciar",
+      "tap-to-start-no-hold": "Toque para iniciar",
+      "space-to-start-no-hold": "Pressione espaço para iniciar",
       "empty-scramble": "Escolha um cubo para carregar um embaralhamento.",
       "quick-start-other": "Outro cubo",
       "preparing-scramble": "Preparando embaralhamento…",

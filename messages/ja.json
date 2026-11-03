@@ -163,6 +163,8 @@
       "solving": "ソルブ中...",
       "tap-to-start": "長押しで開始",
       "space-to-start": "スペースを押し続けて開始",
+      "tap-to-start-no-hold": "タップで開始",
+      "space-to-start-no-hold": "スペースを押して開始",
       "empty-scramble": "キューブを選択してスクランブルを読み込んでください。",
       "quick-start-other": "他のキューブ",
       "preparing-scramble": "スクランブルを準備中…",

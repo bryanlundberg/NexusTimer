@@ -170,6 +170,8 @@
       "solving": "Solving...",
       "tap-to-start": "Tahan untuk mulai",
       "space-to-start": "Tahan spasi untuk mulai",
+      "tap-to-start-no-hold": "Ketuk untuk mulai",
+      "space-to-start-no-hold": "Tekan spasi untuk mulai",
       "empty-scramble": "Pilih kubus untuk memuat scramble.",
       "quick-start-other": "Kubus lain",
       "preparing-scramble": "Menyiapkan scramble…",
