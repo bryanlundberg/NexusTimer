@@ -58,7 +58,7 @@ export default function SolveGridItem({ index, orderedSolves, solve, isRecord = 
       data-record={isRecord ? 'true' : undefined}
       style={{ WebkitTouchCallout: 'none' }}
       className={cn(
-        'surface relative grow flex flex-col items-center justify-center w-full h-full text-center transition duration-200 cursor-pointer p-2 sm:p-3 select-none active:scale-100'
+        'surface relative grow flex flex-col items-center justify-center w-full h-full text-center transition duration-200 cursor-pointer p-2 md:p-3 select-none active:scale-100'
       )}
     >
       {item.bookmark && (
@@ -74,7 +74,7 @@ export default function SolveGridItem({ index, orderedSolves, solve, isRecord = 
       {selectionMode ? (
         <div
           className={cn(
-            'absolute top-1 right-1 sm:top-2 sm:right-2 flex size-4 items-center justify-center border transition-colors',
+            'absolute top-1 right-1 md:top-2 md:right-2 flex size-4 items-center justify-center border transition-colors',
             selected ? 'border-primary bg-primary text-primary-foreground' : 'border-muted-foreground/40'
           )}
           data-testid={`solve-select-indicator-${index}`}
@@ -82,25 +82,25 @@ export default function SolveGridItem({ index, orderedSolves, solve, isRecord = 
           {selected && <Check className="size-3" />}
         </div>
       ) : (
-        <div className="absolute top-1 right-1 sm:top-2 sm:right-2 text-[10px] tabular-nums text-muted-foreground/70">
+        <div className="absolute top-1 right-1 md:top-2 md:right-2 text-[10px] tabular-nums text-muted-foreground/70">
           #{index + 1}
         </div>
       )}
 
       <div className="flex items-end gap-1 tabular-nums">
         {item.dnf ? (
-          <span className="text-base sm:text-2xl font-semibold text-destructive" data-testid={`dnf-icon-${index}`}>
+          <span className="text-xl md:text-2xl font-semibold text-destructive" data-testid={`dnf-icon-${index}`}>
             DNF
           </span>
         ) : (
           <>
-            <span className={cn('text-base sm:text-2xl font-semibold', isRecord && 'text-record')}>{integerPart}</span>
-            <span className={cn('text-xs sm:text-base', isRecord ? 'text-record/70' : 'text-muted-foreground')}>
+            <span className={cn('text-xl md:text-2xl font-semibold', isRecord && 'text-record')}>{integerPart}</span>
+            <span className={cn('text-sm md:text-base', isRecord ? 'text-record/70' : 'text-muted-foreground')}>
               .{decimalPart}
             </span>
             {item.plus2 ? (
               <span
-                className="ms-1 sm:ms-2 text-[10px] sm:text-xs font-bold px-1.5 py-0.5 bg-destructive/15 text-destructive"
+                className="ms-1 md:ms-2 text-[10px] md:text-xs font-bold px-1 md:px-1.5 py-0.5 bg-destructive/15 text-destructive"
                 data-testid={`plus-two-icon-${index}`}
               >
                 +2
@@ -110,17 +110,17 @@ export default function SolveGridItem({ index, orderedSolves, solve, isRecord = 
         )}
       </div>
 
-      <div className="mt-1 sm:mt-2 text-[10px] sm:text-xs text-muted-foreground">
+      <div className="mt-1 md:mt-2 text-[10px] md:text-xs text-muted-foreground">
         {dayjs(item.endTime || 0)
           .locale(locale)
           .format('MMM DD, YYYY')}
       </div>
 
-      <div className="absolute left-1 bottom-1 sm:left-2 sm:bottom-2 flex items-center gap-2 text-xs text-muted-foreground">
-        {isRecord && <Trophy aria-hidden className="size-3 sm:size-3.5 text-record" />}
+      <div className="absolute left-1 bottom-1 md:left-2 md:bottom-2 flex items-center gap-2 text-xs text-muted-foreground">
+        {isRecord && <Trophy aria-hidden className="size-3 md:size-3.5 text-record" />}
         {item.comment && (
           <span className="flex items-center gap-1" data-testid={`comment-icon-${index}`}>
-            <QaCommentIcon className="size-3 sm:size-3.5" />
+            <QaCommentIcon className="size-3 md:size-3.5" />
           </span>
         )}
       </div>
