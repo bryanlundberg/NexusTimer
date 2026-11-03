@@ -3,7 +3,6 @@ import ScrambleImagePanel from '@/features/timer/ui/ScrambleImagePanel'
 import ScrambleModal from '@/features/timer/ui/ScrambleModal'
 import { TimerStatus } from '@/features/timer/model/enums'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
-import { SCRAMBLE_ZOOM_TARGET_ID } from '@/shared/const/scramble-zoom-target'
 
 const constructed = vi.hoisted(() => ({ count: 0 }))
 
@@ -23,10 +22,10 @@ const floating = (container: HTMLElement) => container.querySelector('[data-scra
 
 const renderPanel = () =>
   render(
-    <>
+    <div id="touch">
       <ScrambleImagePanel />
       <ScrambleModal />
-    </>
+    </div>
   )
 
 describe('scramble zoom', () => {
@@ -39,7 +38,7 @@ describe('scramble zoom', () => {
     const { container } = renderPanel()
 
     expect(floating(container)).toBeNull()
-    expect(document.getElementById(SCRAMBLE_ZOOM_TARGET_ID)).toBeNull()
+    expect(document.querySelector('[data-testid="scramble-zoom-catcher"]')).toBeNull()
   })
 
   it('floats the same display on tap instead of mounting a second one', () => {
@@ -48,7 +47,7 @@ describe('scramble zoom', () => {
     fireEvent.click(getAllByTestId('scramble-display')[0])
 
     expect(useTimerStore.getState().zoomInScramble).toBe(true)
-    expect(document.getElementById(SCRAMBLE_ZOOM_TARGET_ID)).not.toBeNull()
+    expect(document.querySelector('[data-testid="scramble-zoom-catcher"]')).not.toBeNull()
     expect(floating(container)).not.toBeNull()
     expect(container.querySelector('[data-testid="scramble-zoom-backdrop"]')).not.toBeNull()
     expect(getAllByTestId('scramble-display')).toHaveLength(1)
@@ -59,7 +58,7 @@ describe('scramble zoom', () => {
     const { container, getByTestId } = renderPanel()
     fireEvent.click(getByTestId('scramble-display'))
 
-    fireEvent.click(document.getElementById(SCRAMBLE_ZOOM_TARGET_ID)!)
+    fireEvent.click(document.querySelector('[data-testid="scramble-zoom-catcher"]')!)
 
     expect(useTimerStore.getState().zoomInScramble).toBe(false)
     expect(floating(container)).not.toBeNull()

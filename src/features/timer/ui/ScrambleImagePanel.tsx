@@ -6,11 +6,11 @@ import { cn } from '@/shared/lib/utils'
 import { useWindowHeight } from '@/shared/model/useWindowHeight'
 import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'
 import { SCRAMBLE_HEIGHT } from '@/shared/const/scramble-height'
-import { SCRAMBLE_ZOOM_TARGET_ID } from '@/shared/const/scramble-zoom-target'
 import { TimerStatus } from '@/features/timer/model/enums'
 
 const FLOATING_ATTRIBUTE = 'data-scramble-floating'
 const ZOOM_TRANSITION = { duration: 0.32, ease: [0.22, 1, 0.36, 1] } as const
+const ZOOM_MAX_HEIGHT = 480
 
 export default function ScrambleImagePanel() {
   const settings = useSettingsStore((store) => store.settings)
@@ -27,7 +27,7 @@ export default function ScrambleImagePanel() {
   const flightRef = useRef<ReturnType<typeof animate> | null>(null)
   const zoomTransition = reduceMotion ? { duration: 0 } : ZOOM_TRANSITION
 
-  const flyTo = (target: DOMRect) => {
+  const flyTo = (target: Pick<DOMRect, 'left' | 'top' | 'width' | 'height'>) => {
     const frame = frameRef.current
     const from = frame.getBoundingClientRect()
     flightRef.current?.stop()
@@ -55,8 +55,15 @@ export default function ScrambleImagePanel() {
 
     if (zoomInScramble) {
       const flyToZoomTarget = () => {
-        const target = document.getElementById(SCRAMBLE_ZOOM_TARGET_ID)
-        if (target) flyTo(target.getBoundingClientRect())
+        const column = frame.closest('#touch')?.getBoundingClientRect()
+        if (!column) return
+        const zoomHeight = Math.min(ZOOM_MAX_HEIGHT, column.height)
+        flyTo({
+          left: column.left,
+          top: column.top + (column.height - zoomHeight) / 2,
+          width: column.width,
+          height: zoomHeight
+        })
       }
       flyToZoomTarget()
       window.addEventListener('resize', flyToZoomTarget)
