@@ -48,7 +48,6 @@
       "data-import-export": "अपने डेटा का बैकअप सहेजें या पुराना बैकअप वापस लाएं",
       "language-description": "पूरे ऐप में इस्तेमाल होने वाली भाषा",
       "analytics": "NexusTimer को बेहतर बनाने के लिए उपयोग डेटा साझा करें",
-      "favorite-sound": "पसंदीदा सहेजते समय ध्वनि चलाएँ",
       "haptics": "टाइमर तैयार होने पर वाइब्रेट करें (समर्थित डिवाइस पर)",
       "inspection-sound": "निरीक्षण के दौरान आवाज़ में सूचनाएं सुनें",
       "new-round-sound": "जब नया मल्टीप्लेयर राउंड शुरू हो",
@@ -56,7 +55,6 @@
       "message-sent-sound": "जब आप चैट संदेश भेजें",
       "new-friend-sound": "जब आप मित्र अनुरोध स्वीकार करें",
       "scramble-size": "स्क्रैम्बल का टेक्स्ट कितना बड़ा दिखे",
-      "trash-sound": "सॉल्व हटाते समय ध्वनि चलाएँ",
       "timer-font": "टाइमर के अंकों का फ़ॉन्ट",
       "timer-size": "टाइमर के अंक कितने बड़े दिखें"
     },
@@ -738,7 +736,6 @@
       "close": "X",
       "fullscreen": "पूर्ण स्क्रीन",
       "analytics": "Google Analytics",
-      "favorite-sound": "पसंदीदा",
       "haptics": "हैप्टिक फ़ीडबैक",
       "inspection-sound": "निरीक्षण की आवाज़",
       "new-round-sound": "नया राउंड",
@@ -749,7 +746,6 @@
       "scramble-size": "स्क्रैम्बल आकार",
       "scramble-size-large": "बड़ा",
       "scramble-size-normal": "सामान्य",
-      "trash-sound": "हटाएँ",
       "timer-font": "टाइमर फ़ॉन्ट",
       "timer-size": "टाइमर आकार"
     },

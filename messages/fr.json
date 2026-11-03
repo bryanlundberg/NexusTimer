@@ -48,7 +48,6 @@
       "data-import-export": "Sauvegarde tes données dans un fichier ou restaure une sauvegarde",
       "language-description": "La langue de toute l'application",
       "analytics": "Partage des données d'utilisation pour améliorer NexusTimer",
-      "favorite-sound": "Jouer un son lors de l’ajout d’un favori",
       "haptics": "Vibre quand le chronomètre est prêt (sur les appareils compatibles)",
       "inspection-sound": "Des annonces vocales pendant l'inspection",
       "new-round-sound": "Quand une nouvelle manche multijoueur commence",
@@ -56,7 +55,6 @@
       "message-sent-sound": "Quand tu envoies un message de chat",
       "new-friend-sound": "Quand tu acceptes une demande d'ami",
       "scramble-size": "La taille du texte du mélange",
-      "trash-sound": "Jouer un son lors de la suppression d’un solve",
       "timer-font": "La police des chiffres du chronomètre",
       "timer-size": "La taille des chiffres du chronomètre"
     },
@@ -738,7 +736,6 @@
       "close": "X",
       "fullscreen": "Plein écran",
       "analytics": "Google Analytics",
-      "favorite-sound": "Favori",
       "haptics": "Retour haptique",
       "inspection-sound": "Voix d'inspection",
       "new-round-sound": "Nouvelle manche",
@@ -749,7 +746,6 @@
       "scramble-size": "Taille du mélange",
       "scramble-size-large": "Grande",
       "scramble-size-normal": "Normale",
-      "trash-sound": "Suppression",
       "timer-font": "Police du chronomètre",
       "timer-size": "Taille du chronomètre"
     },

@@ -48,7 +48,6 @@
       "data-import-export": "备份你的数据，或从之前的备份恢复",
       "language-description": "整个应用使用的语言",
       "analytics": "分享使用数据，帮助改进 NexusTimer",
-      "favorite-sound": "收藏时播放提示音",
       "haptics": "计时器准备就绪时振动（仅支持的设备）",
       "inspection-sound": "观察期间播放语音提示",
       "new-round-sound": "新的多人回合开始时",
@@ -56,7 +55,6 @@
       "message-sent-sound": "发送聊天消息时",
       "new-friend-sound": "接受好友请求时",
       "scramble-size": "打乱公式文字的大小",
-      "trash-sound": "删除复原记录时播放提示音",
       "timer-font": "计时器数字使用的字体",
       "timer-size": "计时器数字的大小"
     },
@@ -738,7 +736,6 @@
       "close": "关闭",
       "fullscreen": "全屏",
       "analytics": "Google Analytics",
-      "favorite-sound": "收藏",
       "haptics": "触觉反馈",
       "inspection-sound": "观察语音",
       "new-round-sound": "新回合",
@@ -749,7 +746,6 @@
       "scramble-size": "打乱文字大小",
       "scramble-size-large": "大",
       "scramble-size-normal": "标准",
-      "trash-sound": "删除",
       "timer-font": "计时器字体",
       "timer-size": "计时器大小"
     },

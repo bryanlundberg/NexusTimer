@@ -48,7 +48,6 @@
       "data-import-export": "Sichere deine Daten in einer Datei oder stelle ein Backup wieder her",
       "language-description": "Die Sprache der gesamten App",
       "analytics": "Teile Nutzungsdaten, um NexusTimer zu verbessern",
-      "favorite-sound": "Sound beim Speichern eines Favoriten abspielen",
       "haptics": "Vibriert, wenn der Timer bereit ist (auf unterstützten Geräten)",
       "inspection-sound": "Sprachansagen während der Inspektion",
       "new-round-sound": "Wenn eine neue Multiplayer-Runde beginnt",
@@ -56,7 +55,6 @@
       "message-sent-sound": "Wenn du eine Chatnachricht sendest",
       "new-friend-sound": "Wenn du eine Freundschaftsanfrage annimmst",
       "scramble-size": "Wie groß der Scramble-Text erscheint",
-      "trash-sound": "Sound beim Löschen eines Solves abspielen",
       "timer-font": "Die Schriftart der Timer-Ziffern",
       "timer-size": "Wie groß die Timer-Ziffern erscheinen"
     },
@@ -738,7 +736,6 @@
       "close": "X",
       "fullscreen": "Vollbild",
       "analytics": "Google Analytics",
-      "favorite-sound": "Favorit",
       "haptics": "Haptisches Feedback",
       "inspection-sound": "Inspektionsansage",
       "new-round-sound": "Neue Runde",
@@ -749,7 +746,6 @@
       "scramble-size": "Scramble-Größe",
       "scramble-size-large": "Groß",
       "scramble-size-normal": "Normal",
-      "trash-sound": "Löschen",
       "timer-font": "Timer-Schriftart",
       "timer-size": "Timer-Größe"
     },
