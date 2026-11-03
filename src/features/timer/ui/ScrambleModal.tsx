@@ -1,11 +1,9 @@
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
-import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'
+import { SCRAMBLE_ZOOM_TARGET_ID } from '@/shared/const/scramble-zoom-target'
 
 export default function ScrambleModal() {
   const zoomInScramble = useTimerStore((store) => store.zoomInScramble)
   const setZoomInScramble = useTimerStore((store) => store.setZoomInScramble)
-  const scramble = useTimerStore((store) => store.scramble)
-  const selectedCube = useTimerStore((store) => store.selectedCube)
 
   if (!zoomInScramble) return null
 
@@ -17,12 +15,7 @@ export default function ScrambleModal() {
       data-no-timer-touch
       onClick={handleClose}
     >
-      <ScrambleDisplay
-        className="w-full h-120 mx-auto"
-        show
-        event={selectedCube?.category || '3x3'}
-        scramble={scramble}
-      />
+      <div id={SCRAMBLE_ZOOM_TARGET_ID} className="w-full h-120 max-h-full" />
     </div>
   )
 }
