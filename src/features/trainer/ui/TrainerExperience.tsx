@@ -236,17 +236,12 @@ export default function TrainerExperience() {
 
   const timeColorClass =
     timerStatus === TimerStatus.HOLDING
-      ? 'text-timer-holding'
+      ? 'text-foreground/50'
       : timerStatus === TimerStatus.READY
         ? 'text-timer-ready'
         : 'text-foreground'
 
-  const stageOverlayClass =
-    timerStatus === TimerStatus.HOLDING
-      ? 'bg-timer-holding/10'
-      : timerStatus === TimerStatus.READY
-        ? 'bg-primary/10'
-        : 'bg-transparent'
+  const stageOverlayClass = timerStatus === TimerStatus.READY ? 'bg-primary/10' : 'bg-transparent'
 
   const displayedTime =
     timerStatus === TimerStatus.HOLDING || timerStatus === TimerStatus.READY ? '0.00' : formatMs(solvingTime)
