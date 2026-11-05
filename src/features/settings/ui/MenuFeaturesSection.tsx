@@ -4,6 +4,7 @@ import { MenuOption } from './MenuOption'
 import MenuSelectScrambleSize from './MenuSelectScrambleSize'
 import MenuSelectTimerFont from './MenuSelectTimerFont'
 import MenuRangeTimerSize from './MenuRangeTimerSize'
+import MenuTimerAverages from './MenuTimerAverages'
 
 export default function MenuFeaturesSection({ control }: { control: any }) {
   const t = useTranslations('Index')
@@ -22,6 +23,7 @@ export default function MenuFeaturesSection({ control }: { control: any }) {
         control={control}
         description={t('Settings-descriptions.session-stats')}
       />
+      <MenuTimerAverages />
       <MenuOption
         name={'features.quickActionButtons'}
         label={t('Settings-menu.quick-action-buttons')}
