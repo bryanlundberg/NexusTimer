@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from 'react'
 import { useTranslations } from 'next-intl'
-import { X } from 'lucide-react'
+import { TriangleAlert, X } from 'lucide-react'
 import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -108,6 +108,11 @@ export default function CustomAveragesModal({ target }: { target: keyof typeof T
           </p>
         )}
       </form>
+
+      <p className="flex items-start gap-1.5 text-[13px] leading-snug text-muted-foreground sm:text-xs">
+        <TriangleAlert aria-hidden className="mt-0.5 size-3.5 shrink-0 text-warning" />
+        {t('averages-performance')}
+      </p>
 
       <DialogFooter className="sm:justify-between">
         <Button type="button" variant="ghost" onClick={() => setSizes(defaults)}>
