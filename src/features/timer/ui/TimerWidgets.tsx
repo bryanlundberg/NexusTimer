@@ -13,6 +13,7 @@ import { useMinWidth } from '@/shared/model/use-min-width'
 import { SCRAMBLE_HEIGHT } from '@/shared/const/scramble-height'
 import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
+import { useTimerRailStore } from '@/features/timer-solves-rail/model/useTimerRailStore'
 
 export default function TimerWidgets() {
   const isSolving = useTimerStore((store) => store.isSolving)
@@ -25,8 +26,9 @@ export default function TimerWidgets() {
   const isFocusMode = useFocusModeStore((store) => store.isFocusMode)
   const height = useWindowHeight()
   const isDesktop = useMinWidth(DESKTOP_MIN_WIDTH)
+  const isRailOpen = useTimerRailStore((store) => store.isOpen)
 
-  const newBestAverages = timerStatSizes(settings.features, isDesktop)
+  const newBestAverages = timerStatSizes(settings.features, isDesktop, isRailOpen)
     .filter((size) => {
       const best = timerStatistics.global[`ao${size}`]
       return Boolean(best) && best === timerStatistics.session[`ao${size}`]

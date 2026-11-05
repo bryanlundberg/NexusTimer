@@ -6,6 +6,7 @@ import { detectSessionAppend } from '@/features/deep-statistics/lib/detectSessio
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { DESKTOP_MIN_WIDTH, timerStatSizes } from '@/shared/lib/statistics/averageSizes'
 import { useMinWidth } from '@/shared/model/use-min-width'
+import { useTimerRailStore } from '@/features/timer-solves-rail/model/useTimerRailStore'
 
 export default function StatisticsProvider({ children }: { children?: React.ReactNode }) {
   const [worker, setWorker] = useState<Worker | null>(null)
@@ -15,9 +16,10 @@ export default function StatisticsProvider({ children }: { children?: React.Reac
   const timerAverages = useSettingsStore((state) => state.settings.features.timerAverages)
   const railAverages = useSettingsStore((state) => state.settings.features.railAverages)
   const isDesktop = useMinWidth(DESKTOP_MIN_WIDTH)
+  const isRailOpen = useTimerRailStore((state) => state.isOpen)
   const averages = useMemo(
-    () => timerStatSizes({ railAverages, timerAverages }, isDesktop),
-    [railAverages, timerAverages, isDesktop]
+    () => timerStatSizes({ railAverages, timerAverages }, isDesktop, isRailOpen),
+    [railAverages, timerAverages, isDesktop, isRailOpen]
   )
   const sent = useRef<{ cubes: Cube[] | null; selectedCube: Cube | null; averages: number[] } | null>(null)
 
@@ -34,7 +36,8 @@ export default function StatisticsProvider({ children }: { children?: React.Reac
         const { cubes, selectedCube } = useTimerStore.getState()
         const averages = timerStatSizes(
           useSettingsStore.getState().settings.features,
-          window.matchMedia(`(min-width: ${DESKTOP_MIN_WIDTH}px)`).matches
+          window.matchMedia(`(min-width: ${DESKTOP_MIN_WIDTH}px)`).matches,
+          useTimerRailStore.getState().isOpen
         )
         postReset(w, cubes, selectedCube, averages)
         sent.current = { cubes, selectedCube, averages }

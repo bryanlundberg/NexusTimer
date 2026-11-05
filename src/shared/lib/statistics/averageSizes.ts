@@ -3,7 +3,7 @@ export const DEFAULT_TIMER_AVERAGES = [5, 12, 50, 100]
 export const DEFAULT_RAIL_AVERAGES = [3, 5, 12]
 export const DESKTOP_MIN_WIDTH = 768
 export const MIN_AVERAGE_SIZE = 3
-export const MAX_AVERAGE_SIZE = 100_000
+export const MAX_AVERAGE_SIZE = 10_000
 export const MAX_AVERAGES = 10
 export const MAX_TIMER_AVERAGES = 8
 
@@ -20,9 +20,11 @@ export function resolveAverages(custom: number[], defaults: number[] = DEFAULT_A
 
 export function timerStatSizes(
   { railAverages, timerAverages }: { railAverages: number[]; timerAverages: number[] },
-  isDesktop: boolean
+  isDesktop: boolean,
+  isRailOpen: boolean
 ): number[] {
   if (!isDesktop) return resolveAverages(timerAverages, DEFAULT_TIMER_AVERAGES)
+  if (!isRailOpen) return DEFAULT_TIMER_AVERAGES
   const sizes = new Set([...DEFAULT_TIMER_AVERAGES, ...resolveAverages(railAverages, DEFAULT_RAIL_AVERAGES)])
   return [...sizes].sort((a, b) => a - b)
 }
