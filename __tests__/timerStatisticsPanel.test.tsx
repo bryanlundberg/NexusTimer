@@ -81,13 +81,19 @@ describe('timer StatisticsPanel on mobile', () => {
 
 describe('timerStatSizes', () => {
   it('covers the fixed tiles and the rail list on desktop', () => {
-    expect(timerStatSizes({ railAverages: [], timerAverages: [7] }, true)).toEqual([3, 5, 12, 50, 100])
-    expect(timerStatSizes({ railAverages: [25, 500], timerAverages: [7] }, true)).toEqual([5, 12, 25, 50, 100, 500])
+    expect(timerStatSizes({ railAverages: [], timerAverages: [7] }, true, true)).toEqual([3, 5, 12, 50, 100])
+    expect(timerStatSizes({ railAverages: [25, 500], timerAverages: [7] }, true, true)).toEqual([
+      5, 12, 25, 50, 100, 500
+    ])
+  })
+
+  it('leaves the rail list out while the rail is closed', () => {
+    expect(timerStatSizes({ railAverages: [25, 500], timerAverages: [7] }, true, false)).toEqual([5, 12, 50, 100])
   })
 
   it('covers only the configured list on mobile', () => {
-    expect(timerStatSizes({ railAverages: [500], timerAverages: [] }, false)).toEqual([5, 12, 50, 100])
-    expect(timerStatSizes({ railAverages: [500], timerAverages: [25] }, false)).toEqual([25])
+    expect(timerStatSizes({ railAverages: [500], timerAverages: [] }, false, true)).toEqual([5, 12, 50, 100])
+    expect(timerStatSizes({ railAverages: [500], timerAverages: [25] }, false, true)).toEqual([25])
   })
 })
 
