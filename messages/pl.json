@@ -63,7 +63,8 @@
       "language-description": "Język całej aplikacji",
       "analytics": "Udostępniaj dane o użyciu, aby pomóc ulepszać NexusTimer",
       "timer-font": "Krój cyfr na stoperze",
-      "timer-size": "Jak duże są cyfry na stoperze"
+      "timer-size": "Jak duże są cyfry na stoperze",
+      "timer-averages": "Wybierz, które średnie mają być widoczne obok timera"
     },
     "leaderboard-solve-details": {
       "user-solution": "Rekonstrukcja",
@@ -338,7 +339,16 @@
       "chart-worst": "Najgorszy",
       "group-averages": "Średnie",
       "group-times": "Czasy",
-      "group-activity": "Aktywność"
+      "group-activity": "Aktywność",
+      "averages-title": "Dostosuj średnie",
+      "averages-description": "Wybierz do {max} średnich do wyświetlenia, na przykład Ao500 lub Ao1500.",
+      "averages-size": "Rozmiar średniej",
+      "averages-add": "Dodaj",
+      "averages-remove": "Usuń {name}",
+      "averages-invalid": "Wpisz liczbę całkowitą od {min} do {max}.",
+      "averages-reset": "Przywróć domyślne",
+      "averages-cancel": "Anuluj",
+      "averages-save": "Zapisz"
     },
     "CubesPage": {
       "title": "Kostki",
@@ -756,7 +766,8 @@
       "close": "X",
       "fullscreen": "Pełny ekran",
       "timer-font": "Czcionka stopera",
-      "timer-size": "Rozmiar stopera"
+      "timer-size": "Rozmiar stopera",
+      "timer-averages": "Średnie timera"
     },
     "backup-modal": {
       "title": "Inteligentne przywracanie kopii zapasowej",

@@ -63,7 +63,8 @@
       "language-description": "Ang wikang ginagamit sa buong app",
       "analytics": "Magbahagi ng usage data para mapabuti ang NexusTimer",
       "timer-font": "Ang font ng mga numero sa timer",
-      "timer-size": "Gaano kalaki ang mga numero sa timer"
+      "timer-size": "Gaano kalaki ang mga numero sa timer",
+      "timer-averages": "Piliin kung aling mga average ang lalabas sa tabi ng timer"
     },
     "leaderboard-solve-details": {
       "user-solution": "Reconstruction",
@@ -338,7 +339,16 @@
       "chart-worst": "Pinakamabagal",
       "group-averages": "Mga average",
       "group-times": "Mga oras",
-      "group-activity": "Aktibidad"
+      "group-activity": "Aktibidad",
+      "averages-title": "I-customize ang mga average",
+      "averages-description": "Pumili ng hanggang {max} average na ipapakita, gaya ng Ao500 o Ao1500.",
+      "averages-size": "Laki ng average",
+      "averages-add": "Idagdag",
+      "averages-remove": "Alisin ang {name}",
+      "averages-invalid": "Maglagay ng buong numero mula {min} hanggang {max}.",
+      "averages-reset": "Ibalik ang default",
+      "averages-cancel": "Kanselahin",
+      "averages-save": "I-save"
     },
     "CubesPage": {
       "title": "Mga Cube",
@@ -756,7 +766,8 @@
       "close": "X",
       "fullscreen": "Fullscreen",
       "timer-font": "Font ng timer",
-      "timer-size": "Laki ng timer"
+      "timer-size": "Laki ng timer",
+      "timer-averages": "Mga average ng timer"
     },
     "backup-modal": {
       "title": "Intelligent Backup Restoration",

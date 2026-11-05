@@ -56,7 +56,8 @@
       "new-friend-sound": "친구 요청을 수락했을 때",
       "scramble-size": "스크램블 글자 크기",
       "timer-font": "타이머 숫자에 쓰이는 글꼴",
-      "timer-size": "타이머 숫자 크기"
+      "timer-size": "타이머 숫자 크기",
+      "timer-averages": "타이머 옆에 표시할 평균을 선택하세요"
     },
     "leaderboard-solve-details": {
       "user-solution": "복기 (Reconstruction)",
@@ -331,7 +332,16 @@
       "chart-worst": "최저",
       "group-averages": "평균",
       "group-times": "기록",
-      "group-activity": "활동"
+      "group-activity": "활동",
+      "averages-title": "평균 사용자 지정",
+      "averages-description": "Ao500, Ao1500처럼 표시할 평균을 최대 {max}개까지 선택하세요.",
+      "averages-size": "평균 크기",
+      "averages-add": "추가",
+      "averages-remove": "{name} 제거",
+      "averages-invalid": "{min}에서 {max} 사이의 정수를 입력하세요.",
+      "averages-reset": "기본값 복원",
+      "averages-cancel": "취소",
+      "averages-save": "저장"
     },
     "CubesPage": {
       "title": "큐브",
@@ -749,7 +759,8 @@
       "scramble-size-large": "크게",
       "scramble-size-normal": "보통",
       "timer-font": "타이머 글꼴",
-      "timer-size": "타이머 크기"
+      "timer-size": "타이머 크기",
+      "timer-averages": "타이머 평균"
     },
     "backup-modal": {
       "title": "지능형 백업 복원",

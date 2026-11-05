@@ -56,7 +56,8 @@
       "new-friend-sound": "Quando você aceita um pedido de amizade",
       "scramble-size": "O tamanho do texto do embaralhamento",
       "timer-font": "A fonte dos números do cronômetro",
-      "timer-size": "O tamanho dos números do cronômetro"
+      "timer-size": "O tamanho dos números do cronômetro",
+      "timer-averages": "Escolha quais médias aparecem ao lado do timer"
     },
     "leaderboard-solve-details": {
       "user-solution": "Reconstrução",
@@ -331,7 +332,16 @@
       "chart-worst": "Pior",
       "group-averages": "Médias",
       "group-times": "Tempos",
-      "group-activity": "Atividade"
+      "group-activity": "Atividade",
+      "averages-title": "Personalizar médias",
+      "averages-description": "Escolha até {max} médias para mostrar, como Ao500 ou Ao1500.",
+      "averages-size": "Tamanho da média",
+      "averages-add": "Adicionar",
+      "averages-remove": "Remover {name}",
+      "averages-invalid": "Digite um número inteiro de {min} a {max}.",
+      "averages-reset": "Restaurar padrão",
+      "averages-cancel": "Cancelar",
+      "averages-save": "Salvar"
     },
     "CubesPage": {
       "title": "Cubos",
@@ -749,7 +759,8 @@
       "scramble-size-large": "Grande",
       "scramble-size-normal": "Normal",
       "timer-font": "Fonte do cronômetro",
-      "timer-size": "Tamanho do cronômetro"
+      "timer-size": "Tamanho do cronômetro",
+      "timer-averages": "Médias do timer"
     },
     "backup-modal": {
       "title": "Restauração Inteligente de Backup",

@@ -56,7 +56,8 @@
       "new-friend-sound": "フレンド申請を承認したとき",
       "scramble-size": "スクランブルの文字の大きさ",
       "timer-font": "タイマーの数字に使うフォント",
-      "timer-size": "タイマーの数字の大きさ"
+      "timer-size": "タイマーの数字の大きさ",
+      "timer-averages": "タイマーの横に表示する平均を選択します"
     },
     "leaderboard-solve-details": {
       "user-solution": "再構築 (Reconstruction)",
@@ -331,7 +332,16 @@
       "chart-worst": "ワースト",
       "group-averages": "平均",
       "group-times": "タイム",
-      "group-activity": "アクティビティ"
+      "group-activity": "アクティビティ",
+      "averages-title": "平均をカスタマイズ",
+      "averages-description": "Ao500 や Ao1500 など、表示する平均を最大 {max} 個まで選択できます。",
+      "averages-size": "平均のサイズ",
+      "averages-add": "追加",
+      "averages-remove": "{name} を削除",
+      "averages-invalid": "{min} から {max} までの整数を入力してください。",
+      "averages-reset": "デフォルトに戻す",
+      "averages-cancel": "キャンセル",
+      "averages-save": "保存"
     },
     "CubesPage": {
       "title": "キューブ",
@@ -749,7 +759,8 @@
       "scramble-size-large": "大",
       "scramble-size-normal": "標準",
       "timer-font": "タイマーのフォント",
-      "timer-size": "タイマーのサイズ"
+      "timer-size": "タイマーのサイズ",
+      "timer-averages": "タイマーの平均"
     },
     "backup-modal": {
       "title": "インテリジェント復元",

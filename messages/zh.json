@@ -56,7 +56,8 @@
       "new-friend-sound": "接受好友请求时",
       "scramble-size": "打乱公式文字的大小",
       "timer-font": "计时器数字使用的字体",
-      "timer-size": "计时器数字的大小"
+      "timer-size": "计时器数字的大小",
+      "timer-averages": "选择在计时器旁显示哪些平均"
     },
     "leaderboard-solve-details": {
       "user-solution": "还原重建",
@@ -331,7 +332,16 @@
       "chart-worst": "最差",
       "group-averages": "平均",
       "group-times": "成绩",
-      "group-activity": "活动"
+      "group-activity": "活动",
+      "averages-title": "自定义平均",
+      "averages-description": "最多选择 {max} 个要显示的平均，例如 Ao500 或 Ao1500。",
+      "averages-size": "平均的大小",
+      "averages-add": "添加",
+      "averages-remove": "移除 {name}",
+      "averages-invalid": "请输入 {min} 到 {max} 之间的整数。",
+      "averages-reset": "恢复默认",
+      "averages-cancel": "取消",
+      "averages-save": "保存"
     },
     "CubesPage": {
       "title": "魔方",
@@ -749,7 +759,8 @@
       "scramble-size-large": "大",
       "scramble-size-normal": "标准",
       "timer-font": "计时器字体",
-      "timer-size": "计时器大小"
+      "timer-size": "计时器大小",
+      "timer-averages": "计时器平均"
     },
     "backup-modal": {
       "title": "智能备份恢复",

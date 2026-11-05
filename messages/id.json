@@ -63,7 +63,8 @@
       "language-description": "Bahasa yang dipakai di seluruh aplikasi",
       "analytics": "Bagikan data penggunaan untuk membantu meningkatkan NexusTimer",
       "timer-font": "Jenis huruf angka pada timer",
-      "timer-size": "Seberapa besar angka pada timer"
+      "timer-size": "Seberapa besar angka pada timer",
+      "timer-averages": "Pilih rata-rata yang muncul di samping timer"
     },
     "leaderboard-solve-details": {
       "user-solution": "Rekonstruksi",
@@ -338,7 +339,16 @@
       "chart-worst": "Terburuk",
       "group-averages": "Rata-rata",
       "group-times": "Waktu",
-      "group-activity": "Aktivitas"
+      "group-activity": "Aktivitas",
+      "averages-title": "Sesuaikan rata-rata",
+      "averages-description": "Pilih hingga {max} rata-rata untuk ditampilkan, seperti Ao500 atau Ao1500.",
+      "averages-size": "Ukuran rata-rata",
+      "averages-add": "Tambah",
+      "averages-remove": "Hapus {name}",
+      "averages-invalid": "Masukkan bilangan bulat dari {min} hingga {max}.",
+      "averages-reset": "Pulihkan bawaan",
+      "averages-cancel": "Batal",
+      "averages-save": "Simpan"
     },
     "CubesPage": {
       "title": "Kubus",
@@ -756,7 +766,8 @@
       "close": "X",
       "fullscreen": "Layar penuh",
       "timer-font": "Font timer",
-      "timer-size": "Ukuran timer"
+      "timer-size": "Ukuran timer",
+      "timer-averages": "Rata-rata timer"
     },
     "backup-modal": {
       "title": "Pemulihan Cadangan Cerdas",

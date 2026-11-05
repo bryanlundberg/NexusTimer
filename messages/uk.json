@@ -63,7 +63,8 @@
       "analytics": "Діліться даними про використання, щоб покращувати NexusTimer",
       "scramble-size": "Наскільки великим буде текст скрамблу",
       "timer-font": "Шрифт цифр на таймері",
-      "timer-size": "Наскільки великими будуть цифри таймера"
+      "timer-size": "Наскільки великими будуть цифри таймера",
+      "timer-averages": "Виберіть, які середні показувати поруч із таймером"
     },
     "leaderboard-solve-details": {
       "user-solution": "Реконструкція",
@@ -338,7 +339,16 @@
       "chart-worst": "Найгірша",
       "group-averages": "Середні",
       "group-times": "Час",
-      "group-activity": "Активність"
+      "group-activity": "Активність",
+      "averages-title": "Налаштувати середні",
+      "averages-description": "Виберіть до {max} середніх для показу, наприклад Ao500 або Ao1500.",
+      "averages-size": "Розмір середнього",
+      "averages-add": "Додати",
+      "averages-remove": "Прибрати {name}",
+      "averages-invalid": "Введіть ціле число від {min} до {max}.",
+      "averages-reset": "Відновити типові",
+      "averages-cancel": "Скасувати",
+      "averages-save": "Зберегти"
     },
     "CubesPage": {
       "title": "Куби",
@@ -756,7 +766,8 @@
       "scramble-size-large": "Великий",
       "scramble-size-normal": "Звичайний",
       "timer-font": "Шрифт таймера",
-      "timer-size": "Розмір таймера"
+      "timer-size": "Розмір таймера",
+      "timer-averages": "Середні таймера"
     },
     "backup-modal": {
       "title": "Розумне відновлення резервної копії",

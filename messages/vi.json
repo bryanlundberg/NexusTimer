@@ -63,7 +63,8 @@
       "language-description": "Ngôn ngữ dùng trong toàn bộ ứng dụng",
       "analytics": "Chia sẻ dữ liệu sử dụng để giúp cải thiện NexusTimer",
       "timer-font": "Phông chữ của các chữ số trên đồng hồ",
-      "timer-size": "Kích thước các chữ số trên đồng hồ"
+      "timer-size": "Kích thước các chữ số trên đồng hồ",
+      "timer-averages": "Chọn các trung bình hiển thị bên cạnh đồng hồ"
     },
     "leaderboard-solve-details": {
       "user-solution": "Tái dựng",
@@ -338,7 +339,16 @@
       "chart-worst": "Tệ nhất",
       "group-averages": "Trung bình",
       "group-times": "Thời gian",
-      "group-activity": "Hoạt động"
+      "group-activity": "Hoạt động",
+      "averages-title": "Tùy chỉnh trung bình",
+      "averages-description": "Chọn tối đa {max} trung bình để hiển thị, như Ao500 hoặc Ao1500.",
+      "averages-size": "Kích thước trung bình",
+      "averages-add": "Thêm",
+      "averages-remove": "Xóa {name}",
+      "averages-invalid": "Nhập số nguyên từ {min} đến {max}.",
+      "averages-reset": "Khôi phục mặc định",
+      "averages-cancel": "Hủy",
+      "averages-save": "Lưu"
     },
     "CubesPage": {
       "title": "Khối",
@@ -756,7 +766,8 @@
       "close": "X",
       "fullscreen": "Toàn màn hình",
       "timer-font": "Phông chữ đồng hồ",
-      "timer-size": "Cỡ đồng hồ"
+      "timer-size": "Cỡ đồng hồ",
+      "timer-averages": "Trung bình của đồng hồ"
     },
     "backup-modal": {
       "title": "Khôi phục sao lưu thông minh",

@@ -56,7 +56,8 @@
       "new-friend-sound": "Wenn du eine Freundschaftsanfrage annimmst",
       "scramble-size": "Wie groß der Scramble-Text erscheint",
       "timer-font": "Die Schriftart der Timer-Ziffern",
-      "timer-size": "Wie groß die Timer-Ziffern erscheinen"
+      "timer-size": "Wie groß die Timer-Ziffern erscheinen",
+      "timer-averages": "Wähle aus, welche Durchschnitte neben dem Timer erscheinen"
     },
     "leaderboard-solve-details": {
       "user-solution": "Rekonstruktion",
@@ -331,7 +332,16 @@
       "chart-worst": "Schlechtester",
       "group-averages": "Durchschnitte",
       "group-times": "Zeiten",
-      "group-activity": "Aktivität"
+      "group-activity": "Aktivität",
+      "averages-title": "Durchschnitte anpassen",
+      "averages-description": "Wähle bis zu {max} Durchschnitte zur Anzeige aus, zum Beispiel Ao500 oder Ao1500.",
+      "averages-size": "Größe des Durchschnitts",
+      "averages-add": "Hinzufügen",
+      "averages-remove": "{name} entfernen",
+      "averages-invalid": "Gib eine ganze Zahl von {min} bis {max} ein.",
+      "averages-reset": "Standard wiederherstellen",
+      "averages-cancel": "Abbrechen",
+      "averages-save": "Speichern"
     },
     "CubesPage": {
       "title": "Würfel",
@@ -749,7 +759,8 @@
       "scramble-size-large": "Groß",
       "scramble-size-normal": "Normal",
       "timer-font": "Timer-Schriftart",
-      "timer-size": "Timer-Größe"
+      "timer-size": "Timer-Größe",
+      "timer-averages": "Timer-Durchschnitte"
     },
     "backup-modal": {
       "title": "Intelligente Backup-Wiederherstellung",

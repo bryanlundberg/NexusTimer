@@ -303,7 +303,16 @@
       "chart-worst": "Peor",
       "group-averages": "Promedios",
       "group-times": "Tiempos",
-      "group-activity": "Actividad"
+      "group-activity": "Actividad",
+      "averages-title": "Personalizar promedios",
+      "averages-description": "Elige hasta {max} promedios para mostrar, como Ao500 o Ao1500.",
+      "averages-size": "Tamaño del promedio",
+      "averages-add": "Añadir",
+      "averages-remove": "Quitar {name}",
+      "averages-invalid": "Escribe un número entero de {min} a {max}.",
+      "averages-reset": "Restaurar valores",
+      "averages-cancel": "Cancelar",
+      "averages-save": "Guardar"
     },
     "CubesPage": {
       "historical-solves": "Tiempos históricos",
@@ -653,7 +662,8 @@
       "hold-to-start-time": "Tiempo de pulsación",
       "inspection-time": "Tiempo de inspección",
       "timer-font": "Fuente del cronómetro",
-      "timer-size": "Tamaño del cronómetro"
+      "timer-size": "Tamaño del cronómetro",
+      "timer-averages": "Promedios del timer"
     },
     "backup-modal": {
       "title": "Restauración Inteligente de Respaldo",
@@ -781,7 +791,8 @@
       "worst-time-alert": "Te avisa cuando haces tu peor tiempo de la sesión",
       "solve-delta": "Mira cuánto más rápido o lento fue cada tiempo respecto al anterior",
       "timer-font": "La tipografía de los números del cronómetro",
-      "timer-size": "Qué tan grandes se ven los números del cronómetro"
+      "timer-size": "Qué tan grandes se ven los números del cronómetro",
+      "timer-averages": "Elige qué promedios aparecen junto al timer"
     },
     "TransferSolvesPage": {
       "no-source-title": "¿Hiciste alguna resolución con el cubo equivocado?",

@@ -63,7 +63,8 @@
       "language-description": "ภาษาที่ใช้ทั้งแอป",
       "analytics": "แชร์ข้อมูลการใช้งานเพื่อช่วยพัฒนา NexusTimer",
       "timer-font": "ฟอนต์ของตัวเลขบนตัวจับเวลา",
-      "timer-size": "ขนาดตัวเลขบนตัวจับเวลา"
+      "timer-size": "ขนาดตัวเลขบนตัวจับเวลา",
+      "timer-averages": "เลือกค่าเฉลี่ยที่จะแสดงข้างตัวจับเวลา"
     },
     "leaderboard-solve-details": {
       "user-solution": "การจำลองย้อนหลัง",
@@ -338,7 +339,16 @@
       "chart-worst": "แย่ที่สุด",
       "group-averages": "ค่าเฉลี่ย",
       "group-times": "เวลา",
-      "group-activity": "กิจกรรม"
+      "group-activity": "กิจกรรม",
+      "averages-title": "ปรับแต่งค่าเฉลี่ย",
+      "averages-description": "เลือกค่าเฉลี่ยที่จะแสดงได้สูงสุด {max} รายการ เช่น Ao500 หรือ Ao1500",
+      "averages-size": "ขนาดค่าเฉลี่ย",
+      "averages-add": "เพิ่ม",
+      "averages-remove": "นำ {name} ออก",
+      "averages-invalid": "ป้อนจำนวนเต็มตั้งแต่ {min} ถึง {max}",
+      "averages-reset": "คืนค่าเริ่มต้น",
+      "averages-cancel": "ยกเลิก",
+      "averages-save": "บันทึก"
     },
     "CubesPage": {
       "title": "ลูกบาศก์",
@@ -756,7 +766,8 @@
       "close": "X",
       "fullscreen": "เต็มหน้าจอ",
       "timer-font": "ฟอนต์ตัวจับเวลา",
-      "timer-size": "ขนาดตัวจับเวลา"
+      "timer-size": "ขนาดตัวจับเวลา",
+      "timer-averages": "ค่าเฉลี่ยของตัวจับเวลา"
     },
     "backup-modal": {
       "title": "การกู้คืนข้อมูลสำรองอัจฉริยะ",

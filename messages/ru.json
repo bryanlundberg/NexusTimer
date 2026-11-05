@@ -56,7 +56,8 @@
       "new-friend-sound": "Когда вы принимаете заявку в друзья",
       "scramble-size": "Насколько крупным будет текст скрамбла",
       "timer-font": "Шрифт цифр на таймере",
-      "timer-size": "Насколько крупными будут цифры таймера"
+      "timer-size": "Насколько крупными будут цифры таймера",
+      "timer-averages": "Выберите, какие средние показывать рядом с таймером"
     },
     "leaderboard-solve-details": {
       "user-solution": "Реконструкция",
@@ -331,7 +332,16 @@
       "chart-worst": "Худшая",
       "group-averages": "Средние",
       "group-times": "Время",
-      "group-activity": "Активность"
+      "group-activity": "Активность",
+      "averages-title": "Настроить средние",
+      "averages-description": "Выберите до {max} средних для показа, например Ao500 или Ao1500.",
+      "averages-size": "Размер среднего",
+      "averages-add": "Добавить",
+      "averages-remove": "Убрать {name}",
+      "averages-invalid": "Введите целое число от {min} до {max}.",
+      "averages-reset": "Восстановить по умолчанию",
+      "averages-cancel": "Отмена",
+      "averages-save": "Сохранить"
     },
     "CubesPage": {
       "title": "Кубы",
@@ -749,7 +759,8 @@
       "scramble-size-large": "Крупный",
       "scramble-size-normal": "Обычный",
       "timer-font": "Шрифт таймера",
-      "timer-size": "Размер таймера"
+      "timer-size": "Размер таймера",
+      "timer-averages": "Средние таймера"
     },
     "backup-modal": {
       "title": "Умное восстановление",

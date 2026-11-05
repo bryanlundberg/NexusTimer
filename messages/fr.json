@@ -56,7 +56,8 @@
       "new-friend-sound": "Quand tu acceptes une demande d'ami",
       "scramble-size": "La taille du texte du mélange",
       "timer-font": "La police des chiffres du chronomètre",
-      "timer-size": "La taille des chiffres du chronomètre"
+      "timer-size": "La taille des chiffres du chronomètre",
+      "timer-averages": "Choisissez les moyennes affichées à côté du chrono"
     },
     "leaderboard-solve-details": {
       "user-solution": "Reconstruction",
@@ -331,7 +332,16 @@
       "chart-worst": "Pire",
       "group-averages": "Moyennes",
       "group-times": "Temps",
-      "group-activity": "Activité"
+      "group-activity": "Activité",
+      "averages-title": "Personnaliser les moyennes",
+      "averages-description": "Choisissez jusqu'à {max} moyennes à afficher, comme Ao500 ou Ao1500.",
+      "averages-size": "Taille de la moyenne",
+      "averages-add": "Ajouter",
+      "averages-remove": "Retirer {name}",
+      "averages-invalid": "Saisissez un nombre entier de {min} à {max}.",
+      "averages-reset": "Rétablir les valeurs par défaut",
+      "averages-cancel": "Annuler",
+      "averages-save": "Enregistrer"
     },
     "CubesPage": {
       "title": "Cubes",
@@ -749,7 +759,8 @@
       "scramble-size-large": "Grande",
       "scramble-size-normal": "Normale",
       "timer-font": "Police du chronomètre",
-      "timer-size": "Taille du chronomètre"
+      "timer-size": "Taille du chronomètre",
+      "timer-averages": "Moyennes du chrono"
     },
     "backup-modal": {
       "title": "Restauration intelligente de sauvegarde",

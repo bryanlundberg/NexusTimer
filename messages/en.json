@@ -63,7 +63,8 @@
       "language-description": "The language used across the app",
       "analytics": "Share usage data to help improve NexusTimer",
       "timer-font": "The typeface of the timer digits",
-      "timer-size": "How big the timer digits look"
+      "timer-size": "How big the timer digits look",
+      "timer-averages": "Choose which averages appear next to the timer"
     },
     "leaderboard-solve-details": {
       "user-solution": "Reconstruction",
@@ -338,7 +339,16 @@
       "chart-worst": "Worst",
       "group-averages": "Averages",
       "group-times": "Times",
-      "group-activity": "Activity"
+      "group-activity": "Activity",
+      "averages-title": "Customize averages",
+      "averages-description": "Choose up to {max} averages to show, like Ao500 or Ao1500.",
+      "averages-size": "Average size",
+      "averages-add": "Add",
+      "averages-remove": "Remove {name}",
+      "averages-invalid": "Enter a whole number from {min} to {max}.",
+      "averages-reset": "Restore defaults",
+      "averages-cancel": "Cancel",
+      "averages-save": "Save"
     },
     "CubesPage": {
       "title": "Cubes",
@@ -746,7 +756,8 @@
       "close": "X",
       "fullscreen": "Fullscreen",
       "timer-font": "Timer font",
-      "timer-size": "Timer size"
+      "timer-size": "Timer size",
+      "timer-averages": "Timer averages"
     },
     "backup-modal": {
       "title": "Intelligent Backup Restoration",
