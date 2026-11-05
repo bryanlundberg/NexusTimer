@@ -16,10 +16,11 @@ describe('parseAverageSize', () => {
     expect(parseAverageSize('500')).toBe(500)
     expect(parseAverageSize(' ao1500 ')).toBe(1500)
     expect(parseAverageSize('Ao25')).toBe(25)
+    expect(parseAverageSize('10000')).toBe(10000)
   })
 
   it('rejects anything outside the allowed range or not a whole number', () => {
-    for (const input of ['', '2', '100001', '12.5', '-5', 'mo3', 'ao']) {
+    for (const input of ['', '2', '10001', '12.5', '-5', 'mo3', 'ao']) {
       expect(parseAverageSize(input)).toBeNull()
     }
   })
