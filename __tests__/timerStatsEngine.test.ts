@@ -152,6 +152,28 @@ describe('timer stats engine', () => {
     expect(appendTimerStats(state, 'a', added)!.result).toEqual(legacy(withSession(cubes, 'a', added), cubes[0]))
   })
 
+  it('keeps custom sizes correct while appending and when falling back to a full calculation', () => {
+    const sizes = [7, 25, 300]
+    const random = rng(11)
+    let cubes = buildCubes(random, 500)
+    let state = createTimerStats(cubes, cubes[0], sizes) as TimerStatsState
+    for (let step = 0; step < 40; step++) {
+      const added = [solveNow(random, 'a')]
+      cubes = withSession(cubes, 'a', added)
+      state = appendTimerStats(state, 'a', added)!
+      expect(state.result).toEqual(createTimerStats(cubes, cubes[0], sizes)!.result)
+    }
+
+    const { global, session } = state.result
+    const metrics = getSolvesMetrics({ cubesDB: cubes, category: '3x3', cubeName: 'A' })
+    expect(global.ao25).toBe(legacyBestAo(metrics.global, 25))
+    expect(session.ao7).toBe(calcCurrentAo(metrics.session, 7))
+    expect(global.ao5).toBeUndefined()
+
+    const older = makeSolve({ id: 'old', cubeId: 'a', time: 9_000, endTime: 10, startTime: 1 })
+    expect(appendTimerStats(state, 'a', [older])!.sizes).toEqual(sizes)
+  })
+
   it('refuses an append for a cube other than the selected one', () => {
     const cubes = buildCubes(rng(1), 10)
     expect(appendTimerStats(createTimerStats(cubes, cubes[0])!, 'b', [makeSolve()])).toBeNull()
