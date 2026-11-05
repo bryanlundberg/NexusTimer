@@ -7,19 +7,19 @@ import { CubeSolves } from '@/features/deep-statistics/model/types'
 
 const AO_SIZES = [3, 5, 12, 50, 100, 1000]
 
-function bestAos(solves: CubeSolves[keyof CubeSolves]) {
-  const [ao3, ao5, ao12, ao50, ao100, ao1000] = calcBestAos(solves, AO_SIZES)
-  return { ao3, ao5, ao12, ao50, ao100, ao1000 }
+function bestAos(solves: CubeSolves[keyof CubeSolves], sizes: number[]) {
+  const values = calcBestAos(solves, sizes)
+  return Object.fromEntries(sizes.map((size, index) => [`ao${size}`, values[index]]))
 }
 
-export function calcAoFromMetrics(solveMetrics: CubeSolves): AoStatistics {
+export function calcAoFromMetrics(solveMetrics: CubeSolves, sizes: number[] = AO_SIZES): AoStatistics {
   const { global, session, cubeAll, cubeSession } = solveMetrics
 
   return {
-    global: bestAos(global),
-    session: bestAos(session),
-    cubeAll: bestAos(cubeAll),
-    cubeSession: bestAos(cubeSession)
+    global: bestAos(global, sizes),
+    session: bestAos(session, sizes),
+    cubeAll: bestAos(cubeAll, sizes),
+    cubeSession: bestAos(cubeSession, sizes)
   }
 }
 
