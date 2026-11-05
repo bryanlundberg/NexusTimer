@@ -348,7 +348,8 @@
       "averages-invalid": "Nhập số nguyên từ {min} đến {max}.",
       "averages-reset": "Khôi phục mặc định",
       "averages-cancel": "Hủy",
-      "averages-save": "Lưu"
+      "averages-save": "Lưu",
+      "averages-performance": "Thay đổi các trung bình mặc định có thể ảnh hưởng đến hiệu năng, nhất là với trung bình lớn và phiên dài."
     },
     "CubesPage": {
       "title": "Khối",

@@ -348,7 +348,8 @@
       "averages-invalid": "Wpisz liczbę całkowitą od {min} do {max}.",
       "averages-reset": "Przywróć domyślne",
       "averages-cancel": "Anuluj",
-      "averages-save": "Zapisz"
+      "averages-save": "Zapisz",
+      "averages-performance": "Zmiana domyślnych średnich może wpłynąć na wydajność, zwłaszcza przy dużych średnich i długich sesjach."
     },
     "CubesPage": {
       "title": "Kostki",

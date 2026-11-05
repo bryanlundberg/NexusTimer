@@ -341,7 +341,8 @@
       "averages-invalid": "{min} から {max} までの整数を入力してください。",
       "averages-reset": "デフォルトに戻す",
       "averages-cancel": "キャンセル",
-      "averages-save": "保存"
+      "averages-save": "保存",
+      "averages-performance": "デフォルトの平均を変更すると、特に大きな平均や長いセッションでパフォーマンスに影響することがあります。"
     },
     "CubesPage": {
       "title": "キューブ",

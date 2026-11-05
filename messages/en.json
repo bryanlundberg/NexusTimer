@@ -348,7 +348,8 @@
       "averages-invalid": "Enter a whole number from {min} to {max}.",
       "averages-reset": "Restore defaults",
       "averages-cancel": "Cancel",
-      "averages-save": "Save"
+      "averages-save": "Save",
+      "averages-performance": "Changing the default averages can affect performance, especially with large averages and long sessions."
     },
     "CubesPage": {
       "title": "Cubes",

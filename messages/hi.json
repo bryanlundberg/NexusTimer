@@ -341,7 +341,8 @@
       "averages-invalid": "{min} से {max} तक की पूर्ण संख्या दर्ज करें।",
       "averages-reset": "डिफ़ॉल्ट पुनर्स्थापित करें",
       "averages-cancel": "रद्द करें",
-      "averages-save": "सहेजें"
+      "averages-save": "सहेजें",
+      "averages-performance": "डिफ़ॉल्ट औसत बदलने से प्रदर्शन प्रभावित हो सकता है, खासकर बड़े औसत और लंबे सत्रों में।"
     },
     "CubesPage": {
       "title": "क्यूब्स",

@@ -341,7 +341,8 @@
       "averages-invalid": "请输入 {min} 到 {max} 之间的整数。",
       "averages-reset": "恢复默认",
       "averages-cancel": "取消",
-      "averages-save": "保存"
+      "averages-save": "保存",
+      "averages-performance": "更改默认平均可能会影响性能，尤其是在平均较大和会话较长时。"
     },
     "CubesPage": {
       "title": "魔方",

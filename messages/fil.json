@@ -348,7 +348,8 @@
       "averages-invalid": "Maglagay ng buong numero mula {min} hanggang {max}.",
       "averages-reset": "Ibalik ang default",
       "averages-cancel": "Kanselahin",
-      "averages-save": "I-save"
+      "averages-save": "I-save",
+      "averages-performance": "Maaaring makaapekto sa performance ang pagbabago ng mga default na average, lalo na sa malalaking average at mahahabang session."
     },
     "CubesPage": {
       "title": "Mga Cube",

@@ -348,7 +348,8 @@
       "averages-invalid": "Введіть ціле число від {min} до {max}.",
       "averages-reset": "Відновити типові",
       "averages-cancel": "Скасувати",
-      "averages-save": "Зберегти"
+      "averages-save": "Зберегти",
+      "averages-performance": "Зміна типових середніх може вплинути на продуктивність, особливо за великих середніх і довгих сесій."
     },
     "CubesPage": {
       "title": "Куби",

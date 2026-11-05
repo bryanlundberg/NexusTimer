@@ -312,7 +312,8 @@
       "averages-invalid": "Escribe un número entero de {min} a {max}.",
       "averages-reset": "Restaurar valores",
       "averages-cancel": "Cancelar",
-      "averages-save": "Guardar"
+      "averages-save": "Guardar",
+      "averages-performance": "Cambiar los promedios por defecto puede afectar el rendimiento, sobre todo con promedios grandes y sesiones largas."
     },
     "CubesPage": {
       "historical-solves": "Tiempos históricos",

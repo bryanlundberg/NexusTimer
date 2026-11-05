@@ -348,7 +348,8 @@
       "averages-invalid": "Inserisci un numero intero da {min} a {max}.",
       "averages-reset": "Ripristina predefiniti",
       "averages-cancel": "Annulla",
-      "averages-save": "Salva"
+      "averages-save": "Salva",
+      "averages-performance": "Modificare le medie predefinite può influire sulle prestazioni, soprattutto con medie grandi e sessioni lunghe."
     },
     "CubesPage": {
       "title": "Cubi",

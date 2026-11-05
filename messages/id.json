@@ -348,7 +348,8 @@
       "averages-invalid": "Masukkan bilangan bulat dari {min} hingga {max}.",
       "averages-reset": "Pulihkan bawaan",
       "averages-cancel": "Batal",
-      "averages-save": "Simpan"
+      "averages-save": "Simpan",
+      "averages-performance": "Mengubah rata-rata bawaan dapat memengaruhi performa, terutama dengan rata-rata besar dan sesi panjang."
     },
     "CubesPage": {
       "title": "Kubus",

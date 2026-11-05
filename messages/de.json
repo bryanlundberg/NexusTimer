@@ -341,7 +341,8 @@
       "averages-invalid": "Gib eine ganze Zahl von {min} bis {max} ein.",
       "averages-reset": "Standard wiederherstellen",
       "averages-cancel": "Abbrechen",
-      "averages-save": "Speichern"
+      "averages-save": "Speichern",
+      "averages-performance": "Das Ändern der Standarddurchschnitte kann die Leistung beeinträchtigen, besonders bei großen Durchschnitten und langen Sessions."
     },
     "CubesPage": {
       "title": "Würfel",

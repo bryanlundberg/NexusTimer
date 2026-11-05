@@ -341,7 +341,8 @@
       "averages-invalid": "Saisissez un nombre entier de {min} à {max}.",
       "averages-reset": "Rétablir les valeurs par défaut",
       "averages-cancel": "Annuler",
-      "averages-save": "Enregistrer"
+      "averages-save": "Enregistrer",
+      "averages-performance": "Modifier les moyennes par défaut peut affecter les performances, surtout avec de grandes moyennes et de longues sessions."
     },
     "CubesPage": {
       "title": "Cubes",

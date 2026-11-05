@@ -348,7 +348,8 @@
       "averages-invalid": "ป้อนจำนวนเต็มตั้งแต่ {min} ถึง {max}",
       "averages-reset": "คืนค่าเริ่มต้น",
       "averages-cancel": "ยกเลิก",
-      "averages-save": "บันทึก"
+      "averages-save": "บันทึก",
+      "averages-performance": "การเปลี่ยนค่าเฉลี่ยเริ่มต้นอาจส่งผลต่อประสิทธิภาพ โดยเฉพาะกับค่าเฉลี่ยขนาดใหญ่และเซสชันที่ยาว"
     },
     "CubesPage": {
       "title": "ลูกบาศก์",

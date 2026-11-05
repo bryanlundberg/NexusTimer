@@ -341,7 +341,8 @@
       "averages-invalid": "Digite um número inteiro de {min} a {max}.",
       "averages-reset": "Restaurar padrão",
       "averages-cancel": "Cancelar",
-      "averages-save": "Salvar"
+      "averages-save": "Salvar",
+      "averages-performance": "Alterar as médias padrão pode afetar o desempenho, principalmente com médias grandes e sessões longas."
     },
     "CubesPage": {
       "title": "Cubos",
