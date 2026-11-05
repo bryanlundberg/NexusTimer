@@ -1,35 +1,32 @@
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import formatTime from '@/shared/lib/formatTime'
+import { DEFAULT_TIMER_AVERAGES, DESKTOP_MIN_WIDTH, resolveAverages } from '@/shared/lib/statistics/averageSizes'
+import { useMinWidth } from '@/shared/model/use-min-width'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { motion } from 'motion/react'
 import TimerStatTile from './TimerStatTile'
 
-const AVERAGES = [
-  { label: 'Ao5', key: 'ao5', testId: 'timer-session-ao5' },
-  { label: 'Ao12', key: 'ao12', testId: 'timer-session-ao12' },
-  { label: 'Ao50', key: 'ao50', testId: 'timer-session-ao50' },
-  { label: 'Ao100', key: 'ao100', testId: 'timer-session-ao100' }
-] as const
-
-type AverageKey = (typeof AVERAGES)[number]['key']
-
 export default function StatisticsPanel() {
   const settings = useSettingsStore((store) => store.settings)
   const timerStatistics = useTimerStore((store) => store.timerStatistics)
+  const showsTiles = useMinWidth(DESKTOP_MIN_WIDTH)
 
-  const isRecord = (key: AverageKey) =>
-    timerStatistics.global[key] !== 0 &&
-    timerStatistics.global[key] === timerStatistics.session[key] &&
-    settings.alerts.bestAverage
+  const isRecord = (size: number) => {
+    const best = timerStatistics.global[`ao${size}`]
+    return Boolean(best) && best === timerStatistics.session[`ao${size}`] && settings.alerts.bestAverage
+  }
 
-  const getValue = (key: AverageKey) =>
-    timerStatistics.session[key] === 0
-      ? timerStatistics.session.count >= Number(key.replace('ao', ''))
-        ? 'DNF'
-        : '--'
-      : formatTime(timerStatistics.session[key])
+  const getValue = (size: number) => {
+    const value = timerStatistics.session[`ao${size}`]
+    if (value === undefined) return '--'
+    return value === 0 ? (timerStatistics.session.count >= size ? 'DNF' : '--') : formatTime(value)
+  }
 
   if (!settings.features.sessionStats) return null
+
+  const sizes = showsTiles
+    ? DEFAULT_TIMER_AVERAGES
+    : resolveAverages(settings.features.timerAverages, DEFAULT_TIMER_AVERAGES)
 
   return (
     <motion.div
@@ -38,14 +35,14 @@ export default function StatisticsPanel() {
       initial="hidden"
       animate="visible"
     >
-      {AVERAGES.map(({ label, key, testId }) => (
+      {sizes.map((size) => (
         <TimerStatTile
-          key={testId}
-          label={label}
-          value={getValue(key)}
-          testId={testId}
+          key={size}
+          label={`Ao${size}`}
+          value={getValue(size)}
+          testId={`timer-session-ao${size}`}
           side="right"
-          isRecord={isRecord(key)}
+          isRecord={isRecord(size)}
         />
       ))}
     </motion.div>
