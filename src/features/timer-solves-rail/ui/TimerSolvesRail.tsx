@@ -13,7 +13,8 @@ import formatTime from '@/shared/lib/formatTime'
 import calcCurrentAo from '@/shared/lib/statistics/calcCurrentAo'
 import calcBestAo from '@/shared/lib/statistics/calcBestAo'
 import getBestTime from '@/shared/lib/statistics/getBestTime'
-import { DEFAULT_RAIL_AVERAGES, resolveAverages } from '@/shared/lib/statistics/averageSizes'
+import { DEFAULT_RAIL_AVERAGES, DESKTOP_MIN_WIDTH, resolveAverages } from '@/shared/lib/statistics/averageSizes'
+import { useMinWidth } from '@/shared/model/use-min-width'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { rollingAo } from '@/shared/lib/statistics/rollingAo'
 import { Solve } from '@/entities/solve/model/types'
@@ -33,6 +34,9 @@ const ROW_HEIGHT = 36
 export default function TimerSolvesRail() {
   const [tab, setTab] = useState<RailTab>('category')
   const isOpen = useTimerRailStore((state) => state.isOpen)
+  const [isCollapsed, setIsCollapsed] = useState(!isOpen)
+  const isDesktop = useMinWidth(DESKTOP_MIN_WIDTH)
+  const isVisible = isDesktop && (isOpen || !isCollapsed)
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const cubes = useTimerStore((state) => state.cubes)
   const railAverages = useSettingsStore((state) => state.settings.features.railAverages)
@@ -50,12 +54,12 @@ export default function TimerSolvesRail() {
   ]
 
   const solves = useMemo<Solve[]>(() => {
-    if (!selectedCube) return []
+    if (!selectedCube || !isVisible) return []
     if (tab === 'cube') return sortSolvesNewestFirst(selectedCube.solves.session)
     return mergeSolvesNewestFirst(
       (cubes ?? []).filter((cube) => cube.category === selectedCube.category).map((cube) => cube.solves?.session ?? [])
     )
-  }, [cubes, selectedCube, tab])
+  }, [cubes, selectedCube, tab, isVisible])
 
   const { stats, bestTime, bestAo5, bestAo12 } = useMemo(() => {
     const actualAo = (n: number) => {
@@ -134,6 +138,7 @@ export default function TimerSolvesRail() {
       initial={false}
       animate={{ width: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
       transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
+      onAnimationComplete={() => setIsCollapsed(!isOpen)}
       className="hidden md:flex shrink-0 min-h-0 overflow-hidden"
     >
       <div className="flex h-full w-52 lg:w-64 min-h-0 flex-col overflow-hidden border-s border-border glass-25 backdrop-blur-md">
