@@ -8,6 +8,8 @@ import { useTranslations } from 'next-intl'
 import { Trophy } from 'lucide-react'
 import { useWindowHeight } from '@/shared/model/useWindowHeight'
 import { cn } from '@/shared/lib/utils'
+import { DESKTOP_MIN_WIDTH, timerStatSizes } from '@/shared/lib/statistics/averageSizes'
+import { useMinWidth } from '@/shared/model/use-min-width'
 import { SCRAMBLE_HEIGHT } from '@/shared/const/scramble-height'
 import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
@@ -22,14 +24,14 @@ export default function TimerWidgets() {
   const timerMode = useTimerStore((store) => store.timerMode)
   const isFocusMode = useFocusModeStore((store) => store.isFocusMode)
   const height = useWindowHeight()
+  const isDesktop = useMinWidth(DESKTOP_MIN_WIDTH)
 
-  const { ao5, ao12, ao50, ao100 } = timerStatistics.global
-  const { ao5: sessionAo5, ao12: sessionAo12, ao50: sessionAo50, ao100: sessionAo100 } = timerStatistics.session
-  const newBestAverages = []
-  if (ao5 !== 0 && ao5 === sessionAo5) newBestAverages.push('Ao5')
-  if (ao12 !== 0 && ao12 === sessionAo12) newBestAverages.push('Ao12')
-  if (ao50 !== 0 && ao50 === sessionAo50) newBestAverages.push('Ao50')
-  if (ao100 !== 0 && ao100 === sessionAo100) newBestAverages.push('Ao100')
+  const newBestAverages = timerStatSizes(settings.features, isDesktop)
+    .filter((size) => {
+      const best = timerStatistics.global[`ao${size}`]
+      return Boolean(best) && best === timerStatistics.session[`ao${size}`]
+    })
+    .map((size) => `Ao${size}`)
 
   const compactAlert = height <= SCRAMBLE_HEIGHT && 'text-[10px]'
 
@@ -85,7 +87,7 @@ export default function TimerWidgets() {
         <div
           data-testid="timer-widgets-container"
           className={cn(
-            'items-center justify-between w-full flex text-xs sm:text-md',
+            'items-end md:items-center justify-between w-full flex text-xs sm:text-md',
             height <= SCRAMBLE_HEIGHT && 'text-xs'
           )}
         >
