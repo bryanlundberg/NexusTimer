@@ -13,6 +13,8 @@ import formatTime from '@/shared/lib/formatTime'
 import calcCurrentAo from '@/shared/lib/statistics/calcCurrentAo'
 import calcBestAo from '@/shared/lib/statistics/calcBestAo'
 import getBestTime from '@/shared/lib/statistics/getBestTime'
+import { DEFAULT_RAIL_AVERAGES, resolveAverages } from '@/shared/lib/statistics/averageSizes'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { rollingAo } from '@/shared/lib/statistics/rollingAo'
 import { Solve } from '@/entities/solve/model/types'
 import { mergeSolvesNewestFirst, sortSolvesNewestFirst } from '@/entities/solve/lib/sortSolves'
@@ -33,6 +35,7 @@ export default function TimerSolvesRail() {
   const isOpen = useTimerRailStore((state) => state.isOpen)
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const cubes = useTimerStore((state) => state.cubes)
+  const railAverages = useSettingsStore((state) => state.settings.features.railAverages)
   const scrollRef = useRef<HTMLDivElement>(null)
   const open = useOverlayStore((state) => state.open)
   const t = useTranslations('Index.SolvesRail')
@@ -85,12 +88,12 @@ export default function TimerSolvesRail() {
       bestAo12: bestAo(12),
       stats: [
         stat(t('single'), 1, actualSingle, bestSingle),
-        stat('Ao3', 3, actualAo(3), bestAo(3)),
-        stat('Ao5', 5, actualAo(5), bestAo(5)),
-        stat('Ao12', 12, actualAo(12), bestAo(12))
+        ...resolveAverages(railAverages, DEFAULT_RAIL_AVERAGES).map((size) =>
+          stat(`Ao${size}`, size, actualAo(size), bestAo(size))
+        )
       ]
     }
-  }, [solves, t])
+  }, [solves, t, railAverages])
 
   const rows = useMemo(() => {
     const ao5Values = rollingAo(solves, 5)
