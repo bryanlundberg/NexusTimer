@@ -12,10 +12,11 @@ type InMsg = {
   command: 'start'
   requestId: number
   data: CubeSolveColumns
+  averages: number[]
 }
 
 self.onmessage = (event: MessageEvent<InMsg>) => {
-  const { command, requestId, data } = event.data
+  const { command, requestId, data, averages } = event.data
   if (command === 'start') {
     if (data) {
       const sendPartial = (key: string, value: any) => {
@@ -32,7 +33,7 @@ self.onmessage = (event: MessageEvent<InMsg>) => {
       sendPartial('average', calcAverageFromMetrics(metrics))
       sendPartial('timeSpent', calcTimeSpentFromMetrics(metrics))
       sendPartial('counter', calcTotalSolvesFromMetrics(metrics))
-      sendPartial('stats', calcAoFromMetrics(metrics))
+      sendPartial('stats', calcAoFromMetrics(metrics, averages))
       sendPartial('deviation', calcDeviationFromMetrics(metrics))
       sendPartial('successRate', calcSuccessRateFromMetrics(metrics))
       sendPartial('best', calcBestTimeFromMetrics(metrics))

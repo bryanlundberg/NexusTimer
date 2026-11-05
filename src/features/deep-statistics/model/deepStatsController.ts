@@ -54,6 +54,7 @@ let activeRequestId = -1
 let lastCubesRef: Cube[] | null = null
 let lastSelectedRef: Cube | null = null
 let lastStartTimestamp = Number.NaN
+let lastAveragesKey = ''
 
 const subscribers = new Set<() => void>()
 const SERVER_SNAPSHOT = initialState
@@ -129,18 +130,30 @@ export function getServerSnapshot(): DeepStatsState {
   return SERVER_SNAPSHOT
 }
 
-export function requestDeepStats(cubes: Cube[] | null, selectedCube: Cube | null, startTimestamp: number): void {
+export function requestDeepStats(
+  cubes: Cube[] | null,
+  selectedCube: Cube | null,
+  startTimestamp: number,
+  averages: number[]
+): void {
   const w = getWorker()
   if (!w) return
   if (!selectedCube || !cubes) return
 
-  if (cubes === lastCubesRef && selectedCube === lastSelectedRef && startTimestamp === lastStartTimestamp) {
+  const averagesKey = averages.join()
+  if (
+    cubes === lastCubesRef &&
+    selectedCube === lastSelectedRef &&
+    startTimestamp === lastStartTimestamp &&
+    averagesKey === lastAveragesKey
+  ) {
     return
   }
 
   lastCubesRef = cubes
   lastSelectedRef = selectedCube
   lastStartTimestamp = startTimestamp
+  lastAveragesKey = averagesKey
 
   const all = getSolvesMetrics({ cubesDB: cubes, category: selectedCube.category, cubeName: selectedCube.name })
   const metrics: CubeSolves = {
@@ -158,5 +171,5 @@ export function requestDeepStats(cubes: Cube[] | null, selectedCube: Cube | null
   })
 
   const { columns, transfer } = metricsToColumns(metrics)
-  w.postMessage({ command: 'start', requestId: activeRequestId, data: columns }, transfer)
+  w.postMessage({ command: 'start', requestId: activeRequestId, data: columns, averages }, transfer)
 }
