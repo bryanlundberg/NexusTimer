@@ -4,7 +4,7 @@ export type StatisticScope = 'global' | 'session' | 'cubeSession' | 'cubeAll'
 
 export type StatisticValue<T> = Record<StatisticScope, T>
 
-export type AverageOf = 'ao3' | 'ao5' | 'ao12' | 'ao50' | 'ao100' | 'ao1000'
+export type AverageOf = `ao${number}`
 
 export type AoStatistics = Record<StatisticScope, Record<AverageOf, number>>
 
