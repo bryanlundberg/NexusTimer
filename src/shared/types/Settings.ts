@@ -20,6 +20,9 @@ type Features = {
     'default' | 'dseg7' | 'inter' | 'jetbrains-mono' | 'space-mono' | 'oxanium' | 'bebas-neue' | 'press-start-2p'
   timerSize: number
   haptics: boolean
+  customAverages: number[]
+  timerAverages: number[]
+  railAverages: number[]
 }
 
 type Alerts = {

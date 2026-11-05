@@ -18,7 +18,10 @@ export const defaultSettings: Settings = {
     scrambleSize: 'normal',
     timerFont: 'default',
     timerSize: 150,
-    haptics: true
+    haptics: true,
+    customAverages: [],
+    timerAverages: [],
+    railAverages: []
   },
   alerts: {
     bestTime: true,
