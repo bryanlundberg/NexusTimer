@@ -20,6 +20,7 @@ export type TimerStatsState = {
   cubes: Cube[]
   selectedCube: Cube
   incremental: boolean
+  sizes: number[]
   lists: Record<Kind, ListState>
   result: DisplayTimerStatistics
 }
@@ -50,38 +51,33 @@ function aggregate(solves: Solve[], base?: Aggregate): Aggregate {
   return out
 }
 
-function toStatistics(list: ListState): CubeStatistics {
+function toStatistics(list: ListState, sizes: number[]): CubeStatistics {
   const { solves, aggregate: agg, aos } = list
   if (solves.length === 0) return defaultTimerStatistics
-  const [ao3, ao5, ao12, ao50, ao100] = aos
   return {
     count: solves.length,
     best: agg.validCount > 0 ? agg.best : 0,
     deviation: getDeviation(solves),
     mean: agg.validCount === 0 ? 0 : agg.sum / agg.validCount,
-    ao3,
-    ao5,
-    ao12,
-    ao50,
-    ao100,
-    worst: agg.hasDnf || agg.validCount === 0 ? 0 : agg.worst
+    worst: agg.hasDnf || agg.validCount === 0 ? 0 : agg.worst,
+    ...Object.fromEntries(sizes.map((size, index) => [`ao${size}`, aos[index]]))
   }
 }
 
-function currentAos(solves: Solve[]): number[] {
-  return AO_SIZES.map((ao) => calcCurrentAo(solves, ao))
+function currentAos(solves: Solve[], sizes: number[]): number[] {
+  return sizes.map((ao) => calcCurrentAo(solves, ao))
 }
 
-function fullList(kind: Kind, solves: Solve[]): ListState {
+function fullList(kind: Kind, solves: Solve[], sizes: number[]): ListState {
   return {
     solves,
     aggregate: aggregate(solves),
-    aos: kind === 'global' ? calcBestAos(solves, AO_SIZES) : currentAos(solves)
+    aos: kind === 'global' ? calcBestAos(solves, sizes) : currentAos(solves, sizes)
   }
 }
 
-function appendedBestAos(previous: ListState, solves: Solve[], added: number): number[] {
-  return AO_SIZES.map((ao, index) => {
+function appendedBestAos(previous: ListState, solves: Solve[], added: number, sizes: number[]): number[] {
+  return sizes.map((ao, index) => {
     if (previous.solves.length < ao) return calcBestAos(solves, [ao])[0]
     let candidate = Infinity
     for (let i = 0; i < added && i + ao <= solves.length; i++) {
@@ -92,14 +88,14 @@ function appendedBestAos(previous: ListState, solves: Solve[], added: number): n
   })
 }
 
-function appendedList(kind: Kind, previous: ListState, added: Solve[]): ListState {
+function appendedList(kind: Kind, previous: ListState, added: Solve[], sizes: number[]): ListState {
   const solves = [...added, ...previous.solves]
   const next = aggregate(added, previous.aggregate)
   const agg = next.exact ? next : aggregate(solves)
   return {
     solves,
     aggregate: agg,
-    aos: kind === 'global' ? appendedBestAos(previous, solves, added.length) : currentAos(solves)
+    aos: kind === 'global' ? appendedBestAos(previous, solves, added.length, sizes) : currentAos(solves, sizes)
   }
 }
 
@@ -111,24 +107,29 @@ function targetCubeId(cubes: Cube[], selectedCube: Cube): string | undefined {
   return id
 }
 
-export function createTimerStats(cubes: Cube[] | null, selectedCube: Cube | null): TimerStatsState | null {
+export function createTimerStats(
+  cubes: Cube[] | null,
+  selectedCube: Cube | null,
+  sizes: number[] = AO_SIZES
+): TimerStatsState | null {
   if (!selectedCube) return null
   const all = cubes ?? []
   const metrics = getSolvesMetrics({ cubesDB: all, category: selectedCube.category, cubeName: selectedCube.name })
   const lists = {
-    global: fullList('global', metrics.global),
-    session: fullList('session', metrics.session),
-    cubeSession: fullList('cubeSession', metrics.cubeSession)
+    global: fullList('global', metrics.global, sizes),
+    session: fullList('session', metrics.session, sizes),
+    cubeSession: fullList('cubeSession', metrics.cubeSession, sizes)
   }
   return {
     cubes: all,
     selectedCube,
     incremental: targetCubeId(all, selectedCube) === selectedCube.id,
+    sizes,
     lists,
     result: {
-      global: toStatistics(lists.global),
-      session: toStatistics(lists.session),
-      cubeSession: toStatistics(lists.cubeSession)
+      global: toStatistics(lists.global, sizes),
+      session: toStatistics(lists.session, sizes),
+      cubeSession: toStatistics(lists.cubeSession, sizes)
     }
   }
 }
@@ -152,22 +153,24 @@ export function appendTimerStats(state: TimerStatsState, cubeId: string, added: 
       return !head || live.length === 0 || compareNewestFirst(live[live.length - 1], head) <= 0
     })
 
-  if (!canAppend) return createTimerStats(cubes, selectedCube)
+  const { sizes } = state
+  if (!canAppend) return createTimerStats(cubes, selectedCube, sizes)
 
   const lists = {
-    global: appendedList('global', state.lists.global, live),
-    session: appendedList('session', state.lists.session, live),
-    cubeSession: appendedList('cubeSession', state.lists.cubeSession, live)
+    global: appendedList('global', state.lists.global, live, sizes),
+    session: appendedList('session', state.lists.session, live, sizes),
+    cubeSession: appendedList('cubeSession', state.lists.cubeSession, live, sizes)
   }
   return {
     cubes,
     selectedCube,
     incremental: true,
+    sizes,
     lists,
     result: {
-      global: toStatistics(lists.global),
-      session: toStatistics(lists.session),
-      cubeSession: toStatistics(lists.cubeSession)
+      global: toStatistics(lists.global, sizes),
+      session: toStatistics(lists.session, sizes),
+      cubeSession: toStatistics(lists.cubeSession, sizes)
     }
   }
 }
