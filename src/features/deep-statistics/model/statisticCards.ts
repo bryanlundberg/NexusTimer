@@ -10,6 +10,8 @@ import {
 } from '@/components/ui/stats-icons'
 import { DeepStatistics, StatisticScope } from '@/shared/types/statistics'
 import formatTime from '@/shared/lib/formatTime'
+import { resolveAverages } from '@/shared/lib/statistics/averageSizes'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 
 export type ColumnGroup = 'personal' | 'cube'
 
@@ -37,10 +39,9 @@ export const GROUP_SCOPES: Record<ColumnGroup, { main: StatisticScope; session: 
   cube: { main: 'cubeAll', session: 'cubeSession' }
 }
 
-const AO_KEYS = ['ao5', 'ao12', 'ao50', 'ao100', 'ao1000'] as const
-
 export function useStatisticCardGroups(statistics: DeepStatistics): StatisticCardGroup[] {
   const t = useTranslations('Index')
+  const customAverages = useSettingsStore((store) => store.settings.features.customAverages)
   const time = (value: number) => (value > 0 ? formatTime(value) : '--')
   const positive = (value: number) => (value > 0 ? value : null)
   const percent = (value: string) => (value === '' ? null : Number(value))
@@ -49,15 +50,18 @@ export function useStatisticCardGroups(statistics: DeepStatistics): StatisticCar
     {
       key: 'averages',
       title: t('StatsPage.group-averages'),
-      cards: AO_KEYS.map((key) => ({
-        key,
-        label: `Ao${key.slice(2)}`,
-        icon: RollingAverageStatIcon,
-        loadingKey: 'stats',
-        comparison: 'record',
-        raw: (scope) => positive(statistics.stats[scope][key]),
-        format: (scope) => time(statistics.stats[scope][key])
-      }))
+      cards: resolveAverages(customAverages).map((size) => {
+        const key = `ao${size}` as const
+        return {
+          key,
+          label: `Ao${size}`,
+          icon: RollingAverageStatIcon,
+          loadingKey: 'stats',
+          comparison: 'record',
+          raw: (scope) => positive(statistics.stats[scope][key] ?? 0),
+          format: (scope) => time(statistics.stats[scope][key] ?? 0)
+        }
+      })
     },
     {
       key: 'times',
