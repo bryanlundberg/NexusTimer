@@ -27,7 +27,7 @@ export default function LineGraphStatistics({ solves }: { solves: Solve[] }) {
     entry('solves', t('chart-solves'), 'var(--primary)', 'solid'),
     entry('ao5', 'Ao5', CHART_COLORS.ao5, 'solid'),
     entry('ao12', 'Ao12', CHART_COLORS.ao12, 'solid'),
-    entry('pb', 'PB', CHART_COLORS.pb, 'steps'),
+    entry('pb', 'PB', CHART_COLORS.pb, 'dotted'),
     entry('worst', t('chart-worst'), CHART_COLORS.worst, 'dashed'),
     entry('sd', '±σ', CHART_COLORS.sd, 'dotted')
   ]

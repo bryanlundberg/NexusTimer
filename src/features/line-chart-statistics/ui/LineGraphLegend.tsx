@@ -1,6 +1,6 @@
 import { cn } from '@/shared/lib/utils'
 
-type LineStyle = 'solid' | 'dashed' | 'dotted' | 'steps'
+type LineStyle = 'solid' | 'dashed' | 'dotted'
 
 export interface LegendEntry {
   key: string
@@ -38,17 +38,11 @@ export default function LineGraphLegend({ entries }: LineGraphLegendProps) {
               : 'border-dashed border-border/50 text-muted-foreground/60 hover:text-muted-foreground'
           )}
         >
-          {entry.style === 'steps' ? (
-            <svg aria-hidden width="12" height="8" viewBox="0 0 12 8" className={cn(!entry.active && 'opacity-40')}>
-              <path d="M0 2 H5 V6 H12" fill="none" stroke={entry.color} strokeWidth="2" />
-            </svg>
-          ) : (
-            <span
-              aria-hidden
-              className={cn('inline-block h-[2px] w-3', !entry.active && 'opacity-40')}
-              style={{ background: swatch(entry) }}
-            />
-          )}
+          <span
+            aria-hidden
+            className={cn('inline-block h-[2px] w-3', !entry.active && 'opacity-40')}
+            style={{ background: swatch(entry) }}
+          />
           <span className="tabular-nums">{entry.label}</span>
         </button>
       ))}
