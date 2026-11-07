@@ -8,17 +8,24 @@ import LeaderboardPodium from '@/features/leaderboards-table/ui/LeaderboardPodiu
 import LeaderboardHero from '@/features/leaderboards/ui/LeaderboardHero'
 import { LEADERBOARD_PUZZLE_OPTIONS } from '@/features/leaderboards/model/puzzle-options'
 import { LEADERBOARD_VIEWS } from '@/features/leaderboards/model/leaderboard-view'
-import { useDeferredValue, useMemo, useRef, useState } from 'react'
+import { useDeferredValue, useMemo, useRef } from 'react'
 import { useTranslations } from 'next-intl'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
 import { PullToRefresh } from '@/shared/ui/pull-to-refresh/PullToRefresh'
 import { parseAsStringLiteral, useQueryState } from 'nuqs'
 
+const PODIUM_SIZE = 3
+const PUZZLE_VALUES = LEADERBOARD_PUZZLE_OPTIONS.map((option) => option.value)
+
 export default function LeaderboardPage() {
   const tNavMain = useTranslations('Index.NavMain')
+  const t = useTranslations('Index.LeaderboardsPage')
   const scrollRef = useRef<HTMLDivElement>(null)
-  const [selected, setSelected] = useState<string>(LEADERBOARD_PUZZLE_OPTIONS[0].value)
+  const [selected, setSelected] = useQueryState(
+    'puzzle',
+    parseAsStringLiteral(PUZZLE_VALUES).withDefault(LEADERBOARD_PUZZLE_OPTIONS[0].value)
+  )
   const [view, setView] = useQueryState('view', parseAsStringLiteral(LEADERBOARD_VIEWS).withDefault('persons'))
 
   const option = useMemo(
@@ -32,6 +39,9 @@ export default function LeaderboardPage() {
   const deferredSolves = useDeferredValue(solves)
   const isRenderingRows = deferredSolves !== solves
 
+  const ranked = useMemo(() => (deferredSolves ?? []).filter((solve) => solve?.user), [deferredSolves])
+  const hasPodium = ranked.length >= PODIUM_SIZE
+
   return (
     <ScrollArea ref={scrollRef} className={'max-h-dvh overflow-auto'}>
       <CoreHeader breadcrumbs={[{ label: tNavMain('leaderboards'), href: '/leaderboards' }]} />
@@ -39,7 +49,7 @@ export default function LeaderboardPage() {
 
       <LeaderboardHero
         value={selected}
-        onChange={setSelected}
+        onChange={(value) => void setSelected(value as typeof selected)}
         view={view}
         onViewChange={setView}
         remainingMs={remainingMs}
@@ -48,10 +58,19 @@ export default function LeaderboardPage() {
       <PageBody variant="data" className="space-y-6">
         {isLoading || isRenderingRows ? (
           <LeaderboardTableSkeleton />
+        ) : ranked.length === 0 ? (
+          <p className="mx-auto max-w-4xl border border-border/60 bg-card/40 px-4 py-10 text-center text-sm text-muted-foreground">
+            {t('empty')}
+          </p>
         ) : (
           <>
-            <LeaderboardPodium key={`${selected}-${view}`} solves={deferredSolves ?? []} />
-            <LeaderboardTable solves={deferredSolves ?? []} />
+            {hasPodium && <LeaderboardPodium key={`${selected}-${view}`} solves={ranked} />}
+            {(!hasPodium || ranked.length > PODIUM_SIZE) && (
+              <LeaderboardTable
+                solves={hasPodium ? ranked.slice(PODIUM_SIZE) : ranked}
+                rankOffset={hasPodium ? PODIUM_SIZE : 0}
+              />
+            )}
           </>
         )}
       </PageBody>

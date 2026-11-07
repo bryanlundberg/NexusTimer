@@ -7,15 +7,15 @@ import { motion } from 'motion/react'
 
 interface LeaderboardTableProps {
   solves: LeaderboardSolve[]
+  rankOffset?: number
 }
 
-export const GRID =
-  'grid-cols-[2rem_minmax(0,1fr)_auto] sm:grid-cols-[2.5rem_minmax(10rem,1fr)_6rem_4rem_4rem_6rem_8rem]'
+export const GRID = 'grid-cols-[2rem_minmax(0,1fr)_auto] sm:grid-cols-[2.5rem_minmax(10rem,1fr)_4rem_4rem_6rem_8rem]'
 
 const STAGGER_BUDGET = 0.5
 const STAGGER_STEP = 0.03
 
-export default function LeaderboardTable({ solves }: LeaderboardTableProps) {
+export default function LeaderboardTable({ solves, rankOffset = 0 }: LeaderboardTableProps) {
   const t = useTranslations('Index.LeaderboardsPage.table')
 
   const safeSolves = solves && solves.length > 0 ? solves : []
@@ -30,7 +30,6 @@ export default function LeaderboardTable({ solves }: LeaderboardTableProps) {
         <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60 bg-muted/30`}>
           <span className={`${headerCell} text-right`}>#</span>
           <span className={headerCell}>{t('user')}</span>
-          <span className={`${headerCell} hidden sm:block`}>{t('category')}</span>
           <span className={`${headerCell} hidden sm:block`}>{t('tps')}</span>
           <span className={`${headerCell} hidden sm:block`}>{t('moves')}</span>
           <span className={`${headerCell} justify-self-end sm:justify-self-auto`}>{t('time')}</span>
@@ -43,7 +42,7 @@ export default function LeaderboardTable({ solves }: LeaderboardTableProps) {
           variants={{ hidden: {}, show: { transition: { staggerChildren: stagger } } }}
         >
           {safeSolves.map((solve, index) => (
-            <LeaderboardTableRow key={solve._id} solve={solve} index={index} />
+            <LeaderboardTableRow key={solve._id} solve={solve} index={index + rankOffset} />
           ))}
         </motion.div>
       </div>

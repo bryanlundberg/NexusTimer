@@ -2,7 +2,6 @@
 
 import { motion } from 'motion/react'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
-import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import { PlayIcon } from '@radix-ui/react-icons'
 import formatTime from '@/shared/lib/formatTime'
 import { formatTps } from '@/shared/lib/formatTps'
@@ -18,6 +17,7 @@ import { cn } from '@/shared/lib/utils'
 import { PODIUM_CHIP } from '@/shared/const/podium'
 import { FaceGlyph } from '@/shared/ui/face-glyph/FaceGlyph'
 import { startFaceLayer } from '@/shared/lib/startFaceLayer'
+import { useSession } from '@/shared/model/useSession'
 
 interface LeaderboardTableRowProps {
   solve: LeaderboardSolve
@@ -31,10 +31,12 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
   const analysis = useSolveAnalysis(solve)
   const tColors = useTranslations('Index.MainColors.colors')
   const startColor = startFaceLayer(analysis)
+  const { data: session } = useSession()
 
   if (!solve?.user) return null
 
   const rank = index + 1
+  const isViewer = Boolean(session?.user?.id) && session?.user?.id === solve.user._id
   const hasReplay = Boolean(solve.replay?.moves?.length)
   const tps = analysis?.tps != null ? formatTps(analysis.tps) : null
   const moveCount = analysis ? analysis.turnCount : null
@@ -47,7 +49,8 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
       transition={{ duration: 0.2, ease: 'easeOut' }}
       className={cn(
         `grid ${GRID} items-center gap-x-4 px-3 py-2.5 border-b border-border/40 last:border-b-0 transition-colors duration-150`,
-        hasReplay && 'hover:bg-muted/40 cursor-pointer'
+        hasReplay && 'hover:bg-muted/40 cursor-pointer',
+        isViewer && 'bg-primary/10 shadow-[inset_2px_0_0_var(--primary)] hover:bg-primary/15'
       )}
     >
       {rank <= 3 ? (
@@ -72,10 +75,6 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
           {tps && ` · ${tps} ${t('tps')}`}
         </span>
       </div>
-
-      <span className="hidden sm:block">
-        <CategoryBadge category={solve.puzzle} />
-      </span>
 
       <span className="hidden text-[10px] font-mono text-muted-foreground/70 tabular-nums sm:block">
         {tps ?? t('not-available')}
