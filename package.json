@@ -23,6 +23,7 @@
     "@nexustimer/algorithms": "workspace:*",
     "@nexustimer/avatars": "workspace:*",
     "@nexustimer/contracts": "workspace:*",
+    "@nexustimer/cubelet": "workspace:*",
     "@nexustimer/cube-solver-rs": "workspace:*",
     "@nexustimer/stats": "workspace:*",
     "@nexustimer/tnoodle-lib-rs": "workspace:*",

@@ -23,6 +23,9 @@ importers:
       '@nexustimer/cube-solver-rs':
         specifier: workspace:*
         version: link:packages/cube-solver-rs
+      '@nexustimer/cubelet':
+        specifier: workspace:*
+        version: link:packages/cubelet
       '@nexustimer/stats':
         specifier: workspace:*
         version: link:packages/stats
@@ -323,6 +326,12 @@ importers:
       vitest:
         specifier: ^5.0.5
         version: 5.0.5(@types/node@24.19.2)(jsdom@30.1.3(@noble/hashes@2.4.0))(vite@8.0.16(@types/node@24.19.2)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1))
+
+  packages/cubelet:
+    devDependencies:
+      typescript:
+        specifier: 7.0.2
+        version: 7.0.2
 
   packages/stats:
     dependencies:
