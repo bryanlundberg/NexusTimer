@@ -12,7 +12,10 @@ export function CategoryCardStat({ label, children, caption, note }: CategoryCar
 
   return (
     <span className="flex min-w-0 flex-col gap-1">
-      <span className="truncate font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+      <span
+        title={label}
+        className="truncate font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground"
+      >
         {label}
         {note && <span className="font-sans font-medium tracking-normal opacity-70"> · {note}</span>}
       </span>

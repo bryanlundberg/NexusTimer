@@ -2,13 +2,16 @@ import { cn } from '@/shared/lib/utils'
 
 interface RecordTimeValueProps {
   value: string
-  size?: 'sm' | 'lg'
+  size?: 'sm' | 'md' | 'lg'
 }
+
+const MAIN_CLASS = { sm: 'text-sm', md: 'text-lg', lg: 'text-xl' }
+const DECIMAL_CLASS = { sm: 'text-xs', md: 'text-xs', lg: 'text-sm' }
 
 export function RecordTimeValue({ value, size = 'sm' }: RecordTimeValueProps) {
   const [main, decimal] = value !== '--' && value.includes('.') ? value.split('.') : [value, null]
-  const mainClass = size === 'lg' ? 'text-xl' : 'text-sm'
-  const decimalClass = size === 'lg' ? 'text-sm' : 'text-xs'
+  const mainClass = MAIN_CLASS[size]
+  const decimalClass = DECIMAL_CLASS[size]
 
   if (value === '--') {
     return <span className={cn(mainClass, 'font-bold text-muted-foreground')}>--</span>

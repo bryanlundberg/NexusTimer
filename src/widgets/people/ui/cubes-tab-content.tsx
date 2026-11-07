@@ -20,7 +20,7 @@ export default function CubesTabContent({ cubes }: CubesTabContentProps) {
       initial="hidden"
       animate="show"
       variants={{ hidden: {}, show: { transition: { staggerChildren: 0.05 } } }}
-      className="grid grid-cols-1 gap-2 @xl/tab:grid-cols-2"
+      className="flex flex-col border border-border/60 bg-card/40"
     >
       {sortedCubes.map((cube) => (
         <CubeStatsCard key={cube.id} cube={cube} />
