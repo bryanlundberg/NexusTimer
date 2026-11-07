@@ -2,7 +2,9 @@ package rooms
 
 import (
 	"encoding/json"
+	"fmt"
 	"slices"
+	"strings"
 	"testing"
 	"time"
 )
@@ -672,6 +674,7 @@ func TestVersionsOnlyGoUp(t *testing.T) {
 	check(r.Step(ReportStatus{ConnID: "conn-ben", Status: StatusSolving}, at(2*time.Second)))
 	check(submit(r, "ben", 1, 1_000, at(3*time.Second)))
 	check(submit(r, "ana", 1, 1_000, at(4*time.Second)))
+	check(chat(r, "ben", "gg", at(5*time.Second)))
 	check(r.Step(Tick{}, at(7*time.Second)))
 }
 
@@ -701,5 +704,102 @@ func TestNormalizeSettings(t *testing.T) {
 		if _, err := NormalizeSettings(s); err == nil {
 			t.Errorf("%s: accepted %+v", name, s)
 		}
+	}
+}
+
+func chat(r *Room, userID, text string, now time.Time) []Effect {
+	return r.Step(SendChat{ConnID: "conn-" + userID, Rid: 11, Text: text}, now)
+}
+
+func TestChatReachesEveryConnectedPlayer(t *testing.T) {
+	r := newRoom(t, public)
+	r.Step(joinAs("ben"), at(time.Second))
+	r.Step(joinAs("cai"), at(time.Second))
+	r.Step(Disconnected{ConnID: "conn-cai"}, at(time.Second))
+
+	fx := chat(r, "ben", "  hola\n\r\n\tqué   tal  ", at(2*time.Second))
+	expectNoError(t, fx, "conn-ben")
+	for _, connID := range []string{"conn-ana", "conn-ben"} {
+		got := only(t, received[ChatEvent](fx, connID))
+		if got.Message.UserID != "ben" || got.Message.Name != "ben" || got.Message.Text != "hola qué tal" || got.Message.SentAt != at(2*time.Second).UnixMilli() {
+			t.Fatalf("%s got %+v", connID, got)
+		}
+		if got.Message.ID != got.Version || got.Version != r.Version() {
+			t.Fatalf("id %d, version %d, room version %d", got.Message.ID, got.Version, r.Version())
+		}
+	}
+	if len(received[ChatEvent](fx, "conn-cai")) != 0 {
+		t.Fatal("an offline player got the message")
+	}
+}
+
+func TestChatIsChecked(t *testing.T) {
+	r := newRoom(t, public)
+
+	expectError(t, chat(r, "ana", " \n\t ", at(time.Second)), "conn-ana", ErrInvalid)
+	expectError(t, chat(r, "ana", strings.Repeat("a", 121), at(time.Second)), "conn-ana", ErrInvalid)
+	expectError(t, chat(r, "ana", "\xff", at(time.Second)), "conn-ana", ErrInvalid)
+	expectNoError(t, chat(r, "ana", strings.Repeat("ñ", 120), at(time.Second)), "conn-ana")
+	expectError(t, chat(r, "zoe", "hola", at(time.Second)), "conn-zoe", ErrForbidden)
+	if len(r.state.Chat) != 1 {
+		t.Fatalf("chat = %+v", r.state.Chat)
+	}
+}
+
+func TestChatIsRateLimitedPerPlayer(t *testing.T) {
+	r := newRoom(t, public)
+	r.Step(joinAs("ben"), at(0))
+
+	for i := range 5 {
+		expectNoError(t, chat(r, "ana", fmt.Sprint(i), at(time.Second)), "conn-ana")
+	}
+	expectError(t, chat(r, "ana", "spam", at(time.Second)), "conn-ana", ErrRateLimited)
+	expectNoError(t, chat(r, "ben", "still here", at(time.Second)), "conn-ben")
+
+	expectError(t, chat(r, "ana", "spam", at(2*time.Second)), "conn-ana", ErrRateLimited)
+	expectNoError(t, chat(r, "ana", "later", at(3*time.Second)), "conn-ana")
+	expectError(t, chat(r, "ana", "spam", at(3*time.Second)), "conn-ana", ErrRateLimited)
+
+	for i := range 5 {
+		expectNoError(t, chat(r, "ana", fmt.Sprint(i), at(time.Minute)), "conn-ana")
+	}
+	expectError(t, chat(r, "ana", "spam", at(time.Minute)), "conn-ana", ErrRateLimited)
+}
+
+func TestChatHistoryKeepsTheLatestMessagesAndComesWithTheSnapshot(t *testing.T) {
+	cfg := DefaultConfig()
+	cfg.ChatHistory = 3
+	cfg.ChatBurst = 10
+	r := newRoomWith(t, cfg, public)
+	for i := range 5 {
+		chat(r, "ana", fmt.Sprint(i), at(time.Second))
+	}
+
+	snapshot := only(t, received[SnapshotEvent](r.Step(joinAs("ben"), at(2*time.Second)), "conn-ben"))
+	var texts []string
+	for _, message := range snapshot.Room.Chat {
+		texts = append(texts, message.Text)
+	}
+	if !slices.Equal(texts, []string{"2", "3", "4"}) {
+		t.Fatalf("history = %v", texts)
+	}
+
+	r.Step(Disconnected{ConnID: "conn-ben"}, at(3*time.Second))
+	rejoin := only(t, received[SnapshotEvent](r.Step(joinAs("ben"), at(4*time.Second)), "conn-ben"))
+	if len(rejoin.Room.Chat) != 3 {
+		t.Fatalf("rejoin history = %+v", rejoin.Room.Chat)
+	}
+
+	restored, _ := Restore(cfg, r.State(), at(5*time.Second))
+	if len(restored.state.Chat) != 3 || restored.state.Chat[2].Text != "4" {
+		t.Fatalf("restored chat = %+v", restored.state.Chat)
+	}
+}
+
+func TestAnEmptySnapshotSendsAnEmptyChat(t *testing.T) {
+	r := newRoom(t, public)
+	raw, _ := json.Marshal(r.Snapshot(0, at(0)))
+	if !strings.Contains(string(raw), `"chat":[]`) {
+		t.Fatalf("snapshot = %s", raw)
 	}
 }

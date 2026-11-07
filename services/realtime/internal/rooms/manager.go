@@ -128,6 +128,7 @@ func (m *Manager) Inbound(c hub.Conn, payload []byte) bool {
 		Time         int64   `json:"time"`
 		Penalty      Penalty `json:"penalty"`
 		UserID       string  `json:"userId"`
+		Text         string  `json:"text"`
 	}
 	if json.Unmarshal(payload, &f) != nil {
 		return false
@@ -160,6 +161,8 @@ func (m *Manager) Inbound(c hub.Conn, payload []byte) bool {
 		m.forward(c, f.RoomID, f.Rid, SetPenalty{ConnID: connID, Rid: f.Rid, Round: f.Round, Penalty: f.Penalty})
 	case "room:kick":
 		m.forward(c, f.RoomID, f.Rid, Kick{ConnID: connID, Rid: f.Rid, UserID: f.UserID})
+	case "room:chat":
+		m.forward(c, f.RoomID, f.Rid, SendChat{ConnID: connID, Rid: f.Rid, Text: f.Text})
 	case "rooms:watch":
 		m.watch(c, f.Rid)
 	case "rooms:unwatch":

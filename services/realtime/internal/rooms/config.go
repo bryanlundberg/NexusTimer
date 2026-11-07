@@ -16,6 +16,10 @@ type Config struct {
 	RecentRounds    int
 	CodeAttempts    int
 	CodeLockout     time.Duration
+	ChatHistory     int
+	ChatMaxLength   int
+	ChatBurst       int
+	ChatRefill      time.Duration
 }
 
 func DefaultConfig() Config {
@@ -30,5 +34,9 @@ func DefaultConfig() Config {
 		RecentRounds:    25,
 		CodeAttempts:    5,
 		CodeLockout:     time.Minute,
+		ChatHistory:     50,
+		ChatMaxLength:   120,
+		ChatBurst:       5,
+		ChatRefill:      2 * time.Second,
 	}
 }

@@ -51,6 +51,15 @@ type Solve struct {
 	SubmittedAt time.Time `json:"submittedAt"`
 }
 
+type ChatMessage struct {
+	ID     int64     `json:"id"`
+	UserID string    `json:"userId"`
+	Name   string    `json:"name"`
+	Image  string    `json:"image,omitempty"`
+	Text   string    `json:"text"`
+	SentAt time.Time `json:"sentAt"`
+}
+
 type codeAttempts struct {
 	Failures    int       `json:"failures"`
 	LockedUntil time.Time `json:"lockedUntil"`
@@ -67,6 +76,7 @@ type State struct {
 	NextRoundAt      time.Time               `json:"nextRoundAt"`
 	Players          []*Player               `json:"players"`
 	Solves           []Solve                 `json:"solves"`
+	Chat             []ChatMessage           `json:"chat"`
 	Scrambles        []string                `json:"scrambles"`
 	ScramblesPending bool                    `json:"-"`
 	Access           map[string]bool         `json:"access"`

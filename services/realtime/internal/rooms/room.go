@@ -5,6 +5,7 @@ import (
 	"slices"
 	"strings"
 	"time"
+	"unicode/utf8"
 )
 
 type Input interface{ isInput() }
@@ -54,6 +55,12 @@ type Kick struct {
 	UserID string
 }
 
+type SendChat struct {
+	ConnID string
+	Rid    int64
+	Text   string
+}
+
 type AddScrambles struct{ Scrambles []string }
 
 type ScramblesFailed struct{}
@@ -68,6 +75,7 @@ func (ReportStatus) isInput()    {}
 func (SubmitSolve) isInput()     {}
 func (SetPenalty) isInput()      {}
 func (Kick) isInput()            {}
+func (SendChat) isInput()        {}
 func (AddScrambles) isInput()    {}
 func (ScramblesFailed) isInput() {}
 func (Tick) isInput()            {}
@@ -100,10 +108,16 @@ func (NeedScrambles) isEffect() {}
 func (LobbyChanged) isEffect()  {}
 func (Closed) isEffect()        {}
 
+type chatBucket struct {
+	tokens float64
+	at     time.Time
+}
+
 type Room struct {
 	cfg   Config
 	state State
 	fx    []Effect
+	chats map[string]chatBucket
 }
 
 // New seats the creator right away, so the creator is always the first player and the first leader.
@@ -185,6 +199,8 @@ func (r *Room) Step(in Input, now time.Time) []Effect {
 		r.setPenalty(in, now)
 	case Kick:
 		r.kick(in, now)
+	case SendChat:
+		r.chat(in, now)
 	case AddScrambles:
 		r.addScrambles(in, now)
 	case ScramblesFailed:
@@ -247,10 +263,14 @@ func (r *Room) Snapshot(rid int64, now time.Time) SnapshotEvent {
 		Round:        s.Round.view(),
 		Players:      r.playerViews(),
 		Solves:       make([]SolveView, len(s.Solves)),
+		Chat:         make([]ChatView, len(s.Chat)),
 		Version:      s.Version,
 	}
 	for i, solve := range s.Solves {
 		view.Solves[i] = solve.view()
+	}
+	for i, message := range s.Chat {
+		view.Chat[i] = message.view()
 	}
 	return SnapshotEvent{Type: "room:snapshot", Rid: rid, Room: view, ServerNow: millis(now)}
 }
@@ -713,6 +733,55 @@ func (r *Room) kick(in Kick, now time.Time) {
 	s.Banned[target.UserID] = true
 	delete(s.Access, target.UserID)
 	r.remove(target.UserID, now)
+}
+
+func (r *Room) chat(in SendChat, now time.Time) {
+	s := &r.state
+	p := s.playerByConn(in.ConnID)
+	if p == nil {
+		r.fail(in.ConnID, in.Rid, ErrForbidden)
+		return
+	}
+	text := strings.Join(strings.Fields(in.Text), " ")
+	if text == "" || !utf8.ValidString(text) || utf8.RuneCountInString(text) > r.cfg.ChatMaxLength {
+		r.fail(in.ConnID, in.Rid, ErrInvalid)
+		return
+	}
+	if !r.takeChatToken(p.UserID, now) {
+		r.fail(in.ConnID, in.Rid, ErrRateLimited)
+		return
+	}
+
+	s.Version++
+	message := ChatMessage{ID: s.Version, UserID: p.UserID, Name: p.Name, Image: p.Image, Text: text, SentAt: now}
+	s.Chat = append(s.Chat, message)
+	if extra := len(s.Chat) - r.cfg.ChatHistory; extra > 0 {
+		s.Chat = slices.Delete(s.Chat, 0, extra)
+	}
+	r.emit(Broadcast{To: r.onlineConns(), Event: ChatEvent{Type: "room:chat", RoomID: s.ID, Message: message.view(), Version: s.Version}})
+}
+
+// takeChatToken is a token bucket per account: a burst of ChatBurst, then one message every ChatRefill.
+func (r *Room) takeChatToken(userID string, now time.Time) bool {
+	if r.chats == nil {
+		r.chats = map[string]chatBucket{}
+	}
+	burst := float64(r.cfg.ChatBurst)
+	bucket, ok := r.chats[userID]
+	if !ok {
+		bucket = chatBucket{tokens: burst, at: now}
+	}
+	if r.cfg.ChatRefill > 0 && now.After(bucket.at) {
+		bucket.tokens = min(burst, bucket.tokens+float64(now.Sub(bucket.at))/float64(r.cfg.ChatRefill))
+	}
+	bucket.at = now
+	if bucket.tokens < 1 {
+		r.chats[userID] = bucket
+		return false
+	}
+	bucket.tokens--
+	r.chats[userID] = bucket
+	return true
 }
 
 // checkAllSolved ends the round early once every player, including those inside their disconnect

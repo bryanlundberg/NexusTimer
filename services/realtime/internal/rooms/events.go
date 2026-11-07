@@ -15,6 +15,7 @@ const (
 	ErrTooManyAttempts ErrorCode = "too-many-attempts"
 	ErrUpgradeRequired ErrorCode = "upgrade-required"
 	ErrInvalid         ErrorCode = "invalid"
+	ErrRateLimited     ErrorCode = "rate-limited"
 )
 
 type PlayerView struct {
@@ -57,7 +58,17 @@ type SnapshotView struct {
 	Round        RoundView    `json:"round"`
 	Players      []PlayerView `json:"players"`
 	Solves       []SolveView  `json:"solves"`
+	Chat         []ChatView   `json:"chat"`
 	Version      int64        `json:"version"`
+}
+
+type ChatView struct {
+	ID     int64   `json:"id"`
+	UserID string  `json:"userId"`
+	Name   string  `json:"name"`
+	Image  *string `json:"image"`
+	Text   string  `json:"text"`
+	SentAt int64   `json:"sentAt"`
 }
 
 type SummaryPlayer struct {
@@ -104,6 +115,13 @@ type SolveEvent struct {
 	RoomID  string    `json:"roomId"`
 	Solve   SolveView `json:"solve"`
 	Version int64     `json:"version"`
+}
+
+type ChatEvent struct {
+	Type    string   `json:"type"`
+	RoomID  string   `json:"roomId"`
+	Message ChatView `json:"message"`
+	Version int64    `json:"version"`
 }
 
 type MembersEvent struct {
@@ -189,4 +207,8 @@ func (s Solve) view() SolveView {
 		ConfirmBy:   millis(s.ConfirmBy),
 		SubmittedAt: millis(s.SubmittedAt),
 	}
+}
+
+func (m ChatMessage) view() ChatView {
+	return ChatView{ID: m.ID, UserID: m.UserID, Name: m.Name, Image: optional(m.Image), Text: m.Text, SentAt: millis(m.SentAt)}
 }

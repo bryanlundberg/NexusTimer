@@ -339,3 +339,25 @@ func TestFailedScrambleRequestsAreRetried(t *testing.T) {
 
 	ana.waitFor(t, "room:round", hasScramble)
 }
+
+func TestChatIsRoutedToTheRoomAndSaved(t *testing.T) {
+	store := newMemoryStore()
+	m := startManager(t, store, &fakeScrambles{})
+	ana, ben := newTestConn("ana"), newTestConn("ben")
+
+	roomID := createRoom(t, m, ana, false)
+	joinRoom(t, m, ben, roomID)
+	send(t, m, ben, map[string]any{"type": "room:chat", "rid": 4, "roomId": roomID, "text": " hi "})
+
+	got := ana.waitFor(t, "room:chat", nil)["message"].(map[string]any)
+	if got["userId"] != "ben" || got["text"] != "hi" {
+		t.Fatalf("message = %v", got)
+	}
+	eventually(t, "the message is saved", func() bool {
+		states, _ := store.LoadAll(context.Background())
+		return len(states) == 1 && len(states[0].Chat) == 1
+	})
+
+	send(t, m, ben, map[string]any{"type": "room:chat", "rid": 5, "roomId": roomID, "text": ""})
+	ben.waitFor(t, "room:error", func(f map[string]any) bool { return f["rid"] == float64(5) && f["code"] == "invalid" })
+}
