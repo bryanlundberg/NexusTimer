@@ -19,6 +19,7 @@ import DisplayTime from '@/features/timer/ui/display-time'
 import ManualModeForm from '@/features/timer/ui/ManualModeForm'
 import ConfirmSolveModal from '@/features/free-play-room/ui/confirm-solve-modal'
 import LivePlayersPanel from '@/features/free-play-room/ui/live-players-panel'
+import RoomChatPanel from '@/features/free-play-room/ui/room-chat-panel'
 import FreePlayStackmatListener from '@/features/free-play-room/ui/free-play-stackmat-listener'
 import InspectionToggleButton from '@/features/free-play-room/ui/inspection-toggle-button'
 import ModeDropdown from '@/features/free-play-room/ui/mode-dropdown'
@@ -241,13 +242,16 @@ export default function TimerTab({ event, onlineUsers }: TimerTabProps) {
         </AnimatePresence>
       </div>
 
-      <div className="hidden sm:block w-52 shrink-0 border-l border-border overflow-y-auto p-3 bg-sidebar">
-        <LivePlayersPanel
-          onlineUsers={onlineUsers}
-          solves={solves}
-          currentRound={currentRound}
-          sessionUserId={userId}
-        />
+      <div className="hidden sm:flex w-72 shrink-0 flex-col gap-3 border-l border-border p-3 bg-sidebar">
+        <div className="max-h-[45%] shrink-0 overflow-y-auto">
+          <LivePlayersPanel
+            onlineUsers={onlineUsers}
+            solves={solves}
+            currentRound={currentRound}
+            sessionUserId={userId}
+          />
+        </div>
+        {userId && <RoomChatPanel selfId={userId} className="flex-1" />}
       </div>
 
       <ConfirmSolveModal

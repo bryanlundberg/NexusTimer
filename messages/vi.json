@@ -1706,7 +1706,16 @@
     "update-required": "Cập nhật ứng dụng để vào phòng này",
     "too-many-attempts": "Nhập sai mã quá nhiều lần. Thử lại sau một phút.",
     "waiting-scramble": "Đang chờ scramble tiếp theo...",
-    "action-failed": "Đã xảy ra lỗi. Thử lại."
+    "action-failed": "Đã xảy ra lỗi. Thử lại.",
+    "chat": {
+      "tab": "Trò chuyện",
+      "title": "Trò chuyện trong phòng",
+      "empty": "Chưa có tin nhắn. Hãy chào mọi người!",
+      "placeholder": "Nhắn cho cả phòng",
+      "send": "Gửi",
+      "unread": "{count, plural, other {# tin nhắn chưa đọc}}",
+      "rate-limited": "Chậm lại, bạn đang gửi tin nhắn quá nhanh."
+    }
   },
   "LandingPage": {
     "header": {

@@ -1706,7 +1706,16 @@
     "update-required": "Zaktualizuj aplikację, aby dołączyć do tego pokoju",
     "too-many-attempts": "Zbyt wiele błędnych kodów. Spróbuj ponownie za minutę.",
     "waiting-scramble": "Czekanie na następny scramble...",
-    "action-failed": "Coś poszło nie tak. Spróbuj ponownie."
+    "action-failed": "Coś poszło nie tak. Spróbuj ponownie.",
+    "chat": {
+      "tab": "Czat",
+      "title": "Czat pokoju",
+      "empty": "Brak wiadomości. Przywitaj się!",
+      "placeholder": "Napisz do pokoju",
+      "send": "Wyślij",
+      "unread": "{count, plural, one {# nieprzeczytana wiadomość} few {# nieprzeczytane wiadomości} many {# nieprzeczytanych wiadomości} other {# nieprzeczytanej wiadomości}}",
+      "rate-limited": "Zwolnij, wysyłasz wiadomości za szybko."
+    }
   },
   "LandingPage": {
     "header": {

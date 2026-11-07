@@ -8,12 +8,14 @@ import { useSession } from '@/shared/model/useSession'
 import { useRouteSegment } from '@/shared/model/useRouteSegment'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { Button } from '@/components/ui/button'
-import { ChartBarIcon, CheckIcon, Clock, EyeIcon, Plus } from 'lucide-react'
+import { ChartBarIcon, CheckIcon, Clock, EyeIcon, MessageSquare, Plus } from 'lucide-react'
 import { AvatarGroup, AvatarGroupTooltip } from '@/components/ui/shadcn-io/avatar-group'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import Image from 'next/image'
 import TimerTab from '@/features/free-play-room/ui/timer-tab'
 import ResultsTab from '@/features/free-play-room/ui/results-tab'
+import RoomChatPanel from '@/features/free-play-room/ui/room-chat-panel'
+import { CountBadge } from '@/shared/ui/count-badge/CountBadge'
 import RoomCodeGate from '@/features/free-play-room/ui/room-code-gate'
 import RoomTakenOver from '@/features/free-play-room/ui/room-taken-over'
 import RoomCodeChip from '@/features/free-play-room/ui/room-code-chip'
@@ -29,12 +31,14 @@ import { motion } from 'motion/react'
 import { cn } from '@/shared/lib/utils'
 import { useRoomSession } from '@/features/free-play-room/model/useRoomSession'
 import { useRoomStore } from '@/features/free-play-room/model/useRoomStore'
+import { useRoomChatMessages } from '@/features/free-play-room/model/useRoomChatMessages'
 import { toLocalTime, toPresence } from '@/features/free-play-room/model/room-view'
 import type { RoomPhase } from '@/features/free-play-room/model/room-state'
 
 const tabs = [
-  { key: 'timer', icon: Clock },
-  { key: 'results', icon: ChartBarIcon }
+  { key: 'timer', label: 'timer', icon: Clock },
+  { key: 'results', label: 'results', icon: ChartBarIcon },
+  { key: 'chat', label: 'chat.tab', icon: MessageSquare }
 ] as const
 
 type TabKey = (typeof tabs)[number]['key']
@@ -71,6 +75,7 @@ export default function FreePlayRoomPage() {
 
   useScreenWakeLock(isSolving || timerStatus === TimerStatus.INSPECTING)
 
+  const { unread: unreadChat } = useRoomChatMessages(userId)
   const onlineUsers = useMemo(() => toPresence(room), [room])
   const deadline = room ? toLocalTime(room.round.deadline, clockOffset) : undefined
   const { mmss, remainingMs } = useCountdown(deadline)
@@ -292,11 +297,20 @@ export default function FreePlayRoomPage() {
       {/* Tab content */}
       <div className="flex-1 min-h-0 overflow-hidden mx-2 md:mx-4">
         <div className="h-full surface surface-panel overflow-hidden">
-          <div className={`h-full overflow-y-auto ${currentTab !== 'timer' ? 'hidden' : ''}`}>
+          <div
+            className={cn(
+              'h-full overflow-y-auto',
+              currentTab === 'results' && 'hidden',
+              currentTab === 'chat' && 'hidden sm:block'
+            )}
+          >
             <TimerTab maxRoundTime={room.maxRoundTime} event={room.event} onlineUsers={onlineUsers} />
           </div>
           <div className={`h-full overflow-y-auto ${currentTab !== 'results' ? 'hidden' : ''}`}>
             <ResultsTab />
+          </div>
+          <div className={cn('h-full p-3 sm:hidden', currentTab !== 'chat' && 'hidden')}>
+            <RoomChatPanel selfId={userId} className="h-full" />
           </div>
         </div>
       </div>
@@ -314,7 +328,10 @@ export default function FreePlayRoomPage() {
                 role="tab"
                 aria-selected={isActive}
                 onClick={() => setCurrentTab(tab.key)}
-                className="relative flex-1 flex items-center justify-center gap-1.5 py-2.5 md:py-2 text-sm font-medium z-10 transition-colors cursor-pointer"
+                className={cn(
+                  'relative flex-1 flex items-center justify-center gap-1.5 py-2.5 md:py-2 text-sm font-medium z-10 transition-colors cursor-pointer',
+                  tab.key === 'chat' && 'sm:hidden'
+                )}
               >
                 {isActive && (
                   <motion.div
@@ -325,7 +342,14 @@ export default function FreePlayRoomPage() {
                 )}
                 <span className="relative z-10 flex items-center gap-1.5">
                   <Icon className={`size-4 ${isActive ? 'text-foreground' : 'text-muted-foreground'}`} />
-                  <span className={isActive ? 'text-foreground' : 'text-muted-foreground'}>{t(tab.key)}</span>
+                  <span className={isActive ? 'text-foreground' : 'text-muted-foreground'}>{t(tab.label)}</span>
+                  {tab.key === 'chat' && !isActive && (
+                    <CountBadge
+                      count={unreadChat}
+                      aria-label={t('chat.unread', { count: unreadChat })}
+                      className="ring-0"
+                    />
+                  )}
                 </span>
               </button>
             )
