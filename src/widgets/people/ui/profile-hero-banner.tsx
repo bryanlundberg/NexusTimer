@@ -10,6 +10,7 @@ import { CountryFlag } from '@/shared/ui/country-flag/CountryFlag'
 import { getCountryName } from '@/shared/lib/getCountryName'
 import { ProfileTraits } from '@/entities/user/ui/ProfileTraits'
 import { parseProfileLink } from '@/shared/lib/profile-links'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { PresenceDot } from '@/features/presence/ui/PresenceDot'
 import { usePresence, resolvePresenceDisplay } from '@/features/presence/model/usePresence'
 import { useSession } from '@/shared/model/useSession'
@@ -24,12 +25,15 @@ interface Props {
 export function ProfileHeroBanner({ user, aside, children }: Props) {
   const locale = useLocale()
   const t = useTranslations('Index.PeoplePage.hero')
+  const tPresence = useTranslations('Index.Presence')
 
   const memberSince = dayjs(user.createdAt).locale(locale).format('MMM YYYY')
 
   const { status } = useSession()
   const isSignedIn = status === 'authenticated'
   const presence = usePresence(isSignedIn ? user._id : null)
+  const presenceView = resolvePresenceDisplay(presence)
+  const presenceLabel = presenceView === 'unknown' ? null : tPresence(presenceView)
   const hasContactInfo = (user.links ?? []).some((link) => parseProfileLink(link) !== null)
 
   return (
@@ -42,9 +46,18 @@ export function ProfileHeroBanner({ user, aside, children }: Props) {
               <AvatarFallback>{user.name.substring(0, 2).toUpperCase()}</AvatarFallback>
             </Avatar>
             {isSignedIn && (
-              <span className="absolute -bottom-0.5 -right-0.5 rounded-full bg-background p-0.5">
-                <PresenceDot state={resolvePresenceDisplay(presence)} className="size-3" />
-              </span>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <span
+                    role="img"
+                    aria-label={presenceLabel ?? undefined}
+                    className="absolute -bottom-0.5 -right-0.5 rounded-full bg-background p-0.5"
+                  >
+                    <PresenceDot state={presenceView} className="size-3" />
+                  </span>
+                </TooltipTrigger>
+                {presenceLabel && <TooltipContent>{presenceLabel}</TooltipContent>}
+              </Tooltip>
             )}
           </div>
 
