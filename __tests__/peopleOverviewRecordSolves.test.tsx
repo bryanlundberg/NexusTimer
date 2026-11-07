@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { NextIntlClientProvider } from 'next-intl'
 import messages from '../messages/en.json'
-import PeopleOverviewRow from '@/widgets/people/ui/PeopleOverviewRow'
+import { CategoryRecordDetails } from '@/widgets/people/ui/category-record-details'
 import type { CategoryStats, RecordSolve } from '@/entities/user-stats/model/types'
 
 vi.mock('@/shared/ui/scramble-display/ui/ScrambleDisplay', () => ({
@@ -56,15 +56,14 @@ const stats = (withSolves: boolean): CategoryStats => ({
 const renderExpanded = (withSolves: boolean) => {
   render(
     <NextIntlClientProvider locale="en" messages={messages}>
-      <PeopleOverviewRow stats={stats(withSolves)} />
+      <CategoryRecordDetails stats={stats(withSolves)} />
     </NextIntlClientProvider>
   )
-  fireEvent.click(screen.getAllByText('84')[0])
 }
 
 const cards = () => screen.queryAllByRole('button').filter((button) => button.hasAttribute('aria-pressed'))
 
-describe('PeopleOverviewRow record solves strip', () => {
+describe('CategoryRecordDetails record solves strip', () => {
   it('shows a card per solve, single first, and the single scramble by default', () => {
     renderExpanded(true)
 

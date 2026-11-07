@@ -46,8 +46,8 @@ export function RecordSolvesStrip({ single, ao5 = [], ao5Edges, category }: Reco
   }
 
   return (
-    <div className="flex w-full max-w-[calc(100cqw-1.5rem)] min-w-0 flex-col gap-2">
-      <div className="grid grid-cols-3 gap-2 @xl/tab:grid-cols-6">
+    <div className="@container/strip flex w-full max-w-[calc(100cqw-1.5rem)] min-w-0 flex-col gap-2">
+      <div className="grid grid-cols-3 gap-2 @md/strip:grid-cols-6">
         {cards.map(({ key, ...card }) => (
           <RecordSolveCard
             key={key}
