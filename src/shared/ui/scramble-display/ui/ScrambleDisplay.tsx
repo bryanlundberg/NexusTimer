@@ -1,71 +1,20 @@
-import { useEffect, useRef } from 'react'
-import { PuzzleID, TwistyPlayer } from '@rednaxela101/cubing/twisty'
-import { CubeCategory } from '@/shared/const/cube-categories'
+import { useMemo } from 'react'
 import { cubeCollection } from '@/shared/const/cube-collection'
-import { disposeTwistyPlayer } from '@/shared/lib/twisty/disposeTwistyPlayer'
+import { cubeSizeOf, renderCubeImage } from '@/shared/lib/puzzle/renderCubeImage'
+import CubeImage from '@/shared/ui/puzzle/CubeImage'
+import type { ScrambleDisplayProps } from '@/shared/ui/scramble-display/ui/scrambleDisplayProps'
+import TwistyScrambleDisplay from '@/shared/ui/scramble-display/ui/TwistyScrambleDisplay'
 
-interface ScrambleDisplay extends React.HTMLAttributes<HTMLDivElement> {
-  className?: string
-  show: boolean
-  scramble: string | null
-  event: CubeCategory
-  visualization?: '2D' | '3D'
-  puzzle?: PuzzleID
-}
+export default function ScrambleDisplay(props: ScrambleDisplayProps) {
+  const { show, scramble, event, visualization = '2D', puzzle, className, ...rest } = props
 
-export default function ScrambleDisplay({
-  show,
-  scramble,
-  event,
-  className,
-  visualization = '2D',
-  puzzle,
-  ...rest
-}: ScrambleDisplay) {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const playerRef = useRef<TwistyPlayer | null>(null)
-
-  useEffect(() => {
-    if (!show || !containerRef.current) return
-
-    const id = cubeCollection.find((u) => u.name === event)
-    const displayId = id?.displayId ?? '3x3x3'
-
-    const player = new TwistyPlayer({
-      puzzle: puzzle ?? (displayId || '3x3x3'),
-      alg: scramble ?? '',
-      hintFacelets: 'none',
-      background: 'none',
-      controlPanel: 'none',
-      visualization: visualization
-    })
-    playerRef.current = player
-
-    containerRef.current.appendChild(player)
-
-    player.style.width = '100%'
-    player.style.height = 'auto'
-    player.style.maxWidth = '100%'
-    player.style.minHeight = '100%'
-
-    return () => {
-      disposeTwistyPlayer(player)
-      playerRef.current = null
-    }
-  }, [show, event, visualization, puzzle])
-
-  // Update the algorithm in place on the existing player instead of rebuilding.
-  useEffect(() => {
-    const player = playerRef.current
-    if (!player) return
-    try {
-      player.alg = scramble ?? ''
-    } catch {
-      // ignore invalid alg
-    }
-  }, [scramble])
+  const svg = useMemo(() => {
+    if (!show || visualization !== '2D') return null
+    const size = cubeSizeOf(puzzle ?? cubeCollection.find((item) => item.name === event)?.displayId ?? '3x3x3')
+    return size ? renderCubeImage({ size, alg: scramble ?? '', view: 'net' }) : null
+  }, [show, visualization, puzzle, event, scramble])
 
   if (!show) return null
-
-  return <div {...rest} className={className} id="scramble-display" ref={containerRef}></div>
+  if (!svg) return <TwistyScrambleDisplay {...props} />
+  return <CubeImage {...rest} svg={svg} className={className} id="scramble-display" />
 }
