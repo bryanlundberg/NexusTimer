@@ -13,6 +13,7 @@ export function CubeStatsCard({ cube }: { cube: CubeStats }) {
   const locale = useLocale()
   const t = useTranslations('Index.CubesPage')
   const tPeople = useTranslations('Index.PeoplePage.cubes-tab')
+  const tStats = useTranslations('Index.PeoplePage.stats')
   const totalSolves = cube.counts.ok + cube.counts.plus2 + cube.counts.dnf
 
   return (
@@ -46,7 +47,7 @@ export function CubeStatsCard({ cube }: { cube: CubeStats }) {
         <CategoryCardStat label={tPeople('col-solves')}>
           <span className="text-xl font-bold tabular-nums">{totalSolves.toLocaleString(locale)}</span>
         </CategoryCardStat>
-        <CategoryCardStat label={tPeople('col-time')}>
+        <CategoryCardStat label={tStats('time-on-timer')}>
           <RecordTimeValue size="lg" value={cube.totalTime > 0 ? formatTime(cube.totalTime) : '--'} />
         </CategoryCardStat>
       </div>
