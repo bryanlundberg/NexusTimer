@@ -61,7 +61,7 @@ export default function LeaderboardPodium({ solves }: { solves: LeaderboardSolve
               {solve.user.country && (
                 <CountryFlag code={solve.user.country} className="hidden shrink-0 sm:inline-block" />
               )}
-              <span className="truncate transition-colors group-hover:text-primary">{solve.user.name}</span>
+              <span className="truncate">{solve.user.name}</span>
             </span>
             <span
               className={cn(
