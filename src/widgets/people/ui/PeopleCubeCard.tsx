@@ -7,21 +7,18 @@ import formatTime from '@/shared/lib/formatTime'
 import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import { motion } from 'motion/react'
 import { GRID } from '@/widgets/people/ui/cubes-tab-content'
+import { RecordTimeValue } from '@/widgets/people/ui/record-time-value'
+import { CubeSolveDistribution } from '@/widgets/people/ui/cube-solve-distribution'
 
 interface PeopleCubeCardProps {
   cube: CubeStats
   index: number
 }
 
-export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
+export function PeopleCubeCard({ cube }: PeopleCubeCardProps) {
   const locale = useLocale()
   const t = useTranslations('Index.CubesPage')
-  const { ok: successCount, plus2: plus2Count, dnf: dnfCount } = cube.counts
-  const totalSolves = successCount + plus2Count + dnfCount
-
-  const pbTime = cube.best
-  const ao5Str = cube.bestAo5 !== null ? formatTime(cube.bestAo5) : '--'
-  const totalTime = cube.totalTime
+  const totalSolves = cube.counts.ok + cube.counts.plus2 + cube.counts.dnf
 
   return (
     <motion.div
@@ -29,10 +26,8 @@ export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
       variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
       transition={{ duration: 0.25, ease: 'easeOut' }}
     >
-      {/* Cube image */}
       <CubeCategoryTile category={cube.category} />
 
-      {/* Name + category badge + date */}
       <div className="min-w-0">
         <div className="flex items-center gap-2 mb-0.5">
           <span className="font-bold text-sm truncate" title={cube.name}>
@@ -45,61 +40,16 @@ export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
         </span>
       </div>
 
-      {/* Best */}
-      <StatCell value={pbTime ? formatTime(pbTime) : '--'} />
+      <RecordTimeValue value={cube.best ? formatTime(cube.best) : '--'} />
 
-      {/* Ao5 */}
-      <StatCell value={ao5Str} />
+      <RecordTimeValue value={cube.bestAo5 !== null ? formatTime(cube.bestAo5) : '--'} />
 
-      {/* Solves */}
       <span className="text-sm font-bold tabular-nums">{totalSolves}</span>
 
-      {/* Time on cube */}
-      <StatCell value={totalTime > 0 ? formatTime(totalTime) : '--'} />
+      <RecordTimeValue value={cube.totalTime > 0 ? formatTime(cube.totalTime) : '--'} />
 
-      {/* Distribution: segmented pill + counters */}
-      <div className="flex flex-col gap-1.5 w-full">
-        <div className="h-2 w-full overflow-hidden bg-muted/50 flex">
-          {totalSolves > 0 ? (
-            <>
-              {successCount > 0 && (
-                <span className="h-full bg-success" style={{ width: `${(successCount / totalSolves) * 100}%` }} />
-              )}
-              {plus2Count > 0 && (
-                <span className="h-full bg-warning" style={{ width: `${(plus2Count / totalSolves) * 100}%` }} />
-              )}
-              {dnfCount > 0 && (
-                <span className="h-full bg-destructive" style={{ width: `${(dnfCount / totalSolves) * 100}%` }} />
-              )}
-            </>
-          ) : null}
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="size-1.5 bg-success shrink-0" />
-          <span className="text-[10px] tabular-nums text-muted-foreground">{successCount}</span>
-          <span className="size-1.5 bg-warning shrink-0" />
-          <span className="text-[10px] tabular-nums text-muted-foreground">{plus2Count}</span>
-          <span className="size-1.5 bg-destructive shrink-0" />
-          <span className="text-[10px] tabular-nums text-muted-foreground">{dnfCount}</span>
-        </div>
-      </div>
+      <CubeSolveDistribution counts={cube.counts} />
     </motion.div>
-  )
-}
-
-function StatCell({ value }: { value: string }) {
-  const [main, decimal] = value !== '--' && value.includes('.') ? value.split('.') : [value, null]
-  return (
-    <div className="flex items-baseline gap-0.5">
-      {value === '--' ? (
-        <span className="text-sm font-bold text-muted-foreground">--</span>
-      ) : (
-        <>
-          <span className="text-sm font-bold tabular-nums">{main}</span>
-          {decimal && <span className="text-xs text-muted-foreground tabular-nums">.{decimal}</span>}
-        </>
-      )}
-    </div>
   )
 }
 
