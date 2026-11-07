@@ -20,7 +20,10 @@ export function CategoryStatsCard({ stats }: { stats: CategoryStats }) {
   const tCubes = useTranslations('Index.PeoplePage.cubes-tab')
   const [isOpen, setIsOpen] = React.useState(false)
   const canExpand = Boolean(best?.solve || bestAo5?.solves || bestAo5?.window)
-  const formatDate = (time: number) => dayjs(time).locale(locale).format('ll')
+  const formatDate = (time: number) => {
+    const date = dayjs(time).locale(locale)
+    return date.format(date.year() === dayjs().year() ? 'D MMM' : 'D MMM YY')
+  }
 
   return (
     <motion.div
@@ -52,13 +55,15 @@ export function CategoryStatsCard({ stats }: { stats: CategoryStats }) {
         <span className="grid w-full grid-cols-3 gap-3 @xl/tab:min-w-0 @xl/tab:flex-1 @xl/tab:pr-8">
           <CategoryCardStat
             label={tSolveCard('single')}
-            caption={best ? [`${best.cubeName} · ${formatDate(best.endTime)}`] : undefined}
+            note={best ? formatDate(best.endTime) : undefined}
+            caption={best ? [best.cubeName] : undefined}
           >
             <RecordTimeValue size="lg" value={best ? formatTime(best.time) : '--'} />
           </CategoryCardStat>
           <CategoryCardStat
             label={tCubes('col-ao5')}
-            caption={bestAo5 ? [`${bestAo5.cubeName} · ${formatDate(bestAo5.endTime)}`] : undefined}
+            note={bestAo5 ? formatDate(bestAo5.endTime) : undefined}
+            caption={bestAo5 ? [bestAo5.cubeName] : undefined}
           >
             <RecordTimeValue size="lg" value={bestAo5 ? formatTime(bestAo5.time) : '--'} />
           </CategoryCardStat>
