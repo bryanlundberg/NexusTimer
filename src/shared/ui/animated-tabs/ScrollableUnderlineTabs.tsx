@@ -80,7 +80,7 @@ export default function ScrollableUnderlineTabs({
                 key={item.value}
                 value={item.value}
                 disabled={item.disabled}
-                className="group relative h-auto flex-none shrink-0 gap-1.5 whitespace-nowrap border-0 bg-transparent px-4 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground data-[state=active]:bg-transparent data-[state=active]:text-foreground data-[state=active]:shadow-none disabled:pointer-events-none disabled:opacity-40 dark:text-muted-foreground dark:data-[state=active]:bg-transparent dark:data-[state=active]:text-foreground"
+                className="group relative h-auto flex-none shrink-0 gap-1.5 whitespace-nowrap border-0 bg-transparent px-4 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground data-[state=active]:bg-transparent data-[state=active]:text-foreground data-[state=active]:shadow-none disabled:pointer-events-none disabled:opacity-40 dark:text-muted-foreground dark:data-[state=active]:bg-transparent dark:data-[state=active]:text-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:bg-muted/50 focus-visible:text-foreground"
               >
                 {Icon && <Icon className="size-4" />}
                 {item.label}
