@@ -7,7 +7,8 @@
   "exports": {
     ".": "./src/index.ts",
     "./nxn": "./src/nxn/index.ts",
-    "./svg": "./src/svg/index.ts"
+    "./svg": "./src/svg/index.ts",
+    "./webgl": "./src/webgl/index.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
