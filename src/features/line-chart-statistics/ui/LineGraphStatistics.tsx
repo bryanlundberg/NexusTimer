@@ -33,7 +33,7 @@ export default function LineGraphStatistics({ solves }: { solves: Solve[] }) {
   ]
 
   return (
-    <div className="surface surface-panel relative flex w-full flex-col gap-3 p-3 md:p-4">
+    <div className="relative flex w-full flex-col gap-3 pb-2">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <LineGraphReadout point={activePoint} isHovering={isHovering} />
         {ranges.length > 1 && (
