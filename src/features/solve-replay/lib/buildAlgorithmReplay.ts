@@ -1,4 +1,4 @@
-import { Alg, Move } from '@rednaxela101/cubing/alg'
+import { expandAlg, formatMove, parseAlg, type LeafNode } from '@nexustimer/cubelet'
 import { invertAlgorithm, isSquare1Alg } from '@/shared/lib/algorithms/algNotation'
 import { yellowOrientationSetupAlg } from '@/shared/lib/algorithms/vizConfig'
 import type { SolveReplay } from '@/entities/replay/model/types'
@@ -10,12 +10,19 @@ import type { SolveReplay } from '@/entities/replay/model/types'
  * turns each tuple into its `U_SQ_` / `D_SQ_` moves. Zero-amount halves (the `0`
  * in `(3,0)`) are dropped so they do not take a turn of playback doing nothing.
  */
+const square1TwistyMoves = (node: LeafNode): string[] => {
+  if (node.kind === 'slash') return ['/']
+  if (node.kind === 'move') return [formatMove(node)]
+  return [
+    { kind: 'move' as const, family: 'U_SQ_', amount: node.first },
+    { kind: 'move' as const, family: 'D_SQ_', amount: node.second }
+  ]
+    .filter((move) => move.amount !== 0)
+    .map(formatMove)
+}
+
 function tokenize(alg: string): string[] {
-  if (isSquare1Alg(alg)) {
-    return [...new Alg(alg).experimentalExpand()]
-      .filter((node) => !(node instanceof Move) || node.amount !== 0)
-      .map((node) => node.toString())
-  }
+  if (isSquare1Alg(alg)) return expandAlg(parseAlg(alg)).flatMap(square1TwistyMoves)
   return alg.replace(/[()]/g, '').trim().split(/\s+/).filter(Boolean)
 }
 
