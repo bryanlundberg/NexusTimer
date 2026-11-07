@@ -3,7 +3,7 @@ import { Link } from '@/shared/config/i18n/navigation'
 import { Loader2 } from 'lucide-react'
 import { Button, buttonVariants } from '@/components/ui/button'
 import dayjs from '@/shared/lib/dayjs'
-import { TabTableSkeleton } from '@/shared/ui/skeletons/people-skeleton'
+import { SolveListSkeleton } from '@/widgets/people/ui/skeletons/solve-list-skeleton'
 import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
 import { SharedSolveCard } from '@/entities/shared-solve/ui/SharedSolveCard'
 import type { SharedSolveItem } from '@/entities/shared-solve/model/types'
@@ -31,7 +31,7 @@ export default function SharedTabContent({ user, isCurrentUser, shared }: Props)
   const locale = useLocale()
   const { items, isLoading, isLoadingMore, reachedEnd, loadMore } = shared
 
-  if (isLoading) return <TabTableSkeleton />
+  if (isLoading) return <SolveListSkeleton />
 
   if (items.length === 0) {
     if (!isCurrentUser) return <EmptyTabContent message={t('empty-other', { name: user.name })} />

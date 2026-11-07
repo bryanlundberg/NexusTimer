@@ -1,4 +1,6 @@
+import type * as React from 'react'
 import { Skeleton } from '@/components/ui/skeleton'
+import { ProfileAsideSkeleton } from '@/shared/ui/skeletons/profile-aside-skeleton'
 
 /** Matches CoreHeader: sticky 12-height bar. */
 export function CoreHeaderSkeleton() {
@@ -60,48 +62,21 @@ export function TabsNavSkeleton() {
   )
 }
 
-/** Inner table skeleton — caller provides the `px-4 md:px-6` wrapper. */
-export function TabTableSkeleton() {
-  return (
-    <div className="overflow-hidden border border-border/60 bg-card/40">
-      <div className="flex items-center gap-4 px-3 py-2 border-b border-border/60 bg-muted/30">
-        <Skeleton className="h-2.5 w-8 shrink-0" />
-        <Skeleton className="h-2.5 flex-1 min-w-0" />
-        <Skeleton className="hidden sm:block h-2.5 w-12 shrink-0" />
-        <Skeleton className="hidden sm:block h-2.5 w-16 shrink-0" />
-        <Skeleton className="hidden sm:block h-2.5 w-20 shrink-0" />
-      </div>
-      {Array.from({ length: 6 }).map((_, i) => (
-        <div key={i} className="flex items-center gap-4 px-3 py-3 border-b border-border/40 last:border-b-0">
-          <Skeleton className="size-9 shrink-0" />
-          <div className="flex flex-col gap-1.5 flex-1 min-w-0">
-            <Skeleton className="h-3.5 w-32 max-w-full" />
-            <Skeleton className="h-3 w-16" />
-          </div>
-          <Skeleton className="hidden sm:block h-4 w-14 shrink-0" />
-          <Skeleton className="hidden sm:block h-4 w-14 shrink-0" />
-          <Skeleton className="hidden md:block h-4 w-8 shrink-0" />
-          <Skeleton className="hidden md:block h-4 w-16 shrink-0" />
-          <div className="flex flex-col gap-1 w-16 sm:w-20 shrink-0">
-            <Skeleton className="h-8 w-full" />
-            <Skeleton className="h-2.5 w-full" />
-          </div>
-        </div>
-      ))}
-    </div>
-  )
-}
-
-export default function PeopleSkeleton() {
+export default function PeopleSkeleton({ tabSkeleton }: { tabSkeleton: React.ReactNode }) {
   return (
     <div className="flex flex-col grow">
       <CoreHeaderSkeleton />
-      <div className="w-full max-w-4xl mx-auto flex flex-col">
-        <HeroBannerSkeleton />
-        <BadgesStripSkeleton />
-        <TabsNavSkeleton />
-        <div className="px-4 md:px-6 py-0">
-          <TabTableSkeleton />
+      <div className="@container/profile w-full max-w-6xl mx-auto">
+        <div className="flex flex-col @5xl/profile:grid @5xl/profile:grid-cols-[minmax(0,1fr)_17rem]">
+          <div className="flex min-w-0 flex-col">
+            <HeroBannerSkeleton />
+            <div className="@5xl/profile:hidden">
+              <BadgesStripSkeleton />
+            </div>
+            <TabsNavSkeleton />
+            <div className="px-4 md:px-6 py-0">{tabSkeleton}</div>
+          </div>
+          <ProfileAsideSkeleton className="hidden self-start @5xl/profile:flex" />
         </div>
       </div>
     </div>

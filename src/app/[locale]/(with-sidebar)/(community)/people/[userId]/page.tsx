@@ -12,6 +12,8 @@ import { PeopleTabs } from '@/widgets/people/ui/PeopleTabs'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
 import { PullToRefresh } from '@/shared/ui/pull-to-refresh/PullToRefresh'
 import { useRouteSegment } from '@/shared/model/useRouteSegment'
+import { usePeopleTab } from '@/features/people-tab/model/usePeopleTab'
+import { ProfileTabSkeleton } from '@/widgets/people/ui/skeletons/profile-tab-skeleton'
 
 export default function PeopleDetailsPage() {
   const segment = useRouteSegment('/people')
@@ -22,6 +24,7 @@ export default function PeopleDetailsPage() {
   const userId: string | undefined = isObjectId(segment) ? segment : user?._id
   const { stats, isLoading: isLoadingStats } = useUserStats(userId)
   const username: string | undefined = user?.username
+  const { value: tab } = usePeopleTab()
 
   useEffect(() => {
     if (!user || !username || segment === username) return
@@ -43,12 +46,12 @@ export default function PeopleDetailsPage() {
   return (
     <ScrollArea ref={scrollRef} className={'max-h-dvh overflow-auto'}>
       {isLoadingUser || !user ? (
-        <PeopleSkeleton />
+        <PeopleSkeleton tabSkeleton={<ProfileTabSkeleton tab={tab} />} />
       ) : (
         <>
           <UserHeader user={user} />
           <PullToRefresh scrollerRef={scrollRef} onRefresh={refreshProfile} />
-          <PageBody variant="hero" className={'pt-0 w-full max-w-4xl mx-auto'}>
+          <PageBody variant="hero" className={'pt-0 w-full max-w-6xl mx-auto'}>
             <PeopleTabs user={user} stats={stats} isLoadingStats={isLoadingStats} />
           </PageBody>
         </>

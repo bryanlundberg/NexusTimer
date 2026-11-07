@@ -11,7 +11,10 @@ import { ProfileCompletenessBar } from '@/widgets/people/ui/profile-completeness
 import { ProfileBadgesStrip } from '@/widgets/people/ui/profile-badges-strip'
 import { ProfileActions } from '@/widgets/people/ui/profile-actions'
 import { CompareUserButton } from '@/widgets/people/ui/compare-user-button'
-import { TabTableSkeleton } from '@/shared/ui/skeletons/people-skeleton'
+import { ProfileTabSkeleton } from '@/widgets/people/ui/skeletons/profile-tab-skeleton'
+import { ProfileBadgesPanel } from '@/widgets/people/ui/profile-badges-panel'
+import { ProfileStatsPanel } from '@/widgets/people/ui/profile-stats-panel'
+import { ProfileSharedPanel } from '@/widgets/people/ui/profile-shared-panel'
 import { UserProfile } from '@/entities/user/model/user'
 import type { UserStatsSummary } from '@/entities/user-stats/model/types'
 import useUserBadges from '@/entities/achievement/model/useUserBadges'
@@ -72,78 +75,97 @@ export function PeopleTabs({ user, stats, isLoadingStats = false }: PeopleTabsPr
 
   const countOf = (tab: PTabs) => (tab === PTabs.SHARED ? shared.total : counts[tab])
 
+  const showStats = !isLoadingStats && !statsHidden
+  const timezone = stats?.timezone ?? Intl.DateTimeFormat().resolvedOptions().timeZone
+  const dailySolves = stats?.dailySolves ?? NO_DAILY_SOLVES
+
   return (
-    <div className="flex flex-col w-full">
-      <ProfileHeroBanner
-        user={user}
-        aside={
-          !isLoadingStats &&
-          !statsHidden && (
-            <ProfileMonthActivity
-              key={user._id}
-              dailySolves={stats?.dailySolves ?? NO_DAILY_SOLVES}
-              timezone={stats?.timezone ?? Intl.DateTimeFormat().resolvedOptions().timeZone}
-              className="shrink-0 max-md:hidden"
+    <div className="@container/profile w-full">
+      <div className="flex flex-col @5xl/profile:grid @5xl/profile:grid-cols-[minmax(0,1fr)_17rem]">
+        <div className="flex min-w-0 flex-col">
+          <ProfileHeroBanner
+            user={user}
+            aside={
+              showStats && (
+                <ProfileMonthActivity
+                  key={user._id}
+                  dailySolves={dailySolves}
+                  timezone={timezone}
+                  className="hidden shrink-0 @4xl/profile:flex @5xl/profile:hidden"
+                />
+              )
+            }
+          >
+            {relationship?.mutual && <MutualFriends mutual={relationship.mutual} />}
+            {hasIncomingRequest && (
+              <div className="mt-1.5">
+                <FriendButton userId={user._id} name={user.name} status="pending_in" />
+              </div>
+            )}
+            <ProfileActions
+              user={user}
+              isCurrentUser={isCurrentUser}
+              isSignedIn={!!session?.user?.id}
+              status={relationship?.status}
+              canRequest={relationship?.canRequest}
+              className="mt-1.5 justify-center sm:justify-start"
             />
-          )
-        }
-      >
-        {relationship?.mutual && <MutualFriends mutual={relationship.mutual} />}
-        {hasIncomingRequest && (
-          <div className="mt-1.5">
-            <FriendButton userId={user._id} name={user.name} status="pending_in" />
-          </div>
-        )}
-        <ProfileActions
-          user={user}
-          isCurrentUser={isCurrentUser}
-          isSignedIn={!!session?.user?.id}
-          status={relationship?.status}
-          canRequest={relationship?.canRequest}
-          className="mt-1.5 justify-center sm:justify-start"
-        />
-      </ProfileHeroBanner>
-      {isCurrentUser && <ProfileCompletenessBar user={user} />}
-      {!isLoadingStats && !statsHidden && <ProfileBadgesStrip badges={userBadges} />}
-
-      <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full mb-5">
-        <div className="flex flex-wrap items-center justify-between gap-3 px-4 md:px-6 py-3 mt-3">
-          <div className="min-w-0 flex-1">
-            <ScrollableUnderlineTabs
-              items={tabs.map((tab) => ({
-                value: tab,
-                label: (
-                  <span className="inline-flex items-center gap-1.5">
-                    {labels[tab]}
-                    {showCount(tab) && (
-                      <span className="inline-flex items-center justify-center min-w-[1.125rem] h-[1.125rem] px-1 bg-muted text-[10px] font-semibold tabular-nums leading-none text-muted-foreground transition-colors group-data-[state=active]:bg-primary/15 group-data-[state=active]:text-foreground">
-                        {countOf(tab)}
-                      </span>
-                    )}
-                  </span>
-                )
-              }))}
-              activeValue={value}
-              layoutId="people-tab-indicator"
-            />
-          </div>
-
-          {!statsHidden && <CompareUserButton user={user} className="shrink-0" />}
-        </div>
-
-        {/* Tab content */}
-        <div className="px-4 md:px-6 py-0">
-          {value === PTabs.SHARED ? (
-            <SharedTabContent user={user} isCurrentUser={isCurrentUser} shared={shared} />
-          ) : statsHidden ? (
-            <EmptyTabContent message={tPeople('stats-hidden', { name: user.name })} />
-          ) : isLoadingStats ? (
-            <TabTableSkeleton />
-          ) : (
-            <PeopleContent stats={stats} badges={userBadges} learnedMethods={learned?.methods} />
+          </ProfileHeroBanner>
+          {isCurrentUser && <ProfileCompletenessBar user={user} />}
+          {showStats && (
+            <div className="@5xl/profile:hidden">
+              <ProfileBadgesStrip badges={userBadges} />
+            </div>
           )}
+
+          <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full mb-5">
+            <div className="flex flex-wrap items-center justify-between gap-3 px-4 md:px-6 py-3 mt-3">
+              <div className="min-w-0 flex-1">
+                <ScrollableUnderlineTabs
+                  items={tabs.map((tab) => ({
+                    value: tab,
+                    label: (
+                      <span className="inline-flex items-center gap-1.5">
+                        {labels[tab]}
+                        {showCount(tab) && (
+                          <span className="inline-flex items-center justify-center min-w-[1.125rem] h-[1.125rem] px-1 bg-muted text-[10px] font-semibold tabular-nums leading-none text-muted-foreground transition-colors group-data-[state=active]:bg-primary/15 group-data-[state=active]:text-foreground">
+                            {countOf(tab)}
+                          </span>
+                        )}
+                      </span>
+                    )
+                  }))}
+                  activeValue={value}
+                  layoutId="people-tab-indicator"
+                />
+              </div>
+
+              {!statsHidden && <CompareUserButton user={user} className="shrink-0" />}
+            </div>
+
+            {/* Tab content */}
+            <div className="px-4 md:px-6 py-0">
+              {value === PTabs.SHARED ? (
+                <SharedTabContent user={user} isCurrentUser={isCurrentUser} shared={shared} />
+              ) : statsHidden ? (
+                <EmptyTabContent message={tPeople('stats-hidden', { name: user.name })} />
+              ) : isLoadingStats ? (
+                <ProfileTabSkeleton tab={value} />
+              ) : (
+                <PeopleContent stats={stats} badges={userBadges} learnedMethods={learned?.methods} />
+              )}
+            </div>
+          </Tabs>
         </div>
-      </Tabs>
+
+        {(showStats || shared.items.length > 0) && (
+          <aside className="sticky top-16 hidden flex-col gap-8 self-start border-l border-border/40 py-6 pr-4 pl-6 md:pr-6 @5xl/profile:flex">
+            {showStats && <ProfileStatsPanel stats={stats} algorithmsLearned={learned?.total} />}
+            {showStats && <ProfileBadgesPanel badges={userBadges} />}
+            <ProfileSharedPanel items={shared.items} total={shared.total} />
+          </aside>
+        )}
+      </div>
     </div>
   )
 }
