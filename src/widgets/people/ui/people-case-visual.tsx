@@ -59,7 +59,7 @@ export default function PeopleCaseVisual({ set, item }: { set: ALGORITHM_SET; it
           <div className="size-full bg-muted/40" />
         )}
       </div>
-      <span className="text-[10px] font-medium leading-none text-center max-w-15 truncate">{item.name}</span>
+      <span className="text-[10px] font-medium leading-none text-center max-w-24 truncate">{item.name}</span>
     </div>
   )
 }
