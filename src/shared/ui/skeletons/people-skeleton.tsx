@@ -19,14 +19,13 @@ export function CoreHeaderSkeleton() {
 
 export function HeroBannerSkeleton() {
   return (
-    <div className="w-full px-4 md:px-6 py-6 flex items-center gap-4 min-w-0 border-b border-border/40">
-      <Skeleton className="size-16 sm:size-20 md:size-24 rounded-full shrink-0" />
-      <div className="flex flex-col gap-1.5 min-w-0">
-        <Skeleton className="h-8 w-48 sm:w-64" />
-        <div className="flex items-center gap-2 flex-wrap">
-          <Skeleton className="h-3.5 w-32" />
-          <Skeleton className="h-3.5 w-20" />
-        </div>
+    <div className="w-full px-4 md:px-6 py-6 flex items-start gap-4 min-w-0 border-b border-border/40">
+      <Skeleton className="size-20 sm:size-28 md:size-32 rounded-full shrink-0" />
+      <div className="flex flex-col gap-2 min-w-0 flex-1">
+        <Skeleton className="h-7 w-40 max-w-full sm:w-64" />
+        <Skeleton className="h-3.5 w-24" />
+        <Skeleton className="h-3.5 w-48 max-w-full" />
+        <Skeleton className="mt-1.5 h-9 w-36" />
       </div>
     </div>
   )
@@ -70,6 +69,14 @@ export default function PeopleSkeleton({ tabSkeleton }: { tabSkeleton: React.Rea
         <div className="flex flex-col @5xl/profile:grid @5xl/profile:grid-cols-[minmax(0,1fr)_17rem]">
           <div className="flex min-w-0 flex-col">
             <HeroBannerSkeleton />
+            <div className="grid grid-cols-2 gap-4 border-b border-border/40 px-4 py-4 md:px-6 @lg/profile:grid-cols-4 @5xl/profile:hidden">
+              {Array.from({ length: 4 }, (_, i) => (
+                <div key={i} className="flex flex-col gap-1.5">
+                  <Skeleton className="h-2.5 w-16" />
+                  <Skeleton className="h-6 w-14" />
+                </div>
+              ))}
+            </div>
             <div className="@5xl/profile:hidden">
               <BadgesStripSkeleton />
             </div>

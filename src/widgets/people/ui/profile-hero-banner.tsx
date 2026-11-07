@@ -34,10 +34,10 @@ export function ProfileHeroBanner({ user, aside, children }: Props) {
 
   return (
     <div className="w-full px-4 md:px-6 py-6 flex flex-col gap-6 border-b border-border/40">
-      <div className="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-start">
-        <div className="flex flex-col items-center gap-4 min-w-0 w-full sm:w-auto sm:flex-row">
-          <div className="relative shrink-0 self-center sm:self-auto">
-            <Avatar className="size-28 md:size-32 rounded-full ring-2 ring-border/40">
+      <div className="flex flex-row items-start justify-between gap-6">
+        <div className="flex min-w-0 flex-1 flex-row items-start gap-4">
+          <div className="relative shrink-0">
+            <Avatar className="size-20 sm:size-28 md:size-32 rounded-full ring-2 ring-border/40">
               <AvatarImage className="object-cover" src={user.image} alt={user.name} />
               <AvatarFallback>{user.name.substring(0, 2).toUpperCase()}</AvatarFallback>
             </Avatar>
@@ -48,7 +48,7 @@ export function ProfileHeroBanner({ user, aside, children }: Props) {
             )}
           </div>
 
-          <div className="flex flex-col items-center gap-1.5 min-w-0 w-full text-center sm:w-auto sm:items-start sm:text-left">
+          <div className="flex min-w-0 flex-1 flex-col items-start gap-1.5 text-left">
             {user.goal && (
               <div className="flex items-center gap-2 flex-wrap">
                 <Badge variant="default" className="text-[10px] font-bold uppercase px-1.5 py-0 h-4">
@@ -65,7 +65,7 @@ export function ProfileHeroBanner({ user, aside, children }: Props) {
             {user.username && (
               <p className="max-w-full truncate text-sm font-medium text-muted-foreground">@{user.username}</p>
             )}
-            <div className="flex items-center justify-center gap-1.5 text-sm text-muted-foreground flex-wrap sm:justify-start">
+            <div className="flex items-center gap-1.5 text-sm text-muted-foreground flex-wrap">
               {user.country && (
                 <>
                   <span className="flex items-center gap-1.5">
@@ -94,11 +94,7 @@ export function ProfileHeroBanner({ user, aside, children }: Props) {
                 </>
               )}
             </div>
-            <ProfileTraits
-              method={user.method}
-              mainColors={user.mainColors}
-              className="justify-center sm:justify-start"
-            />
+            <ProfileTraits method={user.method} mainColors={user.mainColors} />
             {user.bio && <p className="max-w-prose text-sm text-muted-foreground wrap-break-word">{user.bio}</p>}
             {children}
           </div>

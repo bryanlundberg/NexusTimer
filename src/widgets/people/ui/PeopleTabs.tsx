@@ -108,9 +108,16 @@ export function PeopleTabs({ user, stats, isLoadingStats = false }: PeopleTabsPr
               isSignedIn={!!session?.user?.id}
               status={relationship?.status}
               canRequest={relationship?.canRequest}
-              className="mt-1.5 justify-center sm:justify-start"
+              className="mt-1.5"
             />
           </ProfileHeroBanner>
+          {showStats && (
+            <ProfileStatsPanel
+              stats={stats}
+              algorithmsLearned={learned?.total}
+              className="border-b border-border/40 px-4 py-4 md:px-6 @lg/profile:grid-cols-4 @5xl/profile:hidden"
+            />
+          )}
           {isCurrentUser && <ProfileCompletenessBar user={user} />}
           {showStats && (
             <div className="@5xl/profile:hidden">
