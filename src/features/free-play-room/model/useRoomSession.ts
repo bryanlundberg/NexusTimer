@@ -60,7 +60,7 @@ export function useRoomSession(roomId: string | null, enabled: boolean) {
 
     const state = useRoomStore.getState()
     if (event.type === 'room:error' && event.roomId === roomId && event.rid !== state.joinRid) {
-      toast.error(t('action-failed'))
+      toast.error(t(event.code === 'rate-limited' ? 'chat.rate-limited' : 'action-failed'))
       return
     }
     state.apply(event)

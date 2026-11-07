@@ -1,4 +1,11 @@
-import type { RoomErrorCode, RoomEvent, RoomPlayer, RoomSnapshot, RoomSolve } from '@nexustimer/contracts'
+import type {
+  RoomChatMessage,
+  RoomErrorCode,
+  RoomEvent,
+  RoomPlayer,
+  RoomSnapshot,
+  RoomSolve
+} from '@nexustimer/contracts'
 
 export type RoomPhase =
   | 'idle'
@@ -29,6 +36,7 @@ export interface RoomState {
   room: RoomSnapshot | null
   clockOffset: number
   knownPlayers: Record<string, KnownPlayer>
+  chatReadId: number
 }
 
 export const initialRoomState: RoomState = {
@@ -38,7 +46,8 @@ export const initialRoomState: RoomState = {
   phase: 'idle',
   room: null,
   clockOffset: 0,
-  knownPlayers: {}
+  knownPlayers: {},
+  chatReadId: 0
 }
 
 const ERROR_PHASES: Record<RoomErrorCode, RoomPhase | null> = {
@@ -49,7 +58,8 @@ const ERROR_PHASES: Record<RoomErrorCode, RoomPhase | null> = {
   forbidden: null,
   'too-many-attempts': 'too-many-attempts',
   'upgrade-required': 'upgrade-required',
-  invalid: null
+  invalid: null,
+  'rate-limited': null
 }
 
 export function startJoin(state: RoomState, roomId: string, rid: number, withCode: boolean): RoomState {
@@ -87,6 +97,20 @@ function upsertPlayer(players: RoomPlayer[], player: RoomPlayer): RoomPlayer[] {
   return players.map((p, i) => (i === index ? player : p))
 }
 
+export function lastChatId(chat: RoomChatMessage[] | undefined) {
+  return chat?.at(-1)?.id ?? 0
+}
+
+function appendChat(chat: RoomChatMessage[] | undefined, message: RoomChatMessage): RoomChatMessage[] {
+  const messages = chat ?? []
+  if (messages.some((m) => m.id === message.id)) return messages
+  return [...messages, message]
+}
+
+export function markChatRead(state: RoomState, id: number): RoomState {
+  return id > state.chatReadId ? { ...state, chatReadId: id } : state
+}
+
 export function reduceRoomEvent(state: RoomState, event: RoomEvent, now: number): RoomState {
   switch (event.type) {
     case 'room:snapshot':
@@ -96,7 +120,8 @@ export function reduceRoomEvent(state: RoomState, event: RoomEvent, now: number)
         phase: 'joined',
         room: event.room,
         clockOffset: event.serverNow - now,
-        knownPlayers: remember(state.knownPlayers, event.room.players)
+        knownPlayers: remember(state.knownPlayers, event.room.players),
+        chatReadId: state.room?.roomId === event.room.roomId ? state.chatReadId : lastChatId(event.room.chat)
       }
     case 'room:error':
       if (event.rid === undefined || event.rid !== state.joinRid) return state
@@ -129,6 +154,8 @@ export function reduceRoomEvent(state: RoomState, event: RoomEvent, now: number)
         room: { ...room, players: event.players, leaderId: event.leaderId, version: event.version },
         knownPlayers: remember(state.knownPlayers, event.players)
       }
+    case 'room:chat':
+      return { ...state, room: { ...room, chat: appendChat(room.chat, event.message), version: event.version } }
     case 'room:player':
       return {
         ...state,

@@ -1,6 +1,7 @@
-import type { RoomPlayer, RoomSnapshot, RoomSolve } from '@nexustimer/contracts'
+import type { RoomChatMessage, RoomPlayer, RoomSnapshot, RoomSolve } from '@nexustimer/contracts'
 import {
   initialRoomState,
+  markChatRead,
   reduceRoomEvent,
   type RoomState,
   startJoin
@@ -29,6 +30,15 @@ const solve = (userId: string, round: number, overrides: Partial<RoomSolve> = {}
   confirmBy: NOW + 15_000,
   submittedAt: NOW,
   ...overrides
+})
+
+const message = (id: number, userId = 'ben', text = 'hola'): RoomChatMessage => ({
+  id,
+  userId,
+  name: userId.toUpperCase(),
+  image: null,
+  text,
+  sentAt: NOW
 })
 
 const snapshot = (overrides: Partial<RoomSnapshot> = {}): RoomSnapshot => ({
@@ -167,6 +177,42 @@ describe('room state', () => {
     expect(fail(false, 'banned')).toBe('banned')
     expect(fail(false, 'forbidden')).toBe('joining')
     expect(fail(false, 'banned', 9)).toBe('joining')
+  })
+
+  it('appends chat messages once and counts history on join as read', () => {
+    const history = [message(3, 'ana'), message(4)]
+    let state = reduceRoomEvent(
+      startJoin(initialRoomState, 'room1', 1, false),
+      { type: 'room:snapshot', rid: 1, room: snapshot({ chat: history }), serverNow: NOW },
+      NOW
+    )
+    expect(state.room?.chat).toEqual(history)
+    expect(state.chatReadId).toBe(4)
+
+    state = reduceRoomEvent(state, { type: 'room:chat', roomId: 'room1', message: message(6), version: 6 }, NOW)
+    state = reduceRoomEvent(state, { type: 'room:chat', roomId: 'room1', message: message(6), version: 6 }, NOW)
+    expect(state.room?.chat?.map((m) => m.id)).toEqual([3, 4, 6])
+    expect(state.room?.version).toBe(6)
+    expect(state.chatReadId).toBe(4)
+
+    state = reduceRoomEvent(
+      state,
+      { type: 'room:snapshot', rid: 2, room: snapshot({ chat: [...history, message(6)], version: 6 }), serverNow: NOW },
+      NOW
+    )
+    expect(state.chatReadId).toBe(4)
+    expect(markChatRead(state, 6).chatReadId).toBe(6)
+    expect(markChatRead(markChatRead(state, 6), 5).chatReadId).toBe(6)
+  })
+
+  it('appends chat to a snapshot from a gateway that sent no history', () => {
+    const state = reduceRoomEvent(
+      joined(),
+      { type: 'room:chat', roomId: 'room1', message: message(6), version: 6 },
+      NOW
+    )
+    expect(state.room?.chat).toEqual([message(6)])
+    expect(state.chatReadId).toBe(0)
   })
 
   it('leaves on kick, close and replacement, telling the same room from another', () => {

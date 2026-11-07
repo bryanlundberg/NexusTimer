@@ -32,3 +32,10 @@ export function kickRoomPlayer(userId: string) {
   if (!roomId) return false
   return sendRealtime({ type: 'room:kick', rid: nextRid(), roomId, userId })
 }
+
+export function sendRoomChat(text: string) {
+  const roomId = useRoomStore.getState().roomId
+  const trimmed = text.trim()
+  if (!roomId || !trimmed) return false
+  return sendRealtime({ type: 'room:chat', rid: nextRid(), roomId, text: trimmed })
+}
