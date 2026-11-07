@@ -5,6 +5,7 @@ import { CubeCategoryTile } from '@/shared/ui/cube-category-icon/CubeCategoryIco
 import formatTime from '@/shared/lib/formatTime'
 import dayjs from '@/shared/lib/dayjs'
 import { useLocale, useTranslations } from 'next-intl'
+import { TimelineSolveList } from '@/widgets/people/ui/timeline-solve-list'
 
 interface TimelineTabContentProps {
   solves: RecentSolve[]
@@ -21,7 +22,8 @@ export default function TimelineTabContent({ solves, totalSolves }: TimelineTabC
 
   return (
     <div className="space-y-4">
-      <div className="overflow-x-auto border border-border/60 bg-card/40">
+      <TimelineSolveList solves={solves} totalSolves={totalSolves} className="@4xl/tab:hidden" />
+      <div className="hidden overflow-x-auto border border-border/60 bg-card/40 @4xl/tab:block">
         <div className="min-w-[780px]">
           {/* Header */}
           <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60 bg-muted/30`}>
