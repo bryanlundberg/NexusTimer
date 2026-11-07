@@ -18,7 +18,7 @@ import { cn } from '@/shared/lib/utils'
 const LIST =
   'overflow-hidden border border-border/60 bg-card/40 @3xl/people:grid @3xl/people:grid-cols-2 @3xl/people:gap-2 @3xl/people:border-0 @3xl/people:bg-transparent'
 const ITEM =
-  'border-b border-border/40 last:border-b-0 @3xl/people:border @3xl/people:border-border/60 @3xl/people:bg-card/40 @3xl/people:last:border-b'
+  'border-b border-border/40 last:border-b-0 @3xl/people:border @3xl/people:border-border/60 @3xl/people:bg-card/40 @3xl/people:last:border-b @3xl/people:flex @3xl/people:flex-col @3xl/people:*:flex-1 @3xl/people:*:items-stretch'
 
 export default function PeoplePage() {
   const t = useTranslations('Index.PeoplePage')
