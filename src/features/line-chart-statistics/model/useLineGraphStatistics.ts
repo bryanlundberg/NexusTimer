@@ -11,7 +11,7 @@ import {
   IPriceLine,
   ISeriesApi,
   LineSeries,
-  LineType,
+  LineStyle,
   UTCTimestamp
 } from 'lightweight-charts'
 import formatTime from '@/shared/lib/formatTime'
@@ -109,9 +109,9 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
         solvesData.push({ time, value: solve.time })
         if (solve.time <= runningBest) {
           runningBest = solve.time
-          pbMarkers.push({ time, position: 'inBar', color: CHART_COLORS.pb, shape: 'circle', size: 1 })
+          pbMarkers.push({ time, position: 'inBar', color: CHART_COLORS.pb, shape: 'circle', size: 0.6 })
+          pbData.push({ time, value: runningBest })
         }
-        pbData.push({ time, value: runningBest })
       }
 
       const ao5 = aoAt(AO5_SIZE, ao5Values)
@@ -235,8 +235,8 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
     const pbSeries = chart.addSeries(LineSeries, {
       lastValueVisible: false,
       priceLineVisible: false,
-      lineWidth: 2,
-      lineType: LineType.WithSteps,
+      lineWidth: 1,
+      lineStyle: LineStyle.Dotted,
       color: CHART_COLORS.pb,
       visible: state.showBestTime,
       crosshairMarkerVisible: false
