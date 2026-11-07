@@ -5,6 +5,13 @@ import { useTranslations } from 'next-intl'
 import { UserBadgesResult } from '@/entities/achievement/model/useUserBadges'
 import Segmented from '@/shared/ui/segmented/Segmented'
 import { AchievementFamilyCard } from '@/widgets/people/ui/achievement-family-card'
+import { useAchievementRarity } from '@/entities/achievement/model/useAchievementRarity'
+import type { BadgeFamily } from '@/entities/achievement/model/useUserBadges'
+
+function rarityOf(rarity: Record<string, number> | null, family: BadgeFamily): number | undefined {
+  const active = family.tiers[Math.max(family.level, 1) - 1]
+  return active ? rarity?.[active.id] : undefined
+}
 
 interface Props {
   badges: UserBadgesResult
@@ -17,7 +24,11 @@ export default function AchievementsTabContent({ badges }: Props) {
   const { unlockedFamilies, lockedFamilies, earnedTiers, totalTiers } = badges
   const [filter, setFilter] = useState<Filter>(unlockedFamilies.length > 0 ? 'unlocked' : 'locked')
 
-  const families = filter === 'unlocked' ? unlockedFamilies : lockedFamilies
+  const families =
+    filter === 'unlocked'
+      ? unlockedFamilies
+      : [...lockedFamilies].sort((a, b) => (b.progress?.ratio ?? 0) - (a.progress?.ratio ?? 0))
+  const rarity = useAchievementRarity()
   const percent = totalTiers > 0 ? Math.round((earnedTiers / totalTiers) * 100) : 0
 
   const option = (value: Filter, label: string, count: number) => ({
@@ -67,9 +78,9 @@ export default function AchievementsTabContent({ badges }: Props) {
           {filter === 'unlocked' ? t('empty') : t('all-unlocked')}
         </p>
       ) : (
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-3">
+        <div className="grid grid-cols-1 gap-3 @lg/tab:grid-cols-2 @4xl/tab:grid-cols-3">
           {families.map((family) => (
-            <AchievementFamilyCard key={family.id} family={family} />
+            <AchievementFamilyCard key={family.id} family={family} rarityPct={rarityOf(rarity, family)} />
           ))}
         </div>
       )}
