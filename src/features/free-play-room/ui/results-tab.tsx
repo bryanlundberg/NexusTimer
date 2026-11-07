@@ -10,6 +10,7 @@ import { useRoomStore } from '@/features/free-play-room/model/useRoomStore'
 import { toPresence, toSolvesByUser } from '@/features/free-play-room/model/room-view'
 
 const ROUNDS_TO_SHOW = 5
+const ROUNDS_TO_SHOW_MOBILE = 3
 const AVERAGE_OF = 5
 const MIN_SOLVES_FOR_AVERAGE = 3
 const DNF_AVERAGE = Number.POSITIVE_INFINITY
@@ -75,6 +76,8 @@ export default function ResultsTab() {
     })
   ) as Record<number, number | null>
 
+  const roundColumn = (index: number) => (index < visibleRounds.length - ROUNDS_TO_SHOW_MOBILE ? 'hidden sm:block' : '')
+
   const formatSolve = (s: any): { text: string; missed: boolean; dnf: boolean } => {
     if (!s) return { text: '-', missed: true, dnf: false }
     if (s.dnf) return { text: 'DNF', missed: false, dnf: true }
@@ -83,7 +86,7 @@ export default function ResultsTab() {
   }
 
   return (
-    <div className="flex flex-col gap-5 p-4 md:p-6">
+    <div className="flex flex-col gap-5 p-2 sm:p-4 md:p-6">
       {/* Live indicator */}
       <motion.div
         className="flex items-center gap-2 text-xs text-muted-foreground"
@@ -101,15 +104,15 @@ export default function ResultsTab() {
       {/* Leaderboard */}
       <div>
         {/* Header row with round labels */}
-        <div className="px-4 py-2.5 border-b border-border/60 flex items-center justify-between gap-4">
+        <div className="px-2 sm:px-4 py-2.5 border-b border-border/60 flex items-center justify-between gap-3 sm:gap-4">
           <span className="font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
             {t('cubers')}
           </span>
-          <div className="flex gap-4 shrink-0">
-            {visibleRounds.map((r) => (
+          <div className="flex gap-3 sm:gap-4 shrink-0">
+            {visibleRounds.map((r, index) => (
               <span
                 key={r}
-                className="font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground w-14 text-right"
+                className={`font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground w-12 sm:w-14 text-right ${roundColumn(index)}`}
               >
                 R{r}
               </span>
@@ -124,13 +127,13 @@ export default function ResultsTab() {
               <motion.li
                 key={p.userId}
                 layout="position"
-                className="px-4 py-3 border-b border-border/40 last:border-b-0 transition-colors hover:bg-muted/40"
+                className="px-2 sm:px-4 py-3 border-b border-border/40 last:border-b-0 transition-colors hover:bg-muted/40"
                 initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.25, delay: 0.05 * i }}
               >
-                <div className="flex items-center justify-between gap-4">
-                  <div className="flex items-center gap-3 min-w-0">
+                <div className="flex items-center justify-between gap-3 sm:gap-4">
+                  <div className="flex flex-1 items-center gap-2 sm:gap-3 min-w-0">
                     <span
                       className={`flex size-6 shrink-0 items-center justify-center font-display text-[11px] font-bold tabular-nums ${
                         podium ?? 'text-muted-foreground'
@@ -139,7 +142,11 @@ export default function ResultsTab() {
                       {i + 1}
                     </span>
                     {p.userImage ? (
-                      <img src={p.userImage} alt={p.userName} className="h-8 w-8 rounded-full object-cover shrink-0" />
+                      <img
+                        src={p.userImage}
+                        alt={p.userName}
+                        className="size-8 max-w-none rounded-full object-cover shrink-0"
+                      />
                     ) : (
                       <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center text-xs font-medium shrink-0">
                         {(p.userName ?? '?')[0].toUpperCase()}
@@ -147,21 +154,28 @@ export default function ResultsTab() {
                     )}
                     <div className="min-w-0">
                       <div className="font-medium text-sm truncate">{p.userName}</div>
-                      <div className="text-xs text-muted-foreground tabular-nums">
-                        {t('best')} {p.best != null ? formatTime(p.best) : '-'} · {t('average')}{' '}
-                        {p.avg === null ? '-' : p.avg === DNF_AVERAGE ? 'DNF' : formatTime(p.avg)}
+                      <div className="flex min-w-0 flex-col whitespace-nowrap text-xs text-muted-foreground tabular-nums sm:flex-row sm:gap-1">
+                        <span className="truncate">
+                          {t('best')} {p.best != null ? formatTime(p.best) : '-'}
+                        </span>
+                        <span aria-hidden className="hidden sm:inline">
+                          ·
+                        </span>
+                        <span className="truncate">
+                          {t('average')} {p.avg === null ? '-' : p.avg === DNF_AVERAGE ? 'DNF' : formatTime(p.avg)}
+                        </span>
                       </div>
                     </div>
                   </div>
-                  <div className="flex gap-4 text-sm font-mono shrink-0">
-                    {visibleRounds.map((r) => {
+                  <div className="flex gap-3 sm:gap-4 text-sm font-mono shrink-0">
+                    {visibleRounds.map((r, index) => {
                       const solve = p.solveByRound[r]
                       const { text, missed, dnf } = formatSolve(solve)
                       const isRoundWinner = !!solve && !solve.dnf && solve.time === roundWinnerTime[r]
                       return (
                         <span
                           key={r}
-                          className={`w-14 text-right tabular-nums ${
+                          className={`w-12 sm:w-14 text-right tabular-nums ${roundColumn(index)} ${
                             missed
                               ? 'text-muted-foreground/40'
                               : dnf
