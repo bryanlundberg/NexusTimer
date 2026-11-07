@@ -6,7 +6,7 @@ import formatTime from '@/shared/lib/formatTime'
 import { cn } from '@/shared/lib/utils'
 import { CubeCategoryTile } from '@/shared/ui/cube-category-icon/CubeCategoryIcon'
 import type { RecentSolve } from '@/entities/user-stats/model/types'
-import { RecordTimeValue } from '@/widgets/people/ui/record-time-value'
+import { RecordTimeValue } from '@/shared/ui/record-time-value/RecordTimeValue'
 
 interface TimelineSolveRowProps {
   solve: RecentSolve

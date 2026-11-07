@@ -7,7 +7,7 @@ import formatTime from '@/shared/lib/formatTime'
 import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import { motion } from 'motion/react'
 import { GRID } from '@/widgets/people/ui/cubes-tab-content'
-import { RecordTimeValue } from '@/widgets/people/ui/record-time-value'
+import { RecordTimeValue } from '@/shared/ui/record-time-value/RecordTimeValue'
 import { CubeSolveDistribution } from '@/widgets/people/ui/cube-solve-distribution'
 
 interface PeopleCubeCardProps {

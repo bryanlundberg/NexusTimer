@@ -9,7 +9,7 @@ import type { CategoryStats } from '@/entities/user-stats/model/types'
 import type { CubeCategory } from '@/shared/const/cube-categories'
 import { CategoryRecordDetails } from '@/widgets/people/ui/category-record-details'
 import { CategoryCardStat } from '@/widgets/people/ui/category-card-stat'
-import { RecordTimeValue } from '@/widgets/people/ui/record-time-value'
+import { RecordTimeValue } from '@/shared/ui/record-time-value/RecordTimeValue'
 
 export function CategoryStatsCard({ stats }: { stats: CategoryStats }) {
   const { category, count, best, bestAo5 } = stats

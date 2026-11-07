@@ -6,7 +6,7 @@ import { CubeCategoryTile } from '@/shared/ui/cube-category-icon/CubeCategoryIco
 import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import type { CubeStats } from '@/entities/user-stats/model/types'
 import { CategoryCardStat } from '@/widgets/people/ui/category-card-stat'
-import { RecordTimeValue } from '@/widgets/people/ui/record-time-value'
+import { RecordTimeValue } from '@/shared/ui/record-time-value/RecordTimeValue'
 import { CubeSolveDistribution } from '@/widgets/people/ui/cube-solve-distribution'
 
 export function CubeStatsCard({ cube }: { cube: CubeStats }) {

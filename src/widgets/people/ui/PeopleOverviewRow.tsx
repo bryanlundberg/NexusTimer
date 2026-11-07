@@ -9,7 +9,7 @@ import type { CategoryStats } from '@/entities/user-stats/model/types'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { GRID } from '@/widgets/people/ui/overview-tab-content'
 import { CategoryRecordDetails } from '@/widgets/people/ui/category-record-details'
-import { RecordTimeValue } from '@/widgets/people/ui/record-time-value'
+import { RecordTimeValue } from '@/shared/ui/record-time-value/RecordTimeValue'
 
 interface PeopleOverviewRowProps {
   stats: CategoryStats
