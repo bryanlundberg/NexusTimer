@@ -1,14 +1,16 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
-import { TwistyPlayer } from '@rednaxela101/cubing/twisty'
+import { useMemo, useState } from 'react'
 import { Pause, Play, RotateCcw, SkipBack, SkipForward } from 'lucide-react'
 import { cn } from '@/shared/lib/utils'
 import { buttonVariants } from '@/components/ui/button'
 import type { SolveReplay } from '@/entities/replay/model/types'
+import type { ReplayView } from '@/features/solve-replay/model/replayView'
 import { useRealtimeReplay } from '@/features/solve-replay/model/useRealtimeReplay'
+import CubeReplayStage from '@/features/solve-replay/ui/CubeReplayStage'
+import TwistyReplayStage from '@/features/solve-replay/ui/TwistyReplayStage'
 import { buildPlaybackReplay } from '@/features/solve-replay/lib/buildPlaybackReplay'
-import { disposeTwistyPlayer } from '@/shared/lib/twisty/disposeTwistyPlayer'
+import { cubeSizeOf } from '@/shared/lib/puzzle/renderCubeImage'
 
 export interface ReplayMarker {
   key: string
@@ -56,40 +58,10 @@ export function RealtimeReplayPlayer({
   const markers = skipped
     ? sourceMarkers.map((marker) => ({ ...marker, moveIndex: Math.max(0, marker.moveIndex - skipped) }))
     : sourceMarkers
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [player, setPlayer] = useState<TwistyPlayer | null>(null)
+  const [view, setView] = useState<ReplayView | null>(null)
+  const cubeSize = cubeSizeOf(replay.puzzle)
 
-  const { status, index, total, toggle, restart, next, prev, seek } = useRealtimeReplay({ player, replay })
-
-  useEffect(() => {
-    if (!containerRef.current) return
-    const container = containerRef.current
-
-    const twisty = new TwistyPlayer({
-      puzzle: replay.puzzle as TwistyPlayer['puzzle'],
-      experimentalSetupAlg: replay.scramble,
-      experimentalSetupAnchor: 'start',
-      controlPanel: 'none',
-      hintFacelets: 'none',
-      tempoScale,
-      background: 'none',
-      experimentalDragInput: 'auto'
-    })
-    twisty.style.width = `${size}px`
-    twisty.style.height = `${size}px`
-    twisty.style.maxWidth = '100%'
-    container.appendChild(twisty)
-    setPlayer(twisty)
-
-    return () => {
-      disposeTwistyPlayer(twisty)
-      setPlayer(null)
-    }
-  }, [replay, size])
-
-  useEffect(() => {
-    if (player) player.tempoScale = tempoScale
-  }, [player, tempoScale])
+  const { status, index, total, toggle, restart, next, prev, seek } = useRealtimeReplay({ view, replay })
 
   const isPlaying = status === 'playing'
   const pct = total > 0 ? (index / total) * 100 : 0
@@ -97,7 +69,11 @@ export function RealtimeReplayPlayer({
 
   return (
     <div className="flex w-full flex-col items-center gap-4">
-      <div ref={containerRef} className="" />
+      {cubeSize ? (
+        <CubeReplayStage replay={replay} cubeSize={cubeSize} size={size} tempoScale={tempoScale} onReady={setView} />
+      ) : (
+        <TwistyReplayStage replay={replay} size={size} tempoScale={tempoScale} onReady={setView} />
+      )}
 
       <div className="flex w-full flex-col gap-3">
         {/* Progress bar with phase markers */}
