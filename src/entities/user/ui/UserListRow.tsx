@@ -19,7 +19,7 @@ import { FaceGlyph } from '@/shared/ui/face-glyph/FaceGlyph'
 import { MethodGlyph } from '@/shared/ui/method-glyph/MethodGlyph'
 import { WcaBadge } from '@/shared/ui/wca-badge/WcaBadge'
 import { useMainColorsLabel, useMethodLabel } from '@/entities/user/model/useProfileTraitLabels'
-import { PresenceDot } from '@/features/presence/ui/PresenceDot'
+import { PresenceIndicator } from '@/features/presence/ui/PresenceIndicator'
 import { resolvePresenceDisplay, type PresenceState } from '@/features/presence/model/usePresence'
 
 const MAX_LINK_ICONS = 4
@@ -126,9 +126,11 @@ export function UserListRow({ user, presence, meta, actions, stackActions = fals
             </AvatarFallback>
           </Avatar>
           {presence && (
-            <span className="absolute -bottom-0.5 -right-0.5 rounded-full bg-background p-px">
-              <PresenceDot state={resolvePresenceDisplay(presence)} className="size-2" />
-            </span>
+            <PresenceIndicator
+              state={resolvePresenceDisplay(presence)}
+              className="absolute -bottom-0.5 -right-0.5 rounded-full bg-background p-px"
+              dotClassName="size-2"
+            />
           )}
         </div>
 
