@@ -1,6 +1,6 @@
 import type { Alg } from '../notation/ast'
 import type { PuzzleDefinition } from '../puzzle/puzzle-definition'
-import { CubeGeometry } from './cube-geometry'
+import { cubeGeometry } from './cube-geometry'
 import { CubeMoveCompiler } from './cube-move-compiler'
 import { CubeState } from './cube-state'
 import type { StickerPermutation } from './sticker-permutation'
@@ -26,7 +26,7 @@ export class CubeDefinition implements PuzzleDefinition<StickerPermutation, Cube
   }
 
   compile(alg: string | Alg): readonly StickerPermutation[] {
-    this.#compiler ??= new CubeMoveCompiler(this.id, new CubeGeometry(this.size))
+    this.#compiler ??= new CubeMoveCompiler(this.id, cubeGeometry(this.size))
     return this.#compiler.compile(alg)
   }
 }

@@ -1,7 +1,8 @@
+import type { FaceletSource } from '../puzzle/facelet-source'
 import type { PuzzleState } from '../puzzle/puzzle-definition'
 import type { StickerPermutation } from './sticker-permutation'
 
-export class CubeState implements PuzzleState<StickerPermutation> {
+export class CubeState implements PuzzleState<StickerPermutation>, FaceletSource {
   readonly #stickers: Uint16Array
 
   constructor(

@@ -64,3 +64,14 @@ export class CubeGeometry {
     return key
   }
 }
+
+const geometries = new Map<number, CubeGeometry>()
+
+export function cubeGeometry(size: number): CubeGeometry {
+  let geometry = geometries.get(size)
+  if (!geometry) {
+    geometry = new CubeGeometry(size)
+    geometries.set(size, geometry)
+  }
+  return geometry
+}
