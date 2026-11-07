@@ -463,7 +463,8 @@
         "filter-unlocked": "Na-unlock",
         "filter-locked": "Naka-lock",
         "all-unlocked": "Na-unlock na ang lahat ng achievement.",
-        "view-all": "Tingnan lahat"
+        "view-all": "Tingnan lahat",
+        "rarity": "{pct}% ng mga user"
       },
       "edit-profile": "I-edit ang profile",
       "no-backup-data": "Hindi pa gumagawa ng backup ng kanyang data ang user na ito, kaya walang maipapakita.",

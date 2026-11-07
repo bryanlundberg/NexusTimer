@@ -501,7 +501,8 @@
         "filter-unlocked": "Freigeschaltet",
         "filter-locked": "Gesperrt",
         "all-unlocked": "Alle Erfolge freigeschaltet.",
-        "view-all": "Alle ansehen"
+        "view-all": "Alle ansehen",
+        "rarity": "{pct} % der Nutzer"
       },
       "stats-hidden": "Die Statistiken und Algorithmen von {name} sind privat.",
       "clear-filters": "Filter zurücksetzen",

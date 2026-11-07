@@ -463,7 +463,8 @@
         "filter-unlocked": "Terbuka",
         "filter-locked": "Terkunci",
         "all-unlocked": "Semua pencapaian sudah terbuka.",
-        "view-all": "Lihat semua"
+        "view-all": "Lihat semua",
+        "rarity": "{pct}% pengguna"
       },
       "edit-profile": "Edit profil",
       "no-backup-data": "Pengguna ini belum membuat cadangan datanya, jadi tidak ada yang bisa ditampilkan.",

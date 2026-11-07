@@ -501,7 +501,8 @@
         "filter-unlocked": "獲得済み",
         "filter-locked": "未獲得",
         "all-unlocked": "すべての実績を獲得しました。",
-        "view-all": "すべて見る"
+        "view-all": "すべて見る",
+        "rarity": "ユーザーの{pct}%"
       },
       "stats-hidden": "{name}さんの統計と手順は非公開です。",
       "clear-filters": "フィルターをクリア",

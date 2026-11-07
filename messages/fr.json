@@ -501,7 +501,8 @@
         "filter-unlocked": "Débloqués",
         "filter-locked": "À débloquer",
         "all-unlocked": "Tous les succès sont débloqués.",
-        "view-all": "Tout voir"
+        "view-all": "Tout voir",
+        "rarity": "{pct} % des utilisateurs"
       },
       "stats-hidden": "Les statistiques et algorithmes de {name} sont privés.",
       "clear-filters": "Effacer les filtres",

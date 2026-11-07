@@ -463,7 +463,8 @@
         "filter-unlocked": "Odblokowane",
         "filter-locked": "Do zdobycia",
         "all-unlocked": "Wszystkie osiągnięcia odblokowane.",
-        "view-all": "Zobacz wszystkie"
+        "view-all": "Zobacz wszystkie",
+        "rarity": "{pct}% użytkowników"
       },
       "edit-profile": "Edytuj profil",
       "no-backup-data": "Ten użytkownik nie utworzył jeszcze kopii zapasowej swoich danych, więc nie ma nic do wyświetlenia.",

@@ -501,7 +501,8 @@
         "filter-unlocked": "已解锁",
         "filter-locked": "未解锁",
         "all-unlocked": "已解锁全部成就。",
-        "view-all": "查看全部"
+        "view-all": "查看全部",
+        "rarity": "{pct}% 的用户"
       },
       "stats-hidden": "{name} 的统计和公式不公开。",
       "clear-filters": "清除筛选",

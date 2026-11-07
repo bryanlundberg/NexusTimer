@@ -463,7 +463,8 @@
         "filter-unlocked": "Đã mở khóa",
         "filter-locked": "Chưa mở khóa",
         "all-unlocked": "Đã mở khóa tất cả thành tích.",
-        "view-all": "Xem tất cả"
+        "view-all": "Xem tất cả",
+        "rarity": "{pct}% người dùng"
       },
       "edit-profile": "Chỉnh sửa hồ sơ",
       "no-backup-data": "Người dùng này chưa tạo bản sao lưu dữ liệu của mình, nên không có gì để hiển thị.",

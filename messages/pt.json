@@ -501,7 +501,8 @@
         "filter-unlocked": "Desbloqueadas",
         "filter-locked": "Bloqueadas",
         "all-unlocked": "Todas as conquistas desbloqueadas.",
-        "view-all": "Ver todas"
+        "view-all": "Ver todas",
+        "rarity": "{pct}% dos usuários"
       },
       "stats-hidden": "As estatísticas e algoritmos de {name} são privados.",
       "clear-filters": "Limpar filtros",

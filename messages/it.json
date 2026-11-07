@@ -463,7 +463,8 @@
         "filter-unlocked": "Sbloccati",
         "filter-locked": "Da sbloccare",
         "all-unlocked": "Tutti gli obiettivi sbloccati.",
-        "view-all": "Vedi tutti"
+        "view-all": "Vedi tutti",
+        "rarity": "{pct}% degli utenti"
       },
       "edit-profile": "Modifica profilo",
       "no-backup-data": "Questo utente non ha ancora creato un backup dei propri dati, quindi non c'è nulla da mostrare.",

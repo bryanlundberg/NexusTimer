@@ -501,7 +501,8 @@
         "filter-unlocked": "अनलॉक",
         "filter-locked": "लॉक",
         "all-unlocked": "सभी उपलब्धियाँ अनलॉक हो गईं।",
-        "view-all": "सभी देखें"
+        "view-all": "सभी देखें",
+        "rarity": "{pct}% उपयोगकर्ता"
       },
       "stats-hidden": "{name} के आँकड़े और एल्गोरिदम निजी हैं।",
       "clear-filters": "फ़िल्टर हटाएँ",

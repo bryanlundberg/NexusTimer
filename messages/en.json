@@ -463,7 +463,8 @@
         "filter-unlocked": "Unlocked",
         "filter-locked": "Locked",
         "all-unlocked": "All achievements unlocked.",
-        "view-all": "View all"
+        "view-all": "View all",
+        "rarity": "{pct}% of users"
       },
       "edit-profile": "Edit profile",
       "no-backup-data": "This user hasn't created a backup of their data yet, so there's nothing to display.",
