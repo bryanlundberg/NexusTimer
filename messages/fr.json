@@ -1684,7 +1684,16 @@
     "update-required": "Mettez l'application à jour pour rejoindre cette salle",
     "too-many-attempts": "Trop de codes incorrects. Réessayez dans une minute.",
     "waiting-scramble": "En attente du prochain mélange...",
-    "action-failed": "Une erreur s'est produite. Veuillez réessayer."
+    "action-failed": "Une erreur s'est produite. Veuillez réessayer.",
+    "chat": {
+      "tab": "Chat",
+      "title": "Chat du salon",
+      "empty": "Aucun message pour l’instant. Dis bonjour !",
+      "placeholder": "Écrire au salon",
+      "send": "Envoyer",
+      "unread": "{count, plural, one {# message non lu} other {# messages non lus}}",
+      "rate-limited": "Doucement, tu envoies des messages trop vite."
+    }
   },
   "LandingPage": {
     "header": {

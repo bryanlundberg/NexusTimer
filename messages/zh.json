@@ -1684,7 +1684,16 @@
     "update-required": "请更新应用以加入该房间",
     "too-many-attempts": "错误代码次数过多。请一分钟后再试。",
     "waiting-scramble": "正在等待下一个打乱...",
-    "action-failed": "出了点问题。请重试。"
+    "action-failed": "出了点问题。请重试。",
+    "chat": {
+      "tab": "聊天",
+      "title": "房间聊天",
+      "empty": "还没有消息，打个招呼吧！",
+      "placeholder": "给房间发消息",
+      "send": "发送",
+      "unread": "{count, plural, other {# 条未读消息}}",
+      "rate-limited": "慢一点，你发送消息太快了。"
+    }
   },
   "LandingPage": {
     "header": {

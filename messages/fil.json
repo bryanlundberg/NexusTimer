@@ -1706,7 +1706,16 @@
     "update-required": "I-update ang app para makasali sa room na ito",
     "too-many-attempts": "Masyadong maraming maling code. Subukan ulit pagkalipas ng isang minuto.",
     "waiting-scramble": "Hinihintay ang susunod na scramble...",
-    "action-failed": "May nangyaring mali. Subukan ulit."
+    "action-failed": "May nangyaring mali. Subukan ulit.",
+    "chat": {
+      "tab": "Chat",
+      "title": "Chat ng room",
+      "empty": "Wala pang mensahe. Mag-hi ka!",
+      "placeholder": "Mag-message sa room",
+      "send": "Ipadala",
+      "unread": "{count, plural, one {# hindi pa nababasang mensahe} other {# hindi pa nababasang mensahe}}",
+      "rate-limited": "Dahan-dahan, masyadong mabilis ang pagpapadala mo ng mensahe."
+    }
   },
   "LandingPage": {
     "header": {

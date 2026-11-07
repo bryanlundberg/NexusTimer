@@ -1706,7 +1706,16 @@
     "update-required": "Actualiza la app para entrar a esta sala",
     "too-many-attempts": "Demasiados códigos incorrectos. Inténtalo de nuevo en un minuto.",
     "waiting-scramble": "Esperando el siguiente scramble...",
-    "action-failed": "Algo salió mal. Inténtalo de nuevo."
+    "action-failed": "Algo salió mal. Inténtalo de nuevo.",
+    "chat": {
+      "tab": "Chat",
+      "title": "Chat de la sala",
+      "empty": "Aún no hay mensajes. ¡Saluda!",
+      "placeholder": "Escribe a la sala",
+      "send": "Enviar",
+      "unread": "{count, plural, one {# mensaje sin leer} other {# mensajes sin leer}}",
+      "rate-limited": "Más despacio, estás enviando mensajes muy rápido."
+    }
   },
   "LandingPage": {
     "header": {

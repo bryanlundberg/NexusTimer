@@ -1684,7 +1684,16 @@
     "update-required": "この部屋に参加するにはアプリを更新してください",
     "too-many-attempts": "コードの入力ミスが多すぎます。1分後にもう一度お試しください。",
     "waiting-scramble": "次のスクランブルを待っています...",
-    "action-failed": "問題が発生しました。もう一度お試しください。"
+    "action-failed": "問題が発生しました。もう一度お試しください。",
+    "chat": {
+      "tab": "チャット",
+      "title": "ルームチャット",
+      "empty": "まだメッセージはありません。あいさつしましょう！",
+      "placeholder": "ルームにメッセージを送る",
+      "send": "送信",
+      "unread": "{count, plural, other {未読メッセージ # 件}}",
+      "rate-limited": "送信が速すぎます。少し待ってください。"
+    }
   },
   "LandingPage": {
     "header": {

@@ -1684,7 +1684,16 @@
     "update-required": "Aktualisiere die App, um diesem Raum beizutreten",
     "too-many-attempts": "Zu viele falsche Codes. Versuche es in einer Minute erneut.",
     "waiting-scramble": "Warte auf das nächste Scramble...",
-    "action-failed": "Etwas ist schiefgelaufen. Versuche es erneut."
+    "action-failed": "Etwas ist schiefgelaufen. Versuche es erneut.",
+    "chat": {
+      "tab": "Chat",
+      "title": "Raum-Chat",
+      "empty": "Noch keine Nachrichten. Sag Hallo!",
+      "placeholder": "Nachricht an den Raum",
+      "send": "Senden",
+      "unread": "{count, plural, one {# ungelesene Nachricht} other {# ungelesene Nachrichten}}",
+      "rate-limited": "Langsamer, du sendest Nachrichten zu schnell."
+    }
   },
   "LandingPage": {
     "header": {

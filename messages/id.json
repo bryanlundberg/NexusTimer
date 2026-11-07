@@ -1706,7 +1706,16 @@
     "update-required": "Perbarui aplikasi untuk bergabung ke ruang ini",
     "too-many-attempts": "Terlalu banyak kode salah. Coba lagi dalam satu menit.",
     "waiting-scramble": "Menunggu scramble berikutnya...",
-    "action-failed": "Terjadi kesalahan. Coba lagi."
+    "action-failed": "Terjadi kesalahan. Coba lagi.",
+    "chat": {
+      "tab": "Obrolan",
+      "title": "Obrolan ruang",
+      "empty": "Belum ada pesan. Sapa yang lain!",
+      "placeholder": "Kirim pesan ke ruang",
+      "send": "Kirim",
+      "unread": "{count, plural, other {# pesan belum dibaca}}",
+      "rate-limited": "Pelan-pelan, kamu mengirim pesan terlalu cepat."
+    }
   },
   "LandingPage": {
     "header": {

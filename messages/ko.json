@@ -1684,7 +1684,16 @@
     "update-required": "이 방에 참여하려면 앱을 업데이트하세요",
     "too-many-attempts": "잘못된 코드를 너무 많이 입력했습니다. 1분 후에 다시 시도하세요.",
     "waiting-scramble": "다음 스크램블을 기다리는 중...",
-    "action-failed": "문제가 발생했습니다. 다시 시도하세요."
+    "action-failed": "문제가 발생했습니다. 다시 시도하세요.",
+    "chat": {
+      "tab": "채팅",
+      "title": "방 채팅",
+      "empty": "아직 메시지가 없어요. 인사해 보세요!",
+      "placeholder": "방에 메시지 보내기",
+      "send": "보내기",
+      "unread": "{count, plural, other {읽지 않은 메시지 #개}}",
+      "rate-limited": "천천히 보내 주세요. 메시지를 너무 빠르게 보내고 있어요."
+    }
   },
   "LandingPage": {
     "header": {

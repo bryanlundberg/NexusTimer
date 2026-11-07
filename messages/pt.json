@@ -1684,7 +1684,16 @@
     "update-required": "Atualize o app para entrar nesta sala",
     "too-many-attempts": "Muitos códigos incorretos. Tente de novo em um minuto.",
     "waiting-scramble": "Aguardando o próximo embaralhamento...",
-    "action-failed": "Algo deu errado. Tente de novo."
+    "action-failed": "Algo deu errado. Tente de novo.",
+    "chat": {
+      "tab": "Chat",
+      "title": "Chat da sala",
+      "empty": "Nenhuma mensagem ainda. Diga oi!",
+      "placeholder": "Mensagem para a sala",
+      "send": "Enviar",
+      "unread": "{count, plural, one {# mensagem não lida} other {# mensagens não lidas}}",
+      "rate-limited": "Calma, você está enviando mensagens rápido demais."
+    }
   },
   "LandingPage": {
     "header": {

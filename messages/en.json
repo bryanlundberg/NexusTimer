@@ -1706,7 +1706,16 @@
     "update-required": "Update the app to join this room",
     "too-many-attempts": "Too many wrong codes. Try again in a minute.",
     "waiting-scramble": "Waiting for the next scramble...",
-    "action-failed": "Something went wrong. Try again."
+    "action-failed": "Something went wrong. Try again.",
+    "chat": {
+      "tab": "Chat",
+      "title": "Room chat",
+      "empty": "No messages yet. Say hi!",
+      "placeholder": "Message the room",
+      "send": "Send",
+      "unread": "{count, plural, one {# unread message} other {# unread messages}}",
+      "rate-limited": "Slow down, you are sending messages too fast."
+    }
   },
   "LandingPage": {
     "header": {

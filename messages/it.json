@@ -1706,7 +1706,16 @@
     "update-required": "Aggiorna l'app per entrare in questa stanza",
     "too-many-attempts": "Troppi codici errati. Riprova tra un minuto.",
     "waiting-scramble": "In attesa del prossimo scramble...",
-    "action-failed": "Qualcosa è andato storto. Riprova."
+    "action-failed": "Qualcosa è andato storto. Riprova.",
+    "chat": {
+      "tab": "Chat",
+      "title": "Chat della stanza",
+      "empty": "Ancora nessun messaggio. Saluta!",
+      "placeholder": "Scrivi alla stanza",
+      "send": "Invia",
+      "unread": "{count, plural, one {# messaggio non letto} other {# messaggi non letti}}",
+      "rate-limited": "Rallenta, stai inviando messaggi troppo in fretta."
+    }
   },
   "LandingPage": {
     "header": {
