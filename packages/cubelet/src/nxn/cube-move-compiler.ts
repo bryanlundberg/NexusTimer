@@ -8,7 +8,8 @@ import type { CubeGeometry } from './cube-geometry'
 import { resolveLayerTurn, type LayerTurn } from './layer-turn'
 import { buildStickerPermutation, type StickerPermutation } from './sticker-permutation'
 
-const turnKey = ({ axis, from, to, quarterTurns }: LayerTurn): string => `${axis}:${from}:${to}:${quarterTurns}`
+const turnKey = ({ axis, from, to, animationQuarterTurns }: LayerTurn): string =>
+  `${axis}:${from}:${to}:${animationQuarterTurns}`
 
 export class CubeMoveCompiler {
   readonly #permutations = new Map<string, StickerPermutation>()

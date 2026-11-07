@@ -7,4 +7,5 @@ export {
   type CubeStickeringPreset
 } from './cube-stickering'
 export { FACES, type Axis, type Face, type FaceName } from './faces'
+export type { LayerTurn } from './layer-turn'
 export type { StickerPermutation } from './sticker-permutation'

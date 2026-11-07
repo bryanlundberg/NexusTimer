@@ -2,6 +2,7 @@ import type { CubeGeometry } from './cube-geometry'
 import type { LayerTurn } from './layer-turn'
 
 export interface StickerPermutation {
+  readonly turn: LayerTurn
   readonly targets: Uint16Array
   readonly sources: Uint16Array
 }
@@ -17,7 +18,7 @@ const rotateQuarter = (vector: Int8Array, axis: number): void => {
 export function buildStickerPermutation(geometry: CubeGeometry, turn: LayerTurn): StickerPermutation {
   const targets: number[] = []
   const sources: number[] = []
-  if (turn.quarterTurns === 0) return { targets: new Uint16Array(0), sources: new Uint16Array(0) }
+  if (turn.quarterTurns === 0) return { turn, targets: new Uint16Array(0), sources: new Uint16Array(0) }
 
   const position = new Int8Array(3)
   const normal = new Int8Array(3)
@@ -35,5 +36,5 @@ export function buildStickerPermutation(geometry: CubeGeometry, turn: LayerTurn)
     targets.push(geometry.indexOf(position, normal))
     sources.push(sticker)
   }
-  return { targets: Uint16Array.from(targets), sources: Uint16Array.from(sources) }
+  return { turn, targets: Uint16Array.from(targets), sources: Uint16Array.from(sources) }
 }

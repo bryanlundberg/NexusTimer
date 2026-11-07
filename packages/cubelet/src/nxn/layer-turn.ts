@@ -6,12 +6,22 @@ export interface LayerTurn {
   readonly from: number
   readonly to: number
   readonly quarterTurns: 0 | 1 | 2 | 3
+  readonly animationQuarterTurns: -2 | -1 | 0 | 1 | 2
 }
 
 const ROTATION_FACES: Readonly<Record<string, FaceName>> = { x: 'R', y: 'U', z: 'F' }
 const SLICE_FACES: Readonly<Record<string, FaceName>> = { M: 'L', E: 'D', S: 'F' }
 const INNER_SLICE_FACES: Readonly<Record<string, FaceName>> = { m: 'L', e: 'D', s: 'F' }
 const FACE_NAMES = new Set<string>(['U', 'R', 'F', 'D', 'L', 'B'])
+
+type AnimationTurns = LayerTurn['animationQuarterTurns']
+
+const ANIMATION_QUARTER_TURNS: ReadonlyArray<readonly [AnimationTurns, AnimationTurns]> = [
+  [0, 0],
+  [1, 1],
+  [2, -2],
+  [-1, -1]
+]
 
 interface LayerSpan {
   readonly face: FaceName
@@ -64,11 +74,13 @@ export function resolveLayerTurn(move: MoveNode, size: number): LayerTurn | null
   const nearCoordinate = sign * (edge - 2 * (span.first - 1))
   const farCoordinate = sign * (edge - 2 * (span.last - 1))
   const counterClockwise = -sign * move.amount
+  const quarterTurns = (((counterClockwise % 4) + 4) % 4) as LayerTurn['quarterTurns']
 
   return {
     axis,
     from: Math.min(nearCoordinate, farCoordinate),
     to: Math.max(nearCoordinate, farCoordinate),
-    quarterTurns: (((counterClockwise % 4) + 4) % 4) as LayerTurn['quarterTurns']
+    quarterTurns,
+    animationQuarterTurns: ANIMATION_QUARTER_TURNS[quarterTurns]![counterClockwise < 0 ? 1 : 0]!
   }
 }
