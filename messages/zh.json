@@ -648,7 +648,8 @@
         "data-from": "数据：{date}",
         "no-data": "暂无备份",
         "no-stats": "这些魔友还没有可比较的成绩"
-      }
+      },
+      "empty": "此类别暂无成绩。"
     },
     "NavMain": {
       "platform": "平台",

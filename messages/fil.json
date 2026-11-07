@@ -655,7 +655,8 @@
         "data-from": "Data: {date}",
         "no-data": "Wala pang backup",
         "no-stats": "Wala pang solve na maikukumpara ang mga cuber na ito"
-      }
+      },
+      "empty": "Wala pang solves sa kategoryang ito."
     },
     "NavMain": {
       "platform": "Platform",

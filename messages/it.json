@@ -655,7 +655,8 @@
         "data-from": "Dati: {date}",
         "no-data": "Nessun backup ancora",
         "no-stats": "Nessuno di questi cuber ha ancora tempi da confrontare"
-      }
+      },
+      "empty": "Ancora nessun tempo in questa categoria."
     },
     "NavMain": {
       "platform": "Piattaforma",

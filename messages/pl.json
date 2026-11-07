@@ -655,7 +655,8 @@
         "data-from": "Dane: {date}",
         "no-data": "Brak kopii zapasowej",
         "no-stats": "Ci cuberzy nie mają jeszcze czasów do porównania"
-      }
+      },
+      "empty": "W tej kategorii nie ma jeszcze ułożeń."
     },
     "NavMain": {
       "platform": "Platforma",

@@ -648,7 +648,8 @@
         "data-from": "Données : {date}",
         "no-data": "Pas encore de sauvegarde",
         "no-stats": "Aucun de ces cubeurs n'a encore de temps à comparer"
-      }
+      },
+      "empty": "Aucun temps dans cette catégorie pour le moment."
     },
     "NavMain": {
       "platform": "Plateforme",

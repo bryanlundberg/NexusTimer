@@ -655,7 +655,8 @@
         "data-from": "Data from {date}",
         "no-data": "No backup yet",
         "no-stats": "None of these cubers has solves to compare yet"
-      }
+      },
+      "empty": "No solves in this category yet."
     },
     "NavMain": {
       "platform": "Platform",

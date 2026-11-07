@@ -648,7 +648,8 @@
         "data-from": "Daten: {date}",
         "no-data": "Noch kein Backup",
         "no-stats": "Keiner dieser Cuber hat bisher Zeiten zum Vergleichen"
-      }
+      },
+      "empty": "In dieser Kategorie gibt es noch keine Solves."
     },
     "NavMain": {
       "platform": "Plattform",

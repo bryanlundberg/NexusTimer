@@ -648,7 +648,8 @@
         "data-from": "Dados: {date}",
         "no-data": "Ainda sem backup",
         "no-stats": "Nenhum desses cubistas tem tempos para comparar ainda"
-      }
+      },
+      "empty": "Ainda não há tempos nesta categoria."
     },
     "NavMain": {
       "platform": "Plataforma",

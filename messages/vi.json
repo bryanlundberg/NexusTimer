@@ -655,7 +655,8 @@
         "data-from": "Dữ liệu: {date}",
         "no-data": "Chưa có bản sao lưu",
         "no-stats": "Chưa có lần giải nào để so sánh"
-      }
+      },
+      "empty": "Chưa có lượt giải nào trong hạng mục này."
     },
     "NavMain": {
       "platform": "Nền tảng",

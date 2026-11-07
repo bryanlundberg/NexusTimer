@@ -655,7 +655,8 @@
         "data-from": "Data: {date}",
         "no-data": "Belum ada cadangan",
         "no-stats": "Belum ada solve untuk dibandingkan dari cuber ini"
-      }
+      },
+      "empty": "Belum ada solve di kategori ini."
     },
     "NavMain": {
       "platform": "Platform",

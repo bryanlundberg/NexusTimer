@@ -648,7 +648,8 @@
         "data-from": "데이터: {date}",
         "no-data": "아직 백업 없음",
         "no-stats": "아직 비교할 기록이 없습니다"
-      }
+      },
+      "empty": "이 카테고리에는 아직 기록이 없습니다."
     },
     "NavMain": {
       "platform": "플랫폼",
