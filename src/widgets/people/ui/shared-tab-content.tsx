@@ -46,19 +46,19 @@ export default function SharedTabContent({ user, isCurrentUser, shared }: Props)
   }
 
   return (
-    <div className="flex flex-col gap-6 pb-4">
-      {groupByMonth(items).map((group) => (
-        <section key={group.key} className="flex flex-col gap-2">
-          <h3 className="font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-            {dayjs(`${group.key}-01`).locale(locale).format('MMMM YYYY')}
-          </h3>
-          <div className="flex flex-col gap-1.5">
+    <div className="flex flex-col gap-4 pb-4">
+      <div className="border border-border/60 bg-card/40">
+        {groupByMonth(items).map((group) => (
+          <section key={group.key} className="flex flex-col border-b border-border/60 last:border-b-0">
+            <h3 className="border-b border-border/40 bg-muted/30 px-3 py-2 font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+              {dayjs(`${group.key}-01`).locale(locale).format('MMMM YYYY')}
+            </h3>
             {group.items.map((item) => (
               <SharedSolveCard key={item.slug} item={item} />
             ))}
-          </div>
-        </section>
-      ))}
+          </section>
+        ))}
+      </div>
 
       {!reachedEnd && (
         <Button variant="ghost" size="sm" className="self-center" disabled={isLoadingMore} onClick={loadMore}>
