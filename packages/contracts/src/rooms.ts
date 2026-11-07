@@ -27,6 +27,8 @@ export const ROOM_NAME_MAX_LENGTH = 40
 
 export const ROOM_CODE_LENGTH = 6
 
+export const ROOM_CHAT_MAX_LENGTH = 120
+
 export const createRoomSchema = z.object({
   name: z.string().trim().min(1).max(ROOM_NAME_MAX_LENGTH),
   event: z.enum(FREE_PLAY_EVENTS),
@@ -64,7 +66,8 @@ export const ROOM_ERROR_CODES = [
   'forbidden',
   'too-many-attempts',
   'upgrade-required',
-  'invalid'
+  'invalid',
+  'rate-limited'
 ] as const
 
 export type RoomErrorCode = (typeof ROOM_ERROR_CODES)[number]
@@ -95,6 +98,15 @@ export interface RoomSolve {
   submittedAt: number
 }
 
+export interface RoomChatMessage {
+  id: number
+  userId: string
+  name: string
+  image: string | null
+  text: string
+  sentAt: number
+}
+
 export interface RoomSnapshot {
   roomId: string
   name: string
@@ -109,6 +121,7 @@ export interface RoomSnapshot {
   round: RoomRound
   players: RoomPlayer[]
   solves: RoomSolve[]
+  chat?: RoomChatMessage[]
   version: number
 }
 
@@ -131,6 +144,7 @@ export type RoomEvent =
   | { type: 'room:solve'; roomId: string; solve: RoomSolve; version: number }
   | { type: 'room:members'; roomId: string; players: RoomPlayer[]; leaderId: string | null; version: number }
   | { type: 'room:player'; roomId: string; player: RoomPlayer; version: number }
+  | { type: 'room:chat'; roomId: string; message: RoomChatMessage; version: number }
   | { type: 'room:kicked'; roomId: string }
   | { type: 'room:replaced'; roomId: string; toRoomId: string }
   | { type: 'room:closed'; roomId: string }
@@ -145,5 +159,6 @@ export type RoomClientFrame =
   | { type: 'room:solve'; rid: number; roomId: string; round: number; time: number }
   | { type: 'room:penalty'; rid: number; roomId: string; round: number; penalty: RoomPenalty }
   | { type: 'room:kick'; rid: number; roomId: string; userId: string }
+  | { type: 'room:chat'; rid: number; roomId: string; text: string }
   | { type: 'rooms:watch'; rid: number }
   | { type: 'rooms:unwatch' }
