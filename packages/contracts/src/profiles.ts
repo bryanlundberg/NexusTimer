@@ -1,7 +1,7 @@
 import type { CubingMethod, Layers } from './profile'
 import type { UserStatsSummary } from './user-stats'
 
-export const USERS_PAGE_SIZE = 25
+export const USERS_PAGE_SIZE = 24
 
 export interface PublicProfile {
   _id: string

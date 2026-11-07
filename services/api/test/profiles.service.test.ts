@@ -1,5 +1,5 @@
 import type { PrivacySettings, PublicProfile, StatsVisibility } from '@nexustimer/contracts'
-import { DEFAULT_PRIVACY } from '@nexustimer/contracts'
+import { DEFAULT_PRIVACY, USERS_PAGE_SIZE } from '@nexustimer/contracts'
 import { describe, expect, it, vi } from 'vitest'
 import { createProfilesService, withoutStats } from '../src/modules/profiles/profiles.service'
 import type { ListedUser } from '../src/modules/users/users.repository'
@@ -123,7 +123,10 @@ describe('profiles service', () => {
 
     const result = await service.list({ name: 'ana', country: 'MX', page: 3 }, OWNER)
 
-    expect(users.list).toHaveBeenCalledWith({ name: 'ana', country: 'MX', page: 3, excludeIds: ['blocked-id'] }, 25)
+    expect(users.list).toHaveBeenCalledWith(
+      { name: 'ana', country: 'MX', page: 3, excludeIds: ['blocked-id'] },
+      USERS_PAGE_SIZE
+    )
     expect(result.events.map((user) => 'statsHidden' in user)).toEqual([false, true, false])
     expect(result.events.map((user) => user.backup)).toEqual([
       { updatedAt: 1700 },
@@ -139,7 +142,7 @@ describe('profiles service', () => {
     await service.list({ name: '', country: '', page: 1 }, null)
 
     expect(social.blockedEitherWay).not.toHaveBeenCalled()
-    expect(users.list).toHaveBeenCalledWith({ name: '', country: '', page: 1, excludeIds: [] }, 25)
+    expect(users.list).toHaveBeenCalledWith({ name: '', country: '', page: 1, excludeIds: [] }, USERS_PAGE_SIZE)
   })
 
   it('guards learned cases and stats behind the same visibility', async () => {
