@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
+import type { MovePlayer } from '@/shared/lib/puzzle/movePlayer'
 import { CubeEngine } from 'cube-state-engine'
 import { useSolveClock } from '@/features/timer/model/useSolveClock'
 import { useSolveReplayRecorder } from '@/features/timer/model/useSolveReplayRecorder'
@@ -14,7 +14,7 @@ const POST_SOLVE_LOCK_MS = 2000
 const ROTATION_RE = /^[xyz]['2]?$/
 
 interface UseSolveSessionArgs {
-  player: TwistyPlayer | null
+  player: MovePlayer | null
   engine: CubeEngine | null | undefined
   scramble: string | null
   onAdvanceScramble: () => void
@@ -87,7 +87,7 @@ export function useSolveSession({ player, engine, scramble, onAdvanceScramble, r
       const isRotation = opts?.isRotation ?? ROTATION_RE.test(move)
 
       try {
-        player.experimentalAddMove(move)
+        player.play(move)
       } catch {}
       try {
         engine.applyMoves(move)

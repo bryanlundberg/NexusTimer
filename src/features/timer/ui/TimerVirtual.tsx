@@ -22,7 +22,7 @@ export default function TimerVirtual() {
   const cubeSize = selectedCube?.category === '2x2' || selectedCube?.category === '2x2 Virtual' ? 2 : 3
   const is3x3 = cubeSize === 3
 
-  const { containerRef, player, engine, recreatePlayer } = useVirtualCube({
+  const { canvasRef, canvasStyle, player, engine, recreatePlayer } = useVirtualCube({
     cubeSize,
     scramble,
     tempoScale: 3,
@@ -50,7 +50,7 @@ export default function TimerVirtual() {
 
   return (
     <div className="grow min-h-0 flex justify-center items-center flex-col gap-2 sm:gap-4 [container-type:size]">
-      <div ref={containerRef} />
+      <canvas ref={canvasRef} style={canvasStyle} />
       <div className={cn('text-4xl tabular-nums sm:text-5xl md:text-6xl', timerFontClass(timerFont))}>
         <SolveClockText clock={clock} format={formatTime} />
       </div>
