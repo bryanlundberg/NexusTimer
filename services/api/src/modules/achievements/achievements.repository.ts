@@ -10,6 +10,7 @@ export type AchievementsRepository = {
   grant(userId: string, key: string): Promise<GrantedAchievement>
   revoke(userId: string, key: string): Promise<number>
   saveRarity(stats: AchievementRarityInput): Promise<void>
+  rarity(): Promise<AchievementRarityInput | null>
 }
 
 type RawAchievement = { key: string; createdAt: Date }
@@ -47,6 +48,14 @@ export const achievementsRepository: AchievementsRepository = {
 
   async saveRarity(stats) {
     await AchievementRarityModel.replaceOne({ _id: ACHIEVEMENT_RARITY_ID }, stats, { upsert: true })
+  },
+
+  async rarity() {
+    return AchievementRarityModel.findById(ACHIEVEMENT_RARITY_ID, {
+      _id: 0,
+      createdAt: 0,
+      updatedAt: 0
+    }).lean<AchievementRarityInput>()
   }
 }
 

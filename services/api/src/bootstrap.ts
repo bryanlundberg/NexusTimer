@@ -206,6 +206,7 @@ export function buildApp() {
       appUrl
     }),
     solves: createSolvesService({ repository: solvesRepository }),
+    achievements,
     admin: createAdminService({
       users,
       achievements,

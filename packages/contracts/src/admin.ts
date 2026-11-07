@@ -25,6 +25,11 @@ export const achievementRarityStatsSchema = z.object({
 
 export type AchievementRarityInput = z.infer<typeof achievementRarityStatsSchema>
 
+export type AchievementRarityResponse = {
+  computedAt: string
+  badges: Record<string, number>
+} | null
+
 export const PRODUCTS_INDEX = 'products'
 
 const productDocumentSchema = z.object({ id: z.string().min(1) }).loose()

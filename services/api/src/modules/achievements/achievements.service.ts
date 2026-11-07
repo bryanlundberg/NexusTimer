@@ -1,4 +1,4 @@
-import type { AchievementRarityInput } from '@nexustimer/contracts'
+import type { AchievementRarityInput, AchievementRarityResponse } from '@nexustimer/contracts'
 import type { RarityCache } from './achievements.cache'
 import type { AchievementsRepository, GrantedAchievement } from './achievements.repository'
 
@@ -8,6 +8,14 @@ export type AchievementsService = {
   grant(userId: string, key: string): Promise<GrantedAchievement>
   revoke(userId: string, key: string): Promise<number>
   saveRarity(stats: AchievementRarityInput): Promise<void>
+  rarity(): Promise<AchievementRarityResponse>
+}
+
+function toRarityResponse(stats: AchievementRarityInput): NonNullable<AchievementRarityResponse> {
+  return {
+    computedAt: new Date(stats.computedAt).toISOString(),
+    badges: Object.fromEntries(Object.entries(stats.badges).map(([id, entry]) => [id, entry.pct]))
+  }
 }
 
 export function createAchievementsService(
@@ -22,6 +30,14 @@ export function createAchievementsService(
     async saveRarity(stats) {
       await repository.saveRarity(stats)
       await rarityCache?.set(stats)
+    },
+    async rarity() {
+      const cached = await rarityCache?.get()
+      if (cached) return toRarityResponse(cached)
+      const stored = await repository.rarity()
+      if (!stored) return null
+      await rarityCache?.set(stored)
+      return toRarityResponse(stored)
     }
   }
 }

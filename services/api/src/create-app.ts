@@ -7,6 +7,8 @@ import { requestLogger } from './http/request-logger'
 import { requireAdmin } from './http/require-admin'
 import { optionalUser, requireUser, type SessionReader } from './http/require-user'
 import type { AppEnv } from './http/types'
+import { achievementsRoutes } from './modules/achievements/achievements.routes'
+import type { AchievementsService } from './modules/achievements/achievements.service'
 import { adminRoutes } from './modules/admin/admin.routes'
 import type { AdminService } from './modules/admin/admin.service'
 import { suggestionsRoutes } from './modules/algorithms/suggestions.routes'
@@ -78,6 +80,7 @@ export type AppDeps = {
   wca: WcaService
   solves: SolvesService
   admin: AdminService
+  achievements: Pick<AchievementsService, 'rarity'>
   products: ProductsService
 }
 
@@ -98,6 +101,7 @@ export function createApp(deps: AppDeps) {
   app.route('/v1/realtime', realtimeRoutes({ url: env.REALTIME_URL, secret: env.REALTIME_SECRET }, signedIn))
   app.route('/v1/leaderboards', leaderboardsRoutes(deps.leaderboards))
   app.route('/v1/solves', solvesRoutes(deps.solves, signedIn))
+  app.route('/v1/achievements', achievementsRoutes(deps.achievements))
   app.route('/v1/admin', adminRoutes({ admin: deps.admin, products: deps.products }, requireAdmin(env.ADMIN_TOKEN)))
   app.route('/v1/search', searchRoutes(deps.search))
   app.route('/v1/trainer', trainerRoutes(deps.trainer, signedIn))
