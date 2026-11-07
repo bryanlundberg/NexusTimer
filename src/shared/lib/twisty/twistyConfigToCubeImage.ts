@@ -1,13 +1,5 @@
-import { cubeSizeOf, type CubeImageRequest, type CubeImageView } from '@/shared/lib/puzzle/renderCubeImage'
-
-interface TwistyImageConfig {
-  puzzle?: unknown
-  visualization?: unknown
-  alg?: unknown
-  experimentalSetupAlg?: unknown
-  experimentalStickering?: unknown
-  experimentalStickeringMaskOrbits?: unknown
-}
+import type { CubeImageRequest, CubeImageView } from '@/shared/lib/puzzle/renderCubeImage'
+import { readTwistyCubeConfig } from '@/shared/lib/twisty/readTwistyCubeConfig'
 
 const VIEW_BY_VISUALIZATION: Readonly<Record<string, CubeImageView>> = {
   '2D': 'net',
@@ -15,16 +7,10 @@ const VIEW_BY_VISUALIZATION: Readonly<Record<string, CubeImageView>> = {
 }
 
 export function twistyConfigToCubeImage(config: object | undefined): CubeImageRequest | null {
-  const twisty = (config ?? {}) as TwistyImageConfig
-  const size = cubeSizeOf(String(twisty.puzzle ?? '3x3x3'))
-  const view = VIEW_BY_VISUALIZATION[String(twisty.visualization ?? '')]
-  if (!size || !view || String(twisty.alg ?? '').trim() !== '') return null
+  const settings = readTwistyCubeConfig(config)
+  const view = settings && VIEW_BY_VISUALIZATION[settings.visualization]
+  if (!settings || !view) return null
 
-  return {
-    size,
-    view,
-    alg: String(twisty.experimentalSetupAlg ?? ''),
-    stickering: String(twisty.experimentalStickering ?? 'full'),
-    lastLayer: twisty.experimentalStickeringMaskOrbits ? 'D' : 'U'
-  }
+  const { size, alg, stickering, lastLayer } = settings
+  return { size, view, alg, stickering, lastLayer }
 }
