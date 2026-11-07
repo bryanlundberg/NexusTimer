@@ -92,7 +92,7 @@ export function NavUser({
       <DropdownMenuContent className="w-64" innerClassName="p-px" side={'bottom'} align="end" sideOffset={8}>
         {/* Identity header */}
         <DropdownMenuItem
-          onClick={() => router.push('/account')}
+          onClick={() => router.push(profilePath(user.id))}
           className="group relative m-0 cursor-pointer gap-3 px-3 py-3"
         >
           <div className="relative shrink-0">
