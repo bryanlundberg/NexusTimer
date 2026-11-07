@@ -1,18 +1,17 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import type { SmartCubeConnection, SmartCubeEvent } from 'smartcube-web-bluetooth'
 import { IDENTITY, conjugate, multiply, normalize, slerp, type Quaternion } from '@/features/smart-cube/lib/quaternion'
 
+export interface OrientablePuzzle {
+  setOrientation(orientation: readonly [number, number, number, number]): void
+}
+
 interface UseSmartCubeGyroArgs {
-  player: TwistyPlayer | null
+  player: OrientablePuzzle | null
   connection: SmartCubeConnection | null
 }
 
-// Minimal structural types: cubing.js bundles its own older @types/three.
-type Vantage = { render?: () => void; scheduleRender: () => void }
-type PuzzleObject = { quaternion: Quaternion & { set: (x: number, y: number, z: number, w: number) => void } }
-
-const deviceToThree = ({ x, y, z, w }: Quaternion): Quaternion => normalize({ x, y: z, z: -y, w })
+const deviceToView = ({ x, y, z, w }: Quaternion): Quaternion => normalize({ x, y: z, z: -y, w })
 
 export function useSmartCubeGyro({ player, connection }: UseSmartCubeGyroArgs) {
   const [active, setActive] = useState(false)
@@ -20,48 +19,34 @@ export function useSmartCubeGyro({ player, connection }: UseSmartCubeGyroArgs) {
 
   useEffect(() => {
     if (!player || !connection) return
-    let cancelled = false
     let rafId = 0
-    let subscription: ReturnType<SmartCubeConnection['events$']['subscribe']> | null = null
-
     let homeInverse = IDENTITY
+    let current = IDENTITY
     let target: Quaternion | null = null
 
-    void (async () => {
-      try {
-        const puzzleObject = (await player.experimentalCurrentThreeJSPuzzleObject()) as unknown as PuzzleObject
-        if (cancelled) return
-        const vantages = Array.from(await player.experimentalCurrentVantages()) as Vantage[]
-        if (cancelled) return
+    const tick = () => {
+      if (target) {
+        current = slerp(current, target, 0.3)
+        player.setOrientation([current.x, current.y, current.z, current.w])
+      }
+      rafId = window.requestAnimationFrame(tick)
+    }
+    rafId = window.requestAnimationFrame(tick)
 
-        const tick = () => {
-          if (target) {
-            const { quaternion } = puzzleObject
-            const next = slerp(quaternion, target, 0.3)
-            quaternion.set(next.x, next.y, next.z, next.w)
-            for (const vantage of vantages) (vantage.render ?? vantage.scheduleRender).call(vantage)
-          }
-          rafId = window.requestAnimationFrame(tick)
-        }
-        rafId = window.requestAnimationFrame(tick)
-
-        subscription = connection.events$.subscribe((event: SmartCubeEvent) => {
-          if (event.type !== 'GYRO') return
-          const current = deviceToThree(event.quaternion)
-          if (pendingResetRef.current) {
-            homeInverse = conjugate(current)
-            pendingResetRef.current = false
-          }
-          target = multiply(homeInverse, current)
-          setActive(true)
-        })
-      } catch {}
-    })()
+    const subscription = connection.events$.subscribe((event: SmartCubeEvent) => {
+      if (event.type !== 'GYRO') return
+      const reading = deviceToView(event.quaternion)
+      if (pendingResetRef.current) {
+        homeInverse = conjugate(reading)
+        pendingResetRef.current = false
+      }
+      target = multiply(homeInverse, reading)
+      setActive(true)
+    })
 
     return () => {
-      cancelled = true
-      if (rafId) window.cancelAnimationFrame(rafId)
-      subscription?.unsubscribe()
+      window.cancelAnimationFrame(rafId)
+      subscription.unsubscribe()
       setActive(false)
       pendingResetRef.current = true
     }
