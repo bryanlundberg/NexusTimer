@@ -53,6 +53,7 @@ export default function UserCard({ user }: { user: UserDocument }) {
           <Button
             onClick={handleCompareClick}
             aria-label={t('compare')}
+            title={t('compare')}
             aria-pressed={isAdded}
             variant="ghost"
             size="sm"

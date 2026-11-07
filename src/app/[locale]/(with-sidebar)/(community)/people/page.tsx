@@ -13,6 +13,12 @@ import { PageBody } from '@/shared/ui/page-body/PageBody'
 import { PullToRefresh } from '@/shared/ui/pull-to-refresh/PullToRefresh'
 import PeoplePageHeader from '@/widgets/navigation-header/ui/PeoplePageHeader'
 import { useQueryState } from 'nuqs'
+import { cn } from '@/shared/lib/utils'
+
+const LIST =
+  'overflow-hidden border border-border/60 bg-card/40 @3xl/people:grid @3xl/people:grid-cols-2 @3xl/people:gap-2 @3xl/people:border-0 @3xl/people:bg-transparent'
+const ITEM =
+  'border-b border-border/40 last:border-b-0 @3xl/people:border @3xl/people:border-border/60 @3xl/people:bg-card/40 @3xl/people:last:border-b'
 
 export default function PeoplePage() {
   const t = useTranslations('Index.PeoplePage')
@@ -27,25 +33,28 @@ export default function PeoplePage() {
     page: Number(page) || 1
   })
 
+  React.useEffect(() => {
+    scrollRef.current?.scrollTo({ top: 0 })
+  }, [page])
+
   return (
     <ScrollArea ref={scrollRef} className={'max-h-dvh overflow-auto'}>
       <CoreHeader breadcrumbs={[{ label: t('title'), href: '/people' }]} />
       <PullToRefresh scrollerRef={scrollRef} onRefresh={mutate} />
-      <PageBody variant="hero" className="px-2 pb-8 flex flex-col w-full max-w-2xl mx-auto">
+      <PageBody variant="hero" className="@container/people px-2 pb-8 flex flex-col w-full max-w-4xl mx-auto">
         <PeoplePageHeader total={data?.docs} showing={data?.events?.length} />
 
-        <section className="overflow-hidden border border-border/60 bg-card/40">
+        <section className={LIST}>
           {/* Skeleton rows */}
           {isLoading &&
             Array(5)
               .fill(0)
               .map((_, i) => (
-                <div key={i} className="flex items-center gap-3 px-3 py-3 border-b border-border/40 last:border-b-0">
+                <div key={i} className={cn(ITEM, 'flex items-center gap-3 px-3 py-3')}>
                   <Skeleton className="size-9 rounded-full shrink-0" />
                   <div className="flex flex-col gap-1.5 min-w-0 flex-1">
-                    <Skeleton className="h-3.5 w-32" />
-                    <Skeleton className="h-3 w-48" />
-                    <Skeleton className="h-3 w-40" />
+                    <Skeleton className="h-3.5 w-32 max-w-full" />
+                    <Skeleton className="h-3 w-44 max-w-full" />
                     <Skeleton className="h-2.5 w-28" />
                   </div>
                   <Skeleton className="h-8 w-8 sm:w-24 shrink-0" />
@@ -53,13 +62,21 @@ export default function PeoplePage() {
               ))}
 
           {/* Empty state */}
-          {!isLoading && (!data?.events || data.events.length === 0) && <PeopleEmptyState />}
+          {!isLoading && (!data?.events || data.events.length === 0) && (
+            <div className="@3xl/people:col-span-2">
+              <PeopleEmptyState />
+            </div>
+          )}
 
           {/* Rows */}
           {!isLoading &&
             data?.events &&
             data.events.length > 0 &&
-            data.events.map((user: UserDocument) => <UserCard key={user._id} user={user} />)}
+            data.events.map((user: UserDocument) => (
+              <div key={user._id} className={ITEM}>
+                <UserCard user={user} />
+              </div>
+            ))}
         </section>
 
         {!isLoading && data?.pages !== undefined && data.pages > 1 && (
