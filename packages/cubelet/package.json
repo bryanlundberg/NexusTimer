@@ -6,7 +6,8 @@
   "sideEffects": false,
   "exports": {
     ".": "./src/index.ts",
-    "./nxn": "./src/nxn/index.ts"
+    "./nxn": "./src/nxn/index.ts",
+    "./svg": "./src/svg/index.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
