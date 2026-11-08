@@ -48,7 +48,7 @@ export default function ManualModeForm({
       <div className="relative w-full max-w-md">
         <Input
           autoFocus
-          className="h-24 w-full px-12 py-6 text-center font-mono text-5xl leading-none tracking-tight sm:text-6xl md:h-32 md:text-7xl lg:text-8xl"
+          className="h-24 w-full px-12 py-6 text-center font-mono text-5xl! leading-none tracking-tight sm:text-6xl! md:h-32 md:text-7xl! lg:text-8xl!"
           placeholder={placeholder}
           value={value}
           onChange={handleChange}
