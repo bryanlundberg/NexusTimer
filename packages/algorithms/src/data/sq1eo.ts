@@ -77,7 +77,7 @@ export const SQ1EO_ALGS: AlgorithmCollection[] = [
     group,
     setup: '(1,0) / (-1,-1) / (-3,-3) / (1,1) / (-1,0)',
     algs: [
-      { moves: '(1,0) / (-1,-1) / (-2,4) / (-1,-1) / (1,0)', id: 'e1b5ed15-fa6f-467b-81ec-5185d27ceced' },
+      { moves: '(1,0) / (-1,-1) / (-2,4) / (-1,-1) / (0,1)', id: 'e1b5ed15-fa6f-467b-81ec-5185d27ceced' },
       { moves: '(1,0) / (-1,-1) / (3,3) / (1,1) / (-1,0)', id: '15c2d7a6-7dd4-423d-836d-2c9732ef3a7b' }
     ]
   },

@@ -39,12 +39,6 @@ const SHIPPED_CASES = ALGORITHM_SET_DEFINITIONS.filter((set) => set.puzzle === '
   set.algorithms.flatMap((collection) => collection.algs.map(({ moves }) => formatAlg(invertAlg(parseAlg(moves)))))
 )
 
-const ALGS_ILLEGAL_FROM_SOLVED = [
-  '/ (3, 3) / (-1, -2) / (0, -2) / (0, 1) /',
-  '(-1, 0) / (0, 3) / (0, 3) / (-1, 0)',
-  '(-1, 0) / (1, 1) / (2, -4) / (1, 1) / (-1, 0)'
-]
-
 const SAMPLES = ['(1,0) / (-1,0)', '(1,0) / (3,0) / (-1,0)', '(0,-1) / (-3,0) / (3,3) / (0,1)']
 
 describePuzzleContract(square1, SAMPLES)
@@ -78,7 +72,7 @@ describe('square-1 moves', () => {
 
   it('draws every shipped case, which is the inverse of its algorithm applied to a solved puzzle', () => {
     expect(SHIPPED_CASES.length).toBeGreaterThan(200)
-    expect(SHIPPED_CASES.filter((alg) => !square1Accepts(alg))).toEqual(ALGS_ILLEGAL_FROM_SOLVED)
+    expect(SHIPPED_CASES.filter((alg) => !square1Accepts(alg))).toEqual([])
   })
 })
 
