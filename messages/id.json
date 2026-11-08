@@ -12,7 +12,9 @@
       "select-cube": "Pilih Kubus",
       "no-solves": "Belum ada solve",
       "show": "Tampilkan solve",
-      "hide": "Sembunyikan solve"
+      "hide": "Sembunyikan solve",
+      "open-details": "Buka detail",
+      "confirm-delete": "Klik lagi untuk menghapus"
     },
     "Offline": {
       "offline": "Offline",

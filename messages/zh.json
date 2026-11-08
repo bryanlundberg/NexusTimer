@@ -12,7 +12,9 @@
       "select-cube": "选择魔方",
       "no-solves": "暂无还原记录",
       "show": "显示还原",
-      "hide": "隐藏还原"
+      "hide": "隐藏还原",
+      "open-details": "查看详情",
+      "confirm-delete": "再次点击以删除"
     },
     "CubesIntro": {
       "content": "为每个魔方单独登记，放心地随时切换：每个项目的成绩始终是一条连续的序列，你也总能知道自己用每个魔方的平均成绩。",

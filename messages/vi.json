@@ -12,7 +12,9 @@
       "select-cube": "Chọn khối",
       "no-solves": "Chưa có lượt giải",
       "show": "Hiện lượt giải",
-      "hide": "Ẩn lượt giải"
+      "hide": "Ẩn lượt giải",
+      "open-details": "Mở chi tiết",
+      "confirm-delete": "Nhấn lần nữa để xóa"
     },
     "Offline": {
       "offline": "Ngoại tuyến",

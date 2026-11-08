@@ -12,7 +12,9 @@
       "select-cube": "Pumili ng Cube",
       "no-solves": "Wala pang solve",
       "show": "Ipakita ang mga solve",
-      "hide": "Itago ang mga solve"
+      "hide": "Itago ang mga solve",
+      "open-details": "Buksan ang detalye",
+      "confirm-delete": "I-click ulit para burahin"
     },
     "Offline": {
       "offline": "Offline",

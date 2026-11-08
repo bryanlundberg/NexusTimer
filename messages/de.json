@@ -12,7 +12,9 @@
       "select-cube": "Würfel wählen",
       "no-solves": "Noch keine Zeiten",
       "show": "Zeiten anzeigen",
-      "hide": "Zeiten ausblenden"
+      "hide": "Zeiten ausblenden",
+      "open-details": "Details öffnen",
+      "confirm-delete": "Zum Löschen erneut klicken"
     },
     "CubesIntro": {
       "content": "Registriere jeden Würfel und wechsle bedenkenlos zwischen ihnen: Jede Kategorie bleibt eine einzige Abfolge, und du weißt immer, welchen Schnitt du mit jedem Würfel hast.",

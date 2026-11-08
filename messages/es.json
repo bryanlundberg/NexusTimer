@@ -12,7 +12,9 @@
       "select-cube": "Seleccionar cubo",
       "no-solves": "Aún no hay tiempos",
       "show": "Mostrar tiempos",
-      "hide": "Ocultar tiempos"
+      "hide": "Ocultar tiempos",
+      "open-details": "Ver detalles",
+      "confirm-delete": "Clic de nuevo para eliminar"
     },
     "Offline": {
       "offline": "Sin conexión",
