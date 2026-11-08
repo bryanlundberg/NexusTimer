@@ -17,6 +17,7 @@ export interface PolyMesh {
 export interface PolyPiece {
   readonly cell: Cell
   readonly colorOf: (faceIndex: number) => number
+  readonly scale?: number
 }
 
 const PIECE_SCALE = 0.95
@@ -41,10 +42,12 @@ export function buildPolyMesh(pieces: readonly PolyPiece[], pieceScale = PIECE_S
   const indices: number[] = []
   let radius = 0
 
-  for (const { cell, colorOf } of pieces) {
+  for (const piece of pieces) {
+    const { cell, colorOf } = piece
+    const ownScale = piece.scale ?? pieceScale
     const center = average(cell.flatMap((face) => face.points))
     cell.forEach((face, faceIndex) => {
-      const shrunk = face.points.map((point) => add(center, scale(subtract(point, center), pieceScale)))
+      const shrunk = face.points.map((point) => add(center, scale(subtract(point, center), ownScale)))
       let normal = newellNormal(shrunk)
       if (dot(normal, subtract(average(shrunk), center)) < 0) normal = scale(normal, -1)
       const color = colorOf(faceIndex)

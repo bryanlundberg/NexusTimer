@@ -12,8 +12,11 @@ import type { PuzzleModel3d } from './puzzle-model'
 const RIM = 1 / Math.cos(Math.PI / 12)
 const CORNER = Math.SQRT2
 const MIDDLE = 0.3
-const LAYER_INNER = 0.34
+const LAYER_INNER = MIDDLE
 const LAYER_OUTER = 1
+const MIDDLE_HALF_WIDTH = 0.983
+const MIDDLE_HALF_HEIGHT = 0.285
+const MIDDLE_SEAM = 0.012
 const SLASH_AXIS: Point = [Math.cos(Math.PI / 12), 0, Math.sin(Math.PI / 12)]
 const UP: Point = [0, 1, 0]
 const DOWN: Point = [0, -1, 0]
@@ -66,7 +69,7 @@ const layerPrisms = (state: Square1State, first: number): PolyPiece[] => {
 }
 
 const sideColorFacing = ([x, y, z]: Point): number => {
-  if (Math.abs(y!) >= MIDDLE - 1e-9) return BODY_COLOR
+  if (Math.abs(y!) >= MIDDLE_HALF_HEIGHT - 1e-9) return BODY_COLOR
   const degrees = (Math.atan2(-x!, z!) * 180) / Math.PI
   return SIDES_BY_QUADRANT[Math.round((((degrees % 360) + 360) % 360) / 90) % 4]!
 }
@@ -78,28 +81,31 @@ const rotateHalfTurn = ([x, y, z]: Point): Point => {
 }
 
 const middlePieces = (flipped: boolean): PolyPiece[] => {
+  const width = MIDDLE_HALF_WIDTH
   const prismCell = prism(
     {
       points: [
-        [1, 1],
-        [1, -1],
-        [-1, -1],
-        [-1, 1]
+        [width, width],
+        [width, -width],
+        [-width, -width],
+        [-width, width]
       ],
       edgeColors: [Square1Color.Right, Square1Color.Back, Square1Color.Left, Square1Color.Front]
     },
-    -MIDDLE,
-    MIDDLE,
+    -MIDDLE_HALF_HEIGHT,
+    MIDDLE_HALF_HEIGHT,
     BODY_COLOR,
     true
   ).cell
-  const [left, right] = splitCell(prismCell, { normal: SLASH_AXIS, distance: 0 }) as [Cell, Cell]
+  const left = splitCell(prismCell, { normal: SLASH_AXIS, distance: -MIDDLE_SEAM })[0] as Cell
+  const right = splitCell(prismCell, { normal: SLASH_AXIS, distance: MIDDLE_SEAM })[1] as Cell
   return [left, right].map((cell, index) => {
     const colors = cell.map((face) => (face.tag === 0 ? sideColorFacing(centroid(face.points)) : BODY_COLOR))
     const moved = index === 1 && flipped
     return {
       cell: moved ? cell.map((face) => ({ ...face, points: face.points.map(rotateHalfTurn) })) : cell,
-      colorOf: (face: number) => colors[face]!
+      colorOf: (face: number) => colors[face]!,
+      scale: 1
     }
   })
 }
