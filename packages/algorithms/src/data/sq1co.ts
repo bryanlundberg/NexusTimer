@@ -49,7 +49,7 @@ export const SQ1CO_ALGS: AlgorithmCollection[] = [
     setup: '(1,0) / (0,-3) / (0,-3) / (-1,0)',
     algs: [
       { moves: '(1,0) / (0,3) / (0,3) / (-1,0)', id: '3b714aee-9f1a-4425-bac1-a3850a1c0ae0' },
-      { moves: '(1,0) / (0,-3) / (0,-3) / (1,0)', id: '51b993ca-c846-4a32-8ea2-87e24cfb0163' }
+      { moves: '(1,0) / (0,-3) / (0,-3) / (-1,0)', id: '51b993ca-c846-4a32-8ea2-87e24cfb0163' }
     ]
   },
   {

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
+import type { MovePlayer } from '@/shared/lib/puzzle/movePlayer'
 import { CubeEngine, matchesGoal, type GoalName } from 'cube-state-engine'
 import type { SmartCubeConnection } from 'smartcube-web-bluetooth'
 import { useSolveClock } from '@/features/timer/model/useSolveClock'
@@ -24,7 +24,7 @@ const POST_SOLVE_LOCK_MS = 1200
 
 interface UseTrainerSmartSessionArgs {
   engine: CubeEngine | null
-  player: TwistyPlayer | null
+  player: MovePlayer | null
   connection: SmartCubeConnection | null
   goal: GoalName
   targetScramble: string
@@ -98,7 +98,7 @@ export function useTrainerSmartSession({
       const isRotation = ROTATION_RE.test(move)
 
       try {
-        player?.experimentalAddMove(move)
+        player?.play(move)
       } catch {}
       try {
         engine.applyMoves(move, { record: false })

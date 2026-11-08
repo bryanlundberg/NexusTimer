@@ -12,7 +12,9 @@
       "select-cube": "Wybierz kostkę",
       "no-solves": "Brak ułożeń",
       "show": "Pokaż ułożenia",
-      "hide": "Ukryj ułożenia"
+      "hide": "Ukryj ułożenia",
+      "open-details": "Otwórz szczegóły",
+      "confirm-delete": "Kliknij ponownie, aby usunąć"
     },
     "Offline": {
       "offline": "Offline",

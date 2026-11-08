@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { AlgorithmCollection } from '@/features/algorithms-list/model/types'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
-import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
+import type { PuzzleVizConfig } from '@/shared/types/puzzleViz'
 import { cn } from '@/shared/lib/utils'
 import { Check } from 'lucide-react'
 import { buildVizConfig } from '@/features/trainer/lib/trainerUtils'
@@ -17,14 +17,14 @@ import { buildVizConfig } from '@/features/trainer/lib/trainerUtils'
 interface TrainerPickCasesModalProps {
   algorithms: AlgorithmCollection[]
   initialSelected: Set<string>
-  vizConfig?: Partial<TwistyPlayer>
+  vizConfig?: PuzzleVizConfig
   puzzle: string
   onApply: (next: Set<string>) => void
 }
 
 interface CaseTileProps {
   alg: AlgorithmCollection
-  config: Partial<TwistyPlayer>
+  config: PuzzleVizConfig
   isSelected: boolean
   onToggle: (id: string) => void
 }
@@ -98,7 +98,7 @@ export default function TrainerPickCasesModal({
   const allSelected = allIds.length > 0 && allIds.every((id) => selected.has(id))
 
   const configById = useMemo(() => {
-    const map = new Map<string, Partial<TwistyPlayer>>()
+    const map = new Map<string, PuzzleVizConfig>()
     for (const alg of algorithms) {
       map.set(alg.id, buildVizConfig(puzzle, alg.algs[0]?.moves ?? '', vizConfig as Record<string, unknown>))
     }

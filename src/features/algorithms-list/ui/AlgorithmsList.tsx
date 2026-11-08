@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react'
 import { useRouter } from '@/shared/config/i18n/navigation'
 import { groupBy } from 'es-toolkit'
 import { Badge } from '@/components/ui/badge'
-import { PuzzleID, TwistyPlayer } from '@rednaxela101/cubing/twisty'
+import type { PuzzleId, PuzzleVizConfig } from '@/shared/types/puzzleViz'
 import AlgorithmCard from '@/features/algorithms-list/ui/algorithm-card'
 import { AlgorithmCollection } from '@/features/algorithms-list/model/types'
 import { Filter } from 'lucide-react'
@@ -16,8 +16,8 @@ import { setTrainerLearned } from '@/features/trainer/model/mutateTrainerLearned
 
 interface AlgorithmsPageProps {
   algorithms: AlgorithmCollection[]
-  virtualization?: TwistyPlayer
-  puzzle: PuzzleID
+  virtualization?: PuzzleVizConfig
+  puzzle: PuzzleId
   methodSlug?: string
 }
 

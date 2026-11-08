@@ -16,7 +16,6 @@ import { useTrainerLearned } from '@/features/trainer/model/useTrainerLearned'
 import { useTrainerPrefsStore } from '@/features/trainer/model/useTrainerPrefsStore'
 import { setTrainerLearned } from '@/features/trainer/model/mutateTrainerLearned'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
-import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import { useTrainerStore } from '@/features/trainer/model/useTrainerStore'
 import { useTrainerSession } from '@/features/trainer/model/useTrainerSession'
 import { useSmartCubeStore } from '@/features/smart-cube/model/useSmartCubeStore'
@@ -224,7 +223,7 @@ export default function TrainerExperience() {
         <TrainerPickCasesModal
           algorithms={set.algorithms}
           initialSelected={new Set(useTrainerStore.getState().pickedIds)}
-          vizConfig={set.virtualization as unknown as Partial<TwistyPlayer>}
+          vizConfig={set.virtualization}
           puzzle={set.puzzle}
           onApply={setPickedIds}
         />

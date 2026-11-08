@@ -1,5 +1,5 @@
 import { CubeCategory } from '@/shared/const/cube-categories'
-import { PuzzleID } from '@rednaxela101/cubing/twisty'
+import type { PuzzleId } from '@/shared/types/puzzleViz'
 import type { CrossHint } from '@nexustimer/cube-solver-rs'
 
 export type CrossHints = {
@@ -37,6 +37,6 @@ export type CubeCollection = {
   id: number
   name: CubeCategory
   src: any
-  displayId: PuzzleID
+  displayId: PuzzleId
   twistyId: TwistyTimerEvent
 }

@@ -151,7 +151,7 @@ export const ALGORITHM_SET_CATALOG = [
     difficulty: 2,
     file: 'ble.ts',
     virtualization: {
-      experimentalStickering: 'OLL'
+      experimentalStickering: 'OLL-F2L'
     }
   },
   {
@@ -162,7 +162,7 @@ export const ALGORITHM_SET_CATALOG = [
     puzzle: '3x3x3',
     difficulty: 2,
     virtualization: {
-      experimentalStickering: 'OLL',
+      experimentalStickering: 'OLL-F2L',
       visualization: '3D',
       experimentalDragInput: 'none'
     },
@@ -176,7 +176,7 @@ export const ALGORITHM_SET_CATALOG = [
     puzzle: '3x3x3',
     difficulty: 2,
     virtualization: {
-      experimentalStickering: 'OLL',
+      experimentalStickering: 'OLL-F2L',
       visualization: '3D',
       experimentalDragInput: 'none'
     },
@@ -190,7 +190,7 @@ export const ALGORITHM_SET_CATALOG = [
     puzzle: '3x3x3',
     difficulty: 2,
     virtualization: {
-      experimentalStickering: 'OLL',
+      experimentalStickering: 'OLL-F2L',
       visualization: '3D',
       experimentalDragInput: 'none'
     },
@@ -218,7 +218,7 @@ export const ALGORITHM_SET_CATALOG = [
     puzzle: '3x3x3',
     difficulty: 3,
     virtualization: {
-      experimentalStickering: 'OLL',
+      experimentalStickering: 'OLL-F2L',
       visualization: '3D',
       experimentalDragInput: 'none'
     },

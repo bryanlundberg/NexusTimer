@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { merge } from 'es-toolkit'
-import { PuzzleID, TwistyPlayer } from '@rednaxela101/cubing/twisty'
+import type { PuzzleId, PuzzleVizConfig } from '@/shared/types/puzzleViz'
 import { ChevronDown, Play } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
@@ -18,8 +18,8 @@ import { AlgorithmCollection } from '@/features/algorithms-list/model/types'
 
 interface AlgorithmCardProps {
   algorithm: AlgorithmCollection
-  virtualization?: TwistyPlayer
-  puzzle: PuzzleID
+  virtualization?: PuzzleVizConfig
+  puzzle: PuzzleId
   isLearned?: boolean
   onToggleLearned?: () => void
   className?: string
@@ -51,9 +51,9 @@ export default function AlgorithmCard({
             alg: primary?.moves,
             experimentalStickering: 'OLL'
           },
-          (virtualization ?? {}) as Partial<TwistyPlayer>
+          (virtualization ?? {}) as PuzzleVizConfig
         )
-      ) as unknown as Partial<TwistyPlayer>,
+      ),
     [primary?.moves, virtualization]
   )
 

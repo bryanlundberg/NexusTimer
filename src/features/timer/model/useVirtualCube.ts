@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { TwistyPlayer } from '@rednaxela101/cubing/twisty'
+import { useCallback, useEffect, useMemo } from 'react'
 import { CubeEngine, type CubeSize } from 'cube-state-engine'
-import { disposeTwistyPlayer } from '@/shared/lib/twisty/disposeTwistyPlayer'
+import type { Cube3dRequest } from '@/shared/lib/puzzle/cube3dRequest'
+import type { MovePlayer } from '@/shared/lib/puzzle/movePlayer'
+import { useCube3d } from '@/shared/ui/puzzle/useCube3d'
 
 type HintFacelets = 'auto' | 'floating' | 'none'
 
@@ -18,105 +19,45 @@ interface UseVirtualCubeArgs {
 
 const PLAYER_SIZE_PX = 'min(320px, 30vw)'
 
-interface PlayerOptions {
-  seed?: boolean
-  tempoScale?: number
-  dragInput?: 'auto' | 'none'
-  sizePx?: string
-  cameraDistance?: number
-  hintFacelets?: HintFacelets
-}
-
-const buildPlayer = (cubeSize: CubeSize, scramble: string | null, opts?: PlayerOptions) => {
-  const player = new TwistyPlayer({
-    puzzle: cubeSize === 2 ? '2x2x2' : '3x3x3',
-    controlPanel: 'none',
-    hintFacelets: opts?.hintFacelets ?? 'none',
-    tempoScale: opts?.tempoScale ?? 3,
-    background: 'none',
-    ...(opts?.cameraDistance != null ? { cameraDistance: opts.cameraDistance } : {}),
-    ...(opts?.dragInput ? { experimentalDragInput: opts.dragInput } : {})
-  })
-  const size = opts?.sizePx ?? PLAYER_SIZE_PX
-  player.style.width = size
-  player.style.height = size
-  if (opts?.seed !== false && scramble) {
-    try {
-      player.experimentalSetupAlg = scramble
-    } catch {}
-  }
-  return player
-}
-
 export function useVirtualCube({
   cubeSize,
   scramble,
   seed = true,
-  tempoScale,
+  tempoScale = 3,
   dragInput,
-  sizePx,
+  sizePx = PLAYER_SIZE_PX,
   cameraDistance,
-  hintFacelets
+  hintFacelets = 'none'
 }: UseVirtualCubeArgs) {
-  const containerRef = useRef<HTMLDivElement | null>(null)
-  const [player, setPlayer] = useState<TwistyPlayer | null>(null)
-  const [engine, setEngine] = useState<CubeEngine | null>(null)
+  const initial = useMemo<Cube3dRequest>(
+    () => ({ size: cubeSize, alg: seed && scramble ? scramble : '', stickering: 'full', lastLayer: 'U' }),
+    [cubeSize, scramble, seed]
+  )
+  const { canvasRef, handle } = useCube3d({
+    initial,
+    tempoScale,
+    cameraDistance,
+    dragInput: dragInput !== 'none',
+    hintFacelets: hintFacelets !== 'none',
+    ownContext: true
+  })
+  const engine = useMemo(() => new CubeEngine('', { size: cubeSize }), [cubeSize])
 
   useEffect(() => {
-    if (!containerRef.current) return
-
-    disposeTwistyPlayer(player)
-
-    const newEngine = new CubeEngine('', { size: cubeSize })
-    const newPlayer = buildPlayer(cubeSize, scramble, {
-      seed,
-      tempoScale,
-      dragInput,
-      sizePx,
-      cameraDistance,
-      hintFacelets
-    })
-    containerRef.current.appendChild(newPlayer)
-
-    if (seed && scramble) {
-      try {
-        newEngine.reset()
-        newEngine.applyMoves(scramble)
-      } catch {}
-    }
-
-    setPlayer(newPlayer)
-    setEngine(newEngine)
-
-    return () => {
-      disposeTwistyPlayer(newPlayer)
-    }
-  }, [cubeSize])
+    handle?.show(initial)
+  }, [handle, initial])
 
   useEffect(() => {
-    if (!seed) return
-    if (!player || !engine || !scramble) return
+    if (!seed || !scramble) return
     try {
-      player.experimentalSetupAlg = scramble
       engine.reset()
       engine.applyMoves(scramble)
     } catch {}
-  }, [player, engine, scramble, seed])
+  }, [engine, scramble, seed])
 
-  const recreatePlayer = useCallback(() => {
-    if (!containerRef.current) return
-    disposeTwistyPlayer(player)
-    const newPlayer = buildPlayer(cubeSize, scramble, {
-      seed,
-      tempoScale,
-      dragInput,
-      sizePx,
-      cameraDistance,
-      hintFacelets
-    })
-    containerRef.current.appendChild(newPlayer)
-    setPlayer(newPlayer)
-  }, [player, cubeSize, scramble, seed, tempoScale, dragInput, sizePx, cameraDistance, hintFacelets])
+  const recreatePlayer = useCallback(() => handle?.show(initial), [handle, initial])
+  const player: MovePlayer | null = handle
+  const canvasStyle = useMemo(() => ({ width: sizePx, height: sizePx, display: 'block' }), [sizePx])
 
-  return { containerRef, player, engine, recreatePlayer }
+  return { canvasRef, canvasStyle, player, engine, recreatePlayer }
 }

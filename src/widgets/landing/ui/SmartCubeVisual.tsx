@@ -6,7 +6,7 @@ import * as m from 'motion/react-m'
 import { Bluetooth } from 'lucide-react'
 import { cn } from '@/shared/lib/utils'
 import { DEMO_SEQUENCE } from '../lib/cubeMoves'
-import TwistyCube from './TwistyCube'
+import LandingCube from './LandingCube'
 
 const PAUSE_MS = 450
 const LOG_SIZE = 4
@@ -38,7 +38,7 @@ export default function SmartCubeVisual() {
   return (
     <div ref={ref} className="flex h-32 items-center gap-3">
       <span className="shrink-0">
-        <TwistyCube size={104} load={inView} move={move} step={step} onTurned={handleTurned} />
+        <LandingCube size={104} load={inView} move={move} step={step} onTurned={handleTurned} />
       </span>
 
       <span className="flex size-6 shrink-0 items-center justify-center bg-foreground">

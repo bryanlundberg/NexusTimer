@@ -2,7 +2,6 @@
 
 import { merge } from 'es-toolkit'
 import { useEffect, useRef, useState } from 'react'
-import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
 import { applyYellowOrientation } from '@/shared/lib/algorithms/vizConfig'
 import type { ALGORITHM_SET } from '@/shared/const/algorithms-sets'
@@ -30,7 +29,7 @@ export default function PeopleCaseVisual({ set, item }: { set: ALGORITHM_SET; it
     return () => observer.disconnect()
   }, [inView])
 
-  const viz = set.virtualization as unknown as Partial<TwistyPlayer>
+  const viz = set.virtualization
   const config = applyYellowOrientation(
     merge(
       {
@@ -44,7 +43,7 @@ export default function PeopleCaseVisual({ set, item }: { set: ALGORITHM_SET; it
       },
       viz
     )
-  ) as unknown as Partial<TwistyPlayer>
+  )
 
   return (
     <div className="flex flex-col items-center gap-1">

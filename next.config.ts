@@ -17,6 +17,7 @@ const nextConfig: NextConfig = {
     '@nexustimer/algorithms',
     '@nexustimer/avatars',
     '@nexustimer/contracts',
+    '@nexustimer/cubelet',
     '@nexustimer/stats',
     '@nexustimer/tnoodle-lib-rs'
   ],

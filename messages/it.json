@@ -12,7 +12,9 @@
       "select-cube": "Seleziona cubo",
       "no-solves": "Ancora nessun solve",
       "show": "Mostra solve",
-      "hide": "Nascondi solve"
+      "hide": "Nascondi solve",
+      "open-details": "Apri dettagli",
+      "confirm-delete": "Clicca di nuovo per eliminare"
     },
     "Offline": {
       "offline": "Offline",

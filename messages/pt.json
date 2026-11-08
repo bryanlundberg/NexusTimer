@@ -12,7 +12,9 @@
       "select-cube": "Selecionar Cubo",
       "no-solves": "Ainda sem tempos",
       "show": "Mostrar tempos",
-      "hide": "Ocultar tempos"
+      "hide": "Ocultar tempos",
+      "open-details": "Abrir detalhes",
+      "confirm-delete": "Clique de novo para excluir"
     },
     "CubesIntro": {
       "content": "Registre cada cubo e troque entre eles com confiança: cada categoria continua sendo uma única sequência, e você sempre saberá sua média com cada cubo.",

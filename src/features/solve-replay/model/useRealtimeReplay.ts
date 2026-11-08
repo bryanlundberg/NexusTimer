@@ -1,15 +1,15 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import type { SolveReplay } from '@/entities/replay/model/types'
+import type { ReplayView } from '@/features/solve-replay/model/replayView'
 
 export type ReplayStatus = 'idle' | 'playing' | 'paused' | 'done'
 
 interface UseRealtimeReplayArgs {
-  player: TwistyPlayer | null
+  view: ReplayView | null
   replay: SolveReplay | null | undefined
 }
 
-export function useRealtimeReplay({ player, replay }: UseRealtimeReplayArgs) {
+export function useRealtimeReplay({ view, replay }: UseRealtimeReplayArgs) {
   const [status, setStatus] = useState<ReplayStatus>('idle')
   const [index, setIndex] = useState(0)
 
@@ -28,25 +28,19 @@ export function useRealtimeReplay({ player, replay }: UseRealtimeReplayArgs) {
 
   const render = useCallback(
     (n: number) => {
-      if (!player || !replay) return n
+      if (!view || !replay) return n
       const clamped = Math.max(0, Math.min(n, replay.moves.length))
-      try {
-        player.alg = replay.moves
-          .slice(0, clamped)
-          .map((move) => move.m)
-          .join(' ')
-        player.jumpToEnd()
-      } catch {}
+      view.jumpTo(replay.moves.slice(0, clamped).map((move) => move.m))
       idxRef.current = clamped
       lastMoveTimeRef.current = clamped === 0 ? 0 : replay.moves[clamped - 1].t
       setIndex(clamped)
       return clamped
     },
-    [player, replay]
+    [view, replay]
   )
 
   const scheduleNext = useCallback(() => {
-    if (!player || !replay) return
+    if (!view || !replay) return
     const { moves } = replay
     if (idxRef.current >= moves.length) {
       setStatus('done')
@@ -56,25 +50,23 @@ export function useRealtimeReplay({ player, replay }: UseRealtimeReplayArgs) {
     const delay = Math.max(0, target - lastMoveTimeRef.current)
     timeoutRef.current = window.setTimeout(() => {
       const move = moves[idxRef.current]
-      try {
-        player.experimentalAddMove(move.m)
-      } catch {}
+      view.animate(move.m)
       lastMoveTimeRef.current = move.t
       idxRef.current += 1
       setIndex(idxRef.current)
       scheduleNext()
     }, delay)
-  }, [player, replay])
+  }, [view, replay])
 
   const playFrom = useCallback(
     (start: number) => {
-      if (!player || !replay || replay.moves.length === 0) return
+      if (!view || !replay || replay.moves.length === 0) return
       clearPending()
       render(start)
       setStatus('playing')
       scheduleNext()
     },
-    [player, replay, clearPending, render, scheduleNext]
+    [view, replay, clearPending, render, scheduleNext]
   )
 
   const pause = useCallback(() => {
@@ -101,7 +93,7 @@ export function useRealtimeReplay({ player, replay }: UseRealtimeReplayArgs) {
     else playFrom(idxRef.current)
   }, [status, total, pause, playFrom])
 
-  useEffect(() => clearPending, [clearPending, player, replay])
+  useEffect(() => clearPending, [clearPending, view, replay])
 
   return { status, index, total, toggle, pause, restart, next, prev, seek }
 }

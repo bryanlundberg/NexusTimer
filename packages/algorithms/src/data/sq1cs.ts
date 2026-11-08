@@ -670,8 +670,8 @@ export const SQ1CS_ALGS: AlgorithmCollection[] = [
     idMethod,
     puzzle,
     group: '5 Slices',
-    setup: '/ (3,0) / (1,0) / (-4,0) / (2,3) /',
-    algs: [{ moves: '/ (4,0) / (2,-3) / (-1,-2) / (-3,0) /', id: '2dcde3c1-31c2-439d-a2af-ad75fcf53d7a' }]
+    setup: '/ (3,3) / (1,2) / (-2,0) / (-4,1) /',
+    algs: [{ moves: '/ (4,-1) / (2,0) / (-1,-2) / (-3,-3) /', id: '2dcde3c1-31c2-439d-a2af-ad75fcf53d7a' }]
   },
   {
     name: 'Parallel Edges / 3-2-1',
@@ -679,8 +679,8 @@ export const SQ1CS_ALGS: AlgorithmCollection[] = [
     idMethod,
     puzzle,
     group: '5 Slices',
-    setup: '/ (3,3) / (1,2) / (-2,0) / (-4,1) /',
-    algs: [{ moves: '/ (-3,-2) / (1,2) / (0,3) / (-1,1)', id: '25f88861-a1b1-4091-acae-5524be44eab4' }]
+    setup: '/ (3,0) / (1,0) / (-4,0) / (2,3) /',
+    algs: [{ moves: '/ (-2,-3) / (4,0) / (-1,0) / (-3,0) /', id: '25f88861-a1b1-4091-acae-5524be44eab4' }]
   },
   {
     name: '3-1-2 / Parallel Edges',
@@ -689,7 +689,7 @@ export const SQ1CS_ALGS: AlgorithmCollection[] = [
     puzzle,
     group: '5 Slices',
     setup: '/ (3,3) / (-1,-2) / (2,0) / (4,-1) /',
-    algs: [{ moves: '/ (2,3) / (-2,-1) / (-3,0) / (-1,1)', id: '95a3bf20-c5a6-4918-89bd-3aca919e4d4b' }]
+    algs: [{ moves: '/ (-4,1) / (-2,0) / (1,2) / (-3,-3) /', id: '95a3bf20-c5a6-4918-89bd-3aca919e4d4b' }]
   },
   {
     name: 'Parallel Edges / 3-1-2',
@@ -698,7 +698,7 @@ export const SQ1CS_ALGS: AlgorithmCollection[] = [
     puzzle,
     group: '5 Slices',
     setup: '/ (3,0) / (1,0) / (0,-1) / (-2,-3) /',
-    algs: [{ moves: '/ (3,2) / (-1,-2) / (0,-3) /', id: '01804f47-0f62-47c7-9cb9-79f6e07a763e' }]
+    algs: [{ moves: '/ (2,3) / (0,1) / (-1,0) / (-3,0) /', id: '01804f47-0f62-47c7-9cb9-79f6e07a763e' }]
   },
   {
     name: '3-3 / Parallel Edges',
@@ -923,7 +923,7 @@ export const SQ1CS_ALGS: AlgorithmCollection[] = [
     puzzle,
     group: '5 Slices',
     setup: '/ (3,3) / (-1,-2) / (0,-2) / (1,0) /',
-    algs: [{ moves: '/ (0,-1) / (0,2) / (1,2) / (-3,-3) /', id: '1cfac09a-1f91-4a47-a4f3-7406e2ea8f11' }]
+    algs: [{ moves: '/ (-1,0) / (0,2) / (1,2) / (-3,-3) /', id: '1cfac09a-1f91-4a47-a4f3-7406e2ea8f11' }]
   },
   {
     name: 'Left paw / Muffin',
@@ -1255,7 +1255,7 @@ export const SQ1CS_ALGS: AlgorithmCollection[] = [
     idMethod,
     puzzle,
     group: '6 Slices',
-    setup: '/ (3,0) / (1,2) / (-2,0) / (2,1) / (-4,0) / (0,-1)',
+    setup: '/ (3,0) / (1,2) / (-2,0) / (2,1) / (-4,0) / (0,-1) / (0,1)',
     algs: [
       {
         moves: '(0,-1) / (0,1) / (4,0) / (-2,-1) / (2,0) / (-1,-2) / (-3,0) /',
@@ -1269,7 +1269,7 @@ export const SQ1CS_ALGS: AlgorithmCollection[] = [
     idMethod,
     puzzle,
     group: '6 Slices',
-    setup: '/ (0,-3) / (-2,-1) / (0,2) / (-1,-2) / (0,4) / (1,0)',
+    setup: '/ (0,-3) / (-2,-1) / (0,2) / (-1,-2) / (0,4) / (1,0) / (-1,0)',
     algs: [
       {
         moves: '(1,0) / (-1,0) / (0,-4) / (1,2) / (0,-2) / (2,1) / (0,3) /',

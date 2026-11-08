@@ -58,7 +58,7 @@ export default function TrainerSmartTimer({ connection }: TrainerSmartTimerProps
     [set, currentAlg]
   )
 
-  const { containerRef, player, engine, recreatePlayer } = useVirtualCube({
+  const { canvasRef, canvasStyle, player, engine, recreatePlayer } = useVirtualCube({
     cubeSize: CUBE_SIZE,
     scramble: null,
     seed: false,
@@ -156,7 +156,7 @@ export default function TrainerSmartTimer({ connection }: TrainerSmartTimerProps
           <AlgorithmRender config={vizConfig} width="100%" height="100%" className="size-full" />
         </div>
         {/* Live physical cube tracking. */}
-        <div ref={containerRef} className="overflow-hidden" />
+        <canvas ref={canvasRef} style={canvasStyle} className="overflow-hidden" />
       </div>
 
       <div className="flex items-center gap-2">

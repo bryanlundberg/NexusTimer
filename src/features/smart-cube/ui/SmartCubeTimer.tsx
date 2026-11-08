@@ -25,7 +25,7 @@ export function SmartCubeTimer({ connection, secondaryActions }: SmartCubeTimerP
   const solveStats = useSmartSessionStore((store) => store.solveStats)
   const resync = useSmartSessionStore((store) => store.resync)
 
-  const { containerRef, player } = useSmartCubePlayer()
+  const { canvasRef, canvasStyle, player } = useSmartCubePlayer()
   const { active: gyroActive, resetOrientation } = useSmartCubeGyro({ player, connection })
 
   const syncSolved = useCallback(() => {
@@ -41,7 +41,7 @@ export function SmartCubeTimer({ connection, secondaryActions }: SmartCubeTimerP
 
   return (
     <div className="grow flex flex-col items-center justify-center gap-1.5 sm:gap-3">
-      <div ref={containerRef} className="overflow-hidden" />
+      <canvas ref={canvasRef} style={canvasStyle} className="overflow-hidden" />
 
       {phase === 'inspecting' && inspectionTime != null ? (
         <div className="text-5xl sm:text-7xl tabular-nums font-semibold text-timer-inspect">

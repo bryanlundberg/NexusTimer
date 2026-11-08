@@ -12,7 +12,9 @@
       "select-cube": "Sélectionner un cube",
       "no-solves": "Aucun temps",
       "show": "Afficher les temps",
-      "hide": "Masquer les temps"
+      "hide": "Masquer les temps",
+      "open-details": "Voir les détails",
+      "confirm-delete": "Cliquez à nouveau pour supprimer"
     },
     "CubesIntro": {
       "content": "Enregistrez chaque cube et passez de l'un à l'autre en toute confiance : chaque catégorie reste une seule séquence, et vous saurez toujours votre moyenne avec chaque cube.",
