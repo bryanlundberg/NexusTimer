@@ -24,6 +24,7 @@ import { useTimerRailStore } from '@/features/timer-solves-rail/model/useTimerRa
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import SolveDetails from '@/features/manage-solves/ui/SolveDetails'
 import SolvesTrend from '@/shared/ui/solves-trend/SolvesTrend'
+import SolveRowMenu from '@/features/timer-solves-rail/ui/SolveRowMenu'
 
 type RailTab = 'category' | 'cube'
 
@@ -43,6 +44,7 @@ export default function TimerSolvesRail() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const open = useOverlayStore((state) => state.open)
   const t = useTranslations('Index.SolvesRail')
+  const [menu, setMenu] = useState<{ id: string; x: number; y: number } | null>(null)
 
   const openSolveDetails = (solve: Solve) => {
     open({ id: 'solve-details', metadata: { ...solve }, component: <SolveDetails /> })
@@ -123,6 +125,19 @@ export default function TimerSolvesRail() {
       }
     })
   }, [solves, bestTime, bestAo5, bestAo12])
+
+  const menuSolve = menu ? solves.find((solve) => solve.id === menu.id) : undefined
+
+  const openRowMenu = (event: React.MouseEvent<HTMLButtonElement>, solve: Solve) => {
+    event.preventDefault()
+    const fromKeyboard = event.clientX === 0 && event.clientY === 0
+    const rect = event.currentTarget.getBoundingClientRect()
+    setMenu({
+      id: solve.id,
+      x: fromKeyboard ? rect.left : event.clientX,
+      y: fromKeyboard ? rect.bottom : event.clientY
+    })
+  }
 
   const virtualizer = useVirtualizer({
     count: rows.length,
@@ -225,9 +240,11 @@ export default function TimerSolvesRail() {
                     <button
                       type="button"
                       onClick={() => openSolveDetails(solve)}
+                      onContextMenu={(event) => openRowMenu(event, solve)}
                       className={cn(
                         'relative grid h-full w-full cursor-pointer items-center gap-1.5 border-b border-border/50 px-2 text-left transition-colors hover:bg-accent/50',
-                        virtualRow.index === 0 && 'bg-accent/30'
+                        virtualRow.index === 0 && 'bg-accent/30',
+                        menu?.id === row.id && 'bg-accent/60'
                       )}
                       style={{ gridTemplateColumns: GRID_COLS }}
                     >
@@ -272,6 +289,16 @@ export default function TimerSolvesRail() {
           </div>
         )}
       </div>
+      {menu && menuSolve && (
+        <SolveRowMenu
+          key={`${menu.id}-${menu.x}-${menu.y}`}
+          solve={menuSolve}
+          x={menu.x}
+          y={menu.y}
+          onClose={() => setMenu(null)}
+          onOpenDetails={openSolveDetails}
+        />
+      )}
     </motion.aside>
   )
 }
