@@ -2,7 +2,7 @@ import { Appearance, type FaceletStickering } from '../puzzle/facelet-source'
 import { cubePieces, type CubePieces } from './cube-pieces'
 import { FACE_BY_NAME, type Face, type FaceName } from './faces'
 
-export const CUBE_STICKERING_PRESETS = ['full', 'OLL', 'PLL', 'F2L', 'L2E', 'centers-only'] as const
+export const CUBE_STICKERING_PRESETS = ['full', 'OLL', 'OLL-F2L', 'PLL', 'F2L', 'L2E', 'centers-only'] as const
 
 export type CubeStickeringPreset = (typeof CUBE_STICKERING_PRESETS)[number]
 
@@ -31,13 +31,16 @@ const touchesFace = (pieces: CubePieces, sticker: number, face: FaceName) =>
 
 type Rule = (facts: StickerFacts, sticker: number) => Appearance
 
+const oll: Rule = (facts, sticker) => {
+  if (!inLastLayer(facts, sticker)) return Appearance.Dim
+  if (facts.pieces.kindOf(sticker) === 'center') return Appearance.Regular
+  return facesLastLayer(facts, sticker) ? Appearance.Regular : Appearance.Ignored
+}
+
 const RULES: Readonly<Record<CubeStickeringPreset, Rule>> = {
   full: () => Appearance.Regular,
-  OLL: (facts, sticker) => {
-    if (!inLastLayer(facts, sticker)) return Appearance.Dim
-    if (facts.pieces.kindOf(sticker) === 'center') return Appearance.Regular
-    return facesLastLayer(facts, sticker) ? Appearance.Regular : Appearance.Ignored
-  },
+  OLL: oll,
+  'OLL-F2L': (facts, sticker) => (inLastLayer(facts, sticker) ? oll(facts, sticker) : Appearance.Regular),
   PLL: (facts, sticker) => (inLastLayer(facts, sticker) ? Appearance.Regular : Appearance.Dim),
   F2L: (facts, sticker) => (inLastLayer(facts, sticker) ? Appearance.Ignored : Appearance.Regular),
   L2E: (facts, sticker) => {
