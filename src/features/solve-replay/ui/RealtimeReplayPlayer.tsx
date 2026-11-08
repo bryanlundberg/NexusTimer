@@ -8,7 +8,7 @@ import type { SolveReplay } from '@/entities/replay/model/types'
 import type { ReplayView } from '@/features/solve-replay/model/replayView'
 import { useRealtimeReplay } from '@/features/solve-replay/model/useRealtimeReplay'
 import CubeReplayStage from '@/features/solve-replay/ui/CubeReplayStage'
-import TwistyReplayStage from '@/features/solve-replay/ui/TwistyReplayStage'
+import PuzzleReplayStage from '@/features/solve-replay/ui/PuzzleReplayStage'
 import { buildPlaybackReplay } from '@/features/solve-replay/lib/buildPlaybackReplay'
 import { cubeSizeOf } from '@/shared/lib/puzzle/renderCubeImage'
 
@@ -72,7 +72,7 @@ export function RealtimeReplayPlayer({
       {cubeSize ? (
         <CubeReplayStage replay={replay} cubeSize={cubeSize} size={size} tempoScale={tempoScale} onReady={setView} />
       ) : (
-        <TwistyReplayStage replay={replay} size={size} tempoScale={tempoScale} onReady={setView} />
+        <PuzzleReplayStage replay={replay} size={size} tempoScale={tempoScale} onReady={setView} />
       )}
 
       <div className="flex w-full flex-col gap-3">
