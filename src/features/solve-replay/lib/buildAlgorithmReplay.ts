@@ -3,26 +3,14 @@ import { invertAlgorithm, isSquare1Alg } from '@/shared/lib/algorithms/algNotati
 import { yellowOrientationSetupAlg } from '@/shared/lib/algorithms/vizConfig'
 import type { SolveReplay } from '@/entities/replay/model/types'
 
-/**
- * Square-1 moves cannot be split on whitespace, and a `(x,y)` tuple is a grouping
- * rather than a move: `experimentalAddMove` only takes moves, so feeding it the
- * tuple silently did nothing and only the `/` slices animated. Expanding the alg
- * turns each tuple into its `U_SQ_` / `D_SQ_` moves. Zero-amount halves (the `0`
- * in `(3,0)`) are dropped so they do not take a turn of playback doing nothing.
- */
-const square1TwistyMoves = (node: LeafNode): string[] => {
-  if (node.kind === 'slash') return ['/']
-  if (node.kind === 'move') return [formatMove(node)]
-  return [
-    { kind: 'move' as const, family: 'U_SQ_', amount: node.first },
-    { kind: 'move' as const, family: 'D_SQ_', amount: node.second }
-  ]
-    .filter((move) => move.amount !== 0)
-    .map(formatMove)
+const square1Token = (node: LeafNode): string => {
+  if (node.kind === 'slash') return '/'
+  if (node.kind === 'move') return formatMove(node)
+  return `(${node.first},${node.second})`
 }
 
 function tokenize(alg: string): string[] {
-  if (isSquare1Alg(alg)) return expandAlg(parseAlg(alg)).flatMap(square1TwistyMoves)
+  if (isSquare1Alg(alg)) return expandAlg(parseAlg(alg)).map(square1Token)
   return alg.replace(/[()]/g, '').trim().split(/\s+/).filter(Boolean)
 }
 

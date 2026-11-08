@@ -1,5 +1,4 @@
-import { Alg } from '@rednaxela101/cubing/alg'
-import { puzzles } from '@rednaxela101/cubing/puzzles'
+import { square1, type Square1State } from '@nexustimer/cubelet/square1'
 import { buildAlgorithmReplay } from '@/features/solve-replay/lib/buildAlgorithmReplay'
 import { cleanMoves, invertAlgorithm, isSquare1Alg } from '@/features/trainer/lib/trainerUtils'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
@@ -19,47 +18,39 @@ describe('isSquare1Alg', () => {
 })
 
 describe('buildAlgorithmReplay', () => {
-  it('expands Square-1 tuples into the moves the player can animate', () => {
+  it('keeps each Square-1 tuple as one move so both layers turn together', () => {
     const replay = buildAlgorithmReplay('/ (3,0) / (-1,1)', 'square1', MOVE_MS)
 
-    // A `(x,y)` tuple is a grouping, not a move: `experimentalAddMove` ignores it,
-    // which is why only the `/` slices used to turn. The `0` half is dropped.
-    expect(replay?.moves.map((move) => move.m)).toEqual(['/', 'U_SQ_3', '/', "U_SQ_'", 'D_SQ_'])
+    expect(replay?.moves.map((move) => move.m)).toEqual(['/', '(3,0)', '/', '(-1,1)'])
   })
 
   it('opens on the case so playing the algorithm solves it', () => {
-    // Same state the thumbnail shows: the inverted alg, plus the yellow-layer
-    // rotation on the puzzles that get one.
     expect(buildAlgorithmReplay('/ (3,0) / (-1,1)', 'square1', MOVE_MS)?.scramble).toBe('(1, -1) / (-3, 0) /')
     expect(buildAlgorithmReplay("R U R' U'", '3x3x3', MOVE_MS)?.scramble).toBe("z2 U R U' R'")
     expect(buildAlgorithmReplay("R U R' U'", '5x5x5', MOVE_MS)?.scramble).toBe("U R U' R'")
   })
 
-  it('leaves the puzzle in the same state as the original Square-1 alg', async () => {
-    const kpuzzle = await puzzles['square1'].kpuzzle()
+  it('ends solved when every Square-1 preview is played move by move from its scramble', () => {
+    const failures: string[] = []
 
-    for (const alg of ['/ (3,0) / (-1,1)', '(1,0) / (-3,-3) / (0,2)', '(0,-1) / (1,1) / (-1,0)']) {
-      const replay = buildAlgorithmReplay(alg, 'square1', MOVE_MS)
-      const played = new Alg(replay!.moves.map((move) => move.m).join(' '))
-
-      expect(
-        kpuzzle
-          .defaultPattern()
-          .applyAlg(played)
-          .isIdentical(kpuzzle.defaultPattern().applyAlg(new Alg(alg)))
-      ).toBe(true)
+    for (const set of ALGORITHM_SETS.filter((entry) => entry.puzzle === 'square1')) {
+      for (const collection of set.algorithms) {
+        for (const alg of collection.algs) {
+          const replay = buildAlgorithmReplay(alg.moves, 'square1', MOVE_MS)!
+          try {
+            const end = replay.moves.reduce<Square1State>(
+              (state, move) => state.apply(square1.compile(move.m)),
+              square1.solved().apply(square1.compile(replay.scramble))
+            )
+            if (!end.isSolved()) failures.push(`${set.slug} / ${collection.name}: ${alg.moves}`)
+          } catch {
+            failures.push(`${set.slug} / ${collection.name}: ${alg.moves} (rejected)`)
+          }
+        }
+      }
     }
-  })
 
-  it('ends solved after playing a Square-1 preview from its scramble', async () => {
-    const kpuzzle = await puzzles['square1'].kpuzzle()
-
-    for (const alg of ['/ (3,0) / (-1,1)', '(1,0) / (-3,-3) / (0,2)', '(0,-1) / (1,1) / (-1,0)']) {
-      const replay = buildAlgorithmReplay(alg, 'square1', MOVE_MS)!
-      const played = new Alg([replay.scramble, ...replay.moves.map((move) => move.m)].join(' '))
-
-      expect(kpuzzle.defaultPattern().applyAlg(played).isIdentical(kpuzzle.defaultPattern())).toBe(true)
-    }
+    expect(failures).toEqual([])
   })
 
   it('still flattens NxN grouping parentheses into single moves', () => {
