@@ -2,7 +2,6 @@
 
 import { merge } from 'es-toolkit'
 import { useEffect, useRef, useState } from 'react'
-import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
 import { applyYellowOrientation } from '@/shared/lib/algorithms/vizConfig'
 import type { ALGORITHM_SET } from '@/shared/const/algorithms-sets'
@@ -32,7 +31,7 @@ export default function MethodThumbnail({ set, size = DEFAULT_SIZE }: { set: ALG
   }, [inView])
 
   const firstMoves = set.algorithms[0]?.algs[0]?.moves
-  const viz = set.virtualization as unknown as Partial<TwistyPlayer>
+  const viz = set.virtualization
 
   const config = applyYellowOrientation(
     merge(
@@ -46,7 +45,7 @@ export default function MethodThumbnail({ set, size = DEFAULT_SIZE }: { set: ALG
       },
       viz
     )
-  ) as unknown as Partial<TwistyPlayer>
+  )
 
   return (
     <div

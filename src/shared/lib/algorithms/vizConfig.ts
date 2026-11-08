@@ -1,5 +1,5 @@
 import { merge } from 'es-toolkit'
-import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
+import type { PuzzleVizConfig } from '@/shared/types/puzzleViz'
 import { invertAlgorithm } from '@/shared/lib/algorithms/algNotation'
 
 /**
@@ -44,15 +44,13 @@ const D_LAYER_MASKS: Record<string, Record<string, string>> = {
 
 const SUPPORTED_PUZZLES = new Set(['2x2x2', '3x3x3', '4x4x4'])
 
-type LooseViz = Partial<TwistyPlayer> & { experimentalStickering?: string; puzzle?: string }
-
 const normalizePuzzle = (puzzle: string): string =>
   puzzle === '2x2' ? '2x2x2' : puzzle === '3x3' ? '3x3x3' : puzzle === 'sq1' ? 'square1' : puzzle
 
 /**
  * The rotation that puts the yellow layer on top for a given puzzle, or `''` for
  * puzzles this module leaves alone (5x5, pyraminx). For renderers that
- * build their own TwistyPlayer instead of going through `applyYellowOrientation`.
+ * build their own scene instead of going through `applyYellowOrientation`.
  */
 export const yellowOrientationSetupAlg = (puzzle: string): string =>
   SUPPORTED_PUZZLES.has(normalizePuzzle(puzzle)) ? 'z2' : ''
@@ -78,12 +76,10 @@ export const yellowOrientationSetupAlg = (puzzle: string): string =>
  * algorithm text.
  */
 export const applyYellowOrientation = <T extends object>(config: T): T => {
-  const viz = config as LooseViz
+  const viz = config as PuzzleVizConfig
   const puzzle = normalizePuzzle(viz.puzzle ?? '3x3x3')
   const oriented = SUPPORTED_PUZZLES.has(puzzle)
-
-  // TwistyPlayer types `alg` as write-only, so it is read back off a loose shape.
-  const moves = String((config as { alg?: unknown }).alg ?? '')
+  const moves = String(viz.alg ?? '')
 
   let inverted: string
   try {

@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 import { notFound } from 'next/navigation'
-import { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import { AlgorithmsList } from '@/features/algorithms-list/ui/AlgorithmsList'
 import Suggestions from '@/shared/ui/suggestions/suggestions'
 import SuggestAlgorithmButton from '@/features/suggest-algorithm/ui/SuggestAlgorithmButton'
@@ -169,7 +168,7 @@ export default async function AlgorithmsMethodPage({ params }: Props) {
         />
         <AlgorithmsList
           algorithms={collection.algorithms}
-          virtualization={collection.virtualization as unknown as TwistyPlayer}
+          virtualization={collection.virtualization}
           puzzle={collection.puzzle}
           methodSlug={collection.slug}
         />

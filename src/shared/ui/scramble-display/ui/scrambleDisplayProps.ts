@@ -1,6 +1,6 @@
 import type React from 'react'
-import type { PuzzleID } from '@rednaxela101/cubing/twisty'
 import type { CubeCategory } from '@/shared/const/cube-categories'
+import type { PuzzleId } from '@/shared/types/puzzleViz'
 
 export interface ScrambleDisplayProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string
@@ -8,5 +8,5 @@ export interface ScrambleDisplayProps extends React.HTMLAttributes<HTMLDivElemen
   scramble: string | null
   event: CubeCategory
   visualization?: '2D' | '3D'
-  puzzle?: PuzzleID
+  puzzle?: PuzzleId
 }

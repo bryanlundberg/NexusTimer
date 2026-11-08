@@ -1,6 +1,6 @@
 import { merge } from 'es-toolkit'
 import dayjs from '@/shared/lib/dayjs'
-import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
+import type { PuzzleVizConfig } from '@/shared/types/puzzleViz'
 import { applyYellowOrientation } from '@/shared/lib/algorithms/vizConfig'
 import { isSquare1Alg } from '@/shared/lib/algorithms/algNotation'
 
@@ -63,7 +63,5 @@ export const buildVizConfig = (
   puzzle: string,
   algMoves: string,
   overrides?: Record<string, unknown>
-): Partial<TwistyPlayer> =>
-  applyYellowOrientation(
-    merge(merge(merge({}, VIZ_BASE), overrides ?? {}), { puzzle, alg: algMoves })
-  ) as unknown as Partial<TwistyPlayer>
+): PuzzleVizConfig =>
+  applyYellowOrientation(merge(merge(merge({}, VIZ_BASE), overrides ?? {}), { puzzle, alg: algMoves }))
