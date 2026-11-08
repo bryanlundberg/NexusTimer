@@ -9,8 +9,10 @@ import { SolveClockText } from '@/features/timer/ui/SolveClockText'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { timerFontClass } from '@/features/timer/model/timerFonts'
 import { cn } from '@/shared/lib/utils'
+import { useIsMobile } from '@/shared/model/use-mobile'
 
 const PLAYER_SIZE = 'min(320px, 30vw, max(8rem, 100cqh - 5rem))'
+const MOBILE_PLAYER_SIZE = 'min(92vw, 480px, max(8rem, 100cqh - 5rem))'
 
 export default function TimerVirtual() {
   const scramble = useTimerStore((store) => store.scramble)
@@ -18,6 +20,7 @@ export default function TimerVirtual() {
   const setNewScramble = useTimerStore((store) => store.setNewScramble)
   const setIsSolvingStore = useTimerStore((store) => store.setIsSolving)
   const timerFont = useSettingsStore((state) => state.settings.features.timerFont)
+  const isMobile = useIsMobile()
 
   const cubeSize = selectedCube?.category === '2x2' || selectedCube?.category === '2x2 Virtual' ? 2 : 3
   const is3x3 = cubeSize === 3
@@ -27,7 +30,7 @@ export default function TimerVirtual() {
     scramble,
     tempoScale: 3,
     hintFacelets: 'floating',
-    sizePx: PLAYER_SIZE
+    sizePx: isMobile ? MOBILE_PLAYER_SIZE : PLAYER_SIZE
   })
 
   const onAdvanceScramble = useCallback(() => {
