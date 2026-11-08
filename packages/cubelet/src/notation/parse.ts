@@ -3,6 +3,8 @@ import { AlgParseError } from './alg-parse-error'
 import type { Alg, AlgNode, GroupNode, MoveNode, TupleNode } from './ast'
 
 const MOVE = /(?:(\d+)-)?(\d+)?([A-Za-z_]+)(\d+)?(')?/y
+const DOUBLE_SIGN_MOVE = /([A-Za-z_]+)(\+\+|--)/y
+const SIGNED_AMOUNT_MOVE = /([A-Za-z_]+)(\d+)([+-])/y
 const TUPLE = /\(\s*(-?\d+)\s*,\s*(-?\d+)\s*\)/y
 const AMOUNT = /(\d+)?(')?/y
 const WHITESPACE = /\s*/y
@@ -61,6 +63,13 @@ class AlgParser {
   }
 
   #move(): MoveNode {
+    const doubleSign = this.#match(DOUBLE_SIGN_MOVE)
+    if (doubleSign) return { kind: 'move', family: `${doubleSign[1]}++`, amount: doubleSign[2] === '++' ? 1 : -1 }
+    const signed = this.#match(SIGNED_AMOUNT_MOVE)
+    if (signed) {
+      const magnitude = Number(signed[2])
+      return { kind: 'move', family: `${signed[1]}+`, amount: signed[3] === '+' ? magnitude : -magnitude }
+    }
     const match = this.#match(MOVE)
     if (!match) return this.#fail('Expected a move')
     const [, outer, inner, family, digits, prime] = match

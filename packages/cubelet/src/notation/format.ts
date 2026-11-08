@@ -6,8 +6,13 @@ export const formatAmount = (amount: number): string => {
   return amount < 0 ? `${-amount}'` : `${amount}`
 }
 
-export const formatMove = ({ family, amount, innerLayer, outerLayer }: MoveNode): string =>
-  `${outerLayer === undefined ? '' : `${outerLayer}-`}${innerLayer ?? ''}${family}${formatAmount(amount)}`
+export const formatMove = ({ family, amount, innerLayer, outerLayer }: MoveNode): string => {
+  if (family.endsWith('++') && amount === -1) return `${family.slice(0, -2)}--`
+  if (family.endsWith('+') && !family.endsWith('++')) {
+    return `${family.slice(0, -1)}${Math.abs(amount)}${amount < 0 ? '-' : '+'}`
+  }
+  return `${outerLayer === undefined ? '' : `${outerLayer}-`}${innerLayer ?? ''}${family}${formatAmount(amount)}`
+}
 
 const formatNode = (node: AlgNode): string => {
   switch (node.kind) {
