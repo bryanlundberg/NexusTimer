@@ -3,7 +3,7 @@ import { EDGE_PADDING, OUTLINE_WIDTH, sticker } from './cube-sticker-style'
 
 const FACE_GAP = 0.3
 
-const FACE_SLOTS: ReadonlyArray<readonly [column: number, row: number]> = [
+export const FACE_SLOTS: ReadonlyArray<readonly [column: number, row: number]> = [
   [1, 0],
   [2, 1],
   [1, 1],
