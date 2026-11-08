@@ -1664,6 +1664,7 @@
       "idle": "Idle"
     },
     "already-submitted": "Nakapag-submit ka na ng solve para sa scramble na ito. Hintayin ang susunod!",
+    "manual-time-too-long": "Mas mahaba ang oras na iyan kaysa sa itinatakbo ng round.",
     "inspection-on": "Naka-enable ang inspection",
     "inspection-off": "Naka-disable ang inspection",
     "current-round": "Kasalukuyang round",

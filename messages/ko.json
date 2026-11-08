@@ -1642,6 +1642,7 @@
       "idle": "대기"
     },
     "already-submitted": "이미 이 스크램블에 대한 기록을 제출했습니다. 다음을 기다려 주세요!",
+    "manual-time-too-long": "그 기록은 라운드가 진행된 시간보다 깁니다.",
     "inspection-on": "인스펙션 활성화됨",
     "inspection-off": "인스펙션 비활성화됨",
     "current-round": "현재 라운드",

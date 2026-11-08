@@ -1664,6 +1664,7 @@
       "idle": "Bezczynny"
     },
     "already-submitted": "Wysłałeś już ułożenie dla tego scramble'a. Poczekaj na następny!",
+    "manual-time-too-long": "Ten czas jest dłuższy niż dotychczasowy czas trwania rundy.",
     "inspection-on": "Inspekcja włączona",
     "inspection-off": "Inspekcja wyłączona",
     "current-round": "Bieżąca runda",

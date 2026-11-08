@@ -1642,6 +1642,7 @@
       "idle": "待機中"
     },
     "already-submitted": "このスクランブルの記録は送信済みです。次のラウンドを待ってください！",
+    "manual-time-too-long": "そのタイムはラウンドの経過時間より長いです。",
     "inspection-on": "インスペクション有効",
     "inspection-off": "インスペクション無効",
     "current-round": "現在のラウンド",

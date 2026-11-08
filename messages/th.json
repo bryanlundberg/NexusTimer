@@ -1664,6 +1664,7 @@
       "idle": "ว่าง"
     },
     "already-submitted": "คุณส่งการต่อสำหรับ scramble นี้ไปแล้ว รอรอบถัดไป!",
+    "manual-time-too-long": "เวลานั้นนานกว่าเวลาที่รอบนี้ดำเนินมา",
     "inspection-on": "เปิดการตรวจสอบแล้ว",
     "inspection-off": "ปิดการตรวจสอบแล้ว",
     "current-round": "รอบปัจจุบัน",

@@ -1664,6 +1664,7 @@
       "idle": "Inattivo"
     },
     "already-submitted": "Hai già inviato un solve per questo scramble. Aspetta il prossimo!",
+    "manual-time-too-long": "Quel tempo è più lungo della durata finora del round.",
     "inspection-on": "Ispezione abilitata",
     "inspection-off": "Ispezione disabilitata",
     "current-round": "Round attuale",

@@ -1642,6 +1642,7 @@
       "idle": "Warten"
     },
     "already-submitted": "Du hast für dieses Scramble bereits eine Zeit gesendet.",
+    "manual-time-too-long": "Diese Zeit ist länger, als die Runde bisher läuft.",
     "inspection-on": "Inspektion aktiviert",
     "inspection-off": "Inspektion deaktiviert",
     "current-round": "Aktuelle Runde",

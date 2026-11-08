@@ -1642,6 +1642,7 @@
       "idle": "Inativo"
     },
     "already-submitted": "Você já enviou um tempo para este embaralhamento.",
+    "manual-time-too-long": "Esse tempo é maior do que o tempo decorrido da rodada.",
     "inspection-on": "Inspeção ativada",
     "inspection-off": "Inspeção desativada",
     "current-round": "Rodada atual",

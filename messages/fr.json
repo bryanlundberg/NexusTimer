@@ -1642,6 +1642,7 @@
       "idle": "En attente"
     },
     "already-submitted": "Vous avez déjà envoyé un temps pour ce mélange.",
+    "manual-time-too-long": "Ce temps est plus long que la durée écoulée de la manche.",
     "inspection-on": "Inspection activée",
     "inspection-off": "Inspection désactivée",
     "current-round": "Tour actuel",

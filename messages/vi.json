@@ -1664,6 +1664,7 @@
       "idle": "Rảnh"
     },
     "already-submitted": "Bạn đã gửi một lượt giải cho scramble này rồi. Hãy chờ lượt tiếp theo!",
+    "manual-time-too-long": "Thời gian đó dài hơn thời gian vòng đấu đã diễn ra.",
     "inspection-on": "Đã bật quan sát",
     "inspection-off": "Đã tắt quan sát",
     "current-round": "Vòng hiện tại",

@@ -1664,6 +1664,7 @@
       "idle": "Inactivo"
     },
     "already-submitted": "Ya has enviado una resolución para este scramble. ¡Espera al siguiente!",
+    "manual-time-too-long": "Ese tiempo es mayor que lo que lleva la ronda en curso.",
     "inspection-on": "Inspección activada",
     "inspection-off": "Inspección desactivada",
     "current-round": "Ronda actual",

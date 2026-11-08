@@ -1664,6 +1664,7 @@
       "idle": "Diam"
     },
     "already-submitted": "Kamu sudah mengirim solve untuk scramble ini. Tunggu yang berikutnya!",
+    "manual-time-too-long": "Waktu itu lebih lama dari durasi ronde yang sudah berjalan.",
     "inspection-on": "Inspeksi diaktifkan",
     "inspection-off": "Inspeksi dinonaktifkan",
     "current-round": "Ronde saat ini",

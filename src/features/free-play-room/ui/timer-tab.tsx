@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useSession } from '@/shared/model/useSession'
 import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
 import { AnimatePresence, motion } from 'motion/react'
 import useTimer from '@/features/timer/model/useTimer'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
@@ -15,6 +16,7 @@ import { useScrambleSoundCue } from '@/features/free-play-room/model/useScramble
 import { useRoomStore } from '@/features/free-play-room/model/useRoomStore'
 import { forgetReportedStatus, reportRoomStatus } from '@/features/free-play-room/model/room-actions'
 import { type RoomPresence, toLocalTime, toSolvesByUser } from '@/features/free-play-room/model/room-view'
+import { maxManualTime } from '@/features/free-play-room/model/manual-time'
 import DisplayTime from '@/features/timer/ui/display-time'
 import ManualModeForm from '@/features/timer/ui/ManualModeForm'
 import ConfirmSolveModal from '@/features/free-play-room/ui/confirm-solve-modal'
@@ -85,6 +87,10 @@ export default function TimerTab({ event, onlineUsers }: TimerTabProps) {
   }
 
   const handleManualSubmit = (msTime: number) => {
+    if (msTime > maxManualTime(room, userId, clockOffset, Date.now())) {
+      toast.error(t('manual-time-too-long'))
+      return
+    }
     submitManual(msTime)
     finishSolve()
   }
