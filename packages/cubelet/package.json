@@ -6,9 +6,16 @@
   "sideEffects": false,
   "exports": {
     ".": "./src/index.ts",
+    "./clock": "./src/clock/index.ts",
+    "./fto": "./src/fto/index.ts",
+    "./megaminx": "./src/megaminx/index.ts",
     "./nxn": "./src/nxn/index.ts",
+    "./pyraminx": "./src/pyraminx/index.ts",
+    "./skewb": "./src/skewb/index.ts",
+    "./square1": "./src/square1/index.ts",
     "./svg": "./src/svg/index.ts",
-    "./webgl": "./src/webgl/index.ts"
+    "./webgl": "./src/webgl/index.ts",
+    "./webgl/poly": "./src/webgl/poly/index.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
