@@ -40,6 +40,25 @@ describe('cubeStickering', () => {
     expect(appearanceAt(state, 'OLL', at(3, U, 0, 0), 'D')).toBe(Appearance.Dim)
   })
 
+  it('OLL-F2L marks the last layer like OLL and keeps the whole F2L in color', () => {
+    const state = solved(3)
+    expect(appearanceAt(state, 'OLL-F2L', at(3, U, 1, 1))).toBe(Appearance.Regular)
+    expect(appearanceAt(state, 'OLL-F2L', at(3, U, 0, 0))).toBe(Appearance.Regular)
+    expect(appearanceAt(state, 'OLL-F2L', at(3, F, 0, 1))).toBe(Appearance.Ignored)
+    for (const row of [1, 2]) {
+      for (const col of [0, 1, 2]) expect(appearanceAt(state, 'OLL-F2L', at(3, F, row, col))).toBe(Appearance.Regular)
+    }
+    expect(appearanceAt(state, 'OLL-F2L', at(3, D, 1, 1))).toBe(Appearance.Regular)
+  })
+
+  it('OLL-F2L on the D layer marks the yellow pieces and keeps the white half in color', () => {
+    const state = solved(3)
+    expect(appearanceAt(state, 'OLL-F2L', at(3, D, 0, 0), 'D')).toBe(Appearance.Regular)
+    expect(appearanceAt(state, 'OLL-F2L', at(3, F, 2, 1), 'D')).toBe(Appearance.Ignored)
+    expect(appearanceAt(state, 'OLL-F2L', at(3, F, 0, 1), 'D')).toBe(Appearance.Regular)
+    expect(appearanceAt(state, 'OLL-F2L', at(3, U, 1, 1), 'D')).toBe(Appearance.Regular)
+  })
+
   it('PLL shows the whole last layer and dims the rest', () => {
     const state = solved(3)
     expect(appearanceAt(state, 'PLL', at(3, F, 0, 2))).toBe(Appearance.Regular)
