@@ -44,7 +44,6 @@
     "@radix-ui/react-tabs": "^1.2.1",
     "@radix-ui/react-tooltip": "^1.4.1",
     "@radix-ui/react-visually-hidden": "^1.2.13",
-    "@rednaxela101/cubing": "^0.63.11",
     "@tanstack/react-virtual": "^3.14.22",
     "better-auth": "^1.7.12",
     "class-variance-authority": "^0.7.1",
@@ -86,6 +85,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",
+    "@rednaxela101/cubing": "^0.63.11",
     "@serwist/turbopack": "^9.5.13",
     "@tailwindcss/postcss": "^4.3.3",
     "@testing-library/dom": "^10.4.2",
