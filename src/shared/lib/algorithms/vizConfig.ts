@@ -34,6 +34,9 @@ const D_LAYER_MASKS: Record<string, Record<string, string>> = {
     '2x2x2': 'CORNERS:DDDDOOOO',
     '3x3x3': 'EDGES:DDDDOOOODDDD,CORNERS:DDDDOOOO,CENTERS:DDDDD-'
   },
+  'OLL-F2L': {
+    '3x3x3': 'EDGES:----OOOO----,CORNERS:----OOOO,CENTERS:------'
+  },
   PLL: {
     '3x3x3': 'EDGES:DDDD----DDDD,CORNERS:DDDD----,CENTERS:DDDDD-'
   },
