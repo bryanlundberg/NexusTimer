@@ -55,7 +55,7 @@ export default function LeaderboardPage() {
         remainingMs={remainingMs}
       />
 
-      <PageBody variant="data" className="space-y-6">
+      <PageBody variant="data" className="mx-auto w-full max-w-4xl space-y-6 px-3">
         {isLoading || isRenderingRows ? (
           <LeaderboardTableSkeleton />
         ) : ranked.length === 0 ? (
