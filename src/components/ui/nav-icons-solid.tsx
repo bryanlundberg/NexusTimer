@@ -135,6 +135,15 @@ export function LeaderboardsNavIcon(props: IconProps) {
   )
 }
 
+export function FriendsLeaderboardNavIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path opacity={BACK} d="M2.75 13h5.5v8.25h-5.5zM15.75 15.5h5.5v5.75h-5.5z" />
+      <path d="M9.25 9.5h5.5v11.75h-5.5zM12 2.25a2.75 2.75 0 1 1 0 5.5 2.75 2.75 0 0 1 0-5.5z" />
+    </Svg>
+  )
+}
+
 export function FreePlayNavIcon(props: IconProps) {
   return (
     <Svg {...props}>
