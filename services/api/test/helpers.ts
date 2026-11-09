@@ -78,6 +78,7 @@ export function buildTestApp(overrides: Partial<AppDeps> = {}) {
     sessions: testSessions(),
     auth: testAuthServices(),
     leaderboards: { get: unused },
+    friendsLeaderboard: { get: unused },
     solves: { submit: unused },
     achievements: { rarity: unused },
     admin: {

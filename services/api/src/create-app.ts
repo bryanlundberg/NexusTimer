@@ -24,6 +24,8 @@ import { chatsRoutes } from './modules/chats/chats.routes'
 import type { ChatsService } from './modules/chats/chats.service'
 import { feedbackRoutes } from './modules/feedback/feedback.routes'
 import type { FeedbackService } from './modules/feedback/feedback.service'
+import { friendsLeaderboardRoutes } from './modules/friends-leaderboards/friends-leaderboards.routes'
+import type { FriendsLeaderboardService } from './modules/friends-leaderboards/friends-leaderboards.service'
 import { healthRoutes, type HealthChecks } from './modules/health/health.routes'
 import { profilesRoutes } from './modules/profiles/profiles.routes'
 import type { ProfilesService } from './modules/profiles/profiles.service'
@@ -60,6 +62,7 @@ export type AppDeps = {
   sessions: SessionReader
   auth: AuthServices
   leaderboards: LeaderboardsService
+  friendsLeaderboard: FriendsLeaderboardService
   search: SearchService
   trainer: TrainerService
   sharedSolves: SharedSolvesService
@@ -99,6 +102,7 @@ export function createApp(deps: AppDeps) {
   app.route('/health', healthRoutes(deps.checks))
   app.route('/', authRoutes(deps.auth))
   app.route('/v1/realtime', realtimeRoutes({ url: env.REALTIME_URL, secret: env.REALTIME_SECRET }, signedIn))
+  app.route('/v1/leaderboards/friends', friendsLeaderboardRoutes(deps.friendsLeaderboard, signedIn))
   app.route('/v1/leaderboards', leaderboardsRoutes(deps.leaderboards))
   app.route('/v1/solves', solvesRoutes(deps.solves, signedIn))
   app.route('/v1/achievements', achievementsRoutes(deps.achievements))

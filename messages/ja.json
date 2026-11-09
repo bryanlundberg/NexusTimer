@@ -651,7 +651,22 @@
         "no-data": "バックアップなし",
         "no-stats": "比較できるソルブがまだありません"
       },
-      "empty": "このカテゴリーにはまだ記録がありません。"
+      "empty": "このカテゴリーにはまだ記録がありません。",
+      "friends": {
+        "title": "フレンドランキング",
+        "description": "全カテゴリーで、自分のベスト単発と Ao5 をフレンドと比べられます。",
+        "metric-label": "指標",
+        "single": "単発",
+        "ao5": "Ao5",
+        "solves": "ソルブ数",
+        "solves-count": "{count} ソルブ",
+        "no-friends-title": "フレンドを追加して、誰が速いか比べましょう。",
+        "find-cubers": "キューバーを探す",
+        "empty": "このカテゴリーにはまだグループ内の記録がありません。",
+        "error": "ランキングを読み込めませんでした。少し待ってから再試行してください。",
+        "source-hint": "記録は各キューバーの最新バックアップから取得されるため、新記録は次のバックアップ後に反映されます。",
+        "categories-label": "カテゴリー"
+      }
     },
     "NavMain": {
       "platform": "プラットフォーム",
@@ -664,8 +679,8 @@
       "people": "ユーザー",
       "friends": "フレンド",
       "messages": "メッセージ",
-      "leaderboards": "ランキング",
-      "free-play": "フリープレイ",
+      "leaderboards": "全体ランキング",
+      "free-play": "ライブルーム",
       "install-app": "アプリをインストール",
       "settings": "設定",
       "account": "マイアカウント",
@@ -680,7 +695,10 @@
       "trainer": "トレーナー",
       "training": "トレーニング",
       "toggle-section": "{title}の表示を切り替え",
-      "toggle-sidebar": "サイドバーの表示を切り替え"
+      "toggle-sidebar": "サイドバーの表示を切り替え",
+      "friends-leaderboard": "フレンドランキング",
+      "social": "ソーシャル",
+      "compete": "競う"
     },
     "Presence": {
       "online": "オンライン",
@@ -1588,7 +1606,7 @@
     }
   },
   "Multiplayer": {
-    "title": "フリープレイ",
+    "title": "ライブルーム",
     "description": "リアルタイムで他のキューバーとソルブしましょう。ランキングを気にせず自由に練習できる場所です。",
     "new-room": "新しい部屋を作る",
     "no-active-rooms": "アクティブな部屋がありません",
