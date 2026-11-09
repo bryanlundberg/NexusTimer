@@ -651,7 +651,22 @@
         "no-data": "아직 백업 없음",
         "no-stats": "아직 비교할 기록이 없습니다"
       },
-      "empty": "이 카테고리에는 아직 기록이 없습니다."
+      "empty": "이 카테고리에는 아직 기록이 없습니다.",
+      "friends": {
+        "title": "친구 순위",
+        "description": "모든 종목에서 내 최고 싱글과 Ao5를 친구들과 비교하세요.",
+        "metric-label": "기준",
+        "single": "싱글",
+        "ao5": "Ao5",
+        "solves": "솔브",
+        "solves-count": "{count}회 솔브",
+        "no-friends-title": "친구를 추가해서 누가 더 빠른지 확인하세요.",
+        "find-cubers": "큐버 찾기",
+        "empty": "이 종목에는 아직 그룹 내 기록이 없습니다.",
+        "error": "순위를 불러오지 못했습니다. 잠시 후 다시 시도하세요.",
+        "source-hint": "기록은 각 큐버의 최신 백업에서 가져오므로, 새 기록은 다음 백업 후에 반영됩니다.",
+        "categories-label": "종목"
+      }
     },
     "NavMain": {
       "platform": "플랫폼",
@@ -664,8 +679,8 @@
       "people": "큐버들",
       "friends": "친구",
       "messages": "메시지",
-      "leaderboards": "순위표",
-      "free-play": "자유 연습",
+      "leaderboards": "전체 순위",
+      "free-play": "라이브 방",
       "install-app": "앱 설치",
       "settings": "설정",
       "account": "내 계정",
@@ -680,7 +695,10 @@
       "trainer": "트레이너",
       "training": "트레이닝",
       "toggle-section": "{title} 표시/숨기기",
-      "toggle-sidebar": "사이드바 표시/숨기기"
+      "toggle-sidebar": "사이드바 표시/숨기기",
+      "friends-leaderboard": "친구 순위",
+      "social": "소셜",
+      "compete": "경쟁"
     },
     "Presence": {
       "online": "온라인",
@@ -1588,7 +1606,7 @@
     }
   },
   "Multiplayer": {
-    "title": "자유 연습",
+    "title": "라이브 방",
     "description": "실시간으로 다른 큐버들과 함께 솔빙하세요. 순위 경쟁 없이 자유롭게 연습하는 공간입니다.",
     "new-room": "새 방 만들기",
     "no-active-rooms": "현재 활성화된 방이 없습니다",
