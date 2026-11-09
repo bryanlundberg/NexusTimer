@@ -651,7 +651,22 @@
         "no-data": "Ainda sem backup",
         "no-stats": "Nenhum desses cubistas tem tempos para comparar ainda"
       },
-      "empty": "Ainda não há tempos nesta categoria."
+      "empty": "Ainda não há tempos nesta categoria.",
+      "friends": {
+        "title": "Ranking de amigos",
+        "description": "Seu melhor single e média de 5 ao lado dos seus amigos, em todas as categorias.",
+        "metric-label": "Métrica",
+        "single": "Single",
+        "ao5": "Ao5",
+        "solves": "Resoluções",
+        "solves-count": "{count, plural, one {# resolução} other {# resoluções}}",
+        "no-friends-title": "Adicione amigos para ver quem é mais rápido.",
+        "find-cubers": "Encontrar cubistas",
+        "empty": "Ninguém do seu grupo tem tempo nesta categoria ainda.",
+        "error": "Não foi possível carregar o ranking. Tente novamente em instantes.",
+        "source-hint": "Os tempos vêm do último backup de cada cubista, então novos recordes aparecem depois que o próximo backup for salvo.",
+        "categories-label": "Categorias"
+      }
     },
     "NavMain": {
       "platform": "Plataforma",
@@ -664,8 +679,8 @@
       "people": "Pessoas",
       "friends": "Amigos",
       "messages": "Mensagens",
-      "leaderboards": "Classificações",
-      "free-play": "Jogo Livre",
+      "leaderboards": "Ranking global",
+      "free-play": "Salas ao vivo",
       "install-app": "Instalar aplicativo",
       "settings": "Configurações",
       "account": "Minha conta",
@@ -680,7 +695,10 @@
       "trainer": "Treinador",
       "training": "Treinamento",
       "toggle-section": "Mostrar ou ocultar {title}",
-      "toggle-sidebar": "Mostrar ou ocultar a barra lateral"
+      "toggle-sidebar": "Mostrar ou ocultar a barra lateral",
+      "friends-leaderboard": "Ranking de amigos",
+      "social": "Social",
+      "compete": "Competir"
     },
     "Presence": {
       "online": "Online",
@@ -1588,7 +1606,7 @@
     }
   },
   "Multiplayer": {
-    "title": "Jogo Livre",
+    "title": "Salas ao vivo",
     "description": "Junte-se a sessões de cubing em tempo real. Um espaço casual para praticar livremente.",
     "new-room": "Nova Sala",
     "no-active-rooms": "Sem salas ativas",

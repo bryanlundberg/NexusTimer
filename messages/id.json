@@ -658,7 +658,22 @@
         "no-data": "Belum ada cadangan",
         "no-stats": "Belum ada solve untuk dibandingkan dari cuber ini"
       },
-      "empty": "Belum ada solve di kategori ini."
+      "empty": "Belum ada solve di kategori ini.",
+      "friends": {
+        "title": "Peringkat teman",
+        "description": "Single dan rata-rata 5 terbaikmu di samping milik temanmu, di setiap kategori.",
+        "metric-label": "Metrik",
+        "single": "Single",
+        "ao5": "Ao5",
+        "solves": "Solve",
+        "solves-count": "{count} solve",
+        "no-friends-title": "Tambahkan teman untuk melihat siapa yang lebih cepat.",
+        "find-cubers": "Cari cuber",
+        "empty": "Belum ada yang punya waktu di kategori ini dalam grupmu.",
+        "error": "Peringkat gagal dimuat. Coba lagi sebentar lagi.",
+        "source-hint": "Waktu diambil dari backup terbaru setiap cuber, jadi rekor baru muncul setelah backup berikutnya disimpan.",
+        "categories-label": "Kategori"
+      }
     },
     "NavMain": {
       "platform": "Platform",
@@ -673,8 +688,8 @@
       "people": "Orang",
       "friends": "Teman",
       "messages": "Pesan",
-      "leaderboards": "Papan Peringkat",
-      "free-play": "Main Bebas",
+      "leaderboards": "Peringkat global",
+      "free-play": "Ruang langsung",
       "install-app": "Pasang Aplikasi",
       "settings": "Pengaturan",
       "account": "Akun Saya",
@@ -687,7 +702,10 @@
       "activity-solves": "{count, plural, other {# solve}}",
       "activity-calendar": "Kalender aktivitas",
       "toggle-section": "Tampilkan atau sembunyikan {title}",
-      "toggle-sidebar": "Tampilkan atau sembunyikan sidebar"
+      "toggle-sidebar": "Tampilkan atau sembunyikan sidebar",
+      "friends-leaderboard": "Peringkat teman",
+      "social": "Sosial",
+      "compete": "Bertanding"
     },
     "Presence": {
       "online": "Online",
@@ -1610,7 +1628,7 @@
     "description": "Nexus Timer adalah platform profesional untuk melatih dan menganalisis perjalananmu dengan Kubus Rubik."
   },
   "Multiplayer": {
-    "title": "Main Bebas",
+    "title": "Ruang langsung",
     "description": "Ikuti sesi cubing waktu nyata. Ruang santai untuk berlatih bebas tanpa tekanan peringkat.",
     "new-room": "Ruang Baru",
     "no-active-rooms": "Belum ada ruang aktif",

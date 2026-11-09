@@ -658,7 +658,22 @@
         "no-data": "Nessun backup ancora",
         "no-stats": "Nessuno di questi cuber ha ancora tempi da confrontare"
       },
-      "empty": "Ancora nessun tempo in questa categoria."
+      "empty": "Ancora nessun tempo in questa categoria.",
+      "friends": {
+        "title": "Classifica amici",
+        "description": "Il tuo miglior single e la tua migliore media di 5 accanto a quelli dei tuoi amici, in ogni categoria.",
+        "metric-label": "Metrica",
+        "single": "Single",
+        "ao5": "Ao5",
+        "solves": "Risoluzioni",
+        "solves-count": "{count, plural, one {# risoluzione} other {# risoluzioni}}",
+        "no-friends-title": "Aggiungi amici per vedere chi è più veloce.",
+        "find-cubers": "Trova cuber",
+        "empty": "Nessuno del tuo gruppo ha ancora un tempo in questa categoria.",
+        "error": "Impossibile caricare la classifica. Riprova tra poco.",
+        "source-hint": "I tempi provengono dall'ultimo backup di ogni cuber, quindi i nuovi record compaiono dopo il backup successivo.",
+        "categories-label": "Categorie"
+      }
     },
     "NavMain": {
       "platform": "Piattaforma",
@@ -673,8 +688,8 @@
       "people": "Persone",
       "friends": "Amici",
       "messages": "Messaggi",
-      "leaderboards": "Classifiche",
-      "free-play": "Gioco libero",
+      "leaderboards": "Classifica globale",
+      "free-play": "Stanze dal vivo",
       "install-app": "Installa app",
       "settings": "Impostazioni",
       "account": "Il mio account",
@@ -687,7 +702,10 @@
       "activity-solves": "{count, plural, =1 {# solve} other {# solve}}",
       "activity-calendar": "Calendario attività",
       "toggle-section": "Mostra o nascondi {title}",
-      "toggle-sidebar": "Mostra o nascondi la barra laterale"
+      "toggle-sidebar": "Mostra o nascondi la barra laterale",
+      "friends-leaderboard": "Classifica amici",
+      "social": "Social",
+      "compete": "Competizione"
     },
     "Presence": {
       "online": "Online",
@@ -1610,7 +1628,7 @@
     "description": "Nexus Timer è una piattaforma professionale per allenarti e analizzare il tuo percorso con il cubo di Rubik."
   },
   "Multiplayer": {
-    "title": "Gioco libero",
+    "title": "Stanze dal vivo",
     "description": "Partecipa a sessioni di cubing in tempo reale. Uno spazio informale per allenarti liberamente senza la pressione delle classifiche.",
     "new-room": "Nuova stanza",
     "no-active-rooms": "Ancora nessuna stanza attiva",

@@ -651,7 +651,22 @@
         "no-data": "Noch kein Backup",
         "no-stats": "Keiner dieser Cuber hat bisher Zeiten zum Vergleichen"
       },
-      "empty": "In dieser Kategorie gibt es noch keine Solves."
+      "empty": "In dieser Kategorie gibt es noch keine Solves.",
+      "friends": {
+        "title": "Freunde-Rangliste",
+        "description": "Deine beste Single und dein bester Ao5 neben denen deiner Freunde, in jeder Kategorie.",
+        "metric-label": "Wertung",
+        "single": "Single",
+        "ao5": "Ao5",
+        "solves": "Solves",
+        "solves-count": "{count, plural, one {# Solve} other {# Solves}}",
+        "no-friends-title": "Füge Freunde hinzu, um zu sehen, wer schneller ist.",
+        "find-cubers": "Cuber finden",
+        "empty": "In deiner Gruppe hat noch niemand eine Zeit in dieser Kategorie.",
+        "error": "Die Rangliste konnte nicht geladen werden. Versuche es gleich noch einmal.",
+        "source-hint": "Die Zeiten stammen aus dem letzten Backup jedes Cubers, neue Rekorde erscheinen also nach dem nächsten Backup.",
+        "categories-label": "Kategorien"
+      }
     },
     "NavMain": {
       "platform": "Plattform",
@@ -664,8 +679,8 @@
       "people": "Personen",
       "friends": "Freunde",
       "messages": "Nachrichten",
-      "leaderboards": "Bestenlisten",
-      "free-play": "Freies Spiel",
+      "leaderboards": "Globale Rangliste",
+      "free-play": "Live-Räume",
       "install-app": "App installieren",
       "settings": "Einstellungen",
       "account": "Mein Konto",
@@ -680,7 +695,10 @@
       "trainer": "Trainer",
       "training": "Training",
       "toggle-section": "{title} ein- oder ausblenden",
-      "toggle-sidebar": "Seitenleiste ein- oder ausblenden"
+      "toggle-sidebar": "Seitenleiste ein- oder ausblenden",
+      "friends-leaderboard": "Freunde-Rangliste",
+      "social": "Soziales",
+      "compete": "Wettkampf"
     },
     "Presence": {
       "online": "Online",
@@ -1588,7 +1606,7 @@
     }
   },
   "Multiplayer": {
-    "title": "Freies Spiel",
+    "title": "Live-Räume",
     "description": "Echtzeit-Cubing mit anderen. Ein entspannter Ort zum Üben.",
     "new-room": "Neuer Raum",
     "no-active-rooms": "Keine aktiven Räume",

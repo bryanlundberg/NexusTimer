@@ -658,7 +658,22 @@
         "no-data": "Wala pang backup",
         "no-stats": "Wala pang solve na maikukumpara ang mga cuber na ito"
       },
-      "empty": "Wala pang solves sa kategoryang ito."
+      "empty": "Wala pang solves sa kategoryang ito.",
+      "friends": {
+        "title": "Ranking ng mga kaibigan",
+        "description": "Ang pinakamahusay mong single at average of 5 katabi ng sa mga kaibigan mo, sa bawat kategorya.",
+        "metric-label": "Sukatan",
+        "single": "Single",
+        "ao5": "Ao5",
+        "solves": "Solve",
+        "solves-count": "{count, plural, one {# solve} other {# solve}}",
+        "no-friends-title": "Magdagdag ng mga kaibigan para makita kung sino ang mas mabilis.",
+        "find-cubers": "Maghanap ng cuber",
+        "empty": "Wala pang may oras sa kategoryang ito sa grupo mo.",
+        "error": "Hindi ma-load ang ranking. Subukang muli mamaya.",
+        "source-hint": "Galing ang mga oras sa pinakabagong backup ng bawat cuber, kaya lalabas ang mga bagong record pagkatapos ma-save ang susunod na backup.",
+        "categories-label": "Mga kategorya"
+      }
     },
     "NavMain": {
       "platform": "Platform",
@@ -673,8 +688,8 @@
       "people": "Mga Tao",
       "friends": "Mga Kaibigan",
       "messages": "Mga Mensahe",
-      "leaderboards": "Mga Leaderboard",
-      "free-play": "Free Play",
+      "leaderboards": "Global na ranking",
+      "free-play": "Mga live room",
       "install-app": "I-install ang App",
       "settings": "Mga Setting",
       "account": "Aking Account",
@@ -687,7 +702,10 @@
       "activity-solves": "{count, plural, other {# solve}}",
       "activity-calendar": "Kalendaryo ng aktibidad",
       "toggle-section": "Ipakita o itago ang {title}",
-      "toggle-sidebar": "Ipakita o itago ang sidebar"
+      "toggle-sidebar": "Ipakita o itago ang sidebar",
+      "friends-leaderboard": "Ranking ng mga kaibigan",
+      "social": "Social",
+      "compete": "Makipagtagisan"
     },
     "Presence": {
       "online": "Online",
@@ -1610,7 +1628,7 @@
     "description": "Ang Nexus Timer ay propesyonal na platform para sa pagsasanay at pagsusuri ng iyong journey sa Rubik's Cube."
   },
   "Multiplayer": {
-    "title": "Free Play",
+    "title": "Mga live room",
     "description": "Sumali sa real-time na cubing sessions. Isang casual na espasyo para mag-practice nang malaya nang walang presyur ng rankings.",
     "new-room": "Bagong Room",
     "no-active-rooms": "Wala pang aktibong room",

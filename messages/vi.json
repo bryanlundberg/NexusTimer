@@ -658,7 +658,22 @@
         "no-data": "Chưa có bản sao lưu",
         "no-stats": "Chưa có lần giải nào để so sánh"
       },
-      "empty": "Chưa có lượt giải nào trong hạng mục này."
+      "empty": "Chưa có lượt giải nào trong hạng mục này.",
+      "friends": {
+        "title": "Xếp hạng bạn bè",
+        "description": "Single và Ao5 tốt nhất của bạn đặt cạnh bạn bè, ở mọi hạng mục.",
+        "metric-label": "Chỉ số",
+        "single": "Single",
+        "ao5": "Ao5",
+        "solves": "Lượt giải",
+        "solves-count": "{count} lượt giải",
+        "no-friends-title": "Thêm bạn bè để xem ai nhanh hơn.",
+        "find-cubers": "Tìm cuber",
+        "empty": "Chưa ai trong nhóm của bạn có thời gian ở hạng mục này.",
+        "error": "Không tải được bảng xếp hạng. Hãy thử lại sau giây lát.",
+        "source-hint": "Thời gian lấy từ bản sao lưu mới nhất của mỗi cuber, nên kỷ lục mới sẽ hiện sau khi lưu bản sao lưu tiếp theo.",
+        "categories-label": "Hạng mục"
+      }
     },
     "NavMain": {
       "platform": "Nền tảng",
@@ -673,8 +688,8 @@
       "people": "Mọi người",
       "friends": "Bạn bè",
       "messages": "Tin nhắn",
-      "leaderboards": "Bảng xếp hạng",
-      "free-play": "Chơi tự do",
+      "leaderboards": "Xếp hạng toàn cầu",
+      "free-play": "Phòng trực tiếp",
       "install-app": "Cài đặt ứng dụng",
       "settings": "Cài đặt",
       "account": "Tài khoản của tôi",
@@ -687,7 +702,10 @@
       "activity-solves": "{count, plural, other {# lượt giải}}",
       "activity-calendar": "Lịch hoạt động",
       "toggle-section": "Hiện hoặc ẩn {title}",
-      "toggle-sidebar": "Hiện hoặc ẩn thanh bên"
+      "toggle-sidebar": "Hiện hoặc ẩn thanh bên",
+      "friends-leaderboard": "Xếp hạng bạn bè",
+      "social": "Xã hội",
+      "compete": "Thi đấu"
     },
     "Presence": {
       "online": "Trực tuyến",
@@ -1610,7 +1628,7 @@
     "description": "Nexus Timer là nền tảng chuyên nghiệp để luyện tập và phân tích hành trình của bạn với khối Rubik."
   },
   "Multiplayer": {
-    "title": "Chơi tự do",
+    "title": "Phòng trực tiếp",
     "description": "Tham gia các phiên cubing thời gian thực. Một không gian thoải mái để luyện tập tự do mà không áp lực thứ hạng.",
     "new-room": "Phòng mới",
     "no-active-rooms": "Chưa có phòng nào hoạt động",

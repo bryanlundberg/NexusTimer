@@ -651,7 +651,22 @@
         "no-data": "Pas encore de sauvegarde",
         "no-stats": "Aucun de ces cubeurs n'a encore de temps à comparer"
       },
-      "empty": "Aucun temps dans cette catégorie pour le moment."
+      "empty": "Aucun temps dans cette catégorie pour le moment.",
+      "friends": {
+        "title": "Classement entre amis",
+        "description": "Ton meilleur single et ta meilleure moyenne de 5 face à ceux de tes amis, dans toutes les catégories.",
+        "metric-label": "Mesure",
+        "single": "Single",
+        "ao5": "Ao5",
+        "solves": "Résolutions",
+        "solves-count": "{count, plural, one {# résolution} other {# résolutions}}",
+        "no-friends-title": "Ajoute des amis pour voir qui est le plus rapide.",
+        "find-cubers": "Trouver des cubeurs",
+        "empty": "Personne de ton groupe n'a encore de temps dans cette catégorie.",
+        "error": "Impossible de charger le classement. Réessaie dans un instant.",
+        "source-hint": "Les temps viennent de la dernière sauvegarde de chaque cubeur : les nouveaux records apparaissent après la prochaine sauvegarde.",
+        "categories-label": "Catégories"
+      }
     },
     "NavMain": {
       "platform": "Plateforme",
@@ -664,8 +679,8 @@
       "people": "Personnes",
       "friends": "Amis",
       "messages": "Messages",
-      "leaderboards": "Classements",
-      "free-play": "Jeu Libre",
+      "leaderboards": "Classement mondial",
+      "free-play": "Salons en direct",
       "install-app": "Installer l'application",
       "settings": "Paramètres",
       "account": "Mon compte",
@@ -680,7 +695,10 @@
       "trainer": "Entraîneur",
       "training": "Entraînement",
       "toggle-section": "Afficher ou masquer {title}",
-      "toggle-sidebar": "Afficher ou masquer la barre latérale"
+      "toggle-sidebar": "Afficher ou masquer la barre latérale",
+      "friends-leaderboard": "Classement entre amis",
+      "social": "Social",
+      "compete": "Compétition"
     },
     "Presence": {
       "online": "En ligne",
@@ -1588,7 +1606,7 @@
     }
   },
   "Multiplayer": {
-    "title": "Jeu Libre",
+    "title": "Salons en direct",
     "description": "Rejoignez des sessions de cubing en temps réel. Un espace décontracté pour pratiquer librement.",
     "new-room": "Nouvelle salle",
     "no-active-rooms": "Pas de salles actives",

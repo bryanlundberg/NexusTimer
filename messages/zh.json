@@ -651,7 +651,22 @@
         "no-data": "暂无备份",
         "no-stats": "这些魔友还没有可比较的成绩"
       },
-      "empty": "此类别暂无成绩。"
+      "empty": "此类别暂无成绩。",
+      "friends": {
+        "title": "好友排行",
+        "description": "在所有项目中，把你的最佳单次和 Ao5 与好友对比。",
+        "metric-label": "指标",
+        "single": "单次",
+        "ao5": "Ao5",
+        "solves": "还原次数",
+        "solves-count": "{count} 次还原",
+        "no-friends-title": "添加好友，看看谁更快。",
+        "find-cubers": "寻找魔友",
+        "empty": "你的圈子里还没有人在这个项目有成绩。",
+        "error": "无法加载排行，请稍后再试。",
+        "source-hint": "成绩来自每位魔友最近一次备份，所以新纪录会在下一次备份后显示。",
+        "categories-label": "项目"
+      }
     },
     "NavMain": {
       "platform": "平台",
@@ -664,8 +679,8 @@
       "people": "魔友",
       "friends": "好友",
       "messages": "消息",
-      "leaderboards": "排行榜",
-      "free-play": "自由练习",
+      "leaderboards": "全球排行",
+      "free-play": "实时房间",
       "install-app": "安装应用",
       "settings": "设置",
       "account": "我的账户",
@@ -680,7 +695,10 @@
       "trainer": "训练器",
       "training": "训练",
       "toggle-section": "显示或隐藏{title}",
-      "toggle-sidebar": "显示或隐藏侧边栏"
+      "toggle-sidebar": "显示或隐藏侧边栏",
+      "friends-leaderboard": "好友排行",
+      "social": "社交",
+      "compete": "竞技"
     },
     "Presence": {
       "online": "在线",
@@ -1588,7 +1606,7 @@
     }
   },
   "Multiplayer": {
-    "title": "自由练习",
+    "title": "实时房间",
     "description": "加入实时魔方竞技。一个可以自由练习而没有排名压力的休闲空间。",
     "new-room": "新房间",
     "no-active-rooms": "目前还没有活跃的房间",
