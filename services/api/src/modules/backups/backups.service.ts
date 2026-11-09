@@ -8,6 +8,7 @@ import {
 } from '@nexustimer/contracts'
 import { computeUserStats, isValidTimezone, prepareBackupCubes } from '@nexustimer/stats'
 import type { Storage } from '../../infra/storage'
+import type { BestsCache } from '../friends-leaderboards/friends-leaderboards.cache'
 import type { RunInBackground } from '../../platform/background'
 import type { UsersService } from '../users/users.service'
 import { backupKey, listUserBackups, newBackupKey } from './backups.files'
@@ -30,6 +31,7 @@ export type BackupsService = {
 type BackupsDeps = {
   storage: Storage
   users: Pick<UsersService, 'backup' | 'setBackup' | 'saveStats'>
+  bests: Pick<BestsCache, 'invalidate'>
   background: RunInBackground
   now?: () => number
   randomSuffix?: () => string
@@ -64,6 +66,7 @@ export function decodeBackup(received: Uint8Array): { json: Buffer; backup: unkn
 export function createBackupsService({
   storage,
   users,
+  bests,
   background,
   now = () => Date.now(),
   randomSuffix = () => randomBytes(16).toString('hex')
@@ -92,6 +95,7 @@ export function createBackupsService({
           timezone && isValidTimezone(timezone) ? timezone : DEFAULT_STATS_TIMEZONE
         )
         await users.saveStats(userId, { version: USER_STATS_VERSION, backupUpdatedAt: updatedAt, summary })
+        await bests.invalidate(userId)
       })
 
       return { backup }

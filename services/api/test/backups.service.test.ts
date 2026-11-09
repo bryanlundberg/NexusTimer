@@ -37,7 +37,11 @@ const backupJson = JSON.stringify([
 
 function setup({ userExists = true, fixedSuffix = true } = {}) {
   const { storage, objects } = fakeStorage()
-  const state: { backup: CurrentBackup | null; stats: StatsSnapshot[] } = { backup: null, stats: [] }
+  const state: { backup: CurrentBackup | null; stats: StatsSnapshot[]; invalidated: string[] } = {
+    backup: null,
+    stats: [],
+    invalidated: []
+  }
   const tasks: Promise<unknown>[] = []
   const failures: unknown[] = []
   let clock = T0
@@ -52,6 +56,11 @@ function setup({ userExists = true, fixedSuffix = true } = {}) {
       },
       async saveStats(_, stats) {
         state.stats.push(stats)
+      }
+    },
+    bests: {
+      async invalidate(userId) {
+        state.invalidated.push(userId)
       }
     },
     background: (_scope, task) => {
@@ -108,6 +117,7 @@ describe('backups service', () => {
       backupUpdatedAt: T0 + 1000,
       summary: { timezone: 'America/Mexico_City', totalSolves: 2, categories: [{ category: '3x3', count: 2 }] }
     })
+    expect(state.invalidated).toEqual([USER])
   })
 
   it('names each backup after its time plus a random suffix nobody can guess', async () => {

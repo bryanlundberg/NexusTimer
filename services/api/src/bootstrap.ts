@@ -52,6 +52,9 @@ import { achievementsRepository, achievementsUserData } from './modules/achievem
 import { blocksRepository, blocksUserData } from './modules/social/blocks.repository'
 import { createBlocksService } from './modules/social/blocks.service'
 import { createFriendRequestLimits } from './modules/social/friend-requests.limits'
+import { createBestsCache } from './modules/friends-leaderboards/friends-leaderboards.cache'
+import { friendsLeaderboardRepository } from './modules/friends-leaderboards/friends-leaderboards.repository'
+import { createFriendsLeaderboardService } from './modules/friends-leaderboards/friends-leaderboards.service'
 import { createFriendsCache } from './modules/social/friends.cache'
 import {
   friendRequestEmailsUserData,
@@ -109,6 +112,7 @@ export function buildApp() {
   const getAuth = createAuthProvider(env, mail, nexi)
   const accounts = createAccountStore(getAuth)
   const friendsCache = createFriendsCache(redis)
+  const bestsCache = createBestsCache(redis)
   const social = createSocialService({ blocks: blocksRepository, friends: friendsRepository, friendsCache })
   const trainer = createTrainerService({
     repository: trainerRepository,
@@ -152,6 +156,12 @@ export function buildApp() {
       users,
       cache: createLeaderboardCache(redis)
     }),
+    friendsLeaderboard: createFriendsLeaderboardService({
+      repository: friendsLeaderboardRepository,
+      cache: bestsCache,
+      social,
+      users
+    }),
     search: createSearchService(createSearchEngine({ host: env.MEILISEARCH_HOST, apiKey: env.MEILISEARCH_API_KEY })),
     trainer,
     sharedSolves,
@@ -177,7 +187,7 @@ export function buildApp() {
     privacy: users,
     presence,
     chats: createChatsService({ repository: chatsRepository, social, users, realtime }),
-    backups: createBackupsService({ storage, users, background: runInBackground }),
+    backups: createBackupsService({ storage, users, bests: bestsCache, background: runInBackground }),
     avatars: createAvatarsService({ storage, users }),
     nexi,
     usernames: createUsernamesService({ repository: usernamesRepository, limits: createUsernameLimits(redis), users }),
