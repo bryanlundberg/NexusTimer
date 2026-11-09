@@ -15,6 +15,7 @@ import {
   FriendsNavIcon,
   MessagesNavIcon,
   LeaderboardsNavIcon,
+  FriendsLeaderboardNavIcon,
   FreePlayNavIcon
 } from '@/components/ui/nav-icons-solid'
 import { useCubeActions } from '@/features/manage-cubes/model/useCubeActions'
@@ -23,7 +24,7 @@ import { formatBadgeCount } from '@/shared/lib/badge-count'
 import { useFriends } from '@/entities/friendship/model/useFriends'
 import { useInbox } from '@/entities/chat/model/useInbox'
 
-export type SectionKey = 'platform' | 'training' | 'community'
+export type SectionKey = 'platform' | 'training' | 'social' | 'compete'
 
 export interface SidebarNavItem {
   title: string
@@ -67,6 +68,34 @@ export function useSidebarNav(): SidebarNavSection[] {
         ]
       },
       {
+        key: 'social',
+        label: t('NavMain.social'),
+        items: [
+          { title: t('NavMain.community'), url: '/people', icon: PeopleNavIcon },
+          {
+            title: t('NavMain.friends'),
+            url: '/friends',
+            icon: FriendsNavIcon,
+            badge: incomingRequests > 0 ? formatBadgeCount(incomingRequests) : undefined
+          },
+          {
+            title: t('NavMain.messages'),
+            url: '/messages',
+            icon: MessagesNavIcon,
+            badge: unreadMessages > 0 ? formatBadgeCount(unreadMessages) : undefined
+          }
+        ]
+      },
+      {
+        key: 'compete',
+        label: t('NavMain.compete'),
+        items: [
+          { title: t('NavMain.leaderboards'), url: '/leaderboards', icon: LeaderboardsNavIcon },
+          { title: t('NavMain.friends-leaderboard'), url: '/friends-leaderboard', icon: FriendsLeaderboardNavIcon },
+          { title: t('NavMain.free-play'), url: '/free-play', icon: FreePlayNavIcon }
+        ]
+      },
+      {
         key: 'training',
         label: t('NavMain.training'),
         items: [
@@ -80,27 +109,6 @@ export function useSidebarNav(): SidebarNavSection[] {
               url: `/algorithms/${set.slug.toLowerCase()}`
             }))
           }
-        ]
-      },
-      {
-        key: 'community',
-        label: t('NavMain.community'),
-        items: [
-          { title: t('NavMain.people'), url: '/people', icon: PeopleNavIcon },
-          {
-            title: t('NavMain.friends'),
-            url: '/friends',
-            icon: FriendsNavIcon,
-            badge: incomingRequests > 0 ? formatBadgeCount(incomingRequests) : undefined
-          },
-          {
-            title: t('NavMain.messages'),
-            url: '/messages',
-            icon: MessagesNavIcon,
-            badge: unreadMessages > 0 ? formatBadgeCount(unreadMessages) : undefined
-          },
-          { title: t('NavMain.leaderboards'), url: '/leaderboards', icon: LeaderboardsNavIcon },
-          { title: t('NavMain.free-play'), url: '/free-play', icon: FreePlayNavIcon }
         ]
       }
     ],
