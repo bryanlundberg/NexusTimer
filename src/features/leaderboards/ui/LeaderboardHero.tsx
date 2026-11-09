@@ -1,7 +1,6 @@
 'use client'
 
-import { Tabs } from '@/components/ui/tabs'
-import ScrollableUnderlineTabs from '@/shared/ui/animated-tabs/ScrollableUnderlineTabs'
+import ChipGroup from '@/shared/ui/chip-group/ChipGroup'
 import { LEADERBOARD_PUZZLE_OPTIONS } from '@/features/leaderboards/model/puzzle-options'
 import type { LeaderboardView } from '@/features/leaderboards/model/leaderboard-view'
 import { CubeCategoryIcon } from '@/shared/ui/cube-category-icon/CubeCategoryIcon'
@@ -24,13 +23,13 @@ export default function LeaderboardHero({ value, onChange, view, onViewChange, r
   const items = LEADERBOARD_PUZZLE_OPTIONS.map((option) => ({
     value: option.value,
     label: (
-      <span className="flex items-center gap-2">
-        <span className="size-5 shrink-0">
+      <>
+        <span className="size-3.5 shrink-0">
           <CubeCategoryIcon category={option.label} />
         </span>
         <span className="font-mono">{option.label}</span>
         <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">{option.mode}</span>
-      </span>
+      </>
     )
   }))
 
@@ -49,14 +48,13 @@ export default function LeaderboardHero({ value, onChange, view, onViewChange, r
       />
 
       <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
-        <Tabs value={value} onValueChange={onChange} className="min-w-0 md:flex-1">
-          <ScrollableUnderlineTabs
-            items={items}
-            activeValue={value}
-            layoutId="leaderboard-puzzle-tabs"
-            className="[&_[data-slot=tabs-trigger]]:grow md:[&_[data-slot=tabs-trigger]]:grow-0"
-          />
-        </Tabs>
+        <ChipGroup
+          value={value}
+          onChange={onChange}
+          options={items}
+          label={t('table.category')}
+          className="min-w-0 md:flex-1"
+        />
 
         <Segmented
           value={view}
