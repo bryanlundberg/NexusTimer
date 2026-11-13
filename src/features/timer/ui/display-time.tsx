@@ -95,10 +95,10 @@ export default function DisplayTime({
           {hideWhileSolving && isSolving ? (
             <motion.span
               key="solving"
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
+              className="block text-center text-5xl sm:text-6xl md:text-7xl lg:text-8xl"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0, transition: { duration: 0 } }}
               transition={{ duration: 0.3 }}
             >
               {t('solving')}
@@ -110,7 +110,7 @@ export default function DisplayTime({
               className="relative flex flex-col gap-1 tabular-nums"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              exit={{ opacity: 0, transition: { duration: 0 } }}
               transition={{ duration: 0.3 }}
             >
               <motion.div
