@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1156.0",
-    "@hono/node-server": "^2.1.5",
+    "@hono/node-server": "^2.1.6",
     "@nexustimer/algorithms": "workspace:*",
     "@nexustimer/avatars": "workspace:*",
     "@nexustimer/contracts": "workspace:*",
