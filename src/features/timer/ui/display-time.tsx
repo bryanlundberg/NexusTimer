@@ -14,6 +14,7 @@ import { timerFontClass } from '@/features/timer/model/timerFonts'
 import { TIMER_MAX_VIEWPORT_HEIGHT, timerScale } from '@/features/timer/model/timerSize'
 import { inspectionLabel } from '@/features/timer/lib/inspection'
 import { getDecimalPart, getIntegerPart } from '@/shared/lib/formatTimeParts'
+import holdStyles from '@/features/timer/ui/hold-progress.module.css'
 
 interface DisplayTimeProps extends Omit<HTMLMotionProps<'div'>, 'ref'> {
   className?: string
@@ -71,6 +72,7 @@ export default function DisplayTime({
   const showRecord = isRecord && timerStatus === TimerStatus.IDLE
   const font = timerFontClass(settings.features.timerFont)
   const isPreparing = timerStatus === TimerStatus.HOLDING || timerStatus === TimerStatus.READY
+  const holdMs = settings.timer.holdToStart ? Number(settings.timer.holdToStartTime ?? 0) : 0
   const startHint = settings.timer.holdToStart
     ? t(isMobile ? 'tap-to-start' : 'space-to-start')
     : t(isMobile ? 'tap-to-start-no-hold' : 'space-to-start-no-hold')
@@ -79,6 +81,7 @@ export default function DisplayTime({
     <>
       <motion.div
         className={cn('w-full', showRecord ? 'text-record' : timerStatusClasses[timerStatus])}
+        style={{ '--hold-ms': `${holdMs}ms` } as MotionStyle}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         {...rest}
@@ -105,7 +108,13 @@ export default function DisplayTime({
               exit={{ opacity: 0, transition: { duration: 0 } }}
               transition={{ duration: 0.3 }}
             >
-              <div ref={fitRef} className="flex items-baseline justify-center whitespace-nowrap">
+              <div
+                ref={fitRef}
+                className={cn(
+                  'flex items-baseline justify-center whitespace-nowrap',
+                  timerStatus === TimerStatus.HOLDING && holdStyles.holding
+                )}
+              >
                 {inspectionRequired &&
                 (timerStatus === TimerStatus.INSPECTING ||
                   timerStatus === TimerStatus.HOLDING ||

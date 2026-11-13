@@ -1,0 +1,20 @@
+.holding {
+  color: transparent;
+  background-color: color-mix(in oklch, var(--foreground) 50%, transparent);
+  background-image: linear-gradient(
+    color-mix(in oklch, var(--foreground) 85%, transparent),
+    color-mix(in oklch, var(--foreground) 85%, transparent)
+  );
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 100% 0%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: hold-fill var(--hold-ms, 0ms) linear forwards;
+}
+
+@keyframes hold-fill {
+  to {
+    background-size: 100% 100%;
+  }
+}
