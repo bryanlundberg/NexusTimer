@@ -80,15 +80,7 @@ export default function DisplayTime({
       <motion.div
         className={cn('w-full', showRecord ? 'text-record' : timerStatusClasses[timerStatus])}
         initial={{ opacity: 0 }}
-        animate={{
-          opacity: 1,
-          scale: timerStatus === TimerStatus.READY ? 1.05 : 1,
-          transition: {
-            type: 'spring',
-            stiffness: 300,
-            damping: 20
-          }
-        }}
+        animate={{ opacity: 1 }}
         {...rest}
       >
         <AnimatePresence mode="wait">
@@ -113,14 +105,7 @@ export default function DisplayTime({
               exit={{ opacity: 0, transition: { duration: 0 } }}
               transition={{ duration: 0.3 }}
             >
-              <motion.div
-                ref={fitRef}
-                className="flex items-baseline justify-center whitespace-nowrap"
-                animate={{
-                  scale: timerStatus === TimerStatus.HOLDING ? 0.95 : 1,
-                  transition: { type: 'spring', stiffness: 500, damping: 30 }
-                }}
-              >
+              <div ref={fitRef} className="flex items-baseline justify-center whitespace-nowrap">
                 {inspectionRequired &&
                 (timerStatus === TimerStatus.INSPECTING ||
                   timerStatus === TimerStatus.HOLDING ||
@@ -184,7 +169,7 @@ export default function DisplayTime({
                     )}
                   </>
                 )}
-              </motion.div>
+              </div>
               {!lastSolve && timerStatus === TimerStatus.IDLE ? (
                 <motion.div
                   className="text-xs text-center"
