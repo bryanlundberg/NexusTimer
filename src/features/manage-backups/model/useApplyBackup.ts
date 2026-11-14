@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useSWRConfig } from 'swr'
 import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 import {
@@ -9,6 +8,7 @@ import {
 } from '@/features/manage-backup/lib/importDataFromFile'
 import { restoreBackupCubes } from '@/features/manage-backups/lib/restoreBackupCubes'
 import { cubesDB } from '@/entities/cube/api/indexdb'
+import { useRouter } from '@/shared/config/i18n/navigation'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSyncBackup } from '@/shared/model/backup/useSyncBackup'
 import useAlert from '@/shared/model/useAlert'
@@ -17,7 +17,7 @@ import { BackupFile } from '@/entities/backup/model/types'
 export function useApplyBackup() {
   const t = useTranslations('Index')
   const alert = useAlert()
-  const { mutate } = useSWRConfig()
+  const router = useRouter()
   const { handleUploadBackup } = useSyncBackup()
   const setCubes = useTimerStore((state) => state.setCubes)
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
@@ -45,7 +45,7 @@ export function useApplyBackup() {
       setSelectedCube(null)
 
       toast.success(t('SettingsPage.backup-applied'))
-      if (await handleUploadBackup()) await mutate('/api/v1/backups')
+      if (await handleUploadBackup()) router.push('/app')
     } catch (error) {
       console.error(error)
       toast.error(t('SettingsPage.backup-apply-error'))
