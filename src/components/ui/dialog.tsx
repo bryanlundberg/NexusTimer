@@ -6,6 +6,7 @@ import { XIcon } from 'lucide-react'
 import { Drawer as DrawerPrimitive } from 'vaul'
 
 import { cn } from '@/shared/lib/utils'
+import { useBackDismiss } from '@/shared/model/useBackDismiss'
 
 const SHEET_QUERY = '(max-width: 767px)'
 
@@ -64,21 +65,31 @@ function useKeyboardInset(enabled: boolean) {
 
 function Dialog({
   dismissible = true,
+  open,
+  defaultOpen,
+  onOpenChange,
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Root> & { dismissible?: boolean }) {
   const isSheet = useIsSheetViewport()
+  const state = useBackDismiss({ open, defaultOpen, onOpenChange, enabled: dismissible })
 
   if (isSheet) {
     return (
       <DialogVariantContext.Provider value="sheet">
-        <DrawerPrimitive.Root data-slot="dialog" repositionInputs={false} dismissible={dismissible} {...props} />
+        <DrawerPrimitive.Root
+          data-slot="dialog"
+          repositionInputs={false}
+          dismissible={dismissible}
+          {...props}
+          {...state}
+        />
       </DialogVariantContext.Provider>
     )
   }
 
   return (
     <DialogVariantContext.Provider value="modal">
-      <DialogPrimitive.Root data-slot="dialog" {...props} />
+      <DialogPrimitive.Root data-slot="dialog" {...props} {...state} />
     </DialogVariantContext.Provider>
   )
 }

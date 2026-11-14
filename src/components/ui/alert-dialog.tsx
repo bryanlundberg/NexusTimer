@@ -4,10 +4,17 @@ import * as React from 'react'
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog'
 
 import { cn } from '@/shared/lib/utils'
+import { useBackDismiss } from '@/shared/model/useBackDismiss'
 import { buttonVariants } from '@/components/ui/button'
 
-function AlertDialog({ ...props }: React.ComponentProps<typeof AlertDialogPrimitive.Root>) {
-  return <AlertDialogPrimitive.Root data-slot="alert-dialog" {...props} />
+function AlertDialog({
+  open,
+  defaultOpen,
+  onOpenChange,
+  ...props
+}: React.ComponentProps<typeof AlertDialogPrimitive.Root>) {
+  const state = useBackDismiss({ open, defaultOpen, onOpenChange })
+  return <AlertDialogPrimitive.Root data-slot="alert-dialog" {...props} {...state} />
 }
 
 function AlertDialogTrigger({ ...props }: React.ComponentProps<typeof AlertDialogPrimitive.Trigger>) {

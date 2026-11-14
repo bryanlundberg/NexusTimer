@@ -5,9 +5,11 @@ import * as SheetPrimitive from '@radix-ui/react-dialog'
 import { XIcon } from 'lucide-react'
 
 import { cn } from '@/shared/lib/utils'
+import { useBackDismiss } from '@/shared/model/useBackDismiss'
 
-function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
-  return <SheetPrimitive.Root data-slot="sheet" {...props} />
+function Sheet({ open, defaultOpen, onOpenChange, ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
+  const state = useBackDismiss({ open, defaultOpen, onOpenChange })
+  return <SheetPrimitive.Root data-slot="sheet" {...props} {...state} />
 }
 
 function SheetTrigger({ ...props }: React.ComponentProps<typeof SheetPrimitive.Trigger>) {

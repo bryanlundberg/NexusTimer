@@ -4,9 +4,16 @@ import * as React from 'react'
 import { Drawer as DrawerPrimitive } from 'vaul'
 
 import { cn } from '@/shared/lib/utils'
+import { useBackDismiss } from '@/shared/model/useBackDismiss'
 
 function Drawer({ ...props }: React.ComponentProps<typeof DrawerPrimitive.Root>) {
-  return <DrawerPrimitive.Root data-slot="drawer" {...props} />
+  const state = useBackDismiss({
+    open: props.open,
+    defaultOpen: props.defaultOpen,
+    onOpenChange: props.onOpenChange,
+    enabled: props.dismissible !== false
+  })
+  return <DrawerPrimitive.Root data-slot="drawer" {...props} {...state} />
 }
 
 function DrawerTrigger({ ...props }: React.ComponentProps<typeof DrawerPrimitive.Trigger>) {
