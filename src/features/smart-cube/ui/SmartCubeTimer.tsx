@@ -86,7 +86,7 @@ export function SmartCubeTimer({ connection, secondaryActions }: SmartCubeTimerP
         </div>
       )}
 
-      {secondaryActions?.(syncSolved, gyroActive, resetOrientation)}
+      {phase !== 'solving' && secondaryActions?.(syncSolved, gyroActive, resetOrientation)}
     </div>
   )
 }

@@ -9,6 +9,8 @@ import type { SmartCubeConnection } from 'smartcube-web-bluetooth'
 import { SmartCubeTimer } from '@/features/smart-cube/ui/SmartCubeTimer'
 import { HowToConnectDialog } from '@/features/smart-cube/ui/HowToConnectDialog'
 import { loadSmartCubeModules, useSmartCubeStore } from '@/features/smart-cube/model/useSmartCubeStore'
+import { useSmartSessionStore } from '@/features/smart-cube/model/useSmartSessionStore'
+import { cn } from '@/shared/lib/utils'
 
 const MAC_STORAGE_PREFIX = 'nexus-smartcube-mac:'
 const MAC_PATTERN = /^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$/
@@ -51,6 +53,7 @@ export default function SmartCube({ renderConnected, onCancel, cancelLabel }: Sm
   const connect = useSmartCubeStore((s) => s.connect)
   const disconnect = useSmartCubeStore((s) => s.disconnect)
   const provideMac = useSmartCubeStore((s) => s.provideMac)
+  const phase = useSmartSessionStore((s) => s.phase)
 
   // null = not yet checked; false = unsupported (iOS/Safari).
   const [supportsBluetooth, setSupportsBluetooth] = useState<boolean | null>(null)
@@ -87,6 +90,7 @@ export default function SmartCube({ renderConnected, onCancel, cancelLabel }: Sm
   }
 
   const isConnected = status === 'connected'
+  const hideConnectionInfo = !renderConnected && phase === 'solving'
 
   if (supportsBluetooth === false) {
     return (
@@ -171,7 +175,7 @@ export default function SmartCube({ renderConnected, onCancel, cancelLabel }: Sm
       )}
 
       {isConnected ? (
-        <div className="flex flex-col items-center gap-1">
+        <div className={cn('flex flex-col items-center gap-1', hideConnectionInfo && 'invisible')}>
           {deviceName && <span className="text-xs sm:text-sm text-muted-foreground">{deviceName}</span>}
           <Button onClick={disconnect} variant="outline" size="sm" className="sm:h-9 sm:px-4 sm:text-sm">
             {t('disconnect')}
