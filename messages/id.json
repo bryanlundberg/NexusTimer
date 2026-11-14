@@ -120,6 +120,7 @@
       "reset-password-submit": "Atur ulang kata sandi",
       "invalid-token": "Tautan atur ulang ini tidak valid atau telah kedaluwarsa.",
       "back-to-sign-in": "Kembali ke halaman masuk",
+      "legal-notice": "Dengan melanjutkan, kamu menyetujui <terms>Ketentuan Layanan</terms> dan <privacy>Kebijakan Privasi</privacy> kami, serta menyatakan bahwa kamu berusia minimal 13 tahun.",
       "validation": {
         "email-invalid": "Alamat email tidak valid",
         "password-required": "Kata sandi wajib diisi",
@@ -1810,6 +1811,8 @@
       "contribute": "Berkontribusi",
       "language": "Bahasa",
       "copyright": "© {year} NexusTimer",
+      "third-party": "Lisensi Pihak Ketiga",
+      "trademarks": "Rubik's Cube adalah merek dagang Spin Master Toys UK Limited. NexusTimer adalah proyek independen yang tidak berafiliasi dengan atau didukung oleh Spin Master maupun World Cube Association.",
       "account": "Akun",
       "sign-in": "Masuk",
       "sign-up": "Buat akun"

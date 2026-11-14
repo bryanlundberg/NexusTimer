@@ -81,6 +81,7 @@
       "continue-discord": "使用 Discord 继续",
       "back": "返回",
       "back-to-sign-in": "返回登录",
+      "legal-notice": "继续即表示你同意我们的<terms>服务条款</terms>和<privacy>隐私政策</privacy>，并确认你已年满 13 周岁。",
       "confirm-password": "确认密码",
       "create-account": "创建账号",
       "email": "邮箱",
@@ -1788,6 +1789,8 @@
       "contribute": "参与贡献",
       "language": "语言",
       "copyright": "© {year} NexusTimer",
+      "third-party": "第三方许可",
+      "trademarks": "Rubik's Cube 是 Spin Master Toys UK Limited 的商标。NexusTimer 是独立项目，与 Spin Master 及 World Cube Association 无关联，也未获得其认可。",
       "account": "账号",
       "sign-in": "登录",
       "sign-up": "创建账号"

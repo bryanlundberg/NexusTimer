@@ -120,6 +120,7 @@
       "reset-password-submit": "Đặt lại mật khẩu",
       "invalid-token": "Liên kết đặt lại này không hợp lệ hoặc đã hết hạn.",
       "back-to-sign-in": "Quay lại đăng nhập",
+      "legal-notice": "Khi tiếp tục, bạn đồng ý với <terms>Điều khoản dịch vụ</terms> và <privacy>Chính sách quyền riêng tư</privacy> của chúng tôi, đồng thời xác nhận rằng bạn đã đủ 13 tuổi trở lên.",
       "validation": {
         "email-invalid": "Địa chỉ email không hợp lệ",
         "password-required": "Mật khẩu là bắt buộc",
@@ -1810,6 +1811,8 @@
       "contribute": "Đóng góp",
       "language": "Ngôn ngữ",
       "copyright": "© {year} NexusTimer",
+      "third-party": "Giấy phép bên thứ ba",
+      "trademarks": "Rubik's Cube là nhãn hiệu của Spin Master Toys UK Limited. NexusTimer là một dự án độc lập, không liên kết với và không được Spin Master hay World Cube Association bảo trợ.",
       "account": "Tài khoản",
       "sign-in": "Đăng nhập",
       "sign-up": "Tạo tài khoản"

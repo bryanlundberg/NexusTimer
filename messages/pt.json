@@ -81,6 +81,7 @@
       "continue-discord": "Continuar com Discord",
       "back": "Voltar",
       "back-to-sign-in": "Voltar ao login",
+      "legal-notice": "Ao continuar, você concorda com nossos <terms>Termos de Serviço</terms> e nossa <privacy>Política de Privacidade</privacy>, e confirma que tem pelo menos 13 anos.",
       "confirm-password": "Confirmar senha",
       "create-account": "Criar conta",
       "email": "E-mail",
@@ -1788,6 +1789,8 @@
       "contribute": "Contribuir",
       "language": "Idioma",
       "copyright": "© {year} NexusTimer",
+      "third-party": "Licenças de terceiros",
+      "trademarks": "Rubik's Cube é uma marca da Spin Master Toys UK Limited. O NexusTimer é um projeto independente e não é afiliado nem endossado pela Spin Master ou pela World Cube Association.",
       "account": "Conta",
       "sign-in": "Entrar",
       "sign-up": "Criar conta"

@@ -120,6 +120,7 @@
       "reset-password-submit": "I-reset ang password",
       "invalid-token": "Ang reset link na ito ay invalid o nag-expire na.",
       "back-to-sign-in": "Bumalik sa sign in",
+      "legal-notice": "Sa pagpapatuloy, sumasang-ayon ka sa aming <terms>Mga Tuntunin ng Serbisyo</terms> at <privacy>Patakaran sa Privacy</privacy>, at kinukumpirma mong ikaw ay hindi bababa sa 13 taong gulang.",
       "validation": {
         "email-invalid": "Invalid na email address",
         "password-required": "Kailangan ang password",
@@ -1810,6 +1811,8 @@
       "contribute": "Mag-ambag",
       "language": "Wika",
       "copyright": "© {year} NexusTimer",
+      "third-party": "Mga Lisensya ng Third Party",
+      "trademarks": "Ang Rubik's Cube ay trademark ng Spin Master Toys UK Limited. Ang NexusTimer ay isang independent na proyekto at hindi kaanib o ineendorso ng Spin Master o ng World Cube Association.",
       "account": "Account",
       "sign-in": "Mag-sign in",
       "sign-up": "Gumawa ng account"

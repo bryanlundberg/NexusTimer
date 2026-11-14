@@ -81,6 +81,7 @@
       "continue-discord": "Discord 계정으로 계속하기",
       "back": "뒤로",
       "back-to-sign-in": "로그인으로 돌아가기",
+      "legal-notice": "계속하면 <terms>서비스 약관</terms> 및 <privacy>개인정보 처리방침</privacy>에 동의하고 만 13세 이상임을 확인하는 것으로 간주됩니다.",
       "confirm-password": "비밀번호 확인",
       "create-account": "계정 만들기",
       "email": "이메일",
@@ -1788,6 +1789,8 @@
       "contribute": "기여하기",
       "language": "언어",
       "copyright": "© {year} NexusTimer",
+      "third-party": "서드 파티 라이선스",
+      "trademarks": "Rubik's Cube는 Spin Master Toys UK Limited의 상표입니다. NexusTimer는 독립 프로젝트이며 Spin Master 또는 World Cube Association과 제휴하거나 승인을 받지 않았습니다.",
       "account": "계정",
       "sign-in": "로그인",
       "sign-up": "계정 만들기"

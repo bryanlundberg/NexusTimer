@@ -81,6 +81,7 @@
       "continue-discord": "डिस्कॉर्ड के साथ जारी रखें",
       "back": "वापस",
       "back-to-sign-in": "साइन इन पर वापस जाएँ",
+      "legal-notice": "जारी रखकर, आप हमारी <terms>सेवा की शर्तों</terms> और <privacy>गोपनीयता नीति</privacy> से सहमत होते हैं, और पुष्टि करते हैं कि आपकी उम्र कम से कम 13 वर्ष है।",
       "confirm-password": "पासवर्ड की पुष्टि करें",
       "create-account": "खाता बनाएँ",
       "email": "ईमेल",
@@ -1788,6 +1789,8 @@
       "contribute": "योगदान करें",
       "language": "भाषा",
       "copyright": "© {year} NexusTimer",
+      "third-party": "तृतीय-पक्ष लाइसेंस",
+      "trademarks": "Rubik's Cube, Spin Master Toys UK Limited का ट्रेडमार्क है। NexusTimer एक स्वतंत्र प्रोजेक्ट है और Spin Master या World Cube Association से संबद्ध या उनके द्वारा समर्थित नहीं है।",
       "account": "अकाउंट",
       "sign-in": "साइन इन करें",
       "sign-up": "अकाउंट बनाएँ"

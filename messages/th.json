@@ -120,6 +120,7 @@
       "reset-password-submit": "รีเซ็ตรหัสผ่าน",
       "invalid-token": "ลิงก์รีเซ็ตนี้ไม่ถูกต้องหรือหมดอายุแล้ว",
       "back-to-sign-in": "กลับไปที่หน้าเข้าสู่ระบบ",
+      "legal-notice": "เมื่อดำเนินการต่อ แสดงว่าคุณยอมรับ<terms>ข้อกำหนดการให้บริการ</terms>และ<privacy>นโยบายความเป็นส่วนตัว</privacy>ของเรา และยืนยันว่าคุณมีอายุอย่างน้อย 13 ปี",
       "validation": {
         "email-invalid": "ที่อยู่อีเมลไม่ถูกต้อง",
         "password-required": "ต้องระบุรหัสผ่าน",
@@ -1810,6 +1811,8 @@
       "contribute": "ร่วมพัฒนา",
       "language": "ภาษา",
       "copyright": "© {year} NexusTimer",
+      "third-party": "ใบอนุญาตของบุคคลที่สาม",
+      "trademarks": "Rubik's Cube เป็นเครื่องหมายการค้าของ Spin Master Toys UK Limited NexusTimer เป็นโครงการอิสระ ไม่มีส่วนเกี่ยวข้องกับและไม่ได้รับการรับรองจาก Spin Master หรือ World Cube Association",
       "account": "บัญชี",
       "sign-in": "เข้าสู่ระบบ",
       "sign-up": "สร้างบัญชี"

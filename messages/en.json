@@ -120,6 +120,7 @@
       "reset-password-submit": "Reset password",
       "invalid-token": "This reset link is invalid or has expired.",
       "back-to-sign-in": "Back to sign in",
+      "legal-notice": "By continuing, you agree to our <terms>Terms of Service</terms> and <privacy>Privacy Policy</privacy>, and confirm that you are at least 13 years old.",
       "validation": {
         "email-invalid": "Invalid email address",
         "password-required": "Password is required",
@@ -1810,6 +1811,8 @@
       "contribute": "Contribute",
       "language": "Language",
       "copyright": "© {year} NexusTimer",
+      "third-party": "Third-Party Licenses",
+      "trademarks": "Rubik's Cube is a trademark of Spin Master Toys UK Limited. NexusTimer is an independent project and is not affiliated with or endorsed by Spin Master or the World Cube Association.",
       "account": "Account",
       "sign-in": "Sign in",
       "sign-up": "Create account"
