@@ -18,7 +18,7 @@ interface CubeCategoryGridProps {
 
 export default function CubeCategoryGrid({ value, onChange, testIdPrefix = 'category' }: CubeCategoryGridProps) {
   return (
-    <div className="grid grid-cols-4 gap-1.5 sm:grid-cols-3 sm:gap-2">
+    <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
       {cubeCollection.map((cube) => {
         const selected = value === cube.name
         return (
@@ -29,7 +29,7 @@ export default function CubeCategoryGrid({ value, onChange, testIdPrefix = 'cate
             aria-pressed={selected}
             onClick={() => onChange(cube.name)}
             style={selected ? SELECTED_STYLE : undefined}
-            className="surface surface-sm group flex min-w-0 cursor-pointer flex-col items-center gap-1.5 px-1.5 pt-2.5 pb-2 focus-visible:outline-none sm:flex-row sm:gap-2.5 sm:px-3 sm:py-2.5 sm:text-left"
+            className="surface surface-sm group relative flex min-w-0 cursor-pointer flex-col items-center gap-1.5 px-1.5 pt-2.5 pb-2 focus-visible:outline-none sm:flex-row sm:gap-2.5 sm:px-3 sm:py-2.5 sm:text-left"
           >
             <span
               className={cn(
@@ -41,13 +41,18 @@ export default function CubeCategoryGrid({ value, onChange, testIdPrefix = 'cate
             </span>
             <span
               className={cn(
-                'w-full min-w-0 truncate text-center text-[11px] leading-tight sm:w-auto sm:flex-1 sm:text-left sm:text-sm',
+                'w-full min-w-0 truncate text-center text-xs leading-tight sm:w-auto sm:flex-1 sm:text-left sm:text-sm',
                 selected ? 'font-medium text-foreground' : 'text-muted-foreground group-hover:text-foreground'
               )}
             >
               {cube.name}
             </span>
-            {selected && <Check aria-hidden className="hidden size-4 shrink-0 text-primary sm:block" />}
+            {selected && (
+              <Check
+                aria-hidden
+                className="absolute top-1.5 right-1.5 size-3.5 shrink-0 text-primary sm:static sm:size-4"
+              />
+            )}
           </button>
         )
       })}
