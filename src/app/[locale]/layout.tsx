@@ -118,6 +118,9 @@ export default async function LocaleLayout({ children }: { children: React.React
             try { storedConsent = localStorage.getItem('${CONSENT_KEY}'); } catch (e) {}
             gtag('consent', 'default', {
               analytics_storage: storedConsent === 'granted' ? 'granted' : 'denied',
+              ad_storage: 'denied',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied',
               functionality_storage: 'granted',
               security_storage: 'granted'
             });
