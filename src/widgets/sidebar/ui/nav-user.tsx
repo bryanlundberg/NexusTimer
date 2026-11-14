@@ -89,11 +89,17 @@ export function NavUser({
           />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-64" innerClassName="p-px" side={'bottom'} align="end" sideOffset={8}>
+      <DropdownMenuContent
+        className="w-72 max-w-[calc(100vw-1rem)]"
+        innerClassName="p-0"
+        side={'bottom'}
+        align="end"
+        sideOffset={8}
+      >
         {/* Identity header */}
         <DropdownMenuItem
           onClick={() => router.push(profilePath(user.id))}
-          className="group relative m-0 cursor-pointer gap-3 px-3 py-3"
+          className="group relative m-0 cursor-pointer gap-3 bg-muted/40 px-3 py-3"
         >
           <div className="relative shrink-0">
             <Avatar className="size-10 rounded-full ring-1 ring-border/60">
@@ -105,7 +111,7 @@ export function NavUser({
             </span>
           </div>
           <div className="grid min-w-0 flex-1 leading-tight">
-            <span className="truncate text-sm font-semibold">{user.name}</span>
+            <span className="truncate font-display text-[15px] font-semibold tracking-tight">{user.name}</span>
             {user.email && <span className="truncate text-xs text-muted-foreground">{user.email}</span>}
           </div>
           <ChevronRight className="size-4 shrink-0 text-muted-foreground opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:opacity-100 group-focus:translate-x-0.5 group-focus:opacity-100" />
@@ -114,8 +120,8 @@ export function NavUser({
         <NavUserBackupRow percent={percent} remaining={remaining} isLast={isLast} />
 
         {/* Presence picker */}
-        <div className="flex items-center justify-between gap-2 border-y border-primary/20 bg-muted/40 px-3 py-2">
-          <span className="truncate text-xs font-medium uppercase tracking-wider text-muted-foreground">
+        <div className="flex items-center justify-between gap-2 border-y border-border px-3 py-2">
+          <span className="truncate font-display text-[10px] font-semibold tracking-[0.14em] text-muted-foreground uppercase">
             {tp(status)}
           </span>
           <div className="flex shrink-0 gap-1">
@@ -129,7 +135,7 @@ export function NavUser({
                 onClick={() => setStatus(value)}
                 className={cn(
                   'flex size-7 cursor-pointer items-center justify-center transition-colors',
-                  status === value ? 'bg-primary/20' : 'hover:bg-accent'
+                  status === value ? 'bg-foreground/10' : 'hover:bg-accent'
                 )}
               >
                 <PresenceDot state={display} className="size-3" />
@@ -144,25 +150,25 @@ export function NavUser({
             <DropdownMenuItem
               key={href}
               onClick={() => router.push(href)}
-              className="cursor-pointer gap-2.5 px-3 py-1.5"
+              className="group/row cursor-pointer gap-3 px-3 py-1.5"
             >
-              <span className="flex size-6 shrink-0 items-center justify-center bg-muted">
-                <Icon className="size-3.5" />
+              <span className="flex size-7 shrink-0 items-center justify-center bg-muted/60 transition-colors group-focus/row:bg-background">
+                <Icon className="size-4 transition-colors group-focus/row:text-foreground" />
               </span>
               {label}
             </DropdownMenuItem>
           ))}
         </DropdownMenuGroup>
 
-        <DropdownMenuGroup className="border-t border-primary/20 py-1">
+        <DropdownMenuGroup className="border-t border-border py-1">
           {dataItems.map(({ icon: Icon, label, href }) => (
             <DropdownMenuItem
               key={href}
               onClick={() => router.push(href)}
-              className="cursor-pointer gap-2.5 px-3 py-1.5"
+              className="group/row cursor-pointer gap-3 px-3 py-1.5"
             >
-              <span className="flex size-6 shrink-0 items-center justify-center bg-muted">
-                <Icon className="size-3.5" />
+              <span className="flex size-7 shrink-0 items-center justify-center bg-muted/60 transition-colors group-focus/row:bg-background">
+                <Icon className="size-4 transition-colors group-focus/row:text-foreground" />
               </span>
               {label}
             </DropdownMenuItem>
@@ -170,14 +176,14 @@ export function NavUser({
         </DropdownMenuGroup>
 
         {/* Log out */}
-        <div className="border-t border-primary/20 bg-muted/30 py-1">
+        <div className="border-t border-border py-1">
           <DropdownMenuItem
             variant="destructive"
             onClick={handleResetDeviceData}
-            className="cursor-pointer gap-2.5 px-3 py-1.5"
+            className="cursor-pointer gap-3 px-3 py-1.5"
           >
-            <span className="flex size-6 shrink-0 items-center justify-center bg-destructive/10">
-              <LogOut className="size-3.5 text-destructive" />
+            <span className="flex size-7 shrink-0 items-center justify-center bg-destructive/10">
+              <LogOut className="size-4 text-destructive" />
             </span>
             {t('NavMain.log-out')}
           </DropdownMenuItem>
