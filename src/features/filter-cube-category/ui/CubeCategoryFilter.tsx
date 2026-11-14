@@ -50,7 +50,7 @@ export default function CubeCategoryFilter({
         <Button
           variant="outline"
           size="sm"
-          className={cn('h-9 shrink-0 gap-1.5', className)}
+          className={cn('h-9 shrink-0 gap-1.5 pointer-coarse:h-10', className)}
           aria-label={t('CubesPage.category')}
         >
           {value === 'all' ? (

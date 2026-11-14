@@ -115,7 +115,7 @@ export function CubeCard({ cube }: CubeCardProps) {
               stat.isRecord ? 'bg-record/10' : 'bg-foreground/[0.04]'
             )}
           >
-            <span className="truncate font-display text-[9px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+            <span className="truncate font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
               {stat.label}
             </span>
             <span
@@ -146,7 +146,7 @@ export function CubeCard({ cube }: CubeCardProps) {
           <PlayerIcon ref={playRef} size={14} className="mr-1" />
           {t('CubesPage.utilize')}
         </Button>
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 pointer-coarse:gap-3">
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -158,6 +158,7 @@ export function CubeCard({ cube }: CubeCardProps) {
                   onMouseEnter={() => gearRef.current?.startAnimation()}
                   onMouseLeave={() => gearRef.current?.stopAnimation()}
                   data-testid={`edit-cube-button-${cube.name}`}
+                  aria-label={`${t('CubesPage.edit')} ${cube.name}`}
                 >
                   <GearIcon ref={gearRef} size={16} />
                 </Button>
@@ -181,6 +182,7 @@ export function CubeCard({ cube }: CubeCardProps) {
                   onMouseEnter={() => trashRef.current?.startAnimation()}
                   onMouseLeave={() => trashRef.current?.stopAnimation()}
                   data-testid={`delete-cube-button-${cube.name}`}
+                  aria-label={`${t('CubesPage.delete')} ${cube.name}`}
                 >
                   <TrashIcon ref={trashRef} size={16} />
                 </Button>
