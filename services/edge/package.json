@@ -13,9 +13,9 @@
     "@nexustimer/contracts": "workspace:*"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^5.20261024.1",
+    "@cloudflare/workers-types": "^5.20261113.1",
     "typescript": "7.0.2",
-    "vitest": "^5.0.5",
-    "wrangler": "^4.152.0"
+    "vitest": "^5.1.0",
+    "wrangler": "^4.161.0"
   }
 }

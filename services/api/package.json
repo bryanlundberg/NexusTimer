@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1156.0",
-    "@hono/node-server": "^2.1.5",
+    "@hono/node-server": "^2.1.8",
     "@nexustimer/algorithms": "workspace:*",
     "@nexustimer/avatars": "workspace:*",
     "@nexustimer/contracts": "workspace:*",
@@ -24,7 +24,7 @@
     "bcryptjs": "^3.0.3",
     "better-auth": "^1.7.12",
     "country-flag-icons": "^1.6.20",
-    "hono": "^4.13.13",
+    "hono": "^4.13.18",
     "meilisearch": "^0.62.0",
     "mongodb": "~7.7.0",
     "mongoose": "^9.11.4",
@@ -36,6 +36,6 @@
     "esbuild": "^0.28.2",
     "tsx": "^4.23.15",
     "typescript": "7.0.2",
-    "vitest": "^5.0.5"
+    "vitest": "^5.1.0"
   }
 }

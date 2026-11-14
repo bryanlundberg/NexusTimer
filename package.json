@@ -23,8 +23,8 @@
     "@nexustimer/algorithms": "workspace:*",
     "@nexustimer/avatars": "workspace:*",
     "@nexustimer/contracts": "workspace:*",
-    "@nexustimer/cubelet": "workspace:*",
     "@nexustimer/cube-solver-rs": "workspace:*",
+    "@nexustimer/cubelet": "workspace:*",
     "@nexustimer/stats": "workspace:*",
     "@nexustimer/tnoodle-lib-rs": "workspace:*",
     "@radix-ui/react-alert-dialog": "^1.2.1",
@@ -107,7 +107,8 @@
     "tailwindcss": "^4.3.3",
     "tsx": "^4.23.15",
     "typescript": "7.0.2",
-    "vitest": "^5.0.5"
+    "vite": "^8.3.8",
+    "vitest": "^5.1.0"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
