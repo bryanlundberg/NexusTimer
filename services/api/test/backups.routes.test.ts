@@ -6,7 +6,6 @@ import { buildTestApp, testSessions } from './helpers'
 import { fakeStorage } from './storage-fakes'
 
 const USER = '64b7f0c2a1b2c3d4e5f60718'
-const current = { url: 'https://files.test/backups/u/20261004T100000Z.json', updatedAt: 1_759_572_000_000 }
 
 const unused = () => Promise.reject(new Error('not used'))
 
@@ -16,7 +15,7 @@ function appWith(
 ) {
   return buildTestApp({
     sessions: testSessions(userId),
-    backups: { upload: unused, list: unused, remove: unused, ...backups },
+    backups: { upload: unused, queueUpload: unused, list: unused, remove: unused, ...backups },
     avatars: { upload: unused, ...avatars }
   })
 }
@@ -33,34 +32,25 @@ describe('backups routes', () => {
     expect((await app.request('/api/v1/users/avatar', post(new FormData()))).status).toBe(401)
   })
 
-  it('passes the raw body and the timezone header, and answers the new current backup', async () => {
-    const upload = vi.fn<BackupsService['upload']>(async () => ({ backup: current }))
+  it('queues the raw body with the timezone header and answers 202 right away', async () => {
+    const queueUpload = vi.fn<BackupsService['queueUpload']>()
 
-    const res = await appWith({ backups: { upload } }).request(
+    const res = await appWith({ backups: { queueUpload } }).request(
       '/api/v1/backups',
       post(new Uint8Array([0x1f, 0x8b, 1]), { 'X-Timezone': 'Europe/Madrid' })
     )
 
-    expect(await res.json()).toEqual(current)
-    expect(upload).toHaveBeenCalledWith(USER, new Uint8Array([0x1f, 0x8b, 1]), 'Europe/Madrid')
+    expect(res.status).toBe(202)
+    expect(queueUpload).toHaveBeenCalledWith(USER, new Uint8Array([0x1f, 0x8b, 1]), 'Europe/Madrid')
   })
 
-  it('keeps the v1 statuses for each payload problem', async () => {
-    vi.spyOn(console, 'error').mockImplementation(() => {})
-    const cases = [
-      ['malformed', 400, { message: 'Malformed backup payload' }],
-      ['not-json', 400, { message: 'Backup is not valid JSON' }],
-      ['user-not-found', 404, { message: 'User not found' }],
-      ['empty-body', 500, { message: 'Internal server error' }],
-      ['empty-backup', 500, { message: 'Internal server error' }],
-      ['too-large', 500, { message: 'Internal server error' }]
-    ] as const
+  it('rejects an empty body without queueing it', async () => {
+    const queueUpload = vi.fn<BackupsService['queueUpload']>()
 
-    for (const [error, status, body] of cases) {
-      const res = await appWith({ backups: { upload: async () => ({ error }) } }).request('/api/v1/backups', post('x'))
-      expect(res.status).toBe(status)
-      expect(await res.json()).toEqual(body)
-    }
+    const res = await appWith({ backups: { queueUpload } }).request('/api/v1/backups', post(''))
+
+    expect(res.status).toBe(400)
+    expect(queueUpload).not.toHaveBeenCalled()
   })
 
   it('lists my backups', async () => {

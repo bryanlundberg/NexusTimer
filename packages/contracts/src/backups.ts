@@ -8,8 +8,6 @@ export interface BackupFile {
 
 export type CurrentBackup = { url: string; updatedAt: number }
 
-export type BackupUploadResponse = CurrentBackup
-
 export type BackupDeleteResponse = { deleted: string; current: CurrentBackup | null }
 
 export type AvatarUploadResponse = { url: string; public_id: string }

@@ -139,7 +139,7 @@ export function buildTestApp(overrides: Partial<AppDeps> = {}) {
       deleteMessage: unused,
       react: unused
     },
-    backups: { upload: unused, list: unused, remove: unused },
+    backups: { upload: unused, queueUpload: unused, list: unused, remove: unused },
     avatars: { upload: unused },
     nexi: { save: unused, createForNewUser: unused },
     usernames: { availability: unused, change: unused },

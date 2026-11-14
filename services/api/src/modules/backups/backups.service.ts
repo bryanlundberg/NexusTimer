@@ -8,6 +8,7 @@ import {
 } from '@nexustimer/contracts'
 import { computeUserStats, isValidTimezone, prepareBackupCubes } from '@nexustimer/stats'
 import type { Storage } from '../../infra/storage'
+import { logger } from '../../lib/logger'
 import type { BestsCache } from '../friends-leaderboards/friends-leaderboards.cache'
 import type { RunInBackground } from '../../platform/background'
 import type { UsersService } from '../users/users.service'
@@ -24,6 +25,7 @@ export type UploadResult = { backup: CurrentBackup } | { error: BackupPayloadErr
 
 export type BackupsService = {
   upload(userId: string, body: Uint8Array, timezone: string | null): Promise<UploadResult>
+  queueUpload(userId: string, body: Uint8Array, timezone: string | null): void
   list(userId: string): Promise<BackupFile[]>
   remove(userId: string, file: string): Promise<BackupDeleteResponse | null>
 }
@@ -76,29 +78,38 @@ export function createBackupsService({
     if (stale.length > 0) await storage.delete(stale.map((backup) => backup.key))
   }
 
+  async function upload(userId: string, body: Uint8Array, timezone: string | null): Promise<UploadResult> {
+    const decoded = decodeBackup(body)
+    if ('error' in decoded) return decoded
+
+    const updatedAt = now()
+    const key = newBackupKey(userId, updatedAt, randomSuffix())
+    await storage.upload(key, decoded.json, { contentType: 'application/json', cacheControl: BACKUP_CACHE_CONTROL })
+
+    const backup = { url: storage.url(key), updatedAt }
+    if (!(await users.setBackup(userId, backup))) return { error: 'user-not-found' }
+
+    background('backups:prune', () => prune(userId))
+    background('backups:stats', async () => {
+      const summary = computeUserStats(
+        prepareBackupCubes(decoded.backup),
+        timezone && isValidTimezone(timezone) ? timezone : DEFAULT_STATS_TIMEZONE
+      )
+      await users.saveStats(userId, { version: USER_STATS_VERSION, backupUpdatedAt: updatedAt, summary })
+      await bests.invalidate(userId)
+    })
+
+    return { backup }
+  }
+
   return {
-    async upload(userId, body, timezone) {
-      const decoded = decodeBackup(body)
-      if ('error' in decoded) return decoded
+    upload,
 
-      const updatedAt = now()
-      const key = newBackupKey(userId, updatedAt, randomSuffix())
-      await storage.upload(key, decoded.json, { contentType: 'application/json', cacheControl: BACKUP_CACHE_CONTROL })
-
-      const backup = { url: storage.url(key), updatedAt }
-      if (!(await users.setBackup(userId, backup))) return { error: 'user-not-found' }
-
-      background('backups:prune', () => prune(userId))
-      background('backups:stats', async () => {
-        const summary = computeUserStats(
-          prepareBackupCubes(decoded.backup),
-          timezone && isValidTimezone(timezone) ? timezone : DEFAULT_STATS_TIMEZONE
-        )
-        await users.saveStats(userId, { version: USER_STATS_VERSION, backupUpdatedAt: updatedAt, summary })
-        await bests.invalidate(userId)
+    queueUpload(userId, body, timezone) {
+      background('backups:upload', async () => {
+        const result = await upload(userId, body, timezone)
+        if ('error' in result) logger.warn('backup upload rejected', { userId, reason: result.error })
       })
-
-      return { backup }
     },
 
     async list(userId) {

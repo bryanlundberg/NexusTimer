@@ -1,6 +1,6 @@
 import { gzipSync } from 'node:zlib'
 import type { CurrentBackup } from '@nexustimer/contracts'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import type { StatsSnapshot } from '../src/modules/users/users.repository'
 import { createBackupsService, decodeBackup, MAX_BACKUP_BYTES } from '../src/modules/backups/backups.service'
 import { fakeStorage } from './storage-fakes'
@@ -176,6 +176,23 @@ describe('backups service', () => {
     const bad = setup()
     expect(await bad.service.upload(USER, bytes('nope'), null)).toEqual({ error: 'not-json' })
     expect(bad.objects.size).toBe(0)
+  })
+
+  it('queues the whole upload in the background and logs a rejected payload', async () => {
+    const queued = setup()
+    queued.service.queueUpload(USER, bytes(backupJson), null)
+    expect(queued.state.backup).toBeNull()
+    await queued.settle()
+    await queued.settle()
+    expect(queued.state.backup?.url).toContain(name('20261004T100001Z'))
+    expect(queued.state.stats).toHaveLength(1)
+
+    const log = vi.spyOn(console, 'log').mockImplementation(() => {})
+    const bad = setup()
+    bad.service.queueUpload(USER, bytes('nope'), null)
+    await bad.settle()
+    expect(bad.objects.size).toBe(0)
+    expect(String(log.mock.calls[0]?.[0])).toContain('not-json')
   })
 
   it('lists backups newest first and flags the current one', async () => {
