@@ -44,6 +44,7 @@ export default async function LandingFooter() {
         { href: '/privacy-policy', label: t('privacy') },
         { href: '/terms-of-service', label: t('terms') },
         { href: '/account-deletion', label: t('account-deletion') },
+        { href: '/third-party-licenses.txt', label: t('third-party'), external: true },
         { href: REPO_URL, label: t('github'), external: true }
       ]
     },
@@ -121,6 +122,8 @@ export default async function LandingFooter() {
           <LandingLanguageSelect label={t('language')} />
           <span className="text-xs text-muted-foreground">{t('copyright', { year: new Date().getFullYear() })}</span>
         </div>
+
+        <p className="mt-6 text-xs leading-relaxed text-muted-foreground/70 text-pretty">{t('trademarks')}</p>
       </div>
     </footer>
   )
