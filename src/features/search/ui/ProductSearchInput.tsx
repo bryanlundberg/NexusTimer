@@ -2,6 +2,7 @@
 
 import { Fragment, useEffect, useId, useRef, useState } from 'react'
 import { Search, X } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import { Spinner } from '@/components/ui/spinner'
 import { cn } from '@/shared/lib/utils'
 import { cubeColorClass } from '@/shared/const/cube-colors'
@@ -40,6 +41,7 @@ export function ProductSearchInput({
   id,
   'data-testid': dataTestId
 }: ProductSearchInputProps) {
+  const t = useTranslations('Index.Inputs')
   const [open, setOpen] = useState(false)
   const [focused, setFocused] = useState(false)
   const [highlight, setHighlight] = useState(-1)
@@ -132,8 +134,8 @@ export function ProductSearchInput({
           <button
             type="button"
             onClick={clear}
-            aria-label="Clear"
-            className="text-muted-foreground hover:text-foreground shrink-0 rounded p-0.5 transition-colors"
+            aria-label={t('clear')}
+            className="text-muted-foreground hover:text-foreground shrink-0 rounded p-0.5 transition-colors pointer-coarse:-mr-1.5 pointer-coarse:p-2"
           >
             <X className="size-4" />
           </button>
@@ -147,7 +149,7 @@ export function ProductSearchInput({
             {isLoading && hits.length === 0 && (
               <li className="text-muted-foreground flex items-center gap-2 px-2 py-1.5 text-xs">
                 <Spinner className="size-3.5" />
-                Searching…
+                {t('searching')}
               </li>
             )}
 
