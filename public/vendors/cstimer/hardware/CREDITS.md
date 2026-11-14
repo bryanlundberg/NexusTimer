@@ -21,6 +21,6 @@ The following files are derived from cstimer and are located under `src/js/hardw
 - `qiyitimer.js`
 - `stackmat.js`
 
-These files provide hardware connectivity support for Bluetooth smart cubes and Stackmat timers. They are used as-is from the cstimer project and are subject to the terms of the GPL-3.0 license.
+These files provide hardware connectivity support for Bluetooth smart cubes and Stackmat timers. They were copied from the cstimer project on 2026-04-02 and have been modified by NexusTimer since then (reformatted and adapted to load outside cstimer). They remain subject to the terms of the GPL-3.0 license, and the modified versions are published in the NexusTimer repository.
 
 In accordance with GPL-3.0, the source code for these files is available at the cstimer repository linked above.
