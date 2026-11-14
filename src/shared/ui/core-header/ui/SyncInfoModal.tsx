@@ -8,16 +8,22 @@ import { Progress } from '@/components/ui/progress'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { BACKUP_INTERVAL_SOLVES } from '@/shared/model/backup/useBackupSuggestion'
-
+import { useSyncBackup } from '@/shared/model/backup/useSyncBackup'
 export default function SyncInfoModal() {
   const t = useTranslations('Index.SyncProgress')
   const close = useOverlayStore((state) => state.close)
   const totalSolves = useSettingsStore((state) => state.settings.sync.totalSolves)
+  const { handleUploadBackup } = useSyncBackup()
 
   const current = Math.min(BACKUP_INTERVAL_SOLVES, Math.max(0, Number(totalSolves) || 0))
   const remaining = Math.max(0, BACKUP_INTERVAL_SOLVES - current)
   const percent = (current / BACKUP_INTERVAL_SOLVES) * 100
   const isLast = remaining === 1
+
+  const handleSave = async () => {
+    close()
+    await handleUploadBackup()
+  }
 
   return (
     <DialogContent className="sm:max-w-md">
@@ -39,12 +45,10 @@ export default function SyncInfoModal() {
             {t('modal-backups')}
           </Button>
         </Link>
-        <Link href="/account/save" onClick={close}>
-          <Button className="w-full gap-1.5">
-            <CloudUpload className="size-4" />
-            {t('modal-save')}
-          </Button>
-        </Link>
+        <Button className="gap-1.5" onClick={handleSave}>
+          <CloudUpload className="size-4" />
+          {t('modal-save')}
+        </Button>
       </DialogFooter>
     </DialogContent>
   )
