@@ -87,7 +87,7 @@ export default function SelectCollection() {
     >
       <DialogContent className="overflow-hidden p-0 sm:max-w-md" showCloseButton={false}>
         <VisuallyHidden>
-          <DialogTitle></DialogTitle>
+          <DialogTitle>{t('HomePage.select-cube')}</DialogTitle>
           <DialogDescription></DialogDescription>
         </VisuallyHidden>
 
@@ -125,10 +125,6 @@ export default function SelectCollection() {
                   {t('Inputs.no-results')}
                   {query.trim() && <span className="ml-1 font-medium text-foreground">&quot;{query.trim()}&quot;</span>}
                 </p>
-                <Button onClick={handleCreate} variant="outline" size="sm">
-                  <PlusIcon className="size-4" />
-                  {t('CubesPage.new-collection')}
-                </Button>
               </div>
             ) : (
               visibleCubes.map((cube) => (
