@@ -397,6 +397,9 @@ importers:
       country-flag-icons:
         specifier: ^1.6.20
         version: 1.6.20
+      cube-state-engine:
+        specifier: ^1.10.0
+        version: 1.10.0
       hono:
         specifier: ^4.13.18
         version: 4.13.18
