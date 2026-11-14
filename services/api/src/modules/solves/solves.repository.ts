@@ -49,6 +49,10 @@ type RawSolve = {
 
 const FASTEST_FIRST = { time: 1, createdAt: 1 } as const
 
+function withReplay(filter: SolveFilter) {
+  return { ...filter, 'replay.moves.0': { $exists: true } }
+}
+
 function toStoredSolve(doc: RawSolve): StoredSolve {
   return {
     id: String(doc._id),
@@ -66,12 +70,12 @@ function toStoredSolve(doc: RawSolve): StoredSolve {
 
 export const solvesRepository: SolvesRepository = {
   async fastest(filter, limit) {
-    const docs = await SolveModel.find(filter).sort(FASTEST_FIRST).limit(limit).lean<RawSolve[]>()
+    const docs = await SolveModel.find(withReplay(filter)).sort(FASTEST_FIRST).limit(limit).lean<RawSolve[]>()
     return docs.map(toStoredSolve)
   },
   async fastestPerUser(filter, limit) {
     const docs = await SolveModel.aggregate<RawSolve>([
-      { $match: filter },
+      { $match: withReplay(filter) },
       { $sort: FASTEST_FIRST },
       { $group: { _id: '$user', solve: { $first: '$$ROOT' } } },
       { $replaceRoot: { newRoot: '$solve' } },
