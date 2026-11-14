@@ -144,8 +144,12 @@ export function ProductSearchInput({
 
       {/* Dropdown */}
       {showDropdown && (
-        <div className="menu-panel absolute z-50 mt-1.5 w-full">
-          <ul id={listboxId} role="listbox" className="max-h-72 w-full overflow-y-auto overflow-x-hidden p-1">
+        <div className="menu-panel absolute z-50 mt-1.5 w-full pointer-coarse:static">
+          <ul
+            id={listboxId}
+            role="listbox"
+            className="max-h-72 w-full pointer-coarse:max-h-56 overflow-y-auto overflow-x-hidden p-1"
+          >
             {isLoading && hits.length === 0 && (
               <li className="text-muted-foreground flex items-center gap-2 px-2 py-1.5 text-xs">
                 <Spinner className="size-3.5" />
