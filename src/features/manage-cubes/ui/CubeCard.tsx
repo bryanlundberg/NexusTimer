@@ -62,22 +62,23 @@ export function CubeCard({ cube }: CubeCardProps) {
       data-favorite={cube.favorite ? 'true' : undefined}
       className={cn('surface group relative flex flex-col gap-2 p-4 text-card-foreground')}
     >
-      {/* Header */}
       <div className="flex justify-between items-start">
         <div className="flex items-center gap-2 min-w-0 flex-1">
-          <h3
-            className="text-base font-semibold cursor-pointer hover:text-primary break-words transition-colors"
-            onClick={handleRedirect}
-            data-testid={`cube-name-${cube.name}`}
-          >
-            {cube.name}
+          <h3 className="text-base font-semibold break-words" data-testid={`cube-name-${cube.name}`}>
+            <button
+              type="button"
+              onClick={handleRedirect}
+              className="cursor-pointer text-left transition-colors outline-none group-hover:text-primary after:absolute after:inset-0 focus-visible:after:outline-2 focus-visible:after:outline-ring"
+            >
+              {cube.name}
+            </button>
           </h3>
           {isActive && <span aria-hidden className="size-1.5 shrink-0 bg-primary" />}
         </div>
         <Button
           variant="ghost"
           size="icon"
-          className="size-8 pointer-coarse:size-10"
+          className="relative z-10 size-8 pointer-coarse:size-10"
           data-testid={`favorite-cube-button-${cube.name}`}
           aria-label={t('CubesPage.favorite')}
           aria-pressed={cube.favorite}
@@ -130,14 +131,13 @@ export function CubeCard({ cube }: CubeCardProps) {
         ))}
       </div>
 
-      <SolvesTrend solves={recentSolves} bestTime={bestTime} className="mt-0 h-8" />
+      <SolvesTrend solves={recentSolves} bestTime={bestTime} className="mt-0 hidden h-8 @xl:block" />
 
-      {/* Footer */}
       <div className="mt-auto flex w-full items-center justify-between gap-2 text-sm pt-1">
         <Button
           variant={'default'}
           size={'sm'}
-          className="pointer-coarse:h-10"
+          className="relative z-10 pointer-coarse:h-10"
           onClick={handleRedirect}
           onMouseEnter={() => playRef.current?.startAnimation()}
           onMouseLeave={() => playRef.current?.stopAnimation()}
@@ -146,7 +146,7 @@ export function CubeCard({ cube }: CubeCardProps) {
           <PlayerIcon ref={playRef} size={14} className="mr-1" />
           {t('CubesPage.utilize')}
         </Button>
-        <div className="flex items-center gap-1 pointer-coarse:gap-3">
+        <div className="relative z-10 flex items-center gap-1 pointer-coarse:gap-3">
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
