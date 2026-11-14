@@ -44,13 +44,14 @@ describe('submitLeaderboardSolve', () => {
     })
   })
 
-  it('leaves out a replay the API would refuse', async () => {
-    fetchMock.mockResolvedValue(new Response(null, { status: 204 }))
+  it('skips solves without a replay the API would accept', async () => {
     const long = { ...solve.replay!, moves: Array.from({ length: 1001 }, (_, t) => ({ m: 'R', t })) }
+    const empty = { ...solve.replay!, moves: [] }
 
-    await submitLeaderboardSolve({ solve: { ...solve, replay: long }, puzzle: '2x2x2', smart: false })
-
-    expect(sentBody()).toEqual({ time: 9431, scramble: "R U R' U'", puzzle: '2x2x2', smart: false })
+    for (const replay of [long, empty, undefined]) {
+      expect(await submitLeaderboardSolve({ solve: { ...solve, replay }, puzzle: '2x2x2', smart: false })).toBe(false)
+    }
+    expect(fetchMock).not.toHaveBeenCalled()
   })
 
   it('treats a signed-out user as nothing to store and reports server failures', async () => {

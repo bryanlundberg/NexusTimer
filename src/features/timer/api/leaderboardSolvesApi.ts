@@ -16,14 +16,16 @@ export async function submitLeaderboardSolve({
   smart,
   solution
 }: SubmitLeaderboardSolveParams): Promise<boolean> {
-  const replay = solve.replay && solve.replay.moves.length <= REPLAY_MAX_MOVES ? solve.replay : undefined
+  const replay = solve.replay
+  if (!replay || replay.moves.length === 0 || replay.moves.length > REPLAY_MAX_MOVES) return false
+
   const body: SubmitSolveInput = {
     time: solve.time,
     scramble: solve.scramble,
     puzzle,
     smart,
     ...(solution ? { solution } : {}),
-    ...(replay ? { replay } : {})
+    replay
   }
 
   const res = await fetch(LEADERBOARD_SOLVES_URL, {
