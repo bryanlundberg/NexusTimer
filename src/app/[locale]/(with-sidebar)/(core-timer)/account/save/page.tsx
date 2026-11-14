@@ -34,7 +34,7 @@ export default function AccountSavePage() {
   }, [])
 
   const handleSave = async () => {
-    if ((await handleUploadBackup()) && isMountedRef.current) router.push('/account?tab=backups')
+    if ((await handleUploadBackup()) && isMountedRef.current) router.push('/app')
   }
 
   const activeCubes = cubes?.filter((cube) => !cube.isDeleted)
