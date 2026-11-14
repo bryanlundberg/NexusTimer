@@ -43,7 +43,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   const scrollRef = useRef<HTMLDivElement>(null)
 
-  useOverscrollStretch(scrollRef, menuRef)
+  useOverscrollStretch(scrollRef, menuRef, { bottom: true })
 
   if (isFocusMode) return null
 

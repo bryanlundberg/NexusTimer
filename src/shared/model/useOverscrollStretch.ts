@@ -10,12 +10,15 @@ const RELEASE_TRANSITION = 'transform 450ms cubic-bezier(0.22, 1, 0.36, 1)'
 interface OverscrollStretchOptions {
   maxStretch?: number
   enabled?: boolean
+  bottom?: boolean
 }
+
+const isAtBottom = (scroller: HTMLElement) => scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - 1
 
 export function useOverscrollStretch(
   scrollerRef: RefObject<HTMLElement | null>,
   contentRef: RefObject<HTMLElement | null>,
-  { maxStretch = MAX_STRETCH, enabled = true }: OverscrollStretchOptions = {}
+  { maxStretch = MAX_STRETCH, enabled = true, bottom = false }: OverscrollStretchOptions = {}
 ) {
   useEffect(() => {
     if (!enabled || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
@@ -27,9 +30,12 @@ export function useOverscrollStretch(
     let anchorY: number | null = null
     let stretched: HTMLElement | null = null
 
-    const setScale = (content: HTMLElement, scale: number) => {
+    const atEdge = (node: Node, scroller: HTMLElement) =>
+      !isScrolledWithin(node, scroller) || (bottom && isAtBottom(scroller))
+
+    const setScale = (content: HTMLElement, scale: number, origin: 'top' | 'bottom' = 'top') => {
       content.style.transition = 'none'
-      content.style.transformOrigin = 'top'
+      content.style.transformOrigin = origin
       content.style.transform = scale === 1 ? '' : `scaleY(${scale})`
       stretched = scale === 1 ? null : content
     }
@@ -58,7 +64,7 @@ export function useOverscrollStretch(
       startX = event.touches[0].clientX
       startY = event.touches[0].clientY
       locked = false
-      anchorY = isScrolledWithin(node, scroller) ? null : startY
+      anchorY = atEdge(node, scroller) ? startY : null
     }
 
     const onMove = (event: TouchEvent) => {
@@ -80,7 +86,7 @@ export function useOverscrollStretch(
         }
         locked = true
       }
-      if (isScrolledWithin(target, scroller)) {
+      if (!atEdge(target, scroller)) {
         anchorY = null
         if (stretched) setScale(content, 1)
         return
@@ -90,7 +96,10 @@ export function useOverscrollStretch(
         return
       }
       const pull = y - anchorY
-      setScale(content, pull > 0 ? 1 + maxStretch * (1 - Math.exp(-pull / RESISTANCE)) : 1)
+      const stretch = (distance: number) => 1 + maxStretch * (1 - Math.exp(-distance / RESISTANCE))
+      if (pull > 0 && !isScrolledWithin(target, scroller)) setScale(content, stretch(pull), 'top')
+      else if (pull < 0 && bottom && isAtBottom(scroller)) setScale(content, stretch(-pull), 'bottom')
+      else setScale(content, 1)
     }
 
     const onEnd = (event: TouchEvent) => {
@@ -110,5 +119,5 @@ export function useOverscrollStretch(
       document.removeEventListener('touchcancel', onEnd)
       release()
     }
-  }, [scrollerRef, contentRef, maxStretch, enabled])
+  }, [scrollerRef, contentRef, maxStretch, enabled, bottom])
 }

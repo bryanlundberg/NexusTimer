@@ -160,6 +160,65 @@ describe('useOverscrollStretch', () => {
     expect(content.style.transform).toBe('')
   })
 
+  describe('bottom edge', () => {
+    const setScrollSize = (scrollHeight: number, clientHeight: number) => {
+      Object.defineProperty(scroller, 'scrollHeight', { value: scrollHeight, configurable: true })
+      Object.defineProperty(scroller, 'clientHeight', { value: clientHeight, configurable: true })
+    }
+
+    it('stretches from the bottom while pulling up at the end of the list', () => {
+      setScrollSize(1000, 400)
+      setScrollTop(600)
+      mount({ bottom: true })
+
+      touch('touchstart', 300)
+      touch('touchmove', 150)
+
+      expect(scale()).toBeGreaterThan(1)
+      expect(content.style.transformOrigin).toBe('bottom')
+
+      touch('touchend', null)
+      expect(content.style.transform).toBe('')
+    })
+
+    it('does not stretch while the list can still scroll down', () => {
+      setScrollSize(1000, 400)
+      setScrollTop(300)
+      mount({ bottom: true })
+
+      touch('touchstart', 300)
+      touch('touchmove', 100)
+
+      expect(content.style.transform).toBe('')
+    })
+
+    it('measures the pull from where the list reached the bottom', () => {
+      setScrollSize(1000, 400)
+      setScrollTop(500)
+      mount({ bottom: true })
+
+      touch('touchstart', 300)
+      touch('touchmove', 250)
+      setScrollTop(600)
+      touch('touchmove', 200)
+      expect(content.style.transform).toBe('')
+
+      touch('touchmove', 140)
+      expect(scale()).toBeCloseTo(1 + 0.08 * (1 - Math.exp(-60 / 300)), 5)
+    })
+
+    it('stays off unless enabled', () => {
+      setScrollSize(1000, 400)
+      setScrollTop(600)
+      mount()
+
+      touch('touchstart', 300)
+      touch('touchmove', 100)
+
+      expect(content.style.transform).toBe('')
+    })
+  })
+
   it('does nothing when the user prefers reduced motion', () => {
     setReducedMotion(true)
     mount()
