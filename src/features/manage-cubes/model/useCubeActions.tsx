@@ -45,9 +45,13 @@ export const useCubeActions = (cube?: Cube) => {
   }
 
   const handleFavorite = async () => {
-    const isFavoriting = !cube?.favorite
-
-    patchCube(await editCubeCollection({ favorite: isFavoriting, id: cube!.id }))
+    if (!cube) return
+    patchCube({ ...cube, favorite: !cube.favorite })
+    try {
+      patchCube(await editCubeCollection({ favorite: !cube.favorite, id: cube.id }))
+    } catch {
+      patchCube(cube)
+    }
   }
 
   return {
