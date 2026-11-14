@@ -4,28 +4,18 @@ const TOUCH_QUERY = '(pointer: coarse)'
 type Overlay = { close: () => void }
 
 const stack: Overlay[] = []
-let traversing = false
+let lastDepth = 0
+let skipping = false
 let scheduled = false
-let listening = false
+let installed = false
 
 function historyDepth() {
   return Number(window.history.state?.[DEPTH_KEY]) || 0
 }
 
-function sync() {
+function pushMissingEntries() {
   scheduled = false
-  if (traversing) return
-
-  const current = historyDepth()
-  const wanted = stack.length
-
-  if (current > wanted) {
-    traversing = true
-    window.history.go(wanted - current)
-    return
-  }
-
-  for (let depth = current + 1; depth <= wanted; depth++) {
+  for (let depth = historyDepth() + 1; depth <= stack.length; depth++) {
     window.history.pushState({ ...window.history.state, [DEPTH_KEY]: depth }, '')
   }
 }
@@ -33,29 +23,66 @@ function sync() {
 function scheduleSync() {
   if (scheduled) return
   scheduled = true
-  queueMicrotask(sync)
+  queueMicrotask(pushMissingEntries)
+}
+
+function skip(delta: number) {
+  skipping = true
+  window.history.go(delta)
 }
 
 function handlePopState() {
-  if (traversing) {
-    traversing = false
-    sync()
+  const previous = lastDepth
+  const current = historyDepth()
+  lastDepth = current
+
+  if (skipping) {
+    skipping = false
     return
   }
 
-  const current = historyDepth()
+  const openBefore = stack.length
   while (stack.length > current) stack.pop()?.close()
-  sync()
+
+  if (current < previous && previous > openBefore) {
+    skip(stack.length - current - 1)
+    return
+  }
+
+  if (current > stack.length) skip(stack.length - current)
+}
+
+function install() {
+  if (installed) return
+  installed = true
+  lastDepth = historyDepth()
+
+  const push = window.history.pushState
+  const replace = window.history.replaceState
+
+  window.history.pushState = function (this: History, ...args: Parameters<History['pushState']>) {
+    const reuseLeftover = args[2] != null && historyDepth() > stack.length
+    const result = (reuseLeftover ? replace : push).apply(this, args)
+    lastDepth = historyDepth()
+    return result
+  }
+
+  window.history.replaceState = function (this: History, data: unknown, unused: string, url?: string | URL | null) {
+    const depth = historyDepth()
+    const keepDepth = depth > 0 && typeof data === 'object' && data !== null && !(DEPTH_KEY in data)
+    const result = replace.call(this, keepDepth ? { ...data, [DEPTH_KEY]: depth } : data, unused, url)
+    lastDepth = historyDepth()
+    return result
+  }
+
+  window.addEventListener('popstate', handlePopState)
 }
 
 export function registerBackDismiss(close: () => void) {
   if (typeof window === 'undefined') return () => {}
   if (typeof window.matchMedia !== 'function' || !window.matchMedia(TOUCH_QUERY).matches) return () => {}
 
-  if (!listening) {
-    listening = true
-    window.addEventListener('popstate', handlePopState)
-  }
+  install()
 
   const overlay: Overlay = { close }
   stack.push(overlay)
@@ -63,8 +90,6 @@ export function registerBackDismiss(close: () => void) {
 
   return () => {
     const index = stack.indexOf(overlay)
-    if (index === -1) return
-    stack.splice(index, 1)
-    scheduleSync()
+    if (index !== -1) stack.splice(index, 1)
   }
 }

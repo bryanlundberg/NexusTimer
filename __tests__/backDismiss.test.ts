@@ -47,18 +47,59 @@ describe('registerBackDismiss', () => {
     release()
   })
 
-  it('removes its history entry when closed some other way', async () => {
+  it('leaves history alone when closed some other way', async () => {
     const close = vi.fn()
     const release = registerBackDismiss(close)
     await flush()
-    expect(depth()).toBe(1)
+    const length = window.history.length
 
-    const popped = nextPopState()
     release()
-    await popped
+    await new Promise((resolve) => setTimeout(resolve, 20))
 
     expect(close).not.toHaveBeenCalled()
+    expect(window.history.length).toBe(length)
+    expect(depth()).toBe(1)
+  })
+
+  it('reuses the leftover entry for a navigation that follows the close', async () => {
+    window.history.pushState({}, '', '/page')
+    const release = registerBackDismiss(vi.fn())
+    await flush()
+    const length = window.history.length
+
+    release()
+    window.history.pushState({ page: 'next' }, '', '/next')
+
+    expect(window.location.pathname).toBe('/next')
+    expect(window.history.length).toBe(length)
     expect(depth()).toBe(0)
+
+    const popped = nextPopState()
+    window.history.back()
+    await popped
+    expect(window.location.pathname).toBe('/page')
+    expect(depth()).toBe(0)
+  })
+
+  it('skips the leftover entry when the user goes back', async () => {
+    window.history.pushState({}, '', '/before')
+    window.history.pushState({}, '', '/page')
+    const release = registerBackDismiss(vi.fn())
+    await flush()
+    release()
+
+    window.history.back()
+    await vi.waitFor(() => expect(window.location.pathname).toBe('/before'))
+  })
+
+  it('keeps the overlay depth when the current entry is replaced', async () => {
+    const release = registerBackDismiss(vi.fn())
+    await flush()
+
+    window.history.replaceState({ app: true }, '')
+
+    expect(window.history.state).toEqual({ app: true, __overlayDepth: 1 })
+    release()
   })
 
   it('reuses the entry when one overlay replaces another', async () => {
