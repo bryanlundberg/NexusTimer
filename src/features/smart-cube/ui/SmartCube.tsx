@@ -90,7 +90,7 @@ export default function SmartCube({ renderConnected, onCancel, cancelLabel }: Sm
   }
 
   const isConnected = status === 'connected'
-  const hideConnectionInfo = !renderConnected && phase === 'solving'
+  const hideConnectionInfo = !renderConnected && (phase === 'solving' || phase === 'inspecting')
 
   if (supportsBluetooth === false) {
     return (
