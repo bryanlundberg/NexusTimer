@@ -4,7 +4,6 @@ import {
   DropdownMenuContent,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
@@ -107,16 +106,17 @@ export default function ButtonSelectMode() {
           <ChevronDown className="size-4 opacity-50 transition-transform duration-200 group-data-[state=open]:rotate-180" />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-72" innerClassName="p-px">
-        <div className="px-3 pt-2.5 pb-2">
-          <p className="text-xs font-semibold uppercase tracking-wider leading-none">{t('HomePage.mode')}</p>
-          <p className="mt-1.5 text-xs text-muted-foreground">{t('HomePage.modes-subtitle')}</p>
+      <DropdownMenuContent align="end" className="w-80 max-w-[calc(100vw-1rem)]" innerClassName="p-0">
+        <div className="border-b border-border bg-muted/40 px-3.5 py-3">
+          <p className="font-display text-[10px] leading-none font-semibold tracking-[0.14em] text-muted-foreground uppercase">
+            {t('HomePage.mode')}
+          </p>
+          <p className="mt-1.5 text-[13px] leading-snug text-foreground">{t('HomePage.modes-subtitle')}</p>
         </div>
-        <DropdownMenuSeparator className="mx-0 my-0" />
         <DropdownMenuRadioGroup
           value={timerMode}
           onValueChange={(value) => setTimerMode(value as TimerMode)}
-          className="flex flex-col py-1"
+          className="flex flex-col gap-0.5 p-1.5"
         >
           {MODES.map((mode) => {
             const isActive = timerMode === mode.value
@@ -129,33 +129,47 @@ export default function ButtonSelectMode() {
                 value={mode.value}
                 data-testid={mode.testId}
                 disabled={isDisabled}
-                className="group/mode flex cursor-pointer items-start gap-3 px-3 py-2 transition-colors [&>span]:hidden"
+                className="group/mode flex cursor-pointer items-center gap-3 px-2 py-2 text-foreground transition-colors data-[disabled]:opacity-100 data-[state=checked]:bg-foreground/5 data-[state=checked]:focus:bg-foreground/10 [&>span]:hidden"
               >
                 <div
                   className={cn(
-                    'flex size-9 shrink-0 items-center justify-center transition-colors',
-                    isActive
-                      ? 'bg-muted text-foreground'
-                      : 'bg-muted/60 text-muted-foreground group-focus/mode:bg-muted'
+                    'flex size-9 shrink-0 items-center justify-center border transition-colors',
+                    isActive && 'border-transparent bg-foreground/10 text-foreground',
+                    !isActive && isDisabled && 'border-dashed border-border text-muted-foreground/50',
+                    !isActive &&
+                      !isDisabled &&
+                      'border-transparent bg-muted/60 text-muted-foreground group-focus/mode:bg-background group-focus/mode:text-foreground'
                   )}
                 >
                   <Icon className="size-4" />
                 </div>
                 <div className="flex min-w-0 grow flex-col gap-0.5">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-sm font-medium leading-tight">{t(`HomePage.modes.${mode.tKey}`)}</span>
+                    <span
+                      className={cn(
+                        'truncate font-display text-sm leading-tight font-semibold tracking-tight',
+                        isDisabled && 'text-muted-foreground/60'
+                      )}
+                    >
+                      {t(`HomePage.modes.${mode.tKey}`)}
+                    </span>
                     {(mode.badge || mode.requires) && (
-                      <span className="border border-border bg-muted px-1 py-px font-mono text-[10px] font-medium leading-tight tracking-wide text-muted-foreground">
+                      <span className="shrink-0 border border-border bg-muted px-1 py-px font-mono text-[10px] leading-tight font-medium tracking-wide text-muted-foreground">
                         {mode.badge ?? mode.requires!.join(' · ')}
                       </span>
                     )}
                     {mode.comingSoon && (
-                      <span className="border border-primary/40 bg-primary/10 px-1 py-px font-mono text-[10px] font-medium leading-tight tracking-wide text-primary uppercase">
+                      <span className="shrink-0 border border-primary/40 bg-primary/10 px-1 py-px font-mono text-[10px] leading-tight font-medium tracking-wide text-primary uppercase">
                         {t('HomePage.modes-soon')}
                       </span>
                     )}
                   </div>
-                  <span className="text-xs leading-snug text-muted-foreground">
+                  <span
+                    className={cn(
+                      'text-xs leading-snug font-normal',
+                      isDisabled ? 'text-muted-foreground/50' : 'text-muted-foreground'
+                    )}
+                  >
                     {t(`HomePage.modes-desc.${mode.tKey}`)}
                   </span>
                 </div>
