@@ -67,7 +67,7 @@ export const submitSolveSchema = z.object({
   puzzle: z.enum(LEADERBOARD_PUZZLES),
   smart: z.boolean().optional(),
   solution: z.string().max(SOLUTION_MAX_LENGTH).optional(),
-  replay: replayInputSchema.optional()
+  replay: replayInputSchema
 })
 
 export type SubmitSolveInput = z.infer<typeof submitSolveSchema>
