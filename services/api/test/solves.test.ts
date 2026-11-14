@@ -12,8 +12,16 @@ const input: SubmitSolveInput = {
   puzzle: '3x3x3',
   smart: true,
   solution: "x y R U R' U' y",
-  replay: { version: 1, puzzle: '3x3x3', scramble: "R U R' U' F2 D", durationMs: 9431, moves: [{ m: 'R', t: 120 }] }
+  replay: {
+    version: 1,
+    puzzle: '3x3x3',
+    scramble: "R U R' U' F2 D",
+    durationMs: 9431,
+    moves: ["D'", 'F2', 'U', 'R', "U'", "R'"].map((m, i) => ({ m, t: i * 1880 }))
+  }
 }
+
+const allowAll = { consume: async () => true }
 
 describe('cleanRotations', () => {
   it('drops the inspection rotations and keeps the ones inside the solution', () => {
@@ -27,8 +35,9 @@ describe('solves service', () => {
   it('stores the leaderboard solve with a cleaned solution', async () => {
     const insert = vi.fn<(solve: NewSolve) => Promise<void>>(async () => {})
 
-    await createSolvesService({ repository: { insert } }).submit(USER, input)
+    const result = await createSolvesService({ repository: { insert }, limits: allowAll }).submit(USER, input)
 
+    expect(result).toBe('stored')
     expect(insert).toHaveBeenCalledWith({
       userId: USER,
       time: 9431,
@@ -40,24 +49,38 @@ describe('solves service', () => {
     })
   })
 
-  it('stores nulls for a missing solution and replay and treats a missing smart flag as false', async () => {
+  it('stores null for a missing solution and treats a missing smart flag as false', async () => {
+    const insert = vi.fn<(solve: NewSolve) => Promise<void>>(async () => {})
+    const { solution: _solution, smart: _smart, ...rest } = input
+
+    await createSolvesService({ repository: { insert }, limits: allowAll }).submit(USER, rest)
+
+    expect(insert).toHaveBeenCalledWith(expect.objectContaining({ solution: null, smart: false }))
+  })
+
+  it('rejects a replay that does not solve the scramble without storing it', async () => {
+    const insert = vi.fn<(solve: NewSolve) => Promise<void>>(async () => {})
+    const replay = { ...input.replay, moves: input.replay.moves.slice(0, -1) }
+
+    const result = await createSolvesService({ repository: { insert }, limits: allowAll }).submit(USER, {
+      ...input,
+      replay
+    })
+
+    expect(result).toBe('rejected')
+    expect(insert).not.toHaveBeenCalled()
+  })
+
+  it('stops a user over the rate limit before verifying', async () => {
     const insert = vi.fn<(solve: NewSolve) => Promise<void>>(async () => {})
 
-    await createSolvesService({ repository: { insert } }).submit(USER, {
-      time: 4012,
-      scramble: "R U R'",
-      puzzle: '2x2x2'
-    })
+    const result = await createSolvesService({
+      repository: { insert },
+      limits: { consume: async () => false }
+    }).submit(USER, input)
 
-    expect(insert).toHaveBeenCalledWith({
-      userId: USER,
-      time: 4012,
-      scramble: "R U R'",
-      solution: null,
-      puzzle: '2x2x2',
-      smart: false,
-      replay: null
-    })
+    expect(result).toBe('rate-limited')
+    expect(insert).not.toHaveBeenCalled()
   })
 })
 
@@ -81,36 +104,32 @@ describe('solves route', () => {
     expect(submit).not.toHaveBeenCalled()
   })
 
-  it('checks the shape only: puzzle, number and string types and bounded replays', async () => {
-    const submit = vi.fn<SolvesService['submit']>(async () => {})
+  it('rejects malformed bodies and solves without a replay', async () => {
+    const submit = vi.fn<SolvesService['submit']>(async () => 'stored')
     const app = appWith(submit)
     const tooManyMoves = Array.from({ length: 1001 }, (_, t) => ({ m: 'R', t }))
+    const { replay: _replay, ...noReplay } = input
 
     for (const body of [
       { ...input, puzzle: '4x4x4' },
       { ...input, time: '9431' },
       { ...input, time: -1 },
       { ...input, scramble: '' },
-      { ...input, replay: { ...input.replay, moves: tooManyMoves } }
+      { ...input, replay: { ...input.replay, moves: tooManyMoves } },
+      noReplay
     ]) {
       expect((await app.request('/api/v1/solves', post(body))).status).toBe(400)
     }
     expect(submit).not.toHaveBeenCalled()
   })
 
-  it('accepts any non-negative time and answers 204', async () => {
-    const submit = vi.fn<SolvesService['submit']>(async () => {})
-    const app = appWith(submit)
+  it('maps the submit result to 204, 400 and 429', async () => {
+    const answer = async (result: Awaited<ReturnType<SolvesService['submit']>>) =>
+      (await appWith(async () => result).request('/api/v1/solves', post(input))).status
 
-    const fast = await app.request('/api/v1/solves', post({ ...input, time: 0 }))
-    const plain = await app.request('/api/v1/solves', post({ time: 15000, scramble: "R U R'", puzzle: '2x2x2' }))
-
-    expect(fast.status).toBe(204)
-    expect(plain.status).toBe(204)
-    expect(submit.mock.calls.map(([userId, body]) => [userId, body.time])).toEqual([
-      [USER, 0],
-      [USER, 15000]
-    ])
+    expect(await answer('stored')).toBe(204)
+    expect(await answer('rejected')).toBe(400)
+    expect(await answer('rate-limited')).toBe(429)
   })
 
   it('answers 500 when the solve cannot be stored', async () => {

@@ -1,5 +1,7 @@
 import type { SubmitSolveInput } from '@nexustimer/contracts'
+import type { SolveLimits } from './solves.limits'
 import type { SolvesRepository } from './solves.repository'
+import { verifyLeaderboardSolve } from './solves.verify'
 
 const ROTATIONS = new Set(['x', "x'", 'y', "y'", 'z', "z'"])
 
@@ -19,13 +21,24 @@ export function cleanRotations(alg: string): string {
   return result.join(' ')
 }
 
+export type SubmitSolveResult = 'stored' | 'rejected' | 'rate-limited'
+
 export type SolvesService = {
-  submit(userId: string, input: SubmitSolveInput): Promise<void>
+  submit(userId: string, input: SubmitSolveInput): Promise<SubmitSolveResult>
 }
 
-export function createSolvesService({ repository }: { repository: Pick<SolvesRepository, 'insert'> }): SolvesService {
+type SolvesDeps = {
+  repository: Pick<SolvesRepository, 'insert'>
+  limits: SolveLimits
+}
+
+export function createSolvesService({ repository, limits }: SolvesDeps): SolvesService {
   return {
-    async submit(userId, { time, scramble, puzzle, smart, solution, replay }) {
+    async submit(userId, input) {
+      if (!(await limits.consume(userId))) return 'rate-limited'
+      if (!verifyLeaderboardSolve(input)) return 'rejected'
+
+      const { time, scramble, puzzle, smart, solution, replay } = input
       await repository.insert({
         userId,
         time,
@@ -33,8 +46,9 @@ export function createSolvesService({ repository }: { repository: Pick<SolvesRep
         solution: solution ? cleanRotations(solution) : null,
         puzzle,
         smart: smart ?? false,
-        replay: replay ?? null
+        replay
       })
+      return 'stored'
     }
   }
 }

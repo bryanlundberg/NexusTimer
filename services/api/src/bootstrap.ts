@@ -65,6 +65,7 @@ import { createFriendsService } from './modules/social/friends.service'
 import { createSocialService } from './modules/social/social.service'
 import { createLeaderboardCache } from './modules/solves/leaderboards.cache'
 import { createLeaderboardsService } from './modules/solves/leaderboards.service'
+import { createSolveLimits } from './modules/solves/solves.limits'
 import { solvesRepository, solvesUserData } from './modules/solves/solves.repository'
 import { createSolvesService } from './modules/solves/solves.service'
 import { createLearnedCache, createSolvesCache } from './modules/trainer/trainer.cache'
@@ -215,7 +216,7 @@ export function buildApp() {
       users,
       appUrl
     }),
-    solves: createSolvesService({ repository: solvesRepository }),
+    solves: createSolvesService({ repository: solvesRepository, limits: createSolveLimits(redis) }),
     achievements,
     admin: createAdminService({
       users,
