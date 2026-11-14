@@ -76,7 +76,8 @@ export default async function FrameFooter() {
     { href: '/privacy-policy', label: t('privacy') },
     { href: '/terms-of-service', label: t('terms') },
     { href: '/account-deletion', label: t('account-deletion') },
-    { href: `${REPO_URL}/blob/main/LICENSE`, label: 'GPL-3.0', external: true }
+    { href: `${REPO_URL}/blob/main/LICENSE`, label: 'GPL-3.0', external: true },
+    { href: '/third-party-licenses.txt', label: t('third-party'), external: true }
   ]
 
   return (
@@ -126,6 +127,9 @@ export default async function FrameFooter() {
             ))}
           </nav>
         </div>
+        <p className="px-4 pb-6 text-xs leading-relaxed text-muted-foreground text-pretty md:px-6 xl:px-10">
+          {t('trademarks')}
+        </p>
       </div>
 
       <div className="relative">
