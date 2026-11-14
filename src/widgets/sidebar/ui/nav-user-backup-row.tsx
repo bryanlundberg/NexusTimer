@@ -1,22 +1,23 @@
 import { useTranslations } from 'next-intl'
 import { ChevronRight } from 'lucide-react'
-import { DropdownMenuItem } from '@/components/ui/dropdown-menu'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import SyncInfoModal from '@/shared/ui/core-header/ui/SyncInfoModal'
 import { BackupRing } from '@/widgets/sidebar/ui/backup-ring'
+import type { NavUserItemComponent } from '@/widgets/sidebar/ui/nav-user-item'
 
 interface NavUserBackupRowProps {
+  Item: NavUserItemComponent
   percent: number
   remaining: number
   isLast: boolean
 }
 
-export function NavUserBackupRow({ percent, remaining, isLast }: NavUserBackupRowProps) {
+export function NavUserBackupRow({ Item, percent, remaining, isLast }: NavUserBackupRowProps) {
   const t = useTranslations('Index.SyncProgress')
   const open = useOverlayStore((state) => state.open)
 
   return (
-    <DropdownMenuItem
+    <Item
       onClick={() => open({ id: 'sync-info', component: <SyncInfoModal /> })}
       className="cursor-pointer gap-3 border-t px-3 py-2"
       data-testid="header-backup-row"
@@ -31,6 +32,6 @@ export function NavUserBackupRow({ percent, remaining, isLast }: NavUserBackupRo
         </span>
       </span>
       <ChevronRight className="size-4 shrink-0 text-muted-foreground" />
-    </DropdownMenuItem>
+    </Item>
   )
 }
