@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react'
 import SignUpForm from '@/features/authentication/ui/SignUpForm'
 import OAuthProviders from '@/features/authentication/ui/OAuthProviders'
 import AuthDivider from '@/features/authentication/ui/AuthDivider'
+import AuthLegalNotice from '@/features/authentication/ui/AuthLegalNotice'
 import AuthScreen from '@/features/authentication/ui/AuthScreen'
 
 export default async function SignUpPage() {
@@ -30,6 +31,7 @@ export default async function SignUpPage() {
       <SignUpForm />
       <AuthDivider label={t('or-continue-with')} />
       <OAuthProviders />
+      <AuthLegalNotice />
     </AuthScreen>
   )
 }

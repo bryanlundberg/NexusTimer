@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react'
 import SignInForm from '@/features/authentication/ui/SignInForm'
 import OAuthProviders from '@/features/authentication/ui/OAuthProviders'
 import AuthDivider from '@/features/authentication/ui/AuthDivider'
+import AuthLegalNotice from '@/features/authentication/ui/AuthLegalNotice'
 import AuthScreen from '@/features/authentication/ui/AuthScreen'
 import OAuthErrorMessage from '@/features/authentication/ui/OAuthErrorMessage'
 
@@ -32,6 +33,7 @@ export default async function SignInPage() {
       <SignInForm />
       <AuthDivider label={t('or-continue-with')} />
       <OAuthProviders />
+      <AuthLegalNotice />
       <Suspense fallback={null}>
         <OAuthErrorMessage />
       </Suspense>
