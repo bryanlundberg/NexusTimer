@@ -4,7 +4,8 @@ import { useMemo } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { cn } from '@/shared/lib/utils'
-import { activityLevel, firstDayOfWeek, monthActivity } from '@/widgets/sidebar/lib/monthActivity'
+import { activityLevel, firstDayOfWeek } from '@/widgets/sidebar/lib/monthActivity'
+import { cachedMonthActivity } from '@/widgets/sidebar/lib/cachedActivity'
 
 const LEVEL_CLASS = ['bg-muted-foreground/15', 'bg-primary/30', 'bg-primary/55', 'bg-primary/80', 'bg-primary'] as const
 
@@ -12,7 +13,7 @@ export function SidebarMonthActivity() {
   const locale = useLocale()
   const t = useTranslations('Index.NavMain')
   const cubes = useTimerStore((store) => store.cubes)
-  const { year, month, today, firstWeekday, counts, total } = useMemo(() => monthActivity(cubes), [cubes])
+  const { year, month, today, firstWeekday, counts, total } = useMemo(() => cachedMonthActivity(cubes), [cubes])
 
   const { monthLabel, weekdays, weekStart, dayFormat } = useMemo(() => {
     const weekStart = firstDayOfWeek(locale)

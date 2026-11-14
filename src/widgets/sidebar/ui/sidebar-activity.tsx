@@ -6,7 +6,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { ChevronDown } from 'lucide-react'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { cn } from '@/shared/lib/utils'
-import { activityStreak } from '@/widgets/sidebar/lib/activityStreak'
+import { cachedActivityStreak } from '@/widgets/sidebar/lib/cachedActivity'
 import { useSidebarActivityStore } from '@/widgets/sidebar/model/useSidebarActivityStore'
 import { SidebarMonthActivity } from '@/widgets/sidebar/ui/sidebar-month-activity'
 
@@ -17,7 +17,7 @@ export function SidebarActivity() {
   const toggle = useSidebarActivityStore((store) => store.toggle)
   const reduceMotion = useReducedMotion()
   const calendarId = useId()
-  const { streak, lastWeek } = useMemo(() => activityStreak(cubes), [cubes])
+  const { streak, lastWeek } = useMemo(() => cachedActivityStreak(cubes), [cubes])
 
   return (
     <div className="border bg-background/40">
