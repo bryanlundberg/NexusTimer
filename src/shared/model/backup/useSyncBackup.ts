@@ -1,31 +1,27 @@
-import { BACKUP_TIMEZONE_HEADER } from '@nexustimer/contracts'
-import { importNexusTimerData, normalizeOldData } from '@/features/manage-backup/lib/importDataFromFile'
+import { BACKUP_SUFFIX_HEADER, BACKUP_TIMEZONE_HEADER } from '@nexustimer/contracts'
 import { toast } from 'sonner'
 import { useSession } from '@/shared/model/useSession'
 import { useTranslations } from 'next-intl'
-import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { UserDocument } from '@/entities/user/model/user'
 import { BackupLoadMode } from '@/entities/backup/model/enums'
-import { Cube } from '@/entities/cube/model/types'
 import { cubesDB } from '@/entities/cube/api/indexdb'
-import { mergeAndUniqData } from '@/shared/model/backup/mergeAndUniqData'
 import { uploadWithProgress } from '@/shared/lib/backup/uploadWithProgress'
 import { gzipJson } from '@/shared/lib/backup/gzip'
+import { newBackupSuffix } from '@/shared/lib/backup/newBackupSuffix'
 import { showUploadToast, UPLOAD_BACKUP_TOAST_ID } from '@/shared/model/backup/uploadToast'
 import { useBackupUploadStore } from '@/shared/model/backup/useBackupUploadStore'
+import { writeSyncMarker } from '@/shared/model/backup/syncMarker'
+import { forcePull } from '@/shared/model/backup/pullIfBehind'
 
 export type BackupDownloadResult = 'merged' | 'unreachable' | 'unreadable'
 
 export const useSyncBackup = () => {
   const { data: session } = useSession()
   const t = useTranslations('Index.SettingsPage')
-  const setCubes = useTimerStore((state) => state.setCubes)
   const isUploading = useBackupUploadStore((state) => state.isUploading)
   const uploadProgress = useBackupUploadStore((state) => state.progress)
   const updateSetting = useSettingsStore((state) => state.updateSetting)
-  const selectedCube = useTimerStore((state) => state.selectedCube)
-  const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
 
   const handleUploadBackup = async () => {
     const upload = useBackupUploadStore.getState()
@@ -35,14 +31,18 @@ export const useSyncBackup = () => {
 
     try {
       const cubes = await cubesDB.getAllDatabase()
-      if (!cubes || !session?.user?.id) throw new Error('Missing cubes or session')
+      const userId = session?.user?.id
+      if (!cubes || !userId) throw new Error('Missing cubes or session')
 
+      const suffix = newBackupSuffix()
       const blob = await gzipJson(JSON.stringify(cubes))
       const res = await uploadWithProgress('/api/v1/backups', blob, upload.setProgress, {
-        [BACKUP_TIMEZONE_HEADER]: Intl.DateTimeFormat().resolvedOptions().timeZone
+        [BACKUP_TIMEZONE_HEADER]: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        [BACKUP_SUFFIX_HEADER]: suffix
       })
       if (!res.ok) throw new Error(`Upload failed with status ${res.status}`)
 
+      await writeSyncMarker(userId, suffix)
       updateSetting('sync.totalSolves', 0)
       toast.dismiss(UPLOAD_BACKUP_TOAST_ID)
       return true
@@ -74,40 +74,9 @@ export const useSyncBackup = () => {
       return 'unreachable'
     }
 
-    let data: string
-    try {
-      const doc = await fetch(`${user.backup.url}`)
-      if (!doc.ok) throw new Error(`Download failed with status ${doc.status}`)
-      data = await doc.text()
-    } catch (err) {
-      console.error(err)
-      toast.error(t('backup-download-error'))
-      return 'unreachable'
-    }
-
-    try {
-      const backupData = importNexusTimerData(data)
-      const existingCubes = await cubesDB.getAllDatabase()
-
-      const newCubes: Cube[] = await mergeAndUniqData(normalizeOldData(backupData), normalizeOldData(existingCubes))
-
-      const newCubesDB = await cubesDB.replaceAll(newCubes)
-      setCubes(newCubesDB)
-
-      if (selectedCube) {
-        const isSelectedCubeStillExists = newCubesDB.find((cube) => cube.id === selectedCube.id && !cube.isDeleted)
-        if (isSelectedCubeStillExists) {
-          setSelectedCube(isSelectedCubeStillExists)
-        } else {
-          setSelectedCube(null)
-        }
-      }
-      return 'merged'
-    } catch (err) {
-      console.error(err)
-      toast.error(t('backup-download-error'))
-      return 'unreadable'
-    }
+    const result = await forcePull(session.user.id, user.backup)
+    if (result.status !== 'merged') toast.error(t('backup-download-error'))
+    return result.status
   }
 
   return {
