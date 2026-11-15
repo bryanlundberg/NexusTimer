@@ -12,6 +12,11 @@ const MAX_BACKOFF_MS = 30_000
 
 const STALL_GRACE_MS = 10_000
 
+const SERVICE_RESTART = 1012
+
+// Spreads every tab's reconnect after a gateway deploy, within the room and presence grace periods.
+const RESTART_SPREAD_MS = 5_000
+
 export function useRealtimeConnection() {
   const { data: session } = useSession()
   const userId = session?.user?.id
@@ -27,9 +32,9 @@ export function useRealtimeConnection() {
     let stopped = false
     let openedAt = 0
 
-    const scheduleReconnect = () => {
+    const scheduleReconnect = (minWindow = 0) => {
       if (stopped || retryTimer) return
-      const delay = Math.random() * Math.min(MAX_BACKOFF_MS, 1000 * 2 ** attempt)
+      const delay = Math.random() * Math.max(minWindow, Math.min(MAX_BACKOFF_MS, 1000 * 2 ** attempt))
       attempt++
       retryTimer = setTimeout(() => {
         retryTimer = undefined
@@ -65,12 +70,12 @@ export function useRealtimeConnection() {
             emitRealtime(JSON.parse(message.data) as RealtimeClientEvent)
           } catch {}
         }
-        ws.onclose = () => {
+        ws.onclose = (event) => {
           if (socket === ws) {
             socket = null
             setRealtimeSender(null)
           }
-          scheduleReconnect()
+          scheduleReconnect(event.code === SERVICE_RESTART ? RESTART_SPREAD_MS : 0)
         }
       } catch {
         scheduleReconnect()
