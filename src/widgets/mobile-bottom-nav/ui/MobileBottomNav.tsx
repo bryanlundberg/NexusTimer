@@ -32,7 +32,7 @@ export function MobileBottomNav() {
           exit={{ height: 0, opacity: 0 }}
           transition={{ duration: 0.2, ease: 'easeOut' }}
           className={cn(
-            'mt-auto shrink-0 overflow-hidden md:hidden',
+            'relative z-10 mt-auto shrink-0 overflow-hidden md:hidden',
             'border-t glass-95 backdrop-blur supports-[backdrop-filter]:glass-80',
             'pb-[env(safe-area-inset-bottom)]'
           )}
