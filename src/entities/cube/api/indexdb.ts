@@ -3,6 +3,7 @@ import { Solve } from '@/entities/solve/model/types'
 import { Cube } from '@/entities/cube/model/types'
 import { reconcileCubeWrite } from '@/entities/cube/lib/reconcileCubeWrite'
 import { normalizeCubeSolves } from '@/entities/cube/lib/normalizeCubeSolves'
+import { clearSyncMarkers } from '@/shared/model/backup/syncMarker'
 
 const STORE_NAME = 'nx-data'
 const Cubes = database.create(STORE_NAME)
@@ -58,7 +59,18 @@ export const cubesDB = {
       .sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0))
   },
 
+  async transformAll(compute: (stored: Cube[]) => Cube[]): Promise<Cube[]> {
+    const next = (await Cubes.transformAll((stored: Cube[]) =>
+      compute(stored.map(normalizeCubeSolves)).map(normalizeCubeSolves)
+    )) as Cube[]
+    return next
+      .filter((cube) => !cube.isDeleted)
+      .map(toLiveCube)
+      .sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0))
+  },
+
   async clear(): Promise<void> {
+    await clearSyncMarkers()
     return await Cubes.clear()
   },
 
