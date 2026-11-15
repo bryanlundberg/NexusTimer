@@ -844,6 +844,7 @@
       "backup-not-found": "Для вашего аккаунта не найдена копия в облаке.",
       "backup-download-error": "Не удалось загрузить копию из облака. Попробуйте ещё раз.",
       "load-data-toast": "Данные загружены",
+      "backup-synced": "Синхронизировано с другим устройством",
       "backup-device-section": "На этом устройстве",
       "backup-cloud-section": "В облаке",
       "backup-cubes": "Кубы",
