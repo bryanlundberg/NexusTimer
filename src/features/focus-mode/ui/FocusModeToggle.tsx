@@ -16,12 +16,12 @@ export default function FocusModeToggle() {
         <Button
           variant="ghost"
           size="icon"
-          className="size-9 pointer-coarse:size-10"
+          className="size-10 pointer-coarse:size-11"
           onClick={enter}
           aria-label={t('focus-mode')}
           data-testid="focus-mode-toggle"
         >
-          <Focus />
+          <Focus className="size-5" />
         </Button>
       </TooltipTrigger>
       <TooltipContent>

@@ -33,11 +33,12 @@ export default function FocusModeExitButton() {
             <Button
               variant="ghost"
               size="icon"
+              className="size-10 pointer-coarse:size-11"
               onClick={exit}
               aria-label={t('exit-focus-mode')}
               data-testid="focus-mode-exit"
             >
-              <X />
+              <X className="size-5" />
             </Button>
           </TooltipTrigger>
           <TooltipContent>

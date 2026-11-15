@@ -182,10 +182,10 @@ export function ScrambleZone() {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="size-9 pointer-coarse:size-10 [&>svg]:transition-all [&>svg]:duration-300 [&:hover>svg]:text-record"
+                      className="size-10 pointer-coarse:size-11 [&>svg]:transition-all [&>svg]:duration-300 [&:hover>svg]:text-record"
                       onClick={handleShowHints}
                     >
-                      <HintBulbIcon />
+                      <HintBulbIcon className="size-5" />
                     </Button>
                   </DialogTrigger>
                 </TooltipTrigger>
@@ -209,8 +209,8 @@ export function ScrambleZone() {
               <Dialog>
                 <TooltipTrigger asChild>
                   <DialogTrigger asChild>
-                    <Button variant="ghost" size="icon" className="size-9 pointer-coarse:size-10">
-                      <Keyboard />
+                    <Button variant="ghost" size="icon" className="size-10 pointer-coarse:size-11">
+                      <Keyboard className="size-5" />
                     </Button>
                   </DialogTrigger>
                 </TooltipTrigger>
