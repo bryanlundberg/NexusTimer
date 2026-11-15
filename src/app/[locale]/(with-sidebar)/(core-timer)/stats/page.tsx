@@ -12,7 +12,7 @@ import { useMinWidth } from '@/shared/model/use-min-width'
 export default function StatsPage() {
   const { stats, loadingProps } = useDeepStatistics()
   const t = useTranslations('Index.StatsPage')
-  const showAside = useMinWidth(1280)
+  const showAside = useMinWidth(1024)
   return (
     <div className="flex-1 min-h-0 flex flex-col">
       <CoreHeader breadcrumbs={[{ label: t('title'), href: '/stats' }]} />

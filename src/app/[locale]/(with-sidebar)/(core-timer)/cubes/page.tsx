@@ -11,7 +11,7 @@ import { useMinWidth } from '@/shared/model/use-min-width'
 
 export default function CubesPage() {
   const t = useTranslations('Index.CubesPage')
-  const showAside = useMinWidth(1280)
+  const showAside = useMinWidth(1024)
   return (
     <div className="flex-1 min-h-0 flex flex-col">
       <CoreHeader breadcrumbs={[{ label: t('title'), href: '/cubes' }]} />

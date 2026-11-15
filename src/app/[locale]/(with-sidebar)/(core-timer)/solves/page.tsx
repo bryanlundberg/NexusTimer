@@ -14,7 +14,7 @@ import { useMinWidth } from '@/shared/model/use-min-width'
 
 export default function SolvesPage() {
   const t = useTranslations('Index')
-  const showAside = useMinWidth(1280)
+  const showAside = useMinWidth(1024)
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const [tabMode] = useQueryState(STATES.SOLVES_PAGE.TAB_MODE.KEY, {
     defaultValue: STATES.SOLVES_PAGE.TAB_MODE.DEFAULT_VALUE
