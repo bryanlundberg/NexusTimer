@@ -2,42 +2,43 @@
 import { useCallback, useEffect } from 'react'
 import { useSession } from '@/shared/model/useSession'
 import { useIsOnline } from '@/shared/model/useIsOnline'
-import { useUser } from '@/entities/user/model/useUser'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useSyncBackup } from '@/shared/model/backup/useSyncBackup'
 import { useBackupUploadStore } from '@/shared/model/backup/useBackupUploadStore'
+import { pullIfBehind } from '@/shared/model/backup/pullIfBehind'
 
 export const BACKUP_INTERVAL_SOLVES = 20
 
 export const useBackupSuggestion = () => {
-  const { handleDownloadData, handleUploadBackup } = useSyncBackup()
+  const { handleUploadBackup } = useSyncBackup()
   const { data: session } = useSession()
-  const { data: user } = useUser(session?.user?.id!)
+  const userId = session?.user?.id
   const isOffline = !useIsOnline()
   const settings = useSettingsStore((store) => store.settings)
 
   const runAutoSync = useCallback(async () => {
+    if (!userId) return
     const { isSyncing, setSyncing } = useBackupUploadStore.getState()
     if (isSyncing) return
     setSyncing(true)
     try {
-      if (user?.backup?.url) await handleDownloadData({ user })
+      await pullIfBehind(userId)
       await handleUploadBackup()
     } catch (error) {
       console.error('Sync error:', error)
     } finally {
       setSyncing(false)
     }
-  }, [handleDownloadData, handleUploadBackup, user])
+  }, [handleUploadBackup, userId])
 
   useEffect(() => {
     if (isOffline) return
-    if (!session?.user?.id) return
+    if (!userId) return
 
     const solvesIntervalReached = BACKUP_INTERVAL_SOLVES <= Number(settings.sync.totalSolves)
 
     if (!solvesIntervalReached) return
 
     runAutoSync()
-  }, [runAutoSync, session?.user?.id, settings?.sync.totalSolves, isOffline])
+  }, [runAutoSync, userId, settings?.sync.totalSolves, isOffline])
 }
