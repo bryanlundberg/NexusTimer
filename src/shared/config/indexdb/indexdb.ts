@@ -64,6 +64,20 @@ class IDBWrapper {
         const tx = this.db!.transaction(storeName, 'readwrite')
         await Promise.all([tx.store.clear(), ...values.map((value) => tx.store.put(value)), tx.done])
       },
+      transformAll: async (compute: (values: any[]) => any[]) => {
+        await ensureOpen()
+        const tx = this.db!.transaction(storeName, 'readwrite')
+        let next: any[]
+        try {
+          next = compute(await tx.store.getAll())
+        } catch (error) {
+          tx.abort()
+          await tx.done.catch(() => {})
+          throw error
+        }
+        await Promise.all([tx.store.clear(), ...next.map((value) => tx.store.put(value)), tx.done])
+        return next
+      },
       find: () => ({
         get: async () => {
           await ensureOpen()
