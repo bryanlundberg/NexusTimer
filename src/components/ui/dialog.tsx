@@ -7,7 +7,7 @@ import { Drawer as DrawerPrimitive } from 'vaul'
 
 import { cn } from '@/shared/lib/utils'
 import { useBackDismiss } from '@/shared/model/useBackDismiss'
-
+import { useSheetStretch } from '@/shared/model/useSheetStretch'
 const SHEET_QUERY = '(max-width: 767px)'
 
 const DialogVariantContext = React.createContext<'modal' | 'sheet'>('modal')
@@ -65,12 +65,13 @@ function useKeyboardInset(enabled: boolean) {
 
 function Dialog({
   dismissible = true,
+  forceModal = false,
   open,
   defaultOpen,
   onOpenChange,
   ...props
-}: React.ComponentProps<typeof DialogPrimitive.Root> & { dismissible?: boolean }) {
-  const isSheet = useIsSheetViewport()
+}: React.ComponentProps<typeof DialogPrimitive.Root> & { dismissible?: boolean; forceModal?: boolean }) {
+  const isSheet = useIsSheetViewport() && !forceModal
   const state = useBackDismiss({ open, defaultOpen, onOpenChange, enabled: dismissible })
 
   if (isSheet) {
@@ -79,6 +80,8 @@ function Dialog({
         <DrawerPrimitive.Root
           data-slot="dialog"
           repositionInputs={false}
+          shouldScaleBackground
+          setBackgroundColorOnScale={false}
           dismissible={dismissible}
           {...props}
           {...state}
@@ -132,6 +135,7 @@ function DialogContent({
 }) {
   const variant = React.useContext(DialogVariantContext)
   const keyboardInset = useKeyboardInset(variant === 'sheet')
+  const onStretchStart = useSheetStretch()
 
   if (variant === 'sheet') {
     const { style, ...contentProps } = props
@@ -144,7 +148,8 @@ function DialogContent({
         <DrawerPrimitive.Content
           data-slot="dialog-content"
           style={{ ...style, ...keyboardStyle }}
-          className="bg-background fixed inset-x-0 bottom-0 z-50 flex max-h-[92dvh] flex-col border-t pb-[env(safe-area-inset-bottom)] shadow-float outline-none"
+          className="sheet-shell fixed inset-x-0 bottom-0 z-50 flex max-h-[92dvh] flex-col pb-[env(safe-area-inset-bottom)] outline-none"
+          onPointerDown={onStretchStart}
           {...contentProps}
         >
           <div aria-hidden className="bg-muted-foreground/60 mx-auto mt-2.5 mb-1 h-1 w-10 shrink-0" />
@@ -171,23 +176,25 @@ function DialogContent({
   return (
     <DialogPortal data-slot="dialog-portal">
       <DialogOverlay />
-      <DialogPrimitive.Content
-        onOpenAutoFocus={(e) => e.preventDefault()}
-        data-slot="dialog-content"
-        className={cn(
-          'dialog-shell data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 p-6 duration-200 sm:max-w-lg',
-          className
-        )}
-        {...props}
-      >
-        {children}
-        {showCloseButton && (
-          <DialogPrimitive.Close data-slot="dialog-close" className={closeButtonClassName}>
-            <XIcon />
-            <span className="sr-only">Close</span>
-          </DialogPrimitive.Close>
-        )}
-      </DialogPrimitive.Content>
+      <div className="dialog-float pointer-events-none fixed inset-0 z-50">
+        <DialogPrimitive.Content
+          onOpenAutoFocus={(e) => e.preventDefault()}
+          data-slot="dialog-content"
+          className={cn(
+            'dialog-shell pointer-events-auto data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 p-6 duration-200 sm:max-w-lg',
+            className
+          )}
+          {...props}
+        >
+          {children}
+          {showCloseButton && (
+            <DialogPrimitive.Close data-slot="dialog-close" className={closeButtonClassName}>
+              <XIcon />
+              <span className="sr-only">Close</span>
+            </DialogPrimitive.Close>
+          )}
+        </DialogPrimitive.Content>
+      </div>
     </DialogPortal>
   )
 }

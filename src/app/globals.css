@@ -1072,3 +1072,63 @@ html[data-timer-active] [data-timer-chrome] {
   background-image: var(--backdrop);
   background-attachment: fixed;
 }
+
+:root {
+  --elevation-overlay-filter: drop-shadow(0 2px 3px rgb(0 0 0 / 0.1)) drop-shadow(0 20px 40px rgb(0 0 0 / 0.25));
+  --elevation-highlight: inset 0 1px 0 rgb(255 255 255 / 0.6);
+}
+.dark {
+  --elevation-overlay-filter: drop-shadow(0 2px 4px rgb(0 0 0 / 0.35)) drop-shadow(0 24px 48px rgb(0 0 0 / 0.55));
+  --elevation-highlight: inset 0 1px 0 rgb(255 255 255 / 0.1);
+}
+
+.sheet-shell {
+  --sheet-cut: 12px;
+  --sheet-shape: polygon(0 0, calc(100% - var(--sheet-cut)) 0, 100% var(--sheet-cut), 100% 100%, 0 100%);
+  isolation: isolate;
+  border: 0 !important;
+  background-color: transparent;
+  filter: var(--elevation-overlay-filter);
+}
+.sheet-shell:not([data-vaul-drawer-direction='bottom']) {
+  --sheet-cut: 0px;
+}
+.sheet-shell::before,
+.sheet-shell::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  clip-path: var(--sheet-shape);
+  pointer-events: none;
+}
+.sheet-shell::before {
+  inset: 0 0 -160px;
+  background-color: color-mix(in oklab, var(--foreground) 10%, var(--border));
+}
+.sheet-shell::after,
+.sheet-shell[data-vaul-drawer][data-vaul-drawer-direction]::after {
+  inset: 1px 0 -160px;
+  width: auto;
+  height: auto;
+  background: color-mix(in oklab, var(--card) 45%, var(--background));
+  box-shadow: var(--elevation-highlight);
+}
+
+.dialog-float {
+  filter: var(--elevation-overlay-filter);
+}
+.dialog-float:has(> [data-state='closed']) {
+  animation: dialog-float-hold 200ms;
+}
+.dialog-float > .dialog-shell {
+  box-shadow: var(--elevation-highlight);
+}
+@keyframes dialog-float-hold {
+  to {
+    opacity: 1;
+  }
+}
+
+[data-vaul-drawer-wrapper] {
+  border-radius: 0 !important;
+}

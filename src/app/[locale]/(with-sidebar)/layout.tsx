@@ -16,7 +16,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
     <MessagesScope messages={appMessages(messages)}>
       <AppShellProviders>
         <AppSidebar />
-        <SidebarInset className={'h-svh max-h-svh overflow-hidden relative'}>
+        <SidebarInset data-vaul-drawer-wrapper="" className={'h-svh max-h-svh overflow-hidden relative'}>
           <StatisticsProvider>
             <Suspense>{children}</Suspense>
           </StatisticsProvider>
