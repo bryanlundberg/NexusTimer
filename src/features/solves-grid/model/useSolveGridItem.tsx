@@ -9,7 +9,8 @@ export default function useSolveGridItem(solve: Solve) {
     open({
       id: 'solve-details',
       metadata: { ...solve },
-      component: <SolveDetails />
+      component: <SolveDetails />,
+      forceModal: true
     })
   }
 

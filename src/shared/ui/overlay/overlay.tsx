@@ -20,6 +20,7 @@ export const Overlay = () => {
   return (
     <Dialog
       open={isOpen}
+      forceModal={activeOverlay?.forceModal}
       onOpenChange={(open) => {
         if (!open) close()
       }}

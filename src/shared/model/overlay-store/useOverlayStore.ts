@@ -5,6 +5,7 @@ type OverlayConfig<T = any> = {
   id: string
   metadata?: Record<string, any>
   component: React.ReactNode
+  forceModal?: boolean
 }
 
 type OverlayStoreState = {
