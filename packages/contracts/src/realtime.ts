@@ -1,4 +1,5 @@
 import * as z from 'zod'
+import type { CurrentBackup } from './backups'
 import type { RoomClientFrame, RoomEvent } from './rooms'
 
 export const realtimeTicketResponseSchema = z.object({
@@ -59,6 +60,7 @@ export type RealtimeEvent =
   | { type: 'typing'; chatId: string; userId: string }
   | { type: 'presence'; users: PresenceUser[]; seq?: number }
   | { type: 'presence:self'; status: PresenceStatus }
+  | { type: 'backup:updated'; backup: CurrentBackup }
   | RoomEvent
 
 export type FriendEventType = Extract<RealtimeEvent, { type: `friend:${string}` }>['type']
