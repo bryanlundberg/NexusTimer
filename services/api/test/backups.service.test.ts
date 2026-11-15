@@ -1,5 +1,5 @@
 import { gzipSync } from 'node:zlib'
-import type { CurrentBackup } from '@nexustimer/contracts'
+import type { CurrentBackup, RealtimeEvent } from '@nexustimer/contracts'
 import { describe, expect, it, vi } from 'vitest'
 import type { StatsSnapshot } from '../src/modules/users/users.repository'
 import { createBackupsService, decodeBackup, MAX_BACKUP_BYTES } from '../src/modules/backups/backups.service'
@@ -37,10 +37,16 @@ const backupJson = JSON.stringify([
 
 function setup({ userExists = true, fixedSuffix = true } = {}) {
   const { storage, objects } = fakeStorage()
-  const state: { backup: CurrentBackup | null; stats: StatsSnapshot[]; invalidated: string[] } = {
+  const state: {
+    backup: CurrentBackup | null
+    stats: StatsSnapshot[]
+    invalidated: string[]
+    published: { userId: string; event: RealtimeEvent }[]
+  } = {
     backup: null,
     stats: [],
-    invalidated: []
+    invalidated: [],
+    published: []
   }
   const tasks: Promise<unknown>[] = []
   const failures: unknown[] = []
@@ -61,6 +67,11 @@ function setup({ userExists = true, fixedSuffix = true } = {}) {
     bests: {
       async invalidate(userId) {
         state.invalidated.push(userId)
+      }
+    },
+    realtime: {
+      async toUser(userId, event) {
+        state.published.push({ userId, event })
       }
     },
     background: (_scope, task) => {
@@ -132,6 +143,57 @@ describe('backups service', () => {
       expect.stringMatching(/^20261004T100002Z-[0-9a-f]{32}\.json$/)
     ])
     expect(new Set(files.map((file) => file.slice('20261004T100001Z-'.length))).size).toBe(2)
+  })
+
+  it('uses a valid client suffix so the uploading device knows its backup', async () => {
+    const { service, objects } = setup({ fixedSuffix: false })
+    const suffix = 'c0ffee'.padEnd(32, '0')
+
+    await service.upload(USER, bytes('[]'), null, suffix)
+
+    expect([...objects.keys()]).toEqual([`backups/${USER}/20261004T100001Z-${suffix}.json`])
+  })
+
+  it('ignores a malformed client suffix and never overwrites an existing file', async () => {
+    const { service, objects } = setup()
+    const suffix = 'f'.repeat(32)
+    objects.set(`backups/${USER}/20261004T100002Z-${suffix}.json`, {
+      body: bytes('old'),
+      options: { contentType: 'application/json' },
+      lastModified: T0
+    })
+
+    await service.upload(USER, bytes('[]'), null, '../../evil')
+    await service.upload(USER, bytes('[]'), null, suffix)
+
+    expect([...objects.keys()].sort()).toEqual([
+      `backups/${USER}/${name('20261004T100001Z')}`,
+      `backups/${USER}/${name('20261004T100002Z')}`,
+      `backups/${USER}/20261004T100002Z-${suffix}.json`
+    ])
+    expect(new TextDecoder().decode(objects.get(`backups/${USER}/20261004T100002Z-${suffix}.json`)!.body)).toBe('old')
+  })
+
+  it('tells the user devices about a stored backup, and only about stored ones', async () => {
+    const { service, state } = setup()
+
+    const result = await service.upload(USER, bytes('[]'), null)
+    await service.upload(USER, bytes('nope'), null)
+    const gone = setup({ userExists: false })
+    await gone.service.upload(USER, bytes('[]'), null)
+
+    expect(state.published).toEqual([{ userId: USER, event: { type: 'backup:updated', backup: state.backup } }])
+    expect('backup' in result && result.backup).toEqual(state.backup)
+    expect(gone.state.published).toEqual([])
+  })
+
+  it('answers the current backup pointer', async () => {
+    const { service, state } = setup()
+    expect(await service.current(USER)).toBeNull()
+
+    await service.upload(USER, bytes('[]'), null)
+
+    expect(await service.current(USER)).toEqual(state.backup)
   })
 
   it('keeps the upload when the stats task fails on an unexpected shape', async () => {

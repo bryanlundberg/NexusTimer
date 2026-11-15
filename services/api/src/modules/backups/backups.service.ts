@@ -4,6 +4,7 @@ import {
   type BackupDeleteResponse,
   type BackupFile,
   type CurrentBackup,
+  isBackupSuffix,
   USER_STATS_VERSION
 } from '@nexustimer/contracts'
 import { computeUserStats, isValidTimezone, prepareBackupCubes } from '@nexustimer/stats'
@@ -11,6 +12,7 @@ import type { Storage } from '../../infra/storage'
 import { logger } from '../../lib/logger'
 import type { BestsCache } from '../friends-leaderboards/friends-leaderboards.cache'
 import type { RunInBackground } from '../../platform/background'
+import type { RealtimePublisher } from '../../infra/realtime'
 import type { UsersService } from '../users/users.service'
 import { backupKey, listUserBackups, newBackupKey } from './backups.files'
 
@@ -24,8 +26,9 @@ export type BackupPayloadError = 'empty-body' | 'malformed' | 'empty-backup' | '
 export type UploadResult = { backup: CurrentBackup } | { error: BackupPayloadError | 'user-not-found' }
 
 export type BackupsService = {
-  upload(userId: string, body: Uint8Array, timezone: string | null): Promise<UploadResult>
-  queueUpload(userId: string, body: Uint8Array, timezone: string | null): void
+  upload(userId: string, body: Uint8Array, timezone: string | null, suffix?: string | null): Promise<UploadResult>
+  queueUpload(userId: string, body: Uint8Array, timezone: string | null, suffix?: string | null): void
+  current(userId: string): Promise<CurrentBackup | null>
   list(userId: string): Promise<BackupFile[]>
   remove(userId: string, file: string): Promise<BackupDeleteResponse | null>
 }
@@ -34,6 +37,7 @@ type BackupsDeps = {
   storage: Storage
   users: Pick<UsersService, 'backup' | 'setBackup' | 'saveStats'>
   bests: Pick<BestsCache, 'invalidate'>
+  realtime: Pick<RealtimePublisher, 'toUser'>
   background: RunInBackground
   now?: () => number
   randomSuffix?: () => string
@@ -69,6 +73,7 @@ export function createBackupsService({
   storage,
   users,
   bests,
+  realtime,
   background,
   now = () => Date.now(),
   randomSuffix = () => randomBytes(16).toString('hex')
@@ -78,16 +83,30 @@ export function createBackupsService({
     if (stale.length > 0) await storage.delete(stale.map((backup) => backup.key))
   }
 
-  async function upload(userId: string, body: Uint8Array, timezone: string | null): Promise<UploadResult> {
+  async function freshKey(userId: string, updatedAt: number, suffix: string | null | undefined) {
+    if (isBackupSuffix(suffix)) {
+      const key = newBackupKey(userId, updatedAt, suffix)
+      if (!(await storage.exists(key))) return key
+    }
+    return newBackupKey(userId, updatedAt, randomSuffix())
+  }
+
+  async function upload(
+    userId: string,
+    body: Uint8Array,
+    timezone: string | null,
+    suffix?: string | null
+  ): Promise<UploadResult> {
     const decoded = decodeBackup(body)
     if ('error' in decoded) return decoded
 
     const updatedAt = now()
-    const key = newBackupKey(userId, updatedAt, randomSuffix())
+    const key = await freshKey(userId, updatedAt, suffix)
     await storage.upload(key, decoded.json, { contentType: 'application/json', cacheControl: BACKUP_CACHE_CONTROL })
 
     const backup = { url: storage.url(key), updatedAt }
     if (!(await users.setBackup(userId, backup))) return { error: 'user-not-found' }
+    await realtime.toUser(userId, { type: 'backup:updated', backup })
 
     background('backups:prune', () => prune(userId))
     background('backups:stats', async () => {
@@ -105,12 +124,14 @@ export function createBackupsService({
   return {
     upload,
 
-    queueUpload(userId, body, timezone) {
+    queueUpload(userId, body, timezone, suffix) {
       background('backups:upload', async () => {
-        const result = await upload(userId, body, timezone)
+        const result = await upload(userId, body, timezone, suffix)
         if ('error' in result) logger.warn('backup upload rejected', { userId, reason: result.error })
       })
     },
+
+    current: (userId) => users.backup(userId),
 
     async list(userId) {
       const [current, backups] = await Promise.all([users.backup(userId), listUserBackups(storage, userId)])

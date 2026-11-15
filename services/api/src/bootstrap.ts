@@ -188,7 +188,7 @@ export function buildApp() {
     privacy: users,
     presence,
     chats: createChatsService({ repository: chatsRepository, social, users, realtime }),
-    backups: createBackupsService({ storage, users, bests: bestsCache, background: runInBackground }),
+    backups: createBackupsService({ storage, users, bests: bestsCache, realtime, background: runInBackground }),
     avatars: createAvatarsService({ storage, users }),
     nexi,
     usernames: createUsernamesService({ repository: usernamesRepository, limits: createUsernameLimits(redis), users }),
