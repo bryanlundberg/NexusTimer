@@ -1,4 +1,10 @@
-import { BACKUP_TIMEZONE_HEADER, type BackupDeleteResponse, type BackupFile } from '@nexustimer/contracts'
+import {
+  BACKUP_SUFFIX_HEADER,
+  BACKUP_TIMEZONE_HEADER,
+  type BackupCurrentResponse,
+  type BackupDeleteResponse,
+  type BackupFile
+} from '@nexustimer/contracts'
 import { Hono, type MiddlewareHandler } from 'hono'
 import type { UserEnv } from '../../http/require-user'
 import { badRequest, notFound, ok, serverError } from '../../http/responses'
@@ -12,10 +18,24 @@ export function backupsRoutes(backups: BackupsService, signedIn: MiddlewareHandl
       try {
         const body = new Uint8Array(await c.req.arrayBuffer())
         if (body.length === 0) return badRequest('Empty backup')
-        backups.queueUpload(c.var.userId, body, c.req.header(BACKUP_TIMEZONE_HEADER) ?? null)
+        backups.queueUpload(
+          c.var.userId,
+          body,
+          c.req.header(BACKUP_TIMEZONE_HEADER) ?? null,
+          c.req.header(BACKUP_SUFFIX_HEADER) ?? null
+        )
         return new Response(null, { status: 202 })
       } catch (error) {
         return serverError('backups:POST', error)
+      }
+    })
+    .get('/current', signedIn, async (c) => {
+      try {
+        const response = ok<BackupCurrentResponse>({ backup: await backups.current(c.var.userId) })
+        response.headers.set('cache-control', 'private, no-store')
+        return response
+      } catch (error) {
+        return serverError('backups:GET current', error)
       }
     })
     .get('/', signedIn, async (c) => {

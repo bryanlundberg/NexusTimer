@@ -15,7 +15,7 @@ function appWith(
 ) {
   return buildTestApp({
     sessions: testSessions(userId),
-    backups: { upload: unused, queueUpload: unused, list: unused, remove: unused, ...backups },
+    backups: { upload: unused, queueUpload: unused, current: unused, list: unused, remove: unused, ...backups },
     avatars: { upload: unused, ...avatars }
   })
 }
@@ -41,7 +41,26 @@ describe('backups routes', () => {
     )
 
     expect(res.status).toBe(202)
-    expect(queueUpload).toHaveBeenCalledWith(USER, new Uint8Array([0x1f, 0x8b, 1]), 'Europe/Madrid')
+    expect(queueUpload).toHaveBeenCalledWith(USER, new Uint8Array([0x1f, 0x8b, 1]), 'Europe/Madrid', null)
+  })
+
+  it('passes the client suffix header through to the queue', async () => {
+    const queueUpload = vi.fn<BackupsService['queueUpload']>()
+    const suffix = 'ab'.repeat(16)
+
+    await appWith({ backups: { queueUpload } }).request('/api/v1/backups', post('[]', { 'X-Backup-Suffix': suffix }))
+
+    expect(queueUpload).toHaveBeenCalledWith(USER, new TextEncoder().encode('[]'), null, suffix)
+  })
+
+  it('answers the current backup pointer without caching it', async () => {
+    const current = vi.fn<BackupsService['current']>(async () => ({ url: 'https://files.test/a.json', updatedAt: 5 }))
+
+    const res = await appWith({ backups: { current } }).request('/api/v1/backups/current')
+
+    expect(await res.json()).toEqual({ backup: { url: 'https://files.test/a.json', updatedAt: 5 } })
+    expect(res.headers.get('cache-control')).toBe('private, no-store')
+    expect(current).toHaveBeenCalledWith(USER)
   })
 
   it('rejects an empty body without queueing it', async () => {
