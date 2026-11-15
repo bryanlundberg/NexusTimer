@@ -844,6 +844,7 @@
       "backup-not-found": "आपके खाते के लिए कोई क्लाउड बैकअप नहीं मिला।",
       "backup-download-error": "आपका क्लाउड बैकअप लोड नहीं हो सका। फिर से कोशिश करें।",
       "load-data-toast": "डेटा लोड हो गया",
+      "backup-synced": "आपके दूसरे डिवाइस से सिंक हो गया",
       "backup-device-section": "इस डिवाइस पर",
       "backup-cloud-section": "क्लाउड में",
       "backup-cubes": "क्यूब",

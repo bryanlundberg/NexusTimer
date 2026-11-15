@@ -851,6 +851,7 @@
       "backup-not-found": "Không tìm thấy bản sao lưu trên đám mây cho tài khoản của bạn.",
       "backup-download-error": "Không thể tải bản sao lưu từ đám mây. Hãy thử lại.",
       "load-data-toast": "Đã tải dữ liệu",
+      "backup-synced": "Đã đồng bộ với thiết bị khác của bạn",
       "backup-device-section": "Trên thiết bị này",
       "backup-cloud-section": "Trên đám mây",
       "backup-cubes": "Khối",

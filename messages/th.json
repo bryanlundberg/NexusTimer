@@ -851,6 +851,7 @@
       "backup-not-found": "ไม่พบข้อมูลสำรองบนคลาวด์สำหรับบัญชีของคุณ",
       "backup-download-error": "โหลดข้อมูลสำรองจากคลาวด์ไม่สำเร็จ ลองอีกครั้ง",
       "load-data-toast": "โหลดข้อมูลแล้ว",
+      "backup-synced": "ซิงก์กับอุปกรณ์อีกเครื่องของคุณแล้ว",
       "backup-device-section": "บนอุปกรณ์นี้",
       "backup-cloud-section": "บนคลาวด์",
       "backup-cubes": "คิวบ์",

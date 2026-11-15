@@ -851,6 +851,7 @@
       "backup-not-found": "Nie znaleziono kopii zapasowej w chmurze dla Twojego konta.",
       "backup-download-error": "Nie udało się wczytać kopii zapasowej z chmury. Spróbuj ponownie.",
       "load-data-toast": "Dane wczytane",
+      "backup-synced": "Zsynchronizowano z innym urządzeniem",
       "backup-device-section": "Na tym urządzeniu",
       "backup-cloud-section": "W chmurze",
       "backup-cubes": "Kostki",

@@ -841,6 +841,7 @@
       "backup-not-found": "No cloud backup found for your account.",
       "backup-download-error": "Couldn't load your cloud backup. Try again.",
       "load-data-toast": "Data loaded",
+      "backup-synced": "Synced with your other device",
       "backup-device-section": "On this device",
       "backup-cloud-section": "In the cloud",
       "backup-cubes": "Cubes",

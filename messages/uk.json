@@ -851,6 +851,7 @@
       "backup-not-found": "Для вашого акаунта не знайдено копії в хмарі.",
       "backup-download-error": "Не вдалося завантажити копію з хмари. Спробуйте ще раз.",
       "load-data-toast": "Дані завантажено",
+      "backup-synced": "Синхронізовано з іншим пристроєм",
       "backup-device-section": "На цьому пристрої",
       "backup-cloud-section": "У хмарі",
       "backup-cubes": "Куби",

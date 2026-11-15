@@ -844,6 +844,7 @@
       "backup-not-found": "Für dein Konto wurde kein Cloud-Backup gefunden.",
       "backup-download-error": "Dein Cloud-Backup konnte nicht geladen werden. Versuch es erneut.",
       "load-data-toast": "Daten geladen",
+      "backup-synced": "Mit deinem anderen Gerät synchronisiert",
       "backup-device-section": "Auf diesem Gerät",
       "backup-cloud-section": "In der Cloud",
       "backup-cubes": "Cubes",

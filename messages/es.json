@@ -773,6 +773,7 @@
       "backup-not-found": "No se encontró un respaldo en la nube para tu cuenta.",
       "backup-download-error": "No se pudo cargar tu respaldo de la nube. Inténtalo de nuevo.",
       "load-data-toast": "Datos cargados",
+      "backup-synced": "Sincronizado con tu otro dispositivo",
       "backup-device-section": "En este dispositivo",
       "backup-cloud-section": "En la nube",
       "backup-cubes": "Cubos",

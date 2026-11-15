@@ -844,6 +844,7 @@
       "backup-not-found": "Aucune sauvegarde cloud trouvée pour votre compte.",
       "backup-download-error": "Impossible de charger votre sauvegarde cloud. Réessayez.",
       "load-data-toast": "Données chargées",
+      "backup-synced": "Synchronisé avec votre autre appareil",
       "backup-device-section": "Sur cet appareil",
       "backup-cloud-section": "Dans le cloud",
       "backup-cubes": "Cubes",

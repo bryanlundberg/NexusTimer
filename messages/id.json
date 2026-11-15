@@ -851,6 +851,7 @@
       "backup-not-found": "Tidak ada cadangan cloud untuk akunmu.",
       "backup-download-error": "Tidak dapat memuat cadangan cloud-mu. Coba lagi.",
       "load-data-toast": "Data dimuat",
+      "backup-synced": "Disinkronkan dengan perangkat lainmu",
       "backup-device-section": "Di perangkat ini",
       "backup-cloud-section": "Di cloud",
       "backup-cubes": "Kubus",

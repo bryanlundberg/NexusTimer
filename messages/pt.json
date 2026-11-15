@@ -844,6 +844,7 @@
       "backup-not-found": "Nenhum backup na nuvem encontrado para sua conta.",
       "backup-download-error": "Não foi possível carregar seu backup da nuvem. Tente novamente.",
       "load-data-toast": "Dados carregados",
+      "backup-synced": "Sincronizado com seu outro dispositivo",
       "backup-device-section": "Neste dispositivo",
       "backup-cloud-section": "Na nuvem",
       "backup-cubes": "Cubos",

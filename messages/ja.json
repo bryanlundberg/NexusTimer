@@ -844,6 +844,7 @@
       "backup-not-found": "このアカウントのクラウドバックアップが見つかりません。",
       "backup-download-error": "クラウドのバックアップを読み込めませんでした。もう一度お試しください。",
       "load-data-toast": "データを読み込みました",
+      "backup-synced": "他のデバイスと同期しました",
       "backup-device-section": "このデバイス",
       "backup-cloud-section": "クラウド",
       "backup-cubes": "キューブ",

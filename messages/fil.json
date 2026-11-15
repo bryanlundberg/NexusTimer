@@ -851,6 +851,7 @@
       "backup-not-found": "Walang nahanap na cloud backup para sa account mo.",
       "backup-download-error": "Hindi ma-load ang cloud backup mo. Subukan ulit.",
       "load-data-toast": "Na-load ang data",
+      "backup-synced": "Na-sync sa iba mong device",
       "backup-device-section": "Sa device na ito",
       "backup-cloud-section": "Sa cloud",
       "backup-cubes": "Mga cube",
