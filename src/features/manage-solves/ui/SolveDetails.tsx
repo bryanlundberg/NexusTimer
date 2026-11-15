@@ -61,30 +61,30 @@ export default function SolveDetails() {
   return (
     <DialogContent
       showCloseButton={false}
-      className="gap-0 p-0 overflow-hidden max-h-[90dvh] sm:max-w-md flex flex-col"
+      className="gap-0 p-0 overflow-hidden max-h-[90dvh] sm:max-w-lg flex flex-col"
       data-testid="solve-details-dialog-content"
       onInteractOutside={preventNestedDismiss}
     >
       <div className="overflow-y-auto scrollbar-hide flex-1">
         {/* Header */}
-        <DialogHeader className="px-4 pt-4 pb-2 sm:px-5 items-center text-center">
+        <DialogHeader className="px-5 pt-6 pb-3 sm:px-6 items-center text-center">
           <div className="flex items-baseline justify-center gap-2">
-            <DialogTitle className="text-2xl sm:text-3xl font-mono font-bold tracking-tight tabular-nums">
+            <DialogTitle className="text-4xl sm:text-5xl font-mono font-bold tracking-tight tabular-nums">
               {solve?.dnf ? 'DNF' : formatTime(totalMs)}
-              {solve?.plus2 && !solve?.dnf && <span className="text-destructive text-base align-top">+</span>}
+              {solve?.plus2 && !solve?.dnf && <span className="text-destructive text-xl align-top">+</span>}
             </DialogTitle>
-            <Badge variant="secondary" className="text-[10px]">
+            <Badge variant="secondary" className="text-xs">
               {selectedCube?.category || t('solve-details.unknown-category')}
             </Badge>
           </div>
-          <div className="flex items-center justify-center gap-2 text-[11px] text-muted-foreground mt-0.5">
+          <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground mt-1">
             <span className="flex items-center gap-1">
-              <CalendarIcon className="size-3" />
+              <CalendarIcon className="size-3.5" />
               {formattedDate} · {formattedTime}
             </span>
             <span className="text-border">·</span>
             <span className="flex items-center gap-1">
-              <ClockIcon className="size-3" />
+              <ClockIcon className="size-3.5" />
               {relative}
             </span>
           </div>
@@ -92,7 +92,7 @@ export default function SolveDetails() {
 
         {/* Stats + breakdown */}
         {analysis && (
-          <div className="px-4 pb-3 sm:px-5 flex flex-col gap-3">
+          <div className="px-5 pb-4 sm:px-6 flex flex-col gap-3">
             <div className="grid grid-cols-3 gap-2">
               <Stat icon={<RotateCw className="size-3" />} label="Moves" value={moveCount ?? '—'} />
               <Stat icon={<Zap className="size-3" />} label="TPS" value={tps ?? '—'} />
@@ -107,9 +107,9 @@ export default function SolveDetails() {
         )}
 
         {/* Scramble */}
-        <div className="px-4 pb-3 sm:px-5">
-          <div className="relative mb-1.5 px-8">
-            <DialogDescription className="text-xs text-muted-foreground font-mono leading-relaxed select-all break-words text-center">
+        <div className="px-5 pb-5 sm:px-6">
+          <div className="relative mb-2.5 px-8">
+            <DialogDescription className="text-sm text-muted-foreground font-mono leading-relaxed select-all break-words text-center">
               {solve?.scramble}
             </DialogDescription>
             <button
@@ -118,26 +118,26 @@ export default function SolveDetails() {
               onClick={handleCopyScramble}
               className="absolute right-0 top-0 cursor-pointer p-1 text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
             >
-              <CopyIcon className="size-3.5" />
+              <CopyIcon className="size-4" />
             </button>
           </div>
           {solve?.comment && (
             <p
               data-testid="solve-comment"
-              className="mb-2.5 px-4 text-xs text-muted-foreground text-center break-words whitespace-pre-wrap"
+              className="mb-3 px-4 text-sm text-muted-foreground text-center break-words whitespace-pre-wrap"
             >
               {solve.comment}
             </p>
           )}
-          <div className="flex flex-col items-center gap-2.5">
-            <div data-vaul-no-drag className="surface surface-well flex w-full justify-center p-3">
+          <div className="flex flex-col items-center gap-3">
+            <div data-vaul-no-drag className="surface surface-well flex w-full justify-center p-4">
               <ScrambleDisplay
                 show={true}
                 scramble={solve?.scramble || ''}
                 event={selectedCube?.category || '3x3'}
                 className={cn(
                   'flex items-center justify-center',
-                  visualization === '2D' ? 'w-36 h-26 sm:w-44 sm:h-32' : 'w-26 h-26 sm:w-32 sm:h-32'
+                  visualization === '2D' ? 'w-44 h-32 sm:w-55 sm:h-40' : 'w-32 h-32 sm:w-40 sm:h-40'
                 )}
                 visualization={visualization}
               />
@@ -150,14 +150,14 @@ export default function SolveDetails() {
                 { value: '2D', label: '2D' },
                 { value: '3D', label: '3D' }
               ]}
-              className="text-xs [&>button]:px-4 [&>button]:py-1"
+              className="text-sm [&>button]:px-5 [&>button]:py-1.5"
             />
           </div>
         </div>
       </div>
 
       {/* Actions - compact bottom bar */}
-      <div className="shrink-0 border-t px-4 py-2.5 sm:px-5">
+      <div className="shrink-0 border-t px-5 py-3 sm:px-6">
         {solve && <QuickActions solve={solve} variant="modal" onDeleteSolve={() => setLastSolve(null)} />}
       </div>
     </DialogContent>
