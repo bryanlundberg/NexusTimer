@@ -5,16 +5,20 @@ import EmptyCubes from '@/features/manage-cubes/ui/EmptyCubes'
 import { getCategoryOrder } from '@/shared/const/cube-categories'
 import { useTranslations } from 'next-intl'
 import { useCubeCategoryQuery } from '@/features/filter-cube-category/model/useCubeCategoryQuery'
+import { normalizeCubeSearch, useCubeSearchQuery } from '@/features/search-cubes/model/useCubeSearchQuery'
 
 export default function CubesDashboard() {
   const cubes = useTimerStore((store) => store.cubes)
   const [category] = useCubeCategoryQuery()
+  const [search] = useCubeSearchQuery()
   const t = useTranslations('Index')
 
   const sortedCubes = useMemo(() => {
     if (!cubes?.length) return []
+    const term = normalizeCubeSearch(search)
     return cubes
       .filter((cube) => category === 'all' || cube.category === category)
+      .filter((cube) => !term || normalizeCubeSearch(cube.name).includes(term))
       .sort((a, b) => {
         if (a.favorite !== b.favorite) return a.favorite ? -1 : 1
         const aActive = a.solves.session.length > 0
@@ -24,7 +28,7 @@ export default function CubesDashboard() {
         if (categoryDiff !== 0) return categoryDiff
         return a.name.localeCompare(b.name)
       })
-  }, [cubes, category])
+  }, [cubes, category, search])
 
   if (!cubes?.length) return <EmptyCubes className={'min-h-[70dvh]'} />
   if (!sortedCubes.length) {

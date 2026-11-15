@@ -1,7 +1,8 @@
 import { useMemo } from 'react'
 import { useTranslations } from 'next-intl'
 import ButtonCreateCollection from '@/features/navigation/ui/button-create-collection'
-import MainCubeSelector from '@/features/select-cube/ui/MainCubeSelector'
+import CubeSearchInput from '@/features/search-cubes/ui/CubeSearchInput'
+import { useCubeSearchQuery } from '@/features/search-cubes/model/useCubeSearchQuery'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import CubeCategoryFilter from '@/features/filter-cube-category/ui/CubeCategoryFilter'
 import { useCubeCategoryQuery } from '@/features/filter-cube-category/model/useCubeCategoryQuery'
@@ -10,6 +11,7 @@ export default function CubesPageHeader() {
   const t = useTranslations('Index.CubesPage')
   const cubes = useTimerStore((store) => store.cubes)
   const [category, setCategory] = useCubeCategoryQuery()
+  const [search, setSearch] = useCubeSearchQuery()
 
   const summary = useMemo(() => {
     const list = cubes ?? []
@@ -30,7 +32,7 @@ export default function CubesPageHeader() {
         {summary.total > 0 && (
           <CubeCategoryFilter value={category} onChange={setCategory} cubes={cubes ?? []} align="start" />
         )}
-        <MainCubeSelector />
+        <CubeSearchInput value={search} onChange={setSearch} />
         <ButtonCreateCollection />
       </div>
 
