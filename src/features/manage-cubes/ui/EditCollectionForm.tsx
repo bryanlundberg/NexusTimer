@@ -101,7 +101,7 @@ export default function EditCollectionForm() {
           </DialogTitle>
         </DialogHeader>
 
-        <div className="-mx-2 min-h-0 flex-1 space-y-5 overflow-x-hidden overflow-y-auto px-2 py-1">
+        <div className="-mx-2 min-h-0 flex-1 space-y-5 overflow-x-hidden overflow-y-auto scrollbar-hide px-2 py-1">
           <div className="space-y-2">
             <Label htmlFor="edit-collection-name">{t('Cubes-modal.name')}</Label>
             <Input
