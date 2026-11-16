@@ -51,7 +51,7 @@ export function ReplaySolveDetails() {
             <Stat icon={<RotateCw className="size-3" />} label={t('moves')} value={moveCount ?? '—'} />
             <Stat icon={<Zap className="size-3" />} label={t('tps')} value={tps ?? '—'} />
           </div>
-          {hasReplay && <RealtimeReplayPlayer replay={replay!} markers={markers} />}
+          {hasReplay && <RealtimeReplayPlayer replay={replay!} markers={markers} movesLabel={t('solution')} />}
         </TabsContent>
 
         <TabsContent value={Tab.Solution} className="flex flex-col gap-3">

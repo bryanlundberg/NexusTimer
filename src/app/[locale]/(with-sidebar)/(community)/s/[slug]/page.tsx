@@ -196,7 +196,7 @@ export default function SharedSolvePage() {
 
         {replay && (
           <section className="flex justify-center">
-            <RealtimeReplayPlayer replay={replay} markers={markers} />
+            <RealtimeReplayPlayer replay={replay} markers={markers} movesLabel={t('moves')} />
           </section>
         )}
 
