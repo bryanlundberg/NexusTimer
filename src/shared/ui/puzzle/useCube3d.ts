@@ -41,8 +41,10 @@ export function useCube3d({
     let cancelled = false
     let mounted: Cube3dHandle | null = null
     let observer: ResizeObserver | null = null
+    const preparing = new AbortController()
 
-    import('@/shared/lib/puzzle/mountCube3d').then(({ mountCube3d }) => {
+    import('@/shared/lib/puzzle/mountCube3d').then(async ({ mountCube3d, prepareCube3d }) => {
+      await prepareCube3d(size, preparing.signal)
       if (cancelled) return
       const options = { dragInput, tempoScale: tempoRef.current, cameraDistance, hintFacelets, ownContext, turnSound }
       mounted = mountCube3d(canvas, { ...initialRef.current, size }, options)
@@ -58,6 +60,7 @@ export function useCube3d({
 
     return () => {
       cancelled = true
+      preparing.abort()
       observer?.disconnect()
       mounted?.dispose()
       setHandle(null)

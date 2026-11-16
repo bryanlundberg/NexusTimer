@@ -6,6 +6,7 @@ import {
   SPEEDCUBE_CUBIE_STYLE,
   SPEEDCUBE_MATERIAL,
   WebGlCubeRenderer,
+  prepareCubeMesh,
   resolveGlPalette,
   type GlCubePalette,
   type Quaternion
@@ -58,6 +59,12 @@ const themePalette = (): GlCubePalette => {
   return palette.value
 }
 
+const cubieStyle = (size: number) => (size === 2 ? SPEEDCUBE_2X2_CUBIE_STYLE : SPEEDCUBE_CUBIE_STYLE)
+
+export function prepareCube3d(size: number, signal?: AbortSignal): Promise<void> {
+  return prepareCubeMesh(size, cubieStyle(size), signal)
+}
+
 export function mountCube3d(
   canvas: HTMLCanvasElement,
   request: Cube3dRequest,
@@ -74,7 +81,7 @@ export function mountCube3d(
     palette: themePalette(),
     tempoScale,
     hintFacelets,
-    style: request.size === 2 ? SPEEDCUBE_2X2_CUBIE_STYLE : SPEEDCUBE_CUBIE_STYLE,
+    style: cubieStyle(request.size),
     material: SPEEDCUBE_MATERIAL,
     onTurn: turnSound ? playTurnSound : undefined,
     camera: cameraDistance === undefined ? undefined : { distance: cameraDistance * TWISTY_DISTANCE_SCALE }
