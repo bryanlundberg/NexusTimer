@@ -1,5 +1,7 @@
 import { cubeGeometry } from '../nxn/cube-geometry'
 import { beveledCubie, faceKey, type BeveledCubie } from './beveled-cubie'
+import { cubieOcclusion } from './cube-occlusion'
+import { speedcubeCubie } from './speedcube-cubie'
 
 export interface CubieStyle {
   readonly halfWidth: number
@@ -9,6 +11,10 @@ export interface CubieStyle {
   readonly innerCornerRadius: number
   readonly cornerSharpness: number
   readonly segments: number
+  readonly capDepth?: number
+  readonly moldedBlend?: number
+  readonly centerCornerRadius?: number
+  readonly edgeCornerRadius?: number
 }
 
 export const STICKERLESS_CUBIE_STYLE: CubieStyle = {
@@ -21,18 +27,47 @@ export const STICKERLESS_CUBIE_STYLE: CubieStyle = {
   segments: 3
 }
 
+export const STUDIO_CUBIE_STYLE: CubieStyle = {
+  ...STICKERLESS_CUBIE_STYLE,
+  segments: 6
+}
+
+export const SPEEDCUBE_CUBIE_STYLE: CubieStyle = {
+  halfWidth: 0.52,
+  pieceScale: 0.95,
+  outerAxisRadius: 0.06,
+  innerEdgeRadius: 0.06,
+  innerCornerRadius: 0.2,
+  cornerSharpness: 1,
+  segments: 12,
+  capDepth: 0.07,
+  moldedBlend: 0.05,
+  centerCornerRadius: 0.42,
+  edgeCornerRadius: 0.4
+}
+
+export const SPEEDCUBE_2X2_CUBIE_STYLE: CubieStyle = {
+  ...SPEEDCUBE_CUBIE_STYLE,
+  halfWidth: 0.51,
+  innerCornerRadius: 0.27
+}
+
 export interface MeshPart {
   readonly positions: Float32Array
   readonly slots: Float32Array
   readonly normals: Float32Array
+  readonly occlusion: Float32Array
   readonly indices: Uint32Array
   readonly vertexCount: number
+  readonly stickerOf?: Int32Array
 }
 
 export interface CubeMesh {
   readonly size: number
   readonly verticesPerSticker: number
   readonly extent: number
+  readonly pieceHalfSize: number
+  readonly capDepth: number
   readonly stickers: MeshPart
   readonly body: MeshPart
   readonly hints: MeshPart
@@ -50,16 +85,30 @@ const HINT_CORNERS: ReadonlyArray<readonly [number, number]> = [
   [-1, 1]
 ]
 
+interface ShadedCubie {
+  readonly cubie: BeveledCubie
+  readonly occlusion: Float32Array
+}
+
 class PartBuilder {
   readonly #positions: number[] = []
   readonly #slots: number[] = []
   readonly #normals: number[] = []
+  readonly #occlusion: number[] = []
   readonly #indices: number[] = []
+  readonly #stickerOf: number[] = []
 
-  addFace(cubie: BeveledCubie, face: number, slot: ArrayLike<number>): void {
+  addFace(
+    { cubie, occlusion }: ShadedCubie,
+    face: number,
+    slot: ArrayLike<number>,
+    stickerAt?: (local: ArrayLike<number>) => number
+  ): void {
     const base = this.#positions.length / 3
     const start = cubie.faces[face]!.vertexStart
     for (let vertex = start; vertex < start + cubie.verticesPerFace; vertex++) {
+      this.#occlusion.push(occlusion[vertex]!)
+      if (stickerAt) this.#stickerOf.push(stickerAt(cubie.positions.subarray(vertex * 3, vertex * 3 + 3)))
       for (let k = 0; k < 3; k++) {
         this.#positions.push(cubie.positions[vertex * 3 + k]! + slot[k]!)
         this.#normals.push(cubie.normals[vertex * 3 + k]!)
@@ -81,6 +130,7 @@ class PartBuilder {
       this.#positions.push(...point)
       this.#slots.push(slot[0]!, slot[1]!, slot[2]!)
       this.#normals.push(axis === 0 ? sign : 0, axis === 1 ? sign : 0, axis === 2 ? sign : 0)
+      this.#occlusion.push(1)
     }
     this.#indices.push(base, base + 1, base + 2, base, base + 2, base + 3)
   }
@@ -90,8 +140,10 @@ class PartBuilder {
       positions: Float32Array.from(this.#positions),
       slots: Float32Array.from(this.#slots),
       normals: Float32Array.from(this.#normals),
+      occlusion: Float32Array.from(this.#occlusion),
       indices: Uint32Array.from(this.#indices),
-      vertexCount: this.#positions.length / 3
+      vertexCount: this.#positions.length / 3,
+      ...(this.#stickerOf.length > 0 ? { stickerOf: Int32Array.from(this.#stickerOf) } : {})
     }
   }
 }
@@ -112,25 +164,59 @@ const buildCubeMesh = (size: number, style: CubieStyle): CubeMesh => {
     segments: style.segments
   }
   const isOutward = (slot: ArrayLike<number>) => (axis: number, sign: 1 | -1) => slot[axis] === sign * edge
-  const cubies = new Map<string, BeveledCubie>()
-  const cubieAt = (slot: ArrayLike<number>): BeveledCubie => {
+  const cubies = new Map<string, ShadedCubie>()
+  const cubieAt = (slot: ArrayLike<number>): ShadedCubie => {
     const outward = isOutward(slot)
     const key = [0, 1, 2].map((axis) => `${+outward(axis, 1)}${+outward(axis, -1)}`).join('')
-    let cubie = cubies.get(key)
-    if (!cubie) {
-      cubie = beveledCubie(shape, outward)
-      cubies.set(key, cubie)
+    let shaded = cubies.get(key)
+    if (!shaded) {
+      const cubie =
+        style.moldedBlend === undefined
+          ? beveledCubie(shape, outward)
+          : speedcubeCubie(
+              {
+                halfSize: shape.halfSize,
+                tileRadius: shape.innerCornerRadius,
+                centerRadius: (style.centerCornerRadius ?? style.innerCornerRadius) * scale,
+                edgeRadius: (style.edgeCornerRadius ?? style.innerCornerRadius) * scale,
+                seamRadius: shape.innerEdgeRadius,
+                outerRadius: shape.outerAxisRadius,
+                blend: style.moldedBlend * scale,
+                segments: style.segments
+              },
+              outward
+            )
+      shaded = { cubie, occlusion: cubieOcclusion(cubie, shape.halfSize, outward) }
+      cubies.set(key, shaded)
     }
-    return cubie
+    return shaded
   }
 
   const geometry = cubeGeometry(size)
+  const stickerKey = (slot: ArrayLike<number>, axis: number, sign: number) =>
+    `${slot[0]},${slot[1]},${slot[2]},${axis},${sign}`
+  const stickerIndex = new Map<string, number>()
+  const nearestSticker = (slot: ArrayLike<number>) => (local: ArrayLike<number>) => {
+    let best = -1
+    let bestReach = -Infinity
+    for (let axis = 0; axis < 3; axis++) {
+      if (Math.abs(slot[axis]!) !== edge) continue
+      const sign = Math.sign(slot[axis]!)
+      const reach = sign * local[axis]!
+      if (reach > bestReach) {
+        bestReach = reach
+        best = stickerIndex.get(stickerKey(slot, axis, sign))!
+      }
+    }
+    return best
+  }
   const stickers = new PartBuilder()
   const hints = new PartBuilder()
   for (let sticker = 0; sticker < geometry.stickerCount; sticker++) {
     const slot = geometry.positions.subarray(sticker * 3, sticker * 3 + 3)
     const normal = geometry.normals.subarray(sticker * 3, sticker * 3 + 3)
     const axis = normal[0] ? 0 : normal[1] ? 1 : 2
+    stickerIndex.set(stickerKey(slot, axis, normal[axis]!), sticker)
     stickers.addFace(cubieAt(slot), faceKey(axis, normal[axis]!), slot)
     hints.addQuad(axis, normal[axis]!, slot, (SLOT_WIDTH / 2) * (1 + 2 * HINT_ELEVATION), (HINT_SCALE * SLOT_WIDTH) / 2)
   }
@@ -141,10 +227,11 @@ const buildCubeMesh = (size: number, style: CubieStyle): CubeMesh => {
       for (let z = -edge; z <= edge; z += 2) {
         const slot = [x, y, z]
         if (Math.max(Math.abs(x), Math.abs(y), Math.abs(z)) !== edge) continue
-        const cubie = cubieAt(slot)
+        const shaded = cubieAt(slot)
         const outward = isOutward(slot)
-        cubie.faces.forEach((face, index) => {
-          if (!outward(face.axis, face.sign)) body.addFace(cubie, index, slot)
+        shaded.cubie.faces.forEach((face, index) => {
+          if (outward(face.axis, face.sign)) return
+          body.addFace(shaded, index, slot, style.capDepth === undefined ? undefined : nearestSticker(slot))
         })
       }
     }
@@ -152,8 +239,10 @@ const buildCubeMesh = (size: number, style: CubieStyle): CubeMesh => {
 
   return {
     size,
-    verticesPerSticker: cubieAt([edge, edge, edge]).verticesPerFace,
+    verticesPerSticker: cubieAt([edge, edge, edge]).cubie.verticesPerFace,
     extent: edge + shape.halfSize,
+    pieceHalfSize: shape.halfSize,
+    capDepth: (style.capDepth ?? 0) * scale,
     stickers: stickers.build(),
     body: body.build(),
     hints: hints.build()
