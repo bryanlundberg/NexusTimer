@@ -104,13 +104,13 @@ class PartBuilder {
     { cubie, occlusion }: ShadedCubie,
     face: number,
     slot: ArrayLike<number>,
-    stickerAt?: (local: ArrayLike<number>) => number
+    stickerAt?: (positions: Float32Array, offset: number) => number
   ): void {
     const base = this.#positions.length / 3
     const start = cubie.faces[face]!.vertexStart
     for (let vertex = start; vertex < start + cubie.verticesPerFace; vertex++) {
       this.#occlusion.push(occlusion[vertex]!)
-      if (stickerAt) this.#stickerOf.push(stickerAt(cubie.positions.subarray(vertex * 3, vertex * 3 + 3)))
+      if (stickerAt) this.#stickerOf.push(stickerAt(cubie.positions, vertex * 3))
       for (let k = 0; k < 3; k++) {
         this.#positions.push(cubie.positions[vertex * 3 + k]! + slot[k]!)
         this.#normals.push(cubie.normals[vertex * 3 + k]!)
@@ -154,10 +154,14 @@ const meshes = new Map<string, CubeMesh>()
 
 const styleKey = (style: CubieStyle) => Object.values(style).join(':')
 
-const buildCubeMesh = (size: number, style: CubieStyle): CubeMesh => {
-  const edge = size - 1
+const shadedCubies = new Map<string, ShadedCubie>()
+
+type Outward = (axis: number, sign: 1 | -1) => boolean
+
+const pieceShape = (style: CubieStyle) => {
   const scale = style.pieceScale * SLOT_WIDTH
-  const shape = {
+  return {
+    scale,
     halfSize: style.halfWidth * scale,
     outerAxisRadius: style.outerAxisRadius * scale,
     innerEdgeRadius: style.innerEdgeRadius * scale,
@@ -165,52 +169,92 @@ const buildCubeMesh = (size: number, style: CubieStyle): CubeMesh => {
     cornerSharpness: style.cornerSharpness,
     segments: style.segments
   }
-  const isOutward = (slot: ArrayLike<number>) => (axis: number, sign: 1 | -1) => slot[axis] === sign * edge
-  const cubies = new Map<string, ShadedCubie>()
-  const cubieAt = (slot: ArrayLike<number>): ShadedCubie => {
-    const outward = isOutward(slot)
-    const key = [0, 1, 2].map((axis) => `${+outward(axis, 1)}${+outward(axis, -1)}`).join('')
-    let shaded = cubies.get(key)
-    if (!shaded) {
-      const cubie =
-        style.moldedBlend === undefined
-          ? beveledCubie(shape, outward)
-          : speedcubeCubie(
-              {
-                halfSize: shape.halfSize,
-                tileRadius: shape.innerCornerRadius,
-                centerRadius: (style.centerCornerRadius ?? style.innerCornerRadius) * scale,
-                edgeRadius: (style.edgeCornerRadius ?? style.innerCornerRadius) * scale,
-                seamRadius: shape.innerEdgeRadius,
-                outerRadius: shape.outerAxisRadius,
-                blend: style.moldedBlend * scale,
-                segments: style.segments
-              },
-              outward
-            )
-      shaded = { cubie, occlusion: cubieOcclusion(cubie, shape.halfSize, outward) }
-      cubies.set(key, shaded)
-    }
-    return shaded
+}
+
+const outwardKey = (outward: Outward) => [0, 1, 2].map((axis) => `${+outward(axis, 1)}${+outward(axis, -1)}`).join('')
+
+const slotOutward =
+  (slot: ArrayLike<number>, edge: number): Outward =>
+  (axis, sign) =>
+    slot[axis] === sign * edge
+
+const shadedCubie = (style: CubieStyle, outward: Outward): ShadedCubie => {
+  const key = `${styleKey(style)}|${outwardKey(outward)}`
+  let shaded = shadedCubies.get(key)
+  if (!shaded) {
+    const { scale, ...shape } = pieceShape(style)
+    const cubie =
+      style.moldedBlend === undefined
+        ? beveledCubie(shape, outward)
+        : speedcubeCubie(
+            {
+              halfSize: shape.halfSize,
+              tileRadius: shape.innerCornerRadius,
+              centerRadius: (style.centerCornerRadius ?? style.innerCornerRadius) * scale,
+              edgeRadius: (style.edgeCornerRadius ?? style.innerCornerRadius) * scale,
+              seamRadius: shape.innerEdgeRadius,
+              outerRadius: shape.outerAxisRadius,
+              blend: style.moldedBlend * scale,
+              segments: style.segments
+            },
+            outward
+          )
+    shaded = { cubie, occlusion: cubieOcclusion(cubie, shape.halfSize, outward) }
+    shadedCubies.set(key, shaded)
   }
+  return shaded
+}
+
+export function surfaceSlots(size: number): number[][] {
+  const edge = size - 1
+  const slots: number[][] = []
+  for (let x = -edge; x <= edge; x += 2) {
+    for (let y = -edge; y <= edge; y += 2) {
+      for (let z = -edge; z <= edge; z += 2) {
+        if (Math.max(Math.abs(x), Math.abs(y), Math.abs(z)) === edge) slots.push([x, y, z])
+      }
+    }
+  }
+  return slots
+}
+
+export function cubeMeshPiece(size: number, style: CubieStyle, slot: ArrayLike<number>): void {
+  shadedCubie(style, slotOutward(slot, size - 1))
+}
+
+export function hasCubeMesh(size: number, style: CubieStyle): boolean {
+  return meshes.has(`${size}:${styleKey(style)}`)
+}
+
+const buildCubeMesh = (size: number, style: CubieStyle): CubeMesh => {
+  const edge = size - 1
+  const shape = pieceShape(style)
+  const isOutward = (slot: ArrayLike<number>) => slotOutward(slot, edge)
+  const cubieAt = (slot: ArrayLike<number>): ShadedCubie => shadedCubie(style, isOutward(slot))
 
   const geometry = cubeGeometry(size)
   const stickerKey = (slot: ArrayLike<number>, axis: number, sign: number) =>
     `${slot[0]},${slot[1]},${slot[2]},${axis},${sign}`
   const stickerIndex = new Map<string, number>()
-  const nearestSticker = (slot: ArrayLike<number>) => (local: ArrayLike<number>) => {
-    let best = -1
-    let bestReach = -Infinity
-    for (let axis = 0; axis < 3; axis++) {
-      if (Math.abs(slot[axis]!) !== edge) continue
-      const sign = Math.sign(slot[axis]!)
-      const reach = sign * local[axis]!
-      if (reach > bestReach) {
-        bestReach = reach
-        best = stickerIndex.get(stickerKey(slot, axis, sign))!
+  const nearestSticker = (slot: ArrayLike<number>) => {
+    const faces = [0, 1, 2]
+      .filter((axis) => Math.abs(slot[axis]!) === edge)
+      .map((axis) => {
+        const sign = Math.sign(slot[axis]!)
+        return { axis, sign, sticker: stickerIndex.get(stickerKey(slot, axis, sign))! }
+      })
+    return (positions: Float32Array, offset: number) => {
+      let best = -1
+      let bestReach = -Infinity
+      for (const { axis, sign, sticker } of faces) {
+        const reach = sign * positions[offset + axis]!
+        if (reach > bestReach) {
+          bestReach = reach
+          best = sticker
+        }
       }
+      return best
     }
-    return best
   }
   const stickers = new PartBuilder()
   const hints = new PartBuilder()
@@ -244,7 +288,7 @@ const buildCubeMesh = (size: number, style: CubieStyle): CubeMesh => {
     verticesPerSticker: cubieAt([edge, edge, edge]).cubie.verticesPerFace,
     extent: edge + shape.halfSize,
     pieceHalfSize: shape.halfSize,
-    capDepth: (style.capDepth ?? 0) * scale,
+    capDepth: (style.capDepth ?? 0) * shape.scale,
     stickers: stickers.build(),
     body: body.build(),
     hints: hints.build()

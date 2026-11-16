@@ -21,6 +21,7 @@ export {
   type StudioLight
 } from './cube-material'
 export { CubeView, type CubeViewOptions } from './cube-view'
+export { prepareCubeMesh } from './prepare-cube-mesh'
 export { speedcubeCubie, type SpeedcubeShape } from './speedcube-cubie'
 export { animationFrameScheduler, type FrameScheduler } from './frame-scheduler'
 export { createCssColorResolver, resolveGlPalette, type CssCubePalette, type GlCubePalette } from './gl-palette'
