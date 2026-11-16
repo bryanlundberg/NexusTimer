@@ -1,5 +1,7 @@
 import type { TurnMotion } from '../../geometry/axis-turn-system'
+import type { CubeMaterial } from '../cube-material'
 import type { Mat4 } from '../mat4'
+import { applyStudioMaterial } from '../studio-lighting'
 import type { PolyMesh } from './poly-mesh'
 import { MAX_MOTIONS, POLY_ATTRIBUTE, createPolyProgram } from './poly-shader'
 
@@ -13,6 +15,7 @@ export interface PolyFrame {
   readonly mesh: PolyMesh
   readonly colors: Float32Array
   readonly motions: readonly TurnMotion[]
+  readonly material?: CubeMaterial | null
 }
 
 interface Uploaded {
@@ -24,7 +27,7 @@ export class WebGlPolyRenderer {
   readonly #gl: WebGL2RenderingContext
   readonly #program: WebGLProgram
   readonly #vao: WebGLVertexArrayObject
-  readonly #buffers: Record<'position' | 'normal' | 'center' | 'color' | 'index', WebGLBuffer>
+  readonly #buffers: Record<'position' | 'normal' | 'center' | 'color' | 'core' | 'index', WebGLBuffer>
   readonly #uniform: (name: string) => WebGLUniformLocation | null
   #uploaded: Uploaded | null = null
   #colors: Float32Array | null = null
@@ -43,6 +46,7 @@ export class WebGlPolyRenderer {
       normal: gl.createBuffer()!,
       center: gl.createBuffer()!,
       color: gl.createBuffer()!,
+      core: gl.createBuffer()!,
       index: gl.createBuffer()!
     }
     gl.bindVertexArray(this.#vao)
@@ -51,6 +55,9 @@ export class WebGlPolyRenderer {
       gl.enableVertexAttribArray(POLY_ATTRIBUTE[name])
       gl.vertexAttribPointer(POLY_ATTRIBUTE[name], 3, gl.FLOAT, false, 0, 0)
     }
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.#buffers.core)
+    gl.enableVertexAttribArray(POLY_ATTRIBUTE.core)
+    gl.vertexAttribPointer(POLY_ATTRIBUTE.core, 1, gl.FLOAT, false, 0, 0)
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.#buffers.index)
     const locations = new Map<string, WebGLUniformLocation | null>()
     this.#uniform = (name) => {
@@ -85,6 +92,10 @@ export class WebGlPolyRenderer {
     gl.uniformMatrix4fv(this.#uniform('u_view'), false, frame.view)
     gl.uniform1f(this.#uniform('u_scale'), frame.scale)
     gl.uniform1f(this.#uniform('u_ambient'), frame.ambient)
+    const material = frame.material ?? null
+    applyStudioMaterial(gl, this.#uniform, material)
+    gl.uniform3fv(this.#uniform('u_core'), material?.core ?? [0, 0, 0])
+    gl.uniform1f(this.#uniform('u_coreStrength'), material?.core ? 1 : 0)
     const motions = frame.motions.slice(0, MAX_MOTIONS)
     gl.uniform1i(this.#uniform('u_motionCount'), motions.length)
     motions.forEach((motion, i) => {
@@ -105,8 +116,8 @@ export class WebGlPolyRenderer {
   #upload({ mesh, colors }: PolyFrame): void {
     const gl = this.#gl
     if (this.#uploaded?.mesh !== mesh) {
-      const data = { position: mesh.positions, normal: mesh.normals, center: mesh.centers } as const
-      for (const name of ['position', 'normal', 'center'] as const) {
+      const data = { position: mesh.positions, normal: mesh.normals, center: mesh.centers, core: mesh.cores } as const
+      for (const name of ['position', 'normal', 'center', 'core'] as const) {
         gl.bindBuffer(gl.ARRAY_BUFFER, this.#buffers[name])
         gl.bufferData(gl.ARRAY_BUFFER, data[name], gl.STATIC_DRAW)
       }

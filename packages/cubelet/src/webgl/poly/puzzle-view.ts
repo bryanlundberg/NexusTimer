@@ -1,6 +1,7 @@
 import type { TurnMotion } from '../../geometry/axis-turn-system'
 import type { PuzzleState } from '../../puzzle/puzzle-definition'
 import { CubeCamera, type CubeCameraOptions } from '../cube-camera'
+import type { CubeMaterial } from '../cube-material'
 import { animationFrameScheduler, type FrameScheduler } from '../frame-scheduler'
 import type { GlCubePalette } from '../gl-palette'
 import { BODY_COLOR, type PolyMesh } from './poly-mesh'
@@ -20,6 +21,7 @@ export interface PuzzleViewOptions<TMove, TState extends PuzzleState<TMove>> {
   readonly camera?: CubeCameraOptions
   readonly tempoScale?: number
   readonly ambient?: number
+  readonly material?: CubeMaterial | null
 }
 
 interface RunningMove<TMove> {
@@ -172,7 +174,8 @@ export class PuzzleView<TMove, TState extends PuzzleState<TMove>> {
       ambient: this.options.ambient ?? 0.7,
       mesh: this.#mesh,
       colors: this.#colors,
-      motions: this.#activeMotions(now)
+      motions: this.#activeMotions(now),
+      material: this.options.material ?? null
     })
   }
 }
