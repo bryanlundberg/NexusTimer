@@ -14,14 +14,16 @@ export function phaseMarkers(analysis: SolveAnalysis | null): ReplayMarker[] {
   return phases.flatMap((phase) => {
     const marker: ReplayMarker = {
       key: phase.key,
+      name: phase.label,
       label: formatTime(phase.duration, 1),
       moveIndex: phase.moveIndex,
       lineClass: phase.bgClass,
       labelClass: phase.textClass
     }
     if (phase.slots) {
-      return phase.slots.map((slot) => ({
+      return phase.slots.map((slot, i) => ({
         key: slot.key,
+        name: `${phase.label} ${i + 1}`,
         label: formatTime(slot.duration, 1),
         moveIndex: slot.moveIndex,
         lineClass: slot.bgClass,
