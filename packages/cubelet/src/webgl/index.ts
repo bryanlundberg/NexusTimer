@@ -5,12 +5,23 @@ export { beveledCubie, type BevelShape, type BeveledCubie } from './beveled-cubi
 export {
   cubeMesh,
   STICKERLESS_CUBIE_STYLE,
+  STUDIO_CUBIE_STYLE,
+  SPEEDCUBE_2X2_CUBIE_STYLE,
+  SPEEDCUBE_CUBIE_STYLE,
   VERTICES_PER_HINT,
   type CubeMesh,
   type CubieStyle,
   type MeshPart
 } from './cube-mesh'
+export {
+  GLOSS_CUBE_MATERIAL,
+  MATTE_CUBE_MATERIAL,
+  SPEEDCUBE_MATERIAL,
+  type CubeMaterial,
+  type StudioLight
+} from './cube-material'
 export { CubeView, type CubeViewOptions } from './cube-view'
+export { speedcubeCubie, type SpeedcubeShape } from './speedcube-cubie'
 export { animationFrameScheduler, type FrameScheduler } from './frame-scheduler'
 export { createCssColorResolver, resolveGlPalette, type CssCubePalette, type GlCubePalette } from './gl-palette'
 export { IDENTITY_QUATERNION, type Quaternion } from './mat4'
