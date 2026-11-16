@@ -1,6 +1,7 @@
 export { ClockColor, clockModel3d } from './clock-model'
 export { ftoModel3d } from './fto-model'
 export { megaminxModel3d } from './megaminx-model'
+export { PRO_MOLDED_STYLE, PYRAMINX_MOLDED_STYLE, SQUARE1_MOLDED_STYLE, type MoldedStyle } from './molded-piece'
 export { BODY_COLOR, buildPolyMesh, type PolyMesh, type PolyPiece } from './poly-mesh'
 export type { PuzzleModel3d } from './puzzle-model'
 export { PuzzleView, type PuzzleViewOptions } from './puzzle-view'
