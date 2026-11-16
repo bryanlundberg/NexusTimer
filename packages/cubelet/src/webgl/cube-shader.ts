@@ -1,4 +1,4 @@
-import { MAX_STUDIO_LIGHTS } from './cube-material'
+import { STUDIO_GLSL } from './studio-lighting'
 
 export const ATTRIBUTE = { position: 0, slot: 1, normal: 2, color: 3, alpha: 4, occlusion: 5 } as const
 
@@ -57,7 +57,6 @@ void main() {
 
 export const FRAGMENT_SHADER = `#version 300 es
 precision highp float;
-#define LIGHTS ${MAX_STUDIO_LIGHTS}
 in vec3 v_color;
 in vec3 v_local;
 flat in vec3 v_slot;
@@ -67,80 +66,13 @@ in float v_alpha;
 in float v_occlusion;
 uniform float u_ambient;
 uniform float u_outlineAlpha;
-uniform bool u_studio;
-uniform float u_roughness;
-uniform float u_reflectance;
-uniform vec3 u_sky;
-uniform vec3 u_ground;
-uniform float u_hemisphere;
-uniform float u_environment;
-uniform vec3 u_lightDirection[LIGHTS];
-uniform vec3 u_lightColor[LIGHTS];
-uniform float u_occlusionStrength;
-uniform float u_exposure;
 uniform float u_edge;
 uniform float u_pieceHalfSize;
 uniform float u_capDepth;
 uniform vec3 u_core;
 out vec4 outColor;
 
-const float PI = 3.14159265;
-
-vec3 toLinear(vec3 color) {
-  return pow(color, vec3(2.2));
-}
-
-vec3 toDisplay(vec3 color) {
-  return pow(clamp(color, 0.0, 1.0), vec3(1.0 / 2.2));
-}
-
-vec3 neutralToneMap(vec3 color) {
-  const float start = 0.76;
-  const float desaturation = 0.15;
-  float low = min(color.r, min(color.g, color.b));
-  float offset = low < 0.08 ? low - 6.25 * low * low : 0.04;
-  color -= offset;
-  float peak = max(color.r, max(color.g, color.b));
-  if (peak < start) return color;
-  const float d = 1.0 - start;
-  float newPeak = 1.0 - d * d / (peak + d - start);
-  color *= newPeak / peak;
-  float g = 1.0 - 1.0 / (desaturation * (peak - newPeak) + 1.0);
-  return mix(color, vec3(newPeak), g);
-}
-
-vec3 hemisphere(float up) {
-  return mix(u_ground, u_sky, up * 0.5 + 0.5);
-}
-
-vec3 studio(vec3 base, vec3 normal, vec3 toEye) {
-  float occlusion = mix(1.0, v_occlusion, u_occlusionStrength);
-  float alpha = u_roughness * u_roughness;
-  float alpha2 = alpha * alpha;
-  float k = alpha * 0.5;
-  float normalDotEye = max(dot(normal, toEye), 1e-4);
-  vec3 diffuse = hemisphere(normal.y) * u_hemisphere * occlusion;
-  vec3 specular = vec3(0.0);
-  for (int i = 0; i < LIGHTS; i++) {
-    vec3 toLight = u_lightDirection[i];
-    float normalDotLight = max(dot(normal, toLight), 0.0);
-    if (normalDotLight <= 0.0) continue;
-    vec3 halfway = normalize(toLight + toEye);
-    float normalDotHalf = max(dot(normal, halfway), 0.0);
-    float eyeDotHalf = max(dot(toEye, halfway), 0.0);
-    float denominator = normalDotHalf * normalDotHalf * (alpha2 - 1.0) + 1.0;
-    float distribution = alpha2 / (PI * denominator * denominator);
-    float visibility = 0.25 / ((normalDotLight * (1.0 - k) + k) * (normalDotEye * (1.0 - k) + k));
-    float fresnel = u_reflectance + (1.0 - u_reflectance) * pow(1.0 - eyeDotHalf, 5.0);
-    vec3 radiance = u_lightColor[i] * normalDotLight;
-    diffuse += radiance * (1.0 - fresnel) * mix(1.0, occlusion, 0.6);
-    specular += radiance * distribution * visibility * fresnel;
-  }
-  float rim = u_reflectance + (1.0 - u_reflectance) * pow(1.0 - normalDotEye, 5.0);
-  vec3 reflected = reflect(-toEye, normal);
-  vec3 environment = hemisphere(reflected.y) * rim * u_environment * (1.0 - u_roughness * 0.7) * occlusion;
-  return base * diffuse + (specular + environment) * occlusion;
-}
+${STUDIO_GLSL}
 
 float coreAmount() {
   if (u_capDepth <= 0.0) return 0.0;
@@ -166,8 +98,7 @@ void main() {
     outColor = vec4(v_color * shade * v_alpha, v_alpha);
     return;
   }
-  vec3 lit = studio(toLinear(v_color), normal, normalize(-v_viewPosition));
-  vec3 color = mix(toDisplay(neutralToneMap(lit * u_exposure)), u_core, coreAmount());
+  vec3 color = mix(studioColor(v_color, normal, v_viewPosition, v_occlusion), u_core, coreAmount());
   outColor = vec4(color * v_alpha, v_alpha);
 }
 `

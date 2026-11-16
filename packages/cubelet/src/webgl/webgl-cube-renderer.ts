@@ -1,8 +1,8 @@
 import { ContactShadow } from './contact-shadow'
 import type { CubeFrame, CubeFrameRenderer } from './cube-frame'
-import { MAX_STUDIO_LIGHTS, type CubeMaterial } from './cube-material'
 import { cubeMesh, type MeshPart } from './cube-mesh'
 import { ATTRIBUTE, createCubeProgram } from './cube-shader'
+import { applyStudioMaterial, uniformLocator } from './studio-lighting'
 
 interface PartBuffers {
   readonly vao: WebGLVertexArrayObject
@@ -55,16 +55,6 @@ interface Uniforms {
   readonly outlineWidth: WebGLUniformLocation | null
   readonly outlineAlpha: WebGLUniformLocation | null
   readonly studio: WebGLUniformLocation | null
-  readonly roughness: WebGLUniformLocation | null
-  readonly reflectance: WebGLUniformLocation | null
-  readonly sky: WebGLUniformLocation | null
-  readonly ground: WebGLUniformLocation | null
-  readonly hemisphere: WebGLUniformLocation | null
-  readonly environment: WebGLUniformLocation | null
-  readonly lightDirection: WebGLUniformLocation | null
-  readonly lightColor: WebGLUniformLocation | null
-  readonly occlusionStrength: WebGLUniformLocation | null
-  readonly exposure: WebGLUniformLocation | null
   readonly edge: WebGLUniformLocation | null
   readonly pieceHalfSize: WebGLUniformLocation | null
   readonly capDepth: WebGLUniformLocation | null
@@ -76,6 +66,7 @@ interface GlState {
   readonly gl: WebGL2RenderingContext
   readonly program: WebGLProgram
   readonly uniforms: Uniforms
+  readonly locate: (name: string) => WebGLUniformLocation | null
   shadow: ContactShadow | null
 }
 
@@ -97,35 +88,6 @@ const uploadAttribute = (
   gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW)
   gl.enableVertexAttribArray(location)
   gl.vertexAttribPointer(location, components, gl.FLOAT, false, 0, 0)
-}
-
-const normalize = ([x, y, z]: readonly number[]): number[] => {
-  const length = Math.hypot(x!, y!, z!) || 1
-  return [x! / length, y! / length, z! / length]
-}
-
-const setMaterial = (gl: WebGL2RenderingContext, uniforms: Uniforms, material: CubeMaterial | null): void => {
-  gl.uniform1i(uniforms.studio, material ? 1 : 0)
-  if (!material) return
-  const directions = new Float32Array(MAX_STUDIO_LIGHTS * 3)
-  const colors = new Float32Array(MAX_STUDIO_LIGHTS * 3)
-  material.lights.slice(0, MAX_STUDIO_LIGHTS).forEach((light, index) => {
-    directions.set(normalize(light.direction), index * 3)
-    colors.set(
-      light.color.map((channel) => channel * light.intensity),
-      index * 3
-    )
-  })
-  gl.uniform1f(uniforms.roughness, material.roughness)
-  gl.uniform1f(uniforms.reflectance, material.reflectance)
-  gl.uniform3fv(uniforms.sky, material.sky)
-  gl.uniform3fv(uniforms.ground, material.ground)
-  gl.uniform1f(uniforms.hemisphere, material.ambient)
-  gl.uniform1f(uniforms.environment, material.environment)
-  gl.uniform3fv(uniforms.lightDirection, directions)
-  gl.uniform3fv(uniforms.lightColor, colors)
-  gl.uniform1f(uniforms.occlusionStrength, material.occlusion)
-  gl.uniform1f(uniforms.exposure, material.exposure)
 }
 
 const createPart = (gl: WebGL2RenderingContext, track: Track, part: MeshPart): PartBuffers => {
@@ -215,7 +177,7 @@ export class WebGlCubeRenderer implements CubeFrameRenderer {
     gl.uniform1f(uniforms.turnAngle, frame.turn?.angle ?? 0)
     gl.uniform1f(uniforms.outlineWidth, 0)
     gl.uniform1f(uniforms.outlineAlpha, 0)
-    setMaterial(gl, uniforms, material)
+    applyStudioMaterial(gl, state.locate, material)
     const core = material?.core ?? null
     const capped = core !== null && scene.pieceColors !== null
     gl.uniform1f(uniforms.edge, frame.size - 1)
@@ -316,21 +278,12 @@ export class WebGlCubeRenderer implements CubeFrameRenderer {
         outlineWidth: location('u_outlineWidth'),
         outlineAlpha: location('u_outlineAlpha'),
         studio: location('u_studio'),
-        roughness: location('u_roughness'),
-        reflectance: location('u_reflectance'),
-        sky: location('u_sky'),
-        ground: location('u_ground'),
-        hemisphere: location('u_hemisphere'),
-        environment: location('u_environment'),
-        lightDirection: location('u_lightDirection'),
-        lightColor: location('u_lightColor'),
-        occlusionStrength: location('u_occlusionStrength'),
-        exposure: location('u_exposure'),
         edge: location('u_edge'),
         pieceHalfSize: location('u_pieceHalfSize'),
         capDepth: location('u_capDepth'),
         core: location('u_core')
       },
+      locate: uniformLocator(gl, program),
       shadow: null
     }
     return this.#state
