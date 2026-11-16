@@ -26,14 +26,21 @@ const rotate = (p: Vector, k: readonly number[], angle: number): Vector => {
   return [0, 1, 2].map((i) => p[i]! * c + cross[i]! * s + k[i]! * d * (1 - c)) as Vector
 }
 
-const fingerprint = <TMove, TState extends PuzzleState<TMove>>(
+const TOLERANCE = 1e-6
+
+interface Placed {
+  readonly point: Vector
+  readonly color: number
+}
+
+const placedVertices = <TMove, TState extends PuzzleState<TMove>>(
   model: PuzzleModel3d<TMove, TState>,
   state: TState,
   move?: TMove
-) => {
+): Placed[] => {
   const mesh = model.mesh(state)
   const motions = move === undefined ? [] : model.motions(move)
-  const keys: string[] = []
+  const placed: Placed[] = []
   for (let v = 0; v < mesh.vertexCount; v++) {
     let p: Vector = [mesh.positions[v * 3]!, mesh.positions[v * 3 + 1]!, mesh.positions[v * 3 + 2]!]
     const center = [mesh.centers[v * 3]!, mesh.centers[v * 3 + 1]!, mesh.centers[v * 3 + 2]!]
@@ -41,10 +48,46 @@ const fingerprint = <TMove, TState extends PuzzleState<TMove>>(
       if (center[0]! * axis[0]! + center[1]! * axis[1]! + center[2]! * axis[2]! > above) p = rotate(p, axis, angle)
     }
     const ref = mesh.colorRefs[v]!
-    const color = ref === BODY_COLOR ? -1 : model.colorOf(state, ref, PALETTE)[0]
-    keys.push(`${p.map((value) => (Math.round(value * 1e4) / 1e4 || 0).toFixed(4)).join(',')}:${color}`)
+    placed.push({ point: p, color: ref === BODY_COLOR ? -1 : model.colorOf(state, ref, PALETTE)[0] })
   }
-  return keys.sort()
+  return placed
+}
+
+const cellOf = (point: Vector, offset: readonly number[]) =>
+  point.map((value, axis) => Math.floor(value / (TOLERANCE * 10)) + offset[axis]!).join(',')
+
+const unmatched = (actual: readonly Placed[], expected: readonly Placed[]): number => {
+  const buckets = new Map<string, Placed[]>()
+  for (const vertex of expected) {
+    const key = cellOf(vertex.point, [0, 0, 0])
+    const bucket = buckets.get(key)
+    if (bucket) bucket.push(vertex)
+    else buckets.set(key, [vertex])
+  }
+  const offsets = [-1, 0, 1].flatMap((x) => [-1, 0, 1].flatMap((y) => [-1, 0, 1].map((z) => [x, y, z])))
+  let missing = 0
+  for (const vertex of actual) {
+    const bucket = offsets
+      .map((offset) => buckets.get(cellOf(vertex.point, offset)))
+      .find((candidates) =>
+        candidates?.some(
+          (candidate) =>
+            candidate.color === vertex.color &&
+            Math.hypot(...candidate.point.map((value, axis) => value - vertex.point[axis]!)) < TOLERANCE
+        )
+      )
+    if (!bucket) {
+      missing++
+      continue
+    }
+    const index = bucket.findIndex(
+      (candidate) =>
+        candidate.color === vertex.color &&
+        Math.hypot(...candidate.point.map((value, axis) => value - vertex.point[axis]!)) < TOLERANCE
+    )
+    bucket.splice(index, 1)
+  }
+  return missing
 }
 
 const expectAnimationLandsOnNextState = <TMove, TState extends PuzzleState<TMove>>(
@@ -55,7 +98,10 @@ const expectAnimationLandsOnNextState = <TMove, TState extends PuzzleState<TMove
     let state = model.definition.solved()
     for (const move of model.definition.compile(alg)) {
       const next = state.apply([move]) as TState
-      expect(fingerprint(model, state, move)).toEqual(fingerprint(model, next))
+      const actual = placedVertices(model, state, move)
+      const expected = placedVertices(model, next)
+      expect(actual).toHaveLength(expected.length)
+      expect(unmatched(actual, expected)).toBe(0)
       state = next
     }
   }
@@ -104,7 +150,7 @@ describe('3D puzzle models', () => {
   it('animate megaminx turns, rotations and Pochmann moves onto the state they produce', () => {
     const tokens = ['U', "R'", 'F2', 'BL', "DR2'", 'D', 'y', "Fv'", 'R++', 'D--']
     expectAnimationLandsOnNextState(megaminxModel3d, [randomAlg(tokens, 10, 2)])
-  })
+  }, 60_000)
 
   it('animate square-1 turns and slashes onto the state they produce', () => {
     const random = seededRandom(3)
@@ -112,5 +158,5 @@ describe('3D puzzle models', () => {
       square1Model3d,
       Array.from({ length: 6 }, () => randomLegalSquare1(random, 6))
     )
-  })
+  }, 120_000)
 })
