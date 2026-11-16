@@ -1,3 +1,4 @@
+import type { CubeMaterial } from './cube-material'
 import type { CubieStyle } from './cube-mesh'
 import type { Mat4 } from './mat4'
 import type { HintColors } from './sticker-colors'
@@ -24,6 +25,8 @@ export interface CubeFrame {
   readonly outlineAlpha: number
   readonly hints: HintColors | null
   readonly turn: ActiveTurn | null
+  readonly material?: CubeMaterial | null
+  readonly groundView?: Mat4
 }
 
 export interface CubeFrameRenderer {
