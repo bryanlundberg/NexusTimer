@@ -1609,6 +1609,19 @@
       "use-cube": "使用",
       "needs-solves": "需要 {count} 次复原",
       "recent": "最近使用"
+    },
+    "ReplayPlayer": {
+      "position": "回放位置",
+      "play": "播放",
+      "pause": "暂停",
+      "replay": "重新播放",
+      "go-to-start": "跳到开头",
+      "previous-move": "上一步",
+      "next-move": "下一步",
+      "go-to-end": "跳到结尾",
+      "loop": "循环",
+      "speed": "速度",
+      "speed-value": "播放速度 {speed}×"
     }
   },
   "Multiplayer": {

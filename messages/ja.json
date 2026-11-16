@@ -1609,6 +1609,19 @@
       "use-cube": "使う",
       "needs-solves": "{count} ソルブ必要",
       "recent": "最近使用"
+    },
+    "ReplayPlayer": {
+      "position": "再生位置",
+      "play": "再生",
+      "pause": "一時停止",
+      "replay": "もう一度再生",
+      "go-to-start": "最初へ",
+      "previous-move": "前の手",
+      "next-move": "次の手",
+      "go-to-end": "最後へ",
+      "loop": "ループ",
+      "speed": "速度",
+      "speed-value": "再生速度 {speed}×"
     }
   },
   "Multiplayer": {

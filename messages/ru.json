@@ -1609,6 +1609,19 @@
       "use-cube": "Использовать",
       "needs-solves": "Нужно сборок: {count}",
       "recent": "Недавние"
+    },
+    "ReplayPlayer": {
+      "position": "Позиция воспроизведения",
+      "play": "Воспроизвести",
+      "pause": "Пауза",
+      "replay": "Повторить",
+      "go-to-start": "В начало",
+      "previous-move": "Предыдущий ход",
+      "next-move": "Следующий ход",
+      "go-to-end": "В конец",
+      "loop": "Повтор",
+      "speed": "Скорость",
+      "speed-value": "Скорость воспроизведения {speed}×"
     }
   },
   "Multiplayer": {

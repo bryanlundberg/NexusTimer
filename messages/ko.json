@@ -1609,6 +1609,19 @@
       "use-cube": "사용",
       "needs-solves": "솔브 {count}개 필요",
       "recent": "최근 사용"
+    },
+    "ReplayPlayer": {
+      "position": "재생 위치",
+      "play": "재생",
+      "pause": "일시정지",
+      "replay": "다시 재생",
+      "go-to-start": "처음으로",
+      "previous-move": "이전 동작",
+      "next-move": "다음 동작",
+      "go-to-end": "끝으로",
+      "loop": "반복",
+      "speed": "속도",
+      "speed-value": "재생 속도 {speed}×"
     }
   },
   "Multiplayer": {

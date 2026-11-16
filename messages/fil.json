@@ -1585,6 +1585,19 @@
       "use-cube": "Gamitin",
       "needs-solves": "Kailangan ng {count} solve",
       "recent": "Kamakailang ginamit"
+    },
+    "ReplayPlayer": {
+      "position": "Posisyon ng replay",
+      "play": "I-play",
+      "pause": "I-pause",
+      "replay": "I-replay",
+      "go-to-start": "Pumunta sa simula",
+      "previous-move": "Nakaraang galaw",
+      "next-move": "Susunod na galaw",
+      "go-to-end": "Pumunta sa dulo",
+      "loop": "Ulitin",
+      "speed": "Bilis",
+      "speed-value": "Bilis ng playback {speed}×"
     }
   },
   "Metadata": {

@@ -1585,6 +1585,19 @@
       "use-cube": "Usar",
       "needs-solves": "Necesita {count, plural, one {# solve} other {# solves}}",
       "recent": "Usados recientemente"
+    },
+    "ReplayPlayer": {
+      "position": "Posición de la reproducción",
+      "play": "Reproducir",
+      "pause": "Pausar",
+      "replay": "Repetir",
+      "go-to-start": "Ir al inicio",
+      "previous-move": "Movimiento anterior",
+      "next-move": "Movimiento siguiente",
+      "go-to-end": "Ir al final",
+      "loop": "Repetir en bucle",
+      "speed": "Velocidad",
+      "speed-value": "Velocidad de reproducción {speed}×"
     }
   },
   "Metadata": {

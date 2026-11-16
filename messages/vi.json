@@ -1585,6 +1585,19 @@
       "use-cube": "Dùng",
       "needs-solves": "Cần {count} lượt giải",
       "recent": "Dùng gần đây"
+    },
+    "ReplayPlayer": {
+      "position": "Vị trí phát lại",
+      "play": "Phát",
+      "pause": "Tạm dừng",
+      "replay": "Phát lại",
+      "go-to-start": "Về đầu",
+      "previous-move": "Bước trước",
+      "next-move": "Bước tiếp theo",
+      "go-to-end": "Đến cuối",
+      "loop": "Lặp lại",
+      "speed": "Tốc độ",
+      "speed-value": "Tốc độ phát {speed}×"
     }
   },
   "Metadata": {

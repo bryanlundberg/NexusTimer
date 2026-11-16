@@ -1585,6 +1585,19 @@
       "use-cube": "Użyj",
       "needs-solves": "Potrzeba: {count}",
       "recent": "Ostatnio używane"
+    },
+    "ReplayPlayer": {
+      "position": "Pozycja odtwarzania",
+      "play": "Odtwórz",
+      "pause": "Wstrzymaj",
+      "replay": "Odtwórz ponownie",
+      "go-to-start": "Przejdź na początek",
+      "previous-move": "Poprzedni ruch",
+      "next-move": "Następny ruch",
+      "go-to-end": "Przejdź na koniec",
+      "loop": "Zapętl",
+      "speed": "Prędkość",
+      "speed-value": "Prędkość odtwarzania {speed}×"
     }
   },
   "Metadata": {

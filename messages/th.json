@@ -1585,6 +1585,19 @@
       "use-cube": "ใช้",
       "needs-solves": "ต้องมี {count} โซลฟ์",
       "recent": "ใช้ล่าสุด"
+    },
+    "ReplayPlayer": {
+      "position": "ตำแหน่งการเล่นซ้ำ",
+      "play": "เล่น",
+      "pause": "หยุดชั่วคราว",
+      "replay": "เล่นอีกครั้ง",
+      "go-to-start": "ไปที่จุดเริ่มต้น",
+      "previous-move": "ท่าก่อนหน้า",
+      "next-move": "ท่าถัดไป",
+      "go-to-end": "ไปที่จุดสิ้นสุด",
+      "loop": "วนซ้ำ",
+      "speed": "ความเร็ว",
+      "speed-value": "ความเร็วในการเล่น {speed}×"
     }
   },
   "Metadata": {

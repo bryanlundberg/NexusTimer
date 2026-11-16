@@ -1585,6 +1585,19 @@
       "use-cube": "Gunakan",
       "needs-solves": "Butuh {count} solve",
       "recent": "Baru dipakai"
+    },
+    "ReplayPlayer": {
+      "position": "Posisi pemutaran",
+      "play": "Putar",
+      "pause": "Jeda",
+      "replay": "Putar ulang",
+      "go-to-start": "Ke awal",
+      "previous-move": "Gerakan sebelumnya",
+      "next-move": "Gerakan berikutnya",
+      "go-to-end": "Ke akhir",
+      "loop": "Ulangi",
+      "speed": "Kecepatan",
+      "speed-value": "Kecepatan pemutaran {speed}×"
     }
   },
   "Metadata": {

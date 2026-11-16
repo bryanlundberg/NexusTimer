@@ -1609,6 +1609,19 @@
       "use-cube": "उपयोग करें",
       "needs-solves": "{count} सॉल्व चाहिए",
       "recent": "हाल में उपयोग किए गए"
+    },
+    "ReplayPlayer": {
+      "position": "रीप्ले की स्थिति",
+      "play": "चलाएँ",
+      "pause": "रोकें",
+      "replay": "फिर से चलाएँ",
+      "go-to-start": "शुरुआत पर जाएँ",
+      "previous-move": "पिछली चाल",
+      "next-move": "अगली चाल",
+      "go-to-end": "अंत पर जाएँ",
+      "loop": "लूप",
+      "speed": "गति",
+      "speed-value": "प्लेबैक गति {speed}×"
     }
   },
   "Multiplayer": {

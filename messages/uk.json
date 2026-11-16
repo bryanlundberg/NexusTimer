@@ -1585,6 +1585,19 @@
       "use-cube": "Використати",
       "needs-solves": "Потрібно збірок: {count}",
       "recent": "Нещодавні"
+    },
+    "ReplayPlayer": {
+      "position": "Позиція відтворення",
+      "play": "Відтворити",
+      "pause": "Пауза",
+      "replay": "Повторити",
+      "go-to-start": "На початок",
+      "previous-move": "Попередній хід",
+      "next-move": "Наступний хід",
+      "go-to-end": "У кінець",
+      "loop": "Повтор",
+      "speed": "Швидкість",
+      "speed-value": "Швидкість відтворення {speed}×"
     }
   },
   "Metadata": {
