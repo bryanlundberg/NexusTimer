@@ -49,6 +49,8 @@ export const SPEEDCUBE_CUBIE_STYLE: CubieStyle = {
 export const SPEEDCUBE_2X2_CUBIE_STYLE: CubieStyle = {
   ...SPEEDCUBE_CUBIE_STYLE,
   halfWidth: 0.515,
+  outerAxisRadius: 0.03,
+  innerEdgeRadius: 0.03,
   innerCornerRadius: 0.27
 }
 
