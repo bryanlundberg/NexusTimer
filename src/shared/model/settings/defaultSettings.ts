@@ -40,6 +40,7 @@ export const defaultSettings: Settings = {
     messageReceived: true,
     messageSent: true,
     newFriend: true,
+    cubeTurns: true,
     voiceGender: 'male'
   },
   sync: {

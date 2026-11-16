@@ -44,6 +44,7 @@ type Sounds = {
   messageReceived: boolean
   messageSent: boolean
   newFriend: boolean
+  cubeTurns: boolean
   voiceGender: 'male' | 'female'
 }
 

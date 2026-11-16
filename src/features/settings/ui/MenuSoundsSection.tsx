@@ -44,6 +44,12 @@ export default function MenuSoundsSection({ control }: { control: any }) {
         control={control}
         description={t('Settings-descriptions.new-friend-sound')}
       />
+      <MenuOption
+        name={'sounds.cubeTurns'}
+        label={t('Settings-menu.cube-turn-sound')}
+        control={control}
+        description={t('Settings-descriptions.cube-turn-sound')}
+      />
       <MenuSelectVoiceGender />
     </MenuSection>
   )
