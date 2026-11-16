@@ -6,8 +6,8 @@ import { DialogContent, DialogDescription, DialogTitle } from '@/components/ui/d
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { Badge } from '@/components/ui/badge'
 import { buildAlgorithmReplay } from '@/features/solve-replay/lib/buildAlgorithmReplay'
+import { notationGroups } from '@/features/solve-replay/lib/replayTimeline'
 import { useTranslations } from 'next-intl'
-import AlgorithmNotation from '@/shared/ui/algorithm-notation/AlgorithmNotation'
 
 const RealtimeReplayPlayer = dynamic(
   () => import('@/features/solve-replay/ui/RealtimeReplayPlayer').then((m) => m.RealtimeReplayPlayer),
@@ -24,6 +24,7 @@ export default function AlgorithmModal() {
   const cube = (metadata?.cube as string | undefined) || '3x3'
 
   const replay = useMemo(() => (alg ? buildAlgorithmReplay(alg, cube, MOVE_MS) : null), [alg, cube])
+  const groups = useMemo(() => (alg && replay ? notationGroups(alg, replay.moves.length) : []), [alg, replay])
 
   if (!metadata || !alg || !replay) return null
 
@@ -37,14 +38,14 @@ export default function AlgorithmModal() {
       </div>
       <DialogDescription className="sr-only">{alg}</DialogDescription>
 
-      <RealtimeReplayPlayer replay={replay} size={260} tempoScale={TEMPO_SCALE} />
-
-      <div className="surface surface-panel w-full p-3 sm:p-4 text-center text-foreground">
-        <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider block mb-1.5">
-          {t('algorithm-label')}
-        </span>
-        <AlgorithmNotation alg={alg} className="text-sm sm:text-base" />
-      </div>
+      <RealtimeReplayPlayer
+        replay={replay}
+        size={260}
+        tempoScale={TEMPO_SCALE}
+        showClock={false}
+        movesLabel={t('algorithm-label')}
+        moveGroups={groups}
+      />
     </DialogContent>
   )
 }
