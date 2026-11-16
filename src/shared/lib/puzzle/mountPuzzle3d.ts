@@ -1,6 +1,6 @@
 import type { PuzzleState } from '@nexustimer/cubelet'
 import type { FaceletPalette } from '@nexustimer/cubelet/svg'
-import { CubeDragControl, resolveGlPalette } from '@nexustimer/cubelet/webgl'
+import { CubeDragControl, SPEEDCUBE_MATERIAL, resolveGlPalette, type CubeMaterial } from '@nexustimer/cubelet/webgl'
 import {
   ClockColor,
   PuzzleView,
@@ -45,13 +45,15 @@ type ViewSettings = Omit<PuzzleViewOptions<unknown, PuzzleState<unknown>>, 'mode
 
 interface Puzzle3dSource {
   readonly palette: FaceletPalette
+  readonly material: CubeMaterial | null
   readonly create: (settings: ViewSettings) => AnimatedView
 }
 
 const source = <TMove, TState extends PuzzleState<TMove>>(
   model: PuzzleModel3d<TMove, TState>,
-  palette: FaceletPalette
-): Puzzle3dSource => ({ palette, create: (settings) => new PuzzleView({ ...settings, model }) })
+  palette: FaceletPalette,
+  material: CubeMaterial | null = null
+): Puzzle3dSource => ({ palette, material, create: (settings) => new PuzzleView({ ...settings, model }) })
 
 const clockColors = (): FaceletPalette => {
   const { sides, marker, pin, outline } = NEXUS_CLOCK_PALETTE
@@ -68,11 +70,11 @@ const clockColors = (): FaceletPalette => {
 }
 
 const SOURCES: Readonly<Record<string, Puzzle3dSource>> = {
-  pyraminx: source(pyraminxModel3d, NEXUS_PYRAMINX_PALETTE),
+  pyraminx: source(pyraminxModel3d, NEXUS_PYRAMINX_PALETTE, SPEEDCUBE_MATERIAL),
   skewb: source(skewbModel3d, NEXUS_CUBE_PALETTE),
-  megaminx: source(megaminxModel3d, NEXUS_MEGAMINX_PALETTE),
+  megaminx: source(megaminxModel3d, NEXUS_MEGAMINX_PALETTE, SPEEDCUBE_MATERIAL),
   fto: source(ftoModel3d, NEXUS_FTO_PALETTE),
-  square1: source(square1Model3d, NEXUS_SQUARE1_PALETTE),
+  square1: source(square1Model3d, NEXUS_SQUARE1_PALETTE, SPEEDCUBE_MATERIAL),
   clock: source(clockModel3d, clockColors())
 }
 
@@ -92,6 +94,7 @@ export function mountPuzzle3d(
     canvas,
     renderer,
     palette: resolveGlPalette(document.body, { colors, dimColors, ignored, body: NEXUS_GL_CUBE_PALETTE.body }),
+    material: entry.material,
     tempoScale
   })
   const drag = new CubeDragControl(canvas, view)
