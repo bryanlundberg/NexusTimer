@@ -10,6 +10,7 @@ import {
 } from '../../pyraminx/pyraminx-geometry'
 import { pyraminxTurns } from '../../pyraminx/pyraminx-turn'
 import { faceletModel3d } from './facelet-model'
+import { PYRAMINX_MOLDED_STYLE } from './molded-piece'
 
 const faces = (): Plane[] =>
   PYRAMINX_FACES.map(({ corners }) => {
@@ -29,5 +30,6 @@ export const pyraminxModel3d = faceletModel3d({
   turns: pyraminxTurns,
   centroids: pyraminxCentroids,
   faces,
-  cuts
+  cuts,
+  molded: PYRAMINX_MOLDED_STYLE
 })

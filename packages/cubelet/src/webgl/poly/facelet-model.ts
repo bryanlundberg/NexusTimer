@@ -4,6 +4,7 @@ import type { StickerCentroids } from '../../geometry/rotation-permutation'
 import { centroid } from '../../geometry/triangle-grid'
 import type { FaceletPermutation, FaceletState } from '../../puzzle/facelet-state'
 import type { PuzzleDefinition } from '../../puzzle/puzzle-definition'
+import type { MoldedStyle } from './molded-piece'
 import { BODY_COLOR, buildPolyMesh, type PolyMesh } from './poly-mesh'
 import type { PuzzleModel3d } from './puzzle-model'
 
@@ -13,6 +14,7 @@ export interface FaceletModelSpec {
   readonly centroids: () => StickerCentroids
   readonly faces: () => readonly Plane[]
   readonly cuts: () => readonly Plane[]
+  readonly molded?: MoldedStyle
 }
 
 export function faceletModel3d({
@@ -20,12 +22,15 @@ export function faceletModel3d({
   turns,
   centroids,
   faces,
-  cuts
+  cuts,
+  molded
 }: FaceletModelSpec): PuzzleModel3d<FaceletPermutation<AxisTurn>, FaceletState<AxisTurn>> {
   let mesh: PolyMesh | undefined
   const build = (): PolyMesh => {
     const stickers = centroids()
-    const cells = cutCells(convexPolytope(faces()), cuts()).filter((cell) => cell.some((face) => face.tag >= 0))
+    const cells = cutCells(convexPolytope(faces()), cuts()).filter(
+      (cell) => molded !== undefined || cell.some((face) => face.tag >= 0)
+    )
     return buildPolyMesh(
       cells.map((cell) => ({
         cell,
@@ -33,7 +38,9 @@ export function faceletModel3d({
           const face = cell[faceIndex]!
           return face.tag >= 0 ? stickers.indexOf(centroid(face.points)) : BODY_COLOR
         }
-      }))
+      })),
+      undefined,
+      molded
     )
   }
   return {
