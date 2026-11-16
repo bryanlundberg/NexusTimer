@@ -1,4 +1,6 @@
+import { ContactShadow } from './contact-shadow'
 import type { CubeFrame, CubeFrameRenderer } from './cube-frame'
+import { MAX_STUDIO_LIGHTS, type CubeMaterial } from './cube-material'
 import { cubeMesh, type MeshPart } from './cube-mesh'
 import { ATTRIBUTE, createCubeProgram } from './cube-shader'
 
@@ -20,6 +22,26 @@ interface Scene {
   readonly stickerColors: DynamicBuffer
   readonly hintColors: DynamicBuffer
   readonly hintAlphas: DynamicBuffer
+  readonly pieceHalfSize: number
+  readonly capDepth: number
+  readonly pieceColors: PieceColors | null
+}
+
+interface PieceColors {
+  readonly buffer: DynamicBuffer
+  readonly stickerOf: Int32Array
+  readonly verticesPerSticker: number
+  readonly data: Float32Array
+}
+
+const fillPieceColors = (target: PieceColors, stickerColors: Float32Array): void => {
+  const { stickerOf, verticesPerSticker, data } = target
+  for (let vertex = 0; vertex < stickerOf.length; vertex++) {
+    const source = stickerOf[vertex]! * verticesPerSticker * 3
+    data[vertex * 3] = stickerColors[source]!
+    data[vertex * 3 + 1] = stickerColors[source + 1]!
+    data[vertex * 3 + 2] = stickerColors[source + 2]!
+  }
 }
 
 interface Uniforms {
@@ -32,6 +54,21 @@ interface Uniforms {
   readonly ambient: WebGLUniformLocation | null
   readonly outlineWidth: WebGLUniformLocation | null
   readonly outlineAlpha: WebGLUniformLocation | null
+  readonly studio: WebGLUniformLocation | null
+  readonly roughness: WebGLUniformLocation | null
+  readonly reflectance: WebGLUniformLocation | null
+  readonly sky: WebGLUniformLocation | null
+  readonly ground: WebGLUniformLocation | null
+  readonly hemisphere: WebGLUniformLocation | null
+  readonly environment: WebGLUniformLocation | null
+  readonly lightDirection: WebGLUniformLocation | null
+  readonly lightColor: WebGLUniformLocation | null
+  readonly occlusionStrength: WebGLUniformLocation | null
+  readonly exposure: WebGLUniformLocation | null
+  readonly edge: WebGLUniformLocation | null
+  readonly pieceHalfSize: WebGLUniformLocation | null
+  readonly capDepth: WebGLUniformLocation | null
+  readonly core: WebGLUniformLocation | null
 }
 
 interface GlState {
@@ -39,6 +76,7 @@ interface GlState {
   readonly gl: WebGL2RenderingContext
   readonly program: WebGLProgram
   readonly uniforms: Uniforms
+  shadow: ContactShadow | null
 }
 
 const OUTLINE_WIDTH = 0.008
@@ -48,11 +86,46 @@ type Track = <T>(resource: T, release: (resource: T) => void) => T
 const trackedBuffer = (gl: WebGL2RenderingContext, track: Track): WebGLBuffer =>
   track(gl.createBuffer(), (buffer) => gl.deleteBuffer(buffer))
 
-const uploadAttribute = (gl: WebGL2RenderingContext, track: Track, location: number, data: Float32Array): void => {
+const uploadAttribute = (
+  gl: WebGL2RenderingContext,
+  track: Track,
+  location: number,
+  data: Float32Array,
+  components = 3
+): void => {
   gl.bindBuffer(gl.ARRAY_BUFFER, trackedBuffer(gl, track))
   gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW)
   gl.enableVertexAttribArray(location)
-  gl.vertexAttribPointer(location, 3, gl.FLOAT, false, 0, 0)
+  gl.vertexAttribPointer(location, components, gl.FLOAT, false, 0, 0)
+}
+
+const normalize = ([x, y, z]: readonly number[]): number[] => {
+  const length = Math.hypot(x!, y!, z!) || 1
+  return [x! / length, y! / length, z! / length]
+}
+
+const setMaterial = (gl: WebGL2RenderingContext, uniforms: Uniforms, material: CubeMaterial | null): void => {
+  gl.uniform1i(uniforms.studio, material ? 1 : 0)
+  if (!material) return
+  const directions = new Float32Array(MAX_STUDIO_LIGHTS * 3)
+  const colors = new Float32Array(MAX_STUDIO_LIGHTS * 3)
+  material.lights.slice(0, MAX_STUDIO_LIGHTS).forEach((light, index) => {
+    directions.set(normalize(light.direction), index * 3)
+    colors.set(
+      light.color.map((channel) => channel * light.intensity),
+      index * 3
+    )
+  })
+  gl.uniform1f(uniforms.roughness, material.roughness)
+  gl.uniform1f(uniforms.reflectance, material.reflectance)
+  gl.uniform3fv(uniforms.sky, material.sky)
+  gl.uniform3fv(uniforms.ground, material.ground)
+  gl.uniform1f(uniforms.hemisphere, material.ambient)
+  gl.uniform1f(uniforms.environment, material.environment)
+  gl.uniform3fv(uniforms.lightDirection, directions)
+  gl.uniform3fv(uniforms.lightColor, colors)
+  gl.uniform1f(uniforms.occlusionStrength, material.occlusion)
+  gl.uniform1f(uniforms.exposure, material.exposure)
 }
 
 const createPart = (gl: WebGL2RenderingContext, track: Track, part: MeshPart): PartBuffers => {
@@ -61,6 +134,7 @@ const createPart = (gl: WebGL2RenderingContext, track: Track, part: MeshPart): P
   uploadAttribute(gl, track, ATTRIBUTE.position, part.positions)
   uploadAttribute(gl, track, ATTRIBUTE.slot, part.slots)
   uploadAttribute(gl, track, ATTRIBUTE.normal, part.normals)
+  uploadAttribute(gl, track, ATTRIBUTE.occlusion, part.occlusion, 1)
   gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, trackedBuffer(gl, track))
   gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, part.indices, gl.STATIC_DRAW)
   return { vao, indexCount: part.indices.length }
@@ -108,13 +182,19 @@ export class WebGlCubeRenderer implements CubeFrameRenderer {
 
   dispose(): void {
     for (const release of this.#releases.splice(0)) release()
-    if (this.#state) this.#state.gl.deleteProgram(this.#state.program)
+    if (this.#state) {
+      this.#state.shadow?.dispose()
+      this.#state.gl.deleteProgram(this.#state.program)
+    }
     this.#scenes.clear()
     this.#state = null
   }
 
   render(target: HTMLCanvasElement, frame: CubeFrame): void {
-    const { gl, canvas, uniforms } = this.#ensureState()
+    const state = this.#ensureState()
+    const { gl, canvas, uniforms, program } = state
+    const material = frame.material ?? null
+    gl.useProgram(program)
     const scene = this.#scene(gl, frame)
 
     if (canvas.width !== frame.width || canvas.height !== frame.height) {
@@ -135,18 +215,39 @@ export class WebGlCubeRenderer implements CubeFrameRenderer {
     gl.uniform1f(uniforms.turnAngle, frame.turn?.angle ?? 0)
     gl.uniform1f(uniforms.outlineWidth, 0)
     gl.uniform1f(uniforms.outlineAlpha, 0)
+    setMaterial(gl, uniforms, material)
+    const core = material?.core ?? null
+    const capped = core !== null && scene.pieceColors !== null
+    gl.uniform1f(uniforms.edge, frame.size - 1)
+    gl.uniform1f(uniforms.pieceHalfSize, scene.pieceHalfSize)
+    gl.uniform1f(uniforms.capDepth, capped ? scene.capDepth : 0)
+    if (core) gl.uniform3fv(uniforms.core, core)
+    if (scene.pieceColors && scene.stickerColors.last !== frame.stickerColors) {
+      fillPieceColors(scene.pieceColors, frame.stickerColors)
+      scene.pieceColors.buffer.last = null
+      update(gl, scene.pieceColors.buffer, scene.pieceColors.data)
+    }
     update(gl, scene.stickerColors, frame.stickerColors)
 
     gl.disable(gl.BLEND)
     gl.disable(gl.CULL_FACE)
     gl.depthFunc(gl.LESS)
-    this.#drawPieces(gl, scene, frame)
+    this.#drawPieces(gl, scene, frame, capped)
 
     gl.enable(gl.BLEND)
     gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA)
     gl.enable(gl.CULL_FACE)
     gl.cullFace(gl.FRONT)
     gl.depthMask(false)
+
+    if (material && material.shadow > 0 && frame.groundView) {
+      state.shadow ??= new ContactShadow(gl)
+      gl.disable(gl.CULL_FACE)
+      state.shadow.draw(frame.projection, frame.groundView, material.shadow)
+      gl.useProgram(program)
+      gl.enable(gl.CULL_FACE)
+    }
+    gl.uniform1i(uniforms.studio, 0)
 
     if (frame.hints) {
       update(gl, scene.hintColors, frame.hints.colors)
@@ -159,7 +260,7 @@ export class WebGlCubeRenderer implements CubeFrameRenderer {
       gl.depthFunc(gl.LEQUAL)
       gl.uniform1f(uniforms.outlineWidth, scene.outlineWidth)
       gl.uniform1f(uniforms.outlineAlpha, frame.outlineAlpha)
-      this.#drawPieces(gl, scene, frame)
+      this.#drawPieces(gl, scene, frame, capped)
     }
 
     if (target === canvas) return
@@ -178,9 +279,13 @@ export class WebGlCubeRenderer implements CubeFrameRenderer {
     return resource
   }
 
-  #drawPieces(gl: WebGL2RenderingContext, scene: Scene, frame: CubeFrame): void {
+  #drawPieces(gl: WebGL2RenderingContext, scene: Scene, frame: CubeFrame, capped: boolean): void {
     gl.vertexAttrib1f(ATTRIBUTE.alpha, 1)
     gl.bindVertexArray(scene.body.vao)
+    if (scene.pieceColors) {
+      if (capped) gl.enableVertexAttribArray(ATTRIBUTE.color)
+      else gl.disableVertexAttribArray(ATTRIBUTE.color)
+    }
     gl.vertexAttrib3f(ATTRIBUTE.color, frame.bodyColor[0], frame.bodyColor[1], frame.bodyColor[2])
     gl.drawElements(gl.TRIANGLES, scene.body.indexCount, gl.UNSIGNED_INT, 0)
     gl.bindVertexArray(scene.stickers.vao)
@@ -209,8 +314,24 @@ export class WebGlCubeRenderer implements CubeFrameRenderer {
         turnAngle: location('u_turnAngle'),
         ambient: location('u_ambient'),
         outlineWidth: location('u_outlineWidth'),
-        outlineAlpha: location('u_outlineAlpha')
-      }
+        outlineAlpha: location('u_outlineAlpha'),
+        studio: location('u_studio'),
+        roughness: location('u_roughness'),
+        reflectance: location('u_reflectance'),
+        sky: location('u_sky'),
+        ground: location('u_ground'),
+        hemisphere: location('u_hemisphere'),
+        environment: location('u_environment'),
+        lightDirection: location('u_lightDirection'),
+        lightColor: location('u_lightColor'),
+        occlusionStrength: location('u_occlusionStrength'),
+        exposure: location('u_exposure'),
+        edge: location('u_edge'),
+        pieceHalfSize: location('u_pieceHalfSize'),
+        capDepth: location('u_capDepth'),
+        core: location('u_core')
+      },
+      shadow: null
     }
     return this.#state
   }
@@ -231,7 +352,17 @@ export class WebGlCubeRenderer implements CubeFrameRenderer {
         hints,
         stickerColors: createDynamic(gl, track, stickers, ATTRIBUTE.color, 3, mesh.stickers.vertexCount),
         hintColors: createDynamic(gl, track, hints, ATTRIBUTE.color, 3, mesh.hints.vertexCount),
-        hintAlphas: createDynamic(gl, track, hints, ATTRIBUTE.alpha, 1, mesh.hints.vertexCount)
+        hintAlphas: createDynamic(gl, track, hints, ATTRIBUTE.alpha, 1, mesh.hints.vertexCount),
+        pieceHalfSize: mesh.pieceHalfSize,
+        capDepth: mesh.capDepth,
+        pieceColors: mesh.body.stickerOf
+          ? {
+              buffer: createDynamic(gl, track, body, ATTRIBUTE.color, 3, mesh.body.vertexCount),
+              stickerOf: mesh.body.stickerOf,
+              verticesPerSticker: mesh.verticesPerSticker,
+              data: new Float32Array(mesh.body.vertexCount * 3)
+            }
+          : null
       }
       this.#scenes.set(key, scene)
     }
