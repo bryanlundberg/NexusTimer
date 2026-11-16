@@ -24,6 +24,7 @@ const FACE_ORDER: ReadonlyArray<readonly [axis: number, sign: 1 | -1]> = [
 ]
 
 const PROJECTION_STEPS = 28
+const ROOT_TOLERANCE = 2 ** -30
 const GRADIENT_STEP = 1e-4
 
 const smoothMax = (a: number, b: number, k: number): number => {
@@ -54,42 +55,78 @@ export function speedcubeCubie(shape: SpeedcubeShape, isOutward: Outward): Bevel
     return openCount === 2 ? edgeRadius : tileRadius
   }
 
-  const prismDistance = (p: Vec3, along: number): number => {
+  const radii = new Float64Array(12)
+  for (let along = 0; along < 3; along++) {
     const a = (along + 1) % 3
     const b = (along + 2) % 3
-    const signA = p[a]! >= 0 ? 1 : -1
-    const signB = p[b]! >= 0 ? 1 : -1
-    const radius = cornerRadius(along, a, signA, b, signB)
-    const qa = Math.abs(p[a]!) - (halfSize - radius)
-    const qb = Math.abs(p[b]!) - (halfSize - radius)
-    return Math.hypot(Math.max(qa, 0), Math.max(qb, 0)) + Math.min(Math.max(qa, qb), 0) - radius
+    radii[along * 4] = cornerRadius(along, a, 1, b, 1)
+    radii[along * 4 + 1] = cornerRadius(along, a, 1, b, -1)
+    radii[along * 4 + 2] = cornerRadius(along, a, -1, b, 1)
+    radii[along * 4 + 3] = cornerRadius(along, a, -1, b, -1)
   }
 
-  const distance = (p: Vec3): number =>
-    smoothMax(smoothMax(prismDistance(p, 0), prismDistance(p, 1), blend), prismDistance(p, 2), blend)
+  const prismDistance = (along: number, pa: number, pb: number): number => {
+    const radius = radii[along * 4 + (pa >= 0 ? 0 : 2) + (pb >= 0 ? 0 : 1)]!
+    const qa = Math.abs(pa) - (halfSize - radius)
+    const qb = Math.abs(pb) - (halfSize - radius)
+    const ma = qa > 0 ? qa : 0
+    const mb = qb > 0 ? qb : 0
+    return Math.sqrt(ma * ma + mb * mb) + Math.min(Math.max(qa, qb), 0) - radius
+  }
 
-  const project = (point: Vec3): Vec3 => {
+  const distance = (x: number, y: number, z: number): number =>
+    smoothMax(smoothMax(prismDistance(0, y, z), prismDistance(1, z, x), blend), prismDistance(2, x, y), blend)
+
+  const bisect = (x: number, y: number, z: number): number => {
     let inside = 0
     let outside = 1
     for (let step = 0; step < PROJECTION_STEPS; step++) {
       const middle = (inside + outside) / 2
-      if (distance([point[0] * middle, point[1] * middle, point[2] * middle]) < 0) inside = middle
+      if (distance(x * middle, y * middle, z * middle) < 0) inside = middle
       else outside = middle
     }
-    const scale = (inside + outside) / 2
-    return [point[0] * scale, point[1] * scale, point[2] * scale]
+    return (inside + outside) / 2
   }
 
-  const normalAt = (p: Vec3): Vec3 => {
-    const gradient = [0, 1, 2].map((axis) => {
-      const forward: Vec3 = [p[0], p[1], p[2]]
-      const backward: Vec3 = [p[0], p[1], p[2]]
-      forward[axis]! += GRADIENT_STEP
-      backward[axis]! -= GRADIENT_STEP
-      return distance(forward) - distance(backward)
-    })
-    const length = Math.hypot(...gradient) || 1
-    return gradient.map((value) => value / length) as Vec3
+  const falsePosition = (x: number, y: number, z: number): number => {
+    let inside = 0
+    let outside = 1
+    let atInside = distance(0, 0, 0)
+    let atOutside = distance(x, y, z)
+    if (!(atInside < 0 && atOutside >= 0)) return bisect(x, y, z)
+    let kept = 0
+    for (let step = 0; step < PROJECTION_STEPS * 2; step++) {
+      if (outside - inside <= ROOT_TOLERANCE) break
+      const guess = (inside * atOutside - outside * atInside) / (atOutside - atInside)
+      const middle = guess > inside && guess < outside ? guess : (inside + outside) / 2
+      const value = distance(x * middle, y * middle, z * middle)
+      if (Math.abs(value) <= ROOT_TOLERANCE) return middle
+      if (value < 0) {
+        inside = middle
+        atInside = value
+        if (kept === -1) atOutside /= 2
+        kept = -1
+      } else {
+        outside = middle
+        atOutside = value
+        if (kept === 1) atInside /= 2
+        kept = 1
+      }
+    }
+    return (inside + outside) / 2
+  }
+
+  const project = ([x, y, z]: Vec3): Vec3 => {
+    const scale = falsePosition(x, y, z)
+    return [x * scale, y * scale, z * scale]
+  }
+
+  const normalAt = ([x, y, z]: Vec3): Vec3 => {
+    const gx = distance(x + GRADIENT_STEP, y, z) - distance(x - GRADIENT_STEP, y, z)
+    const gy = distance(x, y + GRADIENT_STEP, z) - distance(x, y - GRADIENT_STEP, z)
+    const gz = distance(x, y, z + GRADIENT_STEP) - distance(x, y, z - GRADIENT_STEP)
+    const length = Math.hypot(gx, gy, gz) || 1
+    return [gx / length, gy / length, gz / length]
   }
 
   const gridSize = segments * 2 + 1
