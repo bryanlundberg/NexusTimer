@@ -4,6 +4,7 @@ import type { CubeState } from '../nxn/cube-state'
 import type { StickerPermutation } from '../nxn/sticker-permutation'
 import { CubeCamera, type CubeCameraOptions } from './cube-camera'
 import type { ActiveTurn, CubeFrameRenderer } from './cube-frame'
+import type { CubeMaterial } from './cube-material'
 import { cubeMesh, STICKERLESS_CUBIE_STYLE, VERTICES_PER_HINT, type CubieStyle } from './cube-mesh'
 import { animationFrameScheduler, type FrameScheduler } from './frame-scheduler'
 import type { GlCubePalette } from './gl-palette'
@@ -27,6 +28,7 @@ export interface CubeViewOptions {
   readonly ambient?: number
   readonly outlineAlpha?: number
   readonly hintFacelets?: boolean
+  readonly material?: CubeMaterial | null
 }
 
 interface RunningTurn {
@@ -199,7 +201,9 @@ export class CubeView {
       ambient: this.options.ambient ?? 1,
       outlineAlpha: this.options.outlineAlpha ?? OUTLINE_ALPHA,
       hints: this.options.hintFacelets ? this.#hints : null,
-      turn: this.#activeTurn(now)
+      turn: this.#activeTurn(now),
+      material: this.options.material ?? null,
+      groundView: this.camera.groundView()
     })
   }
 }
