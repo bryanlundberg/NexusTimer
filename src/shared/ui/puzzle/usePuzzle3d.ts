@@ -5,9 +5,10 @@ interface UsePuzzle3dOptions {
   readonly puzzle: string
   readonly initialAlg: string
   readonly tempoScale?: number
+  readonly turnSound?: boolean
 }
 
-export function usePuzzle3d({ puzzle, initialAlg, tempoScale }: UsePuzzle3dOptions) {
+export function usePuzzle3d({ puzzle, initialAlg, tempoScale, turnSound = false }: UsePuzzle3dOptions) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const initialAlgRef = useRef(initialAlg)
   const tempoRef = useRef(tempoScale)
@@ -28,7 +29,7 @@ export function usePuzzle3d({ puzzle, initialAlg, tempoScale }: UsePuzzle3dOptio
 
     import('@/shared/lib/puzzle/mountPuzzle3d').then(({ mountPuzzle3d }) => {
       if (cancelled) return
-      mounted = mountPuzzle3d(canvas, puzzle, initialAlgRef.current, { tempoScale: tempoRef.current })
+      mounted = mountPuzzle3d(canvas, puzzle, initialAlgRef.current, { tempoScale: tempoRef.current, turnSound })
       if (!mounted) {
         setUnsupportedPuzzle(puzzle)
         return
@@ -45,7 +46,7 @@ export function usePuzzle3d({ puzzle, initialAlg, tempoScale }: UsePuzzle3dOptio
       mounted?.dispose()
       setHandle(null)
     }
-  }, [puzzle])
+  }, [puzzle, turnSound])
 
   useEffect(() => {
     if (handle && tempoScale !== undefined) handle.setTempoScale(tempoScale)

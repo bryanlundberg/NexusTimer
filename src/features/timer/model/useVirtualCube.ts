@@ -39,7 +39,8 @@ export function useVirtualCube({
     cameraDistance,
     dragInput: dragInput !== 'none',
     hintFacelets: hintFacelets !== 'none',
-    ownContext: true
+    ownContext: true,
+    turnSound: true
   })
   const engine = useMemo(() => new CubeEngine('', { size: cubeSize }), [cubeSize])
 

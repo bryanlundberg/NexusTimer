@@ -10,6 +10,7 @@ interface UseCube3dOptions {
   readonly cameraDistance?: number
   readonly hintFacelets?: boolean
   readonly ownContext?: boolean
+  readonly turnSound?: boolean
 }
 
 export function useCube3d({
@@ -19,7 +20,8 @@ export function useCube3d({
   tempoScale,
   cameraDistance,
   hintFacelets = false,
-  ownContext = false
+  ownContext = false,
+  turnSound = false
 }: UseCube3dOptions) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const initialRef = useRef(initial)
@@ -42,7 +44,7 @@ export function useCube3d({
 
     import('@/shared/lib/puzzle/mountCube3d').then(({ mountCube3d }) => {
       if (cancelled) return
-      const options = { dragInput, tempoScale: tempoRef.current, cameraDistance, hintFacelets, ownContext }
+      const options = { dragInput, tempoScale: tempoRef.current, cameraDistance, hintFacelets, ownContext, turnSound }
       mounted = mountCube3d(canvas, { ...initialRef.current, size }, options)
       if (!mounted) {
         setUnsupported(true)
@@ -60,7 +62,7 @@ export function useCube3d({
       mounted?.dispose()
       setHandle(null)
     }
-  }, [enabled, size, dragInput, cameraDistance, hintFacelets, ownContext])
+  }, [enabled, size, dragInput, cameraDistance, hintFacelets, ownContext, turnSound])
 
   useEffect(() => {
     if (handle && tempoScale !== undefined) handle.setTempoScale(tempoScale)

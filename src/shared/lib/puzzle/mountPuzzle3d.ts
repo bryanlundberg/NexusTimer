@@ -16,6 +16,7 @@ import {
 } from '@nexustimer/cubelet/webgl/poly'
 import { NEXUS_CUBE_PALETTE } from '@/shared/lib/puzzle/nexusCubePalette'
 import { NEXUS_GL_CUBE_PALETTE } from '@/shared/lib/puzzle/nexusGlCubePalette'
+import { playTurnSound, preloadTurnSound } from '@/shared/lib/turn-sound'
 import {
   NEXUS_CLOCK_PALETTE,
   NEXUS_FTO_PALETTE,
@@ -82,7 +83,7 @@ export function mountPuzzle3d(
   canvas: HTMLCanvasElement,
   puzzle: string,
   alg: string,
-  { tempoScale }: { readonly tempoScale?: number } = {}
+  { tempoScale, turnSound = false }: { readonly tempoScale?: number; readonly turnSound?: boolean } = {}
 ): Puzzle3dHandle | null {
   const entry = SOURCES[puzzle]
   if (!entry) return null
@@ -95,8 +96,10 @@ export function mountPuzzle3d(
     renderer,
     palette: resolveGlPalette(document.body, { colors, dimColors, ignored, body: NEXUS_GL_CUBE_PALETTE.body }),
     material: entry.material,
-    tempoScale
+    tempoScale,
+    onTurn: turnSound ? playTurnSound : undefined
   })
+  if (turnSound) preloadTurnSound()
   const drag = new CubeDragControl(canvas, view)
   const guard = (action: () => void) => {
     try {

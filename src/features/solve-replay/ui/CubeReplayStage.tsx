@@ -19,7 +19,7 @@ export default function CubeReplayStage({ replay, cubeSize, size, tempoScale, on
     () => ({ size: cubeSize, alg: replay.scramble, stickering: 'full', lastLayer: 'U' }),
     [cubeSize, replay.scramble]
   )
-  const { canvasRef, handle } = useCube3d({ initial, tempoScale, ownContext: true })
+  const { canvasRef, handle } = useCube3d({ initial, tempoScale, ownContext: true, turnSound: true })
   const onReadyRef = useRef(onReady)
 
   useEffect(() => {

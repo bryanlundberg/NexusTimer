@@ -12,6 +12,7 @@ import {
 } from '@nexustimer/cubelet/webgl'
 import type { Cube3dRequest } from '@/shared/lib/puzzle/cube3dRequest'
 import { NEXUS_GL_CUBE_PALETTE } from '@/shared/lib/puzzle/nexusGlCubePalette'
+import { playTurnSound, preloadTurnSound } from '@/shared/lib/turn-sound'
 
 const TWISTY_DISTANCE_SCALE = 7.9 / 6
 
@@ -21,6 +22,7 @@ export interface Cube3dOptions {
   readonly cameraDistance?: number
   readonly hintFacelets?: boolean
   readonly ownContext?: boolean
+  readonly turnSound?: boolean
 }
 
 export interface Cube3dHandle {
@@ -59,7 +61,7 @@ const themePalette = (): GlCubePalette => {
 export function mountCube3d(
   canvas: HTMLCanvasElement,
   request: Cube3dRequest,
-  { dragInput, tempoScale, cameraDistance, hintFacelets, ownContext = false }: Cube3dOptions
+  { dragInput, tempoScale, cameraDistance, hintFacelets, ownContext = false, turnSound = false }: Cube3dOptions
 ): Cube3dHandle | null {
   const own = ownContext ? ownRenderer(canvas) : null
   const target = own ?? sharedRenderer()
@@ -74,9 +76,11 @@ export function mountCube3d(
     hintFacelets,
     style: request.size === 2 ? SPEEDCUBE_2X2_CUBIE_STYLE : SPEEDCUBE_CUBIE_STYLE,
     material: SPEEDCUBE_MATERIAL,
+    onTurn: turnSound ? playTurnSound : undefined,
     camera: cameraDistance === undefined ? undefined : { distance: cameraDistance * TWISTY_DISTANCE_SCALE }
   })
   const drag = dragInput ? new CubeDragControl(canvas, view) : null
+  if (turnSound) preloadTurnSound()
 
   const show = ({ size, alg, stickering, lastLayer }: Cube3dRequest) => {
     view.setStickering(cubeStickering(size, stickering, { lastLayer }))

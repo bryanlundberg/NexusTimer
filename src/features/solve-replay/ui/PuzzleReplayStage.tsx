@@ -23,7 +23,7 @@ const withScramble = (scramble: string, moves: readonly string[]) => [scramble, 
 
 export default function PuzzleReplayStage({ replay, size, tempoScale, onReady }: PuzzleReplayStageProps) {
   const { puzzle, scramble } = replay
-  const { canvasRef, handle, unsupported } = usePuzzle3d({ puzzle, initialAlg: scramble, tempoScale })
+  const { canvasRef, handle, unsupported } = usePuzzle3d({ puzzle, initialAlg: scramble, tempoScale, turnSound: true })
   const onReadyRef = useRef(onReady)
   const [flatPosition, setFlatPosition] = useState<FlatPosition>({ scramble, moves: [] })
 

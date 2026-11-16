@@ -18,7 +18,13 @@ const trackedState = (): Cube3dRequest => ({
 // another route shows the cube as it really is, not solved.
 export function useSmartCubePlayer() {
   const initial = useMemo(trackedState, [])
-  const { canvasRef, handle } = useCube3d({ initial, tempoScale: 5, cameraDistance: 8, ownContext: true })
+  const { canvasRef, handle } = useCube3d({
+    initial,
+    tempoScale: 5,
+    cameraDistance: 8,
+    ownContext: true,
+    turnSound: true
+  })
 
   useEffect(() => {
     if (!handle) return
