@@ -2,6 +2,9 @@ import { cubeStickering } from '@nexustimer/cubelet/nxn'
 import {
   CubeDragControl,
   CubeView,
+  SPEEDCUBE_2X2_CUBIE_STYLE,
+  SPEEDCUBE_CUBIE_STYLE,
+  SPEEDCUBE_MATERIAL,
   WebGlCubeRenderer,
   resolveGlPalette,
   type GlCubePalette,
@@ -69,6 +72,8 @@ export function mountCube3d(
     palette: themePalette(),
     tempoScale,
     hintFacelets,
+    style: request.size === 2 ? SPEEDCUBE_2X2_CUBIE_STYLE : SPEEDCUBE_CUBIE_STYLE,
+    material: SPEEDCUBE_MATERIAL,
     camera: cameraDistance === undefined ? undefined : { distance: cameraDistance * TWISTY_DISTANCE_SCALE }
   })
   const drag = dragInput ? new CubeDragControl(canvas, view) : null
