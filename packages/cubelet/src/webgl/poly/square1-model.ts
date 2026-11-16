@@ -6,6 +6,7 @@ import { square1 } from '../../square1/square1-definition'
 import { BOTTOM_LAYER, TOP_LAYER, layerPieces } from '../../square1/square1-layer-pieces'
 import { Square1Color, faceColorOf, sideColorOf } from '../../square1/square1-pieces'
 import type { Square1Move, Square1State } from '../../square1/square1-state'
+import { SQUARE1_MOLDED_STYLE } from './molded-piece'
 import { BODY_COLOR, buildPolyMesh, type PolyMesh, type PolyPiece } from './poly-mesh'
 import type { PuzzleModel3d } from './puzzle-model'
 
@@ -130,11 +131,11 @@ export const square1Model3d: PuzzleModel3d<Square1Move, Square1State> = {
     const key = state.key()
     let mesh = meshes.get(key)
     if (!mesh) {
-      mesh = buildPolyMesh([
-        ...layerPrisms(state, TOP_LAYER),
-        ...layerPrisms(state, BOTTOM_LAYER),
-        ...middlePieces(state.middleFlipped)
-      ])
+      mesh = buildPolyMesh(
+        [...layerPrisms(state, TOP_LAYER), ...layerPrisms(state, BOTTOM_LAYER), ...middlePieces(state.middleFlipped)],
+        undefined,
+        SQUARE1_MOLDED_STYLE
+      )
       meshes.set(key, mesh)
     }
     return mesh
