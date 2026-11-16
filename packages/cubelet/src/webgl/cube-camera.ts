@@ -32,7 +32,11 @@ export class CubeCamera {
   }
 
   view(): Mat4 {
+    return multiply(this.groundView(), fromQuaternion(this.orientation))
+  }
+
+  groundView(): Mat4 {
     const orbit = multiply(rotationX(this.latitude), rotationY(-this.longitude))
-    return multiply(translation(0, 0, -this.distance), multiply(orbit, fromQuaternion(this.orientation)))
+    return multiply(translation(0, 0, -this.distance), orbit)
   }
 }
