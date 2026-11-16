@@ -1,168 +1,192 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { Pause, Play, RotateCcw, SkipBack, SkipForward } from 'lucide-react'
+import { useTranslations } from 'next-intl'
+import { Pause, Play, Repeat, RotateCcw, SkipBack, SkipForward, StepBack, StepForward } from 'lucide-react'
 import { cn } from '@/shared/lib/utils'
 import { buttonVariants } from '@/components/ui/button'
+import formatTime from '@/shared/lib/formatTime'
 import type { SolveReplay } from '@/entities/replay/model/types'
 import type { ReplayView } from '@/features/solve-replay/model/replayView'
+import type { ReplayMarker } from '@/features/solve-replay/model/replayMarker'
 import { useRealtimeReplay } from '@/features/solve-replay/model/useRealtimeReplay'
 import CubeReplayStage from '@/features/solve-replay/ui/CubeReplayStage'
 import PuzzleReplayStage from '@/features/solve-replay/ui/PuzzleReplayStage'
+import ReplayProgressBar from '@/features/solve-replay/ui/ReplayProgressBar'
+import ReplayPhaseChips from '@/features/solve-replay/ui/ReplayPhaseChips'
+import ReplaySpeedMenu from '@/features/solve-replay/ui/ReplaySpeedMenu'
+import ReplayMoveList from '@/features/solve-replay/ui/ReplayMoveList'
 import { buildPlaybackReplay } from '@/features/solve-replay/lib/buildPlaybackReplay'
+import {
+  activePhaseIndex,
+  buildBarSegments,
+  buildPhaseRanges,
+  type MoveSpan
+} from '@/features/solve-replay/lib/replayTimeline'
 import { cubeSizeOf } from '@/shared/lib/puzzle/renderCubeImage'
 
-export interface ReplayMarker {
-  key: string
-  label: string
-  moveIndex: number
-  lineClass: string
-  labelClass: string
-}
-
-interface BarSegment {
-  key: string
-  left: number
-  width: number
-  colorClass: string
-}
+export type { ReplayMarker } from '@/features/solve-replay/model/replayMarker'
 
 interface RealtimeReplayPlayerProps {
   replay: SolveReplay
   markers?: ReplayMarker[]
   size?: number
   tempoScale?: number
-}
-
-function buildSegments(markers: ReplayMarker[], total: number): BarSegment[] {
-  if (!markers.length || total === 0) return []
-  let prev = 0
-  return markers.map((marker, i) => {
-    const right = i < markers.length - 1 ? (marker.moveIndex / total) * 100 : 100
-    const seg = { key: marker.key, left: prev, width: right - prev, colorClass: marker.lineClass }
-    prev = right
-    return seg
-  })
+  showClock?: boolean
+  movesLabel?: string
+  moveGroups?: readonly MoveSpan[]
 }
 
 const ICON_BUTTON =
-  'inline-flex items-center justify-center text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-30'
+  'inline-flex size-9 items-center justify-center text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-30'
 
 export function RealtimeReplayPlayer({
   replay: source,
   markers: sourceMarkers = [],
   size = 232,
-  tempoScale = 4
+  tempoScale = 4,
+  showClock = true,
+  movesLabel,
+  moveGroups
 }: RealtimeReplayPlayerProps) {
+  const t = useTranslations('Index.ReplayPlayer')
   const { replay, skipped } = useMemo(() => buildPlaybackReplay(source), [source])
-  const markers = skipped
-    ? sourceMarkers.map((marker) => ({ ...marker, moveIndex: Math.max(0, marker.moveIndex - skipped) }))
-    : sourceMarkers
   const [view, setView] = useState<ReplayView | null>(null)
+  const [speed, setSpeed] = useState(1)
+  const [loop, setLoop] = useState(false)
   const cubeSize = cubeSizeOf(replay.puzzle)
 
-  const { status, index, total, toggle, restart, next, prev, seek } = useRealtimeReplay({ view, replay })
+  const { status, index, total, toggle, next, prev, seek, jump } = useRealtimeReplay({ view, replay, speed, loop })
+
+  const ranges = useMemo(() => {
+    const markers = skipped
+      ? sourceMarkers.map((marker) => ({ ...marker, moveIndex: Math.max(0, marker.moveIndex - skipped) }))
+      : sourceMarkers
+    return buildPhaseRanges(markers, total)
+  }, [sourceMarkers, skipped, total])
+  const segments = useMemo(() => buildBarSegments(ranges, total), [ranges, total])
+  const moves = useMemo(() => replay.moves.map((move) => move.m), [replay])
 
   const isPlaying = status === 'playing'
-  const pct = total > 0 ? (index / total) * 100 : 0
-  const segments = buildSegments(markers, total)
+  const isDone = status === 'done'
+  const timeAt = (n: number) => (n === 0 ? 0 : replay.moves[n - 1].t)
+  const endTime = Math.max(replay.durationMs, timeAt(total))
+  const describe = (n: number) => {
+    const parts = [`${n}/${total}`]
+    if (n > 0) parts.push(moves[n - 1])
+    if (showClock) parts.push(formatTime(timeAt(n)))
+    return parts.join(' · ')
+  }
+  const stageTempo = tempoScale * speed
 
   return (
     <div className="flex w-full flex-col items-center gap-4">
       {cubeSize ? (
-        <CubeReplayStage replay={replay} cubeSize={cubeSize} size={size} tempoScale={tempoScale} onReady={setView} />
+        <CubeReplayStage replay={replay} cubeSize={cubeSize} size={size} tempoScale={stageTempo} onReady={setView} />
       ) : (
-        <PuzzleReplayStage replay={replay} size={size} tempoScale={tempoScale} onReady={setView} />
+        <PuzzleReplayStage replay={replay} size={size} tempoScale={stageTempo} onReady={setView} />
       )}
 
-      <div className="flex w-full flex-col gap-3">
-        {/* Progress bar with phase markers */}
-        <div className="group relative flex-1 pt-8">
-          {markers.map(({ key, label, moveIndex, lineClass, labelClass }) => (
-            <div
-              key={key}
-              className="pointer-events-none absolute bottom-0 -translate-x-1/2 flex flex-col items-center"
-              style={{ left: `${total > 0 ? (moveIndex / total) * 100 : 0}%` }}
-            >
-              <span
-                className={cn('text-[10px] tabular-nums leading-none mb-6 me-2 block origin-bottom-right', labelClass)}
-                style={{ transform: 'rotate(-80deg)' }}
-              >
-                {label}
-              </span>
-              <div className={cn('w-px h-3', lineClass)} />
-            </div>
-          ))}
+      {ranges.length > 0 && (
+        <ReplayPhaseChips ranges={ranges} active={activePhaseIndex(ranges, index)} onSelect={jump} />
+      )}
 
-          <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-muted group-focus-within:ring-2 group-focus-within:ring-ring">
-            {segments.map(({ key, left, width, colorClass }) => (
-              <div
-                key={key}
-                className={cn('absolute inset-y-0', colorClass)}
-                style={{ left: `${left}%`, width: `${width}%` }}
-              />
-            ))}
-            {/* dim the unplayed portion */}
-            <div className="absolute inset-y-0 right-0 bg-background/60" style={{ width: `${100 - pct}%` }} />
-          </div>
+      <div className="flex w-full flex-col gap-1.5">
+        <ReplayProgressBar index={index} total={total} segments={segments} onSeek={seek} describe={describe} />
 
-          <input
-            type="range"
-            min={0}
-            max={total}
-            value={index}
-            onChange={(event) => seek(Number(event.target.value))}
-            aria-label="Reconstruction position"
-            aria-valuetext={`Move ${index} of ${total}`}
-            className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-          />
+        <div className="flex items-center justify-between font-mono text-[11px] tabular-nums text-muted-foreground">
+          <span>
+            {showClock && (
+              <>
+                <span className="text-foreground">{formatTime(timeAt(index))}</span> / {formatTime(endTime)}
+              </>
+            )}
+          </span>
+          <span>
+            {index}/{total}
+          </span>
         </div>
 
-        {/* Transport controls + counter */}
         <div className="flex items-center">
-          <div className="flex-1" />
-          <div className="flex items-center gap-1">
-            <button type="button" aria-label="Restart" onClick={restart} className={cn(ICON_BUTTON, 'size-9')}>
-              <RotateCcw className="size-4" />
-            </button>
+          <div className="flex flex-1">
+            <ReplaySpeedMenu speed={speed} onChange={setSpeed} />
+          </div>
+          <div className="flex items-center gap-0.5">
             <button
               type="button"
-              aria-label="Previous move"
-              onClick={prev}
+              aria-label={t('go-to-start')}
+              onClick={() => seek(0)}
               disabled={index <= 0}
-              className={cn(ICON_BUTTON, 'size-9')}
+              className={ICON_BUTTON}
             >
               <SkipBack className="size-4" />
             </button>
             <button
               type="button"
-              aria-label={isPlaying ? 'Pause' : 'Play'}
+              aria-label={t('previous-move')}
+              onClick={prev}
+              disabled={index <= 0}
+              className={ICON_BUTTON}
+            >
+              <StepBack className="size-4" />
+            </button>
+            <button
+              type="button"
+              aria-label={t(isPlaying ? 'pause' : isDone ? 'replay' : 'play')}
               onClick={toggle}
               className={cn(buttonVariants({ size: 'icon' }), 'mx-1 size-11')}
             >
               {isPlaying ? (
                 <Pause className="size-5 fill-current" />
+              ) : isDone ? (
+                <RotateCcw className="size-5" />
               ) : (
                 <Play className="size-5 translate-x-px fill-current" />
               )}
             </button>
             <button
               type="button"
-              aria-label="Next move"
+              aria-label={t('next-move')}
               onClick={next}
               disabled={index >= total}
-              className={cn(ICON_BUTTON, 'size-9')}
+              className={ICON_BUTTON}
+            >
+              <StepForward className="size-4" />
+            </button>
+            <button
+              type="button"
+              aria-label={t('go-to-end')}
+              onClick={() => seek(total)}
+              disabled={index >= total}
+              className={ICON_BUTTON}
             >
               <SkipForward className="size-4" />
             </button>
           </div>
-          <div className="flex-1 flex justify-end">
-            <span className="font-mono text-xs tabular-nums text-muted-foreground">
-              {index}/{total}
-            </span>
+          <div className="flex flex-1 justify-end">
+            <button
+              type="button"
+              aria-label={t('loop')}
+              aria-pressed={loop}
+              onClick={() => setLoop((value) => !value)}
+              className={cn(ICON_BUTTON, 'size-8', loop && 'bg-muted text-foreground')}
+            >
+              <Repeat className="size-4" />
+            </button>
           </div>
         </div>
       </div>
+
+      {movesLabel && (
+        <ReplayMoveList
+          label={movesLabel}
+          moves={moves}
+          index={index}
+          onSelect={jump}
+          lines={ranges}
+          groups={moveGroups}
+        />
+      )}
     </div>
   )
 }
