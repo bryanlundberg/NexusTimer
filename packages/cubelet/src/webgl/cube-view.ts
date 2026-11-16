@@ -10,10 +10,12 @@ import { animationFrameScheduler, type FrameScheduler } from './frame-scheduler'
 import type { GlCubePalette } from './gl-palette'
 import type { Quaternion } from './mat4'
 import { hintColors, stickerColors, type HintColors } from './sticker-colors'
+import type { TurnLanding } from './turn-landing'
 
 const TURN_MS = 500
 const MAX_PIXEL_RATIO = 2
 const OUTLINE_ALPHA = 0.18
+const CLICK_PROGRESS = 0.7
 
 export interface CubeViewOptions {
   readonly size: number
@@ -29,12 +31,14 @@ export interface CubeViewOptions {
   readonly outlineAlpha?: number
   readonly hintFacelets?: boolean
   readonly material?: CubeMaterial | null
+  readonly onTurn?: (turn: TurnLanding) => void
 }
 
 interface RunningTurn {
   readonly move: StickerPermutation
   readonly start: number
   readonly duration: number
+  clicked: boolean
 }
 
 const ease = (progress: number) => progress * progress * (3 - 2 * progress)
@@ -78,6 +82,7 @@ export class CubeView {
 
   play(alg: string): void {
     const moves = cube(this.options.size).compile(alg)
+    this.#landRunning()
     const pending = this.#running ? [this.#running.move, ...this.#queue] : this.#queue
     if (pending.length > 0) {
       this.#state = this.#state.apply(pending)
@@ -89,6 +94,7 @@ export class CubeView {
   }
 
   finish(): void {
+    this.#landRunning()
     const pending = this.#running ? [this.#running.move, ...this.#queue] : this.#queue
     this.#queue = []
     this.#running = null
@@ -141,15 +147,30 @@ export class CubeView {
     return move.turn.quarterTurns === 0 ? 0 : TURN_MS / this.tempoScale
   }
 
+  #rotatesWholeCube({ turn }: StickerPermutation): boolean {
+    const edge = this.options.size - 1
+    return turn.from === -edge && turn.to === edge
+  }
+
+  #landRunning(): void {
+    if (!this.#running || this.#running.duration === 0 || this.#running.clicked) return
+    this.#running.clicked = true
+    const { move, duration } = this.#running
+    if (this.#rotatesWholeCube(move)) return
+    this.options.onTurn?.({ double: Math.abs(move.turn.animationQuarterTurns) === 2, duration })
+  }
+
   #advance(now: number): void {
     for (;;) {
       if (!this.#running) {
         const move = this.#queue.shift()
         if (!move) return
-        this.#running = { move, start: now, duration: this.#duration(move) }
+        this.#running = { move, start: now, duration: this.#duration(move), clicked: false }
       }
       const { move, start, duration } = this.#running
+      if (duration > 0 && now - start >= duration * CLICK_PROGRESS) this.#landRunning()
       if (duration > 0 && now - start < duration) return
+      this.#landRunning()
       this.#state = this.#state.apply([move])
       this.#colors = null
       this.#running = null

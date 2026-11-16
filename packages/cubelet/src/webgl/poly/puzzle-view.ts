@@ -2,6 +2,7 @@ import type { TurnMotion } from '../../geometry/axis-turn-system'
 import type { PuzzleState } from '../../puzzle/puzzle-definition'
 import { CubeCamera, type CubeCameraOptions } from '../cube-camera'
 import type { CubeMaterial } from '../cube-material'
+import type { TurnLanding } from '../turn-landing'
 import { animationFrameScheduler, type FrameScheduler } from '../frame-scheduler'
 import type { GlCubePalette } from '../gl-palette'
 import { BODY_COLOR, type PolyMesh } from './poly-mesh'
@@ -11,6 +12,7 @@ import type { WebGlPolyRenderer } from './webgl-poly-renderer'
 const TURN_MS = 500
 const MAX_PIXEL_RATIO = 2
 const TARGET_RADIUS = 1.75
+const CLICK_PROGRESS = 0.7
 
 export interface PuzzleViewOptions<TMove, TState extends PuzzleState<TMove>> {
   readonly model: PuzzleModel3d<TMove, TState>
@@ -22,6 +24,7 @@ export interface PuzzleViewOptions<TMove, TState extends PuzzleState<TMove>> {
   readonly tempoScale?: number
   readonly ambient?: number
   readonly material?: CubeMaterial | null
+  readonly onTurn?: (turn: TurnLanding) => void
 }
 
 interface RunningMove<TMove> {
@@ -29,6 +32,7 @@ interface RunningMove<TMove> {
   readonly motions: readonly TurnMotion[]
   readonly start: number
   readonly duration: number
+  clicked: boolean
 }
 
 const ease = (progress: number) => progress * progress * (3 - 2 * progress)
@@ -71,6 +75,7 @@ export class PuzzleView<TMove, TState extends PuzzleState<TMove>> {
 
   play(alg: string): void {
     const moves = this.options.model.definition.compile(alg)
+    this.#landRunning()
     const pending = this.#pending()
     if (pending.length > 0) this.#setState(this.#state.apply(pending) as TState)
     this.#running = null
@@ -79,6 +84,7 @@ export class PuzzleView<TMove, TState extends PuzzleState<TMove>> {
   }
 
   finish(): void {
+    this.#landRunning()
     const pending = this.#pending()
     this.#queue = []
     this.#running = null
@@ -115,16 +121,30 @@ export class PuzzleView<TMove, TState extends PuzzleState<TMove>> {
     this.invalidate()
   }
 
+  #landRunning(): void {
+    if (!this.#running || this.#running.duration === 0 || this.#running.clicked) return
+    this.#running.clicked = true
+    this.options.onTurn?.({ double: false, duration: this.#running.duration })
+  }
+
   #advance(now: number): void {
     for (;;) {
       if (!this.#running) {
         const move = this.#queue.shift()
         if (move === undefined) return
         const motions = this.options.model.motions(move)
-        this.#running = { move, motions, start: now, duration: motions.length ? TURN_MS / this.tempoScale : 0 }
+        this.#running = {
+          move,
+          motions,
+          start: now,
+          duration: motions.length ? TURN_MS / this.tempoScale : 0,
+          clicked: false
+        }
       }
       const { move, start, duration } = this.#running
+      if (duration > 0 && now - start >= duration * CLICK_PROGRESS) this.#landRunning()
       if (duration > 0 && now - start < duration) return
+      this.#landRunning()
       this.#setState(this.#state.apply([move]) as TState)
       this.#running = null
     }
