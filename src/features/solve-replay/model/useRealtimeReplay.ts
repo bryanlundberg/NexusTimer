@@ -7,9 +7,13 @@ export type ReplayStatus = 'idle' | 'playing' | 'paused' | 'done'
 interface UseRealtimeReplayArgs {
   view: ReplayView | null
   replay: SolveReplay | null | undefined
+  speed?: number
+  loop?: boolean
 }
 
-export function useRealtimeReplay({ view, replay }: UseRealtimeReplayArgs) {
+const LOOP_PAUSE_MS = 900
+
+export function useRealtimeReplay({ view, replay, speed = 1, loop = false }: UseRealtimeReplayArgs) {
   const [status, setStatus] = useState<ReplayStatus>('idle')
   const [index, setIndex] = useState(0)
 
@@ -18,6 +22,13 @@ export function useRealtimeReplay({ view, replay }: UseRealtimeReplayArgs) {
   const idxRef = useRef(0)
   const lastMoveTimeRef = useRef(0)
   const timeoutRef = useRef<number | null>(null)
+  const speedRef = useRef(speed)
+  const loopRef = useRef(loop)
+
+  useEffect(() => {
+    speedRef.current = speed
+    loopRef.current = loop
+  })
 
   const clearPending = useCallback(() => {
     if (timeoutRef.current != null) {
@@ -43,11 +54,18 @@ export function useRealtimeReplay({ view, replay }: UseRealtimeReplayArgs) {
     if (!view || !replay) return
     const { moves } = replay
     if (idxRef.current >= moves.length) {
-      setStatus('done')
+      if (!loopRef.current || moves.length === 0) {
+        setStatus('done')
+        return
+      }
+      timeoutRef.current = window.setTimeout(() => {
+        render(0)
+        scheduleNext()
+      }, LOOP_PAUSE_MS)
       return
     }
     const target = moves[idxRef.current].t
-    const delay = Math.max(0, target - lastMoveTimeRef.current)
+    const delay = Math.max(0, target - lastMoveTimeRef.current) / speedRef.current
     timeoutRef.current = window.setTimeout(() => {
       const move = moves[idxRef.current]
       view.animate(move.m)
@@ -56,7 +74,7 @@ export function useRealtimeReplay({ view, replay }: UseRealtimeReplayArgs) {
       setIndex(idxRef.current)
       scheduleNext()
     }, delay)
-  }, [view, replay])
+  }, [view, replay, render])
 
   const playFrom = useCallback(
     (start: number) => {
@@ -83,6 +101,14 @@ export function useRealtimeReplay({ view, replay }: UseRealtimeReplayArgs) {
     [clearPending, render, total]
   )
 
+  const jump = useCallback(
+    (n: number) => {
+      if (status === 'playing' && n < total) playFrom(n)
+      else seek(n)
+    },
+    [status, total, playFrom, seek]
+  )
+
   const next = useCallback(() => seek(idxRef.current + 1), [seek])
   const prev = useCallback(() => seek(idxRef.current - 1), [seek])
   const restart = useCallback(() => playFrom(0), [playFrom])
@@ -95,5 +121,15 @@ export function useRealtimeReplay({ view, replay }: UseRealtimeReplayArgs) {
 
   useEffect(() => clearPending, [clearPending, view, replay])
 
-  return { status, index, total, toggle, pause, restart, next, prev, seek }
+  const appliedSpeedRef = useRef(speed)
+
+  useEffect(() => {
+    if (appliedSpeedRef.current === speed) return
+    appliedSpeedRef.current = speed
+    if (status !== 'playing') return
+    clearPending()
+    scheduleNext()
+  }, [speed, status, clearPending, scheduleNext])
+
+  return { status, index, total, toggle, pause, restart, next, prev, seek, jump }
 }
