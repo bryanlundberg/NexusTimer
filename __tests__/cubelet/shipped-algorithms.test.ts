@@ -139,15 +139,8 @@ describe('shipped 3x3x3 algorithms keep what their step does not touch', () => {
   })
 })
 
-const BOTTOM_LAYER_BREAKERS_TO_REVIEW = new Set(["y' R' F R2 U' R2 F R"])
-
 describe('shipped 2x2x2 algorithms keep the bottom layer', () => {
   it.each(['ocll', 'cll'])('%s', (slug) => {
-    const broken = algsOf(slug).filter((alg) => !keepsBottomLayer2(alg))
-    expect(broken.filter((alg) => !BOTTOM_LAYER_BREAKERS_TO_REVIEW.has(alg))).toEqual([])
-  })
-
-  it('still lists only algorithms that break the bottom layer as ones to review', () => {
-    expect([...BOTTOM_LAYER_BREAKERS_TO_REVIEW].filter(keepsBottomLayer2)).toEqual([])
+    expect(algsOf(slug).filter((alg) => !keepsBottomLayer2(alg))).toEqual([])
   })
 })

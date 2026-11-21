@@ -42,8 +42,7 @@ export const OCLL_ALGS: AlgorithmCollection[] = [
     algs: [
       { moves: "F R U R' U' R U R' U' F'", id: 'dcbd6c53-aa05-49c0-9eb3-6c8eeeed2c8a' },
       { moves: "R U' R2 U R2 U R2 U' R", id: 'd93a10af-7c1b-437a-9164-f1a363a9f2b1' },
-      { moves: "R U2 R2 U' R2 U' R2 U2 R", id: '69cfefa9-1e21-4927-9fad-214e54c5237a' },
-      { moves: "y' R' F R2 U' R2 F R", id: 'b8ee891d-8cce-46af-ad28-ea88cabeb263' }
+      { moves: "R U2 R2 U' R2 U' R2 U2 R", id: '69cfefa9-1e21-4927-9fad-214e54c5237a' }
     ]
   },
   {
