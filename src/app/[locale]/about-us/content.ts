@@ -124,7 +124,7 @@ export interface GrowthPoint {
 export const GROWTH = {
   label: 'Growth',
   title: 'Registered accounts',
-  text: 'Accounts were introduced in late 2024 and are optional, so this chart only counts users who created one. Registered accounts grew from 129 at the end of 2025 to 671 in October 2026.',
+  text: 'Accounts were introduced in late 2024 and are optional, so this chart only counts users who created one. Registered accounts grew from 129 at the end of 2025 to 1,427 in November 2026.',
   seriesLabel: 'Registered accounts',
   monthLabel: 'Month',
   tableLabel: 'Show the data',
@@ -153,7 +153,8 @@ export const GROWTH = {
     { month: '2026-07', total: 414 },
     { month: '2026-08', total: 493 },
     { month: '2026-09', total: 581 },
-    { month: '2026-10', total: 671 }
+    { month: '2026-10', total: 941 },
+    { month: '2026-11', total: 1427 }
   ] as GrowthPoint[]
 }
 
