@@ -14,4 +14,3 @@ allowBuilds:
   workerd: false
 minimumReleaseAgeExclude:
   - cube-state-engine
-  - '@rednaxela101/cubing'
