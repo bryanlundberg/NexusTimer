@@ -58,7 +58,8 @@ export default function SignUpDetailsStep({ onSuccess }: Props) {
           label={t('email')}
           type="email"
           placeholder="you@example.com"
-          autoComplete="email"
+          autoComplete="username"
+          spellCheck={false}
           error={errors.email?.message}
           {...register('email')}
         />

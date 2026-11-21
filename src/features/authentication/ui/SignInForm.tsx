@@ -48,7 +48,8 @@ export default function SignInForm() {
           id="email"
           label={t('email')}
           type="email"
-          autoComplete="email"
+          autoComplete="username"
+          spellCheck={false}
           placeholder="you@example.com"
           error={errors.email?.message}
           {...register('email')}
