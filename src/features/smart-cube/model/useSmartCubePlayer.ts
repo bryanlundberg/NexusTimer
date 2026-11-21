@@ -22,8 +22,7 @@ export function useSmartCubePlayer() {
     initial,
     tempoScale: 5,
     cameraDistance: 8,
-    ownContext: true,
-    turnSound: true
+    ownContext: true
   })
 
   useEffect(() => {

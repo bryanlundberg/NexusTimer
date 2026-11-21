@@ -15,6 +15,7 @@ interface UseVirtualCubeArgs {
   sizePx?: string
   cameraDistance?: number
   hintFacelets?: HintFacelets
+  turnSound?: boolean
 }
 
 const PLAYER_SIZE_PX = 'min(320px, 30vw)'
@@ -27,7 +28,8 @@ export function useVirtualCube({
   dragInput,
   sizePx = PLAYER_SIZE_PX,
   cameraDistance,
-  hintFacelets = 'none'
+  hintFacelets = 'none',
+  turnSound = true
 }: UseVirtualCubeArgs) {
   const initial = useMemo<Cube3dRequest>(
     () => ({ size: cubeSize, alg: seed && scramble ? scramble : '', stickering: 'full', lastLayer: 'U' }),
@@ -40,7 +42,7 @@ export function useVirtualCube({
     dragInput: dragInput !== 'none',
     hintFacelets: hintFacelets !== 'none',
     ownContext: true,
-    turnSound: true
+    turnSound
   })
   const engine = useMemo(() => new CubeEngine('', { size: cubeSize }), [cubeSize])
 
