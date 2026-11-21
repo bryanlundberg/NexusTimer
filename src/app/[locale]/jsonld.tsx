@@ -1,4 +1,5 @@
 import { locales } from '@/shared/config/i18n/locales'
+import { toJsonLd } from '@/shared/lib/jsonLd'
 
 interface JsonLdProps {
   locale: string
@@ -105,7 +106,7 @@ export default function JsonLd({ locale, title, description, url }: JsonLdProps)
   return (
     <>
       {jsonLd.map((schema, i) => (
-        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: toJsonLd(schema) }} />
       ))}
     </>
   )

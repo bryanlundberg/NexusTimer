@@ -16,6 +16,7 @@ import { PageHeader } from '@/shared/ui/page-header/PageHeader'
 import { localizedAlternates } from '@/shared/config/i18n/alternates'
 import { localizedPath } from '@/shared/config/i18n/locales'
 import { OG_IMAGES, ogImage } from '@/shared/config/seo/open-graph'
+import { toJsonLd } from '@/shared/lib/jsonLd'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -146,9 +147,9 @@ export default async function AlgorithmsMethodPage({ params }: Props) {
 
   return (
     <ScrollArea className="max-h-dvh overflow-auto" overscrollStretch>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toJsonLd(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toJsonLd(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toJsonLd(softwareSchema) }} />
       <CoreHeader
         breadcrumbs={[
           { label: t('title'), href: '/algorithms' },

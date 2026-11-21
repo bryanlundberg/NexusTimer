@@ -1,6 +1,7 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import { localizedPageMetadata } from '@/shared/config/i18n/pageMetadata'
+import { toJsonLd } from '@/shared/lib/jsonLd'
 
 export function generateMetadata(): Promise<Metadata> {
   return localizedPageMetadata('leaderboards', '/leaderboards')
@@ -55,8 +56,8 @@ const breadcrumbSchema = {
 export default function LeaderboardsLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(leaderboardsSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toJsonLd(leaderboardsSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: toJsonLd(breadcrumbSchema) }} />
       {children}
     </>
   )
