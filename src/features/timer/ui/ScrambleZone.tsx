@@ -157,7 +157,7 @@ export function ScrambleZone() {
             <DialogContent className="sm:max-w-xl">
               <DialogHeader>
                 <VisuallyHidden>
-                  <DialogTitle>Scramble</DialogTitle>
+                  <DialogTitle>{t('leaderboard-solve-details.scramble')}</DialogTitle>
                 </VisuallyHidden>
                 <DialogDescription className={cn('text-card-foreground', sizeClasses)}>{scramble}</DialogDescription>
               </DialogHeader>
@@ -184,6 +184,7 @@ export function ScrambleZone() {
                       size="icon"
                       className="size-10 pointer-coarse:size-11 [&>svg]:transition-all [&>svg]:duration-300 [&:hover>svg]:text-record"
                       onClick={handleShowHints}
+                      aria-label={t('HomePage.hints')}
                     >
                       <HintBulbIcon className="size-5" />
                     </Button>
@@ -209,7 +210,12 @@ export function ScrambleZone() {
               <Dialog>
                 <TooltipTrigger asChild>
                   <DialogTrigger asChild>
-                    <Button variant="ghost" size="icon" className="size-10 pointer-coarse:size-11">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="size-10 pointer-coarse:size-11"
+                      aria-label={t('HomePage.keyboard')}
+                    >
                       <Keyboard className="size-5" />
                     </Button>
                   </DialogTrigger>
@@ -221,13 +227,13 @@ export function ScrambleZone() {
                   onInteractOutside={(e) => e.preventDefault()}
                 >
                   <DialogHeader>
-                    <DialogTitle>Keyboard controls</DialogTitle>
-                    <DialogDescription>Click any key to change the move it triggers.</DialogDescription>
+                    <DialogTitle>{t('HomePage.keyboard-controls')}</DialogTitle>
+                    <DialogDescription>{t('HomePage.keyboard-controls-desc')}</DialogDescription>
                   </DialogHeader>
                   <VirtualKeymapEditor />
                 </DialogContent>
                 <TooltipContent>
-                  <p>Keyboard</p>
+                  <p>{t('HomePage.keyboard')}</p>
                 </TooltipContent>
               </Dialog>
             </Tooltip>

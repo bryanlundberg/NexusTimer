@@ -154,6 +154,9 @@
       "counter": "Contador",
       "select-cube": "Seleccionar cubo",
       "hints": "Consejos",
+      "keyboard": "Teclado",
+      "keyboard-controls": "Controles de teclado",
+      "keyboard-controls-desc": "Haz clic en una tecla para cambiar el movimiento que activa.",
       "mode": "Modo",
       "modes": {
         "normal": "Normal",
