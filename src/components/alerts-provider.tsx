@@ -57,9 +57,9 @@ export default function AlertsProvider({ children }: { children: React.ReactNode
     setHideCancel(params.hideCancel)
     setOpen(true)
 
-    return new Promise<boolean>((resolve) => {
-      resolverRef.current = resolve
-    })
+    const { promise, resolve } = Promise.withResolvers<boolean>()
+    resolverRef.current = resolve
+    return promise
   }, [])
 
   const handleConfirm = useCallback(() => {
