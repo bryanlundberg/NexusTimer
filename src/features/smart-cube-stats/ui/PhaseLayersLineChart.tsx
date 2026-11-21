@@ -31,7 +31,7 @@ export default function PhaseLayersLineChart({ series, phases }: PhaseLayersLine
     const tooltip = tooltipRef.current
     if (!container || !tooltip) return
     const theme = readChartTheme()
-    container.innerHTML = ''
+    container.replaceChildren()
 
     const chart = createChart(container, {
       autoSize: true,

@@ -84,7 +84,7 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
   stateRef.current = { showBestTime, showWorstTime, showAo5, showAo12, showStandardDeviation, showSolves, range }
 
   const data = React.useMemo(() => {
-    const ordered = [...dataSet].reverse()
+    const ordered = dataSet.toReversed()
     const lastIndex = ordered.length - 1
     const ao5Values = rollingAo(dataSet, AO5_SIZE)
     const ao12Values = rollingAo(dataSet, AO12_SIZE)
@@ -213,7 +213,7 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
       }
     }
 
-    container.innerHTML = ''
+    container.replaceChildren()
     const chart = createChart(container, chartOptions)
     chartRef.current = chart
     const state = stateRef.current
