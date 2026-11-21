@@ -29,9 +29,9 @@ export default function TransferSolvesHeader({ cubes }: TransferSolvesHeaderProp
 
   const sortedCubes = useMemo(
     () =>
-      (cubes ?? [])
-        .slice()
-        .sort((a, b) => getCategoryOrder(a.category) - getCategoryOrder(b.category) || a.name.localeCompare(b.name)),
+      (cubes ?? []).toSorted(
+        (a, b) => getCategoryOrder(a.category) - getCategoryOrder(b.category) || a.name.localeCompare(b.name)
+      ),
     [cubes]
   )
 

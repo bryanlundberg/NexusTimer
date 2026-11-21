@@ -19,7 +19,7 @@ export default function TrainerProgressChart({ solves, targetMs, label }: Traine
   const [active, setActive] = useState<number | null>(null)
 
   const chart = useMemo(() => {
-    const values = [...solves].reverse().map((solve) => +(solve.timeMs / 1000).toFixed(2))
+    const values = solves.toReversed().map((solve) => +(solve.timeMs / 1000).toFixed(2))
     const min = Math.min(...values)
     const max = Math.max(...values)
     const padding = (max - min) * 0.1 || 1

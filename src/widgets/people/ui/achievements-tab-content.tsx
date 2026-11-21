@@ -27,7 +27,7 @@ export default function AchievementsTabContent({ badges }: Props) {
   const families =
     filter === 'unlocked'
       ? unlockedFamilies
-      : [...lockedFamilies].sort((a, b) => (b.progress?.ratio ?? 0) - (a.progress?.ratio ?? 0))
+      : lockedFamilies.toSorted((a, b) => (b.progress?.ratio ?? 0) - (a.progress?.ratio ?? 0))
   const rarity = useAchievementRarity()
   const percent = totalTiers > 0 ? Math.round((earnedTiers / totalTiers) * 100) : 0
 

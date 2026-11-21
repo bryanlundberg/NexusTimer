@@ -8,7 +8,7 @@ export interface Ao5Edges {
 
 export function ao5EdgesOf(window: AoWindowSolve[] | null | undefined): Ao5Edges | null {
   if (!window?.length) return null
-  const sorted = [...window].sort((a, b) => (a.dnf ? Infinity : a.time) - (b.dnf ? Infinity : b.time))
+  const sorted = window.toSorted((a, b) => (a.dnf ? Infinity : a.time) - (b.dnf ? Infinity : b.time))
   return { bestId: sorted[0].id, worstId: sorted[sorted.length - 1].id }
 }
 

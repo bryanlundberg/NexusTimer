@@ -23,7 +23,7 @@ export default function RecordRow({ record, label, when, onOpenSolve }: RecordRo
   const trimmed = useMemo(() => {
     if (!aoWindow) return new Set<string>()
     const trim = getAoTolerance(record.size)
-    const sorted = [...aoWindow].sort((a, b) => (a.dnf ? Infinity : a.time) - (b.dnf ? Infinity : b.time))
+    const sorted = aoWindow.toSorted((a, b) => (a.dnf ? Infinity : a.time) - (b.dnf ? Infinity : b.time))
     return new Set([...sorted.slice(0, trim), ...sorted.slice(sorted.length - trim)].map((solve) => solve.id))
   }, [aoWindow, record.size])
 
@@ -72,7 +72,7 @@ export default function RecordRow({ record, label, when, onOpenSolve }: RecordRo
             className="overflow-hidden"
           >
             <div className="grid max-h-48 grid-cols-5 gap-1 overflow-y-auto px-2 pb-2.5 pt-0.5 scrollbar-hide">
-              {[...aoWindow].reverse().map((solve) => {
+              {aoWindow.toReversed().map((solve) => {
                 const isTrimmed = trimmed.has(solve.id)
                 const time = solve.dnf ? 'DNF' : formatTime(solve.time)
                 return (

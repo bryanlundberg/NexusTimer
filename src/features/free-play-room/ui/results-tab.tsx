@@ -53,7 +53,7 @@ export default function ResultsTab() {
     const allTimes = validSolves.map((s) => s.time)
     const best = allTimes.length ? Math.min(...allTimes) : null
 
-    const recentSolves = [...allSolves].sort((a, b) => (b.roundIndex ?? 0) - (a.roundIndex ?? 0)).slice(0, AVERAGE_OF)
+    const recentSolves = allSolves.toSorted((a, b) => (b.roundIndex ?? 0) - (a.roundIndex ?? 0)).slice(0, AVERAGE_OF)
     const avg =
       recentSolves.length < MIN_SOLVES_FOR_AVERAGE
         ? null
@@ -64,7 +64,7 @@ export default function ResultsTab() {
 
   const byNullableTime = (a: number | null, b: number | null) =>
     a === b ? 0 : a === null ? 1 : b === null ? -1 : a - b
-  const rankedUsers = [...usersData].sort((a, b) => byNullableTime(a.avg, b.avg) || byNullableTime(a.best, b.best))
+  const rankedUsers = usersData.toSorted((a, b) => byNullableTime(a.avg, b.avg) || byNullableTime(a.best, b.best))
 
   const roundWinnerTime = Object.fromEntries(
     visibleRounds.map((r) => {
