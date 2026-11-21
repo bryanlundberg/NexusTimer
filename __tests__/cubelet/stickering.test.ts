@@ -65,6 +65,51 @@ describe('cubeStickering', () => {
     expect(appearanceAt(state, 'PLL', at(3, F, 1, 2))).toBe(Appearance.Dim)
   })
 
+  it('COLL shows the last-layer corners whole, only the top of its edges, and dims the rest', () => {
+    const state = solved(3)
+    expect(appearanceAt(state, 'COLL', at(3, U, 1, 1))).toBe(Appearance.Regular)
+    expect(appearanceAt(state, 'COLL', at(3, U, 0, 0))).toBe(Appearance.Regular)
+    expect(appearanceAt(state, 'COLL', at(3, F, 0, 0))).toBe(Appearance.Regular)
+    expect(appearanceAt(state, 'COLL', at(3, U, 2, 1))).toBe(Appearance.Regular)
+    expect(appearanceAt(state, 'COLL', at(3, F, 0, 1))).toBe(Appearance.Ignored)
+    expect(appearanceAt(state, 'COLL', at(3, F, 1, 1))).toBe(Appearance.Dim)
+  })
+
+  it('CLS shows only the top of the last-layer corners, dims its edges and keeps the F2L in color', () => {
+    const state = solved(3)
+    expect(appearanceAt(state, 'CLS', at(3, U, 1, 1))).toBe(Appearance.Regular)
+    expect(appearanceAt(state, 'CLS', at(3, U, 0, 0))).toBe(Appearance.Regular)
+    expect(appearanceAt(state, 'CLS', at(3, F, 0, 0))).toBe(Appearance.Ignored)
+    expect(appearanceAt(state, 'CLS', at(3, U, 2, 1))).toBe(Appearance.Dim)
+    expect(appearanceAt(state, 'CLS', at(3, F, 0, 1))).toBe(Appearance.Dim)
+    expect(appearanceAt(state, 'CLS', at(3, F, 1, 2))).toBe(Appearance.Regular)
+  })
+
+  it('ZBLS shows only the top of the last-layer edges, hides its corners and keeps the F2L in color', () => {
+    const state = solved(3)
+    expect(appearanceAt(state, 'ZBLS', at(3, U, 1, 1))).toBe(Appearance.Regular)
+    expect(appearanceAt(state, 'ZBLS', at(3, U, 2, 1))).toBe(Appearance.Regular)
+    expect(appearanceAt(state, 'ZBLS', at(3, F, 0, 1))).toBe(Appearance.Ignored)
+    expect(appearanceAt(state, 'ZBLS', at(3, U, 0, 0))).toBe(Appearance.Ignored)
+    expect(appearanceAt(state, 'ZBLS', at(3, F, 0, 0))).toBe(Appearance.Ignored)
+    expect(appearanceAt(state, 'ZBLS', at(3, F, 2, 1))).toBe(Appearance.Regular)
+  })
+
+  it('the last-slot presets on the D layer mark the yellow pieces instead', () => {
+    const state = solved(3)
+    expect(appearanceAt(state, 'CLS', at(3, D, 0, 0), 'D')).toBe(Appearance.Regular)
+    expect(appearanceAt(state, 'CLS', at(3, F, 2, 1), 'D')).toBe(Appearance.Dim)
+    expect(appearanceAt(state, 'CLS', at(3, U, 0, 0), 'D')).toBe(Appearance.Regular)
+    expect(appearanceAt(state, 'ZBLS', at(3, D, 0, 0), 'D')).toBe(Appearance.Ignored)
+    expect(appearanceAt(state, 'COLL', at(3, U, 0, 0), 'D')).toBe(Appearance.Dim)
+  })
+
+  it('COLL on 2x2 shows every corner of the last layer', () => {
+    const state = solved(2)
+    expect(appearanceAt(state, 'COLL', at(2, F, 0, 0))).toBe(Appearance.Regular)
+    expect(appearanceAt(state, 'COLL', at(2, F, 1, 0))).toBe(Appearance.Dim)
+  })
+
   it('F2L hides the last layer', () => {
     const state = solved(3)
     expect(appearanceAt(state, 'F2L', at(3, U, 1, 1))).toBe(Appearance.Ignored)
