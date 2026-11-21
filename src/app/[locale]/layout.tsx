@@ -7,6 +7,7 @@ import { routing } from '@/shared/config/i18n/routing'
 import { shellMessages } from '@/shared/config/i18n/messageScopes'
 import JsonLd from './jsonld'
 import { ThemeProvider } from '@/components/theme-provider'
+import { MotionProvider } from '@/components/motion-provider'
 import { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import CookieConsentBanner from '@/components/cookie-consent-banner'
@@ -84,7 +85,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#000000'
+  themeColor: '#000000',
+  colorScheme: 'light dark'
 }
 
 export function generateStaticParams() {
@@ -136,10 +138,12 @@ export default async function LocaleLayout({ children }: { children: React.React
               enableSystem
               disableTransitionOnChange
             >
-              <OfflineIndicator />
-              {children}
-              <CookieConsentBanner />
-              <Toaster />
+              <MotionProvider>
+                <OfflineIndicator />
+                {children}
+                <CookieConsentBanner />
+                <Toaster />
+              </MotionProvider>
             </ThemeProvider>
           </NextIntlClientProvider>
         </SerwistProvider>
