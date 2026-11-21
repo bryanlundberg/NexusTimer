@@ -4,6 +4,7 @@ export * from './data/index'
 export * from './definitions'
 export * from './sets'
 export type * from './types'
+export type * from './viz'
 
 const CASES_BY_SET = new Map<string, ReadonlySet<string>>(
   ALGORITHM_SET_DEFINITIONS.map((set) => [set.slug, new Set(set.algorithms.map((collection) => collection.id))])
