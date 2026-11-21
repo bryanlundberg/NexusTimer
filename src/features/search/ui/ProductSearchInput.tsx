@@ -5,6 +5,7 @@ import { Search, X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { Spinner } from '@/components/ui/spinner'
 import { cn } from '@/shared/lib/utils'
+import { isImeEnter } from '@/shared/lib/isImeEnter'
 import { cubeColorClass } from '@/shared/const/cube-colors'
 import { useSearch } from '../model/useSearch'
 import type { ProductHit } from '@nexustimer/contracts'
@@ -91,7 +92,7 @@ export function ProductSearchInput({
     } else if (event.key === 'ArrowUp') {
       event.preventDefault()
       setHighlight((h) => (h <= 0 ? hits.length - 1 : h - 1))
-    } else if (event.key === 'Enter') {
+    } else if (event.key === 'Enter' && !isImeEnter(event)) {
       if (highlight >= 0 && hits[highlight]) {
         event.preventDefault()
         choose(hits[highlight])

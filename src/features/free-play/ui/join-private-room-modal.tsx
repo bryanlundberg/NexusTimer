@@ -3,6 +3,7 @@ import { useRouter } from '@/shared/config/i18n/navigation'
 import { DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { isImeEnter } from '@/shared/lib/isImeEnter'
 import { Lock } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
@@ -58,7 +59,7 @@ export default function JoinPrivateRoomModal({ room }: JoinPrivateRoomModalProps
   }
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') handleJoin()
+    if (e.key === 'Enter' && !isImeEnter(e)) handleJoin()
   }
 
   const handleCodeChange = (value: string) => {

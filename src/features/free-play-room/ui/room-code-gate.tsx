@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl'
 import { ROOM_CODE_LENGTH } from '@nexustimer/contracts'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { isImeEnter } from '@/shared/lib/isImeEnter'
 
 interface RoomCodeGateProps {
   error: string | null
@@ -23,7 +24,7 @@ export default function RoomCodeGate({ error, submitting, onSubmit, onCancel }: 
   }
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') submit()
+    if (e.key === 'Enter' && !isImeEnter(e)) submit()
   }
 
   return (

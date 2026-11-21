@@ -9,6 +9,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { MAX_MESSAGE_LENGTH } from '@/entities/chat/model/types'
 import { cn } from '@/shared/lib/utils'
+import { isImeEnter } from '@/shared/lib/isImeEnter'
 
 const EmojiPicker = dynamic(() => import('@/shared/ui/emoji-picker/EmojiPicker').then((m) => m.EmojiPicker), {
   ssr: false
@@ -153,8 +154,9 @@ export function MessageComposer({
           }}
           onSelect={rememberCaret}
           onKeyDown={(event) => {
-            if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) {
+            if (event.key === 'Enter' && !event.shiftKey) {
               event.preventDefault()
+              if (isImeEnter(event)) return
               submit()
             } else if (event.key === 'Escape' && editing) {
               event.preventDefault()

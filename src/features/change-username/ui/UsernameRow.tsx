@@ -12,6 +12,7 @@ import {
 } from '@nexustimer/contracts'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { isImeEnter } from '@/shared/lib/isImeEnter'
 import type { UserDocument } from '@/entities/user/model/user'
 import { useUsernameAvailability } from '@/features/change-username/model/useUsernameAvailability'
 import { MenuFieldRow } from '@/features/settings/ui/MenuFieldRow'
@@ -130,7 +131,7 @@ export function UsernameRow({ user, mutate }: Props) {
           onKeyDown={(event) => {
             if (event.key === 'Enter') {
               event.preventDefault()
-              submit()
+              if (!isImeEnter(event)) submit()
             }
             if (event.key === 'Escape') cancel()
           }}
