@@ -177,9 +177,15 @@ export const LIBRARIES = [
     href: 'https://github.com/bryanlundberg/cube-state-engine'
   },
   {
+    name: 'cubelet',
+    text: 'The official puzzle engine of Nexus Timer, with zero dependencies. It models cubes from 2x2 to 7x7, megaminx, pyraminx, skewb, square-1, FTO and clock, and draws every 2D and 3D puzzle in the app, from scramble previews to algorithm cases and replays.',
+    tags: ['TypeScript', 'WebGL', 'Zero dependencies'],
+    href: `${REPO_URL}/tree/main/packages/cubelet`
+  },
+  {
     name: 'cubing.js, slim fork',
-    text: 'A fork of cubing.js with a reduced puzzle set and smaller on-demand chunks. It renders every 3D cube in the app, from scramble previews to replays.',
-    tags: ['Fork', 'npm'],
+    text: 'A fork of cubing.js with a reduced puzzle set and smaller on-demand chunks. It drew the app’s 3D cubes until cubelet replaced it, and is now archived.',
+    tags: ['Fork', 'Archived'],
     href: 'https://github.com/bryanlundberg/cubing.js'
   },
   {
