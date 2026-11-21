@@ -10,7 +10,7 @@ export function useScrollEdges<T extends HTMLElement>() {
   const [edges, setEdges] = useState<ScrollEdges>({ start: false, end: false })
 
   useEffect(() => {
-    if (!element) return
+    if (!element || globalThis.CSS?.supports('animation-timeline', 'scroll()')) return
     const update = () => {
       const max = element.scrollWidth - element.clientWidth
       const start = element.scrollLeft > 1

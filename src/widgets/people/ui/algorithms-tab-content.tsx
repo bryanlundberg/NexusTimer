@@ -32,7 +32,7 @@ export default function AlgorithmsTabContent({ methods }: { methods?: LearnedMet
       <div
         ref={stripRef}
         style={{ maskImage: stripMask, WebkitMaskImage: stripMask }}
-        className="flex snap-x gap-2 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden @xl/tab:flex-wrap @xl/tab:gap-3 @xl/tab:overflow-visible"
+        className="scroll-fade-x flex snap-x gap-2 overflow-x-auto py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden @xl/tab:flex-wrap @xl/tab:gap-3 @xl/tab:overflow-visible"
       >
         {orderedMethods.map((view) => (
           <RingMethod
