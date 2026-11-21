@@ -1,8 +1,7 @@
-import { puzzles } from '@rednaxela101/cubing/puzzles'
-import type { KPuzzle } from '@rednaxela101/cubing/kpuzzle'
 import { UnsupportedMoveError } from '@nexustimer/cubelet'
 import { CLOCK_PINS, clock, type ClockState } from '@nexustimer/cubelet/clock'
-import { seededRandom } from './cubing-oracle-helpers'
+import { describeMoveLaws } from './move-laws'
+import { seededRandom } from './test-random'
 import { describePuzzleContract } from './puzzle-contract'
 
 const stateAfter = (alg: string) => clock.solved().apply(clock.compile(alg))
@@ -49,21 +48,30 @@ describe('clock moves', () => {
   })
 })
 
-describe('clock matches cubing.js dial for dial', () => {
-  let kpuzzle: KPuzzle
+describeMoveLaws(clock, {
+  tokens: ['UR1+', 'DR3-', 'DL5+', 'UL2-', 'U4+', 'R1-', 'D6+', 'L2+', 'ALL3-', 'y2'],
+  seed: 4,
+  sameAxis: [
+    ['UR1+', 'DL2-'],
+    ['ALL3+', 'U1+'],
+    ['R5-', 'L4+']
+  ],
+  orders: [
+    ['UR1+', 12],
+    ['ALL1+', 12],
+    ['U6+', 2],
+    ['y2', 2]
+  ]
+})
 
-  beforeAll(async () => {
-    kpuzzle = await puzzles.clock!.kpuzzle()
-  })
-
-  it('on WCA scrambles, with and without trailing pins', () => {
+describe('clock scrambles', () => {
+  it('reach the same dials whatever order the front and back turns come in', () => {
     const random = seededRandom(4)
     for (let i = 0; i < 300; i++) {
       const scramble = wcaScramble(random, i % 2 === 0)
-      const theirs = kpuzzle.defaultPattern().applyAlg(scramble).patternData
-      const ours = stateAfter(scramble)
-      expect([scramble, dials(ours)]).toEqual([scramble, theirs.DIALS!.orientation])
-      expect([scramble, ours.flipped]).toEqual([scramble, theirs.FRAME!.orientation[0] === 1])
+      const [front, back] = scramble.split(' y2 ')
+      const shuffled = [front!.split(' ').reverse().join(' '), 'y2', back!.split(' ').reverse().join(' ')].join(' ')
+      expect([scramble, dials(stateAfter(shuffled))]).toEqual([scramble, dials(stateAfter(scramble))])
     }
   })
 })

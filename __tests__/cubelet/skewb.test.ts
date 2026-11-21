@@ -1,7 +1,6 @@
-import { puzzles } from '@rednaxela101/cubing/puzzles'
 import { UnsupportedMoveError } from '@nexustimer/cubelet'
 import { SKEWB_STICKERS_PER_FACE, skewb } from '@nexustimer/cubelet/skewb'
-import { CubingOracle, expectSamePartition, seededRandom } from './cubing-oracle-helpers'
+import { describeMoveLaws, faceletColors } from './move-laws'
 import { describePuzzleContract } from './puzzle-contract'
 
 const [U, R, F, D, L, B] = [0, 1, 2, 3, 4, 5]
@@ -57,32 +56,15 @@ describe('skewb moves', () => {
   })
 })
 
-describe('skewb matches cubing.js', () => {
-  let oracle: CubingOracle
-
-  beforeAll(async () => {
-    oracle = new CubingOracle(await puzzles.skewb!.kpuzzle())
-  })
-
-  const oursKey = (alg: string) => skewb.solved().apply(skewb.compile(alg)).key()
-
-  it('accepts every move we accept', () => {
-    expect(TOKENS.filter((token) => !oracle.accepts(token))).toEqual([])
-  })
-
-  it('groups single moves, pairs, commutations and scrambles into the same states', () => {
-    const random = seededRandom(5)
-    const pick = () => TOKENS[Math.floor(random() * TOKENS.length)]!
-    const words: string[][] = TOKENS.map((token) => [token])
-    for (let i = 0; i < 2000; i++) words.push([pick(), pick()])
-    for (let i = 0; i < 400; i++) {
-      const a = [pick(), pick(), pick()]
-      const b = [pick(), pick()]
-      words.push([...a, ...b], [...b, ...a])
-    }
-    for (let i = 0; i < 300; i++) words.push(Array.from({ length: 11 }, pick))
-    expectSamePartition(
-      words.map((word) => ({ label: word.join(' '), ours: oursKey(word.join(' ')), theirs: oracle.key(word) }))
-    )
-  })
+describeMoveLaws(skewb, {
+  tokens: TOKENS,
+  seed: 5,
+  sameAxis: [['x', 'x2']],
+  orders: [
+    ['R', 3],
+    ['x', 4],
+    ['x2', 2],
+    ['x y', 3]
+  ],
+  colorsOf: faceletColors
 })

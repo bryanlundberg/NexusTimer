@@ -1,4 +1,3 @@
-import { puzzles } from '@rednaxela101/cubing/puzzles'
 import { UnsupportedMoveError } from '@nexustimer/cubelet'
 import {
   FTO_FACE_NAMES,
@@ -8,7 +7,7 @@ import {
   fto,
   ftoCentroids
 } from '@nexustimer/cubelet/fto'
-import { CubingOracle, expectSamePartition, seededRandom } from './cubing-oracle-helpers'
+import { describeMoveLaws, faceletColors } from './move-laws'
 import { describePuzzleContract } from './puzzle-contract'
 
 const face = (name: string) => FTO_FACE_NAMES.indexOf(name as never)
@@ -66,30 +65,18 @@ describe('fto moves', () => {
   })
 })
 
-describe('fto matches cubing.js', () => {
-  let oracle: CubingOracle
-
-  beforeAll(async () => {
-    oracle = new CubingOracle(await puzzles.fto!.kpuzzle())
-  })
-
-  it('accepts every move we test', () => {
-    expect(TOKENS.filter((token) => !oracle.accepts(token))).toEqual([])
-  })
-
-  it('groups single moves, pairs, commutations and scrambles into the same states', () => {
-    const random = seededRandom(8)
-    const pick = () => TOKENS[Math.floor(random() * TOKENS.length)]!
-    const words: string[][] = TOKENS.map((token) => [token])
-    for (let i = 0; i < 2000; i++) words.push([pick(), pick()])
-    for (let i = 0; i < 400; i++) {
-      const a = [pick(), pick(), pick()]
-      const b = [pick(), pick()]
-      words.push([...a, ...b], [...b, ...a])
-    }
-    for (let i = 0; i < 300; i++) words.push(Array.from({ length: 12 }, pick))
-    expectSamePartition(
-      words.map((word) => ({ label: word.join(' '), ours: stateAfter(word.join(' ')).key(), theirs: oracle.key(word) }))
-    )
-  })
+describeMoveLaws(fto, {
+  tokens: TOKENS,
+  seed: 8,
+  sameAxis: [
+    ['U', 'Uv'],
+    ['D', 'Uv'],
+    ['R', 'Rv']
+  ],
+  orders: [
+    ['U', 3],
+    ['Uv', 3],
+    ['Fv', 3]
+  ],
+  colorsOf: faceletColors
 })

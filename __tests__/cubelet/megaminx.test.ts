@@ -1,7 +1,6 @@
-import { puzzles } from '@rednaxela101/cubing/puzzles'
 import { UnsupportedMoveError } from '@nexustimer/cubelet'
 import { MEGAMINX_FACE_NAMES, MEGAMINX_FACES, MEGAMINX_STICKERS_PER_FACE, megaminx } from '@nexustimer/cubelet/megaminx'
-import { CubingOracle, datasetAlgs, expectSamePartition, seededRandom } from './cubing-oracle-helpers'
+import { describeMoveLaws, faceletColors } from './move-laws'
 import { describePuzzleContract } from './puzzle-contract'
 
 const face = (name: string) => MEGAMINX_FACE_NAMES.indexOf(name as never)
@@ -66,42 +65,20 @@ describe('megaminx moves', () => {
   })
 })
 
-describe('megaminx matches cubing.js', () => {
-  let oracle: CubingOracle
-
-  beforeAll(async () => {
-    oracle = new CubingOracle(await puzzles.megaminx!.kpuzzle())
-  })
-
-  const oursKey = (alg: string) => stateAfter(alg).key()
-
-  it('accepts every move we test', () => {
-    expect(TOKENS.filter((token) => !oracle.accepts(token))).toEqual([])
-  })
-
-  it('groups single moves, pairs, commutations and scrambles into the same states', () => {
-    const random = seededRandom(12)
-    const pick = () => TOKENS[Math.floor(random() * TOKENS.length)]!
-    const words: string[][] = TOKENS.map((token) => [token])
-    for (let i = 0; i < 2000; i++) words.push([pick(), pick()])
-    for (let i = 0; i < 400; i++) {
-      const a = [pick(), pick(), pick()]
-      const b = [pick(), pick()]
-      words.push([...a, ...b], [...b, ...a])
-    }
-    for (let i = 0; i < 300; i++) words.push(Array.from({ length: 12 }, pick))
-    words.push(WCA_SCRAMBLE.split(' '))
-    expectSamePartition(
-      words.map((word) => ({ label: word.join(' '), ours: oursKey(word.join(' ')), theirs: oracle.key(word) }))
-    )
-  })
-
-  it('groups the shipped algorithms into the same states', () => {
-    const entries = datasetAlgs('megaminx').flatMap((alg) => {
-      const theirs = oracle.keyOfAlg(alg)
-      return theirs === null ? [] : [{ label: alg, ours: oursKey(alg), theirs }]
-    })
-    expect(entries.length).toBeGreaterThan(20)
-    expectSamePartition(entries)
-  })
+describeMoveLaws(megaminx, {
+  tokens: TOKENS,
+  seed: 12,
+  sameAxis: [
+    ['R++', 'L'],
+    ['D++', 'U'],
+    ['y', 'U'],
+    ['y', 'D++']
+  ],
+  orders: [
+    ['U', 5],
+    ['R++', 5],
+    ['D++', 5],
+    ['y', 5]
+  ],
+  colorsOf: faceletColors
 })

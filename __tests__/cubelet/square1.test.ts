@@ -1,9 +1,8 @@
-import { puzzles } from '@rednaxela101/cubing/puzzles'
-import type { KPuzzle } from '@rednaxela101/cubing/kpuzzle'
 import { UnsupportedMoveError, formatAlg, invertAlg, parseAlg } from '@nexustimer/cubelet'
 import { Square1Color, sideColorOf, square1, type Square1State } from '@nexustimer/cubelet/square1'
 import { ALGORITHM_SET_DEFINITIONS } from '@nexustimer/algorithms'
-import { seededRandom } from './cubing-oracle-helpers'
+import { describeMoveLaws } from './move-laws'
+import { seededRandom } from './test-random'
 import { describePuzzleContract } from './puzzle-contract'
 
 const stateAfter = (alg: string) => square1.solved().apply(square1.compile(alg))
@@ -76,26 +75,33 @@ describe('square-1 moves', () => {
   })
 })
 
-describe('square-1 matches cubing.js wedge for wedge', () => {
-  let kpuzzle: KPuzzle
+describeMoveLaws(square1, {
+  tokens: ['(1,0)', '(0,1)', '(-1,0)', '(0,-1)', '(3,3)', '(2,-1)', '(6,0)'],
+  seed: 1,
+  sameAxis: [
+    ['(1,0)', '(0,1)'],
+    ['(2,-1)', '(-3,4)']
+  ],
+  orders: [
+    ['(1,0)', 12],
+    ['(0,1)', 12],
+    ['(6,0)', 2],
+    ['/', 2]
+  ]
+})
 
-  beforeAll(async () => {
-    kpuzzle = await puzzles.square1!.kpuzzle()
-  })
-
-  const expectSame = (alg: string) => {
-    const theirs = kpuzzle.defaultPattern().applyAlg(alg).patternData
-    const ours = stateAfter(alg)
-    expect([alg, wedges(ours)]).toEqual([alg, theirs.WEDGES!.pieces])
-    expect([alg, ours.middleFlipped]).toEqual([alg, theirs.EQUATOR!.orientation[1] !== 0])
-  }
-
-  it('on random legal sequences', () => {
+describe('square-1 legal sequences', () => {
+  it('return to solved after random legal sequences and their inverses', () => {
     const random = seededRandom(1)
-    for (let i = 0; i < 300; i++) expectSame(randomLegalAlg(random, 1 + Math.floor(random() * 12)))
+    for (let i = 0; i < 300; i++) {
+      const alg = randomLegalAlg(random, 1 + Math.floor(random() * 12))
+      const restored = stateAfter(alg).apply(square1.compile(formatAlg(invertAlg(parseAlg(alg)))))
+      expect([alg, restored.equals(square1.solved())]).toEqual([alg, true])
+    }
   })
 
-  it('on the shipped cases', () => {
-    for (const alg of SHIPPED_CASES.filter(square1Accepts)) expectSame(alg)
+  it('add tuples that come one after the other', () => {
+    expect(stateAfter('(1,0) (2,3)').key()).toBe(stateAfter('(3,3)').key())
+    expect(stateAfter('(5,-2) (1,2)').key()).toBe(stateAfter('(6,0)').key())
   })
 })

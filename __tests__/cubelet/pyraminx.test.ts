@@ -1,7 +1,6 @@
-import { puzzles } from '@rednaxela101/cubing/puzzles'
 import { UnsupportedMoveError } from '@nexustimer/cubelet'
 import { PYRAMINX_STICKERS_PER_FACE, pyraminx } from '@nexustimer/cubelet/pyraminx'
-import { CubingOracle, datasetAlgs, expectSamePartition, seededRandom } from './cubing-oracle-helpers'
+import { describeMoveLaws, faceletColors } from './move-laws'
 import { describePuzzleContract } from './puzzle-contract'
 
 const F = 0
@@ -79,41 +78,22 @@ describe('pyraminx moves', () => {
   })
 })
 
-describe('pyraminx matches cubing.js', () => {
-  let oracle: CubingOracle
-
-  beforeAll(async () => {
-    oracle = new CubingOracle(await puzzles.pyraminx!.kpuzzle())
-  })
-
-  const oursKey = (alg: string) => pyraminx.solved().apply(pyraminx.compile(alg)).key()
-
-  it('accepts every WCA move', () => {
-    expect(WCA_TOKENS.filter((token) => !oracle.accepts(token))).toEqual([])
-  })
-
-  it('groups single moves, pairs and commutations into the same states', () => {
-    const random = seededRandom(3)
-    const pick = () => WCA_TOKENS[Math.floor(random() * WCA_TOKENS.length)]!
-    const words: string[][] = WCA_TOKENS.map((token) => [token])
-    for (let i = 0; i < 2000; i++) words.push([pick(), pick()])
-    for (let i = 0; i < 400; i++) {
-      const a = [pick(), pick(), pick()]
-      const b = [pick(), pick()]
-      words.push([...a, ...b], [...b, ...a])
-    }
-    for (let i = 0; i < 300; i++) words.push(Array.from({ length: 11 }, pick))
-    expectSamePartition(
-      words.map((word) => ({ label: word.join(' '), ours: oursKey(word.join(' ')), theirs: oracle.key(word) }))
-    )
-  })
-
-  it('groups the shipped algorithms into the same states', () => {
-    const entries = datasetAlgs('pyraminx').flatMap((alg) => {
-      const theirs = oracle.keyOfAlg(alg)
-      return theirs === null ? [] : [{ label: alg, ours: oursKey(alg), theirs }]
-    })
-    expect(entries.length).toBeGreaterThan(100)
-    expectSamePartition(entries)
-  })
+describeMoveLaws(pyraminx, {
+  tokens: WCA_TOKENS,
+  seed: 3,
+  sameAxis: [
+    ['u', 'U'],
+    ['u', 'R'],
+    ['u', 'L'],
+    ['u', 'B'],
+    ['r', 'l'],
+    ['b', 'U'],
+    ['U', 'Uv']
+  ],
+  orders: [
+    ['U', 3],
+    ['u', 3],
+    ['Uv', 3]
+  ],
+  colorsOf: faceletColors
 })

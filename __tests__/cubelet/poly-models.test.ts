@@ -7,7 +7,7 @@ import {
   type PuzzleModel3d
 } from '@nexustimer/cubelet/webgl/poly'
 import type { GlCubePalette } from '@nexustimer/cubelet/webgl'
-import { seededRandom } from './cubing-oracle-helpers'
+import { seededRandom } from './test-random'
 
 const PALETTE: GlCubePalette = {
   colors: Array.from({ length: 12 }, (_, i) => [i, 0, 0] as const),
