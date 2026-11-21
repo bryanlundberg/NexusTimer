@@ -7,6 +7,7 @@ import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { Badge } from '@/components/ui/badge'
 import { buildAlgorithmReplay } from '@/features/solve-replay/lib/buildAlgorithmReplay'
 import { notationGroups } from '@/features/solve-replay/lib/replayTimeline'
+import { caseLastLayer } from '@/shared/lib/puzzle/caseRender'
 import { useTranslations } from 'next-intl'
 
 const RealtimeReplayPlayer = dynamic(
@@ -22,8 +23,10 @@ export default function AlgorithmModal() {
   const metadata = useOverlayStore((s) => s.activeOverlay?.metadata)
   const alg = metadata?.alg as string | undefined
   const cube = (metadata?.cube as string | undefined) || '3x3'
+  const preset = (metadata?.stickering as string | undefined) ?? 'full'
 
   const replay = useMemo(() => (alg ? buildAlgorithmReplay(alg, cube, MOVE_MS) : null), [alg, cube])
+  const stickering = useMemo(() => ({ stickering: preset, lastLayer: caseLastLayer(cube) }), [preset, cube])
   const groups = useMemo(() => (alg && replay ? notationGroups(alg, replay.moves.length) : []), [alg, replay])
 
   if (!metadata || !alg || !replay) return null
@@ -45,6 +48,7 @@ export default function AlgorithmModal() {
         showClock={false}
         movesLabel={t('algorithm-label')}
         moveGroups={groups}
+        stickering={stickering}
       />
     </DialogContent>
   )

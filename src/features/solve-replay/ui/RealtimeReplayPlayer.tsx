@@ -11,6 +11,7 @@ import type { ReplayView } from '@/features/solve-replay/model/replayView'
 import type { ReplayMarker } from '@/features/solve-replay/model/replayMarker'
 import { useRealtimeReplay } from '@/features/solve-replay/model/useRealtimeReplay'
 import CubeReplayStage from '@/features/solve-replay/ui/CubeReplayStage'
+import type { Cube3dStickering } from '@/shared/lib/puzzle/cube3dRequest'
 import PuzzleReplayStage from '@/features/solve-replay/ui/PuzzleReplayStage'
 import ReplayProgressBar from '@/features/solve-replay/ui/ReplayProgressBar'
 import ReplayPhaseChips from '@/features/solve-replay/ui/ReplayPhaseChips'
@@ -35,6 +36,7 @@ interface RealtimeReplayPlayerProps {
   showClock?: boolean
   movesLabel?: string
   moveGroups?: readonly MoveSpan[]
+  stickering?: Cube3dStickering
 }
 
 const ICON_BUTTON =
@@ -47,7 +49,8 @@ export function RealtimeReplayPlayer({
   tempoScale = 4,
   showClock = true,
   movesLabel,
-  moveGroups
+  moveGroups,
+  stickering
 }: RealtimeReplayPlayerProps) {
   const t = useTranslations('Index.ReplayPlayer')
   const { replay, skipped } = useMemo(() => buildPlaybackReplay(source), [source])
@@ -82,7 +85,14 @@ export function RealtimeReplayPlayer({
   return (
     <div className="flex w-full flex-col items-center gap-4">
       {cubeSize ? (
-        <CubeReplayStage replay={replay} cubeSize={cubeSize} size={size} tempoScale={stageTempo} onReady={setView} />
+        <CubeReplayStage
+          replay={replay}
+          cubeSize={cubeSize}
+          size={size}
+          tempoScale={stageTempo}
+          stickering={stickering}
+          onReady={setView}
+        />
       ) : (
         <PuzzleReplayStage replay={replay} size={size} tempoScale={stageTempo} onReady={setView} />
       )}

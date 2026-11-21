@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef } from 'react'
 import type { SolveReplay } from '@/entities/replay/model/types'
 import type { ReplayView } from '@/features/solve-replay/model/replayView'
-import type { Cube3dRequest } from '@/shared/lib/puzzle/cube3dRequest'
+import { FULL_COLOR_STICKERING, type Cube3dRequest, type Cube3dStickering } from '@/shared/lib/puzzle/cube3dRequest'
 import { useCube3d } from '@/shared/ui/puzzle/useCube3d'
 
 interface CubeReplayStageProps {
@@ -11,13 +11,21 @@ interface CubeReplayStageProps {
   cubeSize: number
   size: number
   tempoScale: number
+  stickering?: Cube3dStickering
   onReady: (view: ReplayView | null) => void
 }
 
-export default function CubeReplayStage({ replay, cubeSize, size, tempoScale, onReady }: CubeReplayStageProps) {
+export default function CubeReplayStage({
+  replay,
+  cubeSize,
+  size,
+  tempoScale,
+  stickering = FULL_COLOR_STICKERING,
+  onReady
+}: CubeReplayStageProps) {
   const initial = useMemo<Cube3dRequest>(
-    () => ({ size: cubeSize, alg: replay.scramble, stickering: 'full', lastLayer: 'U' }),
-    [cubeSize, replay.scramble]
+    () => ({ size: cubeSize, alg: replay.scramble, ...stickering }),
+    [cubeSize, replay.scramble, stickering]
   )
   const { canvasRef, handle } = useCube3d({ initial, tempoScale, ownContext: true, turnSound: true })
   const onReadyRef = useRef(onReady)
