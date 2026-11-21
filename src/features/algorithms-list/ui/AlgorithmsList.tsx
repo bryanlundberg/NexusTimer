@@ -70,6 +70,7 @@ export const AlgorithmsList = ({ algorithms, viz, puzzle, methodSlug }: Algorith
   }, [activeGroups, algorithms])
 
   const groupKeys = Object.keys(groups)
+  const showLearned = isAuthed && !!methodSlug && algorithms.length > 0
 
   return (
     <>
@@ -109,35 +110,36 @@ export const AlgorithmsList = ({ algorithms, viz, puzzle, methodSlug }: Algorith
         </div>
       )}
 
-      {/* Results count */}
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
-        <p className="text-xs text-muted-foreground tabular-nums">
-          {t('TrainerPage.algsSuffix', { count: displayedAlgs.length })}
+      {(activeGroups.length > 0 || showLearned) && (
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
           {activeGroups.length > 0 && (
-            <button
-              type="button"
-              onClick={() => setActiveGroups([])}
-              className="-my-2 ml-1 cursor-pointer px-1 py-2 text-foreground underline-offset-4 hover:underline pointer-coarse:text-[13px]"
-            >
-              {t('AlgorithmsPage.filters.clear')}
-            </button>
+            <p className="text-xs text-muted-foreground tabular-nums">
+              {t('TrainerPage.algsSuffix', { count: displayedAlgs.length })}
+              <button
+                type="button"
+                onClick={() => setActiveGroups([])}
+                className="-my-2 ml-1 cursor-pointer px-1 py-2 text-foreground underline-offset-4 hover:underline pointer-coarse:text-[13px]"
+              >
+                {t('AlgorithmsPage.filters.clear')}
+              </button>
+            </p>
           )}
-        </p>
-        {isAuthed && methodSlug && algorithms.length > 0 && (
-          <div className="flex items-center gap-2 text-xs text-muted-foreground tabular-nums">
-            <span>
-              {t('TrainerPage.learned')} <span className="font-semibold text-foreground">{learnedIds.length}</span> /{' '}
-              {algorithms.length}
-            </span>
-            <div className="h-1 w-24 overflow-hidden bg-muted sm:w-32" aria-hidden>
-              <div
-                className="h-full bg-primary transition-[width] duration-500 ease-out"
-                style={{ width: `${Math.min(100, (learnedIds.length / algorithms.length) * 100)}%` }}
-              />
+          {showLearned && (
+            <div className="flex items-center gap-2 text-xs text-muted-foreground tabular-nums">
+              <span>
+                {t('TrainerPage.learned')} <span className="font-semibold text-foreground">{learnedIds.length}</span> /{' '}
+                {algorithms.length}
+              </span>
+              <div className="h-1 w-24 overflow-hidden bg-muted sm:w-32" aria-hidden>
+                <div
+                  className="h-full bg-primary transition-[width] duration-500 ease-out"
+                  style={{ width: `${Math.min(100, (learnedIds.length / algorithms.length) * 100)}%` }}
+                />
+              </div>
             </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      )}
 
       {/* Algorithm rows */}
       <div className="surface surface-panel divide-y divide-border/60 overflow-hidden">
