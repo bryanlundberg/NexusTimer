@@ -108,10 +108,7 @@ export default function TrainerExperience() {
     hydrateMethodStats(methodSlug, serverStats)
   }, [isAuthed, methodSlug, serverStats, hydrateMethodStats])
 
-  const vizConfig = useMemo(
-    () => buildVizConfig(set.puzzle, currentAlg?.moves ?? '', set.virtualization as Record<string, unknown>),
-    [set, currentAlg]
-  )
+  const vizConfig = useMemo(() => buildVizConfig(set.puzzle, currentAlg?.moves ?? '', set.viz), [set, currentAlg])
 
   const trainerCubeStub = useMemo<Cube>(
     () => ({
@@ -223,7 +220,7 @@ export default function TrainerExperience() {
         <TrainerPickCasesModal
           algorithms={set.algorithms}
           initialSelected={new Set(useTrainerStore.getState().pickedIds)}
-          vizConfig={set.virtualization}
+          vizConfig={set.viz}
           puzzle={set.puzzle}
           onApply={setPickedIds}
         />

@@ -1,3 +1,5 @@
+import type { CaseViz } from './viz'
+
 export const ALGORITHM_SET_CATALOG = [
   {
     slug: 'pbl',
@@ -6,12 +8,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'Permute Both Layers',
     puzzle: '2x2x2',
     difficulty: 1,
-    virtualization: {
-      experimentalStickering: 'full',
-      puzzle: '2x2x2',
-      visualization: '3D',
-      experimentalDragInput: 'none'
-    },
+    viz: { view: '3d', stickering: 'full' },
     file: 'pbl.ts'
   },
   {
@@ -20,10 +17,7 @@ export const ALGORITHM_SET_CATALOG = [
     title: 'OCLL',
     subtitle: 'Orient Corners of the Last Layer',
     difficulty: 1,
-    virtualization: {
-      experimentalStickering: 'OLL',
-      puzzle: '2x2x2'
-    },
+    viz: { view: 'last-layer', stickering: 'OLL' },
     file: 'ocll.ts',
     puzzle: '2x2x2'
   },
@@ -34,10 +28,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'Corners of the Last Layer',
     puzzle: '2x2x2',
     difficulty: 2,
-    virtualization: {
-      experimentalStickering: 'full',
-      puzzle: '2x2x2'
-    },
+    viz: { view: 'last-layer', stickering: 'PLL' },
     file: 'cll.ts'
   },
   {
@@ -47,11 +38,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'EG-1 Algorithms',
     puzzle: '2x2x2',
     difficulty: 2,
-    virtualization: {
-      experimentalStickering: 'full',
-      puzzle: '2x2x2',
-      visualization: '3D'
-    },
+    viz: { view: '3d', stickering: 'full', dragInput: true },
     file: 'eg-1.ts'
   },
   {
@@ -61,11 +48,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'EG-2 Algorithms',
     puzzle: '2x2x2',
     difficulty: 2,
-    virtualization: {
-      experimentalStickering: 'full',
-      puzzle: '2x2x2',
-      visualization: '3D'
-    },
+    viz: { view: '3d', stickering: 'full', dragInput: true },
     file: 'eg-2.ts'
   },
   {
@@ -75,10 +58,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'First Two Layers',
     puzzle: '3x3x3',
     difficulty: 2,
-    virtualization: {
-      experimentalStickering: 'F2L',
-      visualization: '3D'
-    },
+    viz: { view: '3d', stickering: 'F2L', dragInput: true },
     file: 'f2l.ts'
   },
   {
@@ -88,10 +68,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'Advanced First Two Layers',
     puzzle: '3x3x3',
     difficulty: 3,
-    virtualization: {
-      experimentalStickering: 'F2L',
-      visualization: '3D'
-    },
+    viz: { view: '3d', stickering: 'F2L', dragInput: true },
     file: 'advanced-f2l.ts'
   },
   {
@@ -101,9 +78,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'Orientation of the Last Layer',
     puzzle: '3x3x3',
     difficulty: 1,
-    virtualization: {
-      experimentalStickering: 'OLL'
-    },
+    viz: { view: 'last-layer', stickering: 'OLL' },
     file: 'oll.ts'
   },
   {
@@ -113,9 +88,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'One-Handed Orientation of the Last Layer',
     puzzle: '3x3x3',
     difficulty: 2,
-    virtualization: {
-      experimentalStickering: 'OLL'
-    },
+    viz: { view: 'last-layer', stickering: 'OLL' },
     file: 'oll-oh.ts'
   },
   {
@@ -125,9 +98,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'Permutation of the Last Layer',
     puzzle: '3x3x3',
     difficulty: 1,
-    virtualization: {
-      experimentalStickering: 'PLL'
-    },
+    viz: { view: 'last-layer', stickering: 'PLL' },
     file: 'pll.ts'
   },
   {
@@ -137,9 +108,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'Corners of the Last Layer',
     puzzle: '3x3x3',
     difficulty: 2,
-    virtualization: {
-      experimentalStickering: 'PLL'
-    },
+    viz: { view: 'last-layer', stickering: 'COLL' },
     file: 'coll.ts'
   },
   {
@@ -150,9 +119,7 @@ export const ALGORITHM_SET_CATALOG = [
     puzzle: '3x3x3',
     difficulty: 2,
     file: 'ble.ts',
-    virtualization: {
-      experimentalStickering: 'OLL-F2L'
-    }
+    viz: { view: 'last-layer', stickering: 'CLS' }
   },
   {
     slug: 'vls',
@@ -161,11 +128,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'Valk Last Slot',
     puzzle: '3x3x3',
     difficulty: 2,
-    virtualization: {
-      experimentalStickering: 'OLL-F2L',
-      visualization: '3D',
-      experimentalDragInput: 'none'
-    },
+    viz: { view: '3d', stickering: 'OLL-F2L' },
     file: 'vls.ts'
   },
   {
@@ -175,11 +138,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'Corners and Last Slot',
     puzzle: '3x3x3',
     difficulty: 2,
-    virtualization: {
-      experimentalStickering: 'OLL-F2L',
-      visualization: '3D',
-      experimentalDragInput: 'none'
-    },
+    viz: { view: '3d', stickering: 'CLS' },
     file: 'cls.ts'
   },
   {
@@ -189,11 +148,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'Summer Variation',
     puzzle: '3x3x3',
     difficulty: 2,
-    virtualization: {
-      experimentalStickering: 'OLL-F2L',
-      visualization: '3D',
-      experimentalDragInput: 'none'
-    },
+    viz: { view: '3d', stickering: 'CLS' },
     file: 'sv.ts'
   },
   {
@@ -203,11 +158,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'Winter Variation',
     puzzle: '3x3x3',
     difficulty: 2,
-    virtualization: {
-      experimentalStickering: 'full',
-      visualization: 'experimental-2D-LL',
-      experimentalDragInput: 'none'
-    },
+    viz: { view: 'last-layer', stickering: 'CLS' },
     file: 'wv.ts'
   },
   {
@@ -217,11 +168,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'Zborowski-Bruchem Last Slot',
     puzzle: '3x3x3',
     difficulty: 3,
-    virtualization: {
-      experimentalStickering: 'OLL-F2L',
-      visualization: '3D',
-      experimentalDragInput: 'none'
-    },
+    viz: { view: '3d', stickering: 'ZBLS' },
     file: 'zbls.ts'
   },
   {
@@ -231,9 +178,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'ZBLL Sune',
     puzzle: '3x3x3',
     difficulty: 3,
-    virtualization: {
-      experimentalStickering: 'PLL'
-    },
+    viz: { view: 'last-layer', stickering: 'PLL' },
     file: 'zbll-s.ts'
   },
   {
@@ -243,9 +188,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'ZBLL Antisune',
     puzzle: '3x3x3',
     difficulty: 3,
-    virtualization: {
-      experimentalStickering: 'PLL'
-    },
+    viz: { view: 'last-layer', stickering: 'PLL' },
     file: 'zbll-as.ts'
   },
   {
@@ -255,9 +198,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'ZBLL U',
     puzzle: '3x3x3',
     difficulty: 3,
-    virtualization: {
-      experimentalStickering: 'PLL'
-    },
+    viz: { view: 'last-layer', stickering: 'PLL' },
     file: 'zbll-u.ts'
   },
   {
@@ -267,9 +208,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'ZBLL T',
     puzzle: '3x3x3',
     difficulty: 3,
-    virtualization: {
-      experimentalStickering: 'PLL'
-    },
+    viz: { view: 'last-layer', stickering: 'PLL' },
     file: 'zbll-t.ts'
   },
   {
@@ -279,9 +218,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'ZBLL PI',
     puzzle: '3x3x3',
     difficulty: 3,
-    virtualization: {
-      experimentalStickering: 'PLL'
-    },
+    viz: { view: 'last-layer', stickering: 'PLL' },
     file: 'zbll-pi.ts'
   },
   {
@@ -291,9 +228,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'ZBLL L',
     puzzle: '3x3x3',
     difficulty: 3,
-    virtualization: {
-      experimentalStickering: 'PLL'
-    },
+    viz: { view: 'last-layer', stickering: 'PLL' },
     file: 'zbll-l.ts'
   },
   {
@@ -303,9 +238,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'ZBLL H',
     puzzle: '3x3x3',
     difficulty: 3,
-    virtualization: {
-      experimentalStickering: 'PLL'
-    },
+    viz: { view: 'last-layer', stickering: 'PLL' },
     file: 'zbll-h.ts'
   },
   {
@@ -315,12 +248,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: '4x4 Parity Algorithms',
     puzzle: '4x4x4',
     difficulty: 1,
-    virtualization: {
-      experimentalStickering: 'full',
-      puzzle: '4x4x4',
-      visualization: '3D',
-      experimentalDragInput: 'none'
-    },
+    viz: { view: '3d', stickering: 'full' },
     file: 'parity-4x4.ts'
   },
   {
@@ -330,12 +258,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: '5x5 Parity Algorithms',
     puzzle: '5x5x5',
     difficulty: 1,
-    virtualization: {
-      experimentalStickering: 'full',
-      puzzle: '5x5x5',
-      visualization: '3D',
-      experimentalDragInput: 'none'
-    },
+    viz: { view: '3d', stickering: 'full' },
     file: 'parity-5x5.ts'
   },
   {
@@ -345,12 +268,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'Last Two Centers (5x5)',
     puzzle: '5x5x5',
     difficulty: 2,
-    virtualization: {
-      experimentalStickering: 'centers-only',
-      puzzle: '5x5x5',
-      visualization: '3D',
-      experimentalDragInput: 'none'
-    },
+    viz: { view: '3d', stickering: 'centers-only' },
     file: 'l2c-555.ts'
   },
   {
@@ -360,12 +278,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'Last Two Edges (5x5)',
     puzzle: '5x5x5',
     difficulty: 2,
-    virtualization: {
-      experimentalStickering: 'L2E',
-      puzzle: '5x5x5',
-      visualization: 'experimental-2D-LL',
-      experimentalDragInput: 'none'
-    },
+    viz: { view: 'last-layer', stickering: 'L2E' },
     file: 'l2e-555.ts'
   },
   {
@@ -375,13 +288,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'Last 4 Edges (Pyraminx)',
     puzzle: 'pyraminx',
     difficulty: 2,
-    virtualization: {
-      experimentalStickering: 'full',
-      puzzle: 'pyraminx',
-      visualization: '3D',
-      experimentalDragInput: 'none',
-      cameraLongitude: 45
-    },
+    viz: { view: 'net', stickering: 'full' },
     file: 'l4e.ts'
   },
   {
@@ -391,12 +298,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'Cube Shape',
     puzzle: 'square1',
     difficulty: 2,
-    virtualization: {
-      experimentalStickering: 'full',
-      puzzle: 'square1',
-      visualization: '2D',
-      experimentalDragInput: 'none'
-    },
+    viz: { view: 'net', stickering: 'full' },
     file: 'sq1cs.ts'
   },
   {
@@ -406,12 +308,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'Corner Orientation',
     puzzle: 'square1',
     difficulty: 2,
-    virtualization: {
-      experimentalStickering: 'full',
-      puzzle: 'square1',
-      visualization: '2D',
-      experimentalDragInput: 'none'
-    },
+    viz: { view: 'net', stickering: 'full' },
     file: 'sq1co.ts'
   },
   {
@@ -421,12 +318,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'Edge Orientation',
     puzzle: 'square1',
     difficulty: 2,
-    virtualization: {
-      experimentalStickering: 'full',
-      puzzle: 'square1',
-      visualization: '2D',
-      experimentalDragInput: 'none'
-    },
+    viz: { view: 'net', stickering: 'full' },
     file: 'sq1eo.ts'
   },
   {
@@ -436,12 +328,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'Corner Permutation',
     puzzle: 'square1',
     difficulty: 3,
-    virtualization: {
-      experimentalStickering: 'full',
-      puzzle: 'square1',
-      visualization: '2D',
-      experimentalDragInput: 'none'
-    },
+    viz: { view: 'net', stickering: 'full' },
     file: 'sq1cp.ts'
   },
   {
@@ -451,12 +338,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'Edge Permutation',
     puzzle: 'square1',
     difficulty: 3,
-    virtualization: {
-      experimentalStickering: 'full',
-      puzzle: 'square1',
-      visualization: '2D',
-      experimentalDragInput: 'none'
-    },
+    viz: { view: 'net', stickering: 'full' },
     file: 'sq1ep.ts'
   },
   {
@@ -466,12 +348,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'Parity',
     puzzle: 'square1',
     difficulty: 3,
-    virtualization: {
-      experimentalStickering: 'full',
-      puzzle: 'square1',
-      visualization: 'experimental-2D-LL',
-      experimentalDragInput: 'none'
-    },
+    viz: { view: 'last-layer', stickering: 'full' },
     file: 'sq1parity.ts'
   },
   {
@@ -481,12 +358,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'Edge Orientation',
     puzzle: 'megaminx',
     difficulty: 1,
-    virtualization: {
-      experimentalStickering: 'OLL-EO',
-      puzzle: 'megaminx',
-      visualization: 'experimental-2D-LL',
-      experimentalDragInput: 'none'
-    },
+    viz: { view: 'last-layer', stickering: 'OLL-EO' },
     file: 'megaminx-eo.ts'
   },
   {
@@ -496,12 +368,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'Edge Permutation',
     puzzle: 'megaminx',
     difficulty: 2,
-    virtualization: {
-      experimentalStickering: 'PLL-EO',
-      puzzle: 'megaminx',
-      visualization: 'experimental-2D-LL',
-      experimentalDragInput: 'none'
-    },
+    viz: { view: 'last-layer', stickering: 'PLL-EO' },
     file: 'megaminx-ep.ts'
   },
   {
@@ -511,12 +378,7 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'Corner Orientation',
     puzzle: 'megaminx',
     difficulty: 2,
-    virtualization: {
-      experimentalStickering: 'OLL-CO',
-      puzzle: 'megaminx',
-      visualization: 'experimental-2D-LL',
-      experimentalDragInput: 'none'
-    },
+    viz: { view: 'last-layer', stickering: 'OLL-CO' },
     file: 'megaminx-co.ts'
   },
   {
@@ -526,14 +388,9 @@ export const ALGORITHM_SET_CATALOG = [
     subtitle: 'Corner Permutation',
     puzzle: 'megaminx',
     difficulty: 3,
-    virtualization: {
-      experimentalStickering: 'PLL-CP', // TODO: Update cubing.js package with case PLL-CP, now shows default
-      puzzle: 'megaminx',
-      visualization: 'experimental-2D-LL',
-      experimentalDragInput: 'none'
-    },
+    viz: { view: 'last-layer', stickering: 'PLL-CP' },
     file: 'megaminx-cp.ts'
   }
-] as const
+] as const satisfies readonly ({ readonly viz: CaseViz } & Readonly<Record<string, unknown>>)[]
 
 export type AlgorithmSetSlug = (typeof ALGORITHM_SET_CATALOG)[number]['slug']

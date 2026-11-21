@@ -42,7 +42,7 @@ export default function TrainerHistoryView() {
 
   const currentVizConfig = useMemo(() => {
     if (!currentCase) return null
-    return buildVizConfig(set.puzzle, currentCase.algs?.[0]?.moves ?? '', set.virtualization as Record<string, unknown>)
+    return buildVizConfig(set.puzzle, currentCase.algs?.[0]?.moves ?? '', set.viz)
   }, [currentCase, set])
 
   const { stats, isLoading: statsLoading, mutate: mutateStats } = useTrainerStats(methodSlug, isAuthed)
@@ -104,7 +104,7 @@ export default function TrainerHistoryView() {
             showCase
             caseById={caseById}
             puzzle={set.puzzle}
-            vizDefaults={set.virtualization as Record<string, unknown>}
+            vizDefaults={set.viz}
             emptyLabel={t('emptyMethod')}
             targetMs={targetSeconds * 1000}
           />

@@ -1,8 +1,8 @@
 import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { SkipForward, Check, Circle, Undo2 } from 'lucide-react'
-import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
-import type { PuzzleVizConfig } from '@/shared/types/puzzleViz'
+import AlgorithmRender from '@/shared/ui/puzzle/AlgorithmRender'
+import type { CaseRender } from '@/shared/lib/puzzle/caseRender'
 import type { ReactNode } from 'react'
 import { cn } from '@/shared/lib/utils'
 import AlgorithmNotation from '@/shared/ui/algorithm-notation/AlgorithmNotation'
@@ -14,7 +14,7 @@ interface TrainerCurrentCaseProps {
   setup: string
   currentTime: string
   timeColorClass?: string
-  vizConfig?: PuzzleVizConfig
+  vizConfig?: CaseRender
   isLearned?: boolean
   best?: string
   ao5?: string

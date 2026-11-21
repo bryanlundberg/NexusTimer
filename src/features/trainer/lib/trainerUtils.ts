@@ -1,7 +1,6 @@
-import { merge } from 'es-toolkit'
+import type { CaseViz } from '@nexustimer/algorithms'
 import dayjs from '@/shared/lib/dayjs'
-import type { PuzzleVizConfig } from '@/shared/types/puzzleViz'
-import { applyYellowOrientation } from '@/shared/lib/algorithms/vizConfig'
+import type { CaseRender } from '@/shared/lib/puzzle/caseRender'
 import { isSquare1Alg } from '@/shared/lib/algorithms/algNotation'
 
 export const formatMs = (ms: number, decimals = 2): string => (ms / 1000).toFixed(decimals)
@@ -51,17 +50,8 @@ export const cleanMoves = (moves: string): string => {
   return value.replace(/[()]/g, ' ').replace(/2'/g, '2').replace(/'2/g, '2').replace(/\s+/g, ' ').trim()
 }
 
-const VIZ_BASE = {
-  visualization: 'experimental-2D-LL',
-  background: 'none',
-  controlPanel: 'none',
-  experimentalStickering: 'OLL',
-  experimentalDragInput: 'none'
-}
-
-export const buildVizConfig = (
-  puzzle: string,
-  algMoves: string,
-  overrides?: Record<string, unknown>
-): PuzzleVizConfig =>
-  applyYellowOrientation(merge(merge(merge({}, VIZ_BASE), overrides ?? {}), { puzzle, alg: algMoves }))
+export const buildVizConfig = (puzzle: string, algMoves: string, viz: CaseViz): CaseRender => ({
+  puzzle,
+  viz,
+  alg: algMoves
+})

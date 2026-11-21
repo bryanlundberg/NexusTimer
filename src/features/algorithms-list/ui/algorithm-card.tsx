@@ -1,15 +1,14 @@
 import { useMemo, useState } from 'react'
-import { merge } from 'es-toolkit'
-import type { PuzzleId, PuzzleVizConfig } from '@/shared/types/puzzleViz'
+import type { CaseViz } from '@nexustimer/algorithms'
+import type { PuzzleId } from '@/shared/types/puzzleViz'
 import { ChevronDown, Play } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/shared/lib/utils'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
-import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
+import AlgorithmRender from '@/shared/ui/puzzle/AlgorithmRender'
 import AlgorithmNotation from '@/shared/ui/algorithm-notation/AlgorithmNotation'
-import { applyYellowOrientation } from '@/shared/lib/algorithms/vizConfig'
 import AlgorithmModal from '@/features/algorithms-list/ui/algorithm-modal'
 import ActionButton from '@/features/algorithms-list/ui/action-button'
 import LearnedToggle from '@/features/algorithms-list/ui/learned-toggle'
@@ -18,7 +17,7 @@ import { AlgorithmCollection } from '@/features/algorithms-list/model/types'
 
 interface AlgorithmCardProps {
   algorithm: AlgorithmCollection
-  virtualization?: PuzzleVizConfig
+  viz: CaseViz
   puzzle: PuzzleId
   isLearned?: boolean
   onToggleLearned?: () => void
@@ -27,7 +26,7 @@ interface AlgorithmCardProps {
 
 export default function AlgorithmCard({
   algorithm,
-  virtualization,
+  viz,
   puzzle,
   isLearned,
   onToggleLearned,
@@ -40,22 +39,7 @@ export default function AlgorithmCard({
   const [primary, ...alternatives] = algorithm.algs
   const canExpand = alternatives.length > 0
 
-  const vizConfig = useMemo(
-    () =>
-      applyYellowOrientation(
-        merge(
-          {
-            visualization: 'experimental-2D-LL',
-            background: 'none',
-            controlPanel: 'none',
-            alg: primary?.moves,
-            experimentalStickering: 'OLL'
-          },
-          (virtualization ?? {}) as PuzzleVizConfig
-        )
-      ),
-    [primary?.moves, virtualization]
-  )
+  const vizConfig = useMemo(() => ({ puzzle, viz, alg: primary?.moves ?? '' }), [puzzle, viz, primary?.moves])
 
   const openPreview = (alg: string) => {
     open({
@@ -64,6 +48,7 @@ export default function AlgorithmCard({
       metadata: {
         name: `${algorithm.group}-${algorithm.name}`,
         cube: puzzle,
+        stickering: viz.stickering,
         alg
       }
     })
@@ -89,7 +74,7 @@ export default function AlgorithmCard({
         aria-expanded={canExpand ? expanded : undefined}
       >
         <div className="flex size-24 shrink-0 items-center justify-center overflow-hidden bg-muted/40 p-1.5 sm:size-36 sm:p-2.5">
-          <AlgorithmRender config={vizConfig} width="100%" height="100%" className="size-full" />
+          <AlgorithmRender config={vizConfig} interactive width="100%" height="100%" className="size-full" />
         </div>
 
         <div className="flex flex-1 min-w-0 flex-col gap-0.5">

@@ -1,9 +1,7 @@
 'use client'
 
-import { merge } from 'es-toolkit'
 import { useEffect, useRef, useState } from 'react'
-import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
-import { applyYellowOrientation } from '@/shared/lib/algorithms/vizConfig'
+import AlgorithmRender from '@/shared/ui/puzzle/AlgorithmRender'
 import type { ALGORITHM_SET } from '@/shared/const/algorithms-sets'
 import type { LearnedCase } from '@/entities/trainer-learned/lib/buildLearnedMethods'
 
@@ -29,21 +27,7 @@ export default function PeopleCaseVisual({ set, item }: { set: ALGORITHM_SET; it
     return () => observer.disconnect()
   }, [inView])
 
-  const viz = set.virtualization
-  const config = applyYellowOrientation(
-    merge(
-      {
-        visualization: 'experimental-2D-LL',
-        background: 'none',
-        controlPanel: 'none',
-        experimentalStickering: 'OLL',
-        experimentalDragInput: 'none',
-        hintFacelets: 'none',
-        alg: item.moves
-      },
-      viz
-    )
-  )
+  const config = { puzzle: set.puzzle, viz: set.viz, alg: item.moves ?? '' }
 
   return (
     <div className="flex flex-col items-center gap-1">

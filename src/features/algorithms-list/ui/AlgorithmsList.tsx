@@ -4,7 +4,8 @@ import { useMemo, useState } from 'react'
 import { useRouter } from '@/shared/config/i18n/navigation'
 import { groupBy } from 'es-toolkit'
 import { Badge } from '@/components/ui/badge'
-import type { PuzzleId, PuzzleVizConfig } from '@/shared/types/puzzleViz'
+import type { CaseViz } from '@nexustimer/algorithms'
+import type { PuzzleId } from '@/shared/types/puzzleViz'
 import AlgorithmCard from '@/features/algorithms-list/ui/algorithm-card'
 import { AlgorithmCollection } from '@/features/algorithms-list/model/types'
 import { Filter } from 'lucide-react'
@@ -16,12 +17,12 @@ import { setTrainerLearned } from '@/features/trainer/model/mutateTrainerLearned
 
 interface AlgorithmsPageProps {
   algorithms: AlgorithmCollection[]
-  virtualization?: PuzzleVizConfig
+  viz: CaseViz
   puzzle: PuzzleId
   methodSlug?: string
 }
 
-export const AlgorithmsList = ({ algorithms, virtualization, puzzle, methodSlug }: AlgorithmsPageProps) => {
+export const AlgorithmsList = ({ algorithms, viz, puzzle, methodSlug }: AlgorithmsPageProps) => {
   const t = useTranslations('Index')
   const groups = useMemo(() => groupBy(algorithms, (algorithm) => algorithm.group), [algorithms])
   const [activeGroups, setActiveGroups] = useState<string[]>([])
@@ -144,7 +145,7 @@ export const AlgorithmsList = ({ algorithms, virtualization, puzzle, methodSlug 
           <AlgorithmCard
             algorithm={item}
             key={`${item.group}-${item.name}`}
-            virtualization={virtualization}
+            viz={viz}
             puzzle={puzzle}
             isLearned={learnedSet.has(item.id)}
             onToggleLearned={methodSlug ? () => handleToggleLearned(item.id) : undefined}

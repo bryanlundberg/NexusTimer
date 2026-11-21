@@ -1,9 +1,7 @@
 'use client'
 
-import { merge } from 'es-toolkit'
 import { useEffect, useRef, useState } from 'react'
-import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
-import { applyYellowOrientation } from '@/shared/lib/algorithms/vizConfig'
+import AlgorithmRender from '@/shared/ui/puzzle/AlgorithmRender'
 import type { ALGORITHM_SET } from '@/shared/const/algorithms-sets'
 
 const DEFAULT_SIZE = 76
@@ -31,21 +29,7 @@ export default function MethodThumbnail({ set, size = DEFAULT_SIZE }: { set: ALG
   }, [inView])
 
   const firstMoves = set.algorithms[0]?.algs[0]?.moves
-  const viz = set.virtualization
-
-  const config = applyYellowOrientation(
-    merge(
-      {
-        visualization: 'experimental-2D-LL',
-        background: 'none',
-        controlPanel: 'none',
-        experimentalStickering: 'OLL',
-        experimentalDragInput: 'none',
-        alg: firstMoves
-      },
-      viz
-    )
-  )
+  const config = { puzzle: set.puzzle, viz: set.viz, alg: firstMoves ?? '' }
 
   return (
     <div

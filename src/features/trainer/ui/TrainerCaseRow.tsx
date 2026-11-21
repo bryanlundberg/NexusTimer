@@ -2,7 +2,8 @@
 
 import { useMemo } from 'react'
 import { useTranslations } from 'next-intl'
-import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
+import type { CaseViz } from '@nexustimer/algorithms'
+import AlgorithmRender from '@/shared/ui/puzzle/AlgorithmRender'
 import { buildVizConfig, formatMs } from '@/features/trainer/lib/trainerUtils'
 import type { RankedCase } from '@/features/trainer/lib/methodOverview'
 import { cn } from '@/shared/lib/utils'
@@ -10,7 +11,7 @@ import { cn } from '@/shared/lib/utils'
 interface TrainerCaseRowProps {
   ranked: RankedCase
   puzzle: string
-  vizDefaults?: Record<string, unknown>
+  vizDefaults: CaseViz
   targetMs: number
 }
 

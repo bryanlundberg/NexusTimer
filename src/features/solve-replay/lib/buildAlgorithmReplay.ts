@@ -1,6 +1,6 @@
 import { expandAlg, formatMove, parseAlg, type LeafNode } from '@nexustimer/cubelet'
 import { invertAlgorithm, isSquare1Alg } from '@/shared/lib/algorithms/algNotation'
-import { yellowOrientationSetupAlg } from '@/shared/lib/algorithms/vizConfig'
+import { yellowOrientationSetupAlg } from '@/shared/lib/puzzle/caseRender'
 import type { SolveReplay } from '@/entities/replay/model/types'
 
 const square1Token = (node: LeafNode): string => {
@@ -16,7 +16,7 @@ function tokenize(alg: string): string[] {
 
 /**
  * Builds the replay the algorithm preview modal plays: it opens on the case the
- * card thumbnail shows (`alg⁻¹` from solved, see applyYellowOrientation) and plays
+ * card thumbnail shows (`alg⁻¹` from solved, see caseRender) and plays
  * the algorithm forward, so the reproduction ends solved. The scramble also
  * carries the yellow-layer rotation those thumbnails use, so the modal is not
  * upside down relative to the card.

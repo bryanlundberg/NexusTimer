@@ -41,7 +41,7 @@ export default function TrainerMethodOverview({ set, stats, targetMs, isLoading 
     )
   }
 
-  const vizDefaults = set.virtualization as Record<string, unknown>
+  const vizDefaults = set.viz
 
   return (
     <div className="flex flex-col gap-2">

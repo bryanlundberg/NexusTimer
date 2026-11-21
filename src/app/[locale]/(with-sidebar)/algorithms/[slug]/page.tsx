@@ -168,7 +168,7 @@ export default async function AlgorithmsMethodPage({ params }: Props) {
         />
         <AlgorithmsList
           algorithms={collection.algorithms}
-          virtualization={collection.virtualization}
+          viz={collection.viz}
           puzzle={collection.puzzle}
           methodSlug={collection.slug}
         />

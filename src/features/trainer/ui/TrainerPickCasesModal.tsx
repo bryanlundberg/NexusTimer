@@ -8,8 +8,9 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { AlgorithmCollection } from '@/features/algorithms-list/model/types'
-import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
-import type { PuzzleVizConfig } from '@/shared/types/puzzleViz'
+import AlgorithmRender from '@/shared/ui/puzzle/AlgorithmRender'
+import type { CaseViz } from '@nexustimer/algorithms'
+import type { CaseRender } from '@/shared/lib/puzzle/caseRender'
 import { cn } from '@/shared/lib/utils'
 import { Check } from 'lucide-react'
 import { buildVizConfig } from '@/features/trainer/lib/trainerUtils'
@@ -17,14 +18,14 @@ import { buildVizConfig } from '@/features/trainer/lib/trainerUtils'
 interface TrainerPickCasesModalProps {
   algorithms: AlgorithmCollection[]
   initialSelected: Set<string>
-  vizConfig?: PuzzleVizConfig
+  vizConfig: CaseViz
   puzzle: string
   onApply: (next: Set<string>) => void
 }
 
 interface CaseTileProps {
   alg: AlgorithmCollection
-  config: PuzzleVizConfig
+  config: CaseRender
   isSelected: boolean
   onToggle: (id: string) => void
 }
@@ -98,9 +99,9 @@ export default function TrainerPickCasesModal({
   const allSelected = allIds.length > 0 && allIds.every((id) => selected.has(id))
 
   const configById = useMemo(() => {
-    const map = new Map<string, PuzzleVizConfig>()
+    const map = new Map<string, CaseRender>()
     for (const alg of algorithms) {
-      map.set(alg.id, buildVizConfig(puzzle, alg.algs[0]?.moves ?? '', vizConfig as Record<string, unknown>))
+      map.set(alg.id, buildVizConfig(puzzle, alg.algs[0]?.moves ?? '', vizConfig))
     }
     return map
   }, [algorithms, vizConfig, puzzle])

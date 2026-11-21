@@ -4,7 +4,8 @@ import { useMemo } from 'react'
 import { useTranslations } from 'next-intl'
 import { motion } from 'motion/react'
 import { Button } from '@/components/ui/button'
-import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
+import type { CaseViz } from '@nexustimer/algorithms'
+import AlgorithmRender from '@/shared/ui/puzzle/AlgorithmRender'
 import TrainerSolveTimeCell from './TrainerSolveTimeCell'
 import TrainerDeleteSolveButton from './TrainerDeleteSolveButton'
 import type { TrainerSolveListItem } from '@/features/trainer/model/types'
@@ -23,7 +24,7 @@ interface TrainerSolveHistoryTableProps {
   showCase?: boolean
   caseById?: Map<string, AlgorithmCollection>
   puzzle?: string
-  vizDefaults?: Record<string, unknown>
+  vizDefaults?: CaseViz
   emptyLabel?: string
   targetMs?: number
 }
@@ -48,7 +49,7 @@ export default function TrainerSolveHistoryTable({
 }: TrainerSolveHistoryTableProps) {
   const t = useTranslations('Index.TrainerHistoryPage.table')
   const vizConfigByCaseId = useMemo(() => {
-    if (!showCase || !caseById || !puzzle) return new Map()
+    if (!showCase || !caseById || !puzzle || !vizDefaults) return new Map()
     const map = new Map()
     caseById.forEach((algCase, id) => {
       map.set(id, buildVizConfig(puzzle, algCase?.algs?.[0]?.moves ?? '', vizDefaults))

@@ -2,7 +2,8 @@
 
 import { useMemo } from 'react'
 import { motion } from 'motion/react'
-import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
+import type { CaseViz } from '@nexustimer/algorithms'
+import AlgorithmRender from '@/shared/ui/puzzle/AlgorithmRender'
 import { buildVizConfig, formatMs } from '@/features/trainer/lib/trainerUtils'
 import type { RankedCase } from '@/features/trainer/lib/methodOverview'
 import { useChartContrast } from '@/shared/model/useChartContrast'
@@ -11,7 +12,7 @@ import { cn } from '@/shared/lib/utils'
 interface TrainerCasePaceChartProps {
   ranked: RankedCase[]
   puzzle: string
-  vizDefaults?: Record<string, unknown>
+  vizDefaults: CaseViz
 }
 
 export default function TrainerCasePaceChart({ ranked, puzzle, vizDefaults }: TrainerCasePaceChartProps) {

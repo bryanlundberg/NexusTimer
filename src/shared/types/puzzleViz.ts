@@ -11,20 +11,3 @@ export type PuzzleId =
   | 'square1'
   | 'clock'
   | 'fto'
-
-export interface PuzzleVizConfig {
-  readonly puzzle?: string
-  readonly visualization?: string
-  readonly alg?: string
-  readonly experimentalSetupAlg?: string
-  readonly experimentalSetupAnchor?: string
-  readonly experimentalStickering?: string
-  readonly experimentalStickeringMaskOrbits?: string
-  readonly experimentalDragInput?: string
-  readonly hintFacelets?: string
-  readonly background?: string
-  readonly controlPanel?: string
-  readonly cameraDistance?: number
-  readonly cameraLongitude?: number
-  readonly tempoScale?: number
-}

@@ -8,7 +8,7 @@ import type { SmartCubeConnection } from 'smartcube-web-bluetooth'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/shared/lib/utils'
 import { useSession } from '@/shared/model/useSession'
-import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
+import AlgorithmRender from '@/shared/ui/puzzle/AlgorithmRender'
 import { ScrambleGuideMoves } from '@/features/timer/ui/ScrambleGuideMoves'
 import { SolveClockText } from '@/features/timer/ui/SolveClockText'
 import { useVirtualCube } from '@/features/timer/model/useVirtualCube'
@@ -53,10 +53,7 @@ export default function TrainerSmartTimer({ connection }: TrainerSmartTimerProps
   const { data: session } = useSession()
   const isAuthed = !!session?.user?.id
 
-  const vizConfig = useMemo(
-    () => buildVizConfig(set.puzzle, currentAlg?.moves ?? '', set.virtualization as Record<string, unknown>),
-    [set, currentAlg]
-  )
+  const vizConfig = useMemo(() => buildVizConfig(set.puzzle, currentAlg?.moves ?? '', set.viz), [set, currentAlg])
 
   const { canvasRef, canvasStyle, player, engine, recreatePlayer } = useVirtualCube({
     cubeSize: CUBE_SIZE,
@@ -65,7 +62,8 @@ export default function TrainerSmartTimer({ connection }: TrainerSmartTimerProps
     tempoScale: 5,
     dragInput: 'none',
     sizePx: 'min(150px, 32vw)',
-    cameraDistance: 8
+    cameraDistance: 8,
+    turnSound: false
   })
 
   const [target, setTarget] = useState<{ scramble: string; json: string | null }>({ scramble: '', json: null })

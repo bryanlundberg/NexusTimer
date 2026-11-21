@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
+import AlgorithmRender from '@/shared/ui/puzzle/AlgorithmRender'
 import type { AlgorithmCollection } from '@/features/algorithms-list/model/types'
 
 interface TrainerCurrentCaseInfoProps {
