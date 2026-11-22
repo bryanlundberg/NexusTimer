@@ -8,6 +8,7 @@ import { useTimerRailStore } from '@/features/timer-solves-rail/model/useTimerRa
 import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
 import useQuickActions from '@/features/manage-solves/model/useQuickActions'
 import SolveDetails from '@/features/manage-solves/ui/SolveDetails'
+import DeleteSolveToast from '@/features/timer/ui/DeleteSolveToast'
 import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { useVirtualKeymapStore } from '@/features/timer/model/useVirtualKeymapStore'
 import { compareNewestFirst } from '@/entities/solve/lib/sortSolves'
@@ -68,24 +69,39 @@ export default function useTimerShortcuts() {
       }
       pendingDelete.current = { id: solve.id, at: Date.now() }
       const { t } = latest.current
-      toast(t('solve-details.delete-shortcut-title', { key }), {
-        id: DELETE_TOAST_ID,
-        duration: DELETE_CONFIRM_MS,
-        description: (
-          <span className="flex flex-col gap-0.5">
-            <span className="font-mono font-semibold tabular-nums">{describeTime(solve)}</span>
-            {solve.scramble && <span className="font-mono text-xs text-muted-foreground">{solve.scramble}</span>}
-            <span className="text-xs text-muted-foreground">{new Date(solve.endTime).toLocaleString()}</span>
-          </span>
-        ),
-        action: { label: t('tooltips.delete'), onClick: () => confirmDelete(solve) },
-        onDismiss: () => {
-          if (pendingDelete.current?.id === solve.id) pendingDelete.current = null
-        },
-        onAutoClose: () => {
-          if (pendingDelete.current?.id === solve.id) pendingDelete.current = null
-        }
+      const title = t.rich('solve-details.delete-shortcut-title', {
+        time: describeTime(solve),
+        value: (chunks) => <span className="font-mono tabular-nums text-destructive">{chunks}</span>
       })
+      const hint = t.rich('solve-details.delete-shortcut-hint', {
+        key: key === 'Backspace' ? '⌫' : 'Del',
+        kbd: (chunks) => (
+          <kbd className="mx-0.5 inline-flex h-4 min-w-4 items-center justify-center border border-border bg-muted px-1 font-mono text-[10px] leading-none text-foreground">
+            {chunks}
+          </kbd>
+        )
+      })
+      toast.custom(
+        () => (
+          <DeleteSolveToast
+            title={title}
+            hint={hint}
+            actionLabel={t('tooltips.delete')}
+            durationMs={DELETE_CONFIRM_MS}
+            onConfirm={() => confirmDelete(solve)}
+          />
+        ),
+        {
+          id: DELETE_TOAST_ID,
+          duration: DELETE_CONFIRM_MS,
+          onDismiss: () => {
+            if (pendingDelete.current?.id === solve.id) pendingDelete.current = null
+          },
+          onAutoClose: () => {
+            if (pendingDelete.current?.id === solve.id) pendingDelete.current = null
+          }
+        }
+      )
     }
 
     const handleKeyDown = (event: KeyboardEvent) => {

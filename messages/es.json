@@ -724,7 +724,8 @@
       "watch-replay": "Ver repetición",
       "delete-confirm-title": "¿Eliminar este tiempo?",
       "delete-confirm-desc": "Esta acción no se puede deshacer.",
-      "delete-shortcut-title": "Presiona {key} otra vez para borrar este solve",
+      "delete-shortcut-title": "¿Borrar <value>{time}</value>?",
+      "delete-shortcut-hint": "Presioná <kbd>{key}</kbd> otra vez para confirmar",
       "comment-title": "Comentario del solve",
       "comment-desc": "Solo vos podés ver esta nota.",
       "comment-placeholder": "Agregá una nota sobre este solve"

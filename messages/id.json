@@ -741,7 +741,8 @@
       "watch-replay": "Tonton putar ulang",
       "delete-confirm-title": "Hapus solve ini?",
       "delete-confirm-desc": "Tindakan ini tidak dapat dibatalkan.",
-      "delete-shortcut-title": "Tekan {key} lagi untuk menghapus solve ini",
+      "delete-shortcut-title": "Hapus <value>{time}</value>?",
+      "delete-shortcut-hint": "Tekan <kbd>{key}</kbd> lagi untuk konfirmasi",
       "comment-title": "Komentar solve",
       "comment-desc": "Hanya kamu yang bisa melihat catatan ini.",
       "comment-placeholder": "Tambahkan catatan tentang solve ini"

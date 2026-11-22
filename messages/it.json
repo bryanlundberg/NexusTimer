@@ -741,7 +741,8 @@
       "watch-replay": "Guarda il replay",
       "delete-confirm-title": "Eliminare questo solve?",
       "delete-confirm-desc": "Questa azione non può essere annullata.",
-      "delete-shortcut-title": "Premi di nuovo {key} per eliminare questo solve",
+      "delete-shortcut-title": "Eliminare <value>{time}</value>?",
+      "delete-shortcut-hint": "Premi di nuovo <kbd>{key}</kbd> per confermare",
       "comment-title": "Commento del solve",
       "comment-desc": "Solo tu puoi vedere questa nota.",
       "comment-placeholder": "Aggiungi una nota su questo solve"

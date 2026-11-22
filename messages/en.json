@@ -731,7 +731,8 @@
       "watch-replay": "Watch replay",
       "delete-confirm-title": "Delete this solve?",
       "delete-confirm-desc": "This action cannot be undone.",
-      "delete-shortcut-title": "Press {key} again to delete this solve",
+      "delete-shortcut-title": "Delete <value>{time}</value>?",
+      "delete-shortcut-hint": "Press <kbd>{key}</kbd> again to confirm",
       "comment-title": "Solve comment",
       "comment-desc": "Only you can see this note.",
       "comment-placeholder": "Add a note about this solve"
