@@ -18,7 +18,7 @@ export default function DrawerHintPanel() {
   const selected = faces?.find((face) => CROSS_FACE_COLOR[face.face] === color) ?? null
 
   return (
-    <DialogContent className="sm:max-w-[560px]">
+    <DialogContent className="sm:max-w-[560px]" onCloseAutoFocus={(e) => e.preventDefault()}>
       <DialogHeader>
         <DialogTitle className="flex items-center gap-2">
           <HintBulbIcon className="size-4" />
