@@ -1,6 +1,8 @@
+import { useRef } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
+import { useCubeGridKeyboard } from '@/features/manage-cubes/model/useCubeGridKeyboard'
 import { Cube } from '@/entities/cube/model/types'
-import { CubeCard } from '@/features/manage-cubes/ui/CubeCard'
+import { CubeRow } from '@/features/manage-cubes/ui/CubeRow'
 
 interface CubesListProps {
   cubes: Array<Cube>
@@ -8,18 +10,20 @@ interface CubesListProps {
 
 export default function CubesList({ cubes }: CubesListProps) {
   const reduceMotion = useReducedMotion()
+  const listRef = useRef<HTMLDivElement>(null)
+  const onKeyDown = useCubeGridKeyboard(listRef)
 
   return (
     <div className="@container">
-      <div className="grid grid-cols-1 @xl:grid-cols-2 @3xl:grid-cols-3 gap-4">
+      <div ref={listRef} onKeyDown={onKeyDown} className="-mx-3 flex flex-col border-y border-border/50">
         {cubes.map((cube) => (
           <motion.div
             key={cube.id}
             layout={reduceMotion ? false : 'position'}
             transition={{ type: 'spring', stiffness: 500, damping: 40 }}
-            className="grid"
+            className="border-b border-border/50 last:border-b-0"
           >
-            <CubeCard cube={cube} />
+            <CubeRow cube={cube} />
           </motion.div>
         ))}
       </div>
