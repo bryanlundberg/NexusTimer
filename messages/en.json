@@ -1655,7 +1655,7 @@
   },
   "Multiplayer": {
     "title": "Live rooms",
-    "description": "Join real-time cubing sessions. A casual space to practice freely without the pressure of rankings.",
+    "description": "Cube in real time with as many people as you like. Open a room or join one, and everyone solves the same scramble each round.",
     "new-room": "New room",
     "no-active-rooms": "No active rooms yet",
     "no-active-rooms-description": "Be the first to start a session! Create a room and invite others for some casual practice.",

@@ -1633,7 +1633,7 @@
   },
   "Multiplayer": {
     "title": "实时房间",
-    "description": "加入实时魔方竞技。一个可以自由练习而没有排名压力的休闲空间。",
+    "description": "与任意多的人实时一起玩魔方。创建或加入房间，每一轮所有人都解同一个打乱。",
     "new-room": "新房间",
     "no-active-rooms": "目前还没有活跃的房间",
     "no-active-rooms-description": "成为第一个开启会话的人！创建一个房间并邀请他人加入。",

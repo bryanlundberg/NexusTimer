@@ -1655,7 +1655,7 @@
   },
   "Multiplayer": {
     "title": "Mga live room",
-    "description": "Sumali sa real-time na cubing sessions. Isang casual na espasyo para mag-practice nang malaya nang walang presyur ng rankings.",
+    "description": "Mag-cube nang real-time kasama ang kahit ilang tao. Gumawa o sumali sa isang room, at pare-pareho ang scramble ng lahat sa bawat round.",
     "new-room": "Bagong Room",
     "no-active-rooms": "Wala pang aktibong room",
     "no-active-rooms-description": "Ikaw ang mauna sa pagsisimula ng session! Gumawa ng room at mag-imbita ng iba para sa casual na practice.",

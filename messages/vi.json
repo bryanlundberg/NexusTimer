@@ -1655,7 +1655,7 @@
   },
   "Multiplayer": {
     "title": "Phòng trực tiếp",
-    "description": "Tham gia các phiên cubing thời gian thực. Một không gian thoải mái để luyện tập tự do mà không áp lực thứ hạng.",
+    "description": "Giải cube theo thời gian thực với bao nhiêu người tùy thích. Tạo phòng hoặc tham gia một phòng, và mỗi vòng mọi người giải cùng một scramble.",
     "new-room": "Phòng mới",
     "no-active-rooms": "Chưa có phòng nào hoạt động",
     "no-active-rooms-description": "Hãy là người đầu tiên bắt đầu một phiên! Tạo phòng và mời người khác cùng luyện tập thoải mái.",

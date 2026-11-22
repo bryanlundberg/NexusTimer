@@ -1655,7 +1655,7 @@
   },
   "Multiplayer": {
     "title": "Pokoje na żywo",
-    "description": "Dołącz do sesji cubingu w czasie rzeczywistym. Swobodna przestrzeń do ćwiczeń bez presji rankingów.",
+    "description": "Układaj w czasie rzeczywistym z dowolną liczbą osób. Utwórz pokój lub dołącz do istniejącego, a w każdej rundzie wszyscy układają ten sam scramble.",
     "new-room": "Nowy pokój",
     "no-active-rooms": "Brak aktywnych pokoi",
     "no-active-rooms-description": "Bądź pierwszy, który rozpocznie sesję! Utwórz pokój i zaproś innych na swobodne ćwiczenia.",

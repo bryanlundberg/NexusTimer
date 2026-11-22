@@ -1633,7 +1633,7 @@
   },
   "Multiplayer": {
     "title": "Salas ao vivo",
-    "description": "Junte-se a sessões de cubing em tempo real. Um espaço casual para praticar livremente.",
+    "description": "Faça cubing em tempo real com quantas pessoas quiser. Crie uma sala ou entre em uma, e todos resolvem o mesmo embaralhamento a cada rodada.",
     "new-room": "Nova Sala",
     "no-active-rooms": "Sem salas ativas",
     "no-active-rooms-description": "Seja o primeiro a criar uma sessão!",

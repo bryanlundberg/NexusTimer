@@ -1633,7 +1633,7 @@
   },
   "Multiplayer": {
     "title": "Salons en direct",
-    "description": "Rejoignez des sessions de cubing en temps réel. Un espace décontracté pour pratiquer librement.",
+    "description": "Cubez en temps réel avec autant de personnes que vous voulez. Créez une salle ou rejoignez-en une, et tout le monde résout le même mélange à chaque manche.",
     "new-room": "Nouvelle salle",
     "no-active-rooms": "Pas de salles actives",
     "no-active-rooms-description": "Soyez le premier à créer une session !",
