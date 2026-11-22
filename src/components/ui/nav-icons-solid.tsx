@@ -147,8 +147,27 @@ export function FriendsLeaderboardNavIcon(props: IconProps) {
 export function FreePlayNavIcon(props: IconProps) {
   return (
     <Svg {...props}>
-      <path opacity={BACK} d="M15 9.75h2l3 3v7.75H9.25V15H15z" />
-      <path d="M3 3.25h7.75l3 3v7.5H3z" />
+      <g opacity={BACK}>
+        <circle cx={16.5} cy={5} r={2.5} className="motion-safe:animate-pulse" />
+      </g>
+      <circle cx={8.5} cy={7} r={3.5} />
+      <path d="M2 20.5a6.5 6.5 0 0 1 11-4.7v4.7z" />
+      <path d="M14.25 13.75h3.25V17h-3.25zM18.25 13.75h3.25V17h-3.25zM14.25 17.75h3.25V21h-3.25zM18.25 17.75h3.25V21h-3.25z" />
+    </Svg>
+  )
+}
+
+export function VersusNavIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <circle cx={6} cy={5.5} r={2.75} />
+      <path d="M1.5 14a4.5 4.5 0 0 1 9 0z" />
+      <path d="M2.25 15.75h3.25V19H2.25zM6.25 15.75h3.25V19H6.25zM2.25 19.75h3.25V23H2.25zM6.25 19.75h3.25V23H6.25z" />
+      <g opacity={BACK}>
+        <circle cx={18} cy={5.5} r={2.75} />
+        <path d="M13.5 14a4.5 4.5 0 0 1 9 0z" />
+        <path d="M14.5 15.75h3.25V19H14.5zM18.5 15.75h3.25V19H18.5zM14.5 19.75h3.25V23H14.5zM18.5 19.75h3.25V23H18.5z" />
+      </g>
     </Svg>
   )
 }
