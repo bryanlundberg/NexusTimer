@@ -110,81 +110,84 @@ export default function SolvesSelectionBar({ allIds }: SolvesSelectionBarProps) 
   }
 
   return (
-    <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 px-3 pb-3">
+    <div className="@container pointer-events-none absolute inset-x-0 bottom-0 z-20 px-3 pb-3 drop-shadow-[0_8px_24px_rgb(0_0_0/0.35)]">
       <div
         onTransitionEnd={(e) => {
           if (e.propertyName === 'translate' && !selectionMode) setShouldRender(false)
         }}
         className={cn(
-          'notch-br pointer-events-auto mx-auto flex max-w-2xl items-center gap-1 sm:gap-2 bg-foreground p-2 text-background shadow-float transition-[translate,opacity]',
+          'dialog-shell pointer-events-auto relative mx-auto flex max-w-2xl flex-wrap items-center gap-1 gap-y-2 p-2 text-foreground transition-[translate,opacity] @4xl:max-w-4xl @4xl:flex-nowrap @4xl:gap-2',
           visible
             ? 'translate-y-0 opacity-100 duration-400 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]'
             : 'translate-y-[calc(100%+16px)] opacity-0 duration-200 ease-in'
         )}
       >
-        <Button
-          variant="ghost"
-          size="icon"
-          aria-label={t('SolvesPage.selection.cancel')}
-          onClick={exit}
-          className="shrink-0 text-background hover:bg-background/15 hover:text-background dark:hover:bg-background/15"
-        >
-          <X className="size-4" />
-        </Button>
+        <div className="grid w-full grid-cols-[1fr_minmax(0,auto)_1fr] items-center gap-2 @4xl:w-auto @4xl:min-w-0 @4xl:flex-1">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={exit}
+            className="justify-self-start gap-1.5 bg-muted pointer-coarse:h-10 hover:bg-muted/70 dark:bg-muted/50 dark:hover:bg-muted/70"
+          >
+            <X className="size-3.5" />
+            <span className="text-xs">{t('SolvesPage.selection.cancel')}</span>
+          </Button>
 
-        <span className="min-w-0 flex-1 truncate text-sm font-medium tabular-nums">
-          {t('SolvesPage.selection.selected', { count })}
-        </span>
-
-        <Button
-          variant="ghost"
-          size="sm"
-          className="shrink-0 gap-1.5 pointer-coarse:h-10 text-background hover:bg-background/15 hover:text-background dark:hover:bg-background/15"
-          disabled={allSelected}
-          onClick={() => selectAll(allIds)}
-          data-testid="bulk-select-all-button"
-        >
-          <ListChecks className="size-3.5" />
-          <span className="hidden text-xs sm:inline">{t('SolvesPage.selection.select-all')}</span>
-        </Button>
-
-        <Button
-          variant="ghost"
-          size="sm"
-          className="shrink-0 gap-1.5 pointer-coarse:h-10 text-destructive hover:bg-destructive/15 hover:text-destructive dark:hover:bg-destructive/15"
-          disabled={count === 0}
-          onClick={() => setConfirmOpen(true)}
-          data-testid="bulk-delete-button"
-        >
-          <Trash className="size-3.5" />
-          <span className="hidden text-xs sm:inline">{t('SolvesPage.selection.delete')}</span>
-        </Button>
-
-        <Button
-          variant="secondary"
-          size="sm"
-          className="shrink-0 gap-1.5 pointer-coarse:h-10"
-          disabled={count === 0}
-          onClick={handleShare}
-          data-testid="bulk-share-button"
-        >
-          <Share2 className="size-3.5" />
-          <span className="hidden text-xs sm:inline">{t('SolvesPage.share')}</span>
-        </Button>
-
-        <Button
-          variant="default"
-          size="sm"
-          className="shrink-0 gap-1.5 pointer-coarse:h-10"
-          disabled={count === 0}
-          onClick={handleMove}
-          data-testid={isSession ? 'bulk-move-to-history-button' : 'bulk-move-to-session-button'}
-        >
-          <ArrowRightLeft className="size-3.5" />
-          <span className="hidden text-xs sm:inline">
-            {t(isSession ? 'SolvesPage.selection.move-to-history' : 'SolvesPage.selection.move-to-session')}
+          <span className="truncate text-center text-sm font-medium tabular-nums">
+            {t('SolvesPage.selection.selected', { count })}
           </span>
-        </Button>
+
+          <Button
+            variant="ghost"
+            size="sm"
+            className="justify-self-end gap-1.5 bg-muted pointer-coarse:h-10 hover:bg-muted/70 dark:bg-muted/50 dark:hover:bg-muted/70"
+            disabled={allSelected}
+            onClick={() => selectAll(allIds)}
+            data-testid="bulk-select-all-button"
+          >
+            <ListChecks className="size-3.5" />
+            <span className="text-xs">{t('SolvesPage.selection.select-all')}</span>
+          </Button>
+        </div>
+
+        <div className="grid w-full grid-cols-3 gap-1 @4xl:flex @4xl:w-auto @4xl:gap-2">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="min-w-0 gap-1.5 bg-destructive/15 pointer-coarse:h-10 text-destructive hover:bg-destructive/25 hover:text-destructive dark:hover:bg-destructive/25"
+            disabled={count === 0}
+            onClick={() => setConfirmOpen(true)}
+            data-testid="bulk-delete-button"
+          >
+            <Trash className="size-3.5" />
+            <span className="truncate text-xs">{t('SolvesPage.selection.delete')}</span>
+          </Button>
+
+          <Button
+            variant="ghost"
+            size="sm"
+            className="min-w-0 gap-1.5 bg-muted pointer-coarse:h-10 hover:bg-muted/70 dark:bg-muted/50 dark:hover:bg-muted/70"
+            disabled={count === 0}
+            onClick={handleShare}
+            data-testid="bulk-share-button"
+          >
+            <Share2 className="size-3.5" />
+            <span className="truncate text-xs">{t('SolvesPage.share')}</span>
+          </Button>
+
+          <Button
+            size="sm"
+            className="btn-notch-br min-w-0 gap-1.5 font-semibold pointer-coarse:h-10 @4xl:ms-1"
+            disabled={count === 0}
+            onClick={handleMove}
+            data-testid={isSession ? 'bulk-move-to-history-button' : 'bulk-move-to-session-button'}
+          >
+            <ArrowRightLeft className="size-3.5" />
+            <span className="truncate text-xs">
+              {t(isSession ? 'SolvesPage.selection.move-to-history' : 'SolvesPage.selection.move-to-session')}
+            </span>
+          </Button>
+        </div>
       </div>
 
       <AlertDialog open={confirmOpen} onOpenChange={setConfirmOpen}>

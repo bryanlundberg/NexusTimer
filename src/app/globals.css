@@ -1058,6 +1058,22 @@
   }
 }
 
+.btn-notch.btn-notch-br {
+  --btn-shape: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--btn-cut)),
+    calc(100% - var(--btn-cut)) 100%,
+    0 100%
+  );
+}
+
+@supports (corner-shape: bevel) {
+  :is(a, button, [role='button']).btn-notch.btn-notch-br {
+    border-radius: 0 0 var(--btn-cut) 0 !important;
+  }
+}
+
 @supports not (corner-shape: bevel) {
   :is(a, button, [role='button']).btn-notch:focus-visible {
     outline: 2px solid currentColor;
