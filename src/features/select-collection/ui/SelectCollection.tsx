@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { useCubeActions } from '@/features/manage-cubes/model/useCubeActions'
 import { PlusIcon, Search } from 'lucide-react'
 import { Nexi } from '@/shared/ui/nexi'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { CubeListItem } from '@/features/select-collection/ui/CubeListItem'
 import CubeCategoryFilter, {
   CubeCategoryFilterValue as Filter
@@ -27,6 +27,7 @@ export default function SelectCollection() {
   const [filter, setFilter] = useState<Filter>('all')
   const [query, setQuery] = useState('')
   const [filterOpen, setFilterOpen] = useState(false)
+  const searchRef = useRef<HTMLInputElement>(null)
 
   // While the category dropdown is open, swallow any outside pointer/escape at
   // the capture phase so it only closes the dropdown, never the whole dialog.
@@ -69,6 +70,59 @@ export default function SelectCollection() {
       })
   }, [allCubes, filter, query])
 
+  const [activeId, setActiveId] = useState<string | null>(null)
+  const activeIndex = (() => {
+    const current = visibleCubes.findIndex((cube) => cube.id === activeId)
+    if (current >= 0) return current
+    return Math.max(
+      0,
+      visibleCubes.findIndex((cube) => cube.id === selectedCube?.id)
+    )
+  })()
+
+  useEffect(() => {
+    if (!isOpen || filterOpen) return
+
+    const typeIntoSearch = (update: (q: string) => string) => {
+      setQuery(update)
+      const input = searchRef.current
+      if (!input) return
+      input.focus()
+      requestAnimationFrame(() => input.setSelectionRange(input.value.length, input.value.length))
+    }
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.isComposing || e.ctrlKey || e.metaKey || e.altKey) return
+      if (document.activeElement !== searchRef.current) {
+        if (e.key.length === 1 && e.key !== ' ') {
+          e.preventDefault()
+          typeIntoSearch((q) => q + e.key)
+          return
+        }
+        if (e.key === 'Backspace') {
+          e.preventDefault()
+          typeIntoSearch((q) => q.slice(0, -1))
+          return
+        }
+      }
+      if (visibleCubes.length === 0) return
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault()
+        const step = e.key === 'ArrowDown' ? 1 : -1
+        const next = (activeIndex + step + visibleCubes.length) % visibleCubes.length
+        setActiveId(visibleCubes[next].id)
+      } else if (e.key === 'Enter') {
+        const target = e.target as Element | null
+        if (target?.closest('[data-slot="dialog-content"] button')) return
+        e.preventDefault()
+        onSelect(visibleCubes[activeIndex].id)
+      }
+    }
+
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [isOpen, filterOpen, visibleCubes, activeIndex])
+
   const onSelect = (id: string) => {
     const choseCube = allCubes.find((cube) => cube.id === id)
     if (!choseCube) return
@@ -97,6 +151,7 @@ export default function SelectCollection() {
             <div className="field group flex flex-1 items-center gap-2 px-3">
               <Search className="size-4 shrink-0 text-muted-foreground transition-colors group-focus-within:text-primary" />
               <input
+                ref={searchRef}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={t('Inputs.search')}
@@ -127,8 +182,14 @@ export default function SelectCollection() {
                 </p>
               </div>
             ) : (
-              visibleCubes.map((cube) => (
-                <CubeListItem key={cube.id} cube={cube} onSelect={onSelect} isSelected={selectedCube?.id === cube.id} />
+              visibleCubes.map((cube, index) => (
+                <CubeListItem
+                  key={cube.id}
+                  cube={cube}
+                  onSelect={onSelect}
+                  isSelected={selectedCube?.id === cube.id}
+                  isActive={activeId !== null && index === activeIndex}
+                />
               ))
             )}
           </div>

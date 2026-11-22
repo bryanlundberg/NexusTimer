@@ -5,16 +5,25 @@ import getBestTime from '@/shared/lib/statistics/getBestTime'
 import formatTime from '@/shared/lib/formatTime'
 import { CubeCategoryIcon } from '@/shared/ui/cube-category-icon/CubeCategoryIcon'
 import { Check, Star } from 'lucide-react'
+import { useEffect, useRef } from 'react'
 
 export function CubeListItem({
   cube,
   onSelect,
-  isSelected
+  isSelected,
+  isActive = false
 }: {
   cube: Cube
   onSelect: (id: string) => void
   isSelected: boolean
+  isActive?: boolean
 }) {
+  const ref = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    if (isActive) ref.current?.scrollIntoView({ block: 'nearest' })
+  }, [isActive])
+
   const foundCube = cubeCollection.find((i) => i.name === cube.category)
 
   const combined = [...(cube.solves?.session ?? []), ...(cube.solves?.all ?? [])]
@@ -28,10 +37,12 @@ export function CubeListItem({
 
   return (
     <button
+      ref={ref}
       type="button"
       onClick={() => onSelect(cube.id)}
       data-selected={isSelected ? 'true' : undefined}
-      className="menu-item relative flex w-full cursor-pointer items-center gap-3 px-3 py-2.5 text-left outline-none transition-colors hover:bg-accent/50 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring/50 data-[selected=true]:bg-accent"
+      data-active={isActive ? 'true' : undefined}
+      className="menu-item relative flex w-full cursor-pointer items-center gap-3 px-3 py-2.5 text-left outline-none transition-colors hover:bg-accent/50 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring/50 data-[active=true]:ring-2 data-[active=true]:ring-inset data-[active=true]:ring-ring/50 data-[selected=true]:bg-accent"
     >
       {foundCube ? (
         <span className={cn('size-[22px] shrink-0', isSelected ? 'text-foreground' : 'text-muted-foreground')}>
