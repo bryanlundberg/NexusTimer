@@ -3,6 +3,7 @@ import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { eventTime } from '@/features/timer/lib/eventTime'
+import { useCtrlPadsStore } from '@/features/timer/model/useCtrlPadsStore'
 
 type HandleHoldFunction = (isReleased: boolean, at?: number) => void
 type HandleReleaseFunction = (at?: number) => void
@@ -177,6 +178,7 @@ export default function useEventHandlers({
   const leftCtrlDown = useRef<boolean>(false)
   const rightCtrlDown = useRef<boolean>(false)
   const bothEngaged = useRef<boolean>(false)
+  const awaitCtrlRelease = useRef<boolean>(false)
 
   // Keep the latest callbacks/state in a ref so the keyboard-stackmat listeners can
   // be attached ONCE per mode (below) without being torn down on every re-render.
@@ -210,10 +212,29 @@ export default function useEventHandlers({
       return role === 'textbox'
     }
 
+    const ctrlSide = (event: KeyboardEvent): 'left' | 'right' | null => {
+      if (event.code === 'ControlLeft') return 'left'
+      if (event.code === 'ControlRight') return 'right'
+      if (event.key !== 'Control') return null
+      if (event.location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) return 'right'
+      if (event.location === KeyboardEvent.DOM_KEY_LOCATION_LEFT) return 'left'
+      return null
+    }
+
+    const syncPads = () => useCtrlPadsStore.getState().setPads(leftCtrlDown.current, rightCtrlDown.current)
+
+    const setSide = (side: 'left' | 'right', down: boolean) => {
+      if (side === 'left') leftCtrlDown.current = down
+      else rightCtrlDown.current = down
+      syncPads()
+    }
+
     const clearCtrlState = () => {
       leftCtrlDown.current = false
       rightCtrlDown.current = false
       bothEngaged.current = false
+      awaitCtrlRelease.current = false
+      syncPads()
     }
 
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -222,21 +243,23 @@ export default function useEventHandlers({
         latest.current.resetAndRelease()
         return
       }
-      if (event.repeat || isTypingTarget()) return
+      if (isTypingTarget()) return
+      const side = ctrlSide(event)
 
-      // While solving, any key stops the timer (matches Normal mode).
       if (latest.current.isSolving) {
+        if (side) setSide(side, true)
+        if (event.repeat || awaitCtrlRelease.current) return
         latest.current.handleHold(true, eventTime(event))
         releasedKey.current = true
-        clearCtrlState()
+        bothEngaged.current = false
+        awaitCtrlRelease.current = leftCtrlDown.current || rightCtrlDown.current
         return
       }
 
-      if (event.code === 'ControlLeft') leftCtrlDown.current = true
-      else if (event.code === 'ControlRight') rightCtrlDown.current = true
-      else return
+      if (!side) return
+      setSide(side, true)
+      if (awaitCtrlRelease.current) return
 
-      // Engage preparation only once both Ctrl keys are held together.
       if (leftCtrlDown.current && rightCtrlDown.current && !bothEngaged.current) {
         bothEngaged.current = true
         latest.current.handleHoldWithReleasedState(eventTime(event))
@@ -249,13 +272,17 @@ export default function useEventHandlers({
         latest.current.resetAndRelease()
         return
       }
-      if (event.code !== 'ControlLeft' && event.code !== 'ControlRight') return
-      if (isTypingTarget()) return
+      const side = ctrlSide(event)
+      if (!side) return
 
-      if (event.code === 'ControlLeft') leftCtrlDown.current = false
-      if (event.code === 'ControlRight') rightCtrlDown.current = false
+      setSide(side, false)
+      if (!event.ctrlKey) {
+        leftCtrlDown.current = false
+        rightCtrlDown.current = false
+        syncPads()
+      }
+      if (!leftCtrlDown.current && !rightCtrlDown.current) awaitCtrlRelease.current = false
 
-      // Releasing either Ctrl while both were engaged triggers the release.
       if (bothEngaged.current) {
         bothEngaged.current = false
         latest.current.handleReleaseWithReleasedState(eventTime(event))
