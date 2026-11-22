@@ -12,6 +12,7 @@ import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { useSolveMoment } from '@/features/timer/model/useSolveMoment'
 import { useBackToCancel } from '@/features/timer/model/useBackToCancel'
 import { withoutPlus2 } from '@/entities/solve/lib/penalty'
+import CtrlPadsIndicator from '@/features/timer/ui/CtrlPadsIndicator'
 export default function Timer({ children }: { children?: ReactNode }) {
   const settings = useSettingsStore((store) => store.settings)
   const selectedCube = useTimerStore((store) => store.selectedCube)
@@ -67,6 +68,7 @@ export default function Timer({ children }: { children?: ReactNode }) {
           isRecord={isPersonalBest}
         />
       )}
+      {selectedCube && timerMode === TimerMode.KEYBOARD_STACKMAT && !isSolving && <CtrlPadsIndicator />}
       {lastSolve && settings.features.quickActionButtons && timerStatus === TimerStatus.IDLE && (
         <QuickActions
           solve={lastSolve}
