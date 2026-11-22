@@ -15,6 +15,8 @@ import { TIMER_MAX_VIEWPORT_HEIGHT, timerScale } from '@/features/timer/model/ti
 import { inspectionLabel } from '@/features/timer/lib/inspection'
 import { getDecimalPart, getIntegerPart } from '@/shared/lib/formatTimeParts'
 import holdStyles from '@/features/timer/ui/hold-progress.module.css'
+import { Kbd } from '@/components/ui/kbd'
+import { formatKeyCode } from '@/shared/lib/formatKeyCode'
 
 interface DisplayTimeProps extends Omit<HTMLMotionProps<'div'>, 'ref'> {
   className?: string
@@ -73,9 +75,15 @@ export default function DisplayTime({
   const font = timerFontClass(settings.features.timerFont)
   const isPreparing = timerStatus === TimerStatus.HOLDING || timerStatus === TimerStatus.READY
   const holdMs = settings.timer.holdToStart ? Number(settings.timer.holdToStartTime ?? 0) : 0
-  const startHint = settings.timer.holdToStart
-    ? t(isMobile ? 'tap-to-start' : 'space-to-start')
-    : t(isMobile ? 'tap-to-start-no-hold' : 'space-to-start-no-hold')
+  const keyChip = (chunks: React.ReactNode) => (
+    <Kbd className="mx-1 align-middle pointer-coarse:inline-flex">{chunks}</Kbd>
+  )
+  const startHint = isMobile
+    ? t(settings.timer.holdToStart ? 'tap-to-start' : 'tap-to-start-no-hold')
+    : t.rich(settings.timer.holdToStart ? 'space-to-start' : 'space-to-start-no-hold', {
+        key: formatKeyCode(settings.timer.activationKey || 'Space'),
+        kbd: keyChip
+      })
 
   return (
     <>
@@ -188,7 +196,7 @@ export default function DisplayTime({
                 >
                   {timerMode === TimerMode.NORMAL && startHint}
 
-                  {timerMode === TimerMode.KEYBOARD_STACKMAT && t('hold-ctrl-to-start')}
+                  {timerMode === TimerMode.KEYBOARD_STACKMAT && t.rich('hold-ctrl-to-start', { kbd: keyChip })}
 
                   {timerMode === TimerMode.STACKMAT && t('start-stackmat')}
                 </motion.div>
