@@ -22,6 +22,10 @@ export default function SolveTransferCard({ solve, isSelected, onToggle }: Solve
       id={solve.id}
       data-testid={`solve-card-${solve.id}`}
       onClick={onToggle}
+      onContextMenu={(e) => {
+        e.preventDefault()
+        onToggle()
+      }}
       aria-pressed={isSelected}
       data-selected={isSelected ? 'true' : undefined}
       className={cn(
