@@ -185,6 +185,7 @@ export function ScrambleZone() {
                       className="size-10 pointer-coarse:size-11 [&>svg]:transition-all [&>svg]:duration-300 [&:hover>svg]:text-record"
                       onClick={handleShowHints}
                       aria-label={t('HomePage.hints')}
+                      data-testid="hint-button"
                     >
                       <HintBulbIcon className="size-5" />
                     </Button>

@@ -5,6 +5,7 @@ import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { useTimerRailStore } from '@/features/timer-solves-rail/model/useTimerRailStore'
+import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
 import useQuickActions from '@/features/manage-solves/model/useQuickActions'
 import SolveDetails from '@/features/manage-solves/ui/SolveDetails'
 import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
@@ -105,6 +106,19 @@ export default function useTimerShortcuts() {
       if (lower === 'h') {
         event.preventDefault()
         useTimerRailStore.getState().toggle()
+        return
+      }
+      if (lower === 'f') {
+        if (!selectedCube) return
+        event.preventDefault()
+        useFocusModeStore.getState().toggle()
+        return
+      }
+      if (lower === 'x') {
+        const hintButton = document.querySelector<HTMLButtonElement>('[data-testid="hint-button"]')
+        if (!hintButton) return
+        event.preventDefault()
+        hintButton.click()
         return
       }
       if (key === 'ArrowRight') {
