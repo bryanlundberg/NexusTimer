@@ -4,11 +4,11 @@ import { motion } from 'motion/react'
 import { useRouter } from '@/shared/config/i18n/navigation'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { type LeaderboardSolve, profilePath } from '@nexustimer/contracts'
-import formatTime from '@/shared/lib/formatTime'
 import { CountryFlag } from '@/shared/ui/country-flag/CountryFlag'
 import { PODIUM_CHIP, PODIUM_COLOR } from '@/shared/const/podium'
 import { cn } from '@/shared/lib/utils'
 import LeaderboardPodiumReplayButton from '@/features/leaderboards-table/ui/LeaderboardPodiumReplayButton'
+import LeaderboardPodiumDetails from '@/features/leaderboards-table/ui/LeaderboardPodiumDetails'
 
 const VISUAL_ORDER = [1, 0, 2]
 
@@ -69,14 +69,7 @@ export default function LeaderboardPodium({ solves }: { solves: LeaderboardSolve
                 )}
                 <span className="truncate">{solve.user.name}</span>
               </span>
-              <span
-                className={cn(
-                  'font-mono font-bold tabular-nums leading-none',
-                  isFirst ? 'text-base text-record sm:text-xl' : 'text-sm sm:text-base'
-                )}
-              >
-                {formatTime(solve.time)}
-              </span>
+              <LeaderboardPodiumDetails solve={solve} isFirst={isFirst} />
             </button>
             <LeaderboardPodiumReplayButton solve={solve} />
           </motion.div>
