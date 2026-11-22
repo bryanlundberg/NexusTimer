@@ -4,6 +4,7 @@ import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
 import { useRef } from 'react'
 import RefreshIcon from '@/components/ui/refresh-icon'
+import { Kbd } from '@/components/ui/kbd'
 import type { AnimatedIconHandle } from '@/components/ui/types'
 
 export default function ButtonNextScramble() {
@@ -32,7 +33,10 @@ export default function ButtonNextScramble() {
             </Button>
           </TooltipTrigger>
           <TooltipContent>
-            <p>{t('HomePage.new-scramble')}</p>
+            <p className="flex items-center gap-2">
+              {t('HomePage.new-scramble')}
+              <Kbd>→</Kbd>
+            </p>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>

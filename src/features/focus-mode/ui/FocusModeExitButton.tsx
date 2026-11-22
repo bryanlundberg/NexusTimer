@@ -8,6 +8,8 @@ import { cn } from '@/shared/lib/utils'
 import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { TimerStatus } from '@/features/timer/model/enums'
+import { Kbd } from '@/components/ui/kbd'
+import { useIsShortcutFree } from '@/features/timer/model/useIsShortcutFree'
 
 export default function FocusModeExitButton() {
   const isFocusMode = useFocusModeStore((store) => store.isFocusMode)
@@ -15,6 +17,7 @@ export default function FocusModeExitButton() {
   const isSolving = useTimerStore((store) => store.isSolving)
   const timerStatus = useTimerStore((store) => store.timerStatus)
   const t = useTranslations('Index.HomePage')
+  const isShortcutFree = useIsShortcutFree('KeyF')
 
   if (!isFocusMode) return null
 
@@ -42,7 +45,10 @@ export default function FocusModeExitButton() {
             </Button>
           </TooltipTrigger>
           <TooltipContent>
-            <p>{t('exit-focus-mode')}</p>
+            <p className="flex items-center gap-2">
+              {t('exit-focus-mode')}
+              {isShortcutFree && <Kbd>F</Kbd>}
+            </p>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>

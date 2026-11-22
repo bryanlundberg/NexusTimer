@@ -28,6 +28,8 @@ import VirtualKeymapEditor from '@/features/timer/ui/VirtualKeymapEditor'
 import FocusModeToggle from '@/features/focus-mode/ui/FocusModeToggle'
 import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
 import { TimerMode } from '@/features/timer/model/enums'
+import { Kbd } from '@/components/ui/kbd'
+import { useIsShortcutFree } from '@/features/timer/model/useIsShortcutFree'
 import { HINT_CATEGORIES, SCRAMBLE_GUIDE_MAX_MOVES, SCRAMBLE_SIZE_CLASSES } from '@/features/timer/model/const'
 import { useScrambleOverflow } from '@/features/timer/model/useScrambleOverflow'
 
@@ -42,6 +44,7 @@ export function ScrambleZone() {
   const scrambleReady = useScrambleGuideStore((store) => store.ready)
   const isFocusMode = useFocusModeStore((store) => store.isFocusMode)
   const t = useTranslations('Index')
+  const isHintShortcutFree = useIsShortcutFree('KeyX')
 
   const measureRef = useRef<HTMLParagraphElement>(null)
   const { scrambleSize, scrambleBackground } = settings.features
@@ -194,7 +197,10 @@ export function ScrambleZone() {
 
                 <DrawerHintPanel />
                 <TooltipContent>
-                  <p>{t('HomePage.hints')}</p>
+                  <p className="flex items-center gap-2">
+                    {t('HomePage.hints')}
+                    {isHintShortcutFree && <Kbd>X</Kbd>}
+                  </p>
                 </TooltipContent>
               </Tooltip>
             </Dialog>

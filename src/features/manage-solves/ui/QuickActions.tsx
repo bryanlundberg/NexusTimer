@@ -27,6 +27,8 @@ import { cn } from '@/shared/lib/utils'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSharedSolveActions } from '@/features/share-solve/model/useSharedSolveActions'
 import { useMySharedIds } from '@/entities/shared-solve/model/useMySharedIds'
+import { Kbd } from '@/components/ui/kbd'
+import { useIsShortcutFree } from '@/features/timer/model/useIsShortcutFree'
 
 const COMMENT_MAX_LENGTH = 200
 
@@ -61,6 +63,9 @@ export default function QuickActions({
     handleClipboard,
     handleUpdateComment
   } = useQuickActions(solve!)
+  const isDeleteKeyFree = useIsShortcutFree('Backspace')
+  const isPlusTwoKeyFree = useIsShortcutFree('Digit2')
+  const isDnfKeyFree = useIsShortcutFree('KeyD')
   const [confirmDeleteOpen, setConfirmDeleteOpen] = useState(false)
   const [commentOpen, setCommentOpen] = useState(false)
   const [commentDraft, setCommentDraft] = useState('')
@@ -361,6 +366,11 @@ export default function QuickActions({
             >
               <QaDeleteIcon className="size-5 sm:size-3.5" />
               <span className="hidden sm:inline text-xs">{t('tooltips.delete')}</span>
+              {isDeleteKeyFree && (
+                <span className="hidden sm:inline-flex">
+                  <Kbd>⌫</Kbd>
+                </span>
+              )}
             </Button>
           </TooltipTrigger>
           <TooltipContent className="sm:hidden">
@@ -384,6 +394,11 @@ export default function QuickActions({
             >
               <span className="sm:hidden">+2</span>
               <span className="hidden sm:inline">{t('tooltips.plus-two')}</span>
+              {isPlusTwoKeyFree && (
+                <span className="hidden sm:inline-flex">
+                  <Kbd>2</Kbd>
+                </span>
+              )}
             </Button>
           </TooltipTrigger>
           <TooltipContent className="sm:hidden">
@@ -404,6 +419,11 @@ export default function QuickActions({
           onPointerDown={handleToggleDNF}
         >
           <span>DNF</span>
+          {isDnfKeyFree && (
+            <span className="hidden sm:inline-flex">
+              <Kbd>D</Kbd>
+            </span>
+          )}
         </Button>
 
         {hasSolveMenuItems && (

@@ -4,11 +4,14 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { PanelRightClose, PanelRightOpen } from 'lucide-react'
 import { useTimerRailStore } from '@/features/timer-solves-rail/model/useTimerRailStore'
 import { useTranslations } from 'next-intl'
+import { Kbd } from '@/components/ui/kbd'
+import { useIsShortcutFree } from '@/features/timer/model/useIsShortcutFree'
 
 export default function TimerRailToggle() {
   const isOpen = useTimerRailStore((state) => state.isOpen)
   const toggle = useTimerRailStore((state) => state.toggle)
   const t = useTranslations('Index.SolvesRail')
+  const isShortcutFree = useIsShortcutFree('KeyH')
 
   return (
     <TooltipProvider delayDuration={100}>
@@ -26,7 +29,10 @@ export default function TimerRailToggle() {
           </Button>
         </TooltipTrigger>
         <TooltipContent>
-          <p>{isOpen ? t('hide') : t('show')}</p>
+          <p className="flex items-center gap-2">
+            {isOpen ? t('hide') : t('show')}
+            {isShortcutFree && <Kbd>H</Kbd>}
+          </p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
