@@ -9,6 +9,9 @@ import { PanelRightCloseIcon, PanelRightOpenIcon } from 'lucide-react'
 import { useIsMobile } from '@/shared/model/use-mobile'
 import { useSwipeToClose } from '@/shared/model/useSwipeToClose'
 import { cn } from '@/shared/lib/utils'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
+import { TimerStatus } from '@/features/timer/model/enums'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
@@ -87,10 +90,18 @@ function SidebarProvider({
   // Adds a keyboard shortcut to toggle the sidebar.
   React.useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === SIDEBAR_KEYBOARD_SHORTCUT && (event.metaKey || event.ctrlKey)) {
-        event.preventDefault()
-        toggleSidebar()
-      }
+      if (event.key.toLowerCase() !== SIDEBAR_KEYBOARD_SHORTCUT) return
+      if (event.defaultPrevented || event.repeat || event.ctrlKey || event.metaKey || event.altKey) return
+      const el = document.activeElement as HTMLElement | null
+      const tag = el?.tagName.toLowerCase()
+      if (tag === 'input' || tag === 'textarea' || tag === 'select' || el?.isContentEditable || el?.role === 'textbox')
+        return
+      if (document.querySelector('[role="dialog"], [role="alertdialog"], [role="menu"]')) return
+      const { isSolving, timerStatus } = useTimerStore.getState()
+      if (isSolving || timerStatus !== TimerStatus.IDLE) return
+      if (event.code === useSettingsStore.getState().settings.timer.activationKey) return
+      event.preventDefault()
+      toggleSidebar()
     }
 
     window.addEventListener('keydown', handleKeyDown)

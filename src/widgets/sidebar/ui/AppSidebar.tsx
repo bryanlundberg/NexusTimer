@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { useRef, useSyncExternalStore } from 'react'
+import { useRef } from 'react'
 import { MonitorDown } from 'lucide-react'
 import {
   Sidebar,
@@ -28,13 +28,8 @@ import { useOverscrollStretch } from '@/shared/model/useOverscrollStretch'
 import { useSidebarNav } from '@/widgets/sidebar/model/useSidebarNav'
 import { cn } from '@/shared/lib/utils'
 
-const subscribeNoop = () => () => {}
-const getIsMac = () => /Mac|iPhone|iPad/.test(navigator.userAgent)
-const getIsMacServer = () => false
-
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { open, openMobile, setOpenMobile, isMobile, toggleSidebar } = useSidebar()
-  const isMac = useSyncExternalStore(subscribeNoop, getIsMac, getIsMacServer)
   const t = useTranslations('Index')
   const { isInstallable, install } = usePwaInstall()
   const isFocusMode = useFocusModeStore((store) => store.isFocusMode)
@@ -133,12 +128,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 type="button"
                 onClick={toggleSidebar}
                 aria-label={t('NavMain.toggle-sidebar')}
-                aria-keyshortcuts={isMac ? 'Meta+B' : 'Control+B'}
+                aria-keyshortcuts="B"
                 className="flex cursor-pointer items-center gap-1 text-muted-foreground transition-colors hover:text-foreground"
               >
-                <kbd className="flex h-5 min-w-5 items-center justify-center border border-sidebar-border bg-background/50 px-1 font-mono text-[10px] leading-none">
-                  {isMac ? '⌘' : 'Ctrl'}
-                </kbd>
                 <kbd className="flex h-5 min-w-5 items-center justify-center border border-sidebar-border bg-background/50 px-1 font-mono text-[10px] leading-none">
                   B
                 </kbd>
