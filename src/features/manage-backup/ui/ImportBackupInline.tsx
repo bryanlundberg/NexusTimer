@@ -14,12 +14,13 @@ import { Spinner } from '@/components/ui/spinner'
 import { Cube } from '@/entities/cube/model/types'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { cubesDB } from '@/entities/cube/api/indexdb'
+import { BrandMark } from '@/widgets/sidebar/ui/brand-mark'
 
 const SUPPORTED_TIMERS = [
-  { src: '/logo.png', alt: 'NexusTimer', name: 'NexusTimer', brand: true },
+  { alt: 'NexusTimer', name: 'NexusTimer' },
   { src: '/timer-logos/cstimer.jpg', alt: 'csTimer', name: 'csTimer' },
   { src: '/timer-logos/twistytimer.jpg', alt: 'TwistyTimer', name: 'TwistyTimer' },
-  { src: '/timer-logos/cubedesk.jpg', alt: 'CubeDesk', name: 'CubeDesk' }
+  { src: '/timer-logos/cubedesk.jpg', alt: 'CubeDesk', name: 'CubeDesk', imageClassName: 'scale-125' }
 ]
 
 export default function ImportBackupInline() {
@@ -95,26 +96,19 @@ export default function ImportBackupInline() {
       <div className="flex flex-wrap items-center gap-3">
         {SUPPORTED_TIMERS.map((timer) => (
           <div key={timer.name} className="flex flex-col items-center gap-1">
-            {timer.brand ? (
-              <div className="flex size-8 items-center justify-center rounded-full bg-sidebar-primary">
+            {!timer.src ? (
+              <BrandMark />
+            ) : (
+              <div className="size-8 overflow-hidden notch-bl-tr [--notch-cut:8px]">
                 <Image
                   src={timer.src}
                   alt={timer.alt}
-                  width={36}
-                  height={36}
+                  width={48}
+                  height={48}
                   draggable={false}
-                  className="size-full p-2 invert"
+                  className={`size-full object-cover ${timer.imageClassName ?? ''}`}
                 />
               </div>
-            ) : (
-              <Image
-                src={timer.src}
-                alt={timer.alt}
-                width={48}
-                height={48}
-                draggable={false}
-                className="size-8 rounded-full"
-              />
             )}
             <span className="text-[10px] text-muted-foreground">{timer.name}</span>
           </div>
