@@ -370,6 +370,7 @@
       "edit": "Editar",
       "delete": "Excluir",
       "created": "Criado",
+      "last-used": "Último uso",
       "total": "total",
       "utilize": "Utilizar",
       "utilize-cube": "Utilizar `{name}`",

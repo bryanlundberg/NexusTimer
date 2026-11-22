@@ -370,6 +370,7 @@
       "edit": "编辑",
       "delete": "删除",
       "created": "已创建",
+      "last-used": "上次使用",
       "total": "总计",
       "utilize": "使用",
       "utilize-cube": "使用 `{name}`",

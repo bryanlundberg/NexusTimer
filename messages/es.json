@@ -344,6 +344,7 @@
       "delete": "Borrar",
       "edit": "Editar",
       "created": "Creado",
+      "last-used": "Último uso",
       "total": "total",
       "utilize": "Usar",
       "utilize-cube": "Usar `{name}`",

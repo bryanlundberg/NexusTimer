@@ -370,6 +370,7 @@
       "edit": "編集",
       "delete": "削除",
       "created": "作成済み",
+      "last-used": "最終使用",
       "total": "合計",
       "utilize": "使用",
       "utilize-cube": "`{name}` を使用",

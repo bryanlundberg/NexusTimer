@@ -379,6 +379,7 @@
       "edit": "Chỉnh sửa",
       "delete": "Xóa",
       "created": "Đã tạo",
+      "last-used": "Dùng lần cuối",
       "total": "tổng",
       "utilize": "Sử dụng",
       "utilize-cube": "Sử dụng `{name}`",

@@ -379,6 +379,7 @@
       "edit": "I-edit",
       "delete": "Burahin",
       "created": "Ginawa",
+      "last-used": "Huling ginamit",
       "total": "kabuuan",
       "utilize": "Gamitin",
       "utilize-cube": "Gamitin ang `{name}`",
