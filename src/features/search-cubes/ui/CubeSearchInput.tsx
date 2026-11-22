@@ -1,4 +1,6 @@
+import { useRef } from 'react'
 import { Input } from '@/components/ui/input'
+import { useTypeToSearch } from '@/features/search-cubes/model/useTypeToSearch'
 import { X } from 'lucide-react'
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
 import { useTranslations } from 'next-intl'
@@ -10,11 +12,14 @@ interface CubeSearchInputProps {
 
 export default function CubeSearchInput({ value, onChange }: CubeSearchInputProps) {
   const t = useTranslations('Index.Inputs')
+  const inputRef = useRef<HTMLInputElement>(null)
+  useTypeToSearch(inputRef)
 
   return (
     <div className="relative group flex-1 min-w-0">
       <MagnifyingGlassIcon className="pointer-events-none absolute left-3 top-1/2 z-[2] -translate-y-1/2 size-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
       <Input
+        ref={inputRef}
         type="search"
         inputMode="search"
         enterKeyHint="search"
