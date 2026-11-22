@@ -1078,6 +1078,22 @@
   background-color: transparent;
 }
 
+[data-slot='sidebar-group-label'] {
+  gap: 8px;
+  letter-spacing: 0.14em;
+}
+[data-slot='sidebar-group-label']::before {
+  content: '';
+  flex: none;
+  width: 8px;
+  height: 8px;
+  background-color: currentColor;
+  mask:
+    linear-gradient(90deg, #000 0 2px, transparent 2px 3px, #000 3px 5px, transparent 5px 6px, #000 6px 8px),
+    linear-gradient(0deg, #000 0 2px, transparent 2px 3px, #000 3px 5px, transparent 5px 6px, #000 6px 8px);
+  mask-composite: intersect;
+}
+
 /* White in every theme, so the tokens its content reads are rescoped here. */
 [data-slot='sidebar'][data-mobile='true'] {
   color-scheme: light;
