@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
 import { useTranslations } from 'next-intl'
+import { ArrowRightLeft, ListChecks } from 'lucide-react'
 
 export default function TransferSolvesPage() {
   const {
@@ -53,26 +54,28 @@ export default function TransferSolvesPage() {
       <SolvesGrid selectedSolves={selectedSolves} displaySolves={displaySolves} hasSource={!!sourceCollection} />
 
       {selectedSolves.length > 0 && (
-        <div className="absolute inset-x-0 bottom-0 z-20 px-3 pb-3">
-          <div className="notch-br animate-in slide-in-from-bottom-4 fade-in-0 mx-auto flex max-w-2xl items-center gap-2 bg-foreground p-2 text-background shadow-float duration-300 ease-out">
-            <span
-              data-testid="solves-selected-counter"
-              className="min-w-0 flex-1 truncate ps-2 text-sm font-medium tabular-nums"
-            >
-              {t('solves-selected', { count: selectedSolves.length })}
-            </span>
+        <div className="absolute inset-x-0 bottom-0 z-20 px-3 pb-3 drop-shadow-[0_8px_24px_rgb(0_0_0/0.35)]">
+          <div className="dialog-shell animate-in slide-in-from-bottom-4 fade-in-0 relative mx-auto grid max-w-2xl grid-cols-[1fr_auto_1fr] items-center gap-2 p-2 text-foreground duration-300 ease-out">
             <Button
               data-testid="toggle-all-button"
               variant="ghost"
               size="sm"
-              className="gap-1.5 bg-background/15 text-background hover:bg-background/30 hover:text-background dark:bg-background/15 dark:hover:bg-background/30"
+              className="justify-self-start gap-1.5 bg-muted pointer-coarse:h-10 hover:bg-muted/70 dark:bg-muted/50 dark:hover:bg-muted/70"
               onClick={() => handleToggleAll(allSelected ? 'deselect' : 'select')}
             >
-              {allSelected ? t('deselect-all') : t('select-all')}
+              <ListChecks className="size-3.5" />
+              <span className="text-xs">{allSelected ? t('deselect-all') : t('select-all')}</span>
             </Button>
+            <span
+              data-testid="solves-selected-counter"
+              className="truncate text-center text-sm font-medium tabular-nums"
+            >
+              {t('solves-selected', { count: selectedSolves.length })}
+            </span>
             <Button
               data-testid="transfer-solves-button"
               size="sm"
+              className="btn-notch-br justify-self-end gap-1.5 font-semibold pointer-coarse:h-10"
               onClick={handleTransfer}
               disabled={
                 !sourceCollection ||
@@ -82,7 +85,8 @@ export default function TransferSolvesPage() {
                 selectedSolves.length === 0
               }
             >
-              {isTransferring ? t('transferring') : t('transfer')}
+              <ArrowRightLeft className="size-3.5" />
+              <span className="text-xs">{isTransferring ? t('transferring') : t('transfer')}</span>
             </Button>
           </div>
         </div>
