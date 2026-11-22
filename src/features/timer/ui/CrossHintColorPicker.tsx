@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import type { CrossHint } from '@nexustimer/cube-solver-rs'
 import { FACE_COLORS } from '@/shared/const/face-colors'
@@ -14,6 +15,20 @@ interface CrossHintColorPickerProps {
 
 export function CrossHintColorPicker({ faces, value, onChange }: CrossHintColorPickerProps) {
   const t = useTranslations('Index')
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return
+      if (e.ctrlKey || e.metaKey || e.altKey) return
+      e.preventDefault()
+      const step = e.key === 'ArrowRight' ? 1 : -1
+      const index = FACE_COLORS.indexOf(value)
+      onChange(FACE_COLORS[(index + step + FACE_COLORS.length) % FACE_COLORS.length])
+    }
+
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [value, onChange])
 
   return (
     <div
