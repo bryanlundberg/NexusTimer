@@ -17,6 +17,7 @@ import formatTime from '@/shared/lib/formatTime'
 
 const DELETE_CONFIRM_MS = 3000
 const DELETE_TOAST_ID = 'timer-shortcut-delete'
+const FOCUS_RELEASE_KEYS = new Set(['o', '2', 'd', 'h', 'i', 'f', 'x', 'b', 'c', 'backspace', 'delete'])
 
 const isTypingTarget = (): boolean => {
   const el = document.activeElement as HTMLElement | null
@@ -164,7 +165,20 @@ export default function useTimerShortcuts() {
       }
     }
 
+    const releaseFocus = (event: KeyboardEvent) => {
+      if (event.ctrlKey || event.metaKey || event.altKey) return
+      const isTimerKey = event.code === activationKey || FOCUS_RELEASE_KEYS.has(event.key.toLowerCase())
+      if (!isTimerKey) return
+      const el = document.activeElement as HTMLElement | null
+      if (!el || el === document.body || isTypingTarget() || isDialogOpen()) return
+      el.blur()
+    }
+
+    window.addEventListener('keydown', releaseFocus, { capture: true })
     window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
+    return () => {
+      window.removeEventListener('keydown', releaseFocus, { capture: true })
+      window.removeEventListener('keydown', handleKeyDown)
+    }
   }, [activationKey])
 }
