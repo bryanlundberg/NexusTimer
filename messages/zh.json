@@ -407,6 +407,8 @@
       "delete": "删除",
       "continue": "继续",
       "select": "选择",
+      "navigate": "导航",
+      "close": "关闭",
       "favorites": "收藏夹",
       "move": "移动",
       "create": "创建",

@@ -407,6 +407,8 @@
       "delete": "削除",
       "continue": "続行",
       "select": "選択",
+      "navigate": "移動",
+      "close": "閉じる",
       "favorites": "お気に入り",
       "move": "移動",
       "create": "作成",

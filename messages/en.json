@@ -414,6 +414,8 @@
       "delete": "Delete",
       "continue": "Continue",
       "select": "Select",
+      "navigate": "Navigate",
+      "close": "Close",
       "favorites": "Favorites",
       "move": "Move",
       "create": "Create",

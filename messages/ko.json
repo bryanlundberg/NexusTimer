@@ -407,6 +407,8 @@
       "delete": "삭제",
       "continue": "계속",
       "select": "선택",
+      "navigate": "이동",
+      "close": "닫기",
       "favorites": "즐겨찾기",
       "move": "이동",
       "create": "생성",

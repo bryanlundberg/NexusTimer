@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/compone
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
+import { Kbd } from '@/components/ui/kbd'
 import { useCubeActions } from '@/features/manage-cubes/model/useCubeActions'
 import { PlusIcon, Search } from 'lucide-react'
 import { Nexi } from '@/shared/ui/nexi'
@@ -200,6 +201,23 @@ export default function SelectCollection() {
               <PlusIcon className="size-4" />
               {t('CubesPage.new-collection')}
             </Button>
+            <div className="flex items-center justify-center gap-4 pt-2 text-[11px] text-muted-foreground pointer-coarse:hidden">
+              <span className="flex items-center gap-1.5">
+                <span className="flex gap-0.5">
+                  <Kbd>↑</Kbd>
+                  <Kbd>↓</Kbd>
+                </span>
+                {t('Inputs.navigate')}
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Kbd>↵</Kbd>
+                {t('Inputs.select')}
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Kbd>Esc</Kbd>
+                {t('Inputs.close')}
+              </span>
+            </div>
           </div>
         </div>
       </DialogContent>

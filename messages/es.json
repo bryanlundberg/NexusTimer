@@ -368,6 +368,8 @@
     "Inputs": {
       "delete": "Eliminar",
       "select": "Seleccionar",
+      "navigate": "Navegar",
+      "close": "Cerrar",
       "favorites": "Favoritos",
       "create": "Crear",
       "cancel": "Cancelar",

@@ -414,6 +414,8 @@
       "delete": "ลบ",
       "continue": "ดำเนินการต่อ",
       "select": "เลือก",
+      "navigate": "เลื่อน",
+      "close": "ปิด",
       "favorites": "รายการโปรด",
       "move": "ย้าย",
       "create": "สร้าง",
