@@ -18,6 +18,7 @@ import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore
 import { useScreenWakeLock } from '@/shared/model/useScreenWakeLock'
 import { onScrambleReady, takeScramble } from '@/shared/lib/timer/scramblePool'
 import { TimerStatus } from '@/features/timer/model/enums'
+import useTimerShortcuts from '@/features/timer/model/useTimerShortcuts'
 
 export default function TimerPage() {
   const resetTimerStore = useTimerStore((state) => state.reset)
@@ -42,6 +43,7 @@ export default function TimerPage() {
   useEffect(() => exitFocusMode, [exitFocusMode])
 
   useScreenWakeLock()
+  useTimerShortcuts()
 
   return (
     <div className="flex flex-col grow min-h-0 relative">

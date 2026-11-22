@@ -733,6 +733,7 @@
       "transfer-collection": "다른 큐브로 이동",
       "delete-confirm-title": "이 솔브를 삭제하시겠습니까?",
       "delete-confirm-desc": "이 작업은 되돌릴 수 없습니다.",
+      "delete-shortcut-title": "이 솔브를 삭제하려면 {key} 키를 다시 누르세요",
       "watch-replay": "리플레이 보기",
       "comment-title": "솔브 코멘트",
       "comment-desc": "이 메모는 나만 볼 수 있습니다.",

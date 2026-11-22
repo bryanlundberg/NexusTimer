@@ -733,6 +733,7 @@
       "transfer-collection": "转移到其他魔方",
       "delete-confirm-title": "删除此还原？",
       "delete-confirm-desc": "此操作无法撤销。",
+      "delete-shortcut-title": "再按一次 {key} 删除这次还原",
       "watch-replay": "观看回放",
       "comment-title": "复原备注",
       "comment-desc": "只有你能看到这条备注。",

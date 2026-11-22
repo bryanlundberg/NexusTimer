@@ -733,6 +733,7 @@
       "transfer-collection": "別のキューブに移動",
       "delete-confirm-title": "このソルブを削除しますか？",
       "delete-confirm-desc": "この操作は取り消せません。",
+      "delete-shortcut-title": "もう一度 {key} を押すとこのソルブを削除します",
       "watch-replay": "リプレイを見る",
       "comment-title": "ソルブのコメント",
       "comment-desc": "このメモはあなただけが見られます。",

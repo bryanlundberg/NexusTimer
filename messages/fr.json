@@ -733,6 +733,7 @@
       "transfer-collection": "Transférer vers un autre cube",
       "delete-confirm-title": "Supprimer ce solve ?",
       "delete-confirm-desc": "Cette action est irréversible.",
+      "delete-shortcut-title": "Appuie encore sur {key} pour supprimer ce solve",
       "watch-replay": "Voir le replay",
       "comment-title": "Commentaire du solve",
       "comment-desc": "Vous seul pouvez voir cette note.",

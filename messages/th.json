@@ -741,6 +741,7 @@
       "watch-replay": "ดูรีเพลย์",
       "delete-confirm-title": "ลบโซลฟ์นี้?",
       "delete-confirm-desc": "การกระทำนี้ไม่สามารถยกเลิกได้",
+      "delete-shortcut-title": "กด {key} อีกครั้งเพื่อลบการแก้นี้",
       "comment-title": "ความคิดเห็นของ solve",
       "comment-desc": "มีเพียงคุณเท่านั้นที่เห็นบันทึกนี้",
       "comment-placeholder": "เพิ่มบันทึกเกี่ยวกับ solve นี้"

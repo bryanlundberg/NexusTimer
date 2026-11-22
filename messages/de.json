@@ -733,6 +733,7 @@
       "transfer-collection": "Auf anderen Würfel übertragen",
       "delete-confirm-title": "Diesen Solve löschen?",
       "delete-confirm-desc": "Diese Aktion kann nicht rückgängig gemacht werden.",
+      "delete-shortcut-title": "Drücke erneut {key}, um diesen Solve zu löschen",
       "watch-replay": "Replay ansehen",
       "comment-title": "Solve-Kommentar",
       "comment-desc": "Nur du kannst diese Notiz sehen.",

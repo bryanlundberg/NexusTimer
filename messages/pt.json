@@ -733,6 +733,7 @@
       "transfer-collection": "Transferir para outro cubo",
       "delete-confirm-title": "Excluir esta resolução?",
       "delete-confirm-desc": "Esta ação não pode ser desfeita.",
+      "delete-shortcut-title": "Pressione {key} de novo para apagar este solve",
       "watch-replay": "Assistir replay",
       "comment-title": "Comentário do solve",
       "comment-desc": "Apenas você pode ver esta nota.",

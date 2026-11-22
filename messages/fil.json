@@ -741,6 +741,7 @@
       "watch-replay": "Panoorin ang replay",
       "delete-confirm-title": "Burahin ang solve na ito?",
       "delete-confirm-desc": "Hindi na maibabalik ang aksyong ito.",
+      "delete-shortcut-title": "Pindutin muli ang {key} para burahin ang solve na ito",
       "comment-title": "Komento sa solve",
       "comment-desc": "Ikaw lang ang makakakita ng note na ito.",
       "comment-placeholder": "Magdagdag ng note tungkol sa solve na ito"
