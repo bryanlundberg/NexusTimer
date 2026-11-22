@@ -79,7 +79,7 @@ export default function MainCubeSelector() {
               <ChevronDownIcon className="size-4 shrink-0 opacity-50" />
             </button>
           </TooltipTrigger>
-          <TooltipContent className="pointer-coarse:hidden">
+          <TooltipContent>
             <p className="flex items-center gap-2">
               {t('HomePage.select-cube')}
               {isShortcutFree && <Kbd>C</Kbd>}
