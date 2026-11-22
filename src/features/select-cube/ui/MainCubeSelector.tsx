@@ -8,6 +8,8 @@ import { useTranslations } from 'next-intl'
 import { ChevronDownIcon } from 'lucide-react'
 import { CubeNavIcon } from '@/components/ui/nav-icons-solid'
 import { cn } from '@/shared/lib/utils'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
+import { TimerStatus } from '@/features/timer/model/enums'
 
 export default function MainCubeSelector() {
   const selectedCube = useTimerStore((state) => state.selectedCube)
@@ -26,10 +28,19 @@ export default function MainCubeSelector() {
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if (e.key === 'j' && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault()
-        handleOpenSelector()
-      }
+      if (e.key.toLowerCase() !== 'c') return
+      if (e.defaultPrevented || e.repeat || e.ctrlKey || e.metaKey || e.altKey) return
+      const el = document.activeElement as HTMLElement | null
+      const tag = el?.tagName.toLowerCase()
+      if (tag === 'input' || tag === 'textarea' || tag === 'select' || el?.isContentEditable || el?.role === 'textbox')
+        return
+      if (useOverlayStore.getState().isOpen) return
+      if (document.querySelector('[role="dialog"], [role="alertdialog"], [role="menu"]')) return
+      const { isSolving, timerStatus } = useTimerStore.getState()
+      if (isSolving || timerStatus !== TimerStatus.IDLE) return
+      if (e.code === useSettingsStore.getState().settings.timer.activationKey) return
+      e.preventDefault()
+      handleOpenSelector()
     }
 
     document.addEventListener('keydown', down)
