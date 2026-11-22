@@ -15,6 +15,7 @@ export default function TimerStatTile({ label, value, testId, side, isRecord = f
 
   return (
     <motion.div
+      data-side={side}
       variants={{
         hidden: { x: side === 'left' ? -20 : 20, opacity: 0 },
         visible: { x: 0, opacity: 1, transition: { duration: 0.2 } }
