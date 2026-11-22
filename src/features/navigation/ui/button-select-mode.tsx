@@ -106,7 +106,15 @@ export default function ButtonSelectMode() {
           <ChevronDown className="size-4 opacity-50 transition-transform duration-200 group-data-[state=open]:rotate-180" />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-80 max-w-[calc(100vw-1rem)]" innerClassName="p-0">
+      <DropdownMenuContent
+        align="end"
+        className="w-80 max-w-[calc(100vw-1rem)]"
+        innerClassName="p-0"
+        onCloseAutoFocus={(event) => {
+          event.preventDefault()
+          ;(document.activeElement as HTMLElement | null)?.blur()
+        }}
+      >
         <div className="border-b border-border bg-muted/40 px-3.5 py-3">
           <p className="font-display text-[10px] leading-none font-semibold tracking-[0.14em] text-muted-foreground uppercase">
             {t('HomePage.mode')}
