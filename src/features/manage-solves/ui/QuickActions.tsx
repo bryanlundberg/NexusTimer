@@ -391,6 +391,8 @@ export default function QuickActions({
           </TooltipContent>
         </Tooltip>
 
+        <div className="w-px h-4 bg-border mx-0.5" />
+
         <Button
           data-testid="dnf-button"
           variant="ghost"
@@ -403,29 +405,6 @@ export default function QuickActions({
         >
           <span>DNF</span>
         </Button>
-
-        <div className="w-px h-4 bg-border mx-0.5" />
-
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              data-testid="bookmark-button"
-              variant="ghost"
-              size="sm"
-              className={cn(
-                'gap-1.5 h-12 min-w-12 sm:h-8 sm:min-w-0',
-                solve?.bookmark ? 'text-record hover:text-record' : 'text-muted-foreground'
-              )}
-              onPointerDown={handleToggleBookmark}
-            >
-              <QaBookmarkIcon className="size-5 sm:size-3.5" fill={solve?.bookmark ? 'currentColor' : 'none'} />
-              <span className="hidden sm:inline text-xs">{t('tooltips.bookmark')}</span>
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent className="sm:hidden">
-            <p>{t('tooltips.bookmark')}</p>
-          </TooltipContent>
-        </Tooltip>
 
         {hasSolveMenuItems && (
           <>
